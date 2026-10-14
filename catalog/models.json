@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "verified_metadata_date": "2026-10-14",
+  "verified_metadata_date": "2026-10-15",
   "note": "Bytes are GGUF file size, not required RAM. Hashes come from publisher LFS metadata. Only Qwen Q4 has local inference evidence. Model licenses apply separately.",
   "models": {
     "qwen36-q4": {
@@ -46,6 +46,76 @@
       "upstream": "https://huggingface.co/zai-org/GLM-4.7-Flash",
       "status": "more-memory-only-not-tested",
       "thinking": "Same family; quantization is an independent experimental variable"
+    },
+    "gemma4-31b-qat": {
+      "name": "Gemma 4 31B IT official QAT Q4_0",
+      "repo": "google/gemma-4-31B-it-qat-q4_0-gguf",
+      "revision": "59dde24573e7e61570dba08b18a2e1fe246955ed",
+      "filename": "gemma-4-31B_q4_0-it.gguf",
+      "bytes": 17651001568,
+      "sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
+      "status": "campaign-pending-fit-and-runtime",
+      "thinking": "Verify native template; do not assume a reasoning-effort control."
+    },
+    "qwencoder30-udq4": {
+      "name": "Qwen3-Coder 30B A3B UD-Q4_K_XL",
+      "repo": "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF",
+      "revision": "b17cb02dd882d5b6ab62fc777ad2995f19668350",
+      "filename": "Qwen3-Coder-30B-A3B-Instruct-UD-Q4_K_XL.gguf",
+      "bytes": 17665334432,
+      "sha256": "2841aa314d916434860cfb8990347528dcdfe5c350dbcb9d1461dbee88ff2533",
+      "status": "campaign-pending-fit-and-runtime",
+      "thinking": "Verify native template; do not assume a reasoning-effort control."
+    },
+    "qwen36-q5": {
+      "name": "Qwen3.6 35B A3B UD-Q5_K_M",
+      "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+      "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+      "filename": "Qwen3.6-35B-A3B-UD-Q5_K_M.gguf",
+      "bytes": 26456194016,
+      "sha256": "c13ce26253ea334df472bd8fbd2d6da66d8a41195c17f6fcbf44c4d20ece0932",
+      "status": "campaign-pending-fit-and-runtime",
+      "thinking": "Verify native template; do not assume a reasoning-effort control."
+    },
+    "qwen36-q6": {
+      "name": "Qwen3.6 35B A3B UD-Q6_K_XL",
+      "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+      "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+      "filename": "Qwen3.6-35B-A3B-UD-Q6_K_XL.gguf",
+      "bytes": 31843777504,
+      "sha256": "f6b6c6d5cfa6f00d964eeb7add28eb14ce7481734d506b90681007678cd2c484",
+      "status": "campaign-pending-fit-and-runtime",
+      "thinking": "Verify native template; do not assume a reasoning-effort control."
+    },
+    "glm47-udq6": {
+      "name": "GLM-4.7-Flash UD-Q6_K_XL",
+      "repo": "unsloth/GLM-4.7-Flash-GGUF",
+      "revision": "0d32489ecb9db6d2a4fc93bd27ef01519f95474d",
+      "filename": "GLM-4.7-Flash-UD-Q6_K_XL.gguf",
+      "bytes": 26175238496,
+      "sha256": "b5ddf6a5531a4d06ce84a652419c8d32c0cb15ca64549d715f783de948a3f3e2",
+      "status": "campaign-pending-fit-and-runtime",
+      "thinking": "Verify native template; do not assume a reasoning-effort control."
+    },
+    "kimi-linear-q4": {
+      "name": "Kimi Linear 48B A3B Instruct Q4_K_M",
+      "repo": "bartowski/moonshotai_Kimi-Linear-48B-A3B-Instruct-GGUF",
+      "revision": "228dbe476e5a02091624a19068f4c962caa8a1c5",
+      "filename": "moonshotai_Kimi-Linear-48B-A3B-Instruct-Q4_K_M.gguf",
+      "bytes": 30061058720,
+      "sha256": "a1a7d865370652221f937163f7e94c99e1f114861335ba4f8666606843f1620f",
+      "status": "campaign-pending-fit-and-runtime",
+      "thinking": "Verify native template; do not assume a reasoning-effort control."
+    },
+    "qwencoder-next-q4": {
+      "name": "Qwen3-Coder Next 80B A3B Q4_K_M",
+      "repo": "unsloth/Qwen3-Coder-Next-GGUF",
+      "revision": "ce09c67b53bc8739eef83fe67b2f5d293c270632",
+      "filename": "Qwen3-Coder-Next-Q4_K_M.gguf",
+      "bytes": 48528320544,
+      "sha256": "9e6032d2f3b50a60f17ce8bf5a1d85c71af9b53b89c7978020ae7c660f29b090",
+      "status": "campaign-pending-fit-and-runtime",
+      "thinking": "Verify native template; do not assume a reasoning-effort control."
     }
   }
 }

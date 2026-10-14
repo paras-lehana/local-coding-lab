@@ -19,7 +19,13 @@ instructions to the maintainer. CLAUDE.md and the Copilot adapter point here.
   memory gates. No boot startup, driver/BIOS changes or broad process kills.
   Run one inference experiment at a time. A fit estimate is not a measurement.
 - Installer actions must be explicit, pinned and hash-verified; paths may
-  contain spaces. Never replace an existing installation or delete old weights.
+  contain spaces. Never replace an existing installation. The owner explicitly
+  authorized autonomous downloads, testing and model deletion on 2026-10-15:
+  continue through the research candidate matrix without asking for "continue".
+  Preserve measurements, settings and artifact identity before deleting a
+  completed candidate; retain a verified working baseline until a replacement
+  is established. Delete only exact recorded model paths, never directory trees.
+  Apps remain open; a fit/runtime rejection is not a completed quality test.
 - Run the offline unittest suite, PowerShell parsing checks and public-content
   audit before committing changes. Report downloads and live inference not run.
 - Maintain docs/tasks.md and docs/prompts.md with decisions, validation and

@@ -1,12 +1,13 @@
 # Prompt log — Local Coding Lab
 
-Last updated: 2026-10-14. Public project history excludes earlier credentials,
+Last updated: 2026-10-15. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
 | 1 | 2026-10-14 | 22:35 | Establish reusable research repository | Infrastructure | Done | [Entry](#repository-creation) |
 | 2 | 2026-10-14 | 23:12 | Start research: controlled Qwen placement | Research | Done | [Entry](#research-placement-experiment) |
+| 3 | 2026-10-15 | 00:47 | Autonomous full research campaign | Research | In progress | [Entry](#autonomous-research-campaign) |
 
 ## Repository creation
 
@@ -206,3 +207,39 @@ Suggested next steps
 - Compare unrestricted reasoning within the twenty-minute limit.
 - Evaluate the smaller Gemma candidate next, followed by GLM if memory permits. Select a replacement through repeatable correctness and reliable file handling.
 ```
+
+## Autonomous research campaign
+
+### Original request
+
+> man, you need to work autonomously, you have full rights to download model, make report, test vigrously, delete,  test next model. Please i dont have time to just keep telling you continue, please make sure to fulfil testing for all models in the report.
+
+### Active authorization and constraints
+
+Continue through the complete research candidate matrix without another user
+prompt. Downloads, testing, reporting and exact-file model cleanup are explicitly
+authorized. Updated project guidance through agent-context-maintenance so the
+older blanket no-deletion rule does not block the owner's current instruction.
+No shared adapter change is needed; existing links already lead here.
+
+Apps remain open, each whole prompt is capped at 1200 seconds, and the resource
+and WHEA stop conditions remain active. A failed fit/runtime check must not be
+presented as a completed quality score. Retain the current verified Qwen baseline
+while gathering comparison evidence and preserve reports before cleanup.
+
+See [campaign plan](../reports/2026-10-15-campaign-plan.md), [task log](tasks.md),
+and ignored local-data/2026-10-15-campaign for resumable live evidence.
+
+### Work in progress
+
+Rechecked pinned artifact metadata, began Gemma 26B, GLM Q4 and Gemma dense
+31B downloads, and started Qwen seed 74/75 and unrestricted-thinking trials.
+Added frozen long-file/stale-file and held-out TypeScript/SQLite scenarios before
+collecting their answers. New catalog entries cover every runnable family and
+conditional precision variant in the research. No final ranking yet.
+
+Checkpoint: three Qwen core repeats, history and held-out tasks collected; all
+Python implementations pass independent checks, while held-out TypeScript and
+SQLite expose real bugs. Unrestricted held-out rerun and extended history are
+running. Gemma/GLM downloads continue. Nineteen offline tests, PowerShell parsing
+and public-content audit pass; campaign remains in progress.

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0 — 2026-10-15 (campaign in progress)
+
+- Add checkpointed, monitored model trials and frozen multi-turn changed-file
+  and held-out TypeScript/SQLite scenarios.
+- Add GGUF metadata/tensor inventory inspection without loading weight tensors.
+- Expand pinned candidate metadata and proposed profiles; preserve the baseline.
+- Add isolated cross-language grading and publish ongoing findings separately
+  from completed model rankings. The campaign is not complete yet.
+
 ## 0.2.0 — 2026-10-14
 
 - Run and publish the first controlled Qwen placement pair, including source

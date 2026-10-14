@@ -44,3 +44,18 @@ The six contract groups correspond to the existing 12 behavior points. The
 checks were added after the first answers were collected; they are not held out.
 Score instruction discovery, grounding, absent facts, test quality and actual
 reads separately using the rubric. Do not award behavior points for syntax alone.
+
+## TypeScript and SQLite
+
+`scripts/grade_ts_sql.py` additionally accepts reviewed `candidate.ts`,
+`migration.sql`, the frozen `schema.sql`, and the two independent
+`benchmarks/checks/ts_sql_v1.*` checks. Supply an already verified Linux Node
+binary and TypeScript `lib` directory explicitly. There is no package installation
+or Windows execution fallback in the grader. It compiles with strict TypeScript
+settings and executes the emitted JavaScript only inside the namespace.
+
+Node uses a 128 MiB JavaScript heap limit and an 8 GiB **virtual address** ceiling
+for V8 reservations; this is not an 8 GiB physical-memory allocation. Compilation
+plus JS checks have a 60-second wall limit and 30-second CPU limit. SQLite retains
+the Python runner's 20-second / 512 MiB limits. Preserve initial errors before any
+repair. A failed migration is not six independently observed assertion failures.

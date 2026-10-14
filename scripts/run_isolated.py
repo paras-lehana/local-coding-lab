@@ -4,6 +4,7 @@ Requires an existing bubblewrap installation and enabled user namespaces.
 Use a disposable VM for actively hostile code; this is not a kernel boundary.
 """
 import argparse
+from functools import partial
 import json
 import os
 from pathlib import Path
@@ -14,11 +15,12 @@ import sys
 import tempfile
 
 
-def limits() -> None:
+def limits(address_space_mib: int = 512, cpu_seconds: int = 10) -> None:
     """Bound resources before launching the namespace helper."""
     import resource
-    resource.setrlimit(resource.RLIMIT_CPU, (10, 10))
-    resource.setrlimit(resource.RLIMIT_AS, (512 * 1024**2, 512 * 1024**2))
+    resource.setrlimit(resource.RLIMIT_CPU, (cpu_seconds, cpu_seconds))
+    resource.setrlimit(resource.RLIMIT_AS,
+                       (address_space_mib * 1024**2, address_space_mib * 1024**2))
     resource.setrlimit(resource.RLIMIT_FSIZE, (1024**2, 1024**2))
     resource.setrlimit(resource.RLIMIT_NOFILE, (64, 64))
     resource.setrlimit(resource.RLIMIT_NPROC, (64, 64))
@@ -43,13 +45,15 @@ def base_command(files: list[Path]) -> list[str]:
     return command
 
 
-def bounded(command: list[str]) -> dict:
+def bounded(command: list[str], *, address_space_mib: int = 512,
+            cpu_seconds: int = 10, wall_seconds: int = 20) -> dict:
     """Collect at most a bounded process lifetime, terminating the process group."""
     with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
         child = subprocess.Popen(command, stdout=stdout, stderr=stderr,
-                                 start_new_session=True, preexec_fn=limits)
+                                 start_new_session=True,
+                                 preexec_fn=partial(limits, address_space_mib, cpu_seconds))
         try:
-            child.wait(timeout=20)
+            child.wait(timeout=wall_seconds)
             status = 'exited'
         except subprocess.TimeoutExpired:
             os.killpg(child.pid, signal.SIGKILL)

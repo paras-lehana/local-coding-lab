@@ -1,6 +1,42 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-10-14 (Asia/Kolkata).
+Last updated: 2026-10-15 (Asia/Kolkata).
+
+## 2026-10-15 — Autonomous research campaign
+
+Owner explicitly authorized downloads, rigorous testing, reports and selected
+model deletion. Continue across candidates without asking for another prompt.
+Apps remain open; keep the 1200-second prompt limit and resource/error guards.
+Use resumable on-disk state and preserve failed attempts rather than restarting
+them blindly after interruption.
+
+| Candidate | Status | Required disposition |
+|---|---|---|
+| Qwen3.6 Q4 | Pending further tests | Repeats, unrestricted thinking, larger prefill, history/stale files and held-out code |
+| Gemma 4 26B QAT | Downloading | Load/template/tools, coding, memory, history |
+| GLM-4.7-Flash UD-Q4 | Downloading | Load/MLA/q8 behavior, coding, memory, history |
+| Qwen3-Coder 30B UD-Q4 | Pending | Non-thinking comparison, coding and history |
+| Gemma 4 31B QAT dense | Pending | Five-minute prefill/decode gate, then feasible tasks |
+| Qwen3.6 Q5 and optional Q6 | Pending | Verified capacity check and matched precision test where feasible |
+| GLM Flash Q5 and optional UD-Q6 | Pending | Verified capacity check and precision test where feasible |
+| Kimi Linear 48B Q4 | Pending | Runtime support and capacity, then feasible tasks |
+| Qwen Coder Next 80B Q4 | Pending capacity review | 45+ GiB weights versus apps-open RAM/VRAM; no invented score |
+| Research's explicitly excluded giant models | Pending review | Document capacity/support rejection, not a benchmark claim |
+
+Initial free memory: 25.62 GiB RAM / 7114 MiB VRAM; 85.0 GiB free disk.
+Original Qwen Q4 and retired Qwen Q8 archive still present. No server running.
+Pinned publisher metadata rechecked before new downloads. No user applications
+closed and no clock/driver changes.
+
+- 01:05 IST: three additional Qwen core runs completed in 240.187, 237.640 and
+  325.204 seconds. Independent Python checks passed 6/6 on every implementation.
+- 01:15 IST: history task passed the six factual/current-file checks in 134.172
+  seconds. Held-out TypeScript/SQLite completed but produced a nonplain-object
+  validation bug and a broken migration. Unrestricted-thinking retry started.
+- 01:17 IST: frozen extended ledger has 21,461 Qwen tokens before chat overhead.
+  Added isolated TS/SQLite grading; positive and negative controls behaved as
+  expected. No generated code executed on Windows. Live campaign evidence is
+  maintained in [the campaign report](../reports/2026-10-15-campaign.md).
 
 ## 2026-10-14 — Begin research experiments
 

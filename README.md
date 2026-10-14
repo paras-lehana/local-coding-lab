@@ -8,7 +8,8 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Status: v0.2, experimental.** The portable launcher completed its first live
+**Status: v0.3, experimental; autonomous campaign in progress.** Follow the
+[live campaign evidence](reports/2026-10-15-campaign.md). The portable launcher completed its first live
 Qwen placement pair. Both proposed fixes passed isolated contract checks; one
 answer contained a failing generated test. This is a small public-fixture pilot,
 not a model leaderboard. Clean-machine model downloads remain unvalidated.
