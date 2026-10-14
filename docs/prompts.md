@@ -243,3 +243,7 @@ Python implementations pass independent checks, while held-out TypeScript and
 SQLite expose real bugs. Unrestricted held-out rerun and extended history are
 running. Gemma/GLM downloads continue. Nineteen offline tests, PowerShell parsing
 and public-content audit pass; campaign remains in progress.
+
+- 01:23 IST: Ubuntu CI passed; Windows CI exposed an overly tight one-second
+  test deadline that expired during process startup. Increased startup margin
+  while keeping the combined phases over the deadline; targeted checks pass.

@@ -116,3 +116,7 @@ were changed. Original private reports and installation remain outside Git.
   repository-creation.md.
 - 22:35-22:42 IST: completed content review, normalized extracted text, committed
   and pushed the public repository; verified both CI jobs passed on eda5eb5.
+
+- 01:23 IST: Ubuntu CI passed; Windows CI exposed an overly tight one-second
+  test deadline that expired during process startup. Increased startup margin
+  while keeping the combined phases over the deadline; targeted checks pass.

@@ -61,10 +61,15 @@ class CampaignTests(unittest.TestCase):
     def test_scenario_deadline_covers_both_phases(self) -> None:
         """A second user turn cannot reset the whole-scenario deadline."""
         class Handler(QuietHandler):
+            requests_seen = 0
+
             def do_POST(self) -> None:
                 """Allow the expected client cancellation during headers/body."""
                 self.rfile.read(int(self.headers['Content-Length']))
-                time.sleep(0.65)
+                type(self).requests_seen += 1
+                # Each phase fits 3.25 seconds separately; their total does not.
+                # Leave ample first-turn margin for Windows CI process startup.
+                time.sleep(0.5 if self.requests_seen == 1 else 3.0)
                 data = {'choices': [{'delta': {'content': 'READY'},
                                      'finish_reason': 'stop'}]}
                 try:
@@ -78,8 +83,8 @@ class CampaignTests(unittest.TestCase):
             result = subprocess.run([
                 sys.executable, str(lab.ROOT / 'scenarios.py'),
                 '--scenario', 'context-v1', '--endpoint', url+'/v1',
-                '--output', str(output), '--deadline', '1'],
-                capture_output=True, timeout=8)
+                '--output', str(output), '--deadline', '3.25'],
+                capture_output=True, timeout=10)
             self.assertEqual(result.returncode, 124)
             self.assertTrue((output / 'answer-00.txt').exists())
             self.assertEqual(lab.read_json(output/'result.json')['status'], 'deadline')
