@@ -1,7 +1,7 @@
 # Repository creation — validation and migration record
 
 Date: 14 October 2026. This task packaged earlier work into a reusable repository;
-it did not conduct new model inference. The public repository is intended at
+it did not conduct new model inference. The public repository is published at
 https://github.com/paras-lehana/local-coding-lab on branch main.
 
 ## Content migration
@@ -38,11 +38,12 @@ file or weight was deleted to make this repository.
 | Four model revisions, sizes, LFS SHA256 values | Match publisher API |
 | Both runtime archive sizes and digests | Match GitHub release API |
 | Relative documentation links | No missing targets at validation |
-| Public-content audit | No findings after metadata redaction fix |
+| Public-content audit | 47 files, no findings after metadata redaction fix |
+| GitHub CI on implementation eda5eb5 | Windows and Ubuntu jobs passed, including all 13 offline tests on each |
 
 No new Python dependency was introduced. The browser retrieval used existing
-headless Edge. The CI workflow targets Windows and Ubuntu; local Windows tests
-are not a claim of a completed remote CI run. Hardware-dependent server startup,
+headless Edge. The [completed CI run](https://github.com/paras-lehana/local-coding-lab/actions/runs/38603982863)
+verified Windows and Ubuntu on implementation commit eda5eb5. Hardware-dependent server startup,
 actual model downloads, new model scores, isolated answer-code execution and
 editor UI are explicitly unrun here.
 
@@ -62,3 +63,15 @@ The startup gates are conservative profiles, not proof of fit on every PC. A
 new model must pass tokenizer/template, allocation and editor checks before a
 quality claim. Existing pipeline guards and preserved original evidence remain
 the fallback. See next-experiments.md for the actual sequence.
+
+## Git publication
+
+Public repository: https://github.com/paras-lehana/local-coding-lab, branch main.
+Initial implementation: eda5eb549fb6fde6fbdfef2dc029e2e76643fa37.
+Remote main matched the local implementation commit after push. A subsequent
+documentation-only commit records publication and this canonical closeout;
+the implementation CI result above belongs specifically to eda5eb5.
+
+Outside this repository, the private parent lab's AGENTS.md and docs/tasks.md
+received routing/migration pointers. No parent runtime configuration, model,
+credential, editor setting or original experiment report was changed.

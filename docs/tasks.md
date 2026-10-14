@@ -11,7 +11,7 @@ Last updated: 2026-10-14 (Asia/Kolkata).
 | Read and preserve Gemini research | Done | Anonymous browser rendered the full report; extracted/redacted text, provenance and separate critical review |
 | Plan next experiments | Done | Placement-only Qwen test if memory permits, Gemma QAT, conditional GLM UD-Q4, then repeat/held-out/editor checks |
 | Offline validation | Done | 13 tests, PowerShell parsing and dry run, frozen-prompt preparation, publisher hash/size/revision checks, public-content audit |
-| Publish on GitHub | In progress | User selected public GitHub; authenticated account available; publication follows final content review |
+| Publish on GitHub | Done | Public paras-lehana/local-coding-lab, main; initial implementation eda5eb5 pushed and verified; Windows and Ubuntu CI passed |
 
 No model was downloaded, loaded or deleted. No editor, driver or clock settings
 were changed. Original private reports and installation remain outside Git.
@@ -44,3 +44,5 @@ were changed. Original private reports and installation remain outside Git.
   in the test and removed personal path keys from extracted-source metadata.
 - Publication result and exact validation record: see prompts.md and
   repository-creation.md.
+- 22:35-22:42 IST: completed content review, normalized extracted text, committed
+  and pushed the public repository; verified both CI jobs passed on eda5eb5.
