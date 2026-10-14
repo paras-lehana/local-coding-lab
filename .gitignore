@@ -1,0 +1,17 @@
+/local-data/
+/.venv/
+/venv_*/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+secrets/
+*.gguf
+*.exe
+*.dll
+*.zip
+*.part
+*.log
+*.html
+.DS_Store

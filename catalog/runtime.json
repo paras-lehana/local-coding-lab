@@ -1,0 +1,21 @@
+{
+  "tag": "b11562",
+  "commit": "b2f036c0f138414dedc987446f1d9d802f920275",
+  "platform": "windows-x64-cuda12.4",
+  "source": "https://github.com/ggml-org/llama.cpp/releases/tag/b11562",
+  "verified_metadata_date": "2026-10-14",
+  "assets": [
+    {
+      "filename": "llama-b11562-bin-win-cuda-12.4-x64.zip",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11562/llama-b11562-bin-win-cuda-12.4-x64.zip",
+      "bytes": 265206846,
+      "sha256": "e06a4659435981acc93d4ef37ae6046b72754af968aa2cd6f476a9fa5c4f765c"
+    },
+    {
+      "filename": "cudart-llama-bin-win-cuda-12.4-x64.zip",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11562/cudart-llama-bin-win-cuda-12.4-x64.zip",
+      "bytes": 391443627,
+      "sha256": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6"
+    }
+  ]
+}

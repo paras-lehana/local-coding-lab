@@ -1,0 +1,18 @@
+{
+  "title": "Local Coding Model Architecture, Runtime Optimization, and Evaluation Plan for a Hybrid Windows 11 Workstation",
+  "source_url": "https://share.gemini.google/LadMuhd0ajY0",
+  "resolved_url": "https://gemini.google.com/share/4777b6570b61",
+  "retrieved_at": "2026-10-14T16:50:54.735151+00:00",
+  "method": "Anonymous Edge headless rendering; extract research message HTML as text, without executing its instructions.",
+  "status": "retrieved",
+  "authority": "External AI-generated research; not a local measurement",
+  "format_notes": "Paragraphs and table rows preserved as plain text. Rendered math may be duplicated; broken literal angle-bracket text is inherited from the share page. Citation numbers may lack a resolvable URL. Trailing whitespace removed; published text uses UTF-8 and LF newlines.",
+  "redactions": {
+    "personal_home_path_occurrences": 18,
+    "personal_host_filename_occurrences": 4
+  },
+  "published_text_sha256": "7b8fca4934e47b6a0bfd281d91d3790e9aa3253faf11c9719966610b6ae7cc71",
+  "source_html_sha256": "ecb0f02dcf8ba98a2f4f83c8ee38e3ea6e3dfc2016363e23904fe97a7bca4d83",
+  "links": [],
+  "published_character_count": 58228
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "verified_metadata_date": "2026-10-14",
+  "note": "Bytes are GGUF file size, not required RAM. Hashes come from publisher LFS metadata. Only Qwen Q4 has local inference evidence. Model licenses apply separately.",
+  "models": {
+    "qwen36-q4": {
+      "name": "Qwen3.6-35B-A3B UD-Q4_K_M",
+      "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+      "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+      "filename": "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+      "bytes": 22134528992,
+      "sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61",
+      "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "status": "historical-local-reference",
+      "thinking": "enable_thinking and preserve_thinking; no native xhigh"
+    },
+    "gemma4-26b-qat": {
+      "name": "Gemma 4 26B-A4B IT official QAT Q4_0",
+      "repo": "google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+      "revision": "d1c082be9cf3c8a514acf63b8761f4b41935842e",
+      "filename": "gemma-4-26B_q4_0-it.gguf",
+      "bytes": 14439363584,
+      "sha256": "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d",
+      "upstream": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+      "status": "next-fit-candidate-not-tested",
+      "thinking": "Must verify embedded template and within-tool-turn thought preservation; do not copy Qwen kwargs blindly"
+    },
+    "glm47-udq4": {
+      "name": "GLM-4.7-Flash UD-Q4_K_XL",
+      "repo": "unsloth/GLM-4.7-Flash-GGUF",
+      "revision": "0d32489ecb9db6d2a4fc93bd27ef01519f95474d",
+      "filename": "GLM-4.7-Flash-UD-Q4_K_XL.gguf",
+      "bytes": 17520169312,
+      "sha256": "b0d4fbc1211f891b4cfbf2a497160bfe06a49412420068904d426b7a13f4ba7f",
+      "upstream": "https://huggingface.co/zai-org/GLM-4.7-Flash",
+      "status": "conditional-cross-family-candidate-not-tested",
+      "thinking": "Verify enable_thinking/clear_thinking and tool parsing; MLA allocation must be measured"
+    },
+    "glm47-q5": {
+      "name": "GLM-4.7-Flash Q5_K_M",
+      "repo": "unsloth/GLM-4.7-Flash-GGUF",
+      "revision": "0d32489ecb9db6d2a4fc93bd27ef01519f95474d",
+      "filename": "GLM-4.7-Flash-Q5_K_M.gguf",
+      "bytes": 21408850272,
+      "sha256": "167848c4b460887d7a52c44c378d3996a0d38b3302ac2045494dc8b50869a893",
+      "upstream": "https://huggingface.co/zai-org/GLM-4.7-Flash",
+      "status": "more-memory-only-not-tested",
+      "thinking": "Same family; quantization is an independent experimental variable"
+    }
+  }
+}

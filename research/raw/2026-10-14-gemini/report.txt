@@ -1,0 +1,833 @@
+Local Coding Model Architecture, Runtime Optimization, and Evaluation Plan for a Hybrid Windows 11 Workstation
+
+Executive Verification and Baseline Audit
+
+Independent verification of the release timeline, software stack, and model artifacts confirms that the workstation snapshot dated 14 October 2026 aligns with upstream open-weight model and runtime releases. Specifically, the installed llama.cpp build b11562 corresponds to commit b2f036c0f138414dedc987446f1d9d802f920275, published on 12 October 2026 (vulkan: fix buffer logging on 32-bit platforms after source split, PR #30326), following build b11559 (which integrated Gemma 4 and Snapdragon adjustments on 12 October 2026) and PR #29887 / PR #30112 (which introduced dynamic GPU caching for CPU-resident Mixture-of-Experts weights via --moe-cache-mib in early October 2026).
+
+An initial audit of the supplied materials also requires flagging an input artifact discrepancy: the image attached alongside the query does not contain a model comparison table or terminal screenshot, but is instead a vertically tiled photograph of cricket players in orange-and-black sports uniforms. Consequently, no model identifiers or performance assumptions are drawn from that image; all evaluations rely strictly on verified primary repositories (https://huggingface.co/Qwen/Qwen3.6-35B-A3B, https://huggingface.co/zai-org/GLM-4.7-Flash, https://huggingface.co/unsloth/GLM-4.7-Flash-GGUF, https://huggingface.co/google/gemma-4-26B-A4B-it-qat-q4_0-gguf, https://ai.google.dev/gemma/docs/core, and https://github.com/ggml-org/llama.cpp), independent benchmark telemetry, and the supplied local measurements from E:\llm\.
+
+A. Direct Recommendation and Audit of Prior Analysis
+
+Core Verdict: Retain and Tune Qwen3.6-35B-A3B (UD-Q4_K_M) as the Primary Production Assistant
+
+The most defensible technical decision for this workstation—equipped with an AMD Ryzen 7 5800X, 64 GB DDR4 at 2800 MT/s (63.91 GiB usable, ~21 GiB reclaimable with normal desktop applications open), and an ASUS TUF RTX 3080 10 GB (~5.5–6.0 GiB usable process VRAM)—is to retain the currently installed Qwen3.6-35B-A3B-UD-Q4_K_M.gguf (unsloth/Qwen3.6-35B-A3B-GGUF, revision a483e9e6cbd595906af30beda3187c2663a1118c, 20.614 GiB) as the primary local coding model and optimize its llama-server configuration and client context integration, rather than expecting GLM-4.7-Flash or Gemma 4 26B-A4B to surpass it in repository-grounded coding.
+
+If comparative local testing is executed, the prior assistant's test order must be revised. Specifically, google/gemma-4-26B-A4B-it-qat-q4_0-gguf (or the verified ggml-org/gemma-4-26B-A4B-it-GGUF Q4_0 artifact) should be promoted ahead of GLM-4.7-Flash to become the second model tested (serving as the primary low-memory, high-headroom alternative), whereas GLM-4.7-Flash should be downgraded to a conditional third test at UD-Q4_K_XL (17.5 GB / ~16.30 GiB) capped at 32K context rather than Q5_K_M (21.4 GB / 19.939 GiB) at 64K context.
+
+ | Model & Mode | SWE-bench Verified (%) | τ2-Bench Telecom (%) | IFBench (%) | GPQA Diamond (%) | AA-LCR (%) | 64K q8_0 KV + State Footprint (MiB)
+
+ |
+
+Qwen3.6-35B-A3B (Thinking Mode)
+
+[cite: 6, 12, 15]
+ | 75.0% | 95.3% | 64.4% | 84.1% | 71.7% | 742.81 MiB (680 MiB Attn + 62.81 MiB DeltaNet)
+
+ |
+
+Qwen3.6-35B-A3B (Non-Thinking Mode)
+
+[cite: 10, 12, 15]
+ | 73.4% | 85.1% | 36.2% | 81.7% | 64.3% | 742.81 MiB (680 MiB Attn + 62.81 MiB DeltaNet)
+
+ |
+
+Gemma 4 26B-A4B IT QAT (Thinking Mode)
+
+[cite: 9, 16, 17]
+ | Unverified | Unverified | Unverified | Unverified | Unverified | ~654.60 MiB (26 SWA @ 1K + 4 Global @ 64K)
+
+ |
+
+GLM-4.7-Flash 30B-A3B (Thinking Mode)
+
+[cite: 18, 19, 20]
+ | 59.2% | 79.5% | Unverified | Unverified | Unverified | ~1,836–1,880 MiB (Compressed MLA; >30 GiB if unmerged)
+
+ |
+
+Qwen3-Coder-Next 80B-A3B (Non-Thinking)
+
+[cite: 21, 22, 23]
+ | Unverified | 79.5% | 35.2% | 73.7% | 47.0% | Hybrid Attn/MoE (Weights 45.20 GiB exceed apps-open RAM)
+
+ |
+
+Qwen3-Coder-30B-A3B (Non-Thinking)
+
+[cite: 24, 25]
+ | Unverified | Unverified | Unverified | Unverified | Unverified | 3,264.00 MiB (48-layer standard 4-head GQA)
+
+Audit of the Prior Assistant's Analysis: Five Technical Corrections
+
+First, the prior analysis overestimated the coding strength of GLM-4.7-Flash while overlooking its severe runtime memory and KV cache liabilities in llama.cpp. Released in January 2026 (zai-org/GLM-4.7-Flash, 31.2B total / ~3.0–3.6B active parameters, 47 layers, 64 total experts with 4 routed active), GLM-4.7-Flash predates the April 2026 release of Qwen3.6-35B-A3B. On standardized agentic evaluations, GLM-4.7-Flash scores 59.2% on SWE-bench Verified and 79.5% on τ2\tau^2τ2-Bench, trailing Qwen3.6-35B-A3B's 73.4%–75.0% on SWE-bench Verified and 95.3% on τ2\tau^2τ2-Bench Telecom by a wide margin. More critically, the prior assistant evaluated GLM-4.7-Flash Q5_K_M strictly by its 19.939 GiB (21.4 GB) static weight file. Unlike Qwen3.6-35B-A3B, which employs Gated DeltaNet linear attention in 30 of its 40 layers and full Gated Attention in only 10 layers (keeping its 64K q8_0 attention KV cache to 680 MiB plus 62.81 MiB of recurrent state), GLM-4.7-Flash uses Multi-head Latent Attention (MLA) across all 47 layers. When MLA latent vectors are unmerged or fall back to standard 20-head Multi-Head Attention in llama.cpp, the KV cache consumes 0.72–0.96 MB per token (~45–60 GiB at 64K context); even when compressed MLA kernels are active (~54 KB/token in FP16 or ~28.7 KB/token in q8_0), 64K context requires ~1.8 GiB of KV cache alongside multi-gigabyte attention compute buffers that cause out-of-memory failures and steep prefill degradation as context depth increases. In addition, Unsloth's documentation explicitly warns against running standard non-UD quantizations (Q4_K_M, Q5_K_M) of GLM-4.7-Flash with coding agents such as OpenHands, and community reports document // // // token repetition loops under q8_0 KV caching, making UD-Q4_K_XL (17.5 GB / ~16.30 GiB) at a 32K context limit the only safe apps-open test configuration. Meanwhile, newer Z.ai releases (GLM-5.1, GLM-5.2, GLM-5.3-Flash at 321B parameters, and GLM-5.3 at 753B parameters) are datacenter-scale models that cannot run on a 64 GB workstation.
+
+Second, while the prior assistant correctly noted that Gemma 4 26B-A4B (google/gemma-4-26B-A4B-it-qat-q4_0-gguf, 25.2B total / 3.8B active parameters, 13.448 GiB text GGUF) offers generous memory headroom and Quantization-Aware Training (QAT), it omitted three critical integration bugs affecting llama.cpp on Windows. In July 2026, Google's official Gemma 4 QAT GGUF exports (both 26B-A4B and 31B) triggered a fatal vocabulary assertion crash upon loading in llama.cpp Windows CUDA builds (GGML_ASSERT(id_to_token.size() == token_to_id.size()), Issue #25739) because the 262,144-token vocabulary contained three duplicate visible token strings (//, #, and a whitespace entry). Although Google subsequently pushed a repository update (discussions/10) and the llama.cpp maintainers published a verified working QAT build at ggml-org/gemma-4-26B-A4B-it-GGUF (14,618,145,824 bytes / 13.614 GiB, which stores token_embd.weight in Q8_0 rather than Google's Q6_K or Unsloth's Q4_0), two chat-template hazards remain. Specifically, Gemma 4's upstream Jinja template defaults enable_thinking to False, meaning that unless <|think|> is injected into the first system turn or --chat-template-kwargs "{\"enable_thinking\": true}" is forced at the server level, thinking stays silently disabled. Worse, Gemma 4 relies on a custom non-JSON tool-calling DSL (declaration:fn{...}, call:fn{...}); when OpenAI-compatible clients serialize tool_call.arguments as a JSON string across multi-turn history, the unpatched template wraps the payload in double braces (call:fn{{"path":"..."}}) and historically stripped prior-turn <|channel>thought blocks, causing tool arguments to collapse to {} after two to three tool rounds.
+
+Third, Qwen3.6-35B-A3B is uniquely engineered for the exact constraints of the operator's repository workflow. Built on direct feedback for agentic coding, Qwen3.6-35B-A3B natively introduces preserve_thinking—retaining <think>...</think> blocks from all preceding turns in multi-turn conversations so the model does not lose track of previously read instruction routers or file dependencies across sequential tool calls. Independent Artificial Analysis benchmarks demonstrate that activating thinking mode on Qwen3.6-35B-A3B elevates instruction following (IFBench) by +28.2 percentage points (from 36.2% to 64.4%), τ2\tau^2τ2-Bench Telecom from 85.1% to 95.3%, long-context retrieval (AA-LCR) from 64.3% to 71.7%, Terminal-Bench Hard from 25.8% to 34.8%, and the AA-Omniscience Non-Hallucination Rate from 7.9% to 49.5%. Its local Configuration 1.3 audit score of 31/36 (86.1%) in 863.89 seconds (14m 24s) already satisfies the 20-minute (1,200-second) end-to-end deadline with more than five minutes of margin.
+
+Fourth, the remaining 5/36 errors on the local audit (mutable-object aliasing in Python and incomplete coverage of linked instruction files) do not stem from 4-bit weight compression in UD-Q4_K_M, and loading Qwen3.6-35B-A3B UD-Q5_K_M (24.639 GiB) with normal applications open would add 4.025 GiB of CPU weights, immediately breaching the 2.5 GiB physical RAM watchdog floor. Instead, the local comparison between temperature 0.6 (31/36) and temperature 1.0 (26/36, which introduced incomplete nested defaults, aliasing, and dropped local-only keys) indicates that sampling stochasticity and server layer/cache configuration are the primary levers. Tightening temperature to 0.35 with --min-p 0.02, shifting all 40 non-expert attention/DeltaNet layers to the GPU via -ngl all --cpu-moe, and bounding llama-server's RAM prompt cache (--cache-ram 1536) directly target those failure modes without risking an out-of-memory shutdown.
+
+Fifth, the conditional dense candidate (Gemma 4 31B IT QAT Q4_0, 16.439 GiB) faces a fundamental hardware bandwidth barrier on dual-channel DDR4-2800. With only 5.5–6.0 GiB of usable process VRAM, at least ~12.1 GiB of the 30.7B dense model's weights must reside in system RAM. Whereas a 35B-A3B MoE activates only 3B parameters per token (reading ~1.5–1.8 GiB of CPU weights per generated token), a 30.7B dense model activates every parameter on every token, forcing the CPU to stream ~12.1 GiB from DDR4-2800 (~30–35 GB/s sustained bandwidth) per token. That physical bottleneck caps token generation at ~2.5–3.2 tokens/sec, meaning a single 4,000-token thinking + coding turn requires 21–26 minutes in decoding alone, before counting multi-turn prompt prefill.
+
+B. Separate Rankings by Operating Scenario
+
+The rankings below separate the default Normal Applications Open state (~21.0 GiB estimated reclaimable system RAM, 5.5–6.0 GiB usable process VRAM, with emergency watchdog stop floors at 2.5 GiB free RAM and 400 MiB free VRAM) from the optional Applications Closed state (~50.0 GiB free system RAM), explicitly distinguishing Measured Local Quality from Expected Suitability.
+
+Scenario 1: Normal Applications Open (Default Operating State)
+
+ | Rank | Model & Exact Checkpoint | Conditional Role | Basis of Ranking | Technical Rationale & Constraints
+
+ | 1 |
+
+Qwen3.6-35B-A3B
+
+unsloth/Qwen3.6-35B-A3B-GGUF
+
+Qwen3.6-35B-A3B-UD-Q4_K_M.gguf
+
+[cite: 6, 11]
+ | Primary Production Baseline (Best Overall, Best Accuracy & Best 64K Context Efficiency) |
+
+Measured Local Quality (31/36 in 863.89s; 59s 3-file read) + Verified Benchmarks
+ |
+
+Proven fit in apps-open envelope (17.17 GiB RAM working set, 5.88 GiB VRAM in Config 1.4); 30 DeltaNet + 10 Attention layers bound 64K q8_0 KV + state to 742.81 MiB; native preserve_thinking maintains multi-turn tool coherence.
+
+ | 2 |
+
+Gemma 4 26B-A4B IT QAT
+
+ggml-org/gemma-4-26B-A4B-it-GGUF (Q4_0) or google/gemma-4-26B-A4B-it-qat-q4_0-gguf
+
+[cite: 13, 14, 38]
+ | Best Smaller / High-Headroom Alternative (When host app RAM spikes) |
+
+Expected Suitability (Unverified locally; verified QAT & SWA design)
+ |
+
+13.45–13.61 GiB weights leave ~11.0 GiB free system RAM with apps open; 26 SWA (1024 window) + 4 Global layers keep 64K q8_0 KV to ~655 MiB. Requires patched Jinja template for `<
+
+ | 3 |
+
+GLM-4.7-Flash
+
+unsloth/GLM-4.7-Flash-GGUF
+
+GLM-4.7-Flash-UD-Q4_K_XL.gguf
+
+[cite: 7]
+ | Secondary Cross-Family MoE Challenger (Strictly Capped at 32K Context) |
+
+Expected Suitability (Unverified locally; lower SWE-bench than Qwen3.6)
+ |
+
+UD-Q4_K_XL (17.5 GB / ~16.30 GiB) provides necessary RAM headroom for 47-layer MLA KV and compute buffers, whereas Q5_K_M (19.94 GiB) risks watchdog shutdowns. Must cap at --ctx-size 32768 and monitor for q8_0 KV repetition loops.
+
+ | 4 |
+
+Qwen3-Coder-30B-A3B-Instruct
+
+unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF
+
+UD-Q4_K_XL
+
+[cite: 24, 48]
+ | Conditional Fast Non-Thinking Code Editor (Single-file / low-latency edits) |
+
+Expected Suitability (Unverified locally; verified MoE architecture)
+ |
+
+Exclusively non-thinking 30.5B/3.3B MoE (~17.7 GiB weights) avoids thinking-token delay on simple edits, but 48-layer standard GQA consumes 3,264 MiB KV at 64K (use 32K cap) and lacks deliberation depth for complex router rules.
+
+ | 5 |
+
+Gemma 4 31B IT QAT
+
+google/gemma-4-31B-it-qat-q4_0-gguf
+
+gemma-4-31B_q4_0-it.gguf
+
+[cite: 9, 14]
+ | Conditional Dense Alternative (Subject to 5-Minute Prefill/Decode Gate) |
+
+Expected Suitability (High timeout risk on DDR4-2800)
+ |
+
+Compact 16.439 GiB QAT Q4_0 dense footprint and hybrid SWA KV cache fit in RAM, but streaming ~12.1 GiB of CPU-resident dense weights per token limits generation to ~2.5–3.2 tok/s, threatening the 20-minute deadline on long outputs.
+
+
+
+Scenario 2: Normal Applications Closed (Optional ~50 GiB Free RAM State)
+
+ | Rank | Model & Exact Checkpoint | Conditional Role | Basis of Ranking | Technical Rationale & Constraints
+
+ | 1 |
+
+Qwen3.6-35B-A3B (Higher Precision)
+
+unsloth/Qwen3.6-35B-A3B-GGUF
+
+UD-Q5_K_M (24.639 GiB) or UD-Q6_K_XL
+
+[cite: 11]
+ | Same-Family Precision & 128K Context Validation |
+
+Expected Suitability (Anchored to measured Q4 baseline)
+ |
+
+With ~50 GiB free RAM, UD-Q5_K_M (24.639 GiB) fits comfortably alongside a validated 128K q8_0 KV cache (1,360 MiB Attention + 62.81 MiB DeltaNet = 1,422.81 MiB) and a 4 GiB --cache-ram prompt cache, isolating whether quantization affected the 5/36 audit errors.
+
+ | 2 |
+
+GLM-4.7-Flash (Higher Precision)
+
+unsloth/GLM-4.7-Flash-GGUF
+
+UD-Q6_K_XL or Q5_K_M (19.939 GiB)
+ | Full 64K Cross-Family MoE Evaluation |
+
+Expected Suitability
+
+[cite: 7, 27]
+ |
+
+Closing desktop apps supplies the extra ~10–15 GiB of host RAM required to absorb Q5_K_M (19.939 GiB) or UD-Q6_K_XL plus 64K 47-layer KV and compute buffers without tripping the 2.5 GiB RAM floor.
+
+ | 3 |
+
+Kimi-Linear-48B-A3B-Instruct
+
+bartowski/moonshotai_Kimi-Linear-48B-A3B-Instruct-GGUF
+
+Q4_K_M (27.997 GiB)
+ | Experimental Long-Context Linear-Attention MoE |
+
+Expected Suitability (Lower GGUF tool maturity)
+ |
+
+48B total / 3B active MoE with Kimi Delta Attention (75% KV reduction across 36 layers) fits easily in 50 GiB RAM, but llama.cpp support derives from experimental PRs and lacks native thinking mode.
+
+ | 4 |
+
+Qwen3-Coder-Next-80B-A3B
+
+unsloth/Qwen3-Coder-Next-GGUF
+
+UD-Q4_K_XL / Q4_K_M (45.196 GiB)
+ | Maximum-Capacity Non-Thinking Coding Agent |
+
+Expected Suitability (Tight RAM margin even with apps closed)
+ |
+
+80B total / 3B active hybrid MoE (45.196 GiB) requires nearly all 50 GiB free RAM once KV and scratch buffers are allocated, and its exclusively non-thinking design (IFBench 35.2%) underperforms Qwen3.6-35B-A3B on nested instruction rules.
+
+
+
+C. Candidate Model Master Comparison Table and Exact Download Guide
+
+All model specifications, parameter counts, quantization footprints, and runtime properties below are verified against primary Hugging Face repositories and llama.cpp b11562 documentation as of October 2026.
+
+ | Model & Exact HF Repository / Artifact | Total vs. Active Params & Architecture | Quantization & Exact Weight Size | Native vs. Proposed Deployed Context | Native Thinking & Deliberation Controls | Tool Support & Template Format | Windows llama.cpp b11562 Compatibility & Confidence
+
+ |
+
+Qwen3.6-35B-A3B
+
+unsloth/Qwen3.6-35B-A3B-GGUF
+
+Qwen3.6-35B-A3B-UD-Q4_K_M.gguf
+
+(Rev: a483e9e6cbd...)
+ |
+
+35.5B Total / 3.0B Active
+
+40L Hybrid MoE: 30 Gated DeltaNet + 10 Gated Attn (2 KV heads, dim 256); 256 experts (8 routed + 1 shared)
+ |
+
+UD-Q4_K_M
+
+22,134,528,992 B
+
+(20.614 GiB)
+ |
+
+Native: 262,144 (1M YaRN)
+
+Proposed: 65,536 (Apps-Open) / 131,072 (Apps-Closed)
+ |
+
+Boolean enable_thinking (true/false) + preserve_thinking (true/false). Emits <think>...</think>. No native low/med/high levels.
+ |
+
+Native ChatML tool calls (qwen3_coder parser format). High multi-turn reliability.
+ | Verified Locally (b11562 CUDA 12.4). High confidence (31/36 local audit score).
+
+ |
+
+Qwen3.6-35B-A3B (Q5)
+
+unsloth/Qwen3.6-35B-A3B-GGUF
+
+Qwen3.6-35B-A3B-UD-Q5_K_M.gguf
+
+[cite: 11]
+ |
+
+35.5B Total / 3.0B Active
+
+Same 40L Hybrid DeltaNet/Attention MoE
+ |
+
+UD-Q5_K_M
+
+~26,455,926,000 B
+
+(24.639 GiB)
+ |
+
+Native: 262,144
+
+Proposed: 65,536 or 131,072 (Apps-Closed Only)
+ |
+
+Boolean enable_thinking + preserve_thinking. No discrete effort levels.
+ |
+
+Native ChatML tool calls.
+ | Independently Verified artifact; Apps-Closed Only (exceeds 21 GiB apps-open RAM).
+
+ |
+
+Gemma 4 26B-A4B IT QAT
+
+google/gemma-4-26B-A4B-it-qat-q4_0-gguf (gemma-4-26B_q4_0-it.gguf) or ggml-org/gemma-4-26B-A4B-it-GGUF
+
+[cite: 13, 14, 38]
+ |
+
+25.2B Total / 3.8B Active (excl. 550M vision)
+
+30L Hybrid MoE: 26 SWA (win 1024, 8 KV, dim 256) + 4 Global (2 KV, dim 512, K=VK=VK=V); 128 experts (8 active + 1 shared)
+ |
+
+Official QAT Q4_0
+
+14,439,361,440 B (13.448 GiB Google)
+
+14,618,145,824 B (13.614 GiB ggml-org)
+ |
+
+Native: 262,144
+
+Proposed: 65,536 (with default --swa-full off)
+ | Control token `< | think | > in system turn (enable_thinkingdefaults tofalseupstream!). Outputs<
+
+ |
+
+GLM-4.7-Flash
+
+unsloth/GLM-4.7-Flash-GGUF
+
+GLM-4.7-Flash-UD-Q4_K_XL.gguf (or Q5_K_M / Q4_K_M)
+ |
+
+31.2B Total / ~3.0–3.6B Active
+
+47L MLA + MoE (glm4_moe_lite): 64 experts (4 active + 1 shared); 20 Attn heads, 20 KV heads, dim 192/256
+ |
+
+UD-Q4_K_XL: 17.5 GB (~16.30 GiB)
+
+Q4_K_M: 18,312,339,808 B (17.055 GiB)
+
+Q5_K_M: 21.4 GB (19.939 GiB)
+ |
+
+Native: 202,752
+
+Proposed: 32,768 (Apps-Open) / 65,536 (Apps-Closed)
+ |
+
+enable_thinking (default true) + clear_thinking (false = Preserved Thinking mode for agents).
+ |
+
+Native tool calling (glm47 parser). Requires --temp 0.7 --top-p 1.0 --min-p 0.01 --repeat-penalty 1.0.
+ |
+
+Supported in b11562 (includes Jan 2026 sigmoid router fix). High KV/compute buffer overhead; q8_0 KV loop risk. Medium-Low confidence.
+
+ |
+
+Gemma 4 31B IT QAT
+
+google/gemma-4-31B-it-qat-q4_0-gguf
+
+gemma-4-31B_q4_0-it.gguf
+
+[cite: 9, 14]
+ |
+
+30.7B Dense (All 30.7B active per token)
+
+Hybrid 5:1 SWA (win 1024) + Global Attention
+ |
+
+Official QAT Q4_0
+
+17,651,001,184 B
+
+(16.439 GiB)
+ |
+
+Native: 262,144
+
+Proposed: 32,768 (Prefill Gate Test Only)
+ | `< | think | > token in system prompt (<
+
+ |
+
+Qwen3-Coder-30B-A3B
+
+unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF
+
+UD-Q4_K_XL / Q5_K_M
+
+[cite: 24, 48]
+ |
+
+30.5B Total / 3.3B Active
+
+48L Standard GQA MoE (4 KV heads, dim 128); 128 experts (8 active)
+ |
+
+Q4_K_XL: ~17.7 GiB
+
+Q5_K_M: 20.234 GiB
+
+Q6_K: 23.369 GiB
+
+[cite: 48]
+ |
+
+Native: 262,144
+
+Proposed: 32,768 (Apps-Open)
+ |
+
+None (Exclusively non-thinking; does not emit <think> blocks).
+ |
+
+Native Qwen3-Coder XML/JSON function calling + FIM support.
+ |
+
+Verified in llama.cpp, but 64K q8_0 KV cache takes 3,264 MiB (4.8× Qwen3.6) and lacks deliberation mode.
+
+ |
+
+Qwen3-Coder-Next-80B
+
+unsloth/Qwen3-Coder-Next-GGUF
+
+Qwen3-Coder-Next-UD-Q4_K_XL.gguf
+
+[cite: 22]
+ |
+
+80.0B Total / 3.0B Active
+
+Hybrid Attention + MoE built on Qwen3-Next-80B-A3B-Base
+
+[cite: 22, 23, 57]
+ |
+
+Q4_K_M / UD-Q4_K_XL
+
+~45.196 GiB (~46 GB)
+ |
+
+Native: 262,144
+
+Proposed: 32,768–65,536 (Apps-Closed Only)
+ |
+
+None (Exclusively non-thinking mode).
+ |
+
+Native agentic tool calling (qwen3_coder).
+ |
+
+Apps-Closed Only. Too large for apps-open state; non-thinking limits instruction-hierarchy accuracy (IFBench 35.2%).
+
+ |
+
+Kimi-Linear-48B-A3B
+
+bartowski/moonshotai_Kimi-Linear-48B-A3B-Instruct-GGUF
+
+Q4_K_M
+
+[cite: 52, 53]
+ |
+
+48.0B Total / 3.0B Active
+
+36L Hybrid Kimi Delta Attention (KDA) + MLA MoE (8/128 experts)
+ |
+
+Q4_K_M
+
+27.997 GiB
+ |
+
+Native: 1,048,576
+
+Proposed: 65,536 (Apps-Closed Only)
+ |
+
+Standard Instruct (Non-thinking); separate Kimi thinking models are >1T params.
+ |
+
+Basic chat template; lacks mature local GGUF coding-agent tool parser.
+ |
+
+Experimental in llama.cpp. Exceeds apps-open RAM budget.
+
+
+
+Exact Model Staging and Download Commands for E:\llm\
+
+When the operator instructs Codex to download any challenger checkpoint for local benchmarking, all files must remain under E:\llm\models\ while preserving existing weights and benchmark reports (noting that ~85 GiB of free disk space on E:\ accommodates staging two to three checkpoints simultaneously). If downloading via llama-server -hf, the --no-mmproj flag must be passed so llama.cpp does not automatically download ~0.9–1.1 GiB multimodal vision projectors that are unused in text-based repository coding.
+
+For Gemma 4 26B-A4B IT QAT (Q4_0), the ggml-org QAT package is recommended to guarantee immunity from the earlier Google GGUF duplicate-token assertion bug (#25739), though the updated Google repository is also provided:
+PowerShell
+
+huggingface-cli download ggml-org/gemma-4-26B-A4B-it-GGUF gemma-4-26B-A4B-it-Q4_0.gguf --local-dir E:\llm\models\gemma-4-26B-A4B-qat
+huggingface-cli download google/gemma-4-26B-A4B-it-qat-q4_0-gguf gemma-4-26B_q4_0-it.gguf --local-dir E:\llm\models\gemma-4-26B-A4B-qat-google
+
+For GLM-4.7-Flash (UD-Q4_K_XL for Apps-Open; Q5_K_M for Apps-Closed):
+PowerShell
+
+huggingface-cli download unsloth/GLM-4.7-Flash-GGUF GLM-4.7-Flash-UD-Q4_K_XL.gguf --local-dir E:\llm\models\glm-4.7-flash
+huggingface-cli download unsloth/GLM-4.7-Flash-GGUF GLM-4.7-Flash-Q5_K_M.gguf --local-dir E:\llm\models\glm-4.7-flash
+
+For Qwen3.6-35B-A3B (UD-Q5_K_M Same-Family Precision Comparison in Apps-Closed Mode):
+PowerShell
+
+huggingface-cli download unsloth/Qwen3.6-35B-A3B-GGUF Qwen3.6-35B-A3B-UD-Q5_K_M.gguf --local-dir E:\llm\models\qwen3.6-35b-a3b-q5
+
+For Gemma 4 31B IT QAT (Q4_0 Conditional Dense Prefill Gate Test):
+PowerShell
+
+huggingface-cli download google/gemma-4-31B-it-qat-q4_0-gguf gemma-4-31B_q4_0-it.gguf --local-dir E:\llm\models\gemma-4-31B-qat
+
+D. Hardware Memory Budgets and Latency Projections
+
+To prevent double-counting or triggering emergency watchdog shutdowns (which terminate llama-server when free physical system RAM drops below 2.5 GiB or free dedicated VRAM drops below 400 MiB), memory accounting is strictly divided into Physical System RAM (63.91 GiB usable) and Dedicated GPU VRAM (~9.82 GiB allocation space on the 10 GB RTX 3080, where ~3.00–3.32 GiB is held by Windows desktop/background applications, leaving 5.5–6.0 GiB for the inference process). Windows "Shared GPU Memory" is virtual system RAM accounting rather than additional physical VRAM; any CUDA host-pinned memory (CUDA_Host) or spilled buffers are deducted directly from physical System RAM.
+
+For q8_0 KV cache (34 bytes per 32 values = 1.0625 bytes/element1.0625\text{ bytes/element}1.0625 bytes/element), the exact attention cache formula is:
+
+KVattn(bytes)=Lattn×Nctx×Hkv×(Dk+Dv)×3432\text{KV}_{\text{attn}}(\text{bytes}) = L_{\text{attn}} \times N_{\text{ctx}} \times H_{\text{kv}} \times (D_k + D_v) \times \frac{34}{32}KVattn​(bytes)=Lattn​×Nctx​×Hkv​×(Dk​+Dv​)×3234​
+
+Applying this formula to each finalist architecture yields vastly different context footprints. In Qwen3.6-35B-A3B, only Lattn=10L_{\text{attn}} = 10Lattn​=10 of the 40 layers use full Gated Attention (Hkv=2H_{\text{kv}} = 2Hkv​=2, Dk=Dv=256D_k = D_v = 256Dk​=Dv​=256), producing 10×65,536×2×512×1.0625=713,031,680 B=680.0 MiB10 \times 65,536 \times 2 \times 512 \times 1.0625 = 713,031,680\text{ B} = 680.0\text{ MiB}10×65,536×2×512×1.0625=713,031,680 B=680.0 MiB (0.664 GiB0.664\text{ GiB}0.664 GiB) at 64K context, plus 62.81 MiB62.81\text{ MiB}62.81 MiB (0.061 GiB0.061\text{ GiB}0.061 GiB) of fixed recurrent state across the 30 Gated DeltaNet layers, totaling 742.81 MiB (0.725 GiB) at 64K and 1,422.81 MiB (1.389 GiB) at 128K. In Gemma 4 26B-A4B (with --swa-full left at its false default so the 26 Sliding Window Attention layers allocate only a 1,024-token ring buffer at Hkv=8,D=256H_{\text{kv}} = 8, D = 256Hkv​=8,D=256 while the 4 Global Attention layers allocate 65,536 tokens at Hkv=2,D=512H_{\text{kv}} = 2, D = 512Hkv​=2,D=512), the 26 SWA layers require 26×1,024×8×512×1.0625≈110.6 MiB26 \times 1,024 \times 8 \times 512 \times 1.0625 \approx 110.6\text{ MiB}26×1,024×8×512×1.0625≈110.6 MiB and the 4 Global layers require 4×65,536×2×1,024×1.0625=544.0 MiB4 \times 65,536 \times 2 \times 1,024 \times 1.0625 = 544.0\text{ MiB}4×65,536×2×1,024×1.0625=544.0 MiB, totaling ~654.6 MiB (0.639 GiB). Conversely, in GLM-4.7-Flash, all 47 layers maintain attention state; even with compressed MLA active (~28.7 KB/token in q8_0), 32K context consumes ~918 MiB (0.896 GiB) and 64K consumes ~1,836 MiB (1.793 GiB) alongside a ~0.95–1.40 GiB attention graph compute buffer.
+
+ | Finalist Configuration | System RAM Breakdown (63.91 GiB Usable) | Dedicated GPU VRAM Breakdown (~9.82 GiB Total) | Latency Evidence & 20-Minute (1,200s) Deadline Assessment
+
+ |
+
+1. Qwen3.6-35B-A3B UD-Q4_K_M
+
+(Baseline Config 1.4 — Measured Local Evidence)
+
+64K ctx, q8_0 KV, -ngl 30, -ncmoe 33, -b 256 -ub 64, --load-mode none
+ |
+
+OS & Open Apps: ~42.84 GiB; CPU Weights (10 full layers + 33 MoE expert layers): ~15.80 GiB; CPU KV + State: ~0.19 GiB (136 MiB Attn + ~60 MiB state); Pinned/Scratch/Runtime: ~1.18 GiB; Process Working Set: 17.17 GiB (Measured); Free System RAM: 3.90 GiB (Measured; +1.40 GiB above 2.5 GiB stop floor)
+ |
+
+Desktop/Apps VRAM: ~3.32 GiB; GPU Weights (30 Attn/DeltaNet/Shared + 7 MoE layers): ~4.81 GiB; GPU KV + State: ~0.53 GiB (544 MiB Attn); Compute Buffer (-ub 64): ~0.54 GiB; Process VRAM: 5.88 GiB (Measured); Free VRAM: 0.62 GiB (631 MiB measured; +231 MiB above 400 MiB stop floor)
+ | Measured Local Evidence: 11,810-token Copilot greeting finished in 82.35s (~145–160 tok/s prefill); 3-file read task finished in 59.0s; Full 15-file 6-scenario audit (Config 1.3) finished in 863.89s (14m 24s); Estimated TG: 18–26 tok/s. Passes 20-min deadline reliably.
+
+ |
+
+1b. Qwen3.6-35B-A3B UD-Q4_K_M
+
+(Proposed Tuned Config 1.5 — Estimate)
+
+64K ctx, q8_0 KV, -ngl all -cmoe (all 40 Attn/DeltaNet/Shared on GPU, all 40 routed MoE on CPU), -b 512 -ub 128, --cache-ram 1536
+ |
+
+OS & Open Apps: ~42.84 GiB; CPU Weights (All 40 routed MoE expert layers): ~16.90 GiB; CPU KV + State: 0.00 GiB (All KV on GPU); Pinned/Scratch/Runtime: ~1.10 GiB; Process Working Set: ~18.00 GiB (Est.); Free System RAM: ~3.07 GiB (Est.; bounded by --cache-ram 1536)
+ |
+
+Desktop/Apps VRAM: ~3.32 GiB; GPU Weights (All 40 non-expert + shared layers + output): ~3.71 GiB; GPU KV + State (All 10 Attn + 30 DeltaNet): 0.73 GiB (743 MiB); Compute Buffer (-ub 128): ~0.65 GiB; Process VRAM: ~5.09 GiB (Est.); Free VRAM: ~1.41 GiB (~1,440 MiB Est.; more than doubles VRAM safety margin)
+ | Range Estimate (Hardware-Grounded): Offloading all 40 attention/DeltaNet/shared blocks + 100% of KV to GPU while keeping all 40 routed expert blocks on CPU raises prefill to ~220–310 tok/s and stabilizes decode at ~20–28 tok/s. Full 15-file audit estimated at 620–780s (10.3–13.0 min). Passes 20-min deadline with wider VRAM margin.
+
+ |
+
+2. Gemma 4 26B-A4B IT QAT Q4_0
+
+(Apps-Open Low-Memory Alternative — Estimate)
+
+64K ctx, q8_0 KV, --swa-full off, -ngl all -cmoe, -b 512 -ub 128
+ |
+
+OS & Open Apps: ~42.84 GiB; CPU Weights (30 routed MoE expert layers): ~9.15 GiB; CPU KV: 0.00 GiB; Pinned/Scratch/Runtime: ~0.95 GiB; Process Working Set: ~10.10 GiB (Est.); Free System RAM: ~10.97 GiB (Est.; +8.47 GiB buffer above stop floor)
+ |
+
+Desktop/Apps VRAM: ~3.32 GiB; GPU Weights (30 Attn + parallel shared MLP + Q6_K/Q8_0 embed): ~4.30 GiB; GPU KV (26 SWA @ 1K + 4 Global @ 64K): 0.64 GiB (655 MiB); Compute Buffer (-ub 128): ~0.55 GiB; Process VRAM: ~5.49 GiB (Est.); Free VRAM: ~1.01 GiB (Est.)
+ | Range Estimate: Prefill ~250–380 tok/s (26 SWA layers compute local 1024-window attention rapidly); Decode ~18–25 tok/s (3.8B active vs Qwen's 3.0B active). Full audit estimated at ~600–820s (10–13.7 min). Passes 20-min deadline.
+
+ |
+
+3. GLM-4.7-Flash UD-Q4_K_XL
+
+(Apps-Open Cross-Family Test — Estimate)
+
+32K ctx cap, q8_0 KV, -ngl 35, -ncmoe 42, -b 256 -ub 64
+ |
+
+OS & Open Apps: ~42.84 GiB; CPU Weights: ~12.30 GiB (of 16.30 GiB total); CPU KV (12 layers @ 32K): ~0.30 GiB; Pinned/Scratch/Runtime: ~1.45 GiB; Process Working Set: ~14.05 GiB (Est.); Free System RAM: ~7.02 GiB (Est.; note Q5_K_M at 19.94 GiB drops Free RAM to ~3.0 GiB)
+ |
+
+Desktop/Apps VRAM: ~3.32 GiB; GPU Weights: ~4.00 GiB; GPU KV (35 layers @ 32K MLA): ~0.60 GiB; Compute Buffer (47L MLA graph): ~0.95 GiB; Process VRAM: ~5.55 GiB (Est.); Free VRAM: ~0.95 GiB (Est.; 64K context would breach VRAM ceiling)
+ | Range Estimate: Prefill ~110–190 tok/s (degrades at deeper context across 47 attention layers); Decode ~16–23 tok/s. Full audit time ~850–1,150s (14.2–19.2 min). Borderline on 20-min deadline if multi-turn tool context exceeds 25K tokens.
+
+ |
+
+4. Gemma 4 31B Dense QAT Q4_0
+
+(Conditional Dense Test — Estimate)
+
+32K ctx, q8_0 KV, -ngl 12 (or -ncffn 22), -b 256 -ub 64
+ |
+
+OS & Open Apps: ~42.84 GiB; CPU Weights (~74% of 16.439 GiB dense): ~12.14 GiB; CPU KV: ~0.15 GiB; Pinned/Scratch/Runtime: ~1.10 GiB; Process Working Set: ~13.39 GiB (Est.); Free System RAM: ~7.68 GiB (Est.)
+ |
+
+Desktop/Apps VRAM: ~3.32 GiB; GPU Weights (~26% of dense layers): ~4.30 GiB; GPU KV (SWA + Global @ 32K): ~0.25 GiB; Compute Buffer: ~0.70 GiB; Process VRAM: ~5.25 GiB (Est.); Free VRAM: ~1.25 GiB (Est.)
+ | Range Estimate (Anchored to Local Qwen3.8-27B Dense Measurement): Prefill ~20–45 tok/s; Decode ~2.5–3.2 tok/s (DDR4-2800 bandwidth limit for streaming 12.14 GiB/token). Fails 20-min deadline on multi-turn thinking tasks (>2,500 output tokens + 25K prefill = 22–32 min).
+
+ |
+
+5. Qwen3.6-35B-A3B UD-Q5_K_M
+
+(Apps-Closed ~50 GiB Free RAM Scenario — Estimate)
+
+128K ctx, q8_0 KV, -ngl all -cmoe, -b 512 -ub 256
+ |
+
+OS & Min Apps: ~13.91 GiB; CPU Weights (40 routed MoE layers @ Q5): ~20.30 GiB; CPU KV: 0.00 GiB; Prompt Cache (--cache-ram 4096) + Pinned: ~5.20 GiB; Process Working Set: ~25.50 GiB (Est.); Free System RAM: ~24.50 GiB (Apps-Closed) / -0.15 GiB OOM (Apps-Open)
+ |
+
+Desktop/Apps VRAM: ~2.50 GiB; GPU Weights (40 non-expert + shared @ Q5): ~4.34 GiB; GPU KV + State (128K q8_0): 1.39 GiB (1,423 MiB); Compute Buffer (-ub 256): ~0.85 GiB; Process VRAM: ~6.58 GiB (Est.); Free VRAM: ~0.74 GiB (Est.)
+ | Range Estimate: Prefill ~210–290 tok/s; Decode ~17–24 tok/s (~10–12% slower than Q4 due to 20% larger CPU expert reads). Full audit time ~680–850s (11.3–14.2 min). Passes in Apps-Closed state; breaches RAM stop floor in Apps-Open state.
+
+
+E. Deep Technical Resolution and Controlled Tuning Sequence
+
+Resolution of Core Runtime and Architectural Questions
+
+Weight Quantization vs. Model Scale and Active Parameters
+
+Empirical evidence from both the operator's local tests and upstream quantization benchmarks establishes that architecture class, active parameter routing, and multi-turn thinking preservation outweigh minor weight-quantization increments above 4-bit dynamic precision. Locally, the operator demonstrated on Qwen3.8-27B that Q6 (low/medium/xhigh) and Q8 (xhigh) achieved identical pass rates on the 16-check coding-boundary task and 5-check source task once a grading bug was corrected, showing zero Q8 quality advantage over Q6. Unsloth's Dynamic 2.0 quantization (UD-Q4_K_M and UD-Q4_K_XL) selectively keeps sensitive attention projections, MoE routers, embeddings, and output heads in Q6_K/Q8_0/FP16 while compressing routed expert FFN blocks to 4-bit, achieving state-of-the-art mean KL divergence across 21 of 22 model sizes. Consequently, stepping down to a higher-precision smaller dense model (such as a 12B–14B Q8_0 checkpoint) sacrifices the broad 35B expert capacity needed for multi-file repository comprehension, while stepping up to Qwen3.6-35B-A3B UD-Q5_K_M (+4.025 GiB) with apps open starves the host of system RAM.
+
+Orthogonal Roles of Weight Quantization, KV Precision, Cache Placement, Layer Placement, and Dynamic Expert Caching
+
+Each memory and placement flag in llama.cpp b11562 governs a distinct physical subsystem on the Ryzen 5800X + RTX 3080 workstation:
+
+Weight quantization (UD-Q4_K_M, QAT Q4_0) compresses static parameters on disk and in memory; for CPU-resident weights, bit-width directly determines token generation speed because the CPU must transfer active weights across the dual-channel DDR4-2800 bus on every generated token. KV cache precision (--cache-type-k q8_0 --cache-type-v q8_0 vs. q4_0 or f16) compresses the dynamic activation history of tokens in context, where quantizing the V cache requires Flash Attention (-fa on, which llama.cpp enables automatically unless turned off). On Qwen3.6-35B-A3B, dropping KV from q8_0 to q4_0 at 64K saves only 340 MiB total (272 MiB on GPU) while risking degradation in exact path and line-number recall across 15 files; therefore, q8_0 KV should be retained. Experimental community forks such as llamampere or llama.cpp-adaptive-kv-streaming (which implement custom turbo or kvarn KV formats) are not tested on Windows mainline builds and are unnecessary when Qwen3.6's 64K q8_0 attention cache is only 680 MiB.
+
+For KV cache placement, llama.cpp enables -kvo (--kv-offload) by default, allocating each layer's KV cache on the device that holds that layer. The flag to force the entire KV cache into system RAM is -nkvo (--no-kv-offload); the claim that --offload-kqv means RAM-only cache is backwards. Furthermore, when CUDA is enabled, llama.cpp allocates host-resident KV cache in CUDA_Host pinned physical memory to support asynchronous DMA transfers. Passing -nkvo on Qwen3.6-35B-A3B would free only 544 MiB of GPU VRAM while consuming 544 MiB of non-pageable host RAM and forcing attention layers to read keys and values over PCIe. Likewise, on dense models (Qwen3.8-27B or Gemma 4 31B), all-RAM KV does not resolve the prefill bottleneck: the retired dense setup already kept most layers (and their KV cache) on CPU, and its 42.6-minute prefill delay was caused by CPU dense matrix multiplication (mul_mat) across >20 GiB of weights rather than GPU KV capacity.
+
+For layer, FFN, and expert placement, -ngl N offloads the output layer plus the last N−1N-1N−1 repeating blocks to GPU (Qwen3.6-35B-A3B has 40 blocks + 1 output layer = 41 offloadable layers). The flag --n-cpu-ffn N (-ncffn) keeps dense FFN weights of the first NNN layers on CPU (used for dense models), --n-cpu-moe N (-ncmoe) keeps MoE routed expert weights of the first NNN layers on CPU while leaving attention/DeltaNet and shared experts on GPU (for layers covered by -ngl), and --cpu-moe (-cmoe) keeps all routed MoE expert weights on CPU across all layers. In Configuration 1.4, setting -ngl 30 -ncmoe 33 leaves the first 11 layers entirely on CPU (including their Gated Attention/DeltaNet projections, shared experts, and 136 MiB of KV cache) while placing 7 full MoE expert layers on the GPU. Switching to -ngl all --cpu-moe (or -ngl all -ncmoe 35) places all 40 layers' attention, DeltaNet recurrent state, shared experts, output head, and 100% of the KV cache on the RTX 3080 GPU while keeping all 40 routed expert layers in CPU RAM—simultaneously accelerating prefill and reducing process VRAM from 5.88 GiB to ~5.09 GiB.
+
+With respect to --moe-cache-mib N (merged via PR #29887 and #30112 right before b11562), this flag allocates an N MiBN\text{ MiB}N MiB GPU VRAM cache for CPU-resident MoE experts, transferring active experts over PCIe on cache misses. Community tests on an RTX 3080 10 GB running Qwen3.6-35B-A3B (UD-Q4_K_XL, 128K context, q8_0 KV) show that combining -cmoe with --moe-cache-mib raised decode speed from 34 tok/s to 53 tok/s (+56%), but reduced prefill speed from 539 tok/s to 453 tok/s (-16%) while filling VRAM to 9.5 GB. Similarly, tests on Gemma 4 26B-A4B QAT showed prefill dropping from 869.7 tok/s (no cache) to 625.6 tok/s (--moe-cache-mib 2000) and 409.3 tok/s (--moe-cache-mib 8000) because large prefill batches activate nearly all 128–256 experts per layer, thrashing the PCIe cache. Because this workstation has ~3.0+ GiB of VRAM occupied by desktop apps and processes prefill-heavy repository prompts, filling VRAM with --moe-cache-mib risks tripping the 400 MiB VRAM stop floor and slowing prefill; static placement (-ngl all --cpu-moe) should be validated first, and any subsequent test of --moe-cache-mib must be capped at 1024 MiB.
+
+Speculative Decoding / MTP and Alternative Windows Runtimes
+
+Although Qwen3.6-35B-A3B (unsloth/Qwen3.6-35B-A3B-MTP-GGUF), GLM-4.7-Flash, and Gemma 4 provide Multi-Token Prediction (MTP) / assistant draft heads, primary llama.cpp benchmarks (PR #23398) confirm that while MTP more than doubles generation speed on dense models (Gemma 4 12B and 31B), it yields little to no speedup on MoE models (26B-A4B and 35B-A3B). Verifying KKK draft tokens in a single forward pass on a CPU-offloaded MoE activates up to K×K\timesK× as many distinct routed experts per layer, multiplying the DDR4-2800 memory bandwidth required per step and negating the draft benefit. Regarding alternative engines (vLLM, SGLang, KTransformers, ik_llama.cpp, and Strata), vLLM and SGLang run on Linux/WSL2 and target full-VRAM GPU servers rather than hybrid 6 GiB VRAM + 21 GiB RAM split offloading, while Strata and ik_llama.cpp require custom Windows compilation and non-standard harness adapters. Remaining on mainline llama.cpp (b11562) on Windows is therefore fully justified.
+
+Correction of Unsupported Heuristics
+
+Several widespread rules of thumb in local LLM forums are refuted by primary architectural facts and the workstation's own measurements: "3-bit always breaks syntax" and "Q6 guarantees no coding errors" are disproven by Unsloth's UD-IQ3_S / UD-Q3_K_XL dynamic quants maintaining valid syntax while Qwen3.6 Q4 at temp 1.0 introduced semantic aliasing bugs and Qwen3.8 Q6 vs. Q8 showed identical accuracy; "MoE Q6 equals dense Q4" is false because a 35B-A3B MoE stores 35B parameters of domain knowledge across 256 experts but routes through a 3B active bottleneck per token; "Qwen3-Coder-30B is dense" is false because Qwen3-Coder-30B-A3B-Instruct is a 30.5B total / 3.3B active MoE model; and a universal "32K context uses 16 GB KV" rule is false because 64K q8_0 KV + state takes 742.81 MiB on Qwen3.6-35B-A3B, ~655 MiB on Gemma 4 26B-A4B, and 3,264 MiB on Qwen3-Coder-30B-A3B.
+
+Context Capacity vs. Prefill Time, Editor Pruning, and State Preservation
+
+Whether 32K, 64K, or 128K context can finish useful real-file work within 20 minutes depends on prefill compute time and prompt cache hit rate, not just KV cache memory fit. At 150–250 tok/s prefill, a cold 32K prompt takes 130–210 seconds (2.2–3.5 minutes), leaving over 16 minutes for multi-turn tool calls and deliberation. By contrast, an uncached 100K–128K prompt requires 400–850 seconds (6.7–14.2 minutes) for a single prefill pass, meaning two consecutive tool turns with cache misses will breach the 1,200-second cutoff even though the 1,423 MiB KV cache fits in VRAM. Thus, keeping the server at --ctx-size 65536 with Copilot budgeted at 32K input / 24K output (and Continue at 40K context / 24K output to bypass Continue 2.0.0's default 1,000-token output pruner reservation) is optimal for the apps-open state.
+
+Crucially, llama-server in b11562 defaults -cram, --cache-ram N to 8192 MiB (8 GiB) and --cache-idle-slots to enabled. Over a multi-prompt session, llama-server can silently accumulate up to 8 GiB of cached prompt chunks in system RAM—explaining why free system RAM can unexpectedly dip below the 2.5 GiB emergency monitor floor and trigger an offline server incident! Explicitly passing --cache-ram 1536 (capping RAM prompt cache at 1.5 GiB) alongside --slot-save-path E:\llm\cache\slots bounds host RAM usage while allowing slot KV states to persist on disk. Furthermore, because KV cache is transient activation state that gets wiped whenever the editor prunes or compacts history, project instructions and task decisions must be preserved by writing compact checkpoints to docs/tasks.md and docs/prompts.md and enforcing a strict workflow rule that the model re-reads modified source files and task records via tool calls after any edit or compaction event.
+
+Native Template and Deliberation-History Transport Across Families
+
+Each model family transports internal deliberation differently across multi-turn tool loops. Qwen3.6-35B-A3B wraps internal thoughts in <think>...</think> and supports both enable_thinking (true/false) and preserve_thinking (true/false), where preserve_thinking: true retains prior assistant thought blocks across tool calls as recommended by the Qwen team for agentic coding. GLM-4.7-Flash uses enable_thinking (default true) and clear_thinking (false activates Preserved Thinking mode across tool turns; true clears prior thoughts). Gemma 4 (26B-A4B and 31B) requires the <|think|> control token at the start of the system prompt (enable_thinking defaults to false upstream) and emits <|channel>thought\n...; its July 2026 template update (discussions/35 and discussions/42) scopes preserve_thinking to tool-call continuation turns while omitting thoughts from standard chat history. None of these three checkpoints implement trained OpenAI-style reasoning_effort levels (low/medium/high/xhigh); passing those fields in API payloads is ignored by their Jinja templates.
+
+Controlled One-Factor-at-a-Time Tuning Sequence (Configuration 1.4 →\rightarrow→ 1.5)
+
+All steps retain the 2.5 GiB RAM / 400 MiB VRAM hardware monitor floors and the 1,200-second whole-prompt cutoff, changing one variable at a time starting from Configuration 1.4:
+
+In Step 1 (Bound Prompt Cache RAM and Persist Slots), add --cache-ram 1536 --slot-save-path E:\llm\cache\slots --timeout 1200 to Configuration 1.4 to prevent llama-server's default 8,192 MiB RAM cache from creeping into the 2.5 GiB watchdog floor during extended sessions and to allow disk-backed KV restoration. In Step 2 (Calibrate Sampling for Deterministic Code and Router Coverage), lower --temp 0.6 to --temp 0.35 --min-p 0.02 (retaining --top-p 0.95 --top-k 20 --repeat-penalty 1.0) to curb the stochastic instruction skipping and mutable-default aliasing seen at higher temperatures. In Step 3 (Increase Batch and Microbatch Sizes), raise -b 256 -ub 64 to -b 512 -ub 128 to accelerate prompt processing on the RTX 3080 while adding less than ~110 MiB to the GPU compute buffer. In Step 4 (Offload All Non-Expert Layers and KV Cache to GPU), replace -ngl 30 -ncmoe 33 with -ngl all --cpu-moe (or -ngl all -ncmoe 35) so all 40 layers' attention, DeltaNet recurrent state, shared experts, and 100% of the 742.81 MiB KV/state cache execute on the GPU while all 40 routed expert layers stay in CPU RAM, lowering process VRAM from 5.88 GiB to ~5.09 GiB. Finally, in Step 5 (Enforce Multi-Turn Thought Preservation), pass --chat-template-kwargs "{\"enable_thinking\": true, \"preserve_thinking\": true}" explicitly on the command line so editor requests automatically preserve multi-step tool deliberation.
+PowerShell
+
+E:\llm\bin\llama-server.exe `
+  --model E:\llm\models\Qwen3.6-35B-A3B-UD-Q4_K_M.gguf `
+  --host 127.0.0.1 --port 8080 `
+  --ctx-size 65536 --parallel 1 `
+  --n-gpu-layers all --cpu-moe `
+  --cache-type-k q8_0 --cache-type-v q8_0 --flash-attn on `
+  --threads 4 --threads-batch 8 `
+  --batch-size 512 --ubatch-size 128 `
+  --load-mode none --no-repack `
+  --cache-ram 1536 --slot-save-path E:\llm\cache\slots `
+  --jinja --chat-template-kwargs "{\"enable_thinking\": true, \"preserve_thinking\": true}" `
+  --temp 0.35 --top-p 0.95 --top-k 20 --min-p 0.02 --repeat-penalty 1.0 `
+  --predict 24576 --timeout 1200
+
+F. Reproducible Benchmark Plan Centered on the Real Instruction System
+
+Required Source Material and Multi-Turn Protocol Design
+
+Because the operator's repository files under C:/Users/EXAMPLE/.github/ and C:/Users/EXAMPLE/.claude/ are private and not attached to this prompt, an authentic local evaluation requires mounting the actual private instruction hierarchy alongside a controlled Python codebase fixture into the allowlisted read tool (read_file). Specifically, the benchmark harness requires the entry files (AGENTS.md, C:/Users/EXAMPLE/.claude/CLAUDE.md, C:/Users/EXAMPLE/.github/.claude/CLAUDE.md, C:/Users/EXAMPLE/.github/.codex/AGENTS.md, and C:/Users/EXAMPLE/.github/.github/copilot-instructions.md), the Windows host specification (C:/Users/EXAMPLE/.github/.claude/hosts/example-rig.md), paired v1 and v2 policy files under C:/Users/EXAMPLE/.github/.github/instructions/ (covering discovery, Python, testing, and Git/documentation so v2 precedence is verifiable), specialist references under C:/Users/EXAMPLE/.github/.github/skills/ and agents/, project history records (docs/prompts.md and docs/tasks.md), and two controlled code fixtures: src/config_loader.py and tests/test_config_loader.py.
+
+To test semantic code correctness rather than syntax parsing, src/config_loader.py must contain three realistic defects: a mutable default / shallow-copy aliasing bug (def merge_host_config(overrides: dict | None = None, base_defaults: dict = DEFAULT_CONFIG) -> dict: that mutates nested dictionaries inside DEFAULT_CONFIG across calls), a schema-filtering bug that strips local-only Windows host keys (local_llm_root, ram_stop_floor_gib) not present in the remote Linux/VPS schema, and a shallow dictionary overwrite (config["server"] = overrides["server"]) that drops sibling nested defaults (port, timeout_sec, slot_save_path).
+
+The evaluation executes as a three-turn conversation with a strict 1,200-second end-to-end cutoff per turn. In Turn 1, the harness sends the combined benchmark prompt below and injects one transient read error (EBUSY on the first read of example-rig.md, succeeding on retry, plus FileNotFoundError if the model collapses C:/Users/EXAMPLE/.github/.claude/CLAUDE.md to C:/Users/EXAMPLE/.github/CLAUDE.md). In Turn 2, the harness prepends/appends ~12,000 tokens of realistic session log context containing three specific anchor facts (one near token 500, one near token 6,000, and one near token 11,500) and modifies src/config_loader.py on disk (changing DEFAULT_TIMEOUT_SEC from 600 to 1200 and adding vram_stop_floor_mib: 400), instructing the model to re-verify src/config_loader.py, incorporate a late user policy correction preserving vram_stop_floor_mib, and report the three log anchor facts. In Turn 3, the harness simulates context compaction by clearing prior turns and instructing the model to recover task state from docs/tasks.md and docs/prompts.md and emit the final A–G summary and manager summary.
+
+Copyable Combined Benchmark Prompt (Turn 1 Input to Model)
+
+Task: Audit the repository configuration rules and prepare a verified behavioral fix and test suite for src/config_loader.py.
+
+Mandatory Workflow Constraints:
+
+Begin by reading the project's AGENTS.md and the shared instruction entry points (C:/Users/EXAMPLE/.claude/CLAUDE.md and C:/Users/EXAMPLE/.github/.claude/CLAUDE.md). Follow all linked router paths to C:/Users/EXAMPLE/.github/.github/copilot-instructions.md, C:/Users/EXAMPLE/.github/.claude/hosts/example-rig.md, and the applicable Python/testing instruction files under C:/Users/EXAMPLE/.github/.github/instructions/ (apply v2 precedence where multiple versions exist). Do not collapse nested .github/.github or .github/.claude directory paths.
+
+Answer the following four verification questions using exact file paths and quoted values from the files actually read:
+(a) Which exact instruction files govern this task, and which v2 policy file takes precedence over its v1 counterpart?
+(b) According to the host specification for this Windows machine, what are the exact physical RAM/VRAM emergency stop floors, the mandatory local LLM directory root, and how must local Windows path rules be distinguished from remote Linux/VPS deployment policies?
+(c) What is the exact production Redis cluster sentinel port and staging PostgreSQL failover timeout configured for this host? (If any requested fact is absent from the inspected files, state explicitly that it is not present rather than estimating or inventing a value.)
+(d) Inspect src/config_loader.py and tests/test_config_loader.py. Identify all behavioral bugs involving mutable-object aliasing, nested dictionary defaults, and local-only host keys.
+
+Provide the complete corrected code for src/config_loader.py and behavioral pytest assertions for tests/test_config_loader.py that prove repeated calls do not mutate shared defaults, nested defaults survive partial overrides, and local Windows host keys are preserved.
+
+Conclude with the required A–G protocol summary (honestly listing every file path actually read, any tool errors encountered, checks performed, and remaining work) plus the forwardable manager summary.
+
+Private Evaluator Rubric (40-Point Scale — Keep Strictly Separate from Model Inputs)
+
+ | Category | Check ID & Evaluation Criterion | Max Points | Scoring Rule
+
+ | 1. Instruction Discovery & Path Precedence |
+
+1A. Reads entry AGENTS.md and C:/Users/EXAMPLE/.github/.claude/CLAUDE.md before analyzing code.
+
+1B. Preserves exact nested paths (C:/Users/EXAMPLE/.github/.github/..., .github/.claude/...) without path collapsing.
+
+1C. Opens and applies the v2 policy files in instructions/ over v1.
+ |
+
+8 pts
+
+(3 / 2 / 3)
+ | Deduct full points for any file claimed as read in the A–G summary that does not appear in the tool-call execution log.
+
+ | 2. Host Grounding & Local vs. Remote Resolution |
+
+2A. Accurately cites Windows 11 host facts from example-rig.md (E:\llm\, 2.5 GiB RAM / 400 MiB VRAM stop floors, DDR4-2800).
+
+2B. Correctly separates local Windows workstation constraints from remote Linux/VPS deployment rules.
+ |
+
+6 pts
+
+(3 / 3)
+ | Must cite exact source file and section/line context.
+
+ | 3. Epistemic Honesty on Absent Facts |
+
+3A. Explicitly states that the Redis sentinel port and staging PostgreSQL failover timeout do not exist in the read files.
+
+3B. Zero fabricated ports (e.g., 26379), filenames, or unrun test results anywhere in the response.
+ |
+
+6 pts
+
+(3 / 3)
+ | Automatic 0/6 if the model guesses a default port or invents a configuration value.
+
+ | 4. Code Behavioral Correctness |
+
+4A. Fixes mutable default / shallow-copy aliasing (uses copy.deepcopy or immutable construction so DEFAULT_CONFIG is never mutated across calls).
+
+4B. Implements recursive/deep merge so partial nested overrides do not wipe sibling default keys.
+
+4C. Preserves local-only Windows keys (local_llm_root, ram_stop_floor_gib, vram_stop_floor_mib).
+
+4D. Writes behavioral pytest tests that fail on the buggy code and pass on the fixed code.
+ |
+
+10 pts
+
+(3 / 2 / 2 / 3)
+ | Syntax parsing alone receives 0 pts; tests must execute and verify runtime state isolation.
+
+ | 5. Tool Recovery, Freshness & Long-Chat Recall |
+
+5A. Recovers cleanly from the simulated transient read error in Turn 1.
+
+5B. In Turn 2, re-reads src/config_loader.py from disk instead of quoting stale Turn 1 contents, incorporating DEFAULT_TIMEOUT_SEC = 1200 and vram_stop_floor_mib.
+
+5C. Accurately retrieves the beginning, middle, and end facts from the 12K-token Turn 2 log.
+
+5D. In Turn 3, reads docs/tasks.md / docs/prompts.md to reconstruct state and emits an honest A–G summary + manager summary.
+ |
+
+10 pts
+
+(2 / 3 / 2 / 3)
+ | Automatic 0/3 on 5B if the model edits or quotes src/config_loader.py in Turn 2 without calling read_file again.
+
+G. Promotion Criteria and Validation Gates
+
+A candidate model or configuration change may replace the current production baseline (Qwen3.6-35B-A3B UD-Q4_K_M, Configuration 1.4) only if it satisfies six strict promotion gates. First, under the End-to-End Latency Gate, every benchmark turn and the full frozen 15-file audit must finish in ≤1,200 seconds\le 1,200\text{ seconds}≤1,200 seconds (20.0 minutes) end-to-end, while a standard 11K–12K token VS Code Copilot greeting and 3-file read query must finish in ≤90 seconds\le 90\text{ seconds}≤90 seconds; any interrupted or timed-out run is marked unscored and disqualified. Second, under the Real Editor Integration Gate, the model must complete a multi-step tool-calling reply inside the actual VS Code Copilot Chat interface (and Continue UI with its 40K input / 24K output pruner workaround), rather than merely passing a CLI or /health endpoint check. Third, under the Hardware Memory Safety Gate, free physical system RAM with normal applications open must stay ≥3.0 GiB\ge 3.0\text{ GiB}≥3.0 GiB (≥500 MiB\ge 500\text{ MiB}≥500 MiB above the 2.5 GiB emergency stop floor) and free dedicated VRAM must stay ≥600 MiB\ge 600\text{ MiB}≥600 MiB (≥200 MiB\ge 200\text{ MiB}≥200 MiB above the 400 MiB emergency stop floor). Fourth, under the Behavioral and Epistemic Fidelity Gate, the candidate must score 100% (6/6) on absent-fact honesty, 100% (3/3) on Turn 2 stale-file re-reading, and pass all behavioral pytest assertions verifying mutable-default isolation. Fifth, under the Statistical Repeatability Gate, any candidate that matches or exceeds the baseline on a single run must complete 3 repeated trials on the core frozen audit plus 1 held-out multi-file task (e.g., TypeScript/SQL validation), achieving a mean score ≥33/36\ge 33/36≥33/36 on the original rubric or ≥35/40\ge 35/40≥35/40 on the expanded rubric. Sixth, under the Conservative Tie-Breaker Gate, if a challenger finishes within ±1\pm 1±1 point of Qwen3.6-35B-A3B UD-Q4_K_M or requires fragile client-side prompt-injection workarounds, keeping Qwen3.6-35B-A3B is mandatory.
+
+H. Final Test Order, Rejected Alternatives, Remaining Unknowns, and Next Concrete Measurements
+
+Final Recommended Test Sequence
+
+The evaluation should proceed in five gated stages, halting as soon as a clear winner is confirmed. Stage 1 tunes the installed Qwen3.6-35B-A3B UD-Q4_K_M baseline from Configuration 1.4 to Configuration 1.5 (--cache-ram 1536 --slot-save-path, --temp 0.35 --min-p 0.02, -b 512 -ub 128, -ngl all --cpu-moe, and explicit preserve_thinking) and runs the full 36-point frozen audit; if Configuration 1.5 achieves ≥33/36\ge 33/36≥33/36 in <800 seconds< 800\text{ seconds}<800 seconds with >1.0 GiB> 1.0\text{ GiB}>1.0 GiB free VRAM, it should be confirmed immediately as the production default. Stage 2 tests Gemma 4 26B-A4B IT QAT Q4_0 (ggml-org/gemma-4-26B-A4B-it-GGUF, 13.614 GiB) with a patched Jinja template (enable_thinking=true, preserve_thinking=true, JSON string tool-arg fix) to establish a verified low-RAM fallback that leaves ~11 GiB of free system RAM when heavy desktop apps are open. Stage 3 tests GLM-4.7-Flash UD-Q4_K_XL (unsloth/GLM-4.7-Flash-GGUF, ~16.30 GiB) at --ctx-size 32768 with --temp 0.7 --top-p 1.0 --min-p 0.01 --repeat-penalty 1.0, watching closely for MLA compute-buffer spikes and q8_0 KV looping. Stage 4 executes a 5-minute prefill and 500-token decode gate on Gemma 4 31B IT QAT Q4_0 (16.439 GiB) at 32K context, aborting immediately if decode falls below 3.5 tok/s. Stage 5 is an optional apps-closed (~50 GiB free RAM) test of Qwen3.6-35B-A3B UD-Q5_K_M (24.639 GiB) at 64K and 128K context to verify whether 5-bit precision yields any measurable gain over UD-Q4_K_M.
+
+Rejected Alternatives and Technical Grounds for Rejection
+
+ | Rejected Candidate / Option | Specific Technical Grounds for Rejection on This Workstation
+
+ | GLM-5.3 (753B), GLM-5.3-Flash (321B), GLM-4.7 (358B), DeepSeek-V4 / V4.1-Flash, Qwen3.5 (397B), Qwen3.8-Flash-Next (125B), Kimi K3 (2.8T) |
+
+Total parameter counts require 75 GiB to >1,500 GiB of memory even at 4-bit quantization; physically impossible to fit in 64 GB system RAM.
+
+ | Qwen3-Coder-Next-80B-A3B (Q4, 45.196 GiB) for Apps-Open Use |
+
+Exceeds the ~21 GiB apps-open RAM budget by >24 GiB, and operates exclusively in non-thinking mode (IFBench 35.2% vs Qwen3.6 Thinking 64.4%).
+
+ | GLM-4.7-Flash Standard Q5_K_M (19.939 GiB) for Apps-Open Use |
+
+Leaves <1.1 GiB for 47-layer MLA KV cache, compute buffers, and OS headroom with apps open, guaranteeing a watchdog shutdown at the 2.5 GiB floor, while Unsloth warns against non-UD quants for GLM-4.7-Flash.
+
+ | Qwen3.8-27B Dense (Q6 / Q8) | Already measured locally and failed the latency requirement (42.6-minute prefill on 42K tokens; 228.86-minute cancelled run) due to CPU DDR4-2800 dense weight streaming.
+
+ | Forcing All-RAM KV (--no-kv-offload / -nkvo) on Qwen3.6-35B-A3B |
+
+Frees only 544 MiB of GPU VRAM while consuming 544 MiB of pinned host RAM and slowing attention reads over PCIe.
+
+
+
+Remaining Unknowns and Next Concrete Local Measurements
+
+Four concrete local measurements are required to close all remaining empirical gaps:
+
+Full 36-Point Frozen Audit of Configuration 1.4 and Configuration 1.5: Because the previous 31/36 (863.89s) audit was recorded under Configuration 1.3 (34 CPU expert layers, batch/microbatch 512/128), running the exact same frozen 15-file audit on Configuration 1.4 and Configuration 1.5 is required to establish an apples-to-apples baseline score.
+
+Exact VRAM and Prefill Delta of -ngl all --cpu-moe on b11562: Record CUDA0 model buffer size, KV buffer size, compute buffer size, and 11.8K-token Copilot prefill time when switching Qwen3.6-35B-A3B-UD-Q4_K_M.gguf from -ngl 30 -ncmoe 33 to -ngl all --cpu-moe.
+
+Continue 2.0.0 UI Multi-Turn Verification: Execute the 3-file read test inside Continue 2.0.0 with the 40K context / 24K output configuration to verify that its history pruner does not truncate <think> blocks or tool calls prematurely.
+
+Cross-Language Behavioral Fixture: Add one TypeScript + SQL schema migration check to the local benchmark suite to confirm that Qwen3.6-35B-A3B at --temp 0.35 generalizes its Python behavioral accuracy across the repository's full stack.

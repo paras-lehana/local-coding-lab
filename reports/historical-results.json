@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "evidence_date": "2026-10-14",
+  "provenance": "Sanitized numeric subset of earlier private experiments. Originals retained outside this repository; private source contents are not published. New public fixture has not been run on a model.",
+  "sources": [
+    {
+      "name": "2026-10-14-runtime-flags.md",
+      "sha256": "3236ba49680f4569ef2a04f49c156e4154b386aeb0d04113105a79fc696ae8ea"
+    },
+    {
+      "name": "2026-10-13-instruction-benchmark-v1.3.md",
+      "sha256": "042b05ecb08d5114391a0e5b7d6da16b969ced376c5c4961bde808505853f441"
+    },
+    {
+      "name": "summary.json",
+      "sha256": "53bd59e87d6c18f100a6415f403af22536f03dcdc5cdd1f21a512ea2d11cd59c"
+    },
+    {
+      "name": "2026-10-14-next-model-research.md",
+      "sha256": "8cf78ecd0f11c38fd7f74c60f3dbe886e823275eea4f7ca0802e393ddc795641"
+    }
+  ],
+  "flag_diagnostic": [
+    {
+      "name": "baseline-budget0",
+      "status": "completed",
+      "budget": 0,
+      "wall_seconds": 136.21900000001187,
+      "first_final_seconds": 36.79700000002049,
+      "usage": {
+        "completion_tokens": 1031,
+        "prompt_tokens": 5721,
+        "total_tokens": 6752,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 5721,
+        "prompt_ms": 36528.492,
+        "prompt_per_token_ms": 6.384983744100682,
+        "prompt_per_second": 156.61747000122534,
+        "predicted_n": 1031,
+        "predicted_ms": 99612.83,
+        "predicted_per_token_ms": 96.7114854368932,
+        "predicted_per_second": 10.340033507731887
+      },
+      "fixture_sha256": "3895f7f9bad395a918cfdf910cb77e5ec9b825863d4685724e07c72b9e78e25d",
+      "memory": {
+        "samples": 23,
+        "process_ram_peak_gib": 14.315326690673828,
+        "free_ram_min_gib": 5.220855712890625,
+        "total_gpu_peak_mib": 9528,
+        "free_gpu_min_mib": 526,
+        "gpu_core_max_c": 55,
+        "gpu_utilization_max_percent": 97
+      },
+      "code": {
+        "passed": 3,
+        "total": 7
+      }
+    },
+    {
+      "name": "baseline-budget2048",
+      "status": "error_unscored",
+      "wall_seconds": 103.46900000001187
+    },
+    {
+      "name": "baseline-budget512",
+      "status": "not_started_unscored"
+    },
+    {
+      "name": "isolated-budget512",
+      "status": "completed",
+      "budget": 512,
+      "wall_seconds": 161.9529999999795,
+      "first_final_seconds": 77.31200000000536,
+      "usage": {
+        "completion_tokens": 1494,
+        "prompt_tokens": 5721,
+        "total_tokens": 7215,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 5721,
+        "prompt_ms": 36226.765,
+        "prompt_per_token_ms": 6.3322434889005415,
+        "prompt_per_second": 157.92191215528078,
+        "predicted_n": 1494,
+        "predicted_ms": 125690.756,
+        "predicted_per_token_ms": 84.1867086403215,
+        "predicted_per_second": 11.878359614608414
+      },
+      "fixture_sha256": "3895f7f9bad395a918cfdf910cb77e5ec9b825863d4685724e07c72b9e78e25d",
+      "memory": {
+        "samples": 27,
+        "process_ram_peak_gib": 16.905601501464844,
+        "free_ram_min_gib": 4.41033935546875,
+        "total_gpu_peak_mib": 9327,
+        "free_gpu_min_mib": 727,
+        "gpu_core_max_c": 58,
+        "gpu_utilization_max_percent": 95
+      },
+      "code": {
+        "passed": 5,
+        "total": 7
+      }
+    },
+    {
+      "name": "small-baseline-budget2048",
+      "status": "completed",
+      "budget": 2048,
+      "wall_seconds": 264.9530000000086,
+      "first_final_seconds": 200.96799999999348,
+      "usage": {
+        "completion_tokens": 2863,
+        "prompt_tokens": 5721,
+        "total_tokens": 8584,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 5721,
+        "prompt_ms": 34805.812,
+        "prompt_per_token_ms": 6.0838685544485225,
+        "prompt_per_second": 164.36910019510535,
+        "predicted_n": 2863,
+        "predicted_ms": 230120.025,
+        "predicted_per_token_ms": 80.40531970649894,
+        "predicted_per_second": 12.436988045694852
+      },
+      "fixture_sha256": "3895f7f9bad395a918cfdf910cb77e5ec9b825863d4685724e07c72b9e78e25d",
+      "memory": {
+        "samples": 45,
+        "process_ram_peak_gib": 16.381328582763672,
+        "free_ram_min_gib": 2.6124916076660156,
+        "total_gpu_peak_mib": 9233,
+        "free_gpu_min_mib": 821,
+        "gpu_core_max_c": 57,
+        "gpu_utilization_max_percent": 97
+      },
+      "code": {
+        "passed": 7,
+        "total": 7
+      }
+    },
+    {
+      "name": "small-baseline-unlimited",
+      "status": "error_unscored",
+      "wall_seconds": 9.76600000000326
+    }
+  ],
+  "historical_audit": [
+    {
+      "profile": "Qwen3.6 configuration1.3",
+      "temperature": 0.6,
+      "score": 31,
+      "maximum": 36,
+      "wall_seconds": 863.89
+    },
+    {
+      "profile": "Qwen3.6 configuration1.3",
+      "temperature": 1.0,
+      "score": 26,
+      "maximum": 36,
+      "wall_seconds": 830.9
+    }
+  ]
+}
