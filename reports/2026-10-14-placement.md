@@ -202,3 +202,34 @@ and no experiment server remains loaded.
 New weights have not been downloaded or deleted. Raw requests, reasoning,
 answers and host logs remain in ignored local-data; this report and its JSON
 are reviewed public aggregates.
+
+## Reproduction and tooling validation
+
+Use a fresh output directory for every collection. With the existing verified
+assets, the reference was started with the equivalent command below (the local
+Python executable was selected explicitly):
+
+```powershell
+python lab.py --data-dir local-data/placement/reference run --profile qwen36-reference --runtime-dir E:\llm\llama.cpp --model-path E:\llm\models\Qwen3.6-35B-A3B-UD-Q4_K_M.gguf --port 8081 --stop-file local-data/placement/reference.stop --apply
+python benchmark.py --endpoint http://127.0.0.1:8081/v1 --model qwen36-lab --mode tools --deadline 1200 --reasoning-budget 2048 --max-tokens 8192 --temperature 0.6 --seed 73 --output local-data/placement/reference-tools
+```
+
+After collection, create the stop file, wait for the owned child to exit and
+recheck free memory. For the second load, change the profile to
+`qwen36-all-attention-proposed`, use distinct alternative data/stop/output paths,
+and keep every benchmark argument identical. The original alternative launch
+also used `--experimental`; its profile now records the completed load test.
+Do not run both servers at once. Dedicated-memory snapshots use
+`scripts/capture-gpu.ps1`; grading commands are in [grading.md](../docs/grading.md).
+
+`python -m unittest discover -s tests -v` passed all 16 local Windows checks.
+Both PowerShell scripts parsed, `python scripts/audit_public.py` reported zero
+findings across 55 Git-visible files, relative documentation links resolved and
+`git diff --check` passed. The implementation's [Windows and Ubuntu CI jobs](https://github.com/paras-lehana/local-coding-lab/actions/runs/38613307654)
+passed; the Windows-only lifecycle test is skipped on Linux. There were no new
+Python or system package installations. The model-test failure reported above
+is evaluation evidence, not a failing lab-tooling test.
+
+The collector's original result files remain `scored: false`; reviewed scoring
+is recorded separately in this report and the aggregate JSON. Do not rewrite
+the raw collector result to make it appear to have performed human grading.

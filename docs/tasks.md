@@ -9,7 +9,7 @@ Last updated: 2026-10-14 (Asia/Kolkata).
 | Confirm research was read | Done | Archived report hash verified; recommendation, tuning and benchmark sections reread |
 | Establish controlled Qwen reference | Done | 576.453 seconds; 39/40 provisional; both code blocks parsed; 6/6 independent groups and 7/7 generated tests pass |
 | Test all non-expert GPU placement | Done | 204.891 seconds; 38/40 provisional; 6/6 independent groups pass, one of seven generated tests fails |
-| Inspect answers and publish findings | Ready to publish | Report, numeric aggregates and isolated grading; no production promotion |
+| Inspect answers and publish findings | Done | Public report, numeric aggregates and isolated grading; no production promotion |
 
 Preflight at 23:12 IST: about 22.9 GiB free RAM, 7349 MiB free VRAM, unchanged
 12 October boot; no running llama-server. Apps remain open. No weight deletion,
@@ -29,6 +29,8 @@ Evidence: [placement report](../reports/2026-10-14-placement.md),
 - 23:35 IST: unchanged 12 October boot and no new WHEA event confirmed.
 - 23:40 IST: 16 offline tests, both PowerShell parsers and publication audit
   passed. Known-broken fixture fails all six behavior groups as a negative control.
+- 23:44 IST: implementation c3e9d26 published on main; both Windows and Ubuntu
+  CI jobs passed. Canonical closeout recorded in prompts.md before responding.
 - Raw source/answer/telemetry remains ignored. No weight downloads/deletions,
   editor changes, new system packages or cloud API calls. New grading uses the
   already installed Ubuntu, Python and bubblewrap; no new Python dependencies.

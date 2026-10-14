@@ -6,7 +6,7 @@ private instruction contents and raw editor chats.
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
 | 1 | 2026-10-14 | 22:35 | Establish reusable research repository | Infrastructure | Done | [Entry](#repository-creation) |
-| 2 | 2026-10-14 | 23:12 | Start research: controlled Qwen placement | Research | Publishing | [Entry](#research-placement-experiment) |
+| 2 | 2026-10-14 | 23:12 | Start research: controlled Qwen placement | Research | Done | [Entry](#research-placement-experiment) |
 
 ## Repository creation
 
@@ -142,3 +142,67 @@ Applied agent-context-maintenance to the reusable grading guidance: updated
 the project source, reviewed shared Codex/Claude routing, and left adapters
 unchanged because their existing pointers already cover it. No new Python or
 system package was installed; grading uses existing WSL/Python/bubblewrap.
+
+### Canonical closeout
+
+**A. Result — done**
+
+I read the Gemini research and completed the first controlled experiment. [Full report](https://github.com/paras-lehana/local-coding-lab/blob/main/reports/2026-10-14-placement.md).
+
+| Measurement | Qwen reference | Alternative placement |
+|---|---:|---:|
+| Whole prompt | 9m36s | **3m25s** |
+| Generation speed | 13.3 tok/s | **23.7 tok/s** |
+| Peak process RAM | 17.18 GiB | 19.76 GiB |
+| Dedicated VRAM snapshot | 5.88 GiB | 3.30 GiB |
+| Model-written tests passing | 7/7 | 6/7 |
+
+Both corrected functions passed all six independent contract checks. Provisional scores: **39/40 versus 38/40** on this small fixture—not a general model ranking.
+
+**B. Technical summary — done**
+
+Tested **Qwen3.6-35B-A3B UD-Q4_K_M**, holding 64K context, q8 KV and sampling constant. Thinking stayed enabled with a **2048-token ceiling per request** for this comparison; that is not native “ultra high.”
+
+Added memory measurements, controlled stopping and isolated code grading. **16 local tests and Windows/Ubuntu CI passed.** No new packages were installed. Implementation: `c3e9d26`, branch `main`. [Complete file/change inventory](https://github.com/paras-lehana/local-coding-lab/blob/main/docs/file-inventory.md).
+
+**C. Request status**
+
+| # | Pointer Task | Original Pointer Text | Status | What Was Done |
+|---|---|---|---|---|
+| 1 | Start experiment | “lets start the experiment as per the research” | DONE | Completed and published the placement comparison |
+| 2 | Read research first | “otherwise stop” | DONE | Read archived contents and verified provenance before testing |
+
+**D. Findings**
+
+The faster answer generated a contradictory test: it appended a value, then asserted that value was absent. Its implementation passed the independent checks.
+
+Lower VRAM use was compatible with faster generation here. **Moving KV into RAM was not tested.** No new reboot or WHEA event was observed; both experiment servers are stopped.
+
+**E. Remaining experiments**
+
+| Item | Status | Reason |
+|---|---|---|
+| Repeats, unrestricted thinking, long-history and editor tests | Planned | One small run cannot establish reliability |
+| Gemma and GLM comparison | Planned | No new weights downloaded yet |
+
+**F. My recommendation**
+
+Keep Qwen installed and repeat the promising placement before changing your everyday setup. Next distinct candidate: **Gemma 4 26B-A4B official QAT Q4_0, initially 32K/q8**. Its 13.45 GiB weights offer a useful memory-fit experiment while your apps stay open; its coding quality remains unproven.
+
+**G. Copyable summary**
+
+```text
+Local Coding Lab — first research experiment completed and published (v0.2, 14 October 2026)
+
+What's done
+- Read the supplied research and tested two configurations of the current Qwen model using identical questions and reasoning limits.
+- The alternative finished in approximately three minutes twenty-five seconds, compared with nine minutes thirty-six seconds for the reference.
+- Both proposed code fixes passed independent checks. The faster answer nevertheless included one broken test, so it is not yet an established quality winner.
+- Recorded memory use, file-reading behavior and limitations. Automated tooling checks passed on Windows and Linux.
+- Existing model files and editor settings were preserved. Both experiment servers are stopped.
+
+Suggested next steps
+- Repeat the promising configuration and test longer conversations and real editor use before adopting it.
+- Compare unrestricted reasoning within the twenty-minute limit.
+- Evaluate the smaller Gemma candidate next, followed by GLM if memory permits. Select a replacement through repeatable correctness and reliable file handling.
+```
