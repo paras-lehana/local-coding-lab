@@ -11,7 +11,8 @@ more important than raw tokens/sec, but multi-hour prompts are disqualified.
 `router-v1` is a new public synthetic project with deliberate merge bugs. It
 resembles that instruction-routing workflow without publishing personal files.
 Its 40-point rubric is separate from the old private 36-point audit and the
-seven-check code diagnostic. No model has yet been scored on router-v1.
+seven-check code diagnostic. The first [placement pair](../reports/2026-10-14-placement.md)
+has provisional human scores and isolated code checks; it is not a leaderboard.
 
 ## Freeze inputs before asking the model
 
@@ -51,6 +52,9 @@ Review the [rubric](../benchmarks/rubrics/router-v1.md). Behavioral code points
 require testing in a disposable restricted environment with no secrets, network
 or privileged mounts. Human review and syntax checks must be labeled separately.
 Do not run unreviewed model answers directly on your normal workstation.
+An optional [Linux/bubblewrap grader](grading.md) now supports reviewed Python
+answers. Its independent checks were added after the first answers were seen;
+keep that distinction from frozen questions and held-out evaluation explicit.
 
 Report syntax, semantics, file citations, missing facts and tool reliability
 separately. Check claims against successful returned source bytes, not just

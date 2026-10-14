@@ -8,10 +8,10 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Status: v0.1, experimental.** Installer and harness checks run offline against
-fake downloads/endpoints. The new portable launcher has not yet loaded a model.
-Historical results below came from earlier private tooling. There is no new
-public benchmark leaderboard yet.
+**Status: v0.2, experimental.** The portable launcher completed its first live
+Qwen placement pair. Both proposed fixes passed isolated contract checks; one
+answer contained a failing generated test. This is a small public-fixture pilot,
+not a model leaderboard. Clean-machine model downloads remain unvalidated.
 
 ## Start here
 
@@ -19,10 +19,11 @@ public benchmark leaderboard yet.
 |---|---|
 | Install and try a model | [Windows walkthrough](docs/setup.md) |
 | Understand which model to try | [Shortlist and exact links](docs/models.md) |
-| See what actually worked | [Measured results](reports/2026-10-14-findings.md) |
+| See what actually worked | [New placement experiment](reports/2026-10-14-placement.md), [historical results](reports/2026-10-14-findings.md) |
 | Understand RAM, VRAM and KV cache | [Memory guide](docs/memory-and-context.md) |
 | Connect VS Code | [Editor guide](docs/editors.md) |
 | Compare models fairly | [Methodology](docs/methodology.md), [questions](benchmarks/questions/router-v1.txt), [rubric](benchmarks/rubrics/router-v1.md) |
+| Check generated code | [Optional isolated grading](docs/grading.md) |
 | Read the supplied research | [Original research](research/raw/2026-10-14-gemini/README.md), [critical review](research/reviews/2026-10-14-gemini.md) |
 | See what comes next | [Experiment plan](docs/next-experiments.md) |
 
@@ -56,6 +57,11 @@ Gemma is an **unvalidated smaller candidate**, not a demonstrated coding upgrade
 
 ## What the evidence says
 
+- On router-v1, Qwen's alternative GPU/CPU placement finished in **3m25s versus
+  9m36s**, at **23.7 versus 13.3 generation tok/s**. Both implementations passed
+  the independent behavior checks; its generated tests scored 6/7 versus 7/7.
+  Process RAM rose from 17.18 to 19.76 GiB. One pair does not establish quality
+  superiority or long-context reliability. [Full results and limits](reports/2026-10-14-placement.md).
 - Qwen3.6-35B-A3B UD-Q4_K_M is the current measured reference. An older profile
   completed the private instruction/code audit at **31/36 in 14m24s**, with bugs.
 - A short follow-up produced **3/7, 5/7 and 7/7** code checks with different
@@ -66,7 +72,7 @@ Gemma is an **unvalidated smaller candidate**, not a demonstrated coding upgrade
 - Recent memory pressure stopped inference twice. Today's free memory must be
   checked; installed RAM and yesterday's fit are insufficient.
 
-**Next:** test Qwen placement only when memory allows; test Gemma 4 26B QAT as
+**Next:** repeat the promising Qwen placement and reasoning comparison; test Gemma 4 26B QAT as
 the smaller alternative; then GLM-4.7-Flash UD-Q4_K_XL at 32K if it fits. Verify
 tool calls and code behavior before promoting any model.
 

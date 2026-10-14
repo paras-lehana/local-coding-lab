@@ -2,7 +2,7 @@
   "model": "qwen36-q4",
   "alias": "qwen36-lab",
   "locally_tested": true,
-  "evidence": "Historical configuration 1.4; full 31/36 audit belongs to 1.3. This portable launcher has not loaded weights.",
+  "evidence": "Historical configuration 1.4; full 31/36 audit belongs to 1.3. Portable router-v1 pilot on 2026-10-14: 576.453 seconds, provisional 39/40, 6/6 independent contract groups. See reports/2026-10-14-placement.md.",
   "load_min_ram_free_gib": 20.5,
   "load_min_vram_free_mib": 6500,
   "template_kwargs": {

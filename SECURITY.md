@@ -5,6 +5,13 @@ redirects and ignores system HTTP proxies. Its file tool serves only frozen
 public fixture text. It has no shell, file-write or generated-code execution
 tool. Do not add private source files to a public fixture.
 
+The optional `scripts/run_isolated.py` is separate from collection. It requires
+Linux/bubblewrap, verifies a restricted namespace before executing reviewed
+sources and has no host fallback. Only three explicit input files are bound;
+host homes, Windows mounts and credentials are absent. See [grading.md](docs/grading.md)
+for resource limits and the limits of this isolation. It is not a substitute
+for a disposable VM when testing actively hostile code.
+
 Downloads use pinned publisher URLs, full sizes and SHA256 hashes. ZIP
 extraction rejects traversal, symlinks and collisions. These checks establish
 integrity against the catalog, not the trustworthiness of a publisher. Review

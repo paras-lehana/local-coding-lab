@@ -2,6 +2,37 @@
 
 Last updated: 2026-10-14 (Asia/Kolkata).
 
+## 2026-10-14 — Begin research experiments
+
+| Task | Status | Notes |
+|---|---|---|
+| Confirm research was read | Done | Archived report hash verified; recommendation, tuning and benchmark sections reread |
+| Establish controlled Qwen reference | Done | 576.453 seconds; 39/40 provisional; both code blocks parsed; 6/6 independent groups and 7/7 generated tests pass |
+| Test all non-expert GPU placement | Done | 204.891 seconds; 38/40 provisional; 6/6 independent groups pass, one of seven generated tests fails |
+| Inspect answers and publish findings | Ready to publish | Report, numeric aggregates and isolated grading; no production promotion |
+
+Preflight at 23:12 IST: about 22.9 GiB free RAM, 7349 MiB free VRAM, unchanged
+12 October boot; no running llama-server. Apps remain open. No weight deletion,
+clock/driver changes or production-editor changes are part of this experiment.
+Research cache correction retained: current cache-ram is already zero. Thinking
+and preservation stay enabled. A runtime budget is a ceiling, not native xhigh.
+
+Evidence: [placement report](../reports/2026-10-14-placement.md),
+[frozen plan](../reports/2026-10-14-placement-plan.md),
+[numeric results](../reports/2026-10-14-placement-results.json).
+
+- 23:14–23:32 IST: owned reference and alternative servers ran sequentially;
+  both passed smoke/health/identity and completed router-v1 within 20 minutes.
+- 23:32–23:35 IST: both unloaded; existing WSL/bubblewrap used for grading.
+  Initial environment preflight rejected PWD and executed no candidate; fixed
+  the explicit allowlist and verified namespace boundaries before execution.
+- 23:35 IST: unchanged 12 October boot and no new WHEA event confirmed.
+- 23:40 IST: 16 offline tests, both PowerShell parsers and publication audit
+  passed. Known-broken fixture fails all six behavior groups as a negative control.
+- Raw source/answer/telemetry remains ignored. No weight downloads/deletions,
+  editor changes, new system packages or cloud API calls. New grading uses the
+  already installed Ubuntu, Python and bubblewrap; no new Python dependencies.
+
 ## 2026-10-14 — Establish the public research repository
 
 | Task | Status | Notes |
@@ -18,12 +49,13 @@ were changed. Original private reports and installation remain outside Git.
 
 ## Agent Deferred
 
-- Live inference using this portable launcher and router-v1 remains unrun.
+- First Qwen placement pair is complete; repeated/held-out and reasoning-budget
+  comparisons remain required before promotion. Gemma and GLM remain untested.
 - Clean-machine real runtime/model download is not part of offline validation.
 - Long-history, stale-file, transient-tool-error and held-out language fixtures
   remain future work; v0.1 offers frozen inline and allowlisted-read modes.
-- Behavioral code grading requires a separately isolated environment. The
-  harness intentionally does not execute model output on the user's host.
+- Isolated Python contract grading now passed for both completed answers. The
+  benchmark collector still cannot execute code; broader language tests remain.
 - Continue UI and candidate editor tool transport require observed tests.
 
 ## Agent Suggestions

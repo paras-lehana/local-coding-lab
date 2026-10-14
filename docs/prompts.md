@@ -6,6 +6,7 @@ private instruction contents and raw editor chats.
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
 | 1 | 2026-10-14 | 22:35 | Establish reusable research repository | Infrastructure | Done | [Entry](#repository-creation) |
+| 2 | 2026-10-14 | 23:12 | Start research: controlled Qwen placement | Research | Publishing | [Entry](#research-placement-experiment) |
 
 ## Repository creation
 
@@ -94,3 +95,50 @@ Suggested next steps
 - Evaluate the smaller Gemma candidate, then GLM if memory allows.
 - Require repeatable code correctness, reliable file handling and completion within twenty minutes before choosing a replacement.
 ```
+
+## Research placement experiment
+
+Project: local-coding-lab. Branch: main. Mode: Default.
+
+### Original request
+
+> lets start the experiment as per the research (i hope you can read or have read, otherwise stop): https://share.gemini.google/LadMuhd0ajY0
+
+### Recovered constraints and pre-flight
+
+- Research contents already archived and read; verified the archived SHA and
+  reread the experiment/tuning sections before loading (source provenance in
+  research/raw/2026-10-14-gemini/source.json).
+- Follow project/parent AGENTS and maintained shared Codex, topic, platform,
+  logging, Python and Git guidance (project local-coding-lab, existing owner
+  repository main branch; personal instruction paths excluded from publication).
+- Preserve apps and accepted clock settings (GPU/CPU reported stock, RAM 2800;
+  no new evidence establishing RAM speed as the cause of old restarts).
+- Freeze placement-only comparison, retain thinking/preservation, 64K/q8 and
+  cache-ram 0; explicit 2048 per-request budget and 1200-second total deadline.
+- Use isolated localhost:8081 and stop only owned children. No editor changes,
+  new weight downloads/deletions or API spend (current original server stopped).
+- Add process/dedicated GPU measurements and save raw evidence locally; execute
+  reviewed generated code only inside the separate restricted Linux environment.
+
+### Evidence and validation
+
+See [placement report](../reports/2026-10-14-placement.md),
+[numeric evidence](../reports/2026-10-14-placement-results.json),
+[file inventory](file-inventory.md) and [tasks](tasks.md).
+
+The reference and treatment completed in 576.453 and 204.891 seconds. Both
+implementations passed six independent contract groups. Model-authored tests
+passed 7/7 and 6/7; the treatment's alias test contradicts its preceding append.
+Manual rubric scores are 39/40 and 38/40 on one small public fixture, not a
+cross-model ranking. The known-broken fixture failed all behavior groups.
+
+16 offline tests and both PowerShell parsers passed. The public-content audit
+found no flagged material. Sandbox preflight was fixed after rejecting the
+isolation tool's PWD variable; no code ran in those rejected attempts. No new
+WHEA or reboot was observed. Both inference servers are stopped.
+
+Applied agent-context-maintenance to the reusable grading guidance: updated
+the project source, reviewed shared Codex/Claude routing, and left adapters
+unchanged because their existing pointers already cover it. No new Python or
+system package was installed; grading uses existing WSL/Python/bubblewrap.

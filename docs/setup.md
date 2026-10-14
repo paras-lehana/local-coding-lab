@@ -64,6 +64,11 @@ python lab.py run --profile gemma4-smoke-proposed --experimental --apply
 ```
 
 Keep that terminal open. It owns the child server. Ctrl+C stops that child.
+For an automated experiment, pass `--stop-file local-data/experiment.stop`
+at launch, then create that file from another terminal to request a stop.
+The file must not exist before launch; use a fresh name for each experiment.
+The launcher saves the owned PID in `process.json`, samples its resident and
+private memory, and records `requested_stop` when this stop method is used.
 There is no boot service or restart loop. Logs/telemetry live under
 `local-data/runs/server-.../`. On this host the launcher stops when physical RAM
 falls below 2.5 GiB, dedicated free VRAM below 400 MiB, GPU core reaches 84 C,
@@ -79,6 +84,16 @@ python lab.py run --profile qwen36-reference --runtime-dir E:\llm\llama.cpp --mo
 Add `--apply` only to start it. This profile requires 20.5 GiB free RAM and
 6500 MiB free VRAM. Reusing files does not change the original installation.
 An occupied port is a stop condition, not permission to kill another server.
+
+For a dedicated GPU-memory snapshot of the PID from `process.json`, run:
+
+```powershell
+.\scripts\capture-gpu.ps1 -ServerPid 12345 -OutputPath local-data/gpu-snapshot.json
+```
+
+Use the actual PID. This reads Windows dedicated-memory counters, not shared
+system RAM. A missing counter is an error, not a zero-use measurement. System
+free VRAM also includes desktop applications, so it is a separate measurement.
 
 ## 4. Verify before opening an editor
 

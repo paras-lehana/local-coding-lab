@@ -204,6 +204,41 @@ def check_memory(snapshot: dict, profile: dict, loading: bool) -> None:
         raise ValueError("GPU temperature reached the profile stop threshold")
 
 
+def process_memory(pid: int) -> dict:
+    """Measure resident/private bytes of the owned Windows server process."""
+    if sys.platform != "win32":
+        return {}
+    from ctypes import wintypes
+
+    class Counters(ctypes.Structure):
+        _fields_ = [("cb", wintypes.DWORD), ("faults", wintypes.DWORD)] + [
+            (name, ctypes.c_size_t) for name in (
+                "peak_working", "working", "peak_paged", "paged",
+                "peak_nonpaged", "nonpaged", "pagefile", "peak_pagefile",
+                "private")]
+
+    kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+    psapi = ctypes.WinDLL("psapi", use_last_error=True)
+    kernel.OpenProcess.argtypes = [wintypes.DWORD, wintypes.BOOL, wintypes.DWORD]
+    kernel.OpenProcess.restype = wintypes.HANDLE
+    kernel.CloseHandle.argtypes = [wintypes.HANDLE]
+    psapi.GetProcessMemoryInfo.argtypes = [wintypes.HANDLE,
+                                          ctypes.POINTER(Counters), wintypes.DWORD]
+    handle = kernel.OpenProcess(0x410, False, pid)
+    if not handle:
+        return {"process_memory_error": "Process exited or access unavailable"}
+    try:
+        counters = Counters()
+        counters.cb = ctypes.sizeof(counters)
+        if not psapi.GetProcessMemoryInfo(handle, ctypes.byref(counters), counters.cb):
+            return {"process_memory_error": "GetProcessMemoryInfo failed"}
+        return {"process_working_set_gib": counters.working / GIB,
+                "process_private_gib": counters.private / GIB,
+                "process_peak_working_set_gib": counters.peak_working / GIB}
+    finally:
+        kernel.CloseHandle(handle)
+
+
 def build_command(exe: Path, model: Path, profile: dict, port: int) -> list[str]:
     """Build an argument array, never interpolate paths into shell commands."""
     return [str(exe), "-m", str(model), "--host", "127.0.0.1", "--port", str(port),
@@ -252,6 +287,9 @@ def run_server(args: argparse.Namespace, data: Path) -> None:
         return
     if sys.platform != "win32":
         raise ValueError("Guarded CUDA launcher currently supports Windows only")
+    stop_file = Path(args.stop_file).resolve() if args.stop_file else None
+    if stop_file and stop_file.exists():
+        raise ValueError("Stop file already exists; choose a fresh experiment path")
     verify(model, spec)
     since = datetime.now(timezone.utc).isoformat()
     check_hardware_events(since)
@@ -279,10 +317,16 @@ def run_server(args: argparse.Namespace, data: Path) -> None:
         with (run_dir / "server.log").open("wb") as log:
             child = subprocess.Popen(command, stdout=log, stderr=log, env=env,
                                      creationflags=subprocess.CREATE_NO_WINDOW)
+            save_json(run_dir / "process.json", {"pid": child.pid,
+                      "launcher_pid": os.getpid(), "stop_file": str(stop_file) if stop_file else None})
             print(f"PID {child.pid}; loading. Logs: {run_dir}; health at localhost:{args.port}/health")
             with (run_dir / "memory.jsonl").open("a", encoding="utf-8") as telemetry:
                 while child.poll() is None:
+                    if stop_file and stop_file.exists():
+                        outcome = {"status": "requested_stop"}
+                        break
                     snapshot = memory_snapshot()
+                    snapshot.update(process_memory(child.pid))
                     telemetry.write(json.dumps(snapshot) + "\n")
                     telemetry.flush()
                     check_memory(snapshot, profile, loading=False)
@@ -325,6 +369,7 @@ def main() -> int:
     run.add_argument("--port", type=int, default=8080)
     run.add_argument("--apply", action="store_true")
     run.add_argument("--experimental", action="store_true")
+    run.add_argument("--stop-file", help="Fresh file path; create it to stop only this session")
     args = parser.parse_args()
     data = Path(args.data_dir).resolve()
     try:

@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.0 — 2026-10-14
+
+- Run and publish the first controlled Qwen placement pair, including source
+  grounding, separate prefill/generation timings, memory and score limitations.
+- Add process RAM telemetry, an explicit owned-server stop file and Windows
+  dedicated GPU-memory capture. Preserve all existing resource thresholds.
+- Add optional Linux/bubblewrap grading with no host fallback, six independent
+  contract checks and failure-boundary tests. One model-written test fails even
+  though both corrected functions pass the independent contract checks.
+- Expand PowerShell CI parsing and update measured profile evidence and docs.
+
+No new weights, editor changes or production profile promotion in this release.
+
 ## 0.1.0 — 2026-10-14
 
 - Establish a public Windows/CUDA local coding research repository.

@@ -1,7 +1,9 @@
 # What to try next
 
-This is a gated test sequence, not a promised winner. All proposed profiles are
-marked untested. The repository task performs no new model load or deletion.
+This is a gated test sequence, not a promised winner. The first Qwen placement
+pair is [complete](../reports/2026-10-14-placement.md): the alternative improved
+generation speed but supplied one broken test. It is locally load-tested, not
+promoted into production. Gemma and GLM remain untested; no weights were deleted.
 
 | Step | Change / question | Evidence needed to continue |
 |---|---|---|

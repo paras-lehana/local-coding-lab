@@ -1,8 +1,8 @@
 {
   "model": "qwen36-q4",
   "alias": "qwen36-lab",
-  "locally_tested": false,
-  "evidence": "Proposal: change placement only versus reference. Expected host RAM increase; preload gate deliberately higher.",
+  "locally_tested": true,
+  "evidence": "One controlled router-v1 pilot on 2026-10-14: 204.891 seconds, provisional 38/40, 6/6 independent contract groups, one failing model-written test. Load-tested only; not a production promotion. Requires repeats, held-out and editor checks. See reports/2026-10-14-placement.md.",
   "load_min_ram_free_gib": 23,
   "load_min_vram_free_mib": 6500,
   "template_kwargs": {

@@ -1,6 +1,6 @@
 # File inventory
 
-Initial repository contents and purpose. All are newly created for this task.
+Initial repository contents and purpose, followed by subsequent change inventories.
 
 | File | Purpose |
 |---|---|
@@ -51,3 +51,47 @@ Initial repository contents and purpose. All are newly created for this task.
 | `scripts/setup.ps1` | Bootstrap or public-content audit |
 | `tests/test_lab.py` | Offline failure-boundary and integration tests |
 | `docs/file-inventory.md` | This per-file change inventory |
+
+## 14 October: research experiment v0.2
+
+| Changed file | Change |
+|---|---|
+| `lab.py` | Process RAM sampling, owned PID record and explicit stop-file handling |
+| `scripts/capture-gpu.ps1` | Dedicated GPU-memory snapshot for an explicit owned PID |
+| `scripts/run_isolated.py` | Optional Linux/bubblewrap grading, namespace preflight and resource limits; no host fallback |
+| `benchmarks/checks/router_v1.py` | Six human-authored contract groups, added after collection and excluded from model inputs |
+| `tests/test_lab.py` | Owned-stop-file regression test |
+| `tests/test_isolation.py` | Unsupported-host and failed-preflight execution boundary tests |
+| `.github/workflows/offline-checks.yml` | Parse every PowerShell script |
+| `profiles/qwen36-reference.json` | Record completed public-fixture pilot, preserve runtime settings |
+| `profiles/qwen36-all-attention-proposed.json` | Mark one load-tested pilot, explicitly distinguish production promotion |
+| `reports/2026-10-14-placement-plan.md` | Plan frozen before collection |
+| `reports/2026-10-14-placement-results.json` | Reviewed measured aggregates, source/output hashes, timings and scores |
+| `reports/2026-10-14-placement.md` | Full findings, code/test defects, memory analysis, limitations and next candidates |
+| `docs/grading.md` | Restricted execution setup, boundaries and honest scoring procedure |
+| `docs/setup.md` | Owned stop request and dedicated GPU measurement usage |
+| `docs/methodology.md` | Link first public results and separate post-collection grading |
+| `docs/next-experiments.md` | Mark first placement pair complete; retain promotion gates |
+| `AGENTS.md` | Route code grading to the restricted runner and separate implementation/test defects |
+| `README.md` | v0.2 status, measured pair and updated navigation |
+| `CHANGELOG.md` | Record v0.2 changes and limits |
+| `SECURITY.md` | Explain the optional grader's distinct execution boundary |
+| `docs/tasks.md` | Timestamped experiment, validation and pending-work record |
+| `docs/prompts.md` | Original request, recovered constraints and canonical A–G closeout |
+| `docs/file-inventory.md` | This per-file update inventory |
+
+Shared context maintenance: project guidance updated once; existing Codex,
+Claude and Copilot adapters already point here and remain unchanged. The global
+Codex guide and shared router were checked. No private guidance was copied into
+the public fixture.
+
+Actual validation: 16 offline unittest checks on Windows; both PowerShell files
+parsed; publication audit; live smoke/health/model checks and two completed
+tool benchmarks; isolated syntax/behavior/generated-test checks and a failing
+known-bug control. Detailed per-run evidence and gaps are in the placement report.
+
+Instructions read for this task: project and parent AGENTS, maintained Codex
+guide, shared topic router, platform/logging/Python/Git rules, host facts and
+agent-context-maintenance skill. Also read the project methodology, plan,
+research archive/review, relevant source code/profiles and rubric. Private
+home paths are omitted from this public inventory.

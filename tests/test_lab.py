@@ -172,6 +172,44 @@ class LabTests(unittest.TestCase):
             self.assertGreater(profile["load_min_ram_free_gib"], profile["stop_min_ram_free_gib"])
             self.assertGreater(profile["load_min_vram_free_mib"], profile["stop_min_vram_free_mib"])
 
+    @unittest.skipUnless(sys.platform == "win32", "Windows lifecycle API")
+    def test_owned_server_stop_file(self) -> None:
+        """A stop request terminates only the owned fake child and records why."""
+        import argparse
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            runtime = root / "runtime"
+            runtime.mkdir()
+            (runtime / "llama-server.exe").write_bytes(b"placeholder")
+            stop = root / "stop"
+            args = argparse.Namespace(profile="qwen36-reference", experimental=False,
+                                      model_path=str(root / "model.gguf"),
+                                      runtime_dir=str(runtime), port=0, apply=True,
+                                      stop_file=str(stop))
+            child = mock.Mock(pid=123, returncode=None)
+            child.poll.return_value = None
+            def stopped() -> None:
+                """Simulate child exit after its handle receives termination."""
+                child.poll.return_value = 0
+            child.terminate.side_effect = stopped
+            profile = lab.read_json(lab.ROOT / "profiles/qwen36-reference.json")
+            advertised = " ".join(profile["args"]) + " b2f036c0f"
+            result = subprocess.CompletedProcess([], 0, advertised, "")
+            telemetry = {"ram_free_gib": 40, "vram_free_mib": 8000, "gpu_c": 40}
+            with mock.patch("lab.verify"), mock.patch("lab.check_hardware_events"), \
+                    mock.patch("lab.memory_snapshot", return_value=telemetry), \
+                    mock.patch("lab.process_memory", return_value={}), \
+                    mock.patch("lab.subprocess.run", return_value=result), \
+                    mock.patch("lab.subprocess.Popen", return_value=child), \
+                    mock.patch("lab.time.sleep", side_effect=lambda _: stop.touch()), \
+                    contextlib.redirect_stdout(io.StringIO()):
+                lab.run_server(args, root / "data")
+            child.terminate.assert_called_once()
+            child.kill.assert_not_called()
+            records = list((root / "data/runs").glob("*/stop.json"))
+            self.assertEqual(len(records), 1)
+            self.assertEqual(lab.read_json(records[0])["status"], "requested_stop")
+
     def test_truncated_answer_unscored(self) -> None:
         """A token-limit finish is not silently reported as a completed solution."""
         class Handler(QuietHandler):

@@ -13,6 +13,8 @@ instructions to the maintainer. CLAUDE.md and the Copilot adapter point here.
 - Benchmark whole-prompt deadlines include prefill, reasoning and all tool
   turns. Interrupted/truncated work is unscored. Do not execute generated code
   on the host. Check citations and behavior, not keyword matches alone.
+  For reviewed code, follow docs/grading.md and its fail-closed isolated runner.
+  Separate correct implementation behavior from errors in model-written tests.
 - Default to loopback, one server slot, explicit starts and conservative
   memory gates. No boot startup, driver/BIOS changes or broad process kills.
   Run one inference experiment at a time. A fit estimate is not a measurement.

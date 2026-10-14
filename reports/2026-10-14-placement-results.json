@@ -1,0 +1,434 @@
+{
+  "experiment": "2026-10-14-qwen-placement",
+  "fixture": "router-v1",
+  "single_pair": true,
+  "hardware": {
+    "os": "Windows 11",
+    "cpu": "Ryzen 7 5800X",
+    "ram_usable_gib": 63.909725,
+    "gpu": "RTX 3080 10 GB",
+    "driver": "617.42",
+    "ram_speed_user_report_mt_s": 2800,
+    "apps_left_open": true
+  },
+  "model": {
+    "name": "Qwen3.6-35B-A3B UD-Q4_K_M",
+    "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+    "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+    "filename": "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+    "bytes": 22134528992,
+    "sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61",
+    "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+    "status": "historical-local-reference",
+    "thinking": "enable_thinking and preserve_thinking; no native xhigh"
+  },
+  "runtime": {
+    "tag": "b11562",
+    "commit": "b2f036c0f138414dedc987446f1d9d802f920275",
+    "cuda": "12.4"
+  },
+  "frozen_manifest": {
+    "fixture": "router-v1",
+    "delivery": "frozen-snapshot",
+    "endpoint": "http://127.0.0.1:8081/v1",
+    "model": "qwen36-lab",
+    "mode": "tools",
+    "seed": 73,
+    "temperature": 0.6,
+    "max_tokens": 8192,
+    "reasoning_budget": 2048,
+    "deadline_seconds": 1200.0,
+    "question_sha256": "097b3d020d4133cc3b9d874027f2640b9d976d0a34a53f1d921a8c4273f9a3a6",
+    "source_sha256": {
+      ".claude/CLAUDE.md": "d39a91d7b728539bcae9097d5f6fda6413cf8451ce6766a1934c389784ec6b7d",
+      ".github/instructions/python-v1.md": "0196cefacef6ef96b621423dd678ec16dd4b3cacde71935de3263bdae17a2033",
+      ".github/instructions/v2/python.md": "ea0547bcc0909a2d0bdcd1bff26ea06fef1a35d3aa218d07fdb51647d8717ca8",
+      "AGENTS.md": "e050ee4825a61bbc63beb6ba6f125fdcdef0c8613ab26c08566987c93f5c4699",
+      "docs/config-contract.md": "2fdb47962dc0836ac22b70ee49e1b0ab9b025762f8cd84f19bce3dcaccb58235",
+      "docs/host.md": "13e41df574cc7ec6a65426345c1a2eb45463e1d97eae42ac3e38f2b4dc060931",
+      "src/config_loader.py": "9fa72de9856b1446f041d7f925de606989e15cb87e179660ffa710abd29139ff"
+    }
+  },
+  "research_sha256": "7b8fca4934e47b6a0bfd281d91d3790e9aa3253faf11c9719966610b6ae7cc71",
+  "rubric_sha256": "1a2eb3cfe9c05ff5766a62b25b2370ea663988316b5fbd1d4ab3582005ad3e46",
+  "behavior_checks_sha256": "df76508a9064b3d778027eeacd745f5b6aec78189b21bce959c1bf9eef46dc1f",
+  "grading_environment": {
+    "os": "Ubuntu 26.04.1 under WSL",
+    "python": "3.14.4",
+    "sandbox": "bubblewrap with separate namespaces, no network namespace sharing, no host homes or Windows mounts, explicit read-only source bindings",
+    "candidate_cpu_limit_s": 10,
+    "candidate_wall_limit_s": 20,
+    "candidate_address_space_mib": 512,
+    "behavior_checks_authored": "after answer collection, from pre-existing contract/rubric; not a held-out test"
+  },
+  "runs": {
+    "reference": {
+      "profile_args": [
+        "--gpu-layers",
+        "30",
+        "--n-cpu-moe",
+        "33",
+        "--ctx-size",
+        "65536",
+        "--threads",
+        "4",
+        "--threads-batch",
+        "8",
+        "--batch-size",
+        "256",
+        "--ubatch-size",
+        "64",
+        "--flash-attn",
+        "on",
+        "--cache-type-k",
+        "q8_0",
+        "--cache-type-v",
+        "q8_0",
+        "--jinja",
+        "--reasoning",
+        "on",
+        "--reasoning-format",
+        "deepseek",
+        "--timeout",
+        "1200",
+        "--reasoning-budget",
+        "-1",
+        "--reasoning-preserve",
+        "--predict",
+        "24576",
+        "--temp",
+        "0.6",
+        "--top-p",
+        "0.95",
+        "--top-k",
+        "20",
+        "--min-p",
+        "0",
+        "--repeat-penalty",
+        "1",
+        "--cache-ram",
+        "0",
+        "--fit",
+        "off",
+        "--perf",
+        "--load-mode",
+        "none",
+        "--no-repack"
+      ],
+      "template_kwargs": {
+        "enable_thinking": true,
+        "preserve_thinking": true
+      },
+      "started_local": "server-20261014-231434",
+      "status": "completed",
+      "stop": {
+        "status": "requested_stop"
+      },
+      "wall_seconds": 576.4530000000086,
+      "first_final_seconds": 424.06200000000536,
+      "turn_count": 3,
+      "successful_read_count": 14,
+      "unique_successful_paths": [
+        ".claude/CLAUDE.md",
+        ".github/instructions/python-v1.md",
+        ".github/instructions/v2/python.md",
+        "AGENTS.md",
+        "docs/config-contract.md",
+        "docs/host.md",
+        "src/config_loader.py"
+      ],
+      "generation_tokens": 7475,
+      "weighted_generation_tokens_per_second": 13.335279251357566,
+      "prefill_tokens_per_second_by_turn": [
+        153.56056226645998,
+        160.47108339066446,
+        135.68377602268887
+      ],
+      "turns": [
+        {
+          "first_event_seconds": 4.297000000020489,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 1252,
+            "prompt_tokens": 654,
+            "total_tokens": 1906,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 654,
+            "prompt_ms": 4258.906,
+            "prompt_per_token_ms": 6.51208868501529,
+            "prompt_per_second": 153.56056226645998,
+            "predicted_n": 1252,
+            "predicted_ms": 87638.782,
+            "predicted_per_token_ms": 70.05498161470824,
+            "predicted_per_second": 14.274502354448513
+          }
+        },
+        {
+          "first_event_seconds": 97.35900000002584,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 2255,
+            "prompt_tokens": 2765,
+            "total_tokens": 5020,
+            "prompt_tokens_details": {
+              "cached_tokens": 1905
+            }
+          },
+          "timings": {
+            "cache_n": 1905,
+            "prompt_n": 860,
+            "prompt_ms": 5359.221,
+            "prompt_per_token_ms": 6.231652325581395,
+            "prompt_per_second": 160.47108339066446,
+            "predicted_n": 2255,
+            "predicted_ms": 164515.503,
+            "predicted_per_token_ms": 72.98824445430346,
+            "predicted_per_second": 13.700836449437837
+          }
+        },
+        {
+          "first_event_seconds": 268.2970000000205,
+          "first_final_seconds": 424.06200000000536,
+          "finish_reason": "stop",
+          "usage": {
+            "completion_tokens": 3968,
+            "prompt_tokens": 5879,
+            "total_tokens": 9847,
+            "prompt_tokens_details": {
+              "cached_tokens": 5019
+            }
+          },
+          "timings": {
+            "cache_n": 5019,
+            "prompt_n": 860,
+            "prompt_ms": 6338.267,
+            "prompt_per_token_ms": 7.370077906976744,
+            "prompt_per_second": 135.68377602268887,
+            "predicted_n": 3968,
+            "predicted_ms": 308163.94,
+            "predicted_per_token_ms": 77.68186034786993,
+            "predicted_per_second": 12.873018173378753
+          }
+        }
+      ],
+      "memory": {
+        "ram_free_gib": 7.114151,
+        "vram_free_mib": 1322.0,
+        "gpu_c": 53.0,
+        "process_working_set_gib": 17.177971,
+        "process_private_gib": 23.523281
+      },
+      "dedicated_process_vram_snapshot_gib": 5.880157470703125,
+      "independent_behavior_groups_passed": 6,
+      "independent_behavior_groups_total": 6,
+      "model_tests_passed": 7,
+      "model_tests_total": 7,
+      "human_rubric": {
+        "instruction_discovery": 8,
+        "file_grounding": 6,
+        "unknown_fact_honesty": 6,
+        "code_behavior": 12,
+        "tests_and_execution_honesty": 4,
+        "tool_source_accounting": 3
+      },
+      "score_total": 39,
+      "score_maximum": 40,
+      "evidence_hashes": {
+        "answer.txt": "556be7e034bed399b19c3ae05b63bdde7eb492e98b51b63c0fb9a75941c90bd9",
+        "manifest.json": "e41c29d42ef4c827d6668ee4058c529091a8359b79437f580b3dc74fc9f0a2cf",
+        "tools.json": "be63a8380b0a39d5b9b18b00ddf8988ccb8d41d5a753aacc28d9febbf03105cd",
+        "turns.json": "1cd3aa12324d4741a588d285dd01a61fb3f75f3c8047b39820e2089e26096db9",
+        "result.json": "07dcc8dce1c9ae532626e654d56e883336e0e8c75517107b8a9bf90bc7579acd"
+      },
+      "grading_evidence_sha256": "ed51159bf3c2d13862801cb694e786feebf12e75766d28c65943091c068c42f9",
+      "telemetry_sha256": "472e15ee63f40eabaf08984485c3ce86fe973ade46f640268742a46a1a66d8f9",
+      "server_log_sha256": "9c8d30b6a9a7e4c80581d41f2b4698bb87b0c22069582b4183b3864cd2144ba6"
+    },
+    "all-attention": {
+      "profile_args": [
+        "--gpu-layers",
+        "all",
+        "--cpu-moe",
+        "--ctx-size",
+        "65536",
+        "--threads",
+        "4",
+        "--threads-batch",
+        "8",
+        "--batch-size",
+        "256",
+        "--ubatch-size",
+        "64",
+        "--flash-attn",
+        "on",
+        "--cache-type-k",
+        "q8_0",
+        "--cache-type-v",
+        "q8_0",
+        "--jinja",
+        "--reasoning",
+        "on",
+        "--reasoning-format",
+        "deepseek",
+        "--timeout",
+        "1200",
+        "--reasoning-budget",
+        "-1",
+        "--reasoning-preserve",
+        "--predict",
+        "24576",
+        "--temp",
+        "0.6",
+        "--top-p",
+        "0.95",
+        "--top-k",
+        "20",
+        "--min-p",
+        "0",
+        "--repeat-penalty",
+        "1",
+        "--cache-ram",
+        "0",
+        "--fit",
+        "off",
+        "--perf",
+        "--load-mode",
+        "none",
+        "--no-repack"
+      ],
+      "template_kwargs": {
+        "enable_thinking": true,
+        "preserve_thinking": true
+      },
+      "started_local": "server-20261014-232731",
+      "status": "completed",
+      "stop": {
+        "status": "requested_stop"
+      },
+      "wall_seconds": 204.89100000000326,
+      "first_final_seconds": 127.82800000000861,
+      "turn_count": 2,
+      "successful_read_count": 7,
+      "unique_successful_paths": [
+        ".claude/CLAUDE.md",
+        ".github/instructions/python-v1.md",
+        ".github/instructions/v2/python.md",
+        "AGENTS.md",
+        "docs/config-contract.md",
+        "docs/host.md",
+        "src/config_loader.py"
+      ],
+      "generation_tokens": 4614,
+      "weighted_generation_tokens_per_second": 23.66808845745866,
+      "prefill_tokens_per_second_by_turn": [
+        149.20789770635065,
+        155.35602542925233
+      ],
+      "turns": [
+        {
+          "first_event_seconds": 4.422000000020489,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 788,
+            "prompt_tokens": 654,
+            "total_tokens": 1442,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 654,
+            "prompt_ms": 4383.146,
+            "prompt_per_token_ms": 6.702058103975535,
+            "prompt_per_second": 149.20789770635065,
+            "predicted_n": 788,
+            "predicted_ms": 32527.915,
+            "predicted_per_token_ms": 41.33153113087675,
+            "predicted_per_second": 24.194603312262714
+          }
+        },
+        {
+          "first_event_seconds": 42.562999999994645,
+          "first_final_seconds": 127.82800000000861,
+          "finish_reason": "stop",
+          "usage": {
+            "completion_tokens": 3826,
+            "prompt_tokens": 2301,
+            "total_tokens": 6127,
+            "prompt_tokens_details": {
+              "cached_tokens": 1441
+            }
+          },
+          "timings": {
+            "cache_n": 1441,
+            "prompt_n": 860,
+            "prompt_ms": 5535.672,
+            "prompt_per_token_ms": 6.436827906976744,
+            "prompt_per_second": 155.35602542925233,
+            "predicted_n": 3826,
+            "predicted_ms": 162333.618,
+            "predicted_per_token_ms": 42.440161568627445,
+            "predicted_per_second": 23.56258701755788
+          }
+        }
+      ],
+      "memory": {
+        "ram_free_gib": 6.008442,
+        "vram_free_mib": 4083.0,
+        "gpu_c": 53.0,
+        "process_working_set_gib": 19.756302,
+        "process_private_gib": 23.520187
+      },
+      "dedicated_process_vram_snapshot_gib": 3.3017578125,
+      "independent_behavior_groups_passed": 6,
+      "independent_behavior_groups_total": 6,
+      "model_tests_passed": 6,
+      "model_tests_total": 7,
+      "human_rubric": {
+        "instruction_discovery": 8,
+        "file_grounding": 6,
+        "unknown_fact_honesty": 6,
+        "code_behavior": 12,
+        "tests_and_execution_honesty": 3,
+        "tool_source_accounting": 3
+      },
+      "score_total": 38,
+      "score_maximum": 40,
+      "evidence_hashes": {
+        "answer.txt": "8dbf75b7772f78a8666eaec04252cc4f95519e97edae8e6f038bcdf7ef0c0c9c",
+        "manifest.json": "e41c29d42ef4c827d6668ee4058c529091a8359b79437f580b3dc74fc9f0a2cf",
+        "tools.json": "de72db66f100d7601749173688b943228f3b7f70d155ab3e927eacb25937559f",
+        "turns.json": "1d7baea781deb85e1794af1d7897a8a7ed7bd5f3bb23e6c7d92340b7c0465d3f",
+        "result.json": "c6e6ef6a0793a79dc6bdf2cae499906cb0d874377f0710758dded449b05da84e"
+      },
+      "grading_evidence_sha256": "5af7bf96c66b5be3940d1e81da3eafa57e6d68083cd8099c3efbf11cc73dd9b2",
+      "telemetry_sha256": "13e706ccf488b4a127faccf33663829e8e5fb639b2970c9d9da9230bf815f4ac",
+      "server_log_sha256": "c056e7d1dcc07d7c29acaa6779baf415c97e7356ef4bb0b33b7f46d769540dd2"
+    }
+  },
+  "interpretation": "Single sampled outputs; placement changes arithmetic and sampled token sequences. Whole-prompt speedup is not pure kernel speedup. Manual scores have reviewer uncertainty.",
+  "negative_control": {
+    "source": "original deliberately buggy fixture",
+    "all_six_behavior_groups_failed": true,
+    "failures": 11,
+    "errors": 14,
+    "evidence_sha256": "24153c50c28ce476e019996fcd279264de5349cfc92ae22181c0f26bb129b5ed"
+  },
+  "scope_limits": [
+    "not a cross-model ranking",
+    "no long-context recall test",
+    "no new VS Code UI test",
+    "no new weights downloaded or deleted",
+    "no observed new WHEA or reboot during experiment window",
+    "exact current model/KV/compute buffer split absent at saved log verbosity"
+  ]
+}
