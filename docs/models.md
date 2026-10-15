@@ -9,14 +9,14 @@ separates completed measurements, downloads and conditional exclusions.
 |---|---|---:|---|
 | Measured reference | `qwen36-q4` | 20.614 | Best completed local workflow reference; instruction/citation and aliasing errors remain |
 | Smaller candidate | `gemma4-26b-qat` | 13.448 | Python and 52K-input history pass; unrestricted SQL 6/6 and TS 5/6; capped and native private audits both 19/36 |
-| Distinct reasoning family | `glm47-udq4` | 16.317 | Capped private audit 21/36; f16 native Python 6/6 but history count fails; native f16 private audit queued |
+| Distinct reasoning family | `glm47-udq4` | 16.317 | Capped private audit 21/36; f16 native Python 6/6 but history count fails; native f16 private 27/36 |
 | Matched precision comparison | `glm47-q5` | 19.939 | Bounded Python 5/6, 0/6, 0/6; native 6/6, 6/6, 0/6; private retry 21/36; exact weight retired with reports retained |
 | Dense conditional gate | `gemma4-31b-qat` | 16.439 | RAM-KV calibration 0.95 tok/s, deadline; weight file retired after preservation |
 | Non-thinking coding control | `qwencoder30-udq4` | 16.452 | Python 2/6, 3/6, 1/6; private deadline, unscored; exact weight retired with reports retained |
-| Conditional precision | `qwen36-q5` | 24.639 | Matched Python repeats 6/6, like Q4, with more memory and longer mean time; native private audit still pending |
+| Conditional precision | `qwen36-q5` | 24.639 | Matched public Python repeats 6/6; native private 28/36, including only 2/6 code groups and accurate 14-source inventory; no repeatable precision advantage established |
 | Optional precision | `qwen36-q6` | 29.657 | Header inspected after RAM briefly recovered to 28.76 GiB; conditional 32K profile requires 28.5 GiB / 7000 MiB fresh headroom and verified download |
-| Conditional precision | `glm47-udq6` | 24.378 | Public capped Python 5/6, 0/6, 6/6; native 5/6; history count fails; native private audit queued |
-| Linear-attention alternative | `kimi-linear-q4` | 27.997 | Full pinned size/SHA verified; public suite queued, fresh 26 GiB / 6800 MiB load gate and live fit still pending |
+| Conditional precision | `glm47-udq6` | 24.378 | Public capped Python 5/6, 0/6, 6/6; native 5/6; history count fails; native private 24/36 |
+| Linear-attention alternative | `kimi-linear-q4` | 27.997 | Full pinned size/SHA verified; q8V and mixed K/V fail runtime checks; matching f16 loads, public suite running with one malformed tool call |
 | Larger coding model | `qwencoder-next-q4` | 45.196 | Current apps-open resident-capacity exclusion, no quality score |
 
 Model and artifact sources:

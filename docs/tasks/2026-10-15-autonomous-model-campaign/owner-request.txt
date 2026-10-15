@@ -1,0 +1,19 @@
+Relevant original requests for this campaign (credentials and unrelated prior chats excluded):
+
+"lets start the experiment as per the research (i hope you can read or have read, otherwise stop): https://share.gemini.google/LadMuhd0ajY0"
+
+"man, you need to work autonomously, you have full rights to download model, make report, test vigrously, delete,  test next model. Please i dont have time to just keep telling you continue, please make sure to fulfil testing for all models in the report."
+
+"please continue, dont know why the computer restarted."
+
+"you please continue, the pc was restarted itself, see if you can find an y reason from the image (and continue your work)"
+
+Reply about the unattended restart: "I wasn't watching / don't know"
+
+Continuing constraints from earlier requests:
+- Keep apps open; use a smaller memory profile.
+- No single prompt taking more than20 minutes is worth it.
+- Compare instruction/file grounding, coding bugs, syntax, code/doc questions, thinking controls, quantization and KV placement.
+- Use a public GitHub repository with reports, sources, installation scripts and reproducible tests.
+- Keep existing clock settings; RAM2800 is an accepted owner condition, not an established crash cause.
+- Everything installed for this work belongs on the dedicated E: drive under llm.

@@ -28,6 +28,7 @@ Initial repository contents and purpose, followed by subsequent change inventori
 | `catalog/models.json` | Pinned publisher identity, exact size and integrity metadata |
 | `catalog/runtime.json` | Pinned publisher identity, exact size and integrity metadata |
 | `docs/editors.md` | User/developer guide, decisions, task or session log |
+| `docs/coding-use-cases.md` | Task-specific capabilities, observed code defects and limits of these small evaluations |
 | `docs/memory-and-context.md` | User/developer guide, decisions, task or session log |
 | `docs/methodology.md` | User/developer guide, decisions, task or session log |
 | `docs/models.md` | User/developer guide, decisions, task or session log |
@@ -36,6 +37,9 @@ Initial repository contents and purpose, followed by subsequent change inventori
 | `docs/repository-creation.md` | User/developer guide, decisions, task or session log |
 | `docs/setup.md` | User/developer guide, decisions, task or session log |
 | `docs/tasks.md` | User/developer guide, decisions, task or session log |
+| `docs/tasks/README.md` | Index of forwardable task reports |
+| `docs/tasks/2026-10-15-autonomous-model-campaign/owner-request.txt` | Relevant campaign requests and continuing constraints, excluding credentials |
+| `docs/tasks/2026-10-15-autonomous-model-campaign/2026-10-15-model-comparison-and-editor-validation-v0.3.8.md` | One forwardable campaign report; selection/editor validation still in progress |
 | `lab.py` | Pinned downloader, safe extraction, telemetry and guarded process launcher |
 | `profiles/gemma4-smoke-proposed.json` | Explicit measured-reference or proposed launch configuration |
 | `profiles/qwen36-all-attention-proposed.json` | Explicit measured-reference or proposed launch configuration |
@@ -62,6 +66,7 @@ Initial repository contents and purpose, followed by subsequent change inventori
 | `benchmarks/checks/router_v1.py` | Six Codex-authored independent contract groups, added after collection and excluded from model inputs |
 | `reports/2026-10-15-qwen-precision-results.json` | Reviewed matched Q4/Q5 numeric results, exact model identities, timing/resource scope and grading caveats |
 | `reports/2026-10-15-cache-results.json` | Five measured cache/batch/placement options, history/code checks, memory margins and unloaded rejection |
+| `reports/2026-10-15-private-results.json` | Reviewed instruction-audit aggregates, exact artifacts/profiles and separate source/citation/code scores; excludes private text |
 | `tests/test_lab.py` | Owned-stop-file regression test |
 | `tests/test_isolation.py` | Unsupported-host and failed-preflight execution boundary tests |
 | `.github/workflows/offline-checks.yml` | Parse every PowerShell script |
@@ -133,6 +138,10 @@ not recommendations merely because their files exist.
   explicitly a two-variable change, requiring matching request temperature.
 - `profiles/kimi-linear-balanced-campaign.json`: conditional 32K placement after
   headroom recovery; four checkpoints, fresh memory/disk gates, no measured fit.
+- `profiles/kimi-linear-q8k-f16v-campaign.json`: separate compatibility retry
+  after the original q8-value cache fails its dimension check; no result implied.
+- `profiles/kimi-linear-f16-campaign.json`: matching f16 K/V retry after the
+  architecture rejects differing cache types; preserve both prior load failures.
 
 New raw run data, private instruction grading inputs and exact weight-deletion
 records remain ignored. Reviewed findings are published in

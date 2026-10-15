@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.8 - 2026-10-15 (campaign in progress)
+
+- Preserve Kimi's q8 value-cache compatibility failure; add a separate q8-key /
+  f16-value diagnostic and matching-f16 retry because dimension72 is not
+  divisible by32 and this architecture rejects differing K/V types.
+- Publish native private-audit outcomes for Qwen Q5, GLM Q4/f16 and GLM Q6,
+  with source grounding and isolated code behavior scored separately.
+- Compare the faster Qwen GPU expert-cache profile with a fresh replay of the
+  historical instruction-focused placement, preserving both outcomes.
+
 ## 0.3.7 - 2026-10-15 (campaign in progress)
 
 - Attribute semantic assessments and independent contract checks to Codex,

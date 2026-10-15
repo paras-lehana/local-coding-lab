@@ -1,0 +1,1212 @@
+{
+  "case": "Frozen private instruction audit1.0",
+  "reviewer": "Codex source assessment; not independently human-reviewed",
+  "maximums": {
+    "semantic": 24,
+    "citations": 6,
+    "code": 6,
+    "total": 36
+  },
+  "source_manifest_sha256": "785e0a6b3bfac470ec4750ce21675acbaf6d9e59b68d6994a07683e6454fec0d",
+  "whole_prompt_deadline_seconds": 1200,
+  "runtime": "llama.cpp b11562 / b2f036c0f138414dedc987446f1d9d802f920275",
+  "scope": [
+    "One case per named profile; not a universal model ranking.",
+    "Profiles differ in placement/cache/budget; compare exact settings.",
+    "Dedicated VRAM is sampled at readiness; RAM peak is sampled.",
+    "Apps stay open; some downloads, hashing, checks and editor startup overlap. See campaign narrative.",
+    "Code assertions run only in WSL/Linux bubblewrap after source review; no host execution.",
+    "Qwen native Q4 reuses the prior isolated grade for a byte-identical answer; no new execution claimed.",
+    "Private source text, question text, answers and host-specific paths are excluded."
+  ],
+  "runs": [
+    {
+      "id": "gemma26-private-2048",
+      "model_key": "gemma4-26b-qat",
+      "artifact": {
+        "repo": "google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+        "revision": "d1c082be9cf3c8a514acf63b8761f4b41935842e",
+        "filename": "gemma-4-26B_q4_0-it.gguf",
+        "bytes": 14439363584,
+        "sha256": "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d"
+      },
+      "settings": {
+        "--gpu-layers": "all",
+        "--n-cpu-moe": "24",
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "128",
+        "--ubatch-size": "32",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--reasoning-budget": "2048",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "64",
+        "--min-p": "0",
+        "--load-mode": "none",
+        "--cpu-moe": false,
+        "--no-kv-offload": false,
+        "template_kwargs": {
+          "enable_thinking": true,
+          "preserve_thinking": true
+        }
+      },
+      "measurements": {
+        "wall_seconds": 398.90599999999904,
+        "turns": 3,
+        "distinct_delivered_sources": 6,
+        "successful_tool_ranges": 6,
+        "rejected_tool_ranges": 2,
+        "generation_tokens_per_second": 15.507391161911851,
+        "uncached_prefill_tokens_per_second": 137.6733997632616,
+        "maximum_input_tokens": 20966,
+        "dedicated_vram_gib": 5.308357238769531,
+        "peak_sampled_rss_gib": 11.498966217041016,
+        "minimum_free_ram_gib": 12.764713287353516,
+        "minimum_free_vram_mib": 1463.0,
+        "maximum_gpu_core_c": 60.0,
+        "stop": {
+          "status": "requested_stop"
+        }
+      },
+      "assessment": {
+        "semantic_score": 14,
+        "citation_score": 3,
+        "code_score": 2,
+        "total_score": 19,
+        "semantic_facets": {
+          "1": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "2": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "4": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "5": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "6": [
+            1,
+            1,
+            0,
+            1
+          ]
+        },
+        "citations_by_question": [
+          0,
+          0,
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "profile_file_sha256": "5ca518f7a6da61110a12167ef6dcd42c581d65887222018b38e6cd125e83d116",
+      "answer_sha256": "3c1092f3b403b33afba4a9523450a39e6f585f7806124fb01e8d726f8a1e33c2",
+      "isolated_result_sha256": "b292207e6eb0d493d6b3fb37ade9f9d06e7aa8797679f2f636ac6f1e30f32f32",
+      "identical_answer_prior_grade_reused": false
+    },
+    {
+      "id": "gemma26-private-unrestricted",
+      "model_key": "gemma4-26b-qat",
+      "artifact": {
+        "repo": "google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+        "revision": "d1c082be9cf3c8a514acf63b8761f4b41935842e",
+        "filename": "gemma-4-26B_q4_0-it.gguf",
+        "bytes": 14439363584,
+        "sha256": "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d"
+      },
+      "settings": {
+        "--gpu-layers": "all",
+        "--n-cpu-moe": "24",
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "128",
+        "--ubatch-size": "32",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--reasoning-budget": "-1",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "64",
+        "--min-p": "0",
+        "--load-mode": "none",
+        "--cpu-moe": false,
+        "--no-kv-offload": false,
+        "template_kwargs": {
+          "enable_thinking": true,
+          "preserve_thinking": true
+        }
+      },
+      "measurements": {
+        "wall_seconds": 400.2339999999999,
+        "turns": 2,
+        "distinct_delivered_sources": 7,
+        "successful_tool_ranges": 6,
+        "rejected_tool_ranges": 1,
+        "generation_tokens_per_second": 16.335478200975952,
+        "uncached_prefill_tokens_per_second": 139.70238829553546,
+        "maximum_input_tokens": 19748,
+        "dedicated_vram_gib": 5.308357238769531,
+        "peak_sampled_rss_gib": 11.276508331298828,
+        "minimum_free_ram_gib": 14.94223403930664,
+        "minimum_free_vram_mib": 1844.0,
+        "maximum_gpu_core_c": 58.0,
+        "stop": {
+          "status": "requested_stop"
+        }
+      },
+      "assessment": {
+        "semantic_score": 14,
+        "citation_score": 3,
+        "code_score": 2,
+        "total_score": 19,
+        "semantic_facets": {
+          "1": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "2": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "3": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "4": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "5": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "6": [
+            1,
+            1,
+            0,
+            1
+          ]
+        },
+        "citations_by_question": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "profile_file_sha256": "07b341814527c77972bb2571ad5a7bc1ef199bb613df330e46a66959fee41b8c",
+      "answer_sha256": "8a349bdb545500291aab4b6af2ef2b8d872945b0060b3bcbea3fa4ab159aa473",
+      "isolated_result_sha256": "b292207e6eb0d493d6b3fb37ade9f9d06e7aa8797679f2f636ac6f1e30f32f32",
+      "identical_answer_prior_grade_reused": false
+    },
+    {
+      "id": "glm47-q4-private-2048",
+      "model_key": "glm47-udq4",
+      "artifact": {
+        "repo": "unsloth/GLM-4.7-Flash-GGUF",
+        "revision": "0d32489ecb9db6d2a4fc93bd27ef01519f95474d",
+        "filename": "GLM-4.7-Flash-UD-Q4_K_XL.gguf",
+        "bytes": 17520169312,
+        "sha256": "b0d4fbc1211f891b4cfbf2a497160bfe06a49412420068904d426b7a13f4ba7f"
+      },
+      "settings": {
+        "--gpu-layers": "all",
+        "--n-cpu-moe": "41",
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "128",
+        "--ubatch-size": "32",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--reasoning-budget": "2048",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "20",
+        "--min-p": "0",
+        "--load-mode": "none",
+        "--cpu-moe": false,
+        "--no-kv-offload": false,
+        "template_kwargs": {
+          "enable_thinking": true,
+          "clear_thinking": false
+        }
+      },
+      "measurements": {
+        "wall_seconds": 530.2029999999977,
+        "turns": 4,
+        "distinct_delivered_sources": 8,
+        "successful_tool_ranges": 9,
+        "rejected_tool_ranges": 4,
+        "generation_tokens_per_second": 16.320142142292397,
+        "uncached_prefill_tokens_per_second": 79.00196154023004,
+        "maximum_input_tokens": 23306,
+        "dedicated_vram_gib": 5.442901611328125,
+        "peak_sampled_rss_gib": 13.748504638671875,
+        "minimum_free_ram_gib": 9.994407653808594,
+        "minimum_free_vram_mib": 1309.0,
+        "maximum_gpu_core_c": 61.0,
+        "stop": {
+          "status": "requested_stop"
+        }
+      },
+      "assessment": {
+        "semantic_score": 15,
+        "citation_score": 2,
+        "code_score": 4,
+        "total_score": 21,
+        "semantic_facets": {
+          "1": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "2": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "4": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "5": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "6": [
+            1,
+            1,
+            0,
+            1
+          ]
+        },
+        "citations_by_question": [
+          0,
+          0,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      "profile_file_sha256": "bbc3eb66a63aaab1320caf0e0f380e088241a92612cf670f35db351139777725",
+      "answer_sha256": "27b2d9604548666b9a3d48bca39d29709a4a2858b29b0042a5e95ca48afd0eb4",
+      "isolated_result_sha256": "9ee2a953482f7f612e3f9d7d2dcf528394b149fc5df1affc84a47d576b86a920",
+      "identical_answer_prior_grade_reused": false
+    },
+    {
+      "id": "glm47-q5-private-2048-3",
+      "model_key": "glm47-q5",
+      "artifact": {
+        "repo": "unsloth/GLM-4.7-Flash-GGUF",
+        "revision": "0d32489ecb9db6d2a4fc93bd27ef01519f95474d",
+        "filename": "GLM-4.7-Flash-Q5_K_M.gguf",
+        "bytes": 21408850272,
+        "sha256": "167848c4b460887d7a52c44c378d3996a0d38b3302ac2045494dc8b50869a893"
+      },
+      "settings": {
+        "--gpu-layers": "all",
+        "--n-cpu-moe": "42",
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "128",
+        "--ubatch-size": "32",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--reasoning-budget": "2048",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "20",
+        "--min-p": "0",
+        "--load-mode": "none",
+        "--cpu-moe": false,
+        "--no-kv-offload": false,
+        "template_kwargs": {
+          "enable_thinking": true,
+          "clear_thinking": false
+        }
+      },
+      "measurements": {
+        "wall_seconds": 750.3910000000005,
+        "turns": 4,
+        "distinct_delivered_sources": 10,
+        "successful_tool_ranges": 12,
+        "rejected_tool_ranges": 2,
+        "generation_tokens_per_second": 14.572194182248342,
+        "uncached_prefill_tokens_per_second": 63.517579984534486,
+        "maximum_input_tokens": 28687,
+        "dedicated_vram_gib": 5.62548828125,
+        "peak_sampled_rss_gib": 17.147140502929688,
+        "minimum_free_ram_gib": 8.8626708984375,
+        "minimum_free_vram_mib": 1368.0,
+        "maximum_gpu_core_c": 60.0,
+        "stop": {
+          "status": "requested_stop"
+        }
+      },
+      "assessment": {
+        "semantic_score": 16,
+        "citation_score": 3,
+        "code_score": 2,
+        "total_score": 21,
+        "semantic_facets": {
+          "1": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "4": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "5": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "6": [
+            1,
+            1,
+            0,
+            1
+          ]
+        },
+        "citations_by_question": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      "profile_file_sha256": "cbccd2ab7fb9b31e4648b35482966815979953aed43e4e2b626401cb205c0911",
+      "answer_sha256": "ce3f04089b534c2f98610e6bb4af9d1ce7684f83d6dcff33681cee7aedf615ce",
+      "isolated_result_sha256": "126636208594e9a3f84f0ae2c3a7c150b57e39cf84ac6a08c5fb34dc6711a1e2",
+      "identical_answer_prior_grade_reused": false
+    },
+    {
+      "id": "qwen36-q4-private-2048",
+      "model_key": "qwen36-q4",
+      "artifact": {
+        "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+        "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+        "filename": "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+        "bytes": 22134528992,
+        "sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61"
+      },
+      "settings": {
+        "--gpu-layers": "all",
+        "--n-cpu-moe": "35",
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "128",
+        "--ubatch-size": "32",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--reasoning-budget": "2048",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "20",
+        "--min-p": "0",
+        "--load-mode": "none",
+        "--cpu-moe": false,
+        "--no-kv-offload": false,
+        "template_kwargs": {
+          "enable_thinking": true,
+          "preserve_thinking": true
+        }
+      },
+      "measurements": {
+        "wall_seconds": 458.703,
+        "turns": 5,
+        "distinct_delivered_sources": 13,
+        "successful_tool_ranges": 13,
+        "rejected_tool_ranges": 3,
+        "generation_tokens_per_second": 25.655111223266104,
+        "uncached_prefill_tokens_per_second": 111.58203814251823,
+        "maximum_input_tokens": 32612,
+        "dedicated_vram_gib": 5.574535369873047,
+        "peak_sampled_rss_gib": 17.82415771484375,
+        "minimum_free_ram_gib": 8.699687957763672,
+        "minimum_free_vram_mib": 1624.0,
+        "maximum_gpu_core_c": 59.0,
+        "stop": {
+          "status": "requested_stop"
+        }
+      },
+      "assessment": {
+        "semantic_score": 18,
+        "citation_score": 4,
+        "code_score": 3,
+        "total_score": 25,
+        "semantic_facets": {
+          "1": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "3": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "4": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "5": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "6": [
+            1,
+            1,
+            0,
+            1
+          ]
+        },
+        "citations_by_question": [
+          1,
+          1,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "profile_file_sha256": "4273e1abea85db49f535a5d485bfbfe9f0b21abed2bf2dd7f3f06ebe44637ff1",
+      "answer_sha256": "910b44761c4c4819ba469abe1bea7ff9e0d8d4fcc2a3348d2cb9fa46c0814f21",
+      "isolated_result_sha256": "5f015741806324fec9d4a507f9304a15c1b9516e244a59d56a045d3891221f9d",
+      "identical_answer_prior_grade_reused": false
+    },
+    {
+      "id": "qwen36-q4-private-unrestricted",
+      "model_key": "qwen36-q4",
+      "artifact": {
+        "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+        "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+        "filename": "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+        "bytes": 22134528992,
+        "sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61"
+      },
+      "settings": {
+        "--gpu-layers": "all",
+        "--n-cpu-moe": "35",
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "128",
+        "--ubatch-size": "32",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--reasoning-budget": "-1",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "20",
+        "--min-p": "0",
+        "--load-mode": "none",
+        "--cpu-moe": false,
+        "--no-kv-offload": false,
+        "template_kwargs": {
+          "enable_thinking": true,
+          "preserve_thinking": true
+        }
+      },
+      "measurements": {
+        "wall_seconds": 454.8590000000004,
+        "turns": 5,
+        "distinct_delivered_sources": 13,
+        "successful_tool_ranges": 13,
+        "rejected_tool_ranges": 3,
+        "generation_tokens_per_second": 25.904945718357038,
+        "uncached_prefill_tokens_per_second": 112.44139691945333,
+        "maximum_input_tokens": 32612,
+        "dedicated_vram_gib": 5.574535369873047,
+        "peak_sampled_rss_gib": 17.82509994506836,
+        "minimum_free_ram_gib": 8.6549072265625,
+        "minimum_free_vram_mib": 1368.0,
+        "maximum_gpu_core_c": 60.0,
+        "stop": {
+          "status": "requested_stop"
+        }
+      },
+      "assessment": {
+        "semantic_score": 18,
+        "citation_score": 4,
+        "code_score": 3,
+        "total_score": 25,
+        "semantic_facets": {
+          "1": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "3": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "4": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "5": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "6": [
+            1,
+            1,
+            0,
+            1
+          ]
+        },
+        "citations_by_question": [
+          1,
+          1,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "profile_file_sha256": "fabf9ae261a54ed5b70a047b1936fe17d907b5407b76386104b54cec6fe7cc78",
+      "answer_sha256": "910b44761c4c4819ba469abe1bea7ff9e0d8d4fcc2a3348d2cb9fa46c0814f21",
+      "isolated_result_sha256": null,
+      "identical_answer_prior_grade_reused": true
+    },
+    {
+      "id": "qwen36-q5-private-unrestricted",
+      "model_key": "qwen36-q5",
+      "artifact": {
+        "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+        "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+        "filename": "Qwen3.6-35B-A3B-UD-Q5_K_M.gguf",
+        "bytes": 26456194016,
+        "sha256": "c13ce26253ea334df472bd8fbd2d6da66d8a41195c17f6fcbf44c4d20ece0932"
+      },
+      "settings": {
+        "--gpu-layers": "all",
+        "--n-cpu-moe": "35",
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "128",
+        "--ubatch-size": "32",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--reasoning-budget": "-1",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "20",
+        "--min-p": "0",
+        "--load-mode": "none",
+        "--cpu-moe": false,
+        "--no-kv-offload": false,
+        "template_kwargs": {
+          "enable_thinking": true,
+          "preserve_thinking": true
+        }
+      },
+      "measurements": {
+        "wall_seconds": 537.25,
+        "turns": 4,
+        "distinct_delivered_sources": 14,
+        "successful_tool_ranges": 13,
+        "rejected_tool_ranges": 1,
+        "generation_tokens_per_second": 21.735097196047146,
+        "uncached_prefill_tokens_per_second": 95.09182414621036,
+        "maximum_input_tokens": 28497,
+        "dedicated_vram_gib": 6.3233489990234375,
+        "peak_sampled_rss_gib": 21.062644958496094,
+        "minimum_free_ram_gib": 6.713436126708984,
+        "minimum_free_vram_mib": 871.0,
+        "maximum_gpu_core_c": 59.0,
+        "stop": {
+          "status": "requested_stop"
+        }
+      },
+      "assessment": {
+        "semantic_score": 20,
+        "citation_score": 6,
+        "code_score": 2,
+        "total_score": 28,
+        "semantic_facets": {
+          "1": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "4": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "5": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "6": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "citations_by_question": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "profile_file_sha256": "d833e521d96a470425ab6d814387326aaa18257990e673c94163b230791c92a7",
+      "answer_sha256": "aee8e48292742c2217ee5120d0685b8291b0cb557b0abe8d26b915afa1b161df",
+      "isolated_result_sha256": "612dcf0e6c0018b07b18c411613da7812692f249e27c31abe640516f6593db91",
+      "identical_answer_prior_grade_reused": false
+    },
+    {
+      "id": "glm47-q4-f16-private-unrestricted",
+      "model_key": "glm47-udq4",
+      "artifact": {
+        "repo": "unsloth/GLM-4.7-Flash-GGUF",
+        "revision": "0d32489ecb9db6d2a4fc93bd27ef01519f95474d",
+        "filename": "GLM-4.7-Flash-UD-Q4_K_XL.gguf",
+        "bytes": 17520169312,
+        "sha256": "b0d4fbc1211f891b4cfbf2a497160bfe06a49412420068904d426b7a13f4ba7f"
+      },
+      "settings": {
+        "--gpu-layers": "all",
+        "--n-cpu-moe": "44",
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "128",
+        "--ubatch-size": "32",
+        "--cache-type-k": "f16",
+        "--cache-type-v": "f16",
+        "--reasoning-budget": "-1",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "20",
+        "--min-p": "0",
+        "--load-mode": "none",
+        "--cpu-moe": false,
+        "--no-kv-offload": false,
+        "template_kwargs": {
+          "enable_thinking": true,
+          "clear_thinking": false
+        }
+      },
+      "measurements": {
+        "wall_seconds": 942.0,
+        "turns": 4,
+        "distinct_delivered_sources": 15,
+        "successful_tool_ranges": 17,
+        "rejected_tool_ranges": 2,
+        "generation_tokens_per_second": 16.28281097096816,
+        "uncached_prefill_tokens_per_second": 71.49905849535006,
+        "maximum_input_tokens": 45599,
+        "dedicated_vram_gib": 6.019031524658203,
+        "peak_sampled_rss_gib": 14.738746643066406,
+        "minimum_free_ram_gib": 12.774776458740234,
+        "minimum_free_vram_mib": 1084.0,
+        "maximum_gpu_core_c": 61.0,
+        "stop": {
+          "status": "requested_stop"
+        }
+      },
+      "assessment": {
+        "semantic_score": 19,
+        "citation_score": 4,
+        "code_score": 4,
+        "total_score": 27,
+        "semantic_facets": {
+          "1": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "4": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "5": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "6": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "citations_by_question": [
+          1,
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      "profile_file_sha256": "924afaa482b5c0568f9695d31dc3c03d183bc1b80b6deb6a3d81d85bfaa2650f",
+      "answer_sha256": "22bb6aac5a6168750c9fd5ad0e7150365d0d5a70af5eb7ca4ad025e2a3688542",
+      "isolated_result_sha256": "10de64dc681194011aa04414a00411b0b7d868b6b81246fa865c0b864fa3f576",
+      "identical_answer_prior_grade_reused": false
+    },
+    {
+      "id": "glm47-q6-private-unrestricted",
+      "model_key": "glm47-udq6",
+      "artifact": {
+        "repo": "unsloth/GLM-4.7-Flash-GGUF",
+        "revision": "0d32489ecb9db6d2a4fc93bd27ef01519f95474d",
+        "filename": "GLM-4.7-Flash-UD-Q6_K_XL.gguf",
+        "bytes": 26175238496,
+        "sha256": "b5ddf6a5531a4d06ce84a652419c8d32c0cb15ca64549d715f783de948a3f3e2"
+      },
+      "settings": {
+        "--gpu-layers": "all",
+        "--n-cpu-moe": "44",
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "128",
+        "--ubatch-size": "32",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--reasoning-budget": "-1",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "20",
+        "--min-p": "0",
+        "--load-mode": "none",
+        "--cpu-moe": false,
+        "--no-kv-offload": false,
+        "template_kwargs": {
+          "enable_thinking": true,
+          "clear_thinking": false
+        }
+      },
+      "measurements": {
+        "wall_seconds": 870.2970000000005,
+        "turns": 6,
+        "distinct_delivered_sources": 9,
+        "successful_tool_ranges": 11,
+        "rejected_tool_ranges": 4,
+        "generation_tokens_per_second": 12.051272302461353,
+        "uncached_prefill_tokens_per_second": 51.74838592956115,
+        "maximum_input_tokens": 28363,
+        "dedicated_vram_gib": 5.671314239501953,
+        "peak_sampled_rss_gib": 21.671520233154297,
+        "minimum_free_ram_gib": 4.980403900146484,
+        "minimum_free_vram_mib": 1541.0,
+        "maximum_gpu_core_c": 60.0,
+        "stop": {
+          "status": "requested_stop"
+        }
+      },
+      "assessment": {
+        "semantic_score": 17,
+        "citation_score": 2,
+        "code_score": 5,
+        "total_score": 24,
+        "semantic_facets": {
+          "1": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "2": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "4": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "5": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "6": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "citations_by_question": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "profile_file_sha256": "4e1dfef39afc5cad20da89cac6f3ecdc174f2e235e0cfe69699aecdcef025388",
+      "answer_sha256": "26e43f3d1cc3938a5983cd91c7d9184f9c9238a23528eb8457b30638179cb987",
+      "isolated_result_sha256": "9abd153c1645f4b4cc51024ea0cc70ab2675a87ed27fe61e8e350073d84bc4a2",
+      "identical_answer_prior_grade_reused": false
+    },
+    {
+      "id": "qwen36-cache2048-private-unrestricted",
+      "model_key": "qwen36-q4",
+      "artifact": {
+        "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+        "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+        "filename": "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+        "bytes": 22134528992,
+        "sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61"
+      },
+      "settings": {
+        "--gpu-layers": "all",
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "512",
+        "--ubatch-size": "128",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--reasoning-budget": "-1",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "20",
+        "--min-p": "0",
+        "--load-mode": "none",
+        "--moe-cache-mib": "2048",
+        "--cpu-moe": true,
+        "--no-kv-offload": false,
+        "template_kwargs": {
+          "enable_thinking": true,
+          "preserve_thinking": true
+        }
+      },
+      "measurements": {
+        "wall_seconds": 402.7029999999995,
+        "turns": 5,
+        "distinct_delivered_sources": 14,
+        "successful_tool_ranges": 16,
+        "rejected_tool_ranges": 2,
+        "generation_tokens_per_second": 37.330377222243655,
+        "uncached_prefill_tokens_per_second": 179.91957383963603,
+        "maximum_input_tokens": 40516,
+        "dedicated_vram_gib": 5.268589019775391,
+        "peak_sampled_rss_gib": 20.152362823486328,
+        "minimum_free_ram_gib": 7.6945953369140625,
+        "minimum_free_vram_mib": 1920.0,
+        "maximum_gpu_core_c": 63.0,
+        "stop": {
+          "status": "requested_stop"
+        }
+      },
+      "assessment": {
+        "semantic_score": 19,
+        "citation_score": 4,
+        "code_score": 4,
+        "total_score": 27,
+        "semantic_facets": {
+          "1": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "4": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "5": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "6": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "citations_by_question": [
+          1,
+          1,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "profile_file_sha256": "d230db658e7c058c1f39443a2be7bb4b9ae312cbdaa1894b049e13ae252643c0",
+      "answer_sha256": "11e92785d19af0bf97c57d4150e66956e952ea15645f294af038cd014e5e193c",
+      "isolated_result_sha256": "d91ecaf3f3193a288433c1932574c554ae3970987a956c253ddc629d995103e3",
+      "identical_answer_prior_grade_reused": false
+    },
+    {
+      "id": "qwen36-historical34-private-recheck",
+      "model_key": "qwen36-q4",
+      "artifact": {
+        "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+        "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+        "filename": "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+        "bytes": 22134528992,
+        "sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61"
+      },
+      "settings": {
+        "--gpu-layers": "30",
+        "--n-cpu-moe": "34",
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "512",
+        "--ubatch-size": "128",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--reasoning-budget": "-1",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "20",
+        "--min-p": "0",
+        "--load-mode": "none",
+        "--cpu-moe": false,
+        "--no-kv-offload": false,
+        "template_kwargs": {
+          "enable_thinking": true,
+          "preserve_thinking": true
+        }
+      },
+      "measurements": {
+        "wall_seconds": 864.2659999999996,
+        "turns": 3,
+        "distinct_delivered_sources": 15,
+        "successful_tool_ranges": 16,
+        "rejected_tool_ranges": 2,
+        "generation_tokens_per_second": 8.610734946198338,
+        "uncached_prefill_tokens_per_second": 235.5201278954802,
+        "maximum_input_tokens": 41185,
+        "dedicated_vram_gib": 5.377159118652344,
+        "peak_sampled_rss_gib": 17.634262084960938,
+        "minimum_free_ram_gib": 10.111034393310547,
+        "minimum_free_vram_mib": 1787.0,
+        "maximum_gpu_core_c": 61.0,
+        "stop": {
+          "status": "requested_stop"
+        }
+      },
+      "assessment": {
+        "semantic_score": 20,
+        "citation_score": 6,
+        "code_score": 5,
+        "total_score": 31,
+        "semantic_facets": {
+          "1": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "4": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "5": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "6": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "citations_by_question": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "profile_file_sha256": "1fbb1c82cb8395aec5b8bf5c1bcec6793ad8603847e95ae08fbf8cf0fe3a7af4",
+      "answer_sha256": "ede16ba251c26dfc3a28c083ae4e4c886943e89aec44576271d1d7e11d66705b",
+      "isolated_result_sha256": "2296ed8143c6f8c8fdcc44898594bc29094f00e2eaba2ed9957a00965dbb2664",
+      "identical_answer_prior_grade_reused": false
+    }
+  ]
+}

@@ -16,7 +16,8 @@ Exact retired weight files were deleted only after evidence preservation.
    recovered audit scored21/36; its weight is retired with all answers retained.
    Its earlier interrupted attempt remains unscored. GLM Q6's public suite
    completed with inconsistent code, a history count error and narrow VRAM
-   headroom; held-out isolated grading remains queued.
+   headroom; held-out isolated checks confirm TypeScript compile failure and
+   SQL data loss.
 2. Test Kimi's actual fit and tools. Its complete artifact is now verified. The
    download began after an unloaded26.42GiB/7112MiB snapshot; that does not
    replace the fresh load check. Reassess optional Qwen Q6's28.5GiB RAM gate
@@ -70,7 +71,7 @@ can still finish a file-heavy request later. GPU expert caching retains the
 CPU weight copies. The first cache probe used1536MiB, replacing the initial
 512MiB suggestion; its measured successor used3072MiB. Dense Gemma31 missed
 the calibration latency gate. Qwen Q5's matched public core showed no behavior
-gain and longer mean time; its actual-instruction audit remains pending.
+gain and longer mean time; its native actual-instruction audit scores28/36 with a2/6 merge implementation.
 
 ## Promotion rules
 

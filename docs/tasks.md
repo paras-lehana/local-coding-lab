@@ -24,14 +24,14 @@ them blindly after interruption.
 
 | Candidate | Status | Required disposition |
 |---|---|---|
-| Qwen3.6 Q4 | Core/history/held-out and initial flag probes collected | Private capped 25/36; batch/cache/CPU-KV code and recall pass; lower-temperature TS/SQL fail; matched Q4 control complete, larger-cache probes pending |
+| Qwen3.6 Q4 | Core/history/held-out and initial flag probes collected | Private capped 25/36; batch/cache/CPU-KV code and recall pass; lower-temperature TS/SQL fail; matched Q4 control complete, cache2048 private27/36; historical placement replay31/36; exact finalist public/editor validation pending |
 | Gemma 4 26B QAT | 32K/64K suites and both private audits reviewed | 52K-input recall passes; unrestricted SQL 6/6, TS 5/6; capped/unrestricted private scores both 19/36 |
-| GLM-4.7-Flash UD-Q4 | q8 and f16 public follow-ups reviewed | f16 native code6/6; original own script runs zero tests, supplemental13/14; history count wrong; conditional f16 private audit pending |
+| GLM-4.7-Flash UD-Q4 | q8 and f16 public follow-ups reviewed | f16 native code6/6; original own script runs zero tests, supplemental13/14; history count wrong; native f16 private27/36 |
 | Qwen3-Coder 30B UD-Q4 | Five tasks graded | Core 2/6, 3/6, 1/6; private audit 20-minute deadline; exact weight retired with evidence |
 | Gemma 4 31B QAT dense | Calibration rejected | GPU-KV resource stop; CPU-KV 0.95 tok/s and five-minute deadline; quality unscored |
-| Qwen3.6 Q5 and optional Q6 | Q5 public suite complete; Q6 conditional | Q5 matched core6/6 each but19.1% slower, held-out TS4/6/SQL failure; native private pending. Q6 requires fresh28.5GiB/7000MiB gates and full verified artifact |
-| GLM Flash Q5 and optional UD-Q6 | Q5 complete and retired; Q6 download verified | Q5 native repeats6/6,6/6,0/6; private21/36; Q6 inference queued |
-| Kimi Linear 48B Q4 | Download active | Fresh unloaded26.42GiB/7112MiB gate passed; full size/hash and fresh load still required, no score |
+| Qwen3.6 Q5 and optional Q6 | Q5 public suite complete; Q6 conditional | Q5 matched core6/6 each but19.1% slower, held-out TS4/6/SQL failure; native private28/36. Q6 requires fresh28.5GiB/7000MiB gates and full verified artifact |
+| GLM Flash Q5 and optional UD-Q6 | Q5 complete and retired; Q6 download verified | Q5 native repeats6/6,6/6,0/6; private21/36; Q6 public graded and native private24/36 |
+| Kimi Linear 48B Q4 | Verified and f16 suite running | q8V and mixed-cache compatibility failures preserved; f16 loads, one malformed tool-call result; final quality review pending |
 | Qwen Coder Next 80B Q4 | Current capacity rejected | 45+ GiB weights exceed apps-open resident allowance, no quality score |
 | Research's explicitly excluded giant models | Capacity review complete | Publisher metadata pinned; four-bit payload arithmetic excludes them from the current apps-open matrix, no local score |
 
@@ -218,3 +218,9 @@ were changed. Original private reports and installation remain outside Git.
 18:27 IST checkpoint: Kimi full30,061,058,720-byte pinned artifact/SHA verified at18:23; native non-thinking public suite frozen and serialized after existing audits. QwenQ5 native private collection remains active. Read-only UIAutomation confirms local VS Code window accessible alongside separate remote windows; no editor interaction or new UI inference yet. Continue timeout source evidence recorded with installed bundle hash; correction remains staged. Current report/model/next-step documents updated for GLMQ6 public outcomes.
 
 18:27 IST validation:20 offline tests pass in9.167seconds; PowerShell scripts parse;103-file public-content audit has0 findings and diff check passes. Checks overlap QwenQ5 private inference and that timing caveat is recorded. Only reviewed documentation changed in this checkpoint; runtime/editor selection remains unchanged.
+
+18:49 IST checkpoint: QwenQ5 native private537.250s,28/36 (20 semantic+6 citations+2 isolated code), honest14-source inventory and recovered read failure; nested dictionaries become None and mutable values alias. GLMQ4f16 native private942.000s,all15 sources/honest ranges,19 semantic+4 citations with isolated code pending; source code mutates/aliases inputs. GLMQ6 native private is active. Dedicated Local LLM VS Code window opened(handle462398); selected explicit local Qwen in Copilot and Continue Plan, no prompts sent. Added task-specific coding-use guide. Published6046eac CI38738677381 passes; later report updates remain local until next checkpoint.
+
+19:16 IST checkpoint: GLMf16 native private27/36 (19+4+4); GLMQ6 native private24/36 (17+2+5), all saved and isolated graded. Qwen2GiB-cache private completed402.703s with honest14-source inventory; semantic19/citations4, code queued. Historical34-expert replay active; Kimi public suite waits serially. Restart cause remains unknown, owner did not observe event. No new editor prompt or production promotion.
+
+19:30 IST checkpoint: historical Qwen placement replay31/36 (20+6+5),864.266s, all15 sources and accurate ranges;2GiB-cache27/36 (19+4+4),402.703s. Kimi q8V fails72/32 dimension constraint; mixed K/V fails architecture constraint; matching f16 loads with252MiB KV+42.81MiB recurrent state. Public suite active, first malformed-call failure preserved.20 offline tests pass9.192s; PS parse and110-file export audit/diff check pass. Offline tests overlap Kimi inference, disclosed. v0.3.8 adds separate compatibility profiles; production unchanged.

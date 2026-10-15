@@ -8,7 +8,7 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Status: v0.3.7, experimental; autonomous campaign in progress.** Follow the
+**Status: v0.3.8, experimental; autonomous campaign in progress.** Follow the
 [live campaign evidence](reports/2026-10-15-campaign.md). Repeated coding,
 long-document, changed-file and actual-instruction tests now cover Qwen,
 Gemma, GLM and Qwen Coder. Precision/settings comparisons and real editor
@@ -20,7 +20,9 @@ validation are still running. Clean-machine installation remains unvalidated.
 |---|---|
 | Install and try a model | [Windows walkthrough](docs/setup.md) |
 | Understand which model to try | [Shortlist and exact links](docs/models.md) |
+| Know which coding tasks need extra checking | [Measured use cases and limitations](docs/coding-use-cases.md) |
 | See what actually worked | [Current campaign](reports/2026-10-15-campaign.md), [placement experiment](reports/2026-10-14-placement.md), [historical results](reports/2026-10-14-findings.md) |
+| Share the campaign outcome | [Forwardable task report](docs/tasks/2026-10-15-autonomous-model-campaign/2026-10-15-model-comparison-and-editor-validation-v0.3.8.md) (in progress) |
 | Understand RAM, VRAM and KV cache | [Memory guide](docs/memory-and-context.md) |
 | Connect VS Code | [Editor guide](docs/editors.md) |
 | Compare models fairly | [Run a comparison](docs/run-a-comparison.md), [methodology](docs/methodology.md), [questions](benchmarks/questions/router-v1.txt), [rubric](benchmarks/rubrics/router-v1.md) |
