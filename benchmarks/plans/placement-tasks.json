@@ -1,0 +1,12 @@
+[
+  {
+    "name": "core-seed73",
+    "seed": 73,
+    "budget": 2048
+  },
+  {
+    "name": "context-v1",
+    "scenario": "context-v1",
+    "budget": 2048
+  }
+]

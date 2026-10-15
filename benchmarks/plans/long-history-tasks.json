@@ -1,0 +1,14 @@
+[
+  {
+    "name": "context-extended",
+    "scenario": "context-extended-v1",
+    "budget": 2048,
+    "max_tokens": 8192
+  },
+  {
+    "name": "context-large",
+    "scenario": "context-large-v1",
+    "budget": 2048,
+    "max_tokens": 8192
+  }
+]

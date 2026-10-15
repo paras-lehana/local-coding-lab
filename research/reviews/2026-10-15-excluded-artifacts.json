@@ -1,0 +1,79 @@
+[
+  {
+    "repo": "zai-org/GLM-5.3",
+    "revision": "ba32f8c19c8738e2c57c71798c601d477a7bf844",
+    "safetensors_parameters": 753329940480,
+    "ideal_four_bit_weight_gib": 350.7965898513794,
+    "note": "Capacity arithmetic, not an existing GGUF or measured allocation."
+  },
+  {
+    "repo": "zai-org/GLM-5.3-Flash",
+    "revision": "91b69215804f2d2036a8867f6ce44848e278dcda",
+    "safetensors_parameters": 321323031390,
+    "ideal_four_bit_weight_gib": 149.6276964386925,
+    "note": "Capacity arithmetic, not an existing GGUF or measured allocation."
+  },
+  {
+    "repo": "zai-org/GLM-4.7",
+    "revision": "602d01efcdd332c5238ca4bcede555defbe83eb7",
+    "safetensors_parameters": 358337791296,
+    "ideal_four_bit_weight_gib": 166.86403718590736,
+    "note": "Capacity arithmetic, not an existing GGUF or measured allocation."
+  },
+  {
+    "repo": "deepseek-ai/DeepSeek-V4-Flash",
+    "revision": "60d8d70770c6776ff598c94bb586a859a38244f1",
+    "safetensors_parameters": 290944616402,
+    "ideal_four_bit_weight_gib": 135.4816446090117,
+    "note": "Capacity arithmetic, not an existing GGUF or measured allocation."
+  },
+  {
+    "repo": "deepseek-ai/DeepSeek-V4-Pro",
+    "revision": "b5968e9190ef611bbf34a7229255be88a0e937c1",
+    "safetensors_parameters": 1598839674782,
+    "ideal_four_bit_weight_gib": 744.5177411576733,
+    "note": "Capacity arithmetic, not an existing GGUF or measured allocation."
+  },
+  {
+    "repo": "deepseek-ai/DeepSeek-V4.1-Flash",
+    "revision": "5254448103b6254fc646dacbca1cbbf20e9216c1",
+    "safetensors_parameters": 763205315794,
+    "ideal_four_bit_weight_gib": 355.3951698327437,
+    "note": "Capacity arithmetic, not an existing GGUF or measured allocation."
+  },
+  {
+    "repo": "Qwen/Qwen3.5-397B-A17B",
+    "revision": "8472618112abcbd45acbcdc58436aff4233c23f7",
+    "safetensors_parameters": 403397928944,
+    "ideal_four_bit_weight_gib": 187.84679888933897,
+    "note": "Capacity arithmetic, not an existing GGUF or measured allocation."
+  },
+  {
+    "repo": "Qwen/Qwen3.8-Flash-Next",
+    "revision": "de4b8e4d43b917e7706784d8bb445c9af86a3540",
+    "safetensors_parameters": 179999981459,
+    "ideal_four_bit_weight_gib": 83.81902308156714,
+    "note": "Capacity arithmetic, not an existing GGUF or measured allocation."
+  },
+  {
+    "repo": "moonshotai/Kimi-K3",
+    "revision": "f831ab66814297da540d832a5235f8e904f29d06",
+    "safetensors_parameters": 2779931837184,
+    "ideal_four_bit_weight_gib": 1294.50663793087,
+    "note": "Capacity arithmetic, not an existing GGUF or measured allocation."
+  },
+  {
+    "repo": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+    "revision": "92f3b1597a195b523d8d9e5700e57e4fbb8f20d3",
+    "safetensors_parameters": 108641793536,
+    "ideal_four_bit_weight_gib": 50.590277433395386,
+    "note": "Capacity arithmetic, not an existing GGUF or measured allocation."
+  },
+  {
+    "repo": "meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+    "revision": "73d14711bcc77c16df3470856949c3764056b617",
+    "safetensors_parameters": 401583781376,
+    "ideal_four_bit_weight_gib": 187.00202059745789,
+    "note": "Capacity arithmetic, not an existing GGUF or measured allocation."
+  }
+]

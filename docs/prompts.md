@@ -259,3 +259,12 @@ The unfinished batch512 attempt remains unscored. Current free RAM is lower,
 so the campaign continues with measured placement changes and unchanged guards.
 Gemma dense is verified; GPU-KV reached the guard, and RAM-KV passed smoke with
 a five-minute calibration underway. Full candidate coverage remains active.
+
+Recovery checkpoint: dense RAM-KV reached the five-minute deadline at 0.95
+generation tok/s with no complete answer; its verified weights were recorded
+and deleted, preserving evidence and the Qwen baseline. Gemma 26B's first core
+answer completed in 349.313 seconds and passed 6/6 isolated Python groups and
+8/8 generated tests with the documented shared-module assumption. Its current
+suite continues. GLM Q4 downloads; Qwen Coder and GLM Q5 are queued. Published
+portable task plans, a larger frozen ledger and primary-source size exclusions.
+No final ranking, production promotion or new editor pass is claimed.

@@ -2,9 +2,9 @@
   "model": "glm47-udq4",
   "alias": "glm47-lab",
   "locally_tested": false,
-  "evidence": "Untested apps-open placement proposal: first 38 expert layers in RAM, remaining expert layers and attention on GPU. 32K q8 KV; record actual MLA/attention buffers before quality claims. Load and stop guards remain active.",
-  "load_min_ram_free_gib": 16.5,
-  "load_min_vram_free_mib": 7000,
+  "evidence": "Untested matched-precision proposal: CPU expert placement in first 40 blocks (39 routed-expert blocks after the initial dense block), remaining seven expert blocks and attention on GPU. Q4 estimated CPU expert storage 12.56 GiB; actual MLA buffers must be measured. Same placement as the Q5 candidate for a controlled comparison.",
+  "load_min_ram_free_gib": 17.5,
+  "load_min_vram_free_mib": 6500,
   "template_kwargs": {
     "enable_thinking": true,
     "clear_thinking": false
@@ -61,7 +61,7 @@
     "--verbosity",
     "4",
     "--n-cpu-moe",
-    "38"
+    "40"
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,

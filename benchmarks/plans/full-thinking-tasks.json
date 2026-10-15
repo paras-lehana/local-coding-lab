@@ -1,0 +1,37 @@
+[
+  {
+    "name": "core-seed73",
+    "seed": 73,
+    "budget": 2048,
+    "max_tokens": 8192
+  },
+  {
+    "name": "core-seed74",
+    "seed": 74,
+    "budget": 2048,
+    "max_tokens": 8192
+  },
+  {
+    "name": "core-seed75",
+    "seed": 75,
+    "budget": 2048,
+    "max_tokens": 8192
+  },
+  {
+    "name": "core-unrestricted",
+    "seed": 73,
+    "max_tokens": 16384
+  },
+  {
+    "name": "context-v1",
+    "scenario": "context-v1",
+    "budget": 2048,
+    "max_tokens": 8192
+  },
+  {
+    "name": "ts-sql-v1",
+    "scenario": "ts-sql-v1",
+    "budget": 2048,
+    "max_tokens": 8192
+  }
+]

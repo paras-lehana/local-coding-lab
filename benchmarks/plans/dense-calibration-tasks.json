@@ -1,0 +1,9 @@
+[
+  {
+    "name": "calibration-500",
+    "mode": "inline",
+    "budget": 0,
+    "max_tokens": 500,
+    "deadline": 300
+  }
+]

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "verified_metadata_date": "2026-10-15",
-  "note": "Bytes are GGUF file size, not required RAM. Hashes come from publisher LFS metadata. Only Qwen Q4 has local inference evidence. Model licenses apply separately.",
+  "note": "Bytes are GGUF size, not required RAM. Hashes are publisher LFS metadata. Qwen Q4 and Gemma QAT have local attempt evidence; consult individual status and reports, not catalog presence, for validation. Model licenses apply separately.",
   "models": {
     "qwen36-q4": {
       "name": "Qwen3.6-35B-A3B UD-Q4_K_M",
@@ -22,7 +22,7 @@
       "bytes": 14439363584,
       "sha256": "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d",
       "upstream": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "status": "next-fit-candidate-not-tested",
+      "status": "verified-first-core-pass-full-suite-in-progress",
       "thinking": "Must verify embedded template and within-tool-turn thought preservation; do not copy Qwen kwargs blindly"
     },
     "glm47-udq4": {
@@ -33,7 +33,7 @@
       "bytes": 17520169312,
       "sha256": "b0d4fbc1211f891b4cfbf2a497160bfe06a49412420068904d426b7a13f4ba7f",
       "upstream": "https://huggingface.co/zai-org/GLM-4.7-Flash",
-      "status": "conditional-cross-family-candidate-not-tested",
+      "status": "download-in-progress-inference-not-yet-tested",
       "thinking": "Verify enable_thinking/clear_thinking and tool parsing; MLA allocation must be measured"
     },
     "glm47-q5": {
@@ -44,7 +44,7 @@
       "bytes": 21408850272,
       "sha256": "167848c4b460887d7a52c44c378d3996a0d38b3302ac2045494dc8b50869a893",
       "upstream": "https://huggingface.co/zai-org/GLM-4.7-Flash",
-      "status": "more-memory-only-not-tested",
+      "status": "download-queued-matched-precision-profile-proposed",
       "thinking": "Same family; quantization is an independent experimental variable"
     },
     "gemma4-31b-qat": {
@@ -54,7 +54,7 @@
       "filename": "gemma-4-31B_q4_0-it.gguf",
       "bytes": 17651001568,
       "sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
-      "status": "campaign-pending-fit-and-runtime",
+      "status": "tested-profiles-rejected-resource-and-latency-weights-removed",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "qwencoder30-udq4": {
@@ -64,7 +64,7 @@
       "filename": "Qwen3-Coder-30B-A3B-Instruct-UD-Q4_K_XL.gguf",
       "bytes": 17665334432,
       "sha256": "2841aa314d916434860cfb8990347528dcdfe5c350dbcb9d1461dbee88ff2533",
-      "status": "campaign-pending-fit-and-runtime",
+      "status": "download-queued-inference-not-yet-tested",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "qwen36-q5": {

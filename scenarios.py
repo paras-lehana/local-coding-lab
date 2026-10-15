@@ -18,8 +18,9 @@ def case(name: str) -> dict:
     entry = ('Read .claude/CLAUDE.md and follow relevant links explicitly. '
              'Prefer current v2 rules. Do not invent absent settings. '
              'File tools are read-only; do not claim test execution.\n')
-    if name in ('context-v1', 'context-extended-v1'):
-        record_count = 120 if name == 'context-v1' else 320
+    if name in ('context-v1', 'context-extended-v1', 'context-large-v1'):
+        record_count = {'context-v1': 120, 'context-extended-v1': 320,
+                        'context-large-v1': 640}[name]
         records = []
         for i in range(record_count):
             record = (f'Record {i:03d}: synthetic service inventory for zone '
@@ -175,7 +176,8 @@ def worker(root: Path) -> int:
 def main() -> int:
     """Freeze the complete case before starting a deadline-owned network worker."""
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--scenario', choices=['context-v1', 'context-extended-v1', 'ts-sql-v1'])
+    parser.add_argument('--scenario', choices=['context-v1', 'context-extended-v1',
+                                               'context-large-v1', 'ts-sql-v1'])
     parser.add_argument('--endpoint', default='http://127.0.0.1:8081/v1')
     parser.add_argument('--model', default='qwen36-lab')
     parser.add_argument('--output', type=Path)

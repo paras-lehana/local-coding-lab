@@ -2,7 +2,7 @@
   "model": "gemma4-26b-qat",
   "alias": "gemma4-lab",
   "locally_tested": false,
-  "evidence": "Apps-open smaller host profile: first 24 of 30 expert layers on CPU, final six expert layers on GPU. Estimated 9.57 GiB expert storage on CPU, 2.39 GiB expert storage plus 1.48 GiB non-expert storage on GPU. Runtime buffers and throughput remain unmeasured.",
+  "evidence": "Partial live validation: 32K model buffers 3954 MiB GPU / 10379 MiB host, q8 KV 473 MiB, readiness dedicated VRAM 4.97 GiB. Seed73 core completed in 349.313 s with 6/6 independent Python groups. Remaining repeated/history/held-out/editor checks are required; not promoted.",
   "load_min_ram_free_gib": 14.5,
   "load_min_vram_free_mib": 6500,
   "template_kwargs": {

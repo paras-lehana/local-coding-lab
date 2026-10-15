@@ -151,6 +151,9 @@ def run(args: argparse.Namespace) -> int:
             except subprocess.TimeoutExpired:
                 state.update(status='cleanup_required',
                              reason='Owned launcher did not stop; do not load another model')
+        stop_records = list((root / 'server/runs').glob('*/stop.json'))
+        if stop_records:
+            state['server_outcome'] = lab.read_json(stop_records[0])
         state['postflight'] = lab.memory_snapshot()
         checkpoint(root, state)
     print('Trial', state['status'], flush=True)

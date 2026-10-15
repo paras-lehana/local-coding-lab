@@ -13,15 +13,15 @@ them blindly after interruption.
 | Candidate | Status | Required disposition |
 |---|---|---|
 | Qwen3.6 Q4 | Core/history/held-out collected | Python passes; TS/SQL bugs persist with unrestricted thinking; larger batch interrupted by planned update |
-| Gemma 4 26B QAT | Downloading | Load/template/tools, coding, memory, history |
+| Gemma 4 26B QAT | Verified; suite running | Balanced 32K profile, 4.97 GiB dedicated VRAM; file tools working |
 | GLM-4.7-Flash UD-Q4 | Downloading | Load/MLA/q8 behavior, coding, memory, history |
 | Qwen3-Coder 30B UD-Q4 | Pending | Non-thinking comparison, coding and history |
-| Gemma 4 31B QAT dense | Verified; calibration active | GPU-KV profile stopped at VRAM guard; CPU-KV smoke passes, latency calibration running |
+| Gemma 4 31B QAT dense | Calibration rejected | GPU-KV resource stop; CPU-KV 0.95 tok/s and five-minute deadline; quality unscored |
 | Qwen3.6 Q5 and optional Q6 | Pending | Verified capacity check and matched precision test where feasible |
-| GLM Flash Q5 and optional UD-Q6 | Pending | Verified capacity check and precision test where feasible |
+| GLM Flash Q5 and optional UD-Q6 | Q5 download queued | Matched Q4/Q5 placement prepared; Q6 capacity review remains |
 | Kimi Linear 48B Q4 | Pending | Runtime support and capacity, then feasible tasks |
 | Qwen Coder Next 80B Q4 | Pending capacity review | 45+ GiB weights versus apps-open RAM/VRAM; no invented score |
-| Research's explicitly excluded giant models | Pending review | Document capacity/support rejection, not a benchmark claim |
+| Research's explicitly excluded giant models | Capacity review complete | Publisher metadata pinned; four-bit payload arithmetic excludes them from the current apps-open matrix, no local score |
 
 Initial free memory: 25.62 GiB RAM / 7114 MiB VRAM; 85.0 GiB free disk.
 Original Qwen Q4 and retired Qwen Q8 archive still present. No server running.
@@ -43,6 +43,14 @@ closed and no clock/driver changes.
 - 06:53 IST: dense Gemma GPU-KV reached the VRAM guard; RAM-KV loaded and
   passed smoke. Current unloaded RAM fluctuates around 15–19 GiB. No user
   applications closed, update-policy changes, hardware tuning or cloud calls.
+- 06:58 IST: dense CPU-KV calibration cancelled at 300.016 seconds with 259
+  generated tokens, 0.95 tok/s. Peak sampled RAM 14.57 GiB; no resource stop in
+  this attempt. Gemma 26B trial queued behind its verified download; GLM and
+  Qwen Coder downloads queued sequentially. Published 067f6dd passes both CI OSes.
+- 07:04 IST: Gemma 26B verified, loaded and passed smoke; actual routed file
+  calls are being collected. Preserved and deleted the rejected dense model's
+  exact verified weight file, retaining the Qwen baseline. Added portable task
+  plans and froze a 43,228-token Gemma ledger for the later 64K profile.
 
 ## 2026-10-14 — Begin research experiments
 

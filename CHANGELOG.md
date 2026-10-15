@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.2 — 2026-10-15 (campaign in progress)
+
+- Add portable task plans and a comparison walkthrough; freeze a 640-record
+  history case while preserving the original case hashes.
+- Retain monitored server stop reasons in trial summaries.
+- Publish the dense RAM-KV latency rejection, first isolated Gemma 26B code
+  checks, template transport verification and publisher-backed size exclusions.
+- Prepare matched GLM Q4/Q5 placement and a separate Gemma 64K follow-up.
+
 ## 0.3.1 — 2026-10-15 (campaign in progress)
 
 - Preserve restart evidence and distinguish planned update interruptions from

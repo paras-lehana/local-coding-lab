@@ -23,7 +23,7 @@ not a model leaderboard. Clean-machine model downloads remain unvalidated.
 | See what actually worked | [New placement experiment](reports/2026-10-14-placement.md), [historical results](reports/2026-10-14-findings.md) |
 | Understand RAM, VRAM and KV cache | [Memory guide](docs/memory-and-context.md) |
 | Connect VS Code | [Editor guide](docs/editors.md) |
-| Compare models fairly | [Methodology](docs/methodology.md), [questions](benchmarks/questions/router-v1.txt), [rubric](benchmarks/rubrics/router-v1.md) |
+| Compare models fairly | [Run a comparison](docs/run-a-comparison.md), [methodology](docs/methodology.md), [questions](benchmarks/questions/router-v1.txt), [rubric](benchmarks/rubrics/router-v1.md) |
 | Check generated code | [Optional isolated grading](docs/grading.md) |
 | Read the supplied research | [Original research](research/raw/2026-10-14-gemini/README.md), [critical review](research/reviews/2026-10-14-gemini.md) |
 | See what comes next | [Experiment plan](docs/next-experiments.md) |
