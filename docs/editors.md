@@ -40,6 +40,21 @@ entry instruction file, follow one linked rule, inspect a code file and cite
 all three. Inspect tool logs and the final answer. An API test does not prove
 the editor sends history/tools correctly; a spinner does not prove inference.
 
+Instruction discovery also depends on the selected VS Code harness. The current
+official documentation places personal Copilot instructions in
+`~/.copilot/copilot-instructions.md`; the Local harness has separate discovery
+settings. Its `chat.includeReferencedInstructions` default is **false** and
+applies to Markdown links, not arbitrary paths written in backticks.
+[Instruction locations](https://code.visualstudio.com/docs/agent-customization/custom-instructions),
+[setting defaults](https://code.visualstudio.com/docs/agents/reference/ai-settings#custom-instructions-settings).
+
+The inspected Windows adapters already tell the model to read the project
+entry, shared router and applicable sources explicitly. Their presence is
+configuration evidence; actual delivered files and successful tool reads still
+need verification in a fresh editor conversation. Do not mistake an instruction
+index for the contents of every listed document. Loading an entire shared
+library would also consume prompt time and context that the coding task needs.
+
 Earlier private evidence includes a real three-file Copilot reply. Continue UI
 success remains unverified. This repository creation did not rerun either UI.
 The benchmark's 1200-second deadline applies to its own worker; editor socket

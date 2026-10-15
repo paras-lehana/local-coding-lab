@@ -3,7 +3,27 @@
 This is a gated test sequence, not a promised winner. The first Qwen placement
 pair is [complete](../reports/2026-10-14-placement.md): the alternative improved
 generation speed but supplied one broken test. It is locally load-tested, not
-promoted into production. Gemma and GLM remain untested; no weights were deleted.
+promoted into production. The [autonomous campaign](../reports/2026-10-15-campaign.md)
+has since completed Qwen repeats/held-out checks and Gemma's seven-task 32K
+suite, rejected the dense Gemma latency profile, and started GLM's full suite.
+Exact retired weight files were deleted only after evidence preservation.
+
+## Current remaining work
+
+1. Finish and review the queued GLM Q4, Qwen Coder and matched GLM Q5 suites.
+2. Test feasible Qwen Q5 and GLM Q6 profiles with fresh memory and disk gates.
+   Hold placement/context constant for precision claims, or explicitly label
+   their differences. Reassess conditional capacity exclusions after unloading.
+3. Complete Gemma's 64K history and unrestricted held-out follow-up, then the
+   real frozen instruction-file audit on feasible candidates. Public fixtures
+   alone cannot establish performance on the owner's actual shared files.
+4. Finish the outstanding Qwen placement, batch, expert-cache and CPU-KV
+   experiments. The larger-batch attempt interrupted by Windows Update remains
+   unscored. Dense Gemma's RAM-KV result does not substitute for Qwen's probe.
+5. Verify actual Copilot and Continue file/history flows before promotion and
+   publish a ranking limited to the measured tasks and current apps-open memory.
+
+## Original sequence and experiment controls
 
 | Step | Change / question | Evidence needed to continue |
 |---|---|---|

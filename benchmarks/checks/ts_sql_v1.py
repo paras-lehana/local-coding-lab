@@ -1,7 +1,23 @@
 """Independent SQLite contract checks; run only inside the grading sandbox."""
 import json
 from pathlib import Path
+import re
 import sqlite3
+
+
+def transaction_encloses_writes(statements: list[str]) -> bool:
+    """Check SQLite trace statements, allowing comments before real SQL."""
+    normalized = [re.sub(r'\A(?:\s|--[^\n]*(?:\n|$)|/\*.*?\*/)*', '',
+                         statement, flags=re.S).upper()
+                  for statement in statements]
+    begin = next((i for i, sql in enumerate(normalized)
+                  if re.match(r'BEGIN\b', sql)), -1)
+    commit = next((i for i, sql in enumerate(normalized)
+                   if re.match(r'(?:COMMIT|END)\b', sql)), -1)
+    writes = [i for i, sql in enumerate(normalized)
+              if re.match(r'(?:CREATE\s+TABLE|DROP\s+TABLE|ALTER\s+TABLE|'
+                          r'INSERT\s+INTO|UPDATE\b|DELETE\s+FROM)', sql)]
+    return bool(writes) and begin >= 0 and all(begin < i < commit for i in writes)
 
 
 def main() -> int:
@@ -52,8 +68,11 @@ def main() -> int:
         raise AssertionError('Invalid record was accepted')
 
     def uniqueness():
-        db.execute("INSERT INTO jobs VALUES(3,'beta','shared','three',0)")
-        expect_rejected("INSERT INTO jobs VALUES(4,'alpha','shared','four',0)")
+        # Use fresh rows so earlier data loss does not masquerade as a missing
+        # uniqueness constraint. Preservation is already its own check.
+        db.execute("INSERT INTO jobs VALUES(1001,'check-a','check-key','one',0)")
+        db.execute("INSERT INTO jobs VALUES(1002,'check-b','check-key','two',0)")
+        expect_rejected("INSERT INTO jobs VALUES(1003,'check-a','check-key','three',0)")
 
     def attempts():
         db.execute("INSERT INTO jobs(id,tenant_id,external_id,payload) VALUES(5,'a','default','five')")
@@ -65,16 +84,14 @@ def main() -> int:
         assert info['attempts'][3] == 1
 
     def references():
+        # A referenced row must exist even if the migration lost original data.
+        db.execute("INSERT INTO jobs VALUES(1005,'check-c','check-parent','parent',0)")
+        db.execute("INSERT INTO job_events VALUES(1006,1005,'check-event')")
         expect_rejected("INSERT INTO job_events VALUES(30,999,'orphan')")
-        expect_rejected('DELETE FROM jobs WHERE id=1')
+        expect_rejected('DELETE FROM jobs WHERE id=1005')
 
     def transaction():
-        normalized = [s.strip().upper() for s in migration_trace]
-        begin = next(i for i, s in enumerate(normalized) if s.startswith('BEGIN'))
-        commit = next(i for i, s in enumerate(normalized) if s.startswith(('COMMIT', 'END')))
-        writes = [i for i, s in enumerate(normalized)
-                  if any(word in s for word in ('CREATE TABLE', 'DROP TABLE', 'ALTER TABLE', 'INSERT INTO'))]
-        assert writes and all(begin < i < commit for i in writes)
+        assert transaction_encloses_writes(migration_trace)
 
     for name, body in [('data and event preservation', preservation),
                        ('foreign key restoration', foreign_keys),

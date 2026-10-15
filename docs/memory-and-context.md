@@ -39,6 +39,13 @@ while readiness dedicated process VRAM is **4.97 GiB**. Model host buffers are
 10379 MiB; total resident RAM also includes runtime overhead and context
 checkpoints. These figures are specific to this artifact and placement.
 
+GLM-4.7-Flash's measured 32K MLA cache is **898.88 MiB**, reported as
+K q8_0 = 898.88 MiB and V q8_0 = 0.00 MiB. MLA uses shared latent storage;
+the zero separate V allocation is not evidence that the conversation was
+discarded. Its first Q4 balanced load uses about 4.90 GiB dedicated process
+VRAM and 13.40 GiB sampled process RAM. Do not apply the Gemma or Qwen cache
+formula to this architecture, or add a second assumed value cache to the log.
+
 `--cache-ram 0` does not disable every reuse buffer. This runtime separately
 defaults to **32 context checkpoints per slot** (`--ctx-checkpoints`). Gemma's
 logs show individual full sliding-window checkpoints of about 106 MiB, in host

@@ -291,3 +291,28 @@ conditional Qwen Q5 / GLM Q6 profiles and a smaller-host-RAM Qwen 64K proposal.
 Current capacity exclusions carry no quality score and explicitly omit disk-
 paged experiments. One owned inference process remains active; no production
 editor promotion or completed overall ranking is claimed.
+
+Further checkpoint: GLM's bounded core repeats score 1/6, 5/6 and 2/6 independent
+Python groups. Its unrestricted second turn emitted 16,384 reasoning tokens
+without a final answer; total 988.563 seconds, preserved unscored. Its short
+history case passes six checks in 259.859 seconds. These distinguish source
+retrieval from applying the retrieved contract. Qwen Coder's artifact is fully
+verified and its first-load proposal uses 39 CPU expert blocks with an explicit
+RAM/VRAM estimate. Prepared host-private guarded orchestration for the frozen
+15-file personal audit, with a 2048 per-turn runtime reasoning ceiling and the
+unchanged 1200-second whole-prompt limit; no private result yet. Reviewed current
+editor instruction-discovery documentation and bundled implementation without
+claiming automatic file injection or a new UI pass.
+
+Grading checkpoint: GLM's held-out answer loses all SQL data and adds cascading
+deletion; TypeScript fails strict compilation. Fixed a grader defect involving
+leading comments on BEGIN and dependent fixture rows. Preserved the initial
+result and reran all four unchanged migrations plus both controls in isolation.
+GLM's SQL groups correct from 2/6 to 4/6, with both critical failures retained;
+other model outcomes are unchanged. Positive 6/6, negative 2/6. The report also
+discloses grading/download overlap as a timing limitation; finalist timing
+confirmation must avoid simultaneous grading or artifact hashing.
+
+Checkpoint validation for v0.3.4: 20 offline unittests pass, all PowerShell
+scripts parse, the publication audit reports zero findings across 92 files,
+and git diff whitespace checks pass. No private corpus/output is staged.

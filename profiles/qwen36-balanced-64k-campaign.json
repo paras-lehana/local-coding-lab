@@ -2,7 +2,7 @@
   "model": "qwen36-q4",
   "alias": "qwen36-lab",
   "locally_tested": false,
-  "evidence": "Untested follow-up: GPU attention and last five expert blocks, first 35 experts on CPU. Header storage estimates about 15.86 GiB CPU experts / 4.74 GiB remaining tensors, not runtime allocations. 64K q8 KV and smaller compute batches; intended to reduce host RAM while using currently free VRAM. Preserve baseline and measure before promotion.",
+  "evidence": "Untested follow-up: GPU attention and last five expert blocks, first 35 experts on CPU. Header storage estimates about 15.893 GiB CPU experts / 4.712 GiB remaining tensors, not runtime allocations. 64K q8 KV and smaller compute batches; intended to reduce host RAM while using currently free VRAM. Preserve baseline and measure before promotion.",
   "load_min_ram_free_gib": 21,
   "load_min_vram_free_mib": 6500,
   "template_kwargs": {

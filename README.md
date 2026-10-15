@@ -54,8 +54,9 @@ choice, not a claim that it is the latest or best build.
 
 The [setup guide](docs/setup.md) continues through explicit server start, health
 checks, benchmark collection, and stopping. Installation does not start a model.
-Gemma has an initial local code-test pass; it is not yet a demonstrated upgrade
-across the full suite or real editors. Follow the live campaign evidence above.
+Gemma's seven-task 32K suite is reviewed: Python checks pass, while held-out
+TypeScript/SQLite failures remain. It is not a demonstrated upgrade across the
+full workflow or real editors. Follow the live campaign evidence above.
 
 ## What the evidence says
 
@@ -74,9 +75,12 @@ across the full suite or real editors. Follow the live campaign evidence above.
 - Recent memory pressure stopped inference twice. Today's free memory must be
   checked; installed RAM and yesterday's fit are insufficient.
 
-**Next:** repeat the promising Qwen placement and reasoning comparison; test Gemma 4 26B QAT as
-the smaller alternative; then GLM-4.7-Flash UD-Q4_K_XL at 32K if it fits. Verify
-tool calls and code behavior before promoting any model.
+**Now:** finish GLM and Qwen Coder collection, compare feasible precision variants,
+complete larger-history and actual-instruction audits, and verify editor flows.
+The dense Gemma RAM-KV profile missed its practical latency gate. GLM's first
+three core implementations contain semantic defects; its unrestricted repeat
+exhausted the output allowance without a final answer. More thinking or a larger
+model label is not sufficient evidence of better results.
 
 ## Repository map
 

@@ -59,3 +59,10 @@ for V8 reservations; this is not an 8 GiB physical-memory allocation. Compilatio
 plus JS checks have a 60-second wall limit and 30-second CPU limit. SQLite retains
 the Python runner's 20-second / 512 MiB limits. Preserve initial errors before any
 repair. A failed migration is not six independently observed assertion failures.
+
+The SQLite checker strips leading comments from trace statements before checking
+transaction boundaries. Its uniqueness/reference checks insert their own rows,
+so loss of original data does not also masquerade as a missing constraint.
+This correction was made during the 15 October campaign: original results are
+retained, unchanged candidates were rerun, and the report identifies affected
+scores. The positive control includes leading line/block comments.

@@ -66,6 +66,17 @@ closed and no clock/driver changes.
   still required. Recorded apps-open resident-capacity exclusions separately.
 - Verified and deleted only the retired Qwen3.8 Q8 weight archive, reclaiming
   27.052 GiB. Raw historical evidence and the Qwen3.6 baseline remain intact.
+- GLM's three bounded core repeats pass 1/6, 5/6 and 2/6 independent Python
+  groups. Its unrestricted repeat exhausted 16,384 output tokens without a final
+  answer in 988.563 seconds, unscored. The short history case passes six checks
+  in 259.859 seconds. Qwen Coder is verified; the first-load proposal moves two
+  more expert blocks to RAM to accommodate current desktop VRAM use. The frozen
+  actual-instruction audit is queued after Gemma's larger-history follow-up.
+- Corrected commented-transaction detection and isolated SQL constraint checks
+  from preservation failures. Reran all four completed migrations and both
+  controls in the sandbox, preserving originals. GLM's corrected SQL count is
+  4/6 with destructive data loss and altered deletion behavior still failing.
+  Twenty offline tests, PowerShell parsing and the 92-file public audit pass.
 
 ## 2026-10-14 — Begin research experiments
 

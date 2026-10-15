@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.4 — 2026-10-15 (campaign in progress)
+
+- Publish GLM's repeated semantic failures, unrestricted output-limit result
+  and passing short-history checks without mixing incomplete work into scores.
+- Document measured architecture-specific cache storage and current editor
+  instruction discovery, distinguishing file references from delivered sources.
+- Adjust the untested Qwen Coder first-load placement for desktop VRAM use;
+  correct the 64K Qwen proposal's tensor-size estimate.
+- Refresh the exact candidate shortlist, progress and remaining experiments.
+- Fix SQL grading of commented transactions and isolate constraint checks from
+  preservation failures; rerun unchanged candidates and both controls.
+
 ## 0.3.3 — 2026-10-15 (campaign in progress)
 
 - Publish all seven Gemma 32K results, separating passing Python checks from

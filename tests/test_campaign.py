@@ -2,6 +2,7 @@
 import argparse
 import contextlib
 import io
+import importlib.util
 import json
 from pathlib import Path
 import socket
@@ -20,6 +21,25 @@ from test_lab import LocalServer, QuietHandler
 
 class CampaignTests(unittest.TestCase):
     """Test boundaries without loading models or executing generated code."""
+
+    def test_sql_transaction_comments_and_boundaries(self) -> None:
+        """Comments cannot hide real transactions or invent missing ones."""
+        spec = importlib.util.spec_from_file_location(
+            'sql_contract_checks', lab.ROOT / 'benchmarks/checks/ts_sql_v1.py')
+        checks = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(checks)
+        valid = ['-- migration\n/* preserve */ BEGIN TRANSACTION;',
+                 '-- build\nCREATE TABLE next_jobs(id INTEGER);',
+                 '/* done */ COMMIT;']
+        self.assertTrue(checks.transaction_encloses_writes(valid))
+        self.assertFalse(checks.transaction_encloses_writes(
+            ['-- BEGIN\nCREATE TABLE jobs(id INTEGER);', '-- COMMIT']))
+        self.assertFalse(checks.transaction_encloses_writes(
+            ['CREATE TABLE outside(id INTEGER);', *valid]))
+        self.assertFalse(checks.transaction_encloses_writes(
+            [*valid, 'DELETE FROM next_jobs;']))
+        self.assertFalse(checks.transaction_encloses_writes(
+            ['BEGIN;', "SELECT 'CREATE TABLE fake';", 'COMMIT;']))
 
     def test_stale_file_and_transient_error_transport(self) -> None:
         """Phase two returns the update, preserves prior text and hides checks."""
