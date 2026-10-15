@@ -109,6 +109,13 @@ not recommendations merely because their files exist.
   five GPU expert blocks, intended to reduce host RAM at 64K context.
 - `profiles/qwen36-q5-balanced-campaign.json`: conditional Q5 precision proposal
   at 32K; it requires a fresh capacity check and a matched Q4 control.
+- `profiles/qwen36-q6-balanced-campaign.json`: conditional Q6 precision proposal
+  after later RAM recovery; actual header spans, fresh28.5GiB/7000MiB gates,
+  same35-CPU-expert placement as Q4/Q5; no measured Q6 fit yet.
+- `profiles/qwen36-gpu-expert-cache3072.json`: adaptive cache-size-only proposal
+  following the measured1536MiB probe; no new result implied.
+- `profiles/qwen36-cache3072-batch512.json`: proposed cache/batch combination,
+  explicitly separate from single-variable measurements.
 - `profiles/glm47-q6-balanced-campaign.json`: conditional 32K Q6 proposal using
   measured Q4 cache/compute costs and more CPU expert blocks; not yet loaded.
 - `profiles/qwen36-q4-precision-control.json`: proposed 32K matched Q4 control

@@ -37,6 +37,17 @@ tok/s before its five-minute calibration deadline. The GPU-KV attempt stopped
 at its VRAM guard, so this is not a completed A/B measurement of the cache move's
 speed penalty. [Trial evidence](../reports/2026-10-15-campaign.md).
 
+The later **Qwen Q4 RAM-KV** probe also completed: 680 MiB attention KV and
+62.81 MiB recurrent state on CPU, 2.43 GiB dedicated process VRAM, 21.04 GiB peak
+sampled process RAM. Generation was about 13 tok/s; the coding/history prompts
+took 408/242 seconds and passed their code/recall checks. The 1536 MiB expert-cache
+GPU-KV profile generated about 38-39 tok/s but used 4.76 GiB dedicated VRAM and
+20.34 GiB peak process RAM. The two profiles also differ in expert caching, so
+this is a practical option comparison, not an isolated universal KV penalty.
+For this architecture, keeping KV/state on GPU is currently preferable when it
+fits. The expert cache still keeps the original host weights and does not make
+context permanent.
+
 `--gpu-layers all --cpu-moe` completed the measured Qwen placement experiment:
 offload eligible non-expert computation while keeping routed experts on CPU.
 It may increase host memory

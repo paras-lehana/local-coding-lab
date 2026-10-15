@@ -13,8 +13,9 @@ them blindly after interruption.
 - 15:17 IST recovery: new boot at 14:58:04 follows an unexpected shutdown;
   last heartbeat 10:24:01 during GLM Q5 private audit. No new dump/WHEA/GPU
   error or planned-restart event identifies the cause. Marked that audit
-  interrupted/unscored; all successors were unstarted. GLM Q6 partial is zero
-  bytes. Preserved external report, heartbeat and raw event XML privately.
+  interrupted/unscored; all successors were unstarted. GLM Q6 download was
+  incomplete (directory size alone did not establish retained bytes).
+  Preserved external report, heartbeat and raw event XML privately.
   Added commit telemetry and started a short monitored Gemma recovery check.
 - Recovered 10:19 checkpoint: private totals Gemma 19/36, GLM Q4 21/36;
   Coder private audit hit 1200 seconds without a final answer. Its completed
@@ -28,7 +29,7 @@ them blindly after interruption.
 | GLM-4.7-Flash UD-Q4 | Seven tasks collected | Python defects; unrestricted answer incomplete; private audit reviewed, f16 pending |
 | Qwen3-Coder 30B UD-Q4 | Five tasks graded | Core 2/6, 3/6, 1/6; private audit 20-minute deadline; exact weight retired with evidence |
 | Gemma 4 31B QAT dense | Calibration rejected | GPU-KV resource stop; CPU-KV 0.95 tok/s and five-minute deadline; quality unscored |
-| Qwen3.6 Q5 and optional Q6 | Q5 verified; Q6 capacity-rejected | Matched Q4/Q5 comparison queued; Q6 exceeds current resident allowance before required runtime buffers |
+| Qwen3.6 Q5 and optional Q6 | Q5 verified; Q6 conditional after headroom recovery | Matched Q4/Q5 comparison queued; actual Q6 header supports a proposed28.5 GiB/7000 MiB gate, no full download/load yet |
 | GLM Flash Q5 and optional UD-Q6 | Q5 suite graded/private retry running; Q6 downloading | Q5 bounded core 5/6, 0/6, 0/6; unrestricted 6/6; repeats/private audit pending |
 | Kimi Linear 48B Q4 | Conditional profile | Runtime/header reviewed; fresh 26 GiB RAM and disk gates required, no score |
 | Qwen Coder Next 80B Q4 | Current capacity rejected | 45+ GiB weights exceed apps-open resident allowance, no quality score |
@@ -197,3 +198,5 @@ were changed. Original private reports and installation remain outside Git.
   while keeping the combined phases over the deadline; targeted checks pass.
 
 - 15:25 IST: recovery smoke1.11s; short calibration deliberately output-limited/unscored, normal stop. Gemma unrestricted private audit active; frozen eleven-action sequential queue resumes Qwen flags/precision and GLM follow-ups. GLM Q6 download resumed.20 offline tests, PS parsing and96-file publication audit passed. No diagnosis established by owner observation.
+
+- 16:02 IST: recovered Qwen private25/36 and Gemma unrestricted19/36 graded. Batch512/cache1536/CPU-KV probes collected and code graded; all history facts pass. Sampling bundle is running. Prepared but not run3GiB cache, batch combination and conditional Qwen Q6. GLM Q6 transfer ended short; continuing from8.319GB with mandatory full hash.

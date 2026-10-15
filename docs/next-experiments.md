@@ -22,10 +22,11 @@ Exact retired weight files were deleted only after evidence preservation.
    follow-ups. Gemma's 64K history/held-out tests are complete, but its capped
    private audit exposes invented reads and a different merge bug. Public
    fixtures alone cannot establish performance on the actual shared files.
-4. Finish the outstanding Qwen placement, batch, 1536 MiB GPU expert-cache,
-   CPU-KV and research-sampling
-   experiments. The larger-batch attempt interrupted by Windows Update remains
-   unscored. Dense Gemma's RAM-KV result does not substitute for Qwen's probe.
+4. Qwen's resumed batch512,1536MiB expert-cache and CPU-KV probes are complete.
+   Their independent Python groups and six history facts pass, but generated
+   test quality differs. Finish research sampling, then verify adaptive3072MiB
+   cache and its larger-batch combination against a fresh reference. The
+   originally interrupted attempt remains unscored; the resumed run is separate.
 5. Verify actual Copilot and Continue file/history flows before promotion and
    publish a ranking limited to the measured tasks and current apps-open memory.
 
