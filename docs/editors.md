@@ -48,6 +48,14 @@ entry instruction file, follow one linked rule, inspect a code file and cite
 all three. Inspect tool logs and the final answer. An API test does not prove
 the editor sends history/tools correctly; a spinner does not prove inference.
 
+For automatic file discovery in Continue, use **Plan** for the read-only test:
+Chat mode offers no tools, whereas Plan exposes built-in reading/searching
+tools. Chat can still receive explicitly attached context. Agent mode adds
+editing and execution tools. Plan does not filter third-party MCP tools, so
+the test's actual tool inventory must still match its read-only scope.
+[Continue mode behavior](https://docs.continue.dev/ide-extensions/agent/how-it-works),
+[Plan mode details](https://github.com/continuedev/continue/blob/main/docs/ide-extensions/plan/how-it-works.mdx).
+
 Instruction discovery also depends on the selected VS Code harness. The current
 official documentation places personal Copilot instructions in
 `~/.copilot/copilot-instructions.md`; the Local harness has separate discovery

@@ -13,7 +13,7 @@ separates completed measurements, downloads and conditional exclusions.
 | Matched precision comparison | `glm47-q5` | 19.939 | Suite graded: bounded Python 5/6, 0/6, 0/6; unrestricted 6/6; private retry interrupted, unscored |
 | Dense conditional gate | `gemma4-31b-qat` | 16.439 | RAM-KV calibration 0.95 tok/s, deadline; weight file retired after preservation |
 | Non-thinking coding control | `qwencoder30-udq4` | 16.452 | Python 2/6, 3/6, 1/6; private deadline, unscored; exact weight retired with reports retained |
-| Conditional precision | `qwen36-q5` | 24.639 | Download verified; fresh load gates and matched control required |
+| Conditional precision | `qwen36-q5` | 24.639 | Matched Python repeats 6/6, like Q4, with more memory and longer mean time; native private audit still pending |
 | Optional precision | `qwen36-q6` | 29.657 | Header inspected after RAM briefly recovered to 28.76 GiB; conditional 32K profile requires 28.5 GiB / 7000 MiB fresh headroom and verified download |
 | Conditional precision | `glm47-udq6` | 24.378 | Full pinned size and SHA-256 verified after resumed transfers; inference queued, different placement must be disclosed |
 | Linear-attention alternative | `kimi-linear-q4` | 27.997 | Headroom improved; conditional 26 GiB / 6800 MiB profile proposed, latest gate still not met |

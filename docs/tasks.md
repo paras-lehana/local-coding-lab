@@ -26,10 +26,10 @@ them blindly after interruption.
 |---|---|---|
 | Qwen3.6 Q4 | Core/history/held-out and initial flag probes collected | Private capped 25/36; batch/cache/CPU-KV code and recall pass; lower-temperature TS/SQL fail; matched Q4 control complete, larger-cache probes pending |
 | Gemma 4 26B QAT | 32K/64K suites and both private audits reviewed | 52K-input recall passes; unrestricted SQL 6/6, TS 5/6; capped/unrestricted private scores both 19/36 |
-| GLM-4.7-Flash UD-Q4 | Seven tasks collected | Python defects; unrestricted answer incomplete; private audit reviewed, f16 pending |
+| GLM-4.7-Flash UD-Q4 | q8 and f16 public follow-ups reviewed | f16 native code6/6; original own script runs zero tests, supplemental13/14; history count wrong; conditional f16 private audit pending |
 | Qwen3-Coder 30B UD-Q4 | Five tasks graded | Core 2/6, 3/6, 1/6; private audit 20-minute deadline; exact weight retired with evidence |
 | Gemma 4 31B QAT dense | Calibration rejected | GPU-KV resource stop; CPU-KV 0.95 tok/s and five-minute deadline; quality unscored |
-| Qwen3.6 Q5 and optional Q6 | Q5 loaded and testing; Q6 conditional | Matched Q4 control collected; Q6 requires fresh 28.5 GiB/7000 MiB gates and full verified artifact, no full download/load yet |
+| Qwen3.6 Q5 and optional Q6 | Q5 public suite complete; Q6 conditional | Q5 matched core6/6 each but19.1% slower, held-out TS4/6/SQL failure; native private pending. Q6 requires fresh28.5GiB/7000MiB gates and full verified artifact |
 | GLM Flash Q5 and optional UD-Q6 | Q5 suite graded; Q6 download verified | Q5 bounded core 5/6, 0/6, 0/6; unrestricted 6/6; follow-ups/private retry and Q6 inference queued |
 | Kimi Linear 48B Q4 | Conditional profile | Runtime/header reviewed; fresh 26 GiB RAM and disk gates required, no score |
 | Qwen Coder Next 80B Q4 | Current capacity rejected | 45+ GiB weights exceed apps-open resident allowance, no quality score |
@@ -206,3 +206,5 @@ were changed. Original private reports and installation remain outside Git.
 16:35 IST: corrected legacy human-review/human-authored labels to Codex source assessments and independent contract checks. Semantic scores are not independently human-reviewed. Collector note and grader docstring change only attribution, not prompts, assertions or raw artifacts. Q4 matched control finished186.016/210.984/239.656seconds; first two independent implementations6/6, third awaiting between-load grading. Q5 loaded and first answer244.187seconds reviewed. No new editor pass.
 
 16:38 IST validation:20 offline tests pass in9.288seconds, PowerShell scripts parse,99-file publication audit has0 findings, diff check passes. v0.3.7 corrects attribution only in collector/checker code; no benchmark prompt, behavioral assertion or original raw-result changes. Dedicated server remains the single Q5 test on8081.
+
+17:15 IST checkpoint: matched Qwen Q4/Q5 core implementations all6/6; Q5 average252.797s versus212.219s,19.1% longer, without a demonstrated code advantage. Q5 whole-suite peakRAM21.35GiB and dedicatedVRAM5.99GiB; held-out strictTS4/6 and SQL FK migration failure. Numeric matched settings/input/artifact/checker hashes published separately. GLM Q4 f16 allocation1692MiB K/zero separate V, native173.219s/code6/6; original generated script invokes no tests, supplemental entrypoint13/14. Capped f16 code5/6 with alias bug. History six facts correct but READY243 instead of120; explicitly failed count. Conditional64K native QwenQ5/GLMf16/GLMQ6 private profiles prepared, no load claimed. GLMQ5 native74/75 and TS/SQL reviewed, waiting for between-load isolated grading; private retry currently running. No new cloud calls, editor promotion, app closure or hardware changes.

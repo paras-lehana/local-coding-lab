@@ -60,6 +60,7 @@ Initial repository contents and purpose, followed by subsequent change inventori
 | `scripts/capture-gpu.ps1` | Dedicated GPU-memory snapshot for an explicit owned PID |
 | `scripts/run_isolated.py` | Optional Linux/bubblewrap grading, namespace preflight and resource limits; no host fallback |
 | `benchmarks/checks/router_v1.py` | Six Codex-authored independent contract groups, added after collection and excluded from model inputs |
+| `reports/2026-10-15-qwen-precision-results.json` | Reviewed matched Q4/Q5 numeric results, exact model identities, timing/resource scope and grading caveats |
 | `tests/test_lab.py` | Owned-stop-file regression test |
 | `tests/test_isolation.py` | Unsupported-host and failed-preflight execution boundary tests |
 | `.github/workflows/offline-checks.yml` | Parse every PowerShell script |
