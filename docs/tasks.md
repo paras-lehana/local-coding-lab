@@ -13,14 +13,14 @@ them blindly after interruption.
 | Candidate | Status | Required disposition |
 |---|---|---|
 | Qwen3.6 Q4 | Core/history/held-out collected | Python passes; TS/SQL bugs persist with unrestricted thinking; larger batch interrupted by planned update |
-| Gemma 4 26B QAT | Verified; suite running | Balanced 32K profile, 4.97 GiB dedicated VRAM; file tools working |
-| GLM-4.7-Flash UD-Q4 | Downloading | Load/MLA/q8 behavior, coding, memory, history |
-| Qwen3-Coder 30B UD-Q4 | Pending | Non-thinking comparison, coding and history |
+| Gemma 4 26B QAT | 32K/64K suites reviewed; capped private audit reviewed | 52K-input recall passes; SQL 6/6, TS 5/6; private read/merge failures; unrestricted private repeat queued |
+| GLM-4.7-Flash UD-Q4 | Seven tasks collected | Python defects; unrestricted answer incomplete; private audit reviewed, f16 pending |
+| Qwen3-Coder 30B UD-Q4 | Five tasks graded | Core 2/6, 3/6, 1/6; TS 5/6, migration fails; private audit pending |
 | Gemma 4 31B QAT dense | Calibration rejected | GPU-KV resource stop; CPU-KV 0.95 tok/s and five-minute deadline; quality unscored |
-| Qwen3.6 Q5 and optional Q6 | Pending | Verified capacity check and matched precision test where feasible |
-| GLM Flash Q5 and optional UD-Q6 | Q5 download queued | Matched Q4/Q5 placement prepared; Q6 capacity review remains |
-| Kimi Linear 48B Q4 | Pending | Runtime support and capacity, then feasible tasks |
-| Qwen Coder Next 80B Q4 | Pending capacity review | 45+ GiB weights versus apps-open RAM/VRAM; no invented score |
+| Qwen3.6 Q5 and optional Q6 | Q5 verified; Q6 capacity-rejected | Matched Q4/Q5 comparison queued; Q6 exceeds current resident allowance before required runtime buffers |
+| GLM Flash Q5 and optional UD-Q6 | Q5 seven tasks graded; Q6 disk gate | Q5 bounded core 5/6, 0/6, 0/6; unrestricted 6/6; repeats/private audit pending |
+| Kimi Linear 48B Q4 | Conditional profile | Runtime/header reviewed; fresh 26 GiB RAM and disk gates required, no score |
+| Qwen Coder Next 80B Q4 | Current capacity rejected | 45+ GiB weights exceed apps-open resident allowance, no quality score |
 | Research's explicitly excluded giant models | Capacity review complete | Publisher metadata pinned; four-bit payload arithmetic excludes them from the current apps-open matrix, no local score |
 
 Initial free memory: 25.62 GiB RAM / 7114 MiB VRAM; 85.0 GiB free disk.
@@ -91,6 +91,15 @@ closed and no clock/driver changes.
   running. Eleven reviewed answers are queued for grading before the private
   audits. Qwen Q5 is verified; GLM Q6 stopped at its disk gate. Batch512,
   GPU expert-cache, CPU-KV and research-sampling probes are queued sequentially.
+- 09:39 IST: Gemma 64K completed both larger-history cases and unrestricted
+  held-out work. The 640-record case passes all six final facts and correct
+  count at 52,231 maximum input tokens in 631.563 seconds; the 320 case
+  miscounts 318 despite correct final facts. Twelve reviewed answers were
+  graded in isolation between loads. Gemma's unrestricted SQL passes 6/6 and
+  TS 5/6; GLM Q5 unrestricted Python passes 6/6 but bounded repeats vary badly.
+  Qwen Coder own-test coverage misses independent failures. Its seed75 test
+  file defines tests without invoking them; supplemental runner-only execution
+  is queued. Private Gemma audit started; production editor selection unchanged.
 
 ## 2026-10-14 — Begin research experiments
 
@@ -141,11 +150,12 @@ were changed. Original private reports and installation remain outside Git.
 
 ## Agent Deferred
 
-- First Qwen placement pair is complete; repeated/held-out and reasoning-budget
-  comparisons remain required before promotion. Gemma and GLM remain untested.
+- Repeated core and held-out comparisons now exist for Qwen/Gemma/GLM. Finish
+  pending precision/settings/private-audit results before choosing a finalist.
 - Clean-machine real runtime/model download is not part of offline validation.
-- Long-history, stale-file, transient-tool-error and held-out language fixtures
-  remain future work; v0.1 offers frozen inline and allowlisted-read modes.
+- Long-history, stale-file and held-out language fixtures now run in v0.3.
+  Larger-history coverage remains active; failed-tool recovery requires an
+  observed attempted unavailable read and cannot be inferred from avoiding it.
 - Isolated Python contract grading now passed for both completed answers. The
   benchmark collector still cannot execute code; broader language tests remain.
 - Continue UI and candidate editor tool transport require observed tests.

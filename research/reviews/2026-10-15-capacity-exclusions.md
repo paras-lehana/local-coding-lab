@@ -3,9 +3,11 @@
 Checked against publisher model cards and Hugging Face metadata on 15 October 2026.
 These are capacity dispositions, not local benchmark scores. No weights were
 downloaded for these models. The recent unloaded host snapshots had roughly
-15?23 GiB free RAM and 6.7?7.3 GiB free VRAM, before inference overhead and guards.
+15 to 23 GiB free RAM and 6.7 to 7.3 GiB free VRAM, before inference overhead
+and guards. Later snapshots improved to about 26 GiB free RAM; this does not
+change the exclusions for the giant models in this table.
 
-The final column is arithmetic: stored parameter/tensor-element count ? 0.5
+The final column is arithmetic: stored parameter/tensor-element count times 0.5
 bytes / 2^30. It is an idealized uniform four-bit payload, **not an actual GGUF**,
 fit measurement or quality prediction. Mixed precision, scales, metadata,
 embeddings, KV and compute allocations can increase real memory needs.

@@ -38,6 +38,10 @@ the final six on GPU. At 32K its active q8 KV is only **473 MiB on the GPU**,
 while readiness dedicated process VRAM is **4.97 GiB**. Model host buffers are
 10379 MiB; total resident RAM also includes runtime overhead and context
 checkpoints. These figures are specific to this artifact and placement.
+At 64K with the same placement, the measured cache is **813 MiB**: 680 MiB
+global plus 133 MiB sliding-window, all on GPU. Readiness dedicated VRAM is
+**5.31 GiB**. Doubling context did not double every cache component; recall
+quality is being tested separately from successful allocation.
 
 The pinned Gemma header has 25 sliding-window and five global-attention blocks.
 Use those actual arrays and measured padded allocation, rather than the external
@@ -72,8 +76,11 @@ exact source delivery and successful reads. Opening a file tab is not proof its
 contents reached the model. Editing a file requires a fresh read to avoid stale
 answers. The separate `context-v1` scenarios now test changed-file re-reading
 and earlier ledger facts; core `router-v1` does not. The larger case contains
-43,228 Gemma ledger tokens before chat overhead and is not yet a passed recall
-test. Long-term project knowledge belongs in versioned notes plus retrieval.
+43,228 Gemma ledger tokens before chat overhead. Its 64K follow-up recovered all
+six final facts and the correct record count at a largest input of 52,231 tokens,
+in 631.563 seconds. That is a two-phase long-document result, not an arbitrary
+many-turn coding-session guarantee. Long-term project knowledge belongs in
+versioned notes plus retrieval.
 
 Native Qwen3.6 thinking on/off differs from llama.cpp's `reasoning_budget_tokens`.
 The latter was locally verified as a ceiling of 0/512/2048 tokens; it is not a

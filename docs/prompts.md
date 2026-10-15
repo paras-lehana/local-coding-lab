@@ -348,3 +348,30 @@ is made. Updated grading/timing methodology to distinguish visible intermediate
 content from the final message. Gemma's 64K follow-up is running. Qwen Q5 is
 verified; GLM Q6 awaits disk space after its pre-download gate refused. Four
 remaining Qwen settings probes are queued behind the precision comparisons.
+
+09:39 IST checkpoint: Gemma's three-task 64K follow-up is complete with normal
+shutdown. The 640-record history case passes six facts/count/fresh-read checks
+at 52,231 input tokens; the 320-record count is wrong despite six correct final
+facts. Twelve previously reviewed code answers were graded between model loads.
+Gemma unrestricted SQL is 6/6 and strict TypeScript 5/6. GLM Q5 bounded Python
+scores 5/6, 0/6, 0/6; unrestricted 6/6. Qwen Coder scores 2/6, 3/6, 1/6; its
+last standalone test script invokes no tests, so supplemental unchanged tests
+with a harness entrypoint are queued. No implementation was repaired for scores.
+
+Corrected the current parent installation guide's retired Qwen Q8 note and
+added the campaign pointer, with a private backup. Read the maintenance skill,
+Windows Claude/Codex entry points and shared router; existing adapters need no
+change. Unrelated dirty files in the shared repo were preserved. Froze actual
+editor greeting/source/history prompts and observed 1044 accessible VS Code
+controls, without opening another window or claiming UI inference. Rechecked
+Continue's installed reasoning serializer and corrected the public example to
+the explicit-localhost Deepseek adapter. The private Gemma audit is running.
+
+### 10:00 IST continuing checkpoint
+
+Gemma and GLM Q4 completed the separate actual-instruction audit. Private source
+bytes stay local; the public report records retrieval failures, contradictory
+code claims, measured memory and timings. Reviewed unchanged code is queued for
+isolated grading between loads. Added an optional private-wrapper budget flag
+(default 2048 unchanged) and queued unrestricted Gemma/Qwen follow-ups. Qwen
+Coder supplemental test invocation is 6/7; the original script ran no tests.

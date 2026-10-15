@@ -5,19 +5,23 @@ pair is [complete](../reports/2026-10-14-placement.md): the alternative improved
 generation speed but supplied one broken test. It is locally load-tested, not
 promoted into production. The [autonomous campaign](../reports/2026-10-15-campaign.md)
 has since completed Qwen repeats/held-out checks and Gemma's seven-task 32K
-suite, rejected the dense Gemma latency profile, and started GLM's full suite.
+suite, rejected the dense Gemma latency profile, and collected GLM Q4/Q5 and
+Qwen Coder suites.
 Exact retired weight files were deleted only after evidence preservation.
 
 ## Current remaining work
 
-1. Finish and review the queued GLM Q4, Qwen Coder and matched GLM Q5 suites.
+1. Finish isolated grading and actual-instruction audits for the collected
+   GLM Q4/Q5 and Qwen Coder suites; preserve source and test defects separately.
 2. Test feasible Qwen Q5 and GLM Q6 profiles with fresh memory and disk gates.
    Hold placement/context constant for precision claims, or explicitly label
    their differences. Reassess conditional capacity exclusions after unloading.
-3. Complete Gemma's 64K history and unrestricted held-out follow-up, then the
-   real frozen instruction-file audit on feasible candidates. Public fixtures
-   alone cannot establish performance on the owner's actual shared files.
-4. Finish the outstanding Qwen placement, batch, expert-cache and CPU-KV
+3. Complete the real frozen instruction-file audits and unrestricted finalist
+   follow-ups. Gemma's 64K history/held-out tests are complete, but its capped
+   private audit exposes invented reads and a different merge bug. Public
+   fixtures alone cannot establish performance on the actual shared files.
+4. Finish the outstanding Qwen placement, batch, 1536 MiB GPU expert-cache,
+   CPU-KV and research-sampling
    experiments. The larger-batch attempt interrupted by Windows Update remains
    unscored. Dense Gemma's RAM-KV result does not substitute for Qwen's probe.
 5. Verify actual Copilot and Continue file/history flows before promotion and
@@ -49,14 +53,16 @@ recall are measured, including desktop usage.
 
 After a stable placement is chosen, compare Qwen's 512/2048/unrestricted
 reasoning ceilings with the same profile, seed, prompt and deadline. Then
-compare temperature 0.6 against the research's proposed 0.35, holding min-p
-fixed initially. Current 7/7 code evidence is insufficient to set a global
+compare temperature 0.6 against the research's proposed 0.35. The currently
+queued research bundle also changes min-p to 0.02; it cannot isolate either
+sampling variable's effect. Current 7/7 code evidence is insufficient to set a global
 2048 ceiling or claim unrestricted reasoning is worse.
 
-All-RAM KV and a small 512 MiB GPU expert cache come later, one at a time,
+All-RAM KV and a GPU expert cache come later, one at a time,
 with RAM/VRAM headroom. Record prefill as well as decode: a faster generator
 can still finish a file-heavy request later. GPU expert caching retains the
-CPU weight copies. Dense Gemma 31B needs a short latency gate before a full
+CPU weight copies. The queued cache probe uses 1536 MiB, replacing the initial
+512 MiB suggestion. Dense Gemma 31B needs a short latency gate before a full
 audit. Qwen Q5 requires a larger memory envelope and a matched Q4 comparison.
 
 ## Promotion rules

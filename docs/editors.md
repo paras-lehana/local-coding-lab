@@ -18,14 +18,22 @@ version: 1.0.0
 schema: v1
 models:
   - name: Qwen lab
-    provider: openai
+    provider: deepseek
     model: qwen36-lab
-    apiBase: http://127.0.0.1:8080/v1
+    apiBase: http://127.0.0.1:8080/v1/
     apiKey: local-unused
     defaultCompletionOptions:
       contextLength: 40000
       maxTokens: 24576
 ```
+
+For the inspected **Continue 2.0.0**, this deliberately uses its Deepseek adapter
+with an explicit loopback URL. The installed adapter enables transport of prior
+`reasoning_content`; its generic OpenAI adapter leaves that capability disabled.
+The provider name here selects a serializer, not a hosted DeepSeek model. Keep
+the loopback URL explicit. This is source/configuration evidence; successful
+multi-turn UI transport still needs observation. Recheck this behavior for a
+different Continue release rather than assuming the workaround is permanent.
 
 This budget is specifically for the 64K Qwen reference: prior inspection of
 Continue 2.0.0 found its history pruner reserved only 1000 tokens, so the input
@@ -59,3 +67,10 @@ Earlier private evidence includes a real three-file Copilot reply. Continue UI
 success remains unverified. This repository creation did not rerun either UI.
 The benchmark's 1200-second deadline applies to its own worker; editor socket
 timeouts do not automatically enforce the same whole-conversation limit.
+
+For read-only Copilot integration checks, the existing Local Files custom agent
+offers only file reading/searching. Custom agents can declare an explicit tool
+list; select the intended local model and inspect actual calls. The saved editor
+test plan checks a greeting, real instruction/runtime files, then a changed-file
+read plus an earlier chat marker. Preparing that plan is not a completed UI test.
+[VS Code custom-agent tools](https://code.visualstudio.com/docs/agent-customization/custom-agents#header-optional).
