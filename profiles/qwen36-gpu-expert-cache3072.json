@@ -1,8 +1,8 @@
 {
   "model": "qwen36-q4",
   "alias": "qwen36-lab",
-  "locally_tested": false,
-  "evidence": "Adaptive follow-up after1536MiB cache measured39.18 generation tok/s,4.76GiB dedicated VRAM and20.34GiB peak RSS. Double only GPU expert cache; CPU weight copies remain. Estimated process VRAM around6.3GiB, not a measured fit. Fresh23GiB RAM/7100MiB VRAM gates required.",
+  "locally_tested": true,
+  "evidence": "Completed3072MiB probe: core6/6/history pass118/135s;6.26GiB dedicatedVRAM and minimum661MiB freeVRAM. Not preferred desktop margin; no universal speedup claim. See reports/2026-10-15-campaign.md; frozen trial snapshots retained.",
   "load_min_ram_free_gib": 23,
   "load_min_vram_free_mib": 7100,
   "template_kwargs": {
@@ -66,5 +66,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "measured_see_report_not_quality_certification"
 }

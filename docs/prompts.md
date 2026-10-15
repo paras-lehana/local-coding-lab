@@ -8,7 +8,8 @@ private instruction contents and raw editor chats.
 | 1 | 2026-10-14 | 22:35 | Establish reusable research repository | Infrastructure | Done | [Entry](#repository-creation) |
 | 2 | 2026-10-14 | 23:12 | Start research: controlled Qwen placement | Research | Done | [Entry](#research-placement-experiment) |
 | 3 | 2026-10-15 | 00:47 | Autonomous full research campaign | Research | In progress | [Entry](#autonomous-research-campaign) |
-| 4 | 2026-10-15 | 15:17 | Recover after unexpected shutdown | Infrastructure / Research | In progress | [Entry](#unexpected-shutdown-recovery) |
+| 4 | 2026-10-15 | 15:17 | Recover after unexpected shutdown | Infrastructure / Research | Evidence reviewed; cause unknown | [Entry](#unexpected-shutdown-recovery) |
+| 5 | 2026-10-15 | 20:58 | Working selection, comparison and editor gate | Research / Config | API done; UI blocked | [Entry](#working-selection-and-editor-gate) |
 
 ## Repository creation
 
@@ -421,3 +422,81 @@ Original request: "you please continue, the pc was restarted itself, see if you 
 19:16 IST checkpoint: GLMf16 native private27/36 (19+4+4); GLMQ6 native private24/36 (17+2+5), all saved and isolated graded. Qwen2GiB-cache private completed402.703s with honest14-source inventory; semantic19/citations4, code queued. Historical34-expert replay active; Kimi public suite waits serially. Restart cause remains unknown, owner did not observe event. No new editor prompt or production promotion.
 
 19:30 IST checkpoint: historical Qwen placement replay31/36 (20+6+5),864.266s, all15 sources and accurate ranges;2GiB-cache27/36 (19+4+4),402.703s. Kimi q8V fails72/32 dimension constraint; mixed K/V fails architecture constraint; matching f16 loads with252MiB KV+42.81MiB recurrent state. Public suite active, first malformed-call failure preserved.20 offline tests pass9.192s; PS parse and110-file export audit/diff check pass. Offline tests overlap Kimi inference, disclosed. v0.3.8 adds separate compatibility profiles; production unchanged.
+
+19:58 IST checkpoint: e2eb995/v0.3.8 published; Windows+UbuntuCI38748100354 passes. Kimi matching-f16 public suite completed normally: core4/6, malformed-call/no-code,6/6; own combined7/8 each and standalone8NameErrors; history facts pass/count242vs120 fails; TS/SQL source reviewed, isolated queued. Optional QwenQ6 fresh27.426GiB<28.5 gate rejected before retirement/download. Historical Qwen contender native cores73/74 completed473.265/469.328s, source reviewed and isolated queued;75/TS/52K follow. No hashing or sandbox grading during contender timing. Kimi64K private conditional after contender. Historical private answer exactly matches old31/36 answer, so repetition is reproducibility only. UI private helper staged/parsed, owned window screenshot inspected; no prompt sent. Conditional48K input/16K output budgets and candidate runtime staged only; production remains1.4/stopped.
+
+## Working selection and editor gate
+
+Project: local-coding-lab. Branch: main. Mode: Default.
+
+### Continuing request
+
+> please continue, dont know why the computer restarted.
+> I wasn't watching / don't know
+
+The owner's earlier autonomous comparison/report authority remains active; see the preserved owner-request file. Applications remain open, RAM2800 accepted, whole prompts1200s, no new cloud calls.
+
+### Sources and validation actually used
+
+Read project/parent AGENTS, README, methodology, grading and task records; maintained shared Codex guide, Windows adapters, router, host facts, platform rules, Python/documentation and logging rules; agent-context-maintenance skill. Reviewed frozen benchmark sources as data, complete visible answers and isolated test records. Updated project-owned guidance; shared adapters reviewed and unchanged because routing remains valid. No private source bodies or credentials exported.
+
+Production API/native reasoning/two-file round trip passed.20 offline tests passed8.881s; public scripts parsed,113-file audit0findings, diff check passed. Initial PowerShell5 stderr-wrapper interruption preserved; complete Python subprocess rerun passed. Windows input desktop access still denied/error5 at20:54, foreground0; no fresh UI prompt sent.
+
+### Prepared user-visible closeout
+
+**A. Result**
+
+The comparisons are saved and **Qwen3.6-35B-A3B UD-Q4_K_M is running at localhost:8080**. I chose the instruction-focused profile: **31/36** on your instruction audit versus **27/36** for the faster expert-cache profile. It also passed the roughly 52K-token history test. Coding bugs remain; the repeated 31/36 answer was identical to its earlier result.
+
+The restart’s cause is still **unknown**. The logs establish an unclean shutdown without a recorded bugcheck; they do not establish that RAM speed caused it.
+
+[Full comparison, settings and recommendation](https://github.com/paras-lehana/local-coding-lab/blob/main/docs/tasks/2026-10-15-autonomous-model-campaign/2026-10-15-model-comparison-and-editor-validation-v0.3.9.md)
+
+**B. Installed setup and checks**
+
+- **Memory:** about 17 GiB process RAM and 5.38 GiB dedicated VRAM at readiness; 18.09 GiB peak RAM in the finalist suite.
+- **Context:** 64K, with 680 MiB attention KV split between GPU 544 MiB and RAM 136 MiB. This is temporary context, not permanent file memory.
+- **Thinking:** native thinking enabled; no separate reasoning ceiling or invented “ultra” setting. Output allowance: 16,384 tokens.
+- **Live API:** READY in 12 seconds; correct two-file tool response in 34 seconds. Twenty offline tests, PowerShell parsing and publication checks passed.
+
+**C. Request status**
+
+| Request | Status |
+|---|---|
+| Compare models, settings and actual instructions | Completed for feasible tests; capacity/deadline exclusions documented |
+| Publish reports and reusable setup | Published in the repository |
+| Select and load a model | Done; API verified |
+| Identify restart cause | Evidence reviewed; cause unresolved |
+| Verify actual Copilot and Continue chats | Blocked by unavailable Windows desktop |
+
+**D. Other changes**
+
+Corrected Continue’s timeout units and installed 48K-input/16K-output client budgets. Encrypted configuration backups preserve other providers. Retired four verified nonselected weights, reclaiming **93.33 GiB**; Qwen Q4 and the lower-memory Gemma 26 fallback remain.
+
+**E. Remaining work**
+
+| Item | What is needed |
+|---|---|
+| Fresh Copilot/Continue greeting, file reads and history checks | An unlocked interactive desktop; no fresh UI prompt was sent |
+| Optional larger models | More available RAM; no scores invented for rejected profiles |
+
+**F. My recommendation**
+
+Use this setup for supervised Python work and file-grounded questions. Run independent tests, especially for mutation and validation bugs. Review SQL migrations carefully. Keep durable decisions in project notes and re-read changed files.
+
+**G. Manager copy**
+
+```text
+Local Coding Lab — comparisons published and preferred model installed, version 0.3.9.
+
+What's done
+- Compared the feasible candidates using coding problems, real instruction documents, file references and long conversation history.
+- Selected a model that best matches the owner's emphasis on following instructions. The local service is running and answered both a greeting and a file-reading check.
+- Preserved the experiment evidence, retained a smaller fallback and removed completed alternatives to recover disk space.
+- Reviewed the restart evidence. The cause remains unknown; the available logs do not identify a failed component.
+
+Suggested next steps
+- Unlock the workstation to finish the actual editor checks. Those checks have not been claimed as successful.
+- Use independent tests and human review before accepting generated code, especially database changes.
+- Keep important project decisions in maintained documents so future conversations can retrieve them reliably.
+```

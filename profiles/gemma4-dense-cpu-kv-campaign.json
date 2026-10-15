@@ -2,7 +2,7 @@
   "model": "gemma4-31b-qat",
   "alias": "gemma4-dense-lab",
   "locally_tested": false,
-  "evidence": "CPU-KV retry after the GPU-KV profile reached 223 MiB free VRAM and was stopped. Same 16K context, dense FFNs on CPU; measured prior model buffers 5655 MiB GPU / 12265 MiB host, KV 1211 MiB. This moves that KV allocation to RAM; throughput unmeasured.",
+  "evidence": "CPU-KV loaded; READY completed, but calibration0.95tok/s hit300s gate before quality suite. No completed quality score; not a practical selected profile. Retained for reproducibility; explicit experimental opt-in required.",
   "load_min_ram_free_gib": 17.5,
   "load_min_vram_free_mib": 6800,
   "template_kwargs": {
@@ -66,5 +66,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "rejected_or_incomplete"
 }

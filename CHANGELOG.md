@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.9 - 2026-10-15
+
+- Complete both Qwen finalist suites with three seeds, strict TypeScript/SQLite
+  and52K-input history; publish reviewed aggregates and the working selection.
+- Add the instruction-priority64K profile and reconcile every attempted
+  candidate's measured, rejected or incomplete disposition without changing
+  frozen trial snapshots. Preserve coding defects and capacity exclusions.
+- Record exact production API/tool and memory evidence, client budget/timeout
+  correction, encrypted local settings backups and evidence-preserving weight
+  retirement. Fresh editor UI validation remains blocked by the unavailable
+  Windows desktop; no editor success is claimed from the API.
+
 ## 0.3.8 - 2026-10-15 (campaign in progress)
 
 - Preserve Kimi's q8 value-cache compatibility failure; add a separate q8-key /

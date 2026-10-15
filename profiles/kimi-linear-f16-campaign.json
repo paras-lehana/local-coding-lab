@@ -1,8 +1,8 @@
 {
   "model": "kimi-linear-q4",
   "alias": "kimi-linear-lab",
-  "locally_tested": false,
-  "evidence": "Compatibility retry after b11562 rejected q8 V dimension72/block32, then rejected differing K/V types for this architecture. Use matching f16 K/V at same32K placement and gates. Two normal load errors preserved; no OOM or quality score. Actual allocations still require measurement.",
+  "locally_tested": true,
+  "evidence": "Matching f16 loads:252MiB KV/42.81MiB recurrent at32K; public core4/6, malformed tool call/no code,6/6; TS4/6, SQL syntax failure, history count wrong. Separate64K private capacity-rejected. Non-thinking; not selected. See reports/2026-10-15-campaign.md; frozen trial snapshots retained.",
   "load_min_ram_free_gib": 26,
   "load_min_vram_free_mib": 6800,
   "template_kwargs": {},
@@ -64,5 +64,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "measured_see_report_not_quality_certification"
 }

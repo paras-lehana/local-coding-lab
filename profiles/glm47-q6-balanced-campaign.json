@@ -1,8 +1,8 @@
 {
   "model": "glm47-udq6",
   "alias": "glm47-lab",
-  "locally_tested": false,
-  "evidence": "Conditional Q6 trial based on measured GLM Q4 buffers: move first 42 blocks of experts to CPU (41 routed blocks), leaving five routed expert blocks on GPU. Estimated host expert spans 19.65 GiB plus embedding/runtime; actual 32K GLM q8 KV was 898.90 MiB. Requires fresh memory gates. Placement differs from Q4/Q5 n_cpu_moe40, so do not attribute all differences solely to precision.",
+  "locally_tested": true,
+  "evidence": "Completed32K Q6 suite: capped5/6,0/6,6/6; native5/6; strict TS fails, SQL loses data; separate64K native private24/36. Not selected; weight retired. See reports/2026-10-15-campaign.md; frozen trial snapshots retained.",
   "load_min_ram_free_gib": 23.5,
   "load_min_vram_free_mib": 6800,
   "template_kwargs": {
@@ -65,5 +65,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "measured_see_report_not_quality_certification"
 }

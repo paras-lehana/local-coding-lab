@@ -9,30 +9,36 @@ suite, rejected the dense Gemma latency profile, and collected GLM Q4/Q5 and
 Qwen Coder suites.
 Exact retired weight files were deleted only after evidence preservation.
 
-## Current remaining work
+## Completed campaign and remaining editor gate
 
-1. Finish the native private audits
-   for Qwen Q5, GLM Q4 f16 and GLM Q6, subject to fresh memory gates. GLM Q5's
-   recovered audit scored21/36; its weight is retired with all answers retained.
-   Its earlier interrupted attempt remains unscored. GLM Q6's public suite
-   completed with inconsistent code, a history count error and narrow VRAM
-   headroom; held-out isolated checks confirm TypeScript compile failure and
-   SQL data loss.
-2. Test Kimi's actual fit and tools. Its complete artifact is now verified. The
-   download began after an unloaded26.42GiB/7112MiB snapshot; that does not
-   replace the fresh load check. Reassess optional Qwen Q6's28.5GiB RAM gate
-   after unloading; do not invent a quality score for a capacity rejection.
-3. Quality first: compare the proposed2GiB cache/batch512 Qwen profile with a
-   fresh replay of the historical34-CPU-expert placement that scored31/36.
-   The newer35-expert capped/native audits emit the same25/36 answer; removing
-   a ceiling does not force more reasoning. Speed alone cannot select a winner.
+1. Native private audits are graded: Qwen Q5 scores28/36, GLM Q4/f16 scores27/36,
+   GLM Q6 scores24/36. Q5 GLM's recovered21/36 and retirement remain separate
+   from the interrupted unscored attempt. No general precision advantage was
+   established. Preserve completed evidence before retiring nonleaders.
+2. Kimi's matching-f16 public suite is collected after two preserved cache-type
+   compatibility failures. It has one malformed tool call, inconsistent Python,
+   an incorrect history count and flawed held-out code. Isolated TS behavior is
+   4/6 and SQL fails syntax;64K private loading was rejected at26.893<27.5GiB
+   freeRAM. Optional Qwen Q6 was rejected at
+   a fresh27.426GiB RAM snapshot below its28.5GiB gate; no download/quality score.
+3. Quality first: the2GiB-cache profile scores27/36 in402.703s; historical
+   placement replay scores31/36 in864.266s. The latter answer is byte-identical
+   to its earlier result, confirming reproducibility rather than independent
+   accuracy evidence. Its native repeated Python results are6/6,6/6,4/6;
+   held-out TS5/6 and SQL foreign-key failure;52K-input history passes in448s.
+   Cache contender repeats all pass Python6/6, but strict TypeScript fails and
+   SQL fails FK;52K history passes365s. The instruction-priority historical
+   placement is installed as the provisional working choice. Speed alone
+   does not select the winner.
 4. Cache1536/3072, batch512 and CPU-KV probes are complete. All independent
    Python groups/history facts pass, but generated tests contain errors. The
    3GiB cache improves coding latency while leaving only661MiB freeVRAM; its
-   batch512 combination was rejected before load. Run repeated core, held-out
-   code and larger-history tasks on the exact selected profile.
-5. Verify actual Copilot and Continue file/history flows before promotion and
-   publish a ranking limited to the measured tasks and current apps-open memory.
+   batch512 combination was rejected before load. Both finalists' repeated,
+   held-out and larger-history tasks are complete and reviewed.
+5. Production API greeting/two-file calls pass. Actual Copilot and Continue
+   file/history flows remain blocked by the unavailable interactive desktop.
+   Corrected48K/16K client budgets and Continue SDK timeout are installed with
+   encrypted backups; the owned UI window/frozen prompts are ready after unlock.
 
 ## Original sequence and experiment controls
 
@@ -86,3 +92,9 @@ same evaluation and an acceptable held-out result within the deadline. Preserve
 the old report/settings before any explicitly selected weight deletion. If the
 models tie within evaluation noise, prefer the configuration with more measured
 headroom and more reliable file/tool behavior, not the largest parameter label.
+
+No candidate cleared every strict quality condition. The installed Qwen profile
+is a supervised working compromise, not a certified quality promotion. Retained
+QwenQ4/Gemma26 weights and all original evidence allow future comparisons.
+Reopen capacity-rejected tests only when available memory materially changes;
+do not keep retrying the same insufficient snapshot or close the owner's apps.

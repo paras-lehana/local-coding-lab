@@ -1,8 +1,8 @@
 {
   "model": "qwen36-q4",
   "alias": "qwen36-lab",
-  "locally_tested": false,
-  "evidence": "Campaign single-variable profile; unmeasured until trial report.",
+  "locally_tested": true,
+  "evidence": "Completed1536MiB GPU expert-cache probe: core6/6/history pass137/124s,4.76GiB dedicatedVRAM/20.34GiB peakRAM. Host expert copies remain allocated. See reports/2026-10-15-campaign.md; frozen trial snapshots retained.",
   "load_min_ram_free_gib": 23,
   "load_min_vram_free_mib": 6500,
   "template_kwargs": {
@@ -66,5 +66,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "measured_see_report_not_quality_certification"
 }

@@ -8,11 +8,12 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Status: v0.3.8, experimental; autonomous campaign in progress.** Follow the
+**Status: v0.3.9, experimental; model campaign reviewed, editor UI pending.** Follow the
 [live campaign evidence](reports/2026-10-15-campaign.md). Repeated coding,
 long-document, changed-file and actual-instruction tests now cover Qwen,
-Gemma, GLM and Qwen Coder. Precision/settings comparisons and real editor
-validation are still running. Clean-machine installation remains unvalidated.
+Gemma, GLM, Kimi and Qwen Coder. A working Qwen profile is selected and its
+production API/tool calls pass. Fresh editor validation is blocked by an
+unavailable interactive desktop. Clean-machine installation remains unvalidated.
 
 ## Start here
 
@@ -22,7 +23,7 @@ validation are still running. Clean-machine installation remains unvalidated.
 | Understand which model to try | [Shortlist and exact links](docs/models.md) |
 | Know which coding tasks need extra checking | [Measured use cases and limitations](docs/coding-use-cases.md) |
 | See what actually worked | [Current campaign](reports/2026-10-15-campaign.md), [placement experiment](reports/2026-10-14-placement.md), [historical results](reports/2026-10-14-findings.md) |
-| Share the campaign outcome | [Forwardable task report](docs/tasks/2026-10-15-autonomous-model-campaign/2026-10-15-model-comparison-and-editor-validation-v0.3.8.md) (in progress) |
+| Share the campaign outcome | [Forwardable task report](docs/tasks/2026-10-15-autonomous-model-campaign/2026-10-15-model-comparison-and-editor-validation-v0.3.9.md) |
 | Understand RAM, VRAM and KV cache | [Memory guide](docs/memory-and-context.md) |
 | Connect VS Code | [Editor guide](docs/editors.md) |
 | Compare models fairly | [Run a comparison](docs/run-a-comparison.md), [methodology](docs/methodology.md), [questions](benchmarks/questions/router-v1.txt), [rubric](benchmarks/rubrics/router-v1.md) |
@@ -78,12 +79,26 @@ upgrade across the full workflow or real editors. Follow the evidence above.
 - Recent memory pressure stopped inference twice. Today's free memory must be
   checked; installed RAM and yesterday's fit are insufficient.
 
-**Now:** complete the unfinished precision, cache and unrestricted-instruction
-comparisons, then verify actual editor flows. Gemma's larger-history case passed
-at 52,231 input tokens. Its capped private audit scored 19/36; GLM Q4 scored
-21/36. These are a different rubric from the public fixture and use different
-profiles from the historical Qwen 31/36 result. Qwen Coder's private attempt
-hit the 20-minute deadline and is unscored; its weight was retired with evidence.
+**Working choice:** Qwen3.6 UD-Q4 with the
+[`qwen36-instructions-64k`](profiles/qwen36-instructions-64k.json) profile:
+30GPU layers,34CPU expert blocks,64K q8 KV and native thinking. It uses about
+5.38GiB dedicatedVRAM and peaks at18.09GiB processRAM in the finalist suite.
+Its31/36 private answer is a byte-identical historical replay, not an independent
+accuracy sample. Three public Python answers score6/6,6/6,4/6; TypeScript5/6,
+SQL fails;52K history passes. This is supervised drafting assistance, not
+unattended coding certification.
+
+The [2GiB expert-cache alternative](profiles/qwen36-cache2048-batch512-candidate.json)
+is much quicker and passes all three public Python implementations, but scores
+27/36 on the private audit and fails strict TypeScript. Gemma26QAT is retained
+for lower RAM use; its private audit scores19/36 despite good public Python and
+one passing SQL migration. Higher weight precision did not establish a complete
+workflow improvement. [Selection and exact evidence](reports/2026-10-15-campaign.md#final-profile-comparison-and-working-choice).
+
+After downloading the pinned Qwen artifact using the setup guide, preview the
+selected profile with `python lab.py run --profile qwen36-instructions-64k`.
+Add `--apply` to start after reviewing available memory. Stop the existing
+server before trying another profile. The lab never loads two copies together.
 
 A later unexpected shutdown interrupted GLM Q5's private audit. Its cause is
 unresolved; do not interpret the crash monitor's popup as a component diagnosis.

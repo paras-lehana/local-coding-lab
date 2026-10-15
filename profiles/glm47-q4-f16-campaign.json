@@ -1,8 +1,8 @@
 {
   "model": "glm47-udq4",
   "alias": "glm47-lab",
-  "locally_tested": false,
-  "evidence": "Untested cache-precision follow-up: same GLM Q4 32K placement, with f16 cache replacing measured 898.88 MiB q8 cache. Estimated extra cache about 793 MiB. Runtime/reasoning looping and actual allocations must be measured; not a memory or quality guarantee.",
+  "locally_tested": true,
+  "evidence": "Completed32K f16 follow-up: core5/6 and native6/6; history facts correct/count wrong. Separate64K f16 native private27/36. No isolated precision-only claim across all differences. See reports/2026-10-15-campaign.md; frozen trial snapshots retained.",
   "load_min_ram_free_gib": 17.5,
   "load_min_vram_free_mib": 6800,
   "template_kwargs": {
@@ -65,5 +65,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "measured_see_report_not_quality_certification"
 }

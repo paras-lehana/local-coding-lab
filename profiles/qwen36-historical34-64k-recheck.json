@@ -1,8 +1,8 @@
 {
   "model": "qwen36-q4",
   "alias": "qwen36-lab",
-  "locally_tested": false,
-  "evidence": "Fresh replay of historical1.3 placement that scored31/36 on private instructions:30GPU layers,34CPU expert blocks,64K q8,512/128 batches,4/8 threads, non-mmap. Effective audit sampling remains0.6 (historical request override); current server default also0.6 and HTTP timeout1200. No fresh score claimed. Needed before choosing a faster profile with weaker current instruction results.",
+  "locally_tested": true,
+  "evidence": "Completed native private31/36 in864.266s, byte-identical historical answer (reproducibility only). Public native6/6,6/6,4/6; TS5/6/SQL FK failure;52K history passes448.062s.5.38GiB dedicatedVRAM/18.09GiB peakRAM. Selected instruction-priority placement with documented defects. See reports/2026-10-15-campaign.md; frozen trial snapshots retained.",
   "load_min_ram_free_gib": 21,
   "load_min_vram_free_mib": 6500,
   "template_kwargs": {
@@ -63,5 +63,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "measured_see_report_not_quality_certification"
 }

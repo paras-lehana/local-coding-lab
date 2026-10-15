@@ -1,8 +1,8 @@
 {
   "model": "qwen36-q4",
   "alias": "qwen36-lab",
-  "locally_tested": false,
-  "evidence": "Untested follow-up: GPU attention and last five expert blocks, first 35 experts on CPU. Header storage estimates about 15.893 GiB CPU experts / 4.712 GiB remaining tensors, not runtime allocations. 64K q8 KV and smaller compute batches; intended to reduce host RAM while using currently free VRAM. Preserve baseline and measure before promotion.",
+  "locally_tested": true,
+  "evidence": "Completed capped and native private audits both25/36; byte-identical answer and reads because2048 reasoning ceiling never bound. No quality gain from ceiling removal in this case. See reports/2026-10-15-campaign.md; frozen trial snapshots retained.",
   "load_min_ram_free_gib": 21,
   "load_min_vram_free_mib": 6500,
   "template_kwargs": {
@@ -65,5 +65,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "measured_see_report_not_quality_certification"
 }

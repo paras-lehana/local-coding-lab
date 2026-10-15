@@ -1,8 +1,8 @@
 {
   "model": "qwen36-q4",
   "alias": "qwen36-lab",
-  "locally_tested": false,
-  "evidence": "Untested research sampling bundle, temperature 0.35 plus min-p 0.02, on the measured all-attention-GPU profile. Two sampling variables change together; compare results without assigning improvement to either alone. Task requests must also select temperature 0.35.",
+  "locally_tested": true,
+  "evidence": "Completed temperature0.35/min-p0.02 bundle: three Python6/6, own6/7 each; held-out strict TS and SQL FK failures. Two settings changed together; no isolated temperature claim. See reports/2026-10-15-campaign.md; frozen trial snapshots retained.",
   "load_min_ram_free_gib": 23,
   "load_min_vram_free_mib": 6500,
   "template_kwargs": {
@@ -62,5 +62,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "measured_see_report_not_quality_certification"
 }

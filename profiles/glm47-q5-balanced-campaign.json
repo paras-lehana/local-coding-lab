@@ -1,8 +1,8 @@
 {
   "model": "glm47-q5",
   "alias": "glm47-lab",
-  "locally_tested": false,
-  "evidence": "Untested Q5 candidate with the same placement/context/sampling as GLM Q4 balanced: first 40 blocks CPU expert placement, seven expert blocks GPU. Estimated CPU expert storage 15.55 GiB; actual buffers and quality unmeasured.",
+  "locally_tested": true,
+  "evidence": "Completed matched32K Q5 suite and native repeats: capped5/6,0/6,0/6; native6/6,6/6,0/6. Private64K recovered retry21/36; earlier restart interrupted run unscored. Weight retired with evidence. See reports/2026-10-15-campaign.md; frozen trial snapshots retained.",
   "load_min_ram_free_gib": 20.5,
   "load_min_vram_free_mib": 6800,
   "template_kwargs": {
@@ -65,5 +65,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "measured_see_report_not_quality_certification"
 }

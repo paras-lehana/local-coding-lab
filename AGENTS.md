@@ -30,3 +30,20 @@ instructions to the maintainer. CLAUDE.md and the Copilot adapter point here.
   audit before committing changes. Report downloads and live inference not run.
 - Maintain docs/tasks.md and docs/prompts.md with decisions, validation and
   pending work. Keep this project guidance self-contained for other users.
+
+## Current evidence and editor regression checks
+
+The15October working choice is `profiles/qwen36-instructions-64k.json`.
+Read the [forwardable report](docs/tasks/2026-10-15-autonomous-model-campaign/2026-10-15-model-comparison-and-editor-validation-v0.3.9.md)
+and selection receipt before changing it. All candidates have limitations;
+"locally_tested" means measured loading/evidence, not certification of correct
+code. Keep incompatible or incomplete profiles behind experimental opt-in.
+
+Actual editor checks still required after the interactive desktop is available:
+fresh greeting, source-cited instruction/runtime reads, then a changed-file read
+and earlier chat marker. Select the explicit local model/read-only tools in the
+owned test window; inspect endpoint activity and completion within1200seconds.
+Do not send when the desktop is locked, a draft exists or another request is
+running. A successful API round trip does not satisfy this UI gate. For the
+inspected Continue2.0.0 adapter, timeout is SDK milliseconds; document the
+installed version/units and verify actual behavior before declaring it fixed.

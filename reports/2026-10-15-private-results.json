@@ -125,6 +125,7 @@
       },
       "profile_file_sha256": "5ca518f7a6da61110a12167ef6dcd42c581d65887222018b38e6cd125e83d116",
       "answer_sha256": "3c1092f3b403b33afba4a9523450a39e6f585f7806124fb01e8d726f8a1e33c2",
+      "answer_identical_to_prior_run": null,
       "isolated_result_sha256": "b292207e6eb0d493d6b3fb37ade9f9d06e7aa8797679f2f636ac6f1e30f32f32",
       "identical_answer_prior_grade_reused": false
     },
@@ -233,6 +234,7 @@
       },
       "profile_file_sha256": "07b341814527c77972bb2571ad5a7bc1ef199bb613df330e46a66959fee41b8c",
       "answer_sha256": "8a349bdb545500291aab4b6af2ef2b8d872945b0060b3bcbea3fa4ab159aa473",
+      "answer_identical_to_prior_run": null,
       "isolated_result_sha256": "b292207e6eb0d493d6b3fb37ade9f9d06e7aa8797679f2f636ac6f1e30f32f32",
       "identical_answer_prior_grade_reused": false
     },
@@ -341,6 +343,7 @@
       },
       "profile_file_sha256": "bbc3eb66a63aaab1320caf0e0f380e088241a92612cf670f35db351139777725",
       "answer_sha256": "27b2d9604548666b9a3d48bca39d29709a4a2858b29b0042a5e95ca48afd0eb4",
+      "answer_identical_to_prior_run": null,
       "isolated_result_sha256": "9ee2a953482f7f612e3f9d7d2dcf528394b149fc5df1affc84a47d576b86a920",
       "identical_answer_prior_grade_reused": false
     },
@@ -449,6 +452,7 @@
       },
       "profile_file_sha256": "cbccd2ab7fb9b31e4648b35482966815979953aed43e4e2b626401cb205c0911",
       "answer_sha256": "ce3f04089b534c2f98610e6bb4af9d1ce7684f83d6dcff33681cee7aedf615ce",
+      "answer_identical_to_prior_run": null,
       "isolated_result_sha256": "126636208594e9a3f84f0ae2c3a7c150b57e39cf84ac6a08c5fb34dc6711a1e2",
       "identical_answer_prior_grade_reused": false
     },
@@ -557,6 +561,7 @@
       },
       "profile_file_sha256": "4273e1abea85db49f535a5d485bfbfe9f0b21abed2bf2dd7f3f06ebe44637ff1",
       "answer_sha256": "910b44761c4c4819ba469abe1bea7ff9e0d8d4fcc2a3348d2cb9fa46c0814f21",
+      "answer_identical_to_prior_run": null,
       "isolated_result_sha256": "5f015741806324fec9d4a507f9304a15c1b9516e244a59d56a045d3891221f9d",
       "identical_answer_prior_grade_reused": false
     },
@@ -665,6 +670,7 @@
       },
       "profile_file_sha256": "fabf9ae261a54ed5b70a047b1936fe17d907b5407b76386104b54cec6fe7cc78",
       "answer_sha256": "910b44761c4c4819ba469abe1bea7ff9e0d8d4fcc2a3348d2cb9fa46c0814f21",
+      "answer_identical_to_prior_run": null,
       "isolated_result_sha256": null,
       "identical_answer_prior_grade_reused": true
     },
@@ -773,6 +779,7 @@
       },
       "profile_file_sha256": "d833e521d96a470425ab6d814387326aaa18257990e673c94163b230791c92a7",
       "answer_sha256": "aee8e48292742c2217ee5120d0685b8291b0cb557b0abe8d26b915afa1b161df",
+      "answer_identical_to_prior_run": null,
       "isolated_result_sha256": "612dcf0e6c0018b07b18c411613da7812692f249e27c31abe640516f6593db91",
       "identical_answer_prior_grade_reused": false
     },
@@ -881,6 +888,7 @@
       },
       "profile_file_sha256": "924afaa482b5c0568f9695d31dc3c03d183bc1b80b6deb6a3d81d85bfaa2650f",
       "answer_sha256": "22bb6aac5a6168750c9fd5ad0e7150365d0d5a70af5eb7ca4ad025e2a3688542",
+      "answer_identical_to_prior_run": null,
       "isolated_result_sha256": "10de64dc681194011aa04414a00411b0b7d868b6b81246fa865c0b864fa3f576",
       "identical_answer_prior_grade_reused": false
     },
@@ -989,6 +997,7 @@
       },
       "profile_file_sha256": "4e1dfef39afc5cad20da89cac6f3ecdc174f2e235e0cfe69699aecdcef025388",
       "answer_sha256": "26e43f3d1cc3938a5983cd91c7d9184f9c9238a23528eb8457b30638179cb987",
+      "answer_identical_to_prior_run": null,
       "isolated_result_sha256": "9abd153c1645f4b4cc51024ea0cc70ab2675a87ed27fe61e8e350073d84bc4a2",
       "identical_answer_prior_grade_reused": false
     },
@@ -1097,6 +1106,7 @@
       },
       "profile_file_sha256": "d230db658e7c058c1f39443a2be7bb4b9ae312cbdaa1894b049e13ae252643c0",
       "answer_sha256": "11e92785d19af0bf97c57d4150e66956e952ea15645f294af038cd014e5e193c",
+      "answer_identical_to_prior_run": null,
       "isolated_result_sha256": "d91ecaf3f3193a288433c1932574c554ae3970987a956c253ddc629d995103e3",
       "identical_answer_prior_grade_reused": false
     },
@@ -1205,6 +1215,7 @@
       },
       "profile_file_sha256": "1fbb1c82cb8395aec5b8bf5c1bcec6793ad8603847e95ae08fbf8cf0fe3a7af4",
       "answer_sha256": "ede16ba251c26dfc3a28c083ae4e4c886943e89aec44576271d1d7e11d66705b",
+      "answer_identical_to_prior_run": "qwen36-q4-coding-t06",
       "isolated_result_sha256": "2296ed8143c6f8c8fdcc44898594bc29094f00e2eaba2ed9957a00965dbb2664",
       "identical_answer_prior_grade_reused": false
     }

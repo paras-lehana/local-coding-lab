@@ -2,7 +2,7 @@
   "model": "gemma4-31b-qat",
   "alias": "gemma4-dense-lab",
   "locally_tested": false,
-  "evidence": "Post-update smaller-memory calibration: all attention on GPU, all 60 dense FFNs on CPU; 16K context. GGUF FFN storage 10.901 GiB, remaining storage 5.538 GiB. Runtime fit and throughput unmeasured until trial.",
+  "evidence": "Attempted GPU-KV calibration stopped below400MiB VRAM reserve before coding. Not a quality result. Retained for reproducibility; explicit experimental opt-in required.",
   "load_min_ram_free_gib": 16,
   "load_min_vram_free_mib": 7000,
   "template_kwargs": {
@@ -65,5 +65,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "rejected_or_incomplete"
 }

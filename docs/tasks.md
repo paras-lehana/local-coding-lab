@@ -24,14 +24,14 @@ them blindly after interruption.
 
 | Candidate | Status | Required disposition |
 |---|---|---|
-| Qwen3.6 Q4 | Core/history/held-out and initial flag probes collected | Private capped 25/36; batch/cache/CPU-KV code and recall pass; lower-temperature TS/SQL fail; matched Q4 control complete, cache2048 private27/36; historical placement replay31/36; exact finalist public/editor validation pending |
+| Qwen3.6 Q4 | Both finalist suites reviewed; configuration2.0/API installed and passing | Historical34 private31/36/52K history pass selected; cache2048 private27/36 faster but strict TS failure; fresh editor UI blocked by unavailable desktop |
 | Gemma 4 26B QAT | 32K/64K suites and both private audits reviewed | 52K-input recall passes; unrestricted SQL 6/6, TS 5/6; capped/unrestricted private scores both 19/36 |
 | GLM-4.7-Flash UD-Q4 | q8 and f16 public follow-ups reviewed | f16 native code6/6; original own script runs zero tests, supplemental13/14; history count wrong; native f16 private27/36 |
 | Qwen3-Coder 30B UD-Q4 | Five tasks graded | Core 2/6, 3/6, 1/6; private audit 20-minute deadline; exact weight retired with evidence |
 | Gemma 4 31B QAT dense | Calibration rejected | GPU-KV resource stop; CPU-KV 0.95 tok/s and five-minute deadline; quality unscored |
-| Qwen3.6 Q5 and optional Q6 | Q5 public suite complete; Q6 conditional | Q5 matched core6/6 each but19.1% slower, held-out TS4/6/SQL failure; native private28/36. Q6 requires fresh28.5GiB/7000MiB gates and full verified artifact |
-| GLM Flash Q5 and optional UD-Q6 | Q5 complete and retired; Q6 download verified | Q5 native repeats6/6,6/6,0/6; private21/36; Q6 public graded and native private24/36 |
-| Kimi Linear 48B Q4 | Verified and f16 suite running | q8V and mixed-cache compatibility failures preserved; f16 loads, one malformed tool-call result; final quality review pending |
+| Qwen3.6 Q5 and optional Q6 | Q5 public/private complete and retired; Q6 capacity-rejected | Q5 matched core6/6 each but19.1% slower, native private28/36; Q6 fresh27.426<28.5GiB gate, no download/quality score |
+| GLM Flash Q5 and optional UD-Q6 | Both complete and retired | Q5 native repeats6/6,6/6,0/6/private21/36; Q6 native private24/36; original evidence preserved |
+| Kimi Linear 48B Q4 | f16 public reviewed;64K private gate rejected; exact weight retired | Two cache incompatibilities, one malformed tool call, code4/6 then6/6, TS4/6/SQL syntax failure; private has no score |
 | Qwen Coder Next 80B Q4 | Current capacity rejected | 45+ GiB weights exceed apps-open resident allowance, no quality score |
 | Research's explicitly excluded giant models | Capacity review complete | Publisher metadata pinned; four-bit payload arithmetic excludes them from the current apps-open matrix, no local score |
 
@@ -160,25 +160,6 @@ Evidence: [placement report](../reports/2026-10-14-placement.md),
 No model was downloaded, loaded or deleted. No editor, driver or clock settings
 were changed. Original private reports and installation remain outside Git.
 
-## Agent Deferred
-
-- Repeated core and held-out comparisons now exist for Qwen/Gemma/GLM. Finish
-  pending precision/settings/private-audit results before choosing a finalist.
-- Clean-machine real runtime/model download is not part of offline validation.
-- Long-history, stale-file and held-out language fixtures now run in v0.3.
-  Larger-history coverage remains active; failed-tool recovery requires an
-  observed attempted unavailable read and cannot be inferred from avoiding it.
-- Isolated Python contract grading now passed for both completed answers. The
-  benchmark collector still cannot execute code; broader language tests remain.
-- Continue UI and candidate editor tool transport require observed tests.
-
-## Agent Suggestions
-
-- Start with a fresh memory snapshot; preserve the measured Qwen reference.
-- Keep the research's multi-variable tuning bundle as separate experiments.
-- Prefer Gemma QAT when current app usage makes Qwen's host allocation fragile.
-- Collect repeated public results before claiming an accuracy leaderboard.
-
 ## Work log
 
 - Recovered earlier model, memory-stop, reasoning-budget and instruction-grounding evidence.
@@ -224,3 +205,59 @@ were changed. Original private reports and installation remain outside Git.
 19:16 IST checkpoint: GLMf16 native private27/36 (19+4+4); GLMQ6 native private24/36 (17+2+5), all saved and isolated graded. Qwen2GiB-cache private completed402.703s with honest14-source inventory; semantic19/citations4, code queued. Historical34-expert replay active; Kimi public suite waits serially. Restart cause remains unknown, owner did not observe event. No new editor prompt or production promotion.
 
 19:30 IST checkpoint: historical Qwen placement replay31/36 (20+6+5),864.266s, all15 sources and accurate ranges;2GiB-cache27/36 (19+4+4),402.703s. Kimi q8V fails72/32 dimension constraint; mixed K/V fails architecture constraint; matching f16 loads with252MiB KV+42.81MiB recurrent state. Public suite active, first malformed-call failure preserved.20 offline tests pass9.192s; PS parse and110-file export audit/diff check pass. Offline tests overlap Kimi inference, disclosed. v0.3.8 adds separate compatibility profiles; production unchanged.
+
+19:58 IST checkpoint: e2eb995/v0.3.8 published; Windows+UbuntuCI38748100354 passes. Kimi matching-f16 public suite completed normally: core4/6, malformed-call/no-code,6/6; own combined7/8 each and standalone8NameErrors; history facts pass/count242vs120 fails; TS/SQL source reviewed, isolated queued. Optional QwenQ6 fresh27.426GiB<28.5 gate rejected before retirement/download. Historical Qwen contender native cores73/74 completed473.265/469.328s, source reviewed and isolated queued;75/TS/52K follow. No hashing or sandbox grading during contender timing. Kimi64K private conditional after contender. Historical private answer exactly matches old31/36 answer, so repetition is reproducibility only. UI private helper staged/parsed, owned window screenshot inspected; no prompt sent. Conditional48K input/16K output budgets and candidate runtime staged only; production remains1.4/stopped.
+
+20:34 IST checkpoint: historical Qwen final suite complete, normally stopped;
+Python6/6,6/6,4/6, own7/7,7/8,7/7;TS5/6/SQLforeign-key failure. All six
+history facts and READY640 pass at52,029inputtokens in448.062s. DedicatedVRAM
+5.377GiB, peakRSS18.087GiB, minfreeRAM10.309GiB. Kimi held-out TS4/6 and
+SQLite unsupported-CONSTRAINT failure graded in the quiet period. Its64K
+private attempt rejected before loading at26.893<27.5GiB freeRAM. Cache2048
+finalist three Python/TS answers source-reviewed and queued for quiet grading;
+larger history active. Production/config changes still staged. Windows no
+longer exposes an interactive input desktop/foreground; UI helper refused to
+send. Owner asked to unlock when convenient; API/report work continues.
+
+20:58 IST closeout: configuration2.0 installed and running. API greeting11.938s and actual two-file tool response34.297s pass, native reasoning present; curl alias correct. Live readiness16.99GiB RAM/5.38GiB dedicatedVRAM. Chosen34-expert placement reflects instruction priority31/36 versus cache27/36; repeated answer is byte-identical. No candidate passes every coding requirement. Four exact verified contenders retired93.330GiB, QwenQ4/Gemma26 retained. Continue SDK timeout1200000ms and48K/16K client budgets installed, other providers preserved with DPAPI backups.20 tests8.881s, PS parsing,113-file audit0findings and diffcheck pass. Desktop unavailable/error5; actual UI probes remain unsent. Project guidance updated through maintenance skill; shared adapters unchanged. No cloud calls, app closures or clock changes.
+
+## Agent Deferred
+
+  - Repeated core and held-out comparisons now exist for Qwen/Gemma/GLM. Finish
+  pending precision/settings/private-audit results before choosing a finalist.
+- Clean-machine real runtime/model download is not part of offline validation.
+- Long-history, stale-file and held-out language fixtures now run in v0.3.
+  Larger-history coverage remains active; failed-tool recovery requires an
+  observed attempted unavailable read and cannot be inferred from avoiding it.
+- Isolated Python contract grading now passed for both completed answers. The
+  benchmark collector still cannot execute code; broader language tests remain.
+- Continue UI and candidate editor tool transport require observed tests.
+
+
+Current dispositions:
+
+| Item | Status | Next condition |
+|---|---|---|
+| Feasible precision/settings/private audits | Done with explicit exclusions | Frozen evidence retained; no automatic retry |
+| Repeated/held-out/larger-history tasks | Done for both finalists | Keep defects visible; no universal quality claim |
+| Actual Copilot/Continue UI | Blocked | Interactive desktop available; frozen greeting/source/changed-file probes |
+| Optional QwenQ6/Kimi64K private | Capacity-rejected, unscored | Materially more freeRAM; keep apps open |
+| Clean-machine installation/128K arbitrary sessions | Not tested | Separate future validation |
+| Restart component cause | Unknown | New diagnostic evidence; no RAM-speed assumption |
+
+## Agent Suggestions
+
+- Start with a fresh memory snapshot; preserve the measured Qwen reference.
+- Keep the research's multi-variable tuning bundle as separate experiments.
+- Prefer Gemma QAT when current app usage makes Qwen's host allocation fragile.
+- Collect repeated public results before claiming an accuracy leaderboard.
+
+
+Current recommendations:
+
+| Suggestion | Priority | Status |
+|---|---|---|
+| Supervised Python/file questions with independent mutation/type tests | High | Open |
+| Review SQLite migrations on disposable copies | High | Open |
+| Keep durable decisions in versioned notes and re-read changed files | High | Open |
+| Preserve QwenQ4 and lower-memory Gemma fallback | High | Done |

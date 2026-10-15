@@ -1,0 +1,71 @@
+{
+  "configuration_version": "2.0",
+  "model": "qwen36-q4",
+  "profile": "qwen36-instructions-64k",
+  "rationale": "Prioritize strongest actual instruction case and compiling held-out TS over cache speed; all candidates retain coding defects.",
+  "private_audit": {
+    "score": 31,
+    "total": 36,
+    "byte_identical_historical_replay": true
+  },
+  "client_budgets": {
+    "input": 48000,
+    "output": 16384
+  },
+  "thinking": "native on, no independent reasoning ceiling; output allowance still bounded",
+  "api": {
+    "health": true,
+    "curl_models_alias": "qwen3.6-35b-a3b-q4",
+    "greeting_seconds": 11.93800000000192,
+    "file_tool_roundtrip_seconds": 34.29699999999866
+  },
+  "editor_ui": "pending_unavailable_interactive_desktop",
+  "live_memory_at_readiness_gib": {
+    "process_working_set": 16.99,
+    "dedicated_vram": 5.38,
+    "free_ram": 11.03
+  },
+  "cache_allocation_mib": {
+    "attention_cpu": 136,
+    "attention_gpu": 544,
+    "recurrent_cpu": 18.84,
+    "recurrent_gpu": 43.97
+  },
+  "retained_models": [
+    "qwen36-q4",
+    "gemma4-26b-qat"
+  ],
+  "restart_cause": "unknown",
+  "unattended_coding_certified": false,
+  "retired_weight_files": [
+    {
+      "id": "glm47-udq4",
+      "bytes": 17520169312,
+      "sha256": "b0d4fbc1211f891b4cfbf2a497160bfe06a49412420068904d426b7a13f4ba7f",
+      "revision": "0d32489ecb9db6d2a4fc93bd27ef01519f95474d",
+      "status": "retired"
+    },
+    {
+      "id": "qwen36-q5",
+      "bytes": 26456194016,
+      "sha256": "c13ce26253ea334df472bd8fbd2d6da66d8a41195c17f6fcbf44c4d20ece0932",
+      "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+      "status": "retired"
+    },
+    {
+      "id": "glm47-udq6",
+      "bytes": 26175238496,
+      "sha256": "b5ddf6a5531a4d06ce84a652419c8d32c0cb15ca64549d715f783de948a3f3e2",
+      "revision": "0d32489ecb9db6d2a4fc93bd27ef01519f95474d",
+      "status": "retired"
+    },
+    {
+      "id": "kimi-linear-q4",
+      "bytes": 30061058720,
+      "sha256": "a1a7d865370652221f937163f7e94c99e1f114861335ba4f8666606843f1620f",
+      "revision": "228dbe476e5a02091624a19068f4c962caa8a1c5",
+      "status": "retired"
+    }
+  ],
+  "reclaimed_gib": 93.33031302690506
+}

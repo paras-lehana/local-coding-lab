@@ -14,9 +14,9 @@ separates completed measurements, downloads and conditional exclusions.
 | Dense conditional gate | `gemma4-31b-qat` | 16.439 | RAM-KV calibration 0.95 tok/s, deadline; weight file retired after preservation |
 | Non-thinking coding control | `qwencoder30-udq4` | 16.452 | Python 2/6, 3/6, 1/6; private deadline, unscored; exact weight retired with reports retained |
 | Conditional precision | `qwen36-q5` | 24.639 | Matched public Python repeats 6/6; native private 28/36, including only 2/6 code groups and accurate 14-source inventory; no repeatable precision advantage established |
-| Optional precision | `qwen36-q6` | 29.657 | Header inspected after RAM briefly recovered to 28.76 GiB; conditional 32K profile requires 28.5 GiB / 7000 MiB fresh headroom and verified download |
+| Optional precision | `qwen36-q6` | 29.657 | Header inspected; full download rejected at27.426<28.5GiB freeRAM; final26.794GiB snapshot also below gate; no quality score |
 | Conditional precision | `glm47-udq6` | 24.378 | Public capped Python 5/6, 0/6, 6/6; native 5/6; history count fails; native private 24/36 |
-| Linear-attention alternative | `kimi-linear-q4` | 27.997 | Full pinned size/SHA verified; q8V and mixed K/V fail runtime checks; matching f16 loads, public suite running with one malformed tool call |
+| Linear-attention alternative | `kimi-linear-q4` | 27.997 | Matching f16 public core4/6, malformed call/no code,6/6; TS4/6, SQL syntax failure;64K private gate rejected; exact weight retired with reports |
 | Larger coding model | `qwencoder-next-q4` | 45.196 | Current apps-open resident-capacity exclusion, no quality score |
 
 Model and artifact sources:
@@ -53,4 +53,10 @@ research for wider candidates, but independently verify each exact artifact.
 
 Do not compare vendor benchmark percentages as a local leaderboard: scaffolds,
 precision, contexts and budgets differ. This table tracks **test roles and
-progress**. The full local ranking remains unfinished.
+progress**. For this owner's instruction priority, QwenQ4's34-expert profile is
+the provisional working choice:31/36 private, successful52K history, but code
+defects remain. The faster2GiB-cache version scores27/36 private and fails
+held-out strict TypeScript. Gemma26QAT is retained as a lower-memory fallback.
+GLMQ4/Q6 and QwenQ5 weights were retired after complete reviews, full SHA
+verification and evidence preservation. Actual editor validation remains pending;
+none is certified for unattended coding. See the campaign's selection rationale.

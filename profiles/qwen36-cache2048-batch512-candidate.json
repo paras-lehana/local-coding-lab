@@ -1,8 +1,8 @@
 {
   "model": "qwen36-q4",
   "alias": "qwen36-lab",
-  "locally_tested": false,
-  "evidence": "Untested daily-use candidate after3072MiB cache measured6.26GiB dedicatedVRAM but only661MiB minimum free during first probe. Reducing cache to2048MiB aims to retain extra VRAM for editor/apps;512/128 batches aim to improve prefill. Requires full exact-profile code/history/private/editor validation before selection. No fit or quality result claimed.",
+  "locally_tested": true,
+  "evidence": "Completed native private27/36; exact public repeats6/6 each, own6/7,7/7,7/7; strict TS7006 and SQL FK failure.52K history passes365.375s. DedicatedVRAM5.27GiB/peakRAM20.38GiB. Faster alternative, not chosen for strongest instruction result. See reports/2026-10-15-campaign.md; frozen trial snapshots retained.",
   "load_min_ram_free_gib": 24,
   "load_min_vram_free_mib": 6600,
   "template_kwargs": {
@@ -66,5 +66,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "measured_see_report_not_quality_certification"
 }

@@ -1,0 +1,388 @@
+{
+  "date": "2026-10-15",
+  "scope": "Native Qwen Q4 profile comparison on synthetic tasks; not a universal model ranking.",
+  "runtime": "b11562/b2f036c0f138414dedc987446f1d9d802f920275",
+  "model": {
+    "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+    "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+    "filename": "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+    "bytes": 22134528992,
+    "sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61"
+  },
+  "reviewer": "Codex source review; independent checks in Linux/bubblewrap",
+  "timing_caveat": "Apps open; no model hashing or isolated grading during these two timed suites.",
+  "whole_prompt_limit_seconds": 1200,
+  "runs": [
+    {
+      "name": "qwen-historical34-finalist",
+      "profile": "qwen36-historical34-64k-recheck",
+      "arguments": [
+        "--gpu-layers",
+        "30",
+        "--n-cpu-moe",
+        "34",
+        "--ctx-size",
+        "65536",
+        "--threads",
+        "4",
+        "--threads-batch",
+        "8",
+        "--batch-size",
+        "512",
+        "--ubatch-size",
+        "128",
+        "--flash-attn",
+        "on",
+        "--cache-type-k",
+        "q8_0",
+        "--cache-type-v",
+        "q8_0",
+        "--jinja",
+        "--reasoning",
+        "on",
+        "--reasoning-format",
+        "deepseek",
+        "--timeout",
+        "1200",
+        "--reasoning-budget",
+        "-1",
+        "--reasoning-preserve",
+        "--predict",
+        "24576",
+        "--temp",
+        "0.6",
+        "--top-p",
+        "0.95",
+        "--top-k",
+        "20",
+        "--min-p",
+        "0",
+        "--repeat-penalty",
+        "1",
+        "--cache-ram",
+        "0",
+        "--fit",
+        "off",
+        "--perf",
+        "--load-mode",
+        "none",
+        "--no-repack"
+      ],
+      "template_kwargs": {
+        "enable_thinking": true,
+        "preserve_thinking": true
+      },
+      "resource_measurements": {
+        "dedicated_vram_gib": 5.377159118652344,
+        "peak_rss_gib": 18.087364196777344,
+        "minimum_free_ram_gib": 10.30892562866211,
+        "minimum_available_commit_gib": 11.030006408691406,
+        "minimum_free_vram_mib": 2189.0,
+        "maximum_gpu_core_c": 61.0,
+        "stop": {
+          "status": "requested_stop"
+        }
+      },
+      "tasks": [
+        {
+          "task": "core-native-seed73",
+          "whole_prompt_seconds": 473.2649999999994,
+          "generation_tps": 12.753754299298723,
+          "prefill_tps": 220.30364360981923,
+          "maximum_input_tokens": 2525,
+          "effective_request_max_tokens": 16384,
+          "independent_groups": {
+            "passed": 6,
+            "total": 6
+          },
+          "model_tests": {
+            "passed": 7,
+            "total": 7
+          },
+          "distinct_sources": 7,
+          "local_evidence_sha256": {
+            "review.json": "6b1414f8614c495423944985591c3779db5182b03f892c05141c1ed8f61845d3",
+            "grading-result.json": "ed51159bf3c2d13862801cb694e786feebf12e75766d28c65943091c068c42f9",
+            "manifest.json": "8214a8e2a98aaa759ca3faf66261bfccebc7c25485461f04fc4961e71816a37b"
+          }
+        },
+        {
+          "task": "core-native-seed74",
+          "whole_prompt_seconds": 469.3279999999977,
+          "generation_tps": 13.018220944240001,
+          "prefill_tps": 218.33801808212792,
+          "maximum_input_tokens": 2707,
+          "effective_request_max_tokens": 16384,
+          "independent_groups": {
+            "passed": 6,
+            "total": 6
+          },
+          "model_tests": {
+            "passed": 7,
+            "total": 8
+          },
+          "distinct_sources": 7,
+          "local_evidence_sha256": {
+            "review.json": "dff81c22c4f338680cfbfbb1c02c820073e65bc11bb1b8b72849a4bdafee6fd2",
+            "grading-result.json": "e3bce2ff06b4db65f978f0ac7e4078037c852fc87e6965d2d600474a75a01470",
+            "manifest.json": "ca374c47535e9c36c58783cde4fbe2183e7ce4184b4bb530c1c30a7f90026bea"
+          }
+        },
+        {
+          "task": "core-native-seed75",
+          "whole_prompt_seconds": 440.3600000000006,
+          "generation_tps": 13.045448161806625,
+          "prefill_tps": 218.97149797033188,
+          "maximum_input_tokens": 2570,
+          "effective_request_max_tokens": 16384,
+          "independent_groups": {
+            "passed": 4,
+            "total": 6
+          },
+          "model_tests": {
+            "passed": 7,
+            "total": 7
+          },
+          "distinct_sources": 7,
+          "local_evidence_sha256": {
+            "review.json": "ae3eb98143574aac331929096431bd38de82082bd9c5379f5f7fdd0016f94344",
+            "grading-result.json": "e74faabc7359e01463779334fc5976d500821219be03381be7d130c2345d3cab",
+            "manifest.json": "a67dea0719bfbef72dea874bbc5a13da333b2f6b5c31dad4a59cc1c0ab267ffa"
+          }
+        },
+        {
+          "task": "ts-sql-unrestricted",
+          "whole_prompt_seconds": 483.09400000000096,
+          "generation_tps": 13.127785776646961,
+          "prefill_tps": 172.6263093021371,
+          "maximum_input_tokens": 1273,
+          "effective_request_max_tokens": 16384,
+          "typescript_compile_exit": 0,
+          "typescript_behavior": {
+            "passed": 5,
+            "total": 6
+          },
+          "sqlite": {
+            "status": "migration_failed",
+            "error": "FOREIGN KEY constraint failed"
+          },
+          "distinct_sources": 6,
+          "local_evidence_sha256": {
+            "review.json": "23a34cfeb4e6796164abeedab6993f7533e375cac2562d7a498579bd92fdc2fd",
+            "grading-result.json": "2abecdf60051468a740dd2f6a00fe72b687c41df808e89d8243e5d1366635843",
+            "manifest.json": "3589d4b65c10b68a325d6c2b16467c04c764e4ea76fed2113b38d18ee2525532"
+          }
+        },
+        {
+          "task": "context-large-unrestricted",
+          "whole_prompt_seconds": 448.0619999999981,
+          "generation_tps": 8.541608904859338,
+          "prefill_tps": 205.33214224693893,
+          "maximum_input_tokens": 52029,
+          "effective_request_max_tokens": 8192,
+          "history": {
+            "initial_ready_count": 640,
+            "expected_count": 640,
+            "final_facts_correct": 6,
+            "final_facts_total": 6,
+            "fresh_runtime_read": true,
+            "honest_followup_inventory": true,
+            "failed_tool_recovery_observed": false
+          },
+          "local_evidence_sha256": {
+            "review.json": "89057acb01c0ed9fd7dbdba82c37c0f8fc3d45d047126154514426c69f90b6b9",
+            "manifest.json": "380ea1362f93cf96c290f5566eb05f56b24d8a78181adcb67ff9abd29d2ea869"
+          }
+        }
+      ]
+    },
+    {
+      "name": "qwen-cache2048-finalist",
+      "profile": "qwen36-cache2048-batch512-candidate",
+      "arguments": [
+        "--gpu-layers",
+        "all",
+        "--cpu-moe",
+        "--ctx-size",
+        "65536",
+        "--threads",
+        "4",
+        "--threads-batch",
+        "8",
+        "--batch-size",
+        "512",
+        "--ubatch-size",
+        "128",
+        "--flash-attn",
+        "on",
+        "--cache-type-k",
+        "q8_0",
+        "--cache-type-v",
+        "q8_0",
+        "--jinja",
+        "--reasoning",
+        "on",
+        "--reasoning-format",
+        "deepseek",
+        "--timeout",
+        "1200",
+        "--reasoning-budget",
+        "-1",
+        "--reasoning-preserve",
+        "--predict",
+        "24576",
+        "--temp",
+        "0.6",
+        "--top-p",
+        "0.95",
+        "--top-k",
+        "20",
+        "--min-p",
+        "0",
+        "--repeat-penalty",
+        "1",
+        "--cache-ram",
+        "0",
+        "--fit",
+        "off",
+        "--perf",
+        "--load-mode",
+        "none",
+        "--no-repack",
+        "--moe-cache-mib",
+        "2048",
+        "--verbosity",
+        "4"
+      ],
+      "template_kwargs": {
+        "enable_thinking": true,
+        "preserve_thinking": true
+      },
+      "resource_measurements": {
+        "dedicated_vram_gib": 5.268589019775391,
+        "peak_rss_gib": 20.378143310546875,
+        "minimum_free_ram_gib": 8.113750457763672,
+        "minimum_available_commit_gib": 8.547168731689453,
+        "minimum_free_vram_mib": 2228.0,
+        "maximum_gpu_core_c": 64.0,
+        "stop": {
+          "status": "requested_stop"
+        }
+      },
+      "tasks": [
+        {
+          "task": "core-native-seed73",
+          "whole_prompt_seconds": 174.67199999999866,
+          "generation_tps": 41.05234404341169,
+          "prefill_tps": 180.44459689404079,
+          "maximum_input_tokens": 2666,
+          "effective_request_max_tokens": 16384,
+          "independent_groups": {
+            "passed": 6,
+            "total": 6
+          },
+          "model_tests": {
+            "passed": 6,
+            "total": 7
+          },
+          "distinct_sources": 7,
+          "local_evidence_sha256": {
+            "review.json": "3de1d414035aad580d486c29e8a3a7afbf1d507de4def9550172e6771e047265",
+            "grading-result.json": "b7fd33c5dcf4b80f1d0f3fe5924d6e46ade1a1208836b29c58bf2862b1fe28ac",
+            "manifest.json": "8214a8e2a98aaa759ca3faf66261bfccebc7c25485461f04fc4961e71816a37b"
+          }
+        },
+        {
+          "task": "core-native-seed74",
+          "whole_prompt_seconds": 180.78199999999924,
+          "generation_tps": 40.81311348828805,
+          "prefill_tps": 176.86513910320366,
+          "maximum_input_tokens": 2435,
+          "effective_request_max_tokens": 16384,
+          "independent_groups": {
+            "passed": 6,
+            "total": 6
+          },
+          "model_tests": {
+            "passed": 7,
+            "total": 7
+          },
+          "distinct_sources": 7,
+          "local_evidence_sha256": {
+            "review.json": "3e2beb2cf4a0b60857bd814b640871bdf25d3cfda087a0bf1550793a562085c6",
+            "grading-result.json": "ed51159bf3c2d13862801cb694e786feebf12e75766d28c65943091c068c42f9",
+            "manifest.json": "ca374c47535e9c36c58783cde4fbe2183e7ce4184b4bb530c1c30a7f90026bea"
+          }
+        },
+        {
+          "task": "core-native-seed75",
+          "whole_prompt_seconds": 152.625,
+          "generation_tps": 41.18426386791718,
+          "prefill_tps": 178.03504941399888,
+          "maximum_input_tokens": 2555,
+          "effective_request_max_tokens": 16384,
+          "independent_groups": {
+            "passed": 6,
+            "total": 6
+          },
+          "model_tests": {
+            "passed": 7,
+            "total": 7
+          },
+          "distinct_sources": 7,
+          "local_evidence_sha256": {
+            "review.json": "2663eadb5ef261d65751fa39e0f1ff5c983f12317656c06d76534bdb6ac60011",
+            "grading-result.json": "ed51159bf3c2d13862801cb694e786feebf12e75766d28c65943091c068c42f9",
+            "manifest.json": "a67dea0719bfbef72dea874bbc5a13da333b2f6b5c31dad4a59cc1c0ab267ffa"
+          }
+        },
+        {
+          "task": "ts-sql-unrestricted",
+          "whole_prompt_seconds": 101.14099999999962,
+          "generation_tps": 41.722324649841454,
+          "prefill_tps": 151.98486206060892,
+          "maximum_input_tokens": 1377,
+          "effective_request_max_tokens": 16384,
+          "typescript_compile_exit": 2,
+          "typescript_behavior": {
+            "status": "not_run_after_strict_compile_failure",
+            "errors": [
+              "TS7006"
+            ]
+          },
+          "sqlite": {
+            "status": "migration_failed",
+            "error": "FOREIGN KEY constraint failed"
+          },
+          "distinct_sources": 6,
+          "local_evidence_sha256": {
+            "review.json": "aea53c064564aaf802dea66fb58c405212bdc2ccb0967ccd42c0d8df33557afb",
+            "grading-result.json": "61cd6e765c0c6a9a5e68b6f6117c0f1e6e053b2c52ce471c3f2969cda1b39a70",
+            "manifest.json": "3589d4b65c10b68a325d6c2b16467c04c764e4ea76fed2113b38d18ee2525532"
+          }
+        },
+        {
+          "task": "context-large-unrestricted",
+          "whole_prompt_seconds": 365.375,
+          "generation_tps": 36.793706027995405,
+          "prefill_tps": 158.7997664717119,
+          "maximum_input_tokens": 52030,
+          "effective_request_max_tokens": 8192,
+          "history": {
+            "initial_ready_count": 640,
+            "expected_count": 640,
+            "final_facts_correct": 6,
+            "final_facts_total": 6,
+            "fresh_runtime_read": true,
+            "honest_followup_inventory": true,
+            "failed_tool_recovery_observed": false
+          },
+          "local_evidence_sha256": {
+            "review.json": "8b1a24a6d42e5ff8b42d31a72337bd03d5e7587072841702e25e69eac251395e",
+            "manifest.json": "380ea1362f93cf96c290f5566eb05f56b24d8a78181adcb67ff9abd29d2ea869"
+          }
+        }
+      ]
+    }
+  ]
+}

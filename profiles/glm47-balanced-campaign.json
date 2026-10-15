@@ -1,8 +1,8 @@
 {
   "model": "glm47-udq4",
   "alias": "glm47-lab",
-  "locally_tested": false,
-  "evidence": "Untested matched-precision proposal: CPU expert placement in first 40 blocks (39 routed-expert blocks after the initial dense block), remaining seven expert blocks and attention on GPU. Q4 estimated CPU expert storage 12.56 GiB; actual MLA buffers must be measured. Same placement as the Q5 candidate for a controlled comparison.",
+  "locally_tested": true,
+  "evidence": "Completed32K q8 suite: Python1/6,5/6,2/6; unrestricted output exhausted; held-out strict TS failure and destructive SQL. Separate64K capped private21/36. See reports/2026-10-15-campaign.md; frozen trial snapshots retained.",
   "load_min_ram_free_gib": 17.5,
   "load_min_vram_free_mib": 6500,
   "template_kwargs": {
@@ -65,5 +65,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "measured_see_report_not_quality_certification"
 }

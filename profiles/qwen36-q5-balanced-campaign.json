@@ -1,8 +1,8 @@
 {
   "model": "qwen36-q5",
   "alias": "qwen36-lab",
-  "locally_tested": false,
-  "evidence": "Untested conditional precision profile: first 35 expert blocks on CPU, final five and attention on GPU. Header spans about 19.24 GiB CPU experts / 5.39 GiB remaining weights. Estimated runtime headroom requires at least 23.5 GiB free RAM and 6800 MiB free VRAM; recheck unloaded memory before downloading. This 32K profile differs from the 64K baseline; run a matched Q4 control if feasible.",
+  "locally_tested": true,
+  "evidence": "Completed matched32K Q5: three independent6/6, own7/7,7/7,6/7; mean252.797s,19.12% longer than Q4. Native public6/6; TS4/6 and SQL FK failure. Separate64K private28/36 with2/6 code. Not selected. See reports/2026-10-15-campaign.md; frozen trial snapshots retained.",
   "load_min_ram_free_gib": 23.5,
   "load_min_vram_free_mib": 6800,
   "template_kwargs": {
@@ -65,5 +65,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "measured_see_report_not_quality_certification"
 }

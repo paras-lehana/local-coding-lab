@@ -23,8 +23,10 @@ models:
     apiBase: http://127.0.0.1:8080/v1/
     apiKey: local-unused
     defaultCompletionOptions:
-      contextLength: 40000
-      maxTokens: 24576
+      contextLength: 48000
+      maxTokens: 16384
+    requestOptions:
+      timeout: 1200000
 ```
 
 For the inspected **Continue 2.0.0**, this deliberately uses its Deepseek adapter
@@ -35,9 +37,11 @@ the loopback URL explicit. This is source/configuration evidence; successful
 multi-turn UI transport still needs observation. Recheck this behavior for a
 different Continue release rather than assuming the workaround is permanent.
 
-This budget is specifically for the 64K Qwen reference: prior inspection of
-Continue 2.0.0 found its history pruner reserved only 1000 tokens, so the input
-budget was reduced to leave room for the larger output. It is **not** suitable
+This budget is specifically for the64K Qwen working profile. The completed
+finalist suite used16384 output tokens for coding and succeeded on a separate
+roughly52K-input history case. Continue2.0.0's history pruner reserves only1000
+tokens, so the48000 input budget leaves room for the16384 output allowance
+and some overhead. These are client budgets, not extra model context. It is **not** suitable
 for the proposed 32K Gemma profile. For that profile start with a conservative
 24000 input / 8192 output budget and verify the actual request; wrappers and
 tool definitions also consume context. Check the schema for your installed
@@ -71,8 +75,10 @@ need verification in a fresh editor conversation. Do not mistake an instruction
 index for the contents of every listed document. Loading an entire shared
 library would also consume prompt time and context that the coding task needs.
 
-Earlier private evidence includes a real three-file Copilot reply. Continue UI
-success remains unverified. This repository creation did not rerun either UI.
+Earlier private evidence includes a real three-file Copilot reply. Current
+configuration2.0 is installed, but fresh Copilot/Continue UI validation remains
+blocked while Windows exposes no interactive desktop. Configuration/API success
+does not establish the editor flow. Continue UI success remains unverified.
 The benchmark's 1200-second deadline applies to its own worker; editor socket
 timeouts do not automatically enforce the same whole-conversation limit.
 
@@ -80,8 +86,8 @@ The installed Continue 2.0.0 bundle also has a timeout-unit mismatch: its
 OpenAI-compatible adapter passes `requestOptions.timeout` directly to the SDK
 in **milliseconds**, while its custom fetch agent multiplies that same value
 by 1000. For this adapter, `86400` therefore permits only 86.4 seconds at the
-SDK layer; `1200` would mean 1.2 seconds there. A proposed value of `1200000`
-sets a 20-minute SDK request timeout. This source finding is specific to the
+SDK layer; `1200` would mean 1.2 seconds there. The installed local entry now
+uses `1200000`, a20-minute SDK request timeout. This source finding is specific to the
 inspected build; it is not an observed editor timeout test, nor a total deadline
 across streaming and multiple tool rounds. Keep an explicit elapsed-time limit
 when validating a conversation. Recheck the installed implementation on upgrade.

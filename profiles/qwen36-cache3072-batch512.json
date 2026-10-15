@@ -2,7 +2,7 @@
   "model": "qwen36-q4",
   "alias": "qwen36-lab",
   "locally_tested": false,
-  "evidence": "Adaptive combination:3072MiB GPU expert cache plus512/128 batches. Separate earlier1536MiB cache improved decode while512/128 without cache improved prefill. This combination is unmeasured and is not a single-variable comparison against the original profile. Preserve all failed attempts and enforce fresh memory gates.",
+  "evidence": "Rejected before load:7083MiB freeVRAM below7100MiB gate; no OOM or quality result. Retained for reproducibility; explicit experimental opt-in required.",
   "load_min_ram_free_gib": 23,
   "load_min_vram_free_mib": 7100,
   "template_kwargs": {
@@ -66,5 +66,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "rejected_or_incomplete"
 }

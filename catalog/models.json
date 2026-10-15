@@ -11,7 +11,7 @@
       "bytes": 22134528992,
       "sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61",
       "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
-      "status": "historical-local-reference",
+      "status": "selected-instruction-priority-working-profile-with-documented-defects-editor-ui-pending",
       "thinking": "enable_thinking and preserve_thinking; no native xhigh"
     },
     "gemma4-26b-qat": {
@@ -22,7 +22,7 @@
       "bytes": 14439363584,
       "sha256": "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d",
       "upstream": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "status": "seven-task-32k-suite-reviewed-long-context-and-private-audit-pending",
+      "status": "retained-lower-memory-fallback-32k-64k-public-and-private-complete",
       "thinking": "Native tool continuation preservation and runtime 2048 reasoning ceiling observed; no native xhigh label"
     },
     "glm47-udq4": {
@@ -33,7 +33,7 @@
       "bytes": 17520169312,
       "sha256": "b0d4fbc1211f891b4cfbf2a497160bfe06a49412420068904d426b7a13f4ba7f",
       "upstream": "https://huggingface.co/zai-org/GLM-4.7-Flash",
-      "status": "seven-task-32k-suite-collected-private-audit-and-cache-followup-pending",
+      "status": "public-q8-f16-and-private-complete-not-selected-weight-retired",
       "thinking": "Native continuation with clear_thinking false verified; unrestricted run exhausted output allowance without final answer. No native xhigh claim."
     },
     "glm47-q5": {
@@ -44,7 +44,7 @@
       "bytes": 21408850272,
       "sha256": "167848c4b460887d7a52c44c378d3996a0d38b3302ac2045494dc8b50869a893",
       "upstream": "https://huggingface.co/zai-org/GLM-4.7-Flash",
-      "status": "verified-loaded-matched-precision-suite-running",
+      "status": "public-native-repeats-private-recovery-complete-not-selected-weight-retired",
       "thinking": "Same family; quantization is an independent experimental variable"
     },
     "gemma4-31b-qat": {
@@ -64,7 +64,7 @@
       "filename": "Qwen3-Coder-30B-A3B-Instruct-UD-Q4_K_XL.gguf",
       "bytes": 17665334432,
       "sha256": "2841aa314d916434860cfb8990347528dcdfe5c350dbcb9d1461dbee88ff2533",
-      "status": "five-task-nonthinking-suite-collected-private-audit-pending",
+      "status": "public-complete-private-deadline-unscored-weight-retired",
       "thinking": "Non-thinking coding control; tool calls observed, but linked-rule omissions and code defects remain. No native reasoning-effort control."
     },
     "qwen36-q5": {
@@ -74,7 +74,7 @@
       "filename": "Qwen3.6-35B-A3B-UD-Q5_K_M.gguf",
       "bytes": 26456194016,
       "sha256": "c13ce26253ea334df472bd8fbd2d6da66d8a41195c17f6fcbf44c4d20ece0932",
-      "status": "conditional-download-queued-load-requires-fresh-memory-check",
+      "status": "matched-public-and-native-private-complete-not-selected-weight-retired",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "qwen36-q6": {
@@ -94,7 +94,7 @@
       "filename": "GLM-4.7-Flash-UD-Q6_K_XL.gguf",
       "bytes": 26175238496,
       "sha256": "b5ddf6a5531a4d06ce84a652419c8d32c0cb15ca64549d715f783de948a3f3e2",
-      "status": "conditional-download-queued-from-measured-family-buffer-costs",
+      "status": "public-and-native-private-complete-not-selected-weight-retired",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "kimi-linear-q4": {
@@ -104,7 +104,7 @@
       "filename": "moonshotai_Kimi-Linear-48B-A3B-Instruct-Q4_K_M.gguf",
       "bytes": 30061058720,
       "sha256": "a1a7d865370652221f937163f7e94c99e1f114861335ba4f8666606843f1620f",
-      "status": "conditional-profile-after-headroom-recovery-fresh-gates-required-no-quality-score",
+      "status": "public-f16-complete-64k-private-capacity-rejected-not-selected-weight-retired",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "qwencoder-next-q4": {

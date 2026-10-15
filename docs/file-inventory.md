@@ -39,7 +39,10 @@ Initial repository contents and purpose, followed by subsequent change inventori
 | `docs/tasks.md` | User/developer guide, decisions, task or session log |
 | `docs/tasks/README.md` | Index of forwardable task reports |
 | `docs/tasks/2026-10-15-autonomous-model-campaign/owner-request.txt` | Relevant campaign requests and continuing constraints, excluding credentials |
-| `docs/tasks/2026-10-15-autonomous-model-campaign/2026-10-15-model-comparison-and-editor-validation-v0.3.8.md` | One forwardable campaign report; selection/editor validation still in progress |
+| `docs/tasks/2026-10-15-autonomous-model-campaign/2026-10-15-model-comparison-and-editor-validation-v0.3.9.md` | One forwardable campaign report; measured selection and remaining editor UI gate |
+| `profiles/qwen36-instructions-64k.json` | Selected working profile, native reasoning and explicit output/context budget |
+| `reports/2026-10-15-finalist-results.json` | Reviewed repeated/held-out/long-history results for both finalist profiles |
+| `reports/2026-10-15-selection.json` | Sanitized production selection, API and measured cache/memory evidence |
 | `lab.py` | Pinned downloader, safe extraction, telemetry and guarded process launcher |
 | `profiles/gemma4-smoke-proposed.json` | Explicit measured-reference or proposed launch configuration |
 | `profiles/qwen36-all-attention-proposed.json` | Explicit measured-reference or proposed launch configuration |

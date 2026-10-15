@@ -27,6 +27,15 @@ doubling gives 680 MiB attention KV at 64K; state does not necessarily scale
 the same way. A generic claim that every model needs 16 GB KV at 32K is wrong.
 Architecture, layers, heads, dimensions, precision, slots and backend all matter.
 
+The selected configuration2.0 now confirms the64K allocation directly:
+**680MiB attention KV =136MiB CPU +544MiB GPU**, with **62.81MiB recurrent
+state =18.84MiB CPU +43.97MiB GPU**. Model buffers are4383.13MiB GPU and
+16715.52MiB host; compute buffers273MiB GPU and22.36MiB host. Readiness uses
+about17.0GiB processRAM/5.38GiB dedicatedVRAM; the finalist suite peaks at
+18.09GiB processRAM. These are measured components, not numbers to add to an
+already measured process total. Partial CPU/GPU state placement follows the
+30GPU-layer profile; it does not use an all-RAM-KV flag.
+
 In the pinned runtime, `--no-kv-offload` requests host-side KV. GPU offload flags
 do not mean "put KV in RAM." Moving this relatively small cache to RAM could
 recover some VRAM but uses more host memory and may slow attention. It cannot
@@ -77,6 +86,15 @@ discarded. Its first Q4 balanced load uses about 4.90 GiB dedicated process
 VRAM and 13.40 GiB sampled process RAM. Do not apply the Gemma or Qwen cache
 formula to this architecture, or add a second assumed value cache to the log.
 
+Kimi Linear demonstrates a compatibility limit as well as different sizing.
+The pinned runtime rejects q8 V because its value-head dimension72 is not
+divisible by block32, then rejects differing K/V types. Matching f16 loads at
+32K with **252 MiB KV**, **42.81 MiB recurrent state** and **949.13 MiB GPU
+compute buffers**. Readiness dedicated VRAM is7.09GiB and peak process RAM
+23.24GiB. Its510MiB minimum freeVRAM is too narrow to reuse that placement at
+64K without a separate capacity adjustment/test. Quantized KV is not a
+universally supported requirement, and active KV alone is not total memory.
+
 Qwen3-Coder 30B at the same 32K context uses **1632 MiB q8 KV**: 816 MiB each
 for K and V. Its measured balanced placement uses 5.80 GiB dedicated process
 VRAM and a peak sampled 13.28 GiB process working set. A separate tokenizer
@@ -90,7 +108,8 @@ defaults to **32 context checkpoints per slot** (`--ctx-checkpoints`). Gemma's
 logs show individual full sliding-window checkpoints of about 106 MiB, in host
 memory. Do not call that additional allocation permanent chat memory, or assume
 the active attention KV figure describes the whole process. Fewer checkpoints
-can change cache reuse and prefill work; that tuning has not yet been measured.
+can change cache reuse and prefill work. Kimi uses four in the completed32K
+suite, but there is no isolated checkpoint-count A/B result.
 
 Context remains useful only when the client actually sends the relevant files,
 instructions and history. A CLAUDE import, a Copilot instruction rule and an

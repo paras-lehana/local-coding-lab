@@ -2,7 +2,7 @@
   "model": "kimi-linear-q4",
   "alias": "kimi-linear-lab",
   "locally_tested": false,
-  "evidence": "Untested conditional 32K profile. Pinned header: 27 blocks, first dense plus 26 routed; 23 CPU-MoE selection gives about 22.188 GiB CPU expert spans / 5.802 GiB remaining weights, before actual runtime allocation. Estimated MLA plus recurrent cache is small but unmeasured. Limit context checkpoints to four to reserve RAM. Recent unloaded RAM is near the 26 GiB gate, so attempt only after a fresh passing snapshot and disk check. No native thinking-effort claim.",
+  "evidence": "Attempted normal exit1: q8 V block32 incompatible with head dimension72. No completed load/quality score; use separate f16 profile for measured results. Retained for reproducibility; explicit experimental opt-in required.",
   "load_min_ram_free_gib": 26,
   "load_min_vram_free_mib": 6800,
   "template_kwargs": {},
@@ -64,5 +64,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "rejected_or_incomplete"
 }

@@ -1,8 +1,8 @@
 {
   "model": "qwencoder30-udq4",
   "alias": "qwencoder30-lab",
-  "locally_tested": false,
-  "evidence": "Untested revised apps-open proposal before first load: first 39 expert blocks in RAM and final nine on GPU. Header spans 12.457 GiB CPU experts / 3.990 GiB remaining tensors. Estimated 32K q8 attention KV 1632 MiB. Earlier unloaded free VRAM is about 6830 MiB, below the old 7000 MiB gate, so move two additional expert blocks to CPU rather than lowering the same placement gate. Measure actual buffers; no load/result claimed.",
+  "locally_tested": true,
+  "evidence": "Completed non-thinking32K control: Python2/6,3/6,1/6; TS5/6/SQL failure. Separate64K private1200s deadline unscored. Weight retired; no native ultra mode. See reports/2026-10-15-campaign.md; frozen trial snapshots retained.",
   "load_min_ram_free_gib": 17,
   "load_min_vram_free_mib": 6500,
   "template_kwargs": {},
@@ -62,5 +62,6 @@
   ],
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
-  "stop_gpu_c": 84
+  "stop_gpu_c": 84,
+  "validation_status": "measured_see_report_not_quality_certification"
 }
