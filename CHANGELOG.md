@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.6 - 2026-10-15 (campaign in progress)
+
+- Preserve the later unexpectedly interrupted GLM audit without scoring it;
+  distinguish its unknown cause from the earlier planned update restart.
+- Record Windows commit availability alongside physical RAM and GPU telemetry.
+- Publish completed private-audit grades and model-retirement evidence; resume
+  outstanding comparisons only after a short monitored recovery check.
+
 ## 0.3.5 — 2026-10-15 (campaign in progress)
 
 - Record Qwen Coder's completed collection, file-reading omissions and code

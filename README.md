@@ -9,10 +9,10 @@ reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
 **Status: v0.3, experimental; autonomous campaign in progress.** Follow the
-[live campaign evidence](reports/2026-10-15-campaign.md). The portable launcher completed its first live
-Qwen placement pair. Both proposed fixes passed isolated contract checks; one
-answer contained a failing generated test. This is a small public-fixture pilot,
-not a model leaderboard. Clean-machine model downloads remain unvalidated.
+[live campaign evidence](reports/2026-10-15-campaign.md). Repeated coding,
+long-document, changed-file and actual-instruction tests now cover Qwen,
+Gemma, GLM and Qwen Coder. Precision/settings comparisons and real editor
+validation are still running. Clean-machine installation remains unvalidated.
 
 ## Start here
 
@@ -20,7 +20,7 @@ not a model leaderboard. Clean-machine model downloads remain unvalidated.
 |---|---|
 | Install and try a model | [Windows walkthrough](docs/setup.md) |
 | Understand which model to try | [Shortlist and exact links](docs/models.md) |
-| See what actually worked | [New placement experiment](reports/2026-10-14-placement.md), [historical results](reports/2026-10-14-findings.md) |
+| See what actually worked | [Current campaign](reports/2026-10-15-campaign.md), [placement experiment](reports/2026-10-14-placement.md), [historical results](reports/2026-10-14-findings.md) |
 | Understand RAM, VRAM and KV cache | [Memory guide](docs/memory-and-context.md) |
 | Connect VS Code | [Editor guide](docs/editors.md) |
 | Compare models fairly | [Run a comparison](docs/run-a-comparison.md), [methodology](docs/methodology.md), [questions](benchmarks/questions/router-v1.txt), [rubric](benchmarks/rubrics/router-v1.md) |
@@ -54,9 +54,10 @@ choice, not a claim that it is the latest or best build.
 
 The [setup guide](docs/setup.md) continues through explicit server start, health
 checks, benchmark collection, and stopping. Installation does not start a model.
-Gemma's seven-task 32K suite is reviewed: Python checks pass, while held-out
-TypeScript/SQLite failures remain. It is not a demonstrated upgrade across the
-full workflow or real editors. Follow the live campaign evidence above.
+Gemma's Python checks pass. Its unrestricted 64K follow-up also passes all six
+SQL groups and five of six TypeScript groups, but its capped actual-instruction
+audit misses files and produces a different merge bug. It is not a demonstrated
+upgrade across the full workflow or real editors. Follow the evidence above.
 
 ## What the evidence says
 
@@ -75,13 +76,17 @@ full workflow or real editors. Follow the live campaign evidence above.
 - Recent memory pressure stopped inference twice. Today's free memory must be
   checked; installed RAM and yesterday's fit are insufficient.
 
-**Now:** grade the completed GLM/Qwen Coder suites, compare feasible precision
-variants, complete larger-history and actual-instruction audits, and verify
-editor flows.
-The dense Gemma RAM-KV profile missed its practical latency gate. GLM's first
-three core implementations contain semantic defects; its unrestricted repeat
-exhausted the output allowance without a final answer. More thinking or a larger
-model label is not sufficient evidence of better results.
+**Now:** complete the unfinished precision, cache and unrestricted-instruction
+comparisons, then verify actual editor flows. Gemma's larger-history case passed
+at 52,231 input tokens. Its capped private audit scored 19/36; GLM Q4 scored
+21/36. These are a different rubric from the public fixture and use different
+profiles from the historical Qwen 31/36 result. Qwen Coder's private attempt
+hit the 20-minute deadline and is unscored; its weight was retired with evidence.
+
+A later unexpected shutdown interrupted GLM Q5's private audit. Its cause is
+unresolved; do not interpret the crash monitor's popup as a component diagnosis.
+The earlier planned Windows Update restart is a separate event. Recovery checks
+and interrupted-attempt records are in the current report.
 
 ## Repository map
 

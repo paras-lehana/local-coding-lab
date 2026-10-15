@@ -9,6 +9,18 @@
 | Prompt/slot cache | Reuse of eligible computation/state | A durable searchable repository memory |
 | GPU expert cache | Copies of CPU-resident experts cached in VRAM | Removal of the original CPU weights |
 
+The Windows monitor also records **commit limit and available commit** through
+`GlobalMemoryStatusEx`. These values can reflect a tighter limit on the calling
+process; they are not a separate measurement of system-wide commit when such a
+limit applies. See [Microsoft's field definitions](https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/ns-sysinfoapi-memorystatusex).
+Commit
+is a separate allocation constraint from physical RAM and GPU VRAM; a machine
+can have free physical memory while much of its commit allowance is reserved.
+The later unexpected-shutdown heartbeat reported 92.1% commit, but did not
+establish that commit exhaustion caused the failure. The new telemetry improves
+future diagnosis; it is not evidence that the restart was fixed. WDDM shared
+GPU memory overlaps system RAM and must not be added as independent capacity.
+
 The actual Qwen3.6 32K diagnostic allocated **340 MiB attention KV** plus
 **62.81 MiB recurrent state**. KV split was 68 MiB CPU / 272 MiB GPU. A simple
 doubling gives 680 MiB attention KV at 64K; state does not necessarily scale

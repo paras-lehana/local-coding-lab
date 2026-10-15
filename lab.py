@@ -180,7 +180,11 @@ def memory_snapshot() -> dict:
         memory.length = ctypes.sizeof(memory)
         if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(memory)):
             raise OSError("Windows physical-memory query failed")
-        result.update(ram_total_gib=memory.total / GIB, ram_free_gib=memory.free / GIB)
+        # Commit fields may reflect a tighter limit on this calling process.
+        result.update(ram_total_gib=memory.total / GIB,
+                      ram_free_gib=memory.free / GIB,
+                      commit_limit_gib=memory.page_total / GIB,
+                      commit_available_gib=memory.page_free / GIB)
     try:
         command = ["nvidia-smi", "--id=0", "--query-gpu=memory.total,memory.free,temperature.gpu,name,driver_version", "--format=csv,noheader,nounits"]
         query = subprocess.run(command, capture_output=True, text=True,

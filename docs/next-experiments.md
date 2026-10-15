@@ -11,8 +11,10 @@ Exact retired weight files were deleted only after evidence preservation.
 
 ## Current remaining work
 
-1. Finish isolated grading and actual-instruction audits for the collected
-   GLM Q4/Q5 and Qwen Coder suites; preserve source and test defects separately.
+1. Public-suite grading and capped Gemma/GLM Q4 private grading are complete.
+   Resume the interrupted GLM Q5 private audit as a new attempt after monitored
+   recovery. Preserve its earlier partial output unscored. Qwen Coder's private
+   attempt reached the deadline; its completed public results remain available.
 2. Test feasible Qwen Q5 and GLM Q6 profiles with fresh memory and disk gates.
    Hold placement/context constant for precision claims, or explicitly label
    their differences. Reassess conditional capacity exclusions after unloading.

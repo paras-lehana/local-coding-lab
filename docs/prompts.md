@@ -8,6 +8,7 @@ private instruction contents and raw editor chats.
 | 1 | 2026-10-14 | 22:35 | Establish reusable research repository | Infrastructure | Done | [Entry](#repository-creation) |
 | 2 | 2026-10-14 | 23:12 | Start research: controlled Qwen placement | Research | Done | [Entry](#research-placement-experiment) |
 | 3 | 2026-10-15 | 00:47 | Autonomous full research campaign | Research | In progress | [Entry](#autonomous-research-campaign) |
+| 4 | 2026-10-15 | 15:17 | Recover after unexpected shutdown | Infrastructure / Research | In progress | [Entry](#unexpected-shutdown-recovery) |
 
 ## Repository creation
 
@@ -375,3 +376,22 @@ code claims, measured memory and timings. Reviewed unchanged code is queued for
 isolated grading between loads. Added an optional private-wrapper budget flag
 (default 2048 unchanged) and queued unrestricted Gemma/Qwen follow-ups. Qwen
 Coder supplemental test invocation is 6/7; the original script ran no tests.
+
+### 10:19 IST continuing checkpoint
+
+Private code grading completed between loads: Gemma 2/6, GLM Q4 4/6; combined
+manual-source/code totals 19/36 and 21/36. Coder timed out without a final answer,
+unscored, despite sufficient context capacity. Preserved evidence and retired
+only its hash-verified exact weight; GLM Q6 download now runs. GLM Q5 retry
+passed the original gates after a preflight rejection. Staged launcher reads
+profile-specific settings and checks existing endpoint health; production
+remains unchanged. Published checkpoint 2268c0f passed both CI platforms.
+
+
+## Unexpected shutdown recovery
+
+Original request: "you please continue, the pc was restarted itself, see if you can find an y reason from the image (and continue your work)". The image points to a local crash report for the 14:58 boot.
+
+15:17 IST checkpoint: re-read project/parent instructions, shared Codex entry, router, platform and logging rules; recovered reports and on-disk trial state. Earlier completed results survive. GLM Q5 private retry was interrupted and is now explicitly unscored; none of its queued successors started. The external crash report and event XML are preserved privately. Zero bugcheck, no new WHEA/NVIDIA error/minidump and last heartbeat at10:24 do not identify a specific failing component. The external report's CPU-overclock and hardware-reset assertions are unsupported by those fields. Current load recovery uses a short Gemma check; no BIOS, driver, application or editor changes. Added commit telemetry without weakening existing stops. Full campaign remains active; no final model ranking or UI pass is claimed.
+
+15:25 IST checkpoint: owner was not watching and cannot distinguish freeze/power loss/restart. Short Gemma recovery greeting completed in1.11s; deliberately500-token calibration stopped on output length in38.625s, unscored, normal owned shutdown. Peak process RAM11.06GiB; minimum free RAM15.14GiB, available commit24.05GiB, free VRAM1952MiB, core maximum50C. Unrestricted private audit now active. Eleven named recovery actions are frozen in ignored local data and run sequentially, with new hardware-event checks and fresh memory gates; no startup task. GLM Q6 download resumed. Offline validation:20 tests pass in9.186s, both PowerShell scripts parse,96-file audit has0 findings, diff check passes. Source definitions clarify that GlobalMemoryStatusEx commit values may include calling-process limits.
