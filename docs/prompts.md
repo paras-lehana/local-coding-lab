@@ -247,3 +247,15 @@ and public-content audit pass; campaign remains in progress.
 - 01:23 IST: Ubuntu CI passed; Windows CI exposed an overly tight one-second
   test deadline that expired during process startup. Increased startup margin
   while keeping the combined phases over the deadline; targeted checks pass.
+
+### Recovery after the planned Windows Update restart
+
+> please continue, dont know why the computer restarted.
+
+Recovered completed Qwen answers/grades and unfinished downloads. Event 1074
+identifies planned Windows Update restarts at 01:29:38 and 01:33:59 IST; no new
+WHEA/bugcheck/display crash or dump was found in the surrounding window.
+The unfinished batch512 attempt remains unscored. Current free RAM is lower,
+so the campaign continues with measured placement changes and unchanged guards.
+Gemma dense is verified; GPU-KV reached the guard, and RAM-KV passed smoke with
+a five-minute calibration underway. Full candidate coverage remains active.

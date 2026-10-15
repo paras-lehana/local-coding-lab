@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.1 — 2026-10-15 (campaign in progress)
+
+- Preserve restart evidence and distinguish planned update interruptions from
+  hardware failures and scored model results.
+- Reject simultaneous llama-server processes across ports; collect per-process
+  dedicated GPU usage during trials without double-counting shared RAM.
+- Retain small numeric GGUF architecture arrays and add explicit smaller-memory
+  dense CPU-KV and balanced Gemma placement experiments.
+
 ## 0.3.0 — 2026-10-15 (campaign in progress)
 
 - Add checkpointed, monitored model trials and frozen multi-turn changed-file

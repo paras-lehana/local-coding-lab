@@ -12,11 +12,11 @@ them blindly after interruption.
 
 | Candidate | Status | Required disposition |
 |---|---|---|
-| Qwen3.6 Q4 | Pending further tests | Repeats, unrestricted thinking, larger prefill, history/stale files and held-out code |
+| Qwen3.6 Q4 | Core/history/held-out collected | Python passes; TS/SQL bugs persist with unrestricted thinking; larger batch interrupted by planned update |
 | Gemma 4 26B QAT | Downloading | Load/template/tools, coding, memory, history |
 | GLM-4.7-Flash UD-Q4 | Downloading | Load/MLA/q8 behavior, coding, memory, history |
 | Qwen3-Coder 30B UD-Q4 | Pending | Non-thinking comparison, coding and history |
-| Gemma 4 31B QAT dense | Pending | Five-minute prefill/decode gate, then feasible tasks |
+| Gemma 4 31B QAT dense | Verified; calibration active | GPU-KV profile stopped at VRAM guard; CPU-KV smoke passes, latency calibration running |
 | Qwen3.6 Q5 and optional Q6 | Pending | Verified capacity check and matched precision test where feasible |
 | GLM Flash Q5 and optional UD-Q6 | Pending | Verified capacity check and precision test where feasible |
 | Kimi Linear 48B Q4 | Pending | Runtime support and capacity, then feasible tasks |
@@ -37,6 +37,12 @@ closed and no clock/driver changes.
   Added isolated TS/SQLite grading; positive and negative controls behaved as
   expected. No generated code executed on Windows. Live campaign evidence is
   maintained in [the campaign report](../reports/2026-10-15-campaign.md).
+- 06:45 IST recovery: Windows Update initiated planned restarts at 01:29:38
+  and 01:33:59; no new hardware-crash evidence in that window. Preserved the
+  interrupted Qwen larger-batch attempt as unscored, resumed partial downloads.
+- 06:53 IST: dense Gemma GPU-KV reached the VRAM guard; RAM-KV loaded and
+  passed smoke. Current unloaded RAM fluctuates around 15–19 GiB. No user
+  applications closed, update-policy changes, hardware tuning or cloud calls.
 
 ## 2026-10-14 — Begin research experiments
 

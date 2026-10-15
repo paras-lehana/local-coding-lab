@@ -39,6 +39,8 @@ def read_value(stream: BinaryIO, kind: int, retain: bool) -> Any:
         subtype, count = read_number(stream, 'I'), read_number(stream, 'Q')
         if count > 2_000_000 or subtype == 9:
             raise ValueError('Unexpected metadata array')
+        if retain and subtype in FORMATS and count <= 512:
+            return [read_value(stream, subtype, True) for _ in range(count)]
         for _ in range(count):
             read_value(stream, subtype, False)
         return {'array_type': subtype, 'length': count} if retain else None

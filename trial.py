@@ -91,6 +91,9 @@ def run(args: argparse.Namespace) -> int:
             else:
                 raise TimeoutError('Model load exceeded five minutes')
             lab.save_json(root / 'props.json', request_json(endpoint, '/props'))
+            process_records = list((root/'server/runs').glob('*/process.json'))
+            server_pid = lab.read_json(process_records[0])['pid']
+            lab.save_json(root/'gpu-loaded.json', lab.process_gpu_snapshot(server_pid))
             smoke = {'model': profile['alias'], 'messages': [
                 {'role': 'user', 'content': 'Reply with exactly READY.'}],
                 'max_tokens': 64, 'temperature': 0, 'seed': 73,
@@ -131,6 +134,7 @@ def run(args: argparse.Namespace) -> int:
                                        'result': result})
                 checkpoint(root, state)
                 print(task['name'], json.dumps(result), flush=True)
+                lab.save_json(output/'gpu-after-task.json', lab.process_gpu_snapshot(server_pid))
                 if result['status'] in ('deadline', 'worker_error', 'harness_error'):
                     state['status'] = 'stopped_after_failed_task'
                     break

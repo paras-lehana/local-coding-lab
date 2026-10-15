@@ -266,6 +266,43 @@ def check_hardware_events(since: str) -> None:
         raise ValueError("Could not check Windows hardware events")
 
 
+def check_single_server() -> None:
+    """Reject an existing llama-server on any port; never stop another process."""
+    script = ("$ErrorActionPreference='Stop'; try { "
+              "$servers=@(Get-CimInstance Win32_Process -Filter \"Name='llama-server.exe'\"); "
+              "if ($servers.Count) { exit 2 }; exit 0 } catch { exit 3 }")
+    encoded = base64.b64encode(script.encode('utf-16-le')).decode('ascii')
+    result = subprocess.run(['powershell.exe', '-NoProfile', '-NonInteractive',
+                             '-EncodedCommand', encoded], capture_output=True,
+                            timeout=10, creationflags=subprocess.CREATE_NO_WINDOW)
+    if result.returncode:
+        raise ValueError('Another llama-server exists or process inventory is unavailable')
+
+
+def process_gpu_snapshot(pid: int) -> dict:
+    """Capture WDDM dedicated/shared usage without treating shared RAM as VRAM."""
+    if sys.platform != 'win32' or not isinstance(pid, int) or pid <= 0:
+        return {'error': 'Windows process ID required'}
+    script = ("$ErrorActionPreference='Stop'; "
+              "@(Get-CimInstance Win32_PerfFormattedData_GPUPerformanceCounters_GPUProcessMemory | "
+              f"Where-Object Name -like 'pid_{pid}_*phys_0' | "
+              "Select-Object Name,DedicatedUsage,SharedUsage) | ConvertTo-Json -Compress")
+    encoded = base64.b64encode(script.encode('utf-16-le')).decode('ascii')
+    try:
+        result = subprocess.run(['powershell.exe', '-NoProfile', '-NonInteractive',
+                                 '-EncodedCommand', encoded], capture_output=True,
+                                text=True, timeout=15, check=True,
+                                creationflags=subprocess.CREATE_NO_WINDOW)
+        value = json.loads(result.stdout)
+        rows = value if isinstance(value, list) else [value]
+        return {'time': time.time(), 'pid': pid, 'rows': rows,
+                'dedicated_gib': sum(row['DedicatedUsage'] for row in rows)/GIB,
+                'shared_gib': sum(row['SharedUsage'] for row in rows)/GIB,
+                'note': 'Shared usage overlaps host RAM; do not add it to process working set.'}
+    except (ValueError, TypeError, KeyError, OSError, subprocess.SubprocessError):
+        return {'time': time.time(), 'pid': pid, 'error': 'WDDM counters unavailable'}
+
+
 def run_server(args: argparse.Namespace, data: Path) -> None:
     """Own one foreground session, monitoring resources until it stops."""
     profile = read_json(ROOT / "profiles" / (args.profile + ".json"))
@@ -294,6 +331,7 @@ def run_server(args: argparse.Namespace, data: Path) -> None:
     since = datetime.now(timezone.utc).isoformat()
     check_hardware_events(since)
     check_memory(memory_snapshot(), profile, loading=True)
+    check_single_server()
     with socket.socket() as probe:
         probe.bind(("127.0.0.1", args.port))
     help_text = subprocess.run([str(executables[0]), "--help"], capture_output=True,
