@@ -35,6 +35,14 @@ the saved return codes and unittest output; a generated test can fail while
 the separately checked implementation passes. Do not call such a failure a
 model syntax error. The runner returns nonzero on either failed grading pass.
 
+Inspect **all visible assistant turns** in `turns.json`, not just `answer.txt`.
+The latter contains the final tool-free message. A model may provide an
+implementation before another tool call and finish with the migration/tests.
+Record the selected turn and code-fence index; do not grade such visible code
+as missing. Reasoning-only drafts are not delivered implementations. In the
+GLM Q5 held-out case, the TypeScript implementation appears in visible turn 4,
+before a final schema read, while the last message contains SQL and examples.
+
 This is a restricted environment for reviewed simple Python answers, not a
 guarantee against actively hostile native code or a kernel exploit. Use a
 disposable VM for that threat model. Do not mount credentials or run unknown

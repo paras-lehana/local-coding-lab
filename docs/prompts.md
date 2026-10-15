@@ -337,3 +337,14 @@ and enough disk. No Kimi load or score is claimed. No editor promotion yet.
 v0.3.5 checkpoint validation: 20 offline tests pass; PowerShell parsing and
 whitespace checks pass; public-content audit covers all 96 tracked/unignored
 files with zero findings. The frozen prompts and model answers are unchanged.
+
+09:18 IST checkpoint: GLM Q5 finished all seven tasks and unloaded normally.
+All visible responses were reviewed, including TypeScript delivered before a
+later tool call. Prepared eleven unchanged answers for isolated grading during
+the next interval without inference. The unrestricted Python answer needs
+verification/repeats; bounded answers and SQL retain defects. Its bounded-core
+logs show budget activation without exhaustion, so no truncation-causality claim
+is made. Updated grading/timing methodology to distinguish visible intermediate
+content from the final message. Gemma's 64K follow-up is running. Qwen Q5 is
+verified; GLM Q6 awaits disk space after its pre-download gate refused. Four
+remaining Qwen settings probes are queued behind the precision comparisons.

@@ -61,6 +61,13 @@ separately. Check claims against successful returned source bytes, not just
 requested reads. Interrupted, empty and truncated answers are unscored; retain
 their partial evidence instead of counting them as quantization syntax failures.
 
+The legacy per-turn field `first_final_seconds` measures the first visible
+`content` fragment, which can be a plan before a tool call. It is not necessarily
+the first text of the eventual answer or whole-task completion. Identify the
+actual final tool-free turn separately, and use total wall time for the owner's
+20-minute requirement. Likewise, review visible content across tool turns when
+locating delivered code; an implementation can precede the final message.
+
 ## Fair comparisons
 
 1. Freeze model SHA, runtime commit, template, profile, question and rubric.
@@ -71,7 +78,9 @@ their partial evidence instead of counting them as quantization syntax failures.
 4. Repeat finalist runs three times and add a held-out task before promotion.
 5. Run real editor tool rounds after API checks. Record each editor/version.
 6. Evaluate long history, stale-file recovery, beginning/middle/end retrieval and
-   context truncation separately. These are planned, not implemented in v0.1.
+   context truncation separately. The v0.3 history scenarios implement retained
+   ledger facts and changed-file reads. A tool-failure recovery claim additionally
+   requires observing an attempted unavailable-ledger read and its handling.
 
 Commit reviewed aggregate results using [the report template](../reports/TEMPLATE.md).
 Keep raw answers local by default. Share only a deliberate sanitized export.

@@ -75,8 +75,9 @@ full workflow or real editors. Follow the live campaign evidence above.
 - Recent memory pressure stopped inference twice. Today's free memory must be
   checked; installed RAM and yesterday's fit are insufficient.
 
-**Now:** finish GLM and Qwen Coder collection, compare feasible precision variants,
-complete larger-history and actual-instruction audits, and verify editor flows.
+**Now:** grade the completed GLM/Qwen Coder suites, compare feasible precision
+variants, complete larger-history and actual-instruction audits, and verify
+editor flows.
 The dense Gemma RAM-KV profile missed its practical latency gate. GLM's first
 three core implementations contain semantic defects; its unrestricted repeat
 exhausted the output allowance without a final answer. More thinking or a larger

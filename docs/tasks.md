@@ -84,6 +84,13 @@ closed and no clock/driver changes.
   matched 32K placement. Private audits, matched Qwen precision and GLM f16
   cache tests are queued. Kimi's earlier capacity exclusion is reconsidered
   against improved unloaded memory; a fresh gate and disk space remain required.
+- 09:18 IST checkpoint: GLM Q5's seven tasks are collected/reviewed, with normal
+  shutdown, 16.32 GiB peak sampled RAM and 5.57 GiB readiness dedicated VRAM.
+  Its unrestricted Python answer is promising but awaits grading/repeats; bounded
+  variants and held-out SQL still contain defects. Gemma's 64K follow-up is
+  running. Eleven reviewed answers are queued for grading before the private
+  audits. Qwen Q5 is verified; GLM Q6 stopped at its disk gate. Batch512,
+  GPU expert-cache, CPU-KV and research-sampling probes are queued sequentially.
 
 ## 2026-10-14 — Begin research experiments
 
