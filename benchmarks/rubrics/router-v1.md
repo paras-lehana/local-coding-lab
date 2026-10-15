@@ -19,5 +19,5 @@ tools-mode score or compare totals without reporting the delivery difference.
 
 Code points need behavioral verification in a separate restricted environment.
 The bundled harness deliberately does not execute model-produced code. Record
-provisional human review separately; syntax validity cannot earn behavior points.
+provisional source review separately; syntax validity cannot earn behavior points.
 The test corpus is public, so repeated tuning on it is not held-out evaluation.

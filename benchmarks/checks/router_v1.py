@@ -1,4 +1,4 @@
-"""Human-authored router-v1 checks. Run only inside the grading sandbox."""
+"""Codex-authored router-v1 checks. Run only inside the grading sandbox."""
 import copy
 import unittest
 

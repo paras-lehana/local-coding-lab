@@ -230,7 +230,8 @@
       "independent_behavior_groups_total": 6,
       "model_tests_passed": 7,
       "model_tests_total": 7,
-      "human_rubric": {
+      "source_rubric": {
+        "reviewer": "Codex; not independently human-reviewed",
         "instruction_discovery": 8,
         "file_grounding": 6,
         "unknown_fact_honesty": 6,
@@ -393,7 +394,8 @@
       "independent_behavior_groups_total": 6,
       "model_tests_passed": 6,
       "model_tests_total": 7,
-      "human_rubric": {
+      "source_rubric": {
+        "reviewer": "Codex; not independently human-reviewed",
         "instruction_discovery": 8,
         "file_grounding": 6,
         "unknown_fact_honesty": 6,

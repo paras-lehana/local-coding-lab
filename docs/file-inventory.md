@@ -24,7 +24,7 @@ Initial repository contents and purpose, followed by subsequent change inventori
 | `benchmarks/fixtures/router-v1/docs/host.md` | Synthetic public project input with instruction hierarchy and deliberate bugs |
 | `benchmarks/fixtures/router-v1/src/config_loader.py` | Synthetic public project input with instruction hierarchy and deliberate bugs |
 | `benchmarks/questions/router-v1.txt` | Frozen multi-part source-grounded coding prompt |
-| `benchmarks/rubrics/router-v1.md` | Human scoring criteria, excluded from model inputs |
+| `benchmarks/rubrics/router-v1.md` | Source-review criteria, excluded from model inputs |
 | `catalog/models.json` | Pinned publisher identity, exact size and integrity metadata |
 | `catalog/runtime.json` | Pinned publisher identity, exact size and integrity metadata |
 | `docs/editors.md` | User/developer guide, decisions, task or session log |
@@ -59,7 +59,7 @@ Initial repository contents and purpose, followed by subsequent change inventori
 | `lab.py` | Process RAM sampling, owned PID record and explicit stop-file handling |
 | `scripts/capture-gpu.ps1` | Dedicated GPU-memory snapshot for an explicit owned PID |
 | `scripts/run_isolated.py` | Optional Linux/bubblewrap grading, namespace preflight and resource limits; no host fallback |
-| `benchmarks/checks/router_v1.py` | Six human-authored contract groups, added after collection and excluded from model inputs |
+| `benchmarks/checks/router_v1.py` | Six Codex-authored independent contract groups, added after collection and excluded from model inputs |
 | `tests/test_lab.py` | Owned-stop-file regression test |
 | `tests/test_isolation.py` | Unsupported-host and failed-preflight execution boundary tests |
 | `.github/workflows/offline-checks.yml` | Parse every PowerShell script |

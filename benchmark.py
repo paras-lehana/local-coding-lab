@@ -144,7 +144,7 @@ def worker(run: Path) -> int:
         if not result["tool_calls"]:
             status = "completed" if result["content"].strip() else "empty"
             save_json(run / "result.json", {"status": status, "scored": False,
-                      "note": "Human source review and isolated behavioral tests still required",
+                      "note": "Source review and isolated behavioral tests still required",
                       "wall_seconds": time.monotonic() - started, "turn_count": len(turns)})
             (run / "answer.txt").write_text(result["content"], encoding="utf-8")
             return 0 if status == "completed" else 2

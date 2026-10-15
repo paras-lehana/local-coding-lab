@@ -12,7 +12,7 @@ more important than raw tokens/sec, but multi-hour prompts are disqualified.
 resembles that instruction-routing workflow without publishing personal files.
 Its 40-point rubric is separate from the old private 36-point audit and the
 seven-check code diagnostic. The first [placement pair](../reports/2026-10-14-placement.md)
-has provisional human scores and isolated code checks; it is not a leaderboard.
+has provisional Codex-assessed scores and isolated code checks; it is not a leaderboard.
 
 ## Freeze inputs before asking the model
 
@@ -50,7 +50,7 @@ guarantee every server backend has stopped inference.
 The harness **does not execute generated code** and **does not invent a score**.
 Review the [rubric](../benchmarks/rubrics/router-v1.md). Behavioral code points
 require testing in a disposable restricted environment with no secrets, network
-or privileged mounts. Human review and syntax checks must be labeled separately.
+or privileged mounts. Source review and syntax checks must be labeled separately.
 Do not run unreviewed model answers directly on your normal workstation.
 An optional [Linux/bubblewrap grader](grading.md) now supports reviewed Python
 answers. Its independent checks were added after the first answers were seen;
@@ -60,6 +60,12 @@ Report syntax, semantics, file citations, missing facts and tool reliability
 separately. Check claims against successful returned source bytes, not just
 requested reads. Interrupted, empty and truncated answers are unscored; retain
 their partial evidence instead of counting them as quantization syntax failures.
+
+In this campaign, Codex reviews source grounding and authors the independent
+contract checks. These assessments have not received independent human review.
+They are distinct from model-written self-tests and from the collector, which
+assigns no score. Earlier "human" labels were corrected on 15 October; original
+raw artifacts remain unchanged. Preserve this attribution when sharing results.
 
 The legacy per-turn field `first_final_seconds` measures the first visible
 `content` fragment, which can be a plan before a tool call. It is not necessarily

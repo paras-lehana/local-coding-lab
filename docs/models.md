@@ -15,7 +15,7 @@ separates completed measurements, downloads and conditional exclusions.
 | Non-thinking coding control | `qwencoder30-udq4` | 16.452 | Python 2/6, 3/6, 1/6; private deadline, unscored; exact weight retired with reports retained |
 | Conditional precision | `qwen36-q5` | 24.639 | Download verified; fresh load gates and matched control required |
 | Optional precision | `qwen36-q6` | 29.657 | Header inspected after RAM briefly recovered to 28.76 GiB; conditional 32K profile requires 28.5 GiB / 7000 MiB fresh headroom and verified download |
-| Conditional precision | `glm47-udq6` | 24.378 | Download resumed after unexpected shutdown; not usable before hash verification; different placement must be disclosed |
+| Conditional precision | `glm47-udq6` | 24.378 | Full pinned size and SHA-256 verified after resumed transfers; inference queued, different placement must be disclosed |
 | Linear-attention alternative | `kimi-linear-q4` | 27.997 | Headroom improved; conditional 26 GiB / 6800 MiB profile proposed, latest gate still not met |
 | Larger coding model | `qwencoder-next-q4` | 45.196 | Current apps-open resident-capacity exclusion, no quality score |
 

@@ -8,7 +8,7 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Status: v0.3, experimental; autonomous campaign in progress.** Follow the
+**Status: v0.3.7, experimental; autonomous campaign in progress.** Follow the
 [live campaign evidence](reports/2026-10-15-campaign.md). Repeated coding,
 long-document, changed-file and actual-instruction tests now cover Qwen,
 Gemma, GLM and Qwen Coder. Precision/settings comparisons and real editor
@@ -96,7 +96,7 @@ profiles/                historical reference and explicitly proposed settings
 scripts/                 Windows bootstrap and publication audit
 benchmarks/fixtures/     synthetic project with deliberate bugs
 benchmarks/questions/    frozen evaluation prompts
-benchmarks/rubrics/      human scoring rules, never sent to the model
+benchmarks/rubrics/      source-review criteria, never sent to the model
 reports/                 curated measurements and their limitations
 research/raw/            external research, preserved separately
 research/reviews/        fact checks and decisions

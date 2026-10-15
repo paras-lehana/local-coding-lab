@@ -24,13 +24,13 @@ them blindly after interruption.
 
 | Candidate | Status | Required disposition |
 |---|---|---|
-| Qwen3.6 Q4 | Core/history/held-out collected | Python passes; TS/SQL bugs persist with unrestricted thinking; larger batch interrupted by planned update |
-| Gemma 4 26B QAT | 32K/64K suites reviewed; capped private audit reviewed | 52K-input recall passes; SQL 6/6, TS 5/6; private read/merge failures; unrestricted private repeat queued |
+| Qwen3.6 Q4 | Core/history/held-out and initial flag probes collected | Private capped 25/36; batch/cache/CPU-KV code and recall pass; lower-temperature TS/SQL fail; matched Q4 control complete, larger-cache probes pending |
+| Gemma 4 26B QAT | 32K/64K suites and both private audits reviewed | 52K-input recall passes; unrestricted SQL 6/6, TS 5/6; capped/unrestricted private scores both 19/36 |
 | GLM-4.7-Flash UD-Q4 | Seven tasks collected | Python defects; unrestricted answer incomplete; private audit reviewed, f16 pending |
 | Qwen3-Coder 30B UD-Q4 | Five tasks graded | Core 2/6, 3/6, 1/6; private audit 20-minute deadline; exact weight retired with evidence |
 | Gemma 4 31B QAT dense | Calibration rejected | GPU-KV resource stop; CPU-KV 0.95 tok/s and five-minute deadline; quality unscored |
-| Qwen3.6 Q5 and optional Q6 | Q5 verified; Q6 conditional after headroom recovery | Matched Q4/Q5 comparison queued; actual Q6 header supports a proposed28.5 GiB/7000 MiB gate, no full download/load yet |
-| GLM Flash Q5 and optional UD-Q6 | Q5 suite graded/private retry running; Q6 downloading | Q5 bounded core 5/6, 0/6, 0/6; unrestricted 6/6; repeats/private audit pending |
+| Qwen3.6 Q5 and optional Q6 | Q5 loaded and testing; Q6 conditional | Matched Q4 control collected; Q6 requires fresh 28.5 GiB/7000 MiB gates and full verified artifact, no full download/load yet |
+| GLM Flash Q5 and optional UD-Q6 | Q5 suite graded; Q6 download verified | Q5 bounded core 5/6, 0/6, 0/6; unrestricted 6/6; follow-ups/private retry and Q6 inference queued |
 | Kimi Linear 48B Q4 | Conditional profile | Runtime/header reviewed; fresh 26 GiB RAM and disk gates required, no score |
 | Qwen Coder Next 80B Q4 | Current capacity rejected | 45+ GiB weights exceed apps-open resident allowance, no quality score |
 | Research's explicitly excluded giant models | Capacity review complete | Publisher metadata pinned; four-bit payload arithmetic excludes them from the current apps-open matrix, no local score |
@@ -200,3 +200,9 @@ were changed. Original private reports and installation remain outside Git.
 - 15:25 IST: recovery smoke1.11s; short calibration deliberately output-limited/unscored, normal stop. Gemma unrestricted private audit active; frozen eleven-action sequential queue resumes Qwen flags/precision and GLM follow-ups. GLM Q6 download resumed.20 offline tests, PS parsing and96-file publication audit passed. No diagnosis established by owner observation.
 
 - 16:02 IST: recovered Qwen private25/36 and Gemma unrestricted19/36 graded. Batch512/cache1536/CPU-KV probes collected and code graded; all history facts pass. Sampling bundle is running. Prepared but not run3GiB cache, batch combination and conditional Qwen Q6. GLM Q6 transfer ended short; continuing from8.319GB with mandatory full hash.
+
+16:25 IST checkpoint: published c2cd01c, CI passed. Research sampling three core implementations6/6, own tests6/7 each; TS/SQL manually reviewed and queued for isolation. Matched Q4 control running. GLM Q6 complete artifact size/SHA verified after bounded continuation; disk12.8GiB, no new download until completed candidate retirement. Native finalist/code/history/editor validation plan frozen; no production promotion.
+
+16:35 IST: corrected legacy human-review/human-authored labels to Codex source assessments and independent contract checks. Semantic scores are not independently human-reviewed. Collector note and grader docstring change only attribution, not prompts, assertions or raw artifacts. Q4 matched control finished186.016/210.984/239.656seconds; first two independent implementations6/6, third awaiting between-load grading. Q5 loaded and first answer244.187seconds reviewed. No new editor pass.
+
+16:38 IST validation:20 offline tests pass in9.288seconds, PowerShell scripts parse,99-file publication audit has0 findings, diff check passes. v0.3.7 corrects attribution only in collector/checker code; no benchmark prompt, behavioral assertion or original raw-result changes. Dedicated server remains the single Q5 test on8081.

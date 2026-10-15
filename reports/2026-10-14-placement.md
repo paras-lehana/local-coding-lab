@@ -70,7 +70,7 @@ alone, not its bundled temperature, min-p, batching and host-cache changes.
 | Peak sampled GPU core temperature | 53 C | 53 C |
 | Independent behavior groups | 6/6 | 6/6 |
 | Model-written unittest tests | 7/7 pass | 6/7 pass |
-| Provisional human rubric | 39/40 | 38/40 |
+| Provisional Codex-assessed rubric | 39/40 | 38/40 |
 
 Generation speed aggregates server timings as sum(predicted_n - 1) divided by
 sum(predicted_ms / 1000). The roughly 2.81x whole-prompt improvement includes
@@ -138,7 +138,7 @@ describes that sequence more confidently than the trace supports. Inventory
 credit means the listed files were actually read, not that this demonstrated
 unassisted exploration of an unseen repository.
 
-The human-authored [behavior checks](../benchmarks/checks/router_v1.py) were
+The Codex-authored [behavior checks](../benchmarks/checks/router_v1.py) were
 written **after answer collection**, from the pre-existing contract/rubric.
 They are transparent verification, not a held-out evaluation. A negative
 control using the deliberately buggy fixture failed all six groups (11 failed
@@ -232,4 +232,7 @@ is evaluation evidence, not a failing lab-tooling test.
 
 The collector's original result files remain `scored: false`; reviewed scoring
 is recorded separately in this report and the aggregate JSON. Do not rewrite
-the raw collector result to make it appear to have performed human grading.
+the raw collector result to make it appear to have performed source grading.
+Attribution correction, 15 October: these semantic assessments and independent
+checks were produced by Codex, not independently reviewed by a human. Original
+scores and raw evidence remain unchanged.
