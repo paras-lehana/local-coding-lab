@@ -8,12 +8,15 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Status: v0.3.9, experimental; model campaign reviewed, editor UI pending.** Follow the
+**Status: v0.3.9, experimental; campaign and actual editor probes reviewed.** Follow the
 [live campaign evidence](reports/2026-10-15-campaign.md). Repeated coding,
 long-document, changed-file and actual-instruction tests now cover Qwen,
 Gemma, GLM, Kimi and Qwen Coder. A working Qwen profile is selected and its
-production API/tool calls pass. Fresh editor validation is blocked by an
-unavailable interactive desktop. Clean-machine installation remains unvalidated.
+production API/tool calls pass. Copilot and Continue now complete actual greeting,
+file-read and changed-file/history probes. Both still miss Python-specific
+instruction routing; integration success is not answer-quality certification.
+[Editor evidence](reports/2026-10-15-editor-results.json).
+Clean-machine installation remains unvalidated.
 
 ## Start here
 

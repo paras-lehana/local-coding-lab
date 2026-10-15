@@ -1,0 +1,26 @@
+{
+  "configuration_version": "2.0",
+  "profile": "qwen36-instructions-64k",
+  "editors": {"vscode": "1.141.2", "copilot": "0.69.0", "continue": "2.0.0"},
+  "scope": "Six actual UI prompts in the dedicated local workspace; read-only source and changed-file checks. Codex-reviewed, not a new general coding score.",
+  "transport": {"greetings": "both READY", "real_file_reads": true, "changed_file_values": "both current revision 2 / retries 0", "earlier_chat_marker": "both correct", "native_thinking_output": "observed in saved sessions; Continue also displays thinking in UI"},
+  "timings": [
+    {"editor": "copilot", "prompt": "greeting", "server_seconds": 71.47963, "submit_to_final_session_event_seconds": 79.79733, "observed_ui_completion_upper_bound_seconds": 83.329404, "input_tokens": 13216, "prefill_seconds": 68.93344, "generation_seconds": 2.54619},
+    {"editor": "copilot", "prompt": "source_questions", "server_seconds": 264.43654, "submit_to_final_session_event_seconds": 272.817949, "observed_ui_completion_upper_bound_seconds": 284.781608},
+    {"editor": "copilot", "prompt": "changed_file_and_history", "server_seconds": 74.45876, "submit_to_final_session_event_seconds": 76.4271, "observed_ui_completion_upper_bound_seconds": 118.818692},
+    {"editor": "continue", "prompt": "greeting", "server_seconds": 29.58164, "observed_ui_completion_upper_bound_seconds": 48.674649, "input_tokens": 4744, "prefill_seconds": 26.95846, "generation_seconds": 2.62318},
+    {"editor": "continue", "prompt": "source_questions", "server_seconds": 105.72289, "observed_ui_completion_upper_bound_seconds": 286.078148, "individual_read_approvals": 5},
+    {"editor": "continue", "prompt": "changed_file_and_history", "server_seconds": 36.80984, "observed_ui_completion_upper_bound_seconds": 95.189326, "individual_read_approvals": 1}
+  ],
+  "quality": {
+    "both_correct": ["physical Windows host", "model/context/KV/expert placement", "initial and changed probe state", "unknown service port", "configuration is not proof of a running model or permanent memory"],
+    "both_failed": ["Did not follow the shared router to identify the Python-specific instruction file"],
+    "copilot": {"source_answer_whitespace_words": 297, "word_limit": 250, "tool_calls": 8, "source_returns": 6, "large_file_rejections": 2, "large_file_recovery": "read lines 1-150; remaining lines not explicitly read", "followup_limitation": "Cited an unread report and described historical readiness figures as live measurements; current state and earlier marker still correct"},
+    "continue": {"source_answer_whitespace_words": 249, "word_limit": 250, "successful_reads": 6, "minor_errors": ["Called a 22.13 GB / 20.61 GiB artifact 22 GiB", "Repeated the old desktop-unavailable instruction note without marking its age"]},
+    "all_quality_requirements_passed": false
+  },
+  "timing_limits": ["UI bounds include observation delay; Continue includes manual approval waiting", "Server totals exclude editor preparation and approval waits", "Sequential requests reuse available context; these are not matched cold-start performance trials", "All six observed completions were under 1200 seconds"],
+  "evidence_limits": ["Exact previous-reasoning wire serialization was not captured; source configuration and visible native output are separate evidence", "No implementation/editing-tool workflow, arbitrary 128K conversation or unattended coding certification is claimed"],
+  "post_test_snapshot": {"at": "2026-10-15T22:58:02+05:30", "process_ram_gib": 16.7, "process_dedicated_vram_gib": 5.44, "free_ram_gib": 6.39, "free_vram_mib": 1126, "healthy": true, "idle": true},
+  "restart_cause": "still unknown"
+}

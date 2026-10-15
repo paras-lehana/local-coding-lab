@@ -1,9 +1,9 @@
 # Local model comparison and editor validation
 
-**Status: model selection and API verified; fresh editor UI blocked.** This is
+**Status: campaign, API and six actual editor probes reviewed.** This is
 the forwardable campaign record for tooling version0.3.9 and local runtime
-configuration2.0. Windows currently exposes no interactive desktop; no fresh
-Copilot/Continue UI success is claimed.
+configuration2.0. Copilot and Continue now complete local responses, file reads
+and changed-file/history checks. Source-routing and citation defects remain.
 The [detailed measurements](../../../reports/2026-10-15-campaign.md) preserve
 each attempt; this document brings the request, conclusions and remaining work
 together without publishing private sources or answers.
@@ -18,7 +18,7 @@ together without publishing private sources or answers.
 | Test actual instructions and file references | Done for completed audits | Frozen private six-question audit, recorded read ranges and separate code checks; capped/deadline/capacity attempts distinguished |
 | Test cache, placement and thinking settings | Done for planned feasible probes | CPU-KV,1536/2048/3072MiB expert cache, batch, sampling, precision and native/bounded reasoning; checkpoint-count A/B not measured |
 | Select a usable model within20 minutes | Provisional working choice installed | QwenQ4 historical34 placement; strongest private case,52K history passes; coding defects remain |
-| Verify Copilot and Continue | Partial; UI blocked | Local settings corrected/backed up; production API and tool calls pass; unavailable desktop prevents fresh actual editor test |
+| Verify Copilot and Continue | Done for six scoped probes; quality partial | Both greet/read/re-read/retain marker below20minutes; both miss Python-specific routing; Copilot cites an unread report |
 | Share reproducible tooling and findings | Done and maintained | Public repository, pinned downloads, guarded launcher, fixtures, reports and Windows/Ubuntu CI |
 
 ## 2. Business summary
@@ -56,7 +56,8 @@ fixed.
   actual completed tool turns are required. Prepared configuration is not a
   successful editor test. An installed Continue timeout-unit mismatch is
   corrected in the local entry to1200000milliseconds. Input/output client
-  budgets are48000/16384. Actual editor flows remain unverified while locked.
+  budgets are48000/16384. Actual read-only editor flows now complete; integration
+  and answer quality are assessed separately below.
 
 ### Comparison and my recommendation
 
@@ -129,6 +130,9 @@ independent human review.
 - Final local checks:20 offline tests pass in8.881seconds, public PowerShell
   parsing,113-file public-content audit and diff check pass. A PowerShell5
   stderr-wrapper interruption preceded the full rerun; that partial log remains.
+- After editor probes:20 offline tests pass8.909seconds;3 PowerShell scripts
+  parse;114-file public audit has0findings;diff check passes. No timed inference
+  overlaps these offline checks. Shared source routing reviewed; adapters unchanged.
 - [Matched Qwen precision data](../../../reports/2026-10-15-qwen-precision-results.json).
 - [Cache and placement data](../../../reports/2026-10-15-cache-results.json).
 - [Reviewed private-audit aggregates](../../../reports/2026-10-15-private-results.json).
@@ -138,7 +142,7 @@ independent human review.
   [isolated grading](../../grading.md), [coding use cases](../../coding-use-cases.md).
 
 These benchmark results are the baseline for final profile and editor checks.
-No current editor pass or128K-context pass is claimed.
+Actual editor evidence is below. No128K-context pass is claimed.
 
 ## 6. Owner decisions already established
 
@@ -150,14 +154,13 @@ changes and automatic boot startup are outside this campaign.
 
 ## 7. Pending work
 
-The remaining required usability check is actual Copilot and Continue greeting,
-file-reading and changed-file/history completion. Windows exposes no interactive
-desktop; the UI helper refused to send, and the owner was asked to unlock when
-convenient. The frozen prompts and owned test window remain prepared. No
-permission to bypass the lock is inferred. Optional QwenQ6 and Kimi64K private
-remain capacity-rejected, with a final26.794GiB unloaded snapshot below both
-gates. Clean-machine installation, arbitrary128K sessions and a checkpoint-count
-A/B were not tested. The restart's component cause remains unknown.
+The planned read-only editor probes are complete. Both editors still miss the
+Python-specific instruction target, so supervised source review remains needed.
+Implementation/editing-tool workflows and exact prior-reasoning wire transport
+were not validated by these probes. Optional QwenQ6 and Kimi64K private remain
+capacity-rejected, with a final26.794GiB unloaded snapshot below both gates.
+Clean-machine installation, arbitrary128K sessions and a checkpoint-count A/B
+were not tested. The restart's component cause remains unknown.
 
 ## 8. Practical recommendations so far
 
@@ -170,10 +173,38 @@ context budgets, not only the model's native context window.
 
 ## 9. Screenshots and UI proof
 
-UIAutomation verified the separate workspace and explicit local model selection
-before the desktop became unavailable. No new editor prompt was sent. Actual
-greeting, source-reading and changed-file/history tests remain pending. Private
-UI evidence is kept locally rather than publishing personal file contents.
+After the owner unlocked Windows and left the keyboard idle, UIAutomation sent
+the frozen prompts through the explicit local model in the separate workspace.
+Saved UI inventories, actual session events, tool return bytes and server task
+timings establish completion. Private screenshots/sessions remain local rather
+than publishing personal file contents. Unexpected drafts were preserved;
+unsuccessful preparation attempts did not submit ambiguous prompts.
+
+| Actual UI prompt | Copilot server / UI upper bound | Continue server / UI upper bound |
+|---|---:|---:|
+| Exact READY greeting |71.48s /83.33s |29.58s /48.67s |
+| Instruction/configuration questions |264.44s /284.78s |105.72s /286.08s |
+| Changed file + earlier marker |74.46s /118.82s |36.81s /95.19s |
+
+The bounds include polling and, for Continue, five individual source approvals
+plus one follow-up approval. Copilot's submit-to-final session events are79.80s,
+272.82s and76.43s. Both return the new revision2/retries0 and earlier marker.
+The greetings carry13,216 versus4,744inputtokens, explaining much of their
+latency through prefill68.93s versus26.96s. These are different editor harnesses
+with context reuse, not matched cold-start performance trials.
+
+Both identify the host, configured model/context/cache/placement and missing
+service port correctly. Neither follows the router to the Python-specific rule.
+Copilot's297-word answer exceeds250; Continue's249-word answer complies.
+Copilot's size-limited reads twice return a success flag without source bytes;
+it recovers with lines1–150 only. Its follow-up cites an unread report and treats
+historical readiness figures as live. Continue has aGB/GiB slip and repeats the
+stale desktop-unavailable note without dating it. Native thinking output is
+observed, but exact prior-reasoning wire serialization was not captured.
+
+At22:58IST the healthy idle process uses16.70GiB RAM/5.44GiB dedicatedVRAM,
+with6.39GiB RAM and1126MiB VRAM free. Configuration2.0, applications and guards
+remain unchanged. [Sanitized editor receipt](../../../reports/2026-10-15-editor-results.json).
 
 ## Appendix A. Important corrections
 

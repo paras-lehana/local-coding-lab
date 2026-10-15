@@ -24,7 +24,7 @@ them blindly after interruption.
 
 | Candidate | Status | Required disposition |
 |---|---|---|
-| Qwen3.6 Q4 | Both finalist suites reviewed; configuration2.0/API installed and passing | Historical34 private31/36/52K history pass selected; cache2048 private27/36 faster but strict TS failure; fresh editor UI blocked by unavailable desktop |
+| Qwen3.6 Q4 | Both finalist suites and six editor probes reviewed; configuration2.0 running | Historical34 private31/36 selected; actual editor transport works; Python-routing/citation defects remain |
 | Gemma 4 26B QAT | 32K/64K suites and both private audits reviewed | 52K-input recall passes; unrestricted SQL 6/6, TS 5/6; capped/unrestricted private scores both 19/36 |
 | GLM-4.7-Flash UD-Q4 | q8 and f16 public follow-ups reviewed | f16 native code6/6; original own script runs zero tests, supplemental13/14; history count wrong; native f16 private27/36 |
 | Qwen3-Coder 30B UD-Q4 | Five tasks graded | Core 2/6, 3/6, 1/6; private audit 20-minute deadline; exact weight retired with evidence |
@@ -221,17 +221,34 @@ send. Owner asked to unlock when convenient; API/report work continues.
 
 20:58 IST closeout: configuration2.0 installed and running. API greeting11.938s and actual two-file tool response34.297s pass, native reasoning present; curl alias correct. Live readiness16.99GiB RAM/5.38GiB dedicatedVRAM. Chosen34-expert placement reflects instruction priority31/36 versus cache27/36; repeated answer is byte-identical. No candidate passes every coding requirement. Four exact verified contenders retired93.330GiB, QwenQ4/Gemma26 retained. Continue SDK timeout1200000ms and48K/16K client budgets installed, other providers preserved with DPAPI backups.20 tests8.881s, PS parsing,113-file audit0findings and diffcheck pass. Desktop unavailable/error5; actual UI probes remain unsent. Project guidance updated through maintenance skill; shared adapters unchanged. No cloud calls, app closures or clock changes.
 
+
+23:06 IST editor closeout: owner unlocked and provided an idle keyboard interval.
+Six frozen actual UI prompts complete. Copilot submit-to-final events79.80/272.82/
+76.43s; Continue observed upper bounds48.67/286.08/95.19s include six scoped read
+approvals and polling. Both return fresh revision2/retries0 and earlier marker;
+both miss Python-specific routing. Copilot297 words>250 and cites an unread
+report; Continue249 words, GB/GiB slip and stale desktop note. Preserved eight
+Copilot view calls (two size-limit responses, six source returns), six Continue
+read calls, UI inventories and actual sessions privately. Native reasoning output
+observed; exact prior-reasoning wire serialization not captured. No new model,
+runtime/editor configuration, hardware or automatic-start changes. Working Qwen
+remains running;22:58IST16.70GiB RAM/5.44GiB dedicatedVRAM,free6.39GiB/1126MiB.
+20 offline tests pass8.909s;3 PowerShell scripts parse;114-file public audit has
+0findings;diff check passes;94 local Markdown links resolve. Project/parent guidance updated via maintenance skill;
+shared adapters reviewed and unchanged. No further automatic inference queued.
+
 ## Agent Deferred
 
-  - Repeated core and held-out comparisons now exist for Qwen/Gemma/GLM. Finish
-  pending precision/settings/private-audit results before choosing a finalist.
+- Planned feasible core, held-out, precision/settings and private audits are
+  complete with capacity/deadline exclusions explicit. No automatic queue remains.
 - Clean-machine real runtime/model download is not part of offline validation.
 - Long-history, stale-file and held-out language fixtures now run in v0.3.
   Larger-history coverage remains active; failed-tool recovery requires an
   observed attempted unavailable read and cannot be inferred from avoiding it.
-- Isolated Python contract grading now passed for both completed answers. The
-  benchmark collector still cannot execute code; broader language tests remain.
-- Continue UI and candidate editor tool transport require observed tests.
+- Python, strict TypeScript and SQLite grading is complete for the reported
+  answers; implementation defects and model-written test errors remain separate.
+- Copilot/Continue read-only UI probes are complete. Editing-tool workflows and
+  an explicit source-manifest remediation remain untested.
 
 
 Current dispositions:
@@ -240,7 +257,7 @@ Current dispositions:
 |---|---|---|
 | Feasible precision/settings/private audits | Done with explicit exclusions | Frozen evidence retained; no automatic retry |
 | Repeated/held-out/larger-history tasks | Done for both finalists | Keep defects visible; no universal quality claim |
-| Actual Copilot/Continue UI | Blocked | Interactive desktop available; frozen greeting/source/changed-file probes |
+| Actual Copilot/Continue UI | Six probes completed; quality partial | Read/history transport works; both miss Python-specific routing, Copilot cites an unread report |
 | Optional QwenQ6/Kimi64K private | Capacity-rejected, unscored | Materially more freeRAM; keep apps open |
 | Clean-machine installation/128K arbitrary sessions | Not tested | Separate future validation |
 | Restart component cause | Unknown | New diagnostic evidence; no RAM-speed assumption |

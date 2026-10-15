@@ -34,7 +34,8 @@ with an explicit loopback URL. The installed adapter enables transport of prior
 `reasoning_content`; its generic OpenAI adapter leaves that capability disabled.
 The provider name here selects a serializer, not a hosted DeepSeek model. Keep
 the loopback URL explicit. This is source/configuration evidence; successful
-multi-turn UI transport still needs observation. Recheck this behavior for a
+multi-turn UI file/history transport now succeeds, while exact prior-reasoning
+wire serialization was not captured. Recheck this behavior for a
 different Continue release rather than assuming the workaround is permanent.
 
 This budget is specifically for the64K Qwen working profile. The completed
@@ -75,10 +76,13 @@ need verification in a fresh editor conversation. Do not mistake an instruction
 index for the contents of every listed document. Loading an entire shared
 library would also consume prompt time and context that the coding task needs.
 
-Earlier private evidence includes a real three-file Copilot reply. Current
-configuration2.0 is installed, but fresh Copilot/Continue UI validation remains
-blocked while Windows exposes no interactive desktop. Configuration/API success
-does not establish the editor flow. Continue UI success remains unverified.
+Configuration2.0 now has actual Copilot and Continue greeting, source-read and
+changed-file/history evidence. All six observed completions were under five
+minutes, including Continue's manual read approvals and observation delays.
+Both retained the earlier marker and returned the fresh file values. Both also
+missed the Python-specific instruction target; Copilot cited an unread report
+in its follow-up. These are integration results, not a claim of perfect answers.
+[Reviewed editor results](../reports/2026-10-15-editor-results.json).
 The benchmark's 1200-second deadline applies to its own worker; editor socket
 timeouts do not automatically enforce the same whole-conversation limit.
 
@@ -96,5 +100,35 @@ For read-only Copilot integration checks, the existing Local Files custom agent
 offers only file reading/searching. Custom agents can declare an explicit tool
 list; select the intended local model and inspect actual calls. The saved editor
 test plan checks a greeting, real instruction/runtime files, then a changed-file
-read plus an earlier chat marker. Preparing that plan is not a completed UI test.
+read plus an earlier chat marker. This sequence was actually completed on15October.
 [VS Code custom-agent tools](https://code.visualstudio.com/docs/agent-customization/custom-agents#header-optional).
+
+## What the live checks revealed
+
+Copilot's greeting sent13,216input tokens and needed71.48seconds of server work;
+Continue sent4,744tokens and needed29.58seconds. Most of each greeting was input
+processing, not thinking. Workspace instructions and tools affect even a short
+message. The source questions took264.44seconds of server work in Copilot versus
+105.72seconds in Continue, but Continue's five separate read approvals increased
+observed elapsed time to an upper bound of286.08seconds. These are sequential
+workflow observations with different harnesses and cache reuse, not cold-start
+throughput comparisons.
+
+Check for a pending **Read File / Accept** control before diagnosing an idle GPU.
+Approve the intended source read; the experiment did not enable blanket tool
+permissions. Plan mode and no configured MCP servers were verified. The Copilot
+large-file tool twice returned a size-limit message with a success flag; only a
+later lines1–150 read returned source bytes. Inspect returned content, not only
+the tool's green completion label.
+
+For instruction-heavy work, make retrieval explicit before implementation:
+
+> Read the project AGENTS.md, the shared topic router, and its applicable
+> language-specific v2 rules. List the exact files and ranges actually read;
+> identify missing sources before editing. Re-read any changed file. Separate
+> historical observations from current measurements, and cite only sources you
+> received. A path mentioned in an index does not count as a file read.
+
+This is a recommended prompt pattern, not a measured fix for the routing defects.
+Keep independent syntax/type/behavior tests. The six probes did not test editing
+or execution tools, long repository implementation, or arbitrary128K conversations.

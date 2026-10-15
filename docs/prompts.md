@@ -10,6 +10,7 @@ private instruction contents and raw editor chats.
 | 3 | 2026-10-15 | 00:47 | Autonomous full research campaign | Research | In progress | [Entry](#autonomous-research-campaign) |
 | 4 | 2026-10-15 | 15:17 | Recover after unexpected shutdown | Infrastructure / Research | Evidence reviewed; cause unknown | [Entry](#unexpected-shutdown-recovery) |
 | 5 | 2026-10-15 | 20:58 | Working selection, comparison and editor gate | Research / Config | API done; UI blocked | [Entry](#working-selection-and-editor-gate) |
+| 6 | 2026-10-15 | 23:06 | Actual editor validation after unlock | Research / Config | Six probes complete; quality defects retained | [Entry](#actual-editor-validation-after-unlock) |
 
 ## Repository creation
 
@@ -499,4 +500,89 @@ Suggested next steps
 - Unlock the workstation to finish the actual editor checks. Those checks have not been claimed as successful.
 - Use independent tests and human review before accepting generated code, especially database changes.
 - Keep important project decisions in maintained documents so future conversations can retrieve them reliably.
+```
+
+## Actual editor validation after unlock
+
+Project: local-coding-lab. Branch: main. Mode: Default. Configuration2.0 unchanged.
+
+### Original prompt and steering
+
+> I’ve unlocked the PC
+>
+> Yes, I’ll leave it untouched
+
+The second reply established an idle keyboard interval after unexpected drafts
+appeared. Those drafts were preserved; no ambiguous test request was submitted.
+
+### Instructions actually used
+
+Read the parent/project AGENTS, README, task logs, methodology, editor guide and
+current forwardable report. Recovered the frozen probes and prior comparison
+evidence. Read the maintained Codex guide, shared Claude router, Windows adapters,
+host facts, platform/logging/coding guidance and matching v2 Python/Git rules.
+Applied the previously announced agent-context-maintenance skill to project
+guidance. Both shared adapters already route correctly and remain unchanged;
+the model's failure to follow the router is recorded rather than concealed by
+rewriting the benchmark. Actual editor versions and read-only modes were checked.
+
+Pre-flight: dedicated local workspace/read-only tools;1200-second whole-prompt
+limit and existing guards; raw evidence private; publish reviewed results on main.
+
+### Exact visible closeout
+
+**A. Business summary**
+
+Both Copilot and Continue completed the local greeting, file-reading and changed-file/history tests. **Each of the six prompts finished within five minutes.**
+
+The quality limitations matter: **both missed the Python-specific instruction file**, and Copilot cited an unread report. The integration works; instruction-following still needs supervision. [Updated comparison and editor report](https://github.com/paras-lehana/local-coding-lab/blob/main/docs/tasks/2026-10-15-autonomous-model-campaign/2026-10-15-model-comparison-and-editor-validation-v0.3.9.md).
+
+**B. Technical summary**
+
+The running model remains **Qwen3.6-35B-A3B UD-Q4_K_M**, native thinking enabled, 64K context and q8 K/V cache. At 22:58 IST it used **16.7 GiB RAM / 5.44 GiB dedicated VRAM**. KV allocation is **680 MiB**, split between RAM and VRAM; it does not provide permanent memory.
+
+Copilot’s greeting required 71.5 seconds of server work versus Continue’s 29.6 seconds, mainly because Copilot supplied more input. Continue also paused for individual file-read approvals. Full elapsed timings and caveats are in the report.
+
+Published the reviewed evidence. **20 offline tests, PowerShell parsing and the 114-file publication audit passed.**
+
+**C. Your request status**
+
+| # | Pointer task | Your words | Status | Result |
+|---|---|---|---|---|
+| 1 | Resume editor checks | “I’ve unlocked the PC” | DONE | Tested both actual editors against the local server |
+| 2 | Finish without keyboard interference | “Yes, I’ll leave it untouched” | DONE | Preserved drafts and completed the six probes; keyboard use is finished |
+
+**D. Additional findings**
+
+Copilot marked two oversized-file reads successful even though they returned a size-limit message. It later read only the first 150 lines. A green tool indicator alone does not establish full file coverage.
+
+**E. Remaining limits**
+
+| # | Item | Status | Reason |
+|---|---|---|---|
+| 1 | Reliable unattended coding | Not demonstrated | Instruction and code defects remain |
+| 2 | Restart’s cause | Unknown | Logs do not identify a component |
+| 3 | 128K / clean-machine installation | Not tested | Outside the completed validation |
+
+**F. My recommendation**
+
+Keep this Qwen profile for supervised coding. The tested larger quantizations did not establish a better overall workflow. Before a patch, require an explicit list of instruction files and ranges read, then independently check syntax, types and behavior. That retrieval checklist is a recommendation, not a proven fix for today’s failures.
+
+**G. Manager copy block**
+
+```text
+Local Coding Lab — editor validation completed, 15 October 2026
+
+What's done
+- The local coding assistant now completes the tested conversations through both supported editors.
+- All six prompts finished within five minutes, including the observed waiting time for file approvals.
+- Both editors reread a changed file correctly and retained a detail from the earlier conversation.
+- The comparison report now includes response times, memory usage and the mistakes found during testing.
+- Personal source files and raw conversations remain private.
+
+Suggested next steps
+- Keep the selected model for supervised work rather than assuming a larger download will solve the remaining mistakes.
+- Require the assistant to identify the instructions it actually read before changing code.
+- Check generated work independently, especially database changes and shared data structures.
+- Keep the earlier computer restart listed as unresolved; these successful tests do not identify its cause.
 ```

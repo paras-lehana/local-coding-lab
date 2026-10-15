@@ -9,7 +9,7 @@ suite, rejected the dense Gemma latency profile, and collected GLM Q4/Q5 and
 Qwen Coder suites.
 Exact retired weight files were deleted only after evidence preservation.
 
-## Completed campaign and remaining editor gate
+## Completed campaign and remaining quality limits
 
 1. Native private audits are graded: Qwen Q5 scores28/36, GLM Q4/f16 scores27/36,
    GLM Q6 scores24/36. Q5 GLM's recovered21/36 and retirement remain separate
@@ -35,10 +35,13 @@ Exact retired weight files were deleted only after evidence preservation.
    3GiB cache improves coding latency while leaving only661MiB freeVRAM; its
    batch512 combination was rejected before load. Both finalists' repeated,
    held-out and larger-history tasks are complete and reviewed.
-5. Production API greeting/two-file calls pass. Actual Copilot and Continue
-   file/history flows remain blocked by the unavailable interactive desktop.
-   Corrected48K/16K client budgets and Continue SDK timeout are installed with
-   encrypted backups; the owned UI window/frozen prompts are ready after unlock.
+5. Production API and six actual Copilot/Continue UI probes are complete. Both
+   editors read fresh files and retain an earlier marker, but miss Python-specific
+   instruction routing. Copilot also cites an unread report in its follow-up.
+   Read the editor report before interpreting integration as quality approval.
+   Next useful work is an explicit source/range manifest before implementation,
+   followed by a representative project patch with independent tests. That
+   remediation is suggested, not already benchmarked or silently queued.
 
 ## Original sequence and experiment controls
 

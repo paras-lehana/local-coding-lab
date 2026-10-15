@@ -39,7 +39,7 @@ and selection receipt before changing it. All candidates have limitations;
 "locally_tested" means measured loading/evidence, not certification of correct
 code. Keep incompatible or incomplete profiles behind experimental opt-in.
 
-Actual editor checks still required after the interactive desktop is available:
+Actual editor regression checks (completed15October; repeat after relevant changes):
 fresh greeting, source-cited instruction/runtime reads, then a changed-file read
 and earlier chat marker. Select the explicit local model/read-only tools in the
 owned test window; inspect endpoint activity and completion within1200seconds.
@@ -47,3 +47,11 @@ Do not send when the desktop is locked, a draft exists or another request is
 running. A successful API round trip does not satisfy this UI gate. For the
 inspected Continue2.0.0 adapter, timeout is SDK milliseconds; document the
 installed version/units and verify actual behavior before declaring it fixed.
+
+The six15October UI probes completed below1200seconds, with current-file reads
+and earlier markers correct in both editors. Both missed the Python-specific
+rule; Copilot also cited an unread report. Read reports/2026-10-15-editor-results.json
+before claiming an integration or quality regression fixed. A tool success flag
+can contain a size-limit error; inspect returned source bytes/ranges. Continue
+can wait for a Read File approval while the inference server is idle. Keep
+approved reads scoped; preserve unexpected drafts and coordinate keyboard use.

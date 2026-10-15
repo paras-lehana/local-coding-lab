@@ -9,8 +9,9 @@
   frozen trial snapshots. Preserve coding defects and capacity exclusions.
 - Record exact production API/tool and memory evidence, client budget/timeout
   correction, encrypted local settings backups and evidence-preserving weight
-  retirement. Fresh editor UI validation remains blocked by the unavailable
-  Windows desktop; no editor success is claimed from the API.
+  retirement. After unlock, complete six actual Copilot/Continue UI probes;
+  publish source-routing/citation failures alongside successful local transport,
+  fresh-file reads and retained chat markers. Preserve approval-wait timing.
 
 ## 0.3.8 - 2026-10-15 (campaign in progress)
 

@@ -19,7 +19,13 @@
     "greeting_seconds": 11.93800000000192,
     "file_tool_roundtrip_seconds": 34.29699999999866
   },
-  "editor_ui": "pending_unavailable_interactive_desktop",
+  "editor_ui": {
+    "status": "six_probes_completed_transport_passes_quality_defects_remain",
+    "evidence": "2026-10-15-editor-results.json",
+    "both_fresh_file_and_history": true,
+    "python_specific_routing": false,
+    "unattended_coding_certified": false
+  },
   "live_memory_at_readiness_gib": {
     "process_working_set": 16.99,
     "dedicated_vram": 5.38,
