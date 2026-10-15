@@ -109,3 +109,8 @@ Native Qwen3.6 thinking on/off differs from llama.cpp's `reasoning_budget_tokens
 The latter was locally verified as a ceiling of 0/512/2048 tokens; it is not a
 trained "xhigh" level. A longer budget can improve a case and still miss files.
 Always count prefill, thinking, tool rounds and final text toward the deadline.
+In the matched private audit, removing the2048 ceiling produced the exact same
+answer and file-read sequence: delivered reasoning was only26-172tokens per
+turn in either run. The ceiling was not reached. Raising it cannot by itself
+force more reasoning; [the measured comparison](../reports/2026-10-15-campaign.md#qwen-private-reasoning-ceiling-identical-output)
+retains the same25/36 score and errors.

@@ -61,6 +61,7 @@ Initial repository contents and purpose, followed by subsequent change inventori
 | `scripts/run_isolated.py` | Optional Linux/bubblewrap grading, namespace preflight and resource limits; no host fallback |
 | `benchmarks/checks/router_v1.py` | Six Codex-authored independent contract groups, added after collection and excluded from model inputs |
 | `reports/2026-10-15-qwen-precision-results.json` | Reviewed matched Q4/Q5 numeric results, exact model identities, timing/resource scope and grading caveats |
+| `reports/2026-10-15-cache-results.json` | Five measured cache/batch/placement options, history/code checks, memory margins and unloaded rejection |
 | `tests/test_lab.py` | Owned-stop-file regression test |
 | `tests/test_isolation.py` | Unsupported-host and failed-preflight execution boundary tests |
 | `.github/workflows/offline-checks.yml` | Parse every PowerShell script |
@@ -117,6 +118,11 @@ not recommendations merely because their files exist.
   following the measured1536MiB probe; no new result implied.
 - `profiles/qwen36-cache3072-batch512.json`: proposed cache/batch combination,
   explicitly separate from single-variable measurements.
+- `profiles/qwen36-cache2048-batch512-candidate.json`: untested daily-use
+  candidate after the 3072 MiB probe left a narrow VRAM margin; requires exact
+  profile code, history, actual-instruction and editor validation.
+- `profiles/qwen36-historical34-64k-recheck.json`: fresh historical-placement
+  proposal to compare instruction quality before selecting a faster profile.
 - `profiles/glm47-q6-balanced-campaign.json`: conditional 32K Q6 proposal using
   measured Q4 cache/compute costs and more CPU expert blocks; not yet loaded.
 - `profiles/qwen36-q4-precision-control.json`: proposed 32K matched Q4 control

@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-15",
+  "reviewer": "Codex source assessment and separate isolated execution; no independent human review",
+  "artifact": {
+    "name": "Qwen3.6-35B-A3B UD-Q4_K_M",
+    "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+    "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+    "filename": "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+    "bytes": 22134528992,
+    "sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61"
+  },
+  "runtime_commit": "b2f036c0f138414dedc987446f1d9d802f920275",
+  "whole_prompt_deadline_seconds": 1200,
+  "reasoning_ceiling_per_turn": 2048,
+  "seeds": [
+    73
+  ],
+  "caveats": [
+    "One coding and one two-phase history case per profile; not a quality leaderboard.",
+    "Apps remain open; background downloads and changing desktop memory. Some profiles were collected earlier.",
+    "Different sampled output and tool paths; total latency is not a pure hardware-throughput measure.",
+    "Expert cache retains CPU weights. Shared WDDM memory overlaps RAM.",
+    "History success does not establish permanent memory or recovery from an unavailable read."
+  ],
+  "results": [
+    {
+      "run": "qwen-no-cache-reference-recheck",
+      "profile": "qwen36-all-attention-proposed",
+      "settings": {
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "256",
+        "--ubatch-size": "64",
+        "--moe-cache-mib": null,
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "20",
+        "--min-p": "0",
+        "--load-mode": "none"
+      },
+      "cpu_kv": false,
+      "all_cpu_experts": true,
+      "dedicated_vram_gib": 3.2529296875,
+      "peak_process_ram_gib": 20.441402435302734,
+      "minimum_free_ram_gib": 6.272022247314453,
+      "minimum_free_vram_mib": 3750.0,
+      "max_gpu_core_c": 59.0,
+      "tasks": [
+        {
+          "name": "core-seed73",
+          "whole_prompt_seconds": 212.75,
+          "turn_count": 2,
+          "generation_tps": 22.7779225711174,
+          "uncached_prefill_tps": 150.53234660738968,
+          "max_input_tokens": 2301
+        },
+        {
+          "name": "context-v1",
+          "whole_prompt_seconds": 133.96899999999914,
+          "turn_count": 7,
+          "generation_tps": 24.449310036616144,
+          "uncached_prefill_tps": 125.59646136684871,
+          "max_input_tokens": 11067
+        }
+      ],
+      "core_independent_groups": {
+        "passed": 6,
+        "total": 6
+      },
+      "model_written_tests": {
+        "passed": 6,
+        "total": 7,
+        "packaging": "See report: unchanged standalone/combined/inlined cases differ; not interchangeable self-test coverage."
+      },
+      "history": {
+        "six_facts_correct": true,
+        "ready_record_count_correct": true,
+        "fresh_read_revision2_and_zero": true,
+        "unavailable_ledger_read_attempted": false
+      }
+    },
+    {
+      "run": "qwen-expert-cache1536",
+      "profile": "qwen36-gpu-expert-cache",
+      "settings": {
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "256",
+        "--ubatch-size": "64",
+        "--moe-cache-mib": "1536",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "20",
+        "--min-p": "0",
+        "--load-mode": "none"
+      },
+      "cpu_kv": false,
+      "all_cpu_experts": true,
+      "dedicated_vram_gib": 4.756847381591797,
+      "peak_process_ram_gib": 20.344009399414062,
+      "minimum_free_ram_gib": 7.346321105957031,
+      "minimum_free_vram_mib": 2486.0,
+      "max_gpu_core_c": 60.0,
+      "tasks": [
+        {
+          "name": "core-seed73",
+          "whole_prompt_seconds": 136.92200000000003,
+          "turn_count": 2,
+          "generation_tps": 39.177623743233866,
+          "uncached_prefill_tps": 133.50746327883394,
+          "max_input_tokens": 2621
+        },
+        {
+          "name": "context-v1",
+          "whole_prompt_seconds": 123.54700000000003,
+          "turn_count": 6,
+          "generation_tps": 37.6566351335226,
+          "uncached_prefill_tps": 106.84799032210746,
+          "max_input_tokens": 10765
+        }
+      ],
+      "core_independent_groups": {
+        "passed": 6,
+        "total": 6
+      },
+      "model_written_tests": {
+        "passed": 6,
+        "total": 7,
+        "packaging": "See report: unchanged standalone/combined/inlined cases differ; not interchangeable self-test coverage."
+      },
+      "history": {
+        "six_facts_correct": true,
+        "ready_record_count_correct": true,
+        "fresh_read_revision2_and_zero": true,
+        "unavailable_ledger_read_attempted": false
+      }
+    },
+    {
+      "run": "qwen-expert-cache3072",
+      "profile": "qwen36-gpu-expert-cache3072",
+      "settings": {
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "256",
+        "--ubatch-size": "64",
+        "--moe-cache-mib": "3072",
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "20",
+        "--min-p": "0",
+        "--load-mode": "none"
+      },
+      "cpu_kv": false,
+      "all_cpu_experts": true,
+      "dedicated_vram_gib": 6.256858825683594,
+      "peak_process_ram_gib": 20.344711303710938,
+      "minimum_free_ram_gib": 7.113227844238281,
+      "minimum_free_vram_mib": 661.0,
+      "max_gpu_core_c": 62.0,
+      "tasks": [
+        {
+          "name": "core-seed73",
+          "whole_prompt_seconds": 118.42200000000048,
+          "turn_count": 2,
+          "generation_tps": 46.70681780825692,
+          "uncached_prefill_tps": 116.07069272507383,
+          "max_input_tokens": 2621
+        },
+        {
+          "name": "context-v1",
+          "whole_prompt_seconds": 135.39099999999962,
+          "turn_count": 6,
+          "generation_tps": 43.65138080606639,
+          "uncached_prefill_tps": 91.74286626351763,
+          "max_input_tokens": 10891
+        }
+      ],
+      "core_independent_groups": {
+        "passed": 6,
+        "total": 6
+      },
+      "model_written_tests": {
+        "passed": 6,
+        "total": 7,
+        "packaging": "See report: unchanged standalone/combined/inlined cases differ; not interchangeable self-test coverage."
+      },
+      "history": {
+        "six_facts_correct": true,
+        "ready_record_count_correct": true,
+        "fresh_read_revision2_and_zero": true,
+        "unavailable_ledger_read_attempted": false
+      }
+    },
+    {
+      "run": "qwen-batch512-resume",
+      "profile": "qwen36-batch512",
+      "settings": {
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "512",
+        "--ubatch-size": "128",
+        "--moe-cache-mib": null,
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "20",
+        "--min-p": "0",
+        "--load-mode": "none"
+      },
+      "cpu_kv": false,
+      "all_cpu_experts": true,
+      "dedicated_vram_gib": 3.264667510986328,
+      "peak_process_ram_gib": 20.330490112304688,
+      "minimum_free_ram_gib": 6.618171691894531,
+      "minimum_free_vram_mib": 4037.0,
+      "max_gpu_core_c": 56.0,
+      "tasks": [
+        {
+          "name": "core-seed73",
+          "whole_prompt_seconds": 248.09400000000005,
+          "turn_count": 3,
+          "generation_tps": 23.56874690319021,
+          "uncached_prefill_tps": 208.5728593593586,
+          "max_input_tokens": 4819
+        },
+        {
+          "name": "context-v1",
+          "whole_prompt_seconds": 112.0,
+          "turn_count": 6,
+          "generation_tps": 25.658525253789907,
+          "uncached_prefill_tps": 202.60125954537685,
+          "max_input_tokens": 11138
+        }
+      ],
+      "core_independent_groups": {
+        "passed": 6,
+        "total": 6
+      },
+      "model_written_tests": {
+        "passed": 6,
+        "total": 7,
+        "packaging": "See report: unchanged standalone/combined/inlined cases differ; not interchangeable self-test coverage."
+      },
+      "history": {
+        "six_facts_correct": true,
+        "ready_record_count_correct": true,
+        "fresh_read_revision2_and_zero": true,
+        "unavailable_ledger_read_attempted": false
+      }
+    },
+    {
+      "run": "qwen-cpu-kv",
+      "profile": "qwen36-cpu-kv",
+      "settings": {
+        "--ctx-size": "65536",
+        "--threads": "4",
+        "--threads-batch": "8",
+        "--batch-size": "256",
+        "--ubatch-size": "64",
+        "--moe-cache-mib": null,
+        "--cache-type-k": "q8_0",
+        "--cache-type-v": "q8_0",
+        "--temp": "0.6",
+        "--top-p": "0.95",
+        "--top-k": "20",
+        "--min-p": "0",
+        "--load-mode": "none"
+      },
+      "cpu_kv": true,
+      "all_cpu_experts": true,
+      "dedicated_vram_gib": 2.4345626831054688,
+      "peak_process_ram_gib": 21.038875579833984,
+      "minimum_free_ram_gib": 6.667366027832031,
+      "minimum_free_vram_mib": 4873.0,
+      "max_gpu_core_c": 56.0,
+      "tasks": [
+        {
+          "name": "core-seed73",
+          "whole_prompt_seconds": 407.922,
+          "turn_count": 2,
+          "generation_tps": 13.130657602452589,
+          "uncached_prefill_tps": 116.890003264273,
+          "max_input_tokens": null
+        },
+        {
+          "name": "context-v1",
+          "whole_prompt_seconds": 241.73500000000013,
+          "turn_count": 6,
+          "generation_tps": 13.105550825924619,
+          "uncached_prefill_tps": 103.9228147054012,
+          "max_input_tokens": null
+        }
+      ],
+      "core_independent_groups": {
+        "passed": 6,
+        "total": 6
+      },
+      "model_written_tests": {
+        "passed": 7,
+        "total": 7,
+        "packaging": "See report: unchanged standalone/combined/inlined cases differ; not interchangeable self-test coverage."
+      },
+      "history": {
+        "six_facts_correct": true,
+        "ready_record_count_correct": true,
+        "fresh_read_revision2_and_zero": true,
+        "unavailable_ledger_read_attempted": false
+      }
+    }
+  ],
+  "unloaded_rejection": {
+    "profile": "qwen36-cache3072-batch512",
+    "available_vram_mib": 7083,
+    "required_vram_mib": 7100,
+    "status": "capacity_rejected",
+    "inference_started": false,
+    "not_oom": true
+  },
+  "next_proposal": "qwen36-cache2048-batch512-candidate; untested extra desktop/editor margin"
+}

@@ -10,13 +10,13 @@ separates completed measurements, downloads and conditional exclusions.
 | Measured reference | `qwen36-q4` | 20.614 | Best completed local workflow reference; instruction/citation and aliasing errors remain |
 | Smaller candidate | `gemma4-26b-qat` | 13.448 | Python and 52K-input history pass; unrestricted SQL 6/6 and TS 5/6; capped private audit 19/36, unrestricted repeat running |
 | Distinct reasoning family | `glm47-udq4` | 16.317 | Seven tasks graded; core and held-out defects; capped private audit 21/36; f16 cache probe pending |
-| Matched precision comparison | `glm47-q5` | 19.939 | Suite graded: bounded Python 5/6, 0/6, 0/6; unrestricted 6/6; private retry interrupted, unscored |
+| Matched precision comparison | `glm47-q5` | 19.939 | Bounded Python 5/6, 0/6, 0/6; native 6/6, 6/6, 0/6; private retry 21/36; exact weight retired with reports retained |
 | Dense conditional gate | `gemma4-31b-qat` | 16.439 | RAM-KV calibration 0.95 tok/s, deadline; weight file retired after preservation |
 | Non-thinking coding control | `qwencoder30-udq4` | 16.452 | Python 2/6, 3/6, 1/6; private deadline, unscored; exact weight retired with reports retained |
 | Conditional precision | `qwen36-q5` | 24.639 | Matched Python repeats 6/6, like Q4, with more memory and longer mean time; native private audit still pending |
 | Optional precision | `qwen36-q6` | 29.657 | Header inspected after RAM briefly recovered to 28.76 GiB; conditional 32K profile requires 28.5 GiB / 7000 MiB fresh headroom and verified download |
 | Conditional precision | `glm47-udq6` | 24.378 | Full pinned size and SHA-256 verified after resumed transfers; inference queued, different placement must be disclosed |
-| Linear-attention alternative | `kimi-linear-q4` | 27.997 | Headroom improved; conditional 26 GiB / 6800 MiB profile proposed, latest gate still not met |
+| Linear-attention alternative | `kimi-linear-q4` | 27.997 | Download started after a fresh 26.42 GiB / 7112 MiB unloaded snapshot; full verification and live fit still pending |
 | Larger coding model | `qwencoder-next-q4` | 45.196 | Current apps-open resident-capacity exclusion, no quality score |
 
 Model and artifact sources:

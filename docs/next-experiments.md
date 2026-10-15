@@ -11,22 +11,23 @@ Exact retired weight files were deleted only after evidence preservation.
 
 ## Current remaining work
 
-1. Public-suite grading and capped Gemma/GLM Q4 private grading are complete.
-   Resume the interrupted GLM Q5 private audit as a new attempt after monitored
-   recovery. Preserve its earlier partial output unscored. Qwen Coder's private
-   attempt reached the deadline; its completed public results remain available.
-2. Test feasible Qwen Q5 and GLM Q6 profiles with fresh memory and disk gates.
-   Hold placement/context constant for precision claims, or explicitly label
-   their differences. Reassess conditional capacity exclusions after unloading.
-3. Complete the real frozen instruction-file audits and unrestricted finalist
-   follow-ups. Gemma's 64K history/held-out tests are complete, but its capped
-   private audit exposes invented reads and a different merge bug. Public
-   fixtures alone cannot establish performance on the actual shared files.
-4. Qwen's resumed batch512,1536MiB expert-cache and CPU-KV probes are complete.
-   Their independent Python groups and six history facts pass, but generated
-   test quality differs. Finish research sampling, then verify adaptive3072MiB
-   cache and its larger-batch combination against a fresh reference. The
-   originally interrupted attempt remains unscored; the resumed run is separate.
+1. Complete the active GLM Q6 public suite and the queued native private audits
+   for Qwen Q5, GLM Q4 f16 and GLM Q6, subject to fresh memory gates. GLM Q5's
+   recovered audit scored21/36; its weight is retired with all answers retained.
+   Its earlier interrupted attempt remains unscored.
+2. Finish and verify Kimi's download, then test its actual fit and tools. The
+   download began after an unloaded26.42GiB/7112MiB snapshot; that does not
+   replace the fresh load check. Reassess optional Qwen Q6's28.5GiB RAM gate
+   after unloading; do not invent a quality score for a capacity rejection.
+3. Quality first: compare the proposed2GiB cache/batch512 Qwen profile with a
+   fresh replay of the historical34-CPU-expert placement that scored31/36.
+   The newer35-expert capped/native audits emit the same25/36 answer; removing
+   a ceiling does not force more reasoning. Speed alone cannot select a winner.
+4. Cache1536/3072, batch512 and CPU-KV probes are complete. All independent
+   Python groups/history facts pass, but generated tests contain errors. The
+   3GiB cache improves coding latency while leaving only661MiB freeVRAM; its
+   batch512 combination was rejected before load. Run repeated core, held-out
+   code and larger-history tasks on the exact selected profile.
 5. Verify actual Copilot and Continue file/history flows before promotion and
    publish a ranking limited to the measured tasks and current apps-open memory.
 
@@ -57,16 +58,17 @@ recall are measured, including desktop usage.
 After a stable placement is chosen, compare Qwen's 512/2048/unrestricted
 reasoning ceilings with the same profile, seed, prompt and deadline. Then
 compare temperature 0.6 against the research's proposed 0.35. The currently
-queued research bundle also changes min-p to 0.02; it cannot isolate either
+completed research bundle also changes min-p to 0.02; it cannot isolate either
 sampling variable's effect. Current 7/7 code evidence is insufficient to set a global
 2048 ceiling or claim unrestricted reasoning is worse.
 
 All-RAM KV and a GPU expert cache come later, one at a time,
 with RAM/VRAM headroom. Record prefill as well as decode: a faster generator
 can still finish a file-heavy request later. GPU expert caching retains the
-CPU weight copies. The queued cache probe uses 1536 MiB, replacing the initial
-512 MiB suggestion. Dense Gemma 31B needs a short latency gate before a full
-audit. Qwen Q5 requires a larger memory envelope and a matched Q4 comparison.
+CPU weight copies. The first cache probe used1536MiB, replacing the initial
+512MiB suggestion; its measured successor used3072MiB. Dense Gemma31 missed
+the calibration latency gate. Qwen Q5's matched public core showed no behavior
+gain and longer mean time; its actual-instruction audit remains pending.
 
 ## Promotion rules
 
