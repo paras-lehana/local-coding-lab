@@ -11,11 +11,13 @@ Exact retired weight files were deleted only after evidence preservation.
 
 ## Current remaining work
 
-1. Complete the active GLM Q6 public suite and the queued native private audits
+1. Finish the native private audits
    for Qwen Q5, GLM Q4 f16 and GLM Q6, subject to fresh memory gates. GLM Q5's
    recovered audit scored21/36; its weight is retired with all answers retained.
-   Its earlier interrupted attempt remains unscored.
-2. Finish and verify Kimi's download, then test its actual fit and tools. The
+   Its earlier interrupted attempt remains unscored. GLM Q6's public suite
+   completed with inconsistent code, a history count error and narrow VRAM
+   headroom; held-out isolated grading remains queued.
+2. Test Kimi's actual fit and tools. Its complete artifact is now verified. The
    download began after an unloaded26.42GiB/7112MiB snapshot; that does not
    replace the fresh load check. Reassess optional Qwen Q6's28.5GiB RAM gate
    after unloading; do not invent a quality score for a capacity rejection.

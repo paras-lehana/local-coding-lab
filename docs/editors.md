@@ -76,6 +76,16 @@ success remains unverified. This repository creation did not rerun either UI.
 The benchmark's 1200-second deadline applies to its own worker; editor socket
 timeouts do not automatically enforce the same whole-conversation limit.
 
+The installed Continue 2.0.0 bundle also has a timeout-unit mismatch: its
+OpenAI-compatible adapter passes `requestOptions.timeout` directly to the SDK
+in **milliseconds**, while its custom fetch agent multiplies that same value
+by 1000. For this adapter, `86400` therefore permits only 86.4 seconds at the
+SDK layer; `1200` would mean 1.2 seconds there. A proposed value of `1200000`
+sets a 20-minute SDK request timeout. This source finding is specific to the
+inspected build; it is not an observed editor timeout test, nor a total deadline
+across streaming and multiple tool rounds. Keep an explicit elapsed-time limit
+when validating a conversation. Recheck the installed implementation on upgrade.
+
 For read-only Copilot integration checks, the existing Local Files custom agent
 offers only file reading/searching. Custom agents can declare an explicit tool
 list; select the intended local model and inspect actual calls. The saved editor
