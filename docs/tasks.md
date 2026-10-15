@@ -52,6 +52,12 @@ closed and no clock/driver changes.
   exact verified weight file, retaining the Qwen baseline. Added portable task
   plans and froze a 43,228-token Gemma ledger for the later 64K profile.
 
+- Continued checkpoint: Gemma's three bounded core repeats and unrestricted
+  core all pass 6/6 independent Python groups. Generated-test packaging and
+  coverage limitations retained. The 120-record history case passes all six
+  factual/current-file checks; no failed-ledger recovery was exercised. GLM Q4
+  verified and queued behind this single owned Gemma server.
+
 ## 2026-10-14 — Begin research experiments
 
 | Task | Status | Notes |

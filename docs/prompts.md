@@ -268,3 +268,14 @@ answer completed in 349.313 seconds and passed 6/6 isolated Python groups and
 suite continues. GLM Q4 downloads; Qwen Coder and GLM Q5 are queued. Published
 portable task plans, a larger frozen ledger and primary-source size exclusions.
 No final ranking, production promotion or new editor pass is claimed.
+
+Continued recovery checkpoint: four Gemma core answers are now reviewed; all
+pass the six independent Python groups. The unrestricted answer took 588.391
+seconds without an observed behavior improvement. Its shorter history case
+passes six factual/current-file checks in 247.109 seconds. GLM Q4 finished
+full artifact verification and is queued after Gemma's remaining tasks/unload.
+The original six private-audit code cases were moved into the existing isolated
+grader without changing their assertions: reference 6/6, shallow-copy negative
+control 5/6. This prepares the real-instruction comparison; it is not yet a new
+candidate result. Nineteen offline tests, PowerShell parsing and the public
+audit passed again for the checkpoint. Candidate ranking remains in progress.

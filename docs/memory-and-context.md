@@ -18,25 +18,45 @@ Architecture, layers, heads, dimensions, precision, slots and backend all matter
 In the pinned runtime, `--no-kv-offload` requests host-side KV. GPU offload flags
 do not mean "put KV in RAM." Moving this relatively small cache to RAM could
 recover some VRAM but uses more host memory and may slow attention. It cannot
-solve dense CPU matrix multiplication or a host-RAM shortage. These placement
-experiments were prepared previously but **not measured** after memory stops.
+solve dense CPU matrix multiplication or a host-RAM shortage. The new dense
+Gemma 31B trial **did measure RAM KV**: 1211 MiB q8 cache at 16K, about 5.98 GiB
+dedicated process VRAM, peak sampled process RAM 14.57 GiB, and 0.95 generation
+tok/s before its five-minute calibration deadline. The GPU-KV attempt stopped
+at its VRAM guard, so this is not a completed A/B measurement of the cache move's
+speed penalty. [Trial evidence](../reports/2026-10-15-campaign.md).
 
-`--gpu-layers all --cpu-moe` is a useful **proposal**: offload eligible non-expert
-computation while keeping routed experts on CPU. It may increase host memory
+`--gpu-layers all --cpu-moe` completed the measured Qwen placement experiment:
+offload eligible non-expert computation while keeping routed experts on CPU.
+It may increase host memory
 because experts previously on GPU move back to RAM. Shared experts, embeddings,
 output tensors and compute buffers must be checked from actual loader logs.
 Do not label all layers equally sized or reuse a 28-layer limit across families.
 See [pinned flag definitions](https://github.com/ggml-org/llama.cpp/blob/b2f036c0f138414dedc987446f1d9d802f920275/common/arg.cpp).
+
+The measured Gemma 26B balanced profile keeps experts from 24 blocks in RAM and
+the final six on GPU. At 32K its active q8 KV is only **473 MiB on the GPU**,
+while readiness dedicated process VRAM is **4.97 GiB**. Model host buffers are
+10379 MiB; total resident RAM also includes runtime overhead and context
+checkpoints. These figures are specific to this artifact and placement.
+
+`--cache-ram 0` does not disable every reuse buffer. This runtime separately
+defaults to **32 context checkpoints per slot** (`--ctx-checkpoints`). Gemma's
+logs show individual full sliding-window checkpoints of about 106 MiB, in host
+memory. Do not call that additional allocation permanent chat memory, or assume
+the active attention KV figure describes the whole process. Fewer checkpoints
+can change cache reuse and prefill work; that tuning has not yet been measured.
 
 Context remains useful only when the client actually sends the relevant files,
 instructions and history. A CLAUDE import, a Copilot instruction rule and an
 ordinary Markdown link have different loading behavior. The benchmark records
 exact source delivery and successful reads. Opening a file tab is not proof its
 contents reached the model. Editing a file requires a fresh read to avoid stale
-answers; our initial frozen fixture does not yet test that change-between-turns
-scenario. Long-term project knowledge belongs in versioned notes plus retrieval.
+answers. The separate `context-v1` scenarios now test changed-file re-reading
+and earlier ledger facts; core `router-v1` does not. The larger case contains
+43,228 Gemma ledger tokens before chat overhead and is not yet a passed recall
+test. Long-term project knowledge belongs in versioned notes plus retrieval.
 
-Native Qwen thinking on/off differs from llama.cpp's `reasoning_budget_tokens`.
+Native Qwen3.6 thinking on/off differs from llama.cpp's `reasoning_budget_tokens`.
 The latter was locally verified as a ceiling of 0/512/2048 tokens; it is not a
 trained "xhigh" level. A longer budget can improve a case and still miss files.
 Always count prefill, thinking, tool rounds and final text toward the deadline.

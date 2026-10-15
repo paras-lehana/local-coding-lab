@@ -54,7 +54,8 @@ choice, not a claim that it is the latest or best build.
 
 The [setup guide](docs/setup.md) continues through explicit server start, health
 checks, benchmark collection, and stopping. Installation does not start a model.
-Gemma is an **unvalidated smaller candidate**, not a demonstrated coding upgrade.
+Gemma has an initial local code-test pass; it is not yet a demonstrated upgrade
+across the full suite or real editors. Follow the live campaign evidence above.
 
 ## What the evidence says
 
