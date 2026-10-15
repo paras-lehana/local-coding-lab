@@ -57,6 +57,15 @@ closed and no clock/driver changes.
   coverage limitations retained. The 120-record history case passes all six
   factual/current-file checks; no failed-ledger recovery was exercised. GLM Q4
   verified and queued behind this single owned Gemma server.
+- Gemma's seven-task 32K suite is now collected and reviewed, with normal owned
+  shutdown. Its TypeScript fails strict compilation and SQLite fails migration;
+  the temperature-1.0 core passes Python checks but introduces a wrong exception
+  claim. GLM Q4 loaded successfully; first core is 1/6 independent Python groups
+  and 2/14 generated tests. Qwen Coder, matched GLM Q5 and conditional precision
+  downloads remain queued. Larger-history/private audits and editor checks are
+  still required. Recorded apps-open resident-capacity exclusions separately.
+- Verified and deleted only the retired Qwen3.8 Q8 weight archive, reclaiming
+  27.052 GiB. Raw historical evidence and the Qwen3.6 baseline remain intact.
 
 ## 2026-10-14 — Begin research experiments
 

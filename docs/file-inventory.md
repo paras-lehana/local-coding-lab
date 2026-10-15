@@ -95,3 +95,23 @@ guide, shared topic router, platform/logging/Python/Git rules, host facts and
 agent-context-maintenance skill. Also read the project methodology, plan,
 research archive/review, relevant source code/profiles and rubric. Private
 home paths are omitted from this public inventory.
+
+## Campaign additions
+
+The live campaign and frozen scope are indexed from README. `trial.py` owns
+one guarded server and a sequential task plan; `scenarios.py` supplies the
+history and TypeScript/SQLite cases. `benchmarks/plans/` contains reusable task
+lists. `scripts/grade_ts_sql.py` runs reviewed code in the same restricted Linux
+environment. Individual `profiles/*campaign.json` files are explicit experiments,
+not recommendations merely because their files exist.
+
+- `profiles/qwen36-balanced-64k-campaign.json`: proposed GPU attention plus
+  five GPU expert blocks, intended to reduce host RAM at 64K context.
+- `profiles/qwen36-q5-balanced-campaign.json`: conditional Q5 precision proposal
+  at 32K; it requires a fresh capacity check and a matched Q4 control.
+- `profiles/glm47-q6-balanced-campaign.json`: conditional 32K Q6 proposal using
+  measured Q4 cache/compute costs and more CPU expert blocks; not yet loaded.
+
+New raw run data, private instruction grading inputs and exact weight-deletion
+records remain ignored. Reviewed findings are published in
+`reports/2026-10-15-campaign.md`; capacity exclusions are in `research/reviews/`.

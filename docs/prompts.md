@@ -279,3 +279,15 @@ grader without changing their assertions: reference 6/6, shallow-copy negative
 control 5/6. This prepares the real-instruction comparison; it is not yet a new
 candidate result. Nineteen offline tests, PowerShell parsing and the public
 audit passed again for the checkpoint. Candidate ranking remains in progress.
+
+Next checkpoint: the full Gemma 32K suite completed and was reviewed. All five
+core implementations pass six independent Python groups; the held-out code has
+a strict TypeScript compilation error and a failed SQLite migration. A linked
+rules file was skipped. GLM Q4 has loaded, preserved an actual prior tool thought,
+and completed its first core in 226.844 seconds; isolation assertions break
+legitimate merges (1/6 independent groups, 2/14 generated tests). Retired Qwen3.8
+Q8 weights were hash-verified and deleted after evidence preservation. Added
+conditional Qwen Q5 / GLM Q6 profiles and a smaller-host-RAM Qwen 64K proposal.
+Current capacity exclusions carry no quality score and explicitly omit disk-
+paged experiments. One owned inference process remains active; no production
+editor promotion or completed overall ranking is claimed.

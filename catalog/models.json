@@ -22,8 +22,8 @@
       "bytes": 14439363584,
       "sha256": "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d",
       "upstream": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "status": "verified-first-core-pass-full-suite-in-progress",
-      "thinking": "Must verify embedded template and within-tool-turn thought preservation; do not copy Qwen kwargs blindly"
+      "status": "seven-task-32k-suite-reviewed-long-context-and-private-audit-pending",
+      "thinking": "Native tool continuation preservation and runtime 2048 reasoning ceiling observed; no native xhigh label"
     },
     "glm47-udq4": {
       "name": "GLM-4.7-Flash UD-Q4_K_XL",
@@ -33,7 +33,7 @@
       "bytes": 17520169312,
       "sha256": "b0d4fbc1211f891b4cfbf2a497160bfe06a49412420068904d426b7a13f4ba7f",
       "upstream": "https://huggingface.co/zai-org/GLM-4.7-Flash",
-      "status": "download-in-progress-inference-not-yet-tested",
+      "status": "verified-loaded-coding-suite-running",
       "thinking": "Verify enable_thinking/clear_thinking and tool parsing; MLA allocation must be measured"
     },
     "glm47-q5": {
@@ -74,7 +74,7 @@
       "filename": "Qwen3.6-35B-A3B-UD-Q5_K_M.gguf",
       "bytes": 26456194016,
       "sha256": "c13ce26253ea334df472bd8fbd2d6da66d8a41195c17f6fcbf44c4d20ece0932",
-      "status": "campaign-pending-fit-and-runtime",
+      "status": "conditional-download-queued-load-requires-fresh-memory-check",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "qwen36-q6": {
@@ -84,7 +84,7 @@
       "filename": "Qwen3.6-35B-A3B-UD-Q6_K_XL.gguf",
       "bytes": 31843777504,
       "sha256": "f6b6c6d5cfa6f00d964eeb7add28eb14ce7481734d506b90681007678cd2c484",
-      "status": "campaign-pending-fit-and-runtime",
+      "status": "current-apps-open-resident-capacity-rejected-no-quality-score",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "glm47-udq6": {
@@ -94,7 +94,7 @@
       "filename": "GLM-4.7-Flash-UD-Q6_K_XL.gguf",
       "bytes": 26175238496,
       "sha256": "b5ddf6a5531a4d06ce84a652419c8d32c0cb15ca64549d715f783de948a3f3e2",
-      "status": "campaign-pending-fit-and-runtime",
+      "status": "conditional-download-queued-from-measured-family-buffer-costs",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "kimi-linear-q4": {
@@ -104,7 +104,7 @@
       "filename": "moonshotai_Kimi-Linear-48B-A3B-Instruct-Q4_K_M.gguf",
       "bytes": 30061058720,
       "sha256": "a1a7d865370652221f937163f7e94c99e1f114861335ba4f8666606843f1620f",
-      "status": "campaign-pending-fit-and-runtime",
+      "status": "current-apps-open-resident-capacity-rejected-no-quality-score",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "qwencoder-next-q4": {
@@ -114,7 +114,7 @@
       "filename": "Qwen3-Coder-Next-Q4_K_M.gguf",
       "bytes": 48528320544,
       "sha256": "9e6032d2f3b50a60f17ce8bf5a1d85c71af9b53b89c7978020ae7c660f29b090",
-      "status": "campaign-pending-fit-and-runtime",
+      "status": "current-apps-open-resident-capacity-rejected-no-quality-score",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     }
   }

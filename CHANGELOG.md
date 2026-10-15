@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.3 — 2026-10-15 (campaign in progress)
+
+- Publish all seven Gemma 32K results, separating passing Python checks from
+  strict TypeScript compilation, SQLite migration and linked-file omissions.
+- Record actual GLM Q4 loading/cache measurements and preserved tool thought.
+- Prepare capacity-gated Qwen Q5, GLM Q6 and a 64K balanced Qwen follow-up.
+- Retire the verified old Qwen3.8 Q8 weight archive while preserving evidence.
+
 ## 0.3.2 — 2026-10-15 (campaign in progress)
 
 - Add portable task plans and a comparison walkthrough; freeze a 640-record

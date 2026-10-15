@@ -1,8 +1,8 @@
 {
   "model": "gemma4-26b-qat",
   "alias": "gemma4-lab",
-  "locally_tested": false,
-  "evidence": "Partial live validation: 32K model buffers 3954 MiB GPU / 10379 MiB host, q8 KV 473 MiB, readiness dedicated VRAM 4.97 GiB. Seed73 core completed in 349.313 s with 6/6 independent Python groups. Remaining repeated/history/held-out/editor checks are required; not promoted.",
+  "locally_tested": true,
+  "evidence": "Completed seven-task 32K suite on 2026-10-15. Five core Python implementations pass 6/6 independent groups; 120-record history facts pass. Held-out TypeScript fails strict compilation and SQL migration fails; linked rules file skipped. Peak sampled RAM 12.46 GiB, readiness dedicated VRAM 4.97 GiB. This is not a production promotion; see campaign report.",
   "load_min_ram_free_gib": 14.5,
   "load_min_vram_free_mib": 6500,
   "template_kwargs": {
