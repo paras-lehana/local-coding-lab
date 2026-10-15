@@ -316,3 +316,24 @@ confirmation must avoid simultaneous grading or artifact hashing.
 Checkpoint validation for v0.3.4: 20 offline unittests pass, all PowerShell
 scripts parse, the publication audit reports zero findings across 92 files,
 and git diff whitespace checks pass. No private corpus/output is staged.
+
+Continued checkpoint: Qwen Coder completed its five-task suite. Three core
+answers take 78-82 seconds but skip linked rules/contract, retain validation or
+aliasing bugs, and one claims tests ran. The short history facts pass but the
+read inventory is omitted. Code has been reviewed and prepared for isolated
+grading in the next interval without timed inference. Its 32K q8 cache is
+1632 MiB; readiness dedicated VRAM 5.80 GiB, peak sampled RAM 13.28 GiB.
+GLM Q5 then loaded with matched placement, using 5.57 GiB dedicated VRAM and
+about 3 GiB more host model buffers than Q4. Quality collection continues.
+
+Prepared portable matched-Q4, GLM-f16 and research-sampling profiles; private
+64K personal audits are queued. All 15 frozen real instruction sources total
+27,488 Qwen Coder tokens before wrappers/history/output. Rechecked Kimi's
+official config against the GGUF: 27 blocks/256 experts, correcting the research.
+Improved unloaded headroom means its earlier arithmetic exclusion no longer
+suffices; a conditional profile now requires a fresh 26 GiB / 6800 MiB snapshot
+and enough disk. No Kimi load or score is claimed. No editor promotion yet.
+
+v0.3.5 checkpoint validation: 20 offline tests pass; PowerShell parsing and
+whitespace checks pass; public-content audit covers all 96 tracked/unignored
+files with zero findings. The frozen prompts and model answers are unchanged.

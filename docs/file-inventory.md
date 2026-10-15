@@ -111,6 +111,14 @@ not recommendations merely because their files exist.
   at 32K; it requires a fresh capacity check and a matched Q4 control.
 - `profiles/glm47-q6-balanced-campaign.json`: conditional 32K Q6 proposal using
   measured Q4 cache/compute costs and more CPU expert blocks; not yet loaded.
+- `profiles/qwen36-q4-precision-control.json`: proposed 32K matched Q4 control
+  for the Q5 placement/sampling/context settings.
+- `profiles/glm47-q4-f16-campaign.json`: proposed cache-precision-only follow-up
+  to the measured 32K q8 GLM profile.
+- `profiles/qwen36-research-sampling.json`: proposed temperature/min-p bundle;
+  explicitly a two-variable change, requiring matching request temperature.
+- `profiles/kimi-linear-balanced-campaign.json`: conditional 32K placement after
+  headroom recovery; four checkpoints, fresh memory/disk gates, no measured fit.
 
 New raw run data, private instruction grading inputs and exact weight-deletion
 records remain ignored. Reviewed findings are published in

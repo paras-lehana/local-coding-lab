@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "verified_metadata_date": "2026-10-15",
-  "note": "Bytes are GGUF size, not required RAM. Hashes are publisher LFS metadata. Qwen Q4 and Gemma QAT have local attempt evidence; consult individual status and reports, not catalog presence, for validation. Model licenses apply separately.",
+  "note": "Bytes are GGUF size, not required RAM. Hashes are publisher LFS metadata. Consult individual status and campaign reports, not catalog presence, for actual loading and quality evidence. Model licenses apply separately.",
   "models": {
     "qwen36-q4": {
       "name": "Qwen3.6-35B-A3B UD-Q4_K_M",
@@ -33,8 +33,8 @@
       "bytes": 17520169312,
       "sha256": "b0d4fbc1211f891b4cfbf2a497160bfe06a49412420068904d426b7a13f4ba7f",
       "upstream": "https://huggingface.co/zai-org/GLM-4.7-Flash",
-      "status": "verified-loaded-coding-suite-running",
-      "thinking": "Verify enable_thinking/clear_thinking and tool parsing; MLA allocation must be measured"
+      "status": "seven-task-32k-suite-collected-private-audit-and-cache-followup-pending",
+      "thinking": "Native continuation with clear_thinking false verified; unrestricted run exhausted output allowance without final answer. No native xhigh claim."
     },
     "glm47-q5": {
       "name": "GLM-4.7-Flash Q5_K_M",
@@ -44,7 +44,7 @@
       "bytes": 21408850272,
       "sha256": "167848c4b460887d7a52c44c378d3996a0d38b3302ac2045494dc8b50869a893",
       "upstream": "https://huggingface.co/zai-org/GLM-4.7-Flash",
-      "status": "download-queued-matched-precision-profile-proposed",
+      "status": "verified-loaded-matched-precision-suite-running",
       "thinking": "Same family; quantization is an independent experimental variable"
     },
     "gemma4-31b-qat": {
@@ -64,8 +64,8 @@
       "filename": "Qwen3-Coder-30B-A3B-Instruct-UD-Q4_K_XL.gguf",
       "bytes": 17665334432,
       "sha256": "2841aa314d916434860cfb8990347528dcdfe5c350dbcb9d1461dbee88ff2533",
-      "status": "download-queued-inference-not-yet-tested",
-      "thinking": "Verify native template; do not assume a reasoning-effort control."
+      "status": "five-task-nonthinking-suite-collected-private-audit-pending",
+      "thinking": "Non-thinking coding control; tool calls observed, but linked-rule omissions and code defects remain. No native reasoning-effort control."
     },
     "qwen36-q5": {
       "name": "Qwen3.6 35B A3B UD-Q5_K_M",
@@ -104,7 +104,7 @@
       "filename": "moonshotai_Kimi-Linear-48B-A3B-Instruct-Q4_K_M.gguf",
       "bytes": 30061058720,
       "sha256": "a1a7d865370652221f937163f7e94c99e1f114861335ba4f8666606843f1620f",
-      "status": "current-apps-open-resident-capacity-rejected-no-quality-score",
+      "status": "conditional-profile-after-headroom-recovery-fresh-gates-required-no-quality-score",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "qwencoder-next-q4": {

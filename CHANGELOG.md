@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.5 — 2026-10-15 (campaign in progress)
+
+- Record Qwen Coder's completed collection, file-reading omissions and code
+  defects; distinguish reviewed findings from pending isolated grades.
+- Measure GLM Q5 loading with matched placement and retain the Q4 comparison.
+- Prepare matched Qwen precision, GLM cache-precision and research-sampling
+  experiments; reconsider Kimi after naturally improved memory headroom.
+- Correct external research's Gemma/Kimi architecture counts against actual
+  headers and the pinned official Kimi configuration.
+
 ## 0.3.4 — 2026-10-15 (campaign in progress)
 
 - Publish GLM's repeated semantic failures, unrestricted output-limit result

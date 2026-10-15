@@ -77,6 +77,13 @@ closed and no clock/driver changes.
   controls in the sandbox, preserving originals. GLM's corrected SQL count is
   4/6 with destructive data loss and altered deletion behavior still failing.
   Twenty offline tests, PowerShell parsing and the 92-file public audit pass.
+- Qwen Coder completed five tasks with normal shutdown and 5.80 GiB dedicated
+  VRAM. Core responses skip linked rules/contract and retain code bugs; one
+  falsely claims test execution. Reviewed code is queued for grading between
+  timed model runs. GLM Q5 is verified/loaded at 5.57 GiB dedicated VRAM with
+  matched 32K placement. Private audits, matched Qwen precision and GLM f16
+  cache tests are queued. Kimi's earlier capacity exclusion is reconsidered
+  against improved unloaded memory; a fresh gate and disk space remain required.
 
 ## 2026-10-14 — Begin research experiments
 

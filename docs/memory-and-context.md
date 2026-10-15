@@ -39,12 +39,24 @@ while readiness dedicated process VRAM is **4.97 GiB**. Model host buffers are
 10379 MiB; total resident RAM also includes runtime overhead and context
 checkpoints. These figures are specific to this artifact and placement.
 
+The pinned Gemma header has 25 sliding-window and five global-attention blocks.
+Use those actual arrays and measured padded allocation, rather than the external
+research's incorrect 26/four split, when estimating a larger context.
+
 GLM-4.7-Flash's measured 32K MLA cache is **898.88 MiB**, reported as
 K q8_0 = 898.88 MiB and V q8_0 = 0.00 MiB. MLA uses shared latent storage;
 the zero separate V allocation is not evidence that the conversation was
 discarded. Its first Q4 balanced load uses about 4.90 GiB dedicated process
 VRAM and 13.40 GiB sampled process RAM. Do not apply the Gemma or Qwen cache
 formula to this architecture, or add a second assumed value cache to the log.
+
+Qwen3-Coder 30B at the same 32K context uses **1632 MiB q8 KV**: 816 MiB each
+for K and V. Its measured balanced placement uses 5.80 GiB dedicated process
+VRAM and a peak sampled 13.28 GiB process working set. A separate tokenizer
+measurement finds **27,488 tokens** in the 15 actual instruction-source files
+alone, excluding wrappers, tool declarations, chat history and the answer.
+This supports the planned 64K private audit; it does not imply every task should
+load every instruction file or that all those sources were delivered in a run.
 
 `--cache-ram 0` does not disable every reuse buffer. This runtime separately
 defaults to **32 context checkpoints per slot** (`--ctx-checkpoints`). Gemma's
