@@ -1,0 +1,56 @@
+{
+  "status": "partial_collection_in_progress",
+  "artifact": {
+    "name": "Qwen3-Coder Next 80B A3B Q4_K_M",
+    "repo": "unsloth/Qwen3-Coder-Next-GGUF",
+    "revision": "ce09c67b53bc8739eef83fe67b2f5d293c270632",
+    "filename": "Qwen3-Coder-Next-Q4_K_M.gguf",
+    "bytes": 48528320544,
+    "sha256": "9e6032d2f3b50a60f17ce8bf5a1d85c71af9b53b89c7978020ae7c660f29b090",
+    "status": "current-apps-open-resident-capacity-rejected-no-quality-score",
+    "thinking": "Verify native template; do not assume a reasoning-effort control.",
+    "url": "https://huggingface.co/unsloth/Qwen3-Coder-Next-GGUF/resolve/ce09c67b53bc8739eef83fe67b2f5d293c270632/Qwen3-Coder-Next-Q4_K_M.gguf"
+  },
+  "profile": "qwencoder-next-noprefetch64-candidate",
+  "runtime_variant": {
+    "id": "b11562-noprefetch-v1",
+    "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+  },
+  "python": {
+    "whole_seconds": 793.828,
+    "implementation_groups": {
+      "passed": 6,
+      "total": 6
+    },
+    "model_unittest_methods": {
+      "passed": 8,
+      "total": 9
+    },
+    "original_direct_script_ran_tests": false,
+    "test_adapter": "Only import mapping and ordinary unittest.main invocation; assertions unchanged",
+    "source_reads": 7,
+    "known_error": "Wrong expected empty-dictionary merge in one generated test"
+  },
+  "typescript_sql": {
+    "whole_seconds": 561.812,
+    "source_reads": 6,
+    "strict_typescript_compiles": true,
+    "typescript_groups": {
+      "passed": 4,
+      "total": 6
+    },
+    "typescript_defects": [
+      "Accepts non-plain objects",
+      "Accepts positive fractional counts"
+    ],
+    "sqlite_migration_error": "FOREIGN KEY constraint failed",
+    "sql_source_defects": [
+      "Drops referenced parent while foreign keys remain ON",
+      "Recreates forbidden global uniqueness and omits required tenant composite uniqueness"
+    ]
+  },
+  "context": "running",
+  "private_actual_instructions": "pending",
+  "grading": "Codex source review followed by namespace-isolated independent checks; not independently human reviewed",
+  "timing_caveat": "Grading was completed during context-v1 prefill after headroom increased to9.5GiB; source review preceded execution. Context timing includes this work and normal desktop activity."
+}

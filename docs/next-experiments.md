@@ -11,6 +11,14 @@ Exact retired weight files were deleted only after evidence preservation.
 
 ## Completed campaign and remaining quality limits
 
+**16 October expansion is active.** Context allocation/recall measurements are
+complete through about120K input tokens. Coder-Next80B is now collecting actual
+answers after a stock mmap startup failure and a validated isolated prefetch
+opt-out. Dense Gemma31 and the matched QwenQ4/Q6 pair follow sequentially with
+explicit six-hour whole-prompt limits. Previous capacity/calibration exclusions
+are historical, not completed quality verdicts. See the
+[current task report](tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md).
+
 1. Native private audits are graded: Qwen Q5 scores28/36, GLM Q4/f16 scores27/36,
    GLM Q6 scores24/36. Q5 GLM's recovered21/36 and retirement remain separate
    from the interrupted unscored attempt. No general precision advantage was
@@ -99,5 +107,7 @@ headroom and more reliable file/tool behavior, not the largest parameter label.
 No candidate cleared every strict quality condition. The installed Qwen profile
 is a supervised working compromise, not a certified quality promotion. Retained
 QwenQ4/Gemma26 weights and all original evidence allow future comparisons.
-Reopen capacity-rejected tests only when available memory materially changes;
-do not keep retrying the same insufficient snapshot or close the owner's apps.
+Reopen capacity-rejected tests only when available memory or a validated loading
+approach materially changes; do not repeat an unchanged failing load or close
+the owner's apps. A process working-set maximum did not constrain the stock
+Windows whole-file prefetch peak in the16October80B attempt.

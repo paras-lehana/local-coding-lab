@@ -6,7 +6,7 @@ Status: in progress, 16 October 2026 (Asia/Kolkata). This report extends the
 | Owner point | Status | Evidence and next step |
 |---|---|---|
 | RAM use and KV growth | Measured | 2K–120K occupancy, 64K/128K reservations, CPU/GPU placement, retained and omitted history. |
-| Qwen3-Coder-Next 80B | Downloading | Pinned Q4 artifact; file-backed mapping and monitored offload follow verification. |
+| Qwen3-Coder-Next 80B | Collecting answers | Verified Q4; isolated prefetch opt-out loads after stock failure. First coding answer complete; grading and remaining tasks pending. |
 | Gemma 4 31B dense | Queued | Repeat beyond the previous latency gate; collect complete answers before judging quality. |
 | Qwen3.6 Q6 | Queued | Attempt mapping/placement appropriate to current headroom, then matched quality checks. |
 | Independent research and reasoning | In progress | Re-read supplied research and verify runtime behavior and publisher facts. |
@@ -191,6 +191,46 @@ prefetch explanation, but compiler and desktop-state differences prevent
 claiming a fully isolated causal proof. Full answers and grades are pending.
 The [patch and reproduction notes](../../../experiments/llama-mmap-prefetch/README.md)
 are public; binaries and raw host logs remain local.
+
+The first public Python/instruction answer completed in793.828seconds across
+two tool turns. It read all seven fixture files, selected v2 rules, distinguished
+links from supplied contents and did not invent absent service facts. Its
+implementation subsequently passed all six independent Python contract groups.
+One generated test incorrectly expects an empty dict
+override to erase nested defaults, and the answer calls its nine test methods
+seven. Diagnosis also omits an explicit original dict/scalar update failure.
+
+For the final turn, uncached prefill was3.02tokens/s and generation5.28tokens/s.
+Sampled whole-system reads averaged368MiB/s during that prefill and140MiB/s
+during generation; these include other applications. GPU utilization samples
+averaged14%/30%. This supports a paging bottleneck, not a theory that a larger
+KV cache or artificial reasoning-effort label would fix the delay. Readiness
+dedicated process VRAM was5.097GiB; desktop VRAM use is additional.
+
+Before its first load, dense Gemma's prepared profile reduces context checkpoints
+from four to one. Earlier dense logs measured531.25MiB of sliding-window state,
+far more than Qwen's62.81MiB recurrent state. Fewer retained checkpoints avoid
+potential extra host copies while keeping the active64K context; they can reduce
+prefix-reuse opportunities. This is a reasoned preparation, not a measured speed
+improvement. The Q4/Q6 pair keeps identical placement and modified runtime.
+
+The TypeScript/SQLite answer completed in561.812seconds across seven turns and
+honestly lists all six files read. Strict TypeScript compiles, but only4/6 behavior
+groups pass: non-plain objects and fractional counts are accepted. SQLite fails
+with a foreign-key constraint error while dropping the referenced table. Source
+review also finds that it recreates global external_id uniqueness instead of
+the required tenant/external composite constraint. A failed migration is not
+six independently observed failed assertions.
+
+The model's nine Python unittest methods pass8/9 when invoked. The initial direct
+script run executed no tests because the provided block has no main entrypoint;
+that original result is preserved. A separate execution adapter adds only
+`unittest.main`, with assertions and implementation unchanged. This is normal
+test invocation, not a repair of the wrong assertion. Isolation preflights pass;
+generated code sees only the selected read-only files and no host drives, homes
+or network. Grading briefly overlaps context-test prefill, which is recorded as
+a timing caveat. These first answers do not establish an80B quality upgrade;
+history and the actual-instruction audit remain pending.
 
 The report is a useful hypothesis list, not a verified experiment log. Today's
 measurements support its small Qwen cache estimate, but contradict the earlier

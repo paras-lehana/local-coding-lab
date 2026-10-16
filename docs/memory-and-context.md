@@ -163,3 +163,15 @@ answer and file-read sequence: delivered reasoning was only26-172tokens per
 turn in either run. The ceiling was not reached. Raising it cannot by itself
 force more reasoning; [the measured comparison](../reports/2026-10-15-campaign.md#qwen-private-reasoning-ceiling-identical-output)
 retains the same25/36 score and errors.
+
+Windows mmap has another distinction: virtual mapped size, resident process
+working set and system-cached prefetched pages are different counters.
+Microsoft documents that
+[prefetched pages initially sit outside the process working set](https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-prefetchvirtualmemory).
+Large prefetch ranges can still create system memory pressure. The16October
+80B load demonstrated why limiting only process residency is insufficient:
+its stock mapping attempt exhausted free memory before inference. An isolated
+initial-prefetch opt-out subsequently loaded and began inference within the
+same resource floors; see the [experiment](../experiments/llama-mmap-prefetch/README.md).
+That trades startup pressure for demand paging. It does not turn a45GiB weight
+file into a17GiB resident model or make storage as fast as RAM.

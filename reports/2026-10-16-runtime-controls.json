@@ -1,0 +1,133 @@
+{
+  "scope": "Compatibility controls, not coding quality or exhaustive numerical equivalence",
+  "variant": {
+    "id": "b11562-noprefetch-v1",
+    "base_commit": "b2f036c0f138414dedc987446f1d9d802f920275",
+    "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009",
+    "stock_llama_sha256": "bbb5b3b15e0515905f401d729aa674ca27fbcaf9c1fcba5eff94d35cb2020467",
+    "patch_sha256": "26d8b3109cbcdb416ed8cd6f2b529c48e093ec9267a710c8546b18d49627ed32",
+    "compiler": "MSVC 14.50.35717, CMake 4.1.2-msvc8, Ninja, Release x64",
+    "unchanged_stock_binaries": {
+      "cublas64_12.dll": "e40202fe4223c1cd2d2dce7beec59e1ed61c7801bd827309183be9b50e358f4c",
+      "cublasLt64_12.dll": "2a896460bef60ed57ef32b0875812f355a6984e671d638bb632f5e8c1d7a831f",
+      "cudart64_12.dll": "d28e42265da7462162a54da6b7a99ea4fa2caf8139d862bb500db875d0b32dfc",
+      "ggml-base.dll": "e0af09585367c835030092722d974a65aaba54e62b4749a7e358a02f8e1aa5bf",
+      "ggml-cpu-alderlake.dll": "dbb2b0a1662c6a9df08f568babcc02b8c0f5be25165dbd3876ec80fb707a732e",
+      "ggml-cpu-cannonlake.dll": "539675328dcc137726c423623b158893e340cd55532a3cd954f62fa45f9fa378",
+      "ggml-cpu-cascadelake.dll": "740e1faa538d475572e11e5e0a7835441ce030ad1806ba015d67dcc2749e52da",
+      "ggml-cpu-cooperlake.dll": "cd091ecfa3023ee8167d9622e2389f4bd658cf6e649afa8302afa391a5df2b21",
+      "ggml-cpu-haswell.dll": "0018cfeb982f2a74a3e6636c59a94b6b97d003c23e18489a713bef2d6057bb13",
+      "ggml-cpu-icelake.dll": "d5487329de823ab2f960ef247ef7a38c600502fe1ba7578ecf5fa023c92de975",
+      "ggml-cpu-ivybridge.dll": "1ad7db6e46162df04084d2de06b515bba244eceaaddc9dea166d8978534f1234",
+      "ggml-cpu-piledriver.dll": "45bbd8bfb29e83f66fb2229fd18c514fa62974ecead4a7cfbcf646c85eda7ffa",
+      "ggml-cpu-sandybridge.dll": "139e96213e6a7f5e04ee3c9bf4a1e5c5d52105ab4bb3aa46aaae08a2feaeb31e",
+      "ggml-cpu-sapphirerapids.dll": "0c68e1d1140b4a6cba997d81722c9715a432251db1642bc4028805daa79eef3a",
+      "ggml-cpu-skylakex.dll": "ff2d08593f21c44bbfee2e6aec312b5a1bc56a5f651f0ea8e2db79feb103241b",
+      "ggml-cpu-sse42.dll": "5918f986ba8b650e74f3e49e1ddf5f882e9be21af6c4c814d18f19edc3854377",
+      "ggml-cpu-x64.dll": "b1a7d5b6656e57bed7f053d1aca63c9a69fb43de688a67aa352297858c929b63",
+      "ggml-cpu-zen4.dll": "2e5d63b61c7da0f393a66b289c0ecbed6a29988167cc852e1c33addac2c67ee6",
+      "ggml-cuda.dll": "b4b6ca3820bad0f08eb67eb308e86b4f40acaf8e240c75e4336ade6ff57dd01e",
+      "ggml-rpc-server.exe": "6ce316609ce309e654ea972e042d2e9bd827dce4176d53fd4d1eb464102644e9",
+      "ggml-rpc.dll": "fd91bca5f412919246c1ceccb86a7c06a4ae362f749b386034b0499de2b857db",
+      "ggml.dll": "7ea2828b78084ed8837b231b2a20cdd3bdda0d08de585c25a806951bf2a7ca0f",
+      "libomp.dll": "a12116ba72d1d6820407cf30be23da04ce79d6bb8a71a5ee71759c5a1faa6f1c",
+      "llama-batched-bench-impl.dll": "73b43f0d1ee3690ae3fcf9d197e31a48dbdbe5c56c45d8fa3751ab232ef00076",
+      "llama-batched-bench.exe": "47ddfeef8e8582a4e326501daeed5b437914260541a8c281a63fd7b11ba4d441",
+      "llama-bench-impl.dll": "72d65fb7ec8a79842cca08f3b563b2d353d8f8380c43048161158f878d64fdca",
+      "llama-bench.exe": "656fe4bb44563e57cb1b1603cd5f020c2d3162a01525b49d8e6adc748c9906ef",
+      "llama-cli-impl.dll": "f5fa264c0c2390d991790151492fdf646368da475015b0873cf820558d4c07d2",
+      "llama-cli.exe": "1203aa885df3c18518d90a2b1ee6563922442b72f5327cdf62dd796c46d69323",
+      "llama-common.dll": "089e484f47f08e825b115bcfd54055503233a45cf229e364dba3fee16a217fe6",
+      "llama-completion-impl.dll": "5b1af53fe8fe8a708720bd3f9276e1ba35249c4c1e256379a8182187116ad987",
+      "llama-completion.exe": "f9059e3433a4b80415da5c3ecb8050cd101886a7f97c6cc7cc58b6bbcfa1563a",
+      "llama-fit-params-impl.dll": "ac0c5915d3245c15169beb0df96713a8c5796f9d54e6225cc5ed51a7140596c1",
+      "llama-fit-params.exe": "ae2202568ee532b6922705f6839993a2b512884b891fa2e6a65b4f1ffc7fc630",
+      "llama-gemma3-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-gguf-split.exe": "573a9fb80d379f0cf43688899c077df00ce138646c5679a1680ec85abdaa894c",
+      "llama-imatrix.exe": "1bc53b83e1638f253039abc3a4ace5758de1d0c06240eae8de44e58a0e469cc0",
+      "llama-llava-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-minicpmv-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-mtmd-cli.exe": "f981773bbb19df265c05c8142a2b75cf4d6c4217f2867f11a88d9dd3e2973c11",
+      "llama-mtmd-debug.exe": "dd68b5e21e5cb4240d65f0bb9a0759c12bf4200236d8b4d1e77176c7f42fe947",
+      "llama-perplexity-impl.dll": "7dfcb2d29374d3fad7543e03a6bd4c8e8eeeb0113c3dfcf1ed92655530b36804",
+      "llama-perplexity.exe": "247b4b9cd4a7bbbf078ec3225bd832618179636d7dd843b3493dcc512cf31120",
+      "llama-quantize-impl.dll": "4791484e3d36f04b799e69bf93faa838fb7f9ba4a1fdf56e50da4b6b0125aa19",
+      "llama-quantize.exe": "b0908bd1adedae40afb78b0b5f344663a66ff6246fe79092b8ff3693af588338",
+      "llama-qwen2vl-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-results.exe": "a5d3d1f32b4759fba908fb362d9fc2b0e0bec31704ff6f668d0abf05dbda023c",
+      "llama-server-impl.dll": "17e98b38dd5ee5290af398d87c346cb9d49cca313ba919409ab32e6128b87ed7",
+      "llama-server.exe": "2f5639beed7f301ab9cbceb81b1023cdfad764688143454dd66ab2db2eef6145",
+      "llama-tokenize.exe": "9596bc9f144dab9cd60cc94f4fee5ae2459f780d3165b2ae3c35884bd895e4a8",
+      "llama-tts.exe": "0b8848937e3081dfcd092fc1dd5c83efa9748b3ef527481230fc5c021f87ffc5",
+      "llama.exe": "1a9b627bca3b26c68a27f3d161df6e73b9fe59d8fcf0d986cd99932a89739fe9",
+      "mtmd.dll": "004fc656ff4af52b69d12e1ab7f68e1ea9d8c7a4abfa3647c0d72f18804420dc"
+    },
+    "scope": "Only llama.dll rebuilt; all original ggml/CUDA/CPU backends retained",
+    "opt_in_environment": {
+      "LLAMA_LAB_NO_MMAP_PREFETCH": "1"
+    }
+  },
+  "artifact": {
+    "filename": "stories260K.gguf",
+    "bytes": 1185376,
+    "sha256": "270cba1bd5109f42d03350f60406024560464db173c0e387d91f0426d3bd256d",
+    "url": "https://huggingface.co/ggml-org/models/resolve/499bc8821c6b12b4e53c5bffcb21ec206f212d81/tinyllamas/stories260K.gguf"
+  },
+  "small_model_controls": [
+    {
+      "name": "stock-ngl-0",
+      "returncode": 0,
+      "seconds": 0.375,
+      "prefetch_disabled_logged": false,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406"
+    },
+    {
+      "name": "modified-default-ngl-0",
+      "returncode": 0,
+      "seconds": 0.40600000000267755,
+      "prefetch_disabled_logged": false,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406"
+    },
+    {
+      "name": "modified-opt-in-ngl-0",
+      "returncode": 0,
+      "seconds": 0.39100000000325963,
+      "prefetch_disabled_logged": true,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406"
+    },
+    {
+      "name": "stock-ngl-all",
+      "returncode": 0,
+      "seconds": 0.5929999999934807,
+      "prefetch_disabled_logged": false,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406"
+    },
+    {
+      "name": "modified-default-ngl-all",
+      "returncode": 0,
+      "seconds": 0.5470000000059372,
+      "prefetch_disabled_logged": false,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406"
+    },
+    {
+      "name": "modified-opt-in-ngl-all",
+      "returncode": 0,
+      "seconds": 0.5779999999940628,
+      "prefetch_disabled_logged": true,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406"
+    }
+  ],
+  "identical_cpu_output": true,
+  "identical_gpu_output": true,
+  "qwen_mapped_smoke": {
+    "profile": "qwen36-q4-noprefetch64-control",
+    "status": "collected",
+    "seconds": 1.25,
+    "server_outcome": {
+      "status": "requested_stop"
+    },
+    "finish_reason": "stop",
+    "returned_text": "READY.",
+    "note": "Transport smoke completed; requested READY but returned READY. with punctuation"
+  }
+}
