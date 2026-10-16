@@ -368,6 +368,28 @@ def process_gpu_snapshot(pid: int) -> dict:
         return {'time': time.time(), 'pid': pid, 'error': 'WDDM counters unavailable'}
 
 
+def runtime_environment(runtime: Path, profile: dict) -> tuple[dict, dict | None]:
+    """Require an explicit identity for the isolated mmap-prefetch experiment."""
+    env = dict(os.environ)
+    env.pop('LLAMA_LAB_NO_MMAP_PREFETCH', None)
+    env['LLAMA_ARG_CHAT_TEMPLATE_KWARGS'] = json.dumps(profile['template_kwargs'])
+    requested = profile.get('runtime_variant')
+    manifest_path = runtime / 'lab-runtime-variant.json'
+    if not requested:
+        if manifest_path.exists():
+            raise ValueError('Modified runtime requires an explicit runtime_variant profile')
+        return env, None
+    manifest = read_json(manifest_path)
+    if (requested.get('id') != 'b11562-noprefetch-v1'
+            or manifest.get('id') != requested['id']
+            or manifest.get('base_commit') != read_json(ROOT / 'catalog/runtime.json')['commit']
+            or manifest.get('llama_sha256') != requested.get('llama_sha256')
+            or digest(runtime / 'llama.dll') != requested['llama_sha256']):
+        raise ValueError('Modified runtime identity or llama.dll hash differs from profile')
+    env['LLAMA_LAB_NO_MMAP_PREFETCH'] = '1'
+    return env, manifest
+
+
 def run_server(args: argparse.Namespace, data: Path) -> None:
     """Own one foreground session, monitoring resources until it stops."""
     profile = read_json(ROOT / "profiles" / (args.profile + ".json"))
@@ -409,12 +431,13 @@ def run_server(args: argparse.Namespace, data: Path) -> None:
                              text=True, encoding="utf-8", errors="replace", timeout=30)
     if "b2f036c0f" not in version.stdout + version.stderr:
         raise ValueError("Runtime commit differs from pinned b11562; create a reviewed profile/catalog update")
+    env, variant = runtime_environment(runtime, profile)
     run_dir = data / "runs" / time.strftime("server-%Y%m%d-%H%M%S")
     run_dir.mkdir(parents=True, exist_ok=False)
     save_json(run_dir / "launch.json", {"command": command, "profile": profile,
-                                        "preflight_memory": preflight_memory})
-    env = dict(os.environ)
-    env["LLAMA_ARG_CHAT_TEMPLATE_KWARGS"] = json.dumps(profile["template_kwargs"])
+                                        "preflight_memory": preflight_memory,
+                                        "runtime_variant": variant,
+                                        "mmap_prefetch_disabled": variant is not None})
     child = None
     next_events = time.monotonic() + 30
     outcome = {"status": "exited"}
@@ -422,6 +445,7 @@ def run_server(args: argparse.Namespace, data: Path) -> None:
         with (run_dir / "server.log").open("wb") as log:
             child = subprocess.Popen(command, stdout=log, stderr=log, env=env,
                                      creationflags=subprocess.CREATE_NO_WINDOW)
+            startup_watch_until = time.monotonic() + 120
             if profile.get('working_set_limit_gib') is not None:
                 save_json(run_dir / 'working-set-limit.json',
                           limit_owned_working_set(
@@ -442,7 +466,7 @@ def run_server(args: argparse.Namespace, data: Path) -> None:
                     if time.monotonic() >= next_events:
                         check_hardware_events(since)
                         next_events = time.monotonic() + 30
-                    time.sleep(5)
+                    time.sleep(1 if time.monotonic() < startup_watch_until else 5)
             if child.returncode:
                 raise ValueError(f"llama-server exited {child.returncode}; see {run_dir}")
     except BaseException as exc:

@@ -51,6 +51,31 @@ class GrowthTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             lab.working_set_cap(profile, {'ram_free_gib': 4})
 
+    def test_modified_runtime_identity_fails_closed(self) -> None:
+        """Prevent an experimental DLL or inherited environment changing a control."""
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            profile = {'template_kwargs': {}}
+            with mock.patch.dict('os.environ', {'LLAMA_LAB_NO_MMAP_PREFETCH': '1'}):
+                env, variant = lab.runtime_environment(root, profile)
+            self.assertNotIn('LLAMA_LAB_NO_MMAP_PREFETCH', env)
+            self.assertIsNone(variant)
+            (root / 'llama.dll').write_bytes(b'isolated test DLL')
+            identity = {'id': 'b11562-noprefetch-v1',
+                        'llama_sha256': lab.digest(root / 'llama.dll')}
+            manifest = dict(identity, base_commit=lab.read_json(
+                lab.ROOT / 'catalog/runtime.json')['commit'])
+            lab.save_json(root / 'lab-runtime-variant.json', manifest)
+            with self.assertRaises(ValueError):
+                lab.runtime_environment(root, profile)
+            profile['runtime_variant'] = identity
+            env, observed = lab.runtime_environment(root, profile)
+            self.assertEqual(env['LLAMA_LAB_NO_MMAP_PREFETCH'], '1')
+            self.assertEqual(observed, manifest)
+            (root / 'llama.dll').write_bytes(b'different DLL')
+            with self.assertRaises(ValueError):
+                lab.runtime_environment(root, profile)
+
     @unittest.skipUnless(sys.platform == 'win32', 'Windows working-set API')
     def test_working_set_bound_on_owned_child(self) -> None:
         """Read back the hard maximum on a disposable idle Python process."""

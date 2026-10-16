@@ -57,55 +57,62 @@ from 273 to 507 MiB: KV is not the only context-dependent allocation.
 
 The follow-up retained all three source markers and applied runtime revision2
 and retryLimit0 in 15.047 seconds. The server reused 59,951 input tokens and
-processed only116 new tokens. That demonstrates reuse of delivered chat history,
+processed only 116 new tokens. That demonstrates reuse of delivered chat history,
 not permanent memory of files that the client never supplied. After this follow-up
-the process used about18.02GiB RAM.
+the process used about 18.02 GiB RAM.
 
-At128K configured capacity, the all-CPU KV profile completed119,943 input tokens
-in733.063seconds (12m13s):709.020seconds input processing,169.17 input tokens/s,
+At 128K configured capacity, the all-CPU KV profile completed119,943 input tokens
+in 733.063 seconds (12m13s):709.020 seconds input processing,169.17 input tokens/s,
 and2.69 generated tokens/s. All five facts were correct, but the answer included
 a Markdown code fence despite the plain-JSON instruction. Recall passes;
-strict formatting fails. The changed-revision follow-up completed in26.563s
+strict formatting fails. The changed-revision follow-up completed in 26.563s
 with correct facts and the same formatting mistake. Removing the supplied
-history produced `UNKNOWN` in1.094s, as requested. A cache is not independent,
+history produced `UNKNOWN` in 1.094s, as requested. A cache is not independent,
 permanent knowledge of a conversation the client omitted.
 
-Resident process RAM stayed around18.45–18.59GiB during the long input. Free
-physical memory remained above4GiB, while available Windows commit approached
-1.28GiB. These are separate constraints: sufficient free physical RAM does not
+Resident process RAM stayed around 18.45–18.59 GiB during the long input. Free
+physical memory remained above 4 GiB, while available Windows commit approached
+1.28 GiB. These are separate constraints: sufficient free physical RAM does not
 imply sufficient commit allowance. The existing pagefile was not changed.
 
-The GPU-offloaded128K counterpart completed too. Only cache/state placement
-changes relative to CPU128; both use the same weights and layer placement.
-Its GPU compute buffer is507MiB too. The default offload follows layer placement,
+The GPU-offloaded 128K counterpart completed too. Only cache/state placement
+changes relative to CPU 128K; both use the same weights and layer placement.
+Its GPU compute buffer is 507 MiB too. The default offload follows layer placement,
 so this comparison is all-CPU KV versus mixed CPU/GPU KV. The latter allocates
-272MiB KV onCPU and1088MiB onGPU; recurrent state splits18.84/43.97MiB.
+272 MiB KV on CPU and 1088 MiB on GPU; recurrent state splits 18.84/43.97 MiB.
 
-| At119,943 input tokens | All KV/state on CPU | Default mixed placement |
+| At 119,943 input tokens | All KV/state on CPU | Default mixed placement |
 |---|---:|---:|
 | Whole request | 733.063s | 610.016s |
-| Input processing | 709.020s /169.17tok/s | 594.367s /201.80tok/s |
-| Generation | 2.69tok/s | 4.15tok/s |
-| Resident process RAM after answer | 18.580GiB | 17.477GiB |
-| Dedicated process VRAM | 5.104GiB | 6.199GiB |
+| Input processing | 709.020s /169.17 tok/s | 594.367s /201.80 tok/s |
+| Generation | 2.69 tok/s | 4.15 tok/s |
+| Resident process RAM after answer | 18.580 GiB | 17.477 GiB |
+| Dedicated process VRAM | 5.104 GiB | 6.199 GiB |
+| Private committed bytes | 24.150 GiB | 24.146 GiB |
 | Correct source facts | 5/5 | 5/5 |
 | Plain JSON instruction | Failed: code fence | Failed: code fence |
 | Updated-file/history follow-up | 26.563s, correct facts | 17.141s, correct facts |
 | History omitted | UNKNOWN | UNKNOWN |
 
-The GPU follow-up reused119,939 input tokens and processed121 new ones. This
+The GPU follow-up reused 119,939 input tokens and processed 121 new ones. This
 shows the benefit of a retained prefix, not permanent file memory. The updated
 file was supplied inline in these probes; real tool discovery is assessed
-separately. Recall requests used temperature0 and reasoning budget0 to isolate
+separately. Recall requests used temperature 0 and reasoning budget 0 to isolate
 memory behavior; these are not native-thinking coding scores. All three context
 servers stopped cleanly. Raw measurements are summarized in
 [the public result](../../../reports/2026-10-16-context-growth.json).
 
+Private commit stayed almost unchanged while resident RAM moved to VRAM.
+Do not add that commit counter to RAM and VRAM as another physical allocation.
+The measured KV/state move predicts about 1.105 GiB less CPU allocation and
+the observed resident difference is 1.103 GiB. The remaining model weights,
+runtime and desktop applications are much larger than this cache trade-off.
+
 My recommendation from this pair is to keep GPU cache placement when headroom
-allows, and use CPU KV to recover VRAM when necessary.128K is an optional long
-input profile, not automatically a better everyday default. At120K the GPU
-run left only775MiB device VRAM free and about1.76GiB available commit, despite
-6.44GiB physical RAM available.64K remains the conservative working profile
+allows, and use CPU KV to recover VRAM when necessary. 128K is an optional long
+input profile, not automatically a better everyday default. At 120K the GPU
+run left only 775 MiB device VRAM free and about 1.76 GiB available commit, despite
+6.44 GiB physical RAM available. 64K remains the conservative working profile
 pending the remaining candidate and editor comparisons.
 
 The much smaller change in resident RAM within a fixed context follows from
@@ -122,10 +129,10 @@ is claimed. No permissions, VM settings or apps were changed.
 
 ### Tooling validation checkpoint
 
-25 offline tests passed in11.147seconds, including whole-request cancellation,
+25 offline tests passed in 11.147 seconds, including whole-request cancellation,
 explicit longer-deadline propagation, commit-headroom rejection and a read-back
 test of a resident-memory bound on an owned disposable child. Three PowerShell
-scripts parsed successfully; public-content audit reported0 findings in125 files.
+scripts parsed successfully; public-content audit reported 0 findings in 125 files.
 These development checks overlapped inference, so timings describe desktop use.
 
 The resident-memory bound uses the Windows
@@ -147,9 +154,47 @@ baseline weights are retained. No new model is promoted merely for loading.
 
 ## Independent interpretation of the supplied research
 
+### Coder-Next first load and isolated loader experiment
+
+The full 48,528,320,544-byte Q4 artifact passed SHA256 verification after three
+bounded download resumptions. Its first stock-runtime load did not reach
+inference. Within about five seconds, free physical RAM fell to 0.115 GiB and
+available commit to 0.125 GiB, while server working set was only 0.329 GiB.
+The guard terminated the owned process and memory recovered immediately.
+There was no new WHEA event in the inspected interval. This is an unscored load
+failure, not evidence of a coding defect or a diagnosis of earlier restarts.
+
+Source inspection identifies whole-file `PrefetchVirtualMemory` during Windows
+mmap initialization as a plausible cause. The process working-set maximum did
+not prevent that system-wide load peak. A six-line opt-in change at the same
+pinned commit disables initial mmap prefetch; the original runtime is preserved.
+Only `llama.dll` is rebuilt with MSVC; stock CUDA/CPU backends remain byte-identical.
+An explicit runtime identity, DLL hash and environment receipt prevent treating
+this experiment as a stock result. Startup monitoring now samples every second
+for the first two minutes. All existing resource floors remain unchanged.
+
+The isolated build compiles and recognizes CUDA. Tiny CPU/GPU greedy controls
+produce byte-identical output across stock, modified-default and modified-opt-in
+runtimes; verbose logs confirm the opt-in executes during mmap. These controls
+are not a complete numerical-equivalence proof. A guarded Qwen control precedes
+the next80B load. Candidate answers and grading remain pending; the working
+model selection is unchanged.
+
+The guarded Qwen control subsequently completed its API smoke in1.25seconds
+and stopped normally. Coder-Next then loaded, completed its smoke, and started
+the frozen coding suite. Its loader reports42,961.83MiB CPU-mapped weights,
+4,455.58MiB GPU weights,816MiB CPU KV,75.38MiB recurrent state and519MiB GPU
+compute buffer. Resident RAM is bounded around17.64GiB, leaving about6GiB free
+in the early coding run; mapped size is not resident size. System telemetry
+shows substantial paging/disk reads. The changed-runtime result supports the
+prefetch explanation, but compiler and desktop-state differences prevent
+claiming a fully isolated causal proof. Full answers and grades are pending.
+The [patch and reproduction notes](../../../experiments/llama-mmap-prefetch/README.md)
+are public; binaries and raw host logs remain local.
+
 The report is a useful hypothesis list, not a verified experiment log. Today's
 measurements support its small Qwen cache estimate, but contradict the earlier
-chat advice that128K always requires tens of GiB of KV. Cache shape depends on
+chat advice that 128K always requires tens of GiB of KV. Cache shape depends on
 the architecture; dense versus MoE alone does not determine it. Native context
 capacity also does not guarantee retrieval accuracy, instruction compliance,
 or that an editor actually sends every referenced file.
@@ -169,18 +214,18 @@ counts are not parameter counts, and this is not a quality score. The files are
 20.61 versus 29.66 GiB, about 44% more storage for Q6. See the
 [header evidence](../../../reports/2026-10-16-quantization-headers.json).
 
-Coder-Next80B has an explicit trial despite exceeding currently available
+Coder-Next 80B has an explicit trial despite exceeding currently available
 resident RAM. File-backed mapping can trade repeated storage reads for a lower
-resident working set; it does not make all80B weights resident or increase
+resident working set; it does not make all 80B weights resident or increase
 available RAM. A launch rejection will be recorded separately from quality.
 The pinned Coder-Next Instruct checkpoint is non-thinking: an effort flag
-cannot turn it into a trained thinking model. Dense Gemma31, by contrast,
+cannot turn it into a trained thinking model. Dense Gemma 31, by contrast,
 will receive native thinking and a longer collection deadline; the earlier
 five-minute calibration is not a completed quality evaluation.
 
 The report's blanket GLM-Q5 failure prediction and incorrect Gemma/Kimi layer
-counts were already corrected by the15October campaign. Its claim that an
-8GiB default prompt cache caused our stops also does not apply to the actual
+counts were already corrected by the 15 October campaign. Its claim that an
+8 GiB default prompt cache caused our stops also does not apply to the actual
 launcher, which already used `--cache-ram 0`. Preserve those distinctions when
 comparing the research with measurements.
 

@@ -8,6 +8,9 @@
   candidate tests, preserving the 1200-second default and incomplete statuses.
 - Start controlled RAM-KV context scaling and reopen the 80B, dense and Q6
   candidates. No quality outcome or replacement is claimed before measurement.
+- Add a hash-identified, isolated Windows mmap-prefetch runtime experiment
+  after a guarded80B startup failure; preserve stock runtime and controls.
+  Sample startup resource limits every second for the first two minutes.
 
 ## 0.3.9 - 2026-10-15
 
