@@ -44,6 +44,11 @@ whole-file prefetch pressure. Do not repeat that unchanged load. The isolated
 prefetch opt-out requires its explicit runtime identity and DLL hash; never
 silently present its results as stock. See experiments/llama-mmap-prefetch/.
 KV buffer allocation, occupied tokens and resident RAM are separate measures.
+Inspect saved API requests as well as server profiles before labeling effective
+sampling, reasoning preservation or token limits. A client can override those
+defaults. Record the actual controls and preserve original requests/transcripts.
+Label any resource intervention separately; do not describe its timing as an
+unchanged-profile measurement. See docs/methodology.md for the private example.
 Shared instructions and frozen benchmark source copies remain unchanged.
 Before reporting an experiment as running, verify its current trial/stop receipt
 and process liveness; the last server log line can be stale. Keep grading/builds

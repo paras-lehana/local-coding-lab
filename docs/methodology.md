@@ -94,5 +94,24 @@ locating delivered code; an implementation can precede the final message.
    ledger facts and changed-file reads. A tool-failure recovery claim additionally
    requires observing an attempted unavailable-ledger read and its handling.
 
+Inspect saved serialized requests before describing effective controls. On
+16October, the separate legacy private audit sent `top_k=20`,
+`preserve_thinking=true` and `max_tokens=24576`. These override Gemma's server
+publisher profile (`top_k=64`, preservationfalse) and differ from the public
+coding requests'16384-token limit. Coder-Next's private request also overrides
+its server top_k40. These are valid recorded configurations, but they are not
+publisher-sampling private measurements. Do not silently change a started run
+to make it match a planned label. Record the discrepancy, retain the original
+requests, and freeze any new variant separately. The matched QwenQ4/Q6 private
+pair agrees with its server top_k20/preservationtrue settings.
+
+If a resource intervention is needed during collection, preserve the original
+launch and requests and save a separate timed before/after receipt. Report the
+affected run as an interrupted or changed-resource experiment as appropriate;
+do not claim its timing is an unchanged-profile comparison. On16October the
+Gemma private audit continued after a smaller owned-process resident cap freed
+about1.95GiB of system headroom. Its sampling/context/weights stayed unchanged,
+and the original cap and monitor history remain available.
+
 Commit reviewed aggregate results using [the report template](../reports/TEMPLATE.md).
 Keep raw answers local by default. Share only a deliberate sanitized export.

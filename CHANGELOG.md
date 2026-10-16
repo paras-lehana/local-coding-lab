@@ -11,6 +11,11 @@
 - Add a hash-identified, isolated Windows mmap-prefetch runtime experiment
   after a guarded80B startup failure; preserve stock runtime and controls.
   Sample startup resource limits every second for the first two minutes.
+- Complete 2K–120K context measurements, the Coder-Next80B workflow attempt,
+  and extended dense Gemma31 quality tests. Preserve tool-loop failures,
+  instruction/citation defects and isolated code results separately.
+- Record effective client overrides, context-checkpoint growth, history-prefix
+  reuse and a timed resident-cap intervention; prepare a dense placement control.
 
 ## 0.3.9 - 2026-10-15
 

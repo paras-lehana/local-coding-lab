@@ -54,7 +54,7 @@
       "filename": "gemma-4-31B_q4_0-it.gguf",
       "bytes": 17651001568,
       "sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
-      "status": "extended-publisher-sampling-mapped-trial-downloading",
+      "status": "extended-native-reviewed-private26of36-not-promoted-placement-diagnostic-pending",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "qwencoder30-udq4": {

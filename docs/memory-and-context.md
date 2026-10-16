@@ -145,13 +145,41 @@ alone, excluding wrappers, tool declarations, chat history and the answer.
 This supports the planned 64K private audit; it does not imply every task should
 load every instruction file or that all those sources were delivered in a run.
 
+The16October dense Gemma31 follow-up now measures **3251.25MiB CPU q8 KV at
+64K**:2720MiB global plus531.25MiB sliding-window cache. Readiness dedicated
+VRAM is5.648GiB; an early native-thinking snapshot has17.202GiB process RAM.
+The GPU workspace alone is797.63MiB, illustrating why the old16K memory
+estimate cannot be carried over unchanged. These are loading/early-run figures;
+the completed public suite peaks at17.202GiB residentRAM. The private audit
+peaks at19.218GiB before a documented reduction to17.202GiB and finishes normally.
+[Measured dense setup](../reports/2026-10-16-gemma31.json).
+
 `--cache-ram 0` does not disable every reuse buffer. This runtime separately
-defaults to **32 context checkpoints per slot** (`--ctx-checkpoints`). Gemma's
-logs show individual full sliding-window checkpoints of about 106 MiB, in host
+defaults to **32 context checkpoints per slot** (`--ctx-checkpoints`). The earlier
+Gemma26 logs show individual full sliding-window checkpoints of about106MiB, in host
 memory. Do not call that additional allocation permanent chat memory, or assume
 the active attention KV figure describes the whole process. Fewer checkpoints
 can change cache reuse and prefill work. Kimi uses four in the completed32K
 suite, but there is no isolated checkpoint-count A/B result.
+
+The16October Gemma31 run retains one checkpoint. Its logged serialized size
+grows from3.322MiB to425.013MiB as the occupied prompt fills the sliding window,
+while the active3251.25MiB KV allocation stays reserved. Old checkpoints are
+replaced at the configured one-checkpoint limit. Thus some context-related
+memory can grow with occupancy even though the primary KV buffers are fixed;
+neither number alone is total process RAM.
+
+Cache allocation also does not guarantee reuse. In the dense Gemma history
+follow-up, the server explicitly reset cached tokens to zero and reprocessed
+the prompt because its retained sliding-window checkpoint could not restore
+the changed prefix. Actual template/tokenizer probes show why the default
+`preserve_thinking=false` matters here: only137 leading tokens remain identical
+between requests. Setting true retains10,021 identical leading tokens, adding
+341 tokens to the follow-up. Counts exclude the automatically added BOS token.
+The true setting has only been rendered/tokenized, not timed or quality-tested;
+it is a concrete optimization hypothesis, not a measured speed improvement.
+Both settings retain the source facts in the prompt. This is different from
+forgetting files or running out of the configured64K capacity.
 
 Context remains useful only when the client actually sends the relevant files,
 instructions and history. A CLAUDE import, a Copilot instruction rule and an
@@ -187,3 +215,28 @@ initial-prefetch opt-out subsequently loaded and began inference within the
 same resource floors; see the [experiment](../experiments/llama-mmap-prefetch/README.md).
 That trades startup pressure for demand paging. It does not turn a45GiB weight
 file into a17GiB resident model or make storage as fast as RAM.
+
+## Where the 64 GB goes with apps open
+
+These are separate views of memory, not numbers to add together. At 19:51:50 IST
+on 16 October, while the dense Gemma audit was generating:
+
+| Counter | Observed value | Meaning |
+|---|---:|---|
+| Physical RAM usable by Windows | 63.91 GiB | Installed capacity after hardware reservations |
+| Physical RAM available | 5.62 GiB | Headroom for Windows, apps and inference |
+| Gemma process working set | 17.20 GiB | Resident process pages, including mapped weights and runtime buffers |
+| Gemma private committed bytes | 10.02 GiB | A commitment counter; overlaps resident memory and is not extra RAM |
+| Edge process working sets, summed | 7.97 GiB | Approximate browser footprint; shared pages can be counted more than once |
+| VS Code process working sets, summed | 7.26 GiB | Approximate editor footprint, with the same shared-page caveat |
+| WebView process working sets, summed | 1.59 GiB | Other embedded browser processes |
+| Existing pagefile usage | 3.92 GiB | Storage backing, not additional physical RAM |
+
+Windows therefore had about 58.29 GiB of physical memory unavailable for new
+allocations in this snapshot. The process figures are not an exact partition of
+that total: Windows, other applications, shared mappings and caches also consume
+memory. The server's fixed 3.175 GiB active CPU KV allocation is already included
+in its process footprint. Filling more tokens does not add that allocation a
+second time. The owned server's resident cap was reduced during the private
+audit; the intervention and unchanged commit counter are recorded separately in
+[the dense result](../reports/2026-10-16-gemma31.json).

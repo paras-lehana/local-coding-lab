@@ -1,5 +1,5 @@
 {
-  "scope": "Offline sandboxed Jinja rendering only; actual llama.cpp API rendering still required",
+  "scope": "Offline rendering and actual pinned llama.cpp /apply-template marker checks; no code execution by these probes",
   "template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
   "results": {
     "false": {
@@ -25,5 +25,39 @@
     "enable_thinking": true,
     "preserve_thinking": false
   },
-  "runtime_api_render": "pending model load"
+  "runtime_api_render": {
+    "status": "passed",
+    "api_arguments": "OpenAI-compatible JSON strings",
+    "results": {
+      "profile_default": {
+        "thinking_trigger_present": true,
+        "old_tool_thought_present": false,
+        "old_final_thought_present": false,
+        "current_tool_thought_present": true,
+        "old_source_fact_present": true,
+        "new_source_fact_present": true,
+        "double_argument_braces": false
+      },
+      "explicit_false": {
+        "thinking_trigger_present": true,
+        "old_tool_thought_present": false,
+        "old_final_thought_present": false,
+        "current_tool_thought_present": true,
+        "old_source_fact_present": true,
+        "new_source_fact_present": true,
+        "double_argument_braces": false
+      },
+      "explicit_true": {
+        "thinking_trigger_present": true,
+        "old_tool_thought_present": true,
+        "old_final_thought_present": false,
+        "current_tool_thought_present": true,
+        "old_source_fact_present": true,
+        "new_source_fact_present": true,
+        "double_argument_braces": false
+      }
+    },
+    "runtime_variant": "b11562-noprefetch-v1",
+    "inference_requested_by_probe": false
+  }
 }

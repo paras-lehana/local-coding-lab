@@ -3,8 +3,9 @@
 These are practical limits from this lab's small coding and file-reading cases,
 not a claim about every task in a language. The
 [campaign report](../reports/2026-10-15-campaign.md) records exact profiles,
-deadlines, failed attempts and independent checks. Final profile selection and
-editor validation are still in progress.
+deadlines, failed attempts and independent checks. The15October working profile
+and editor checks are recorded there. The16October expanded candidates remain
+unpromoted pending their separate quality and integration evidence.
 
 | Work | Evidence so far | How to use the model |
 |---|---|---|
@@ -23,5 +24,23 @@ the model's own empty-dictionary expectation contradicted the supplied contract.
 Native thinking should stay available for the selected reasoning model. There
 is no verified universal "ultra" switch: a runtime token ceiling limits thought
 length, and removing a nonbinding ceiling can produce exactly the same answer.
-The owner's practical limit remains 20 minutes for the whole prompt, including
-input processing and tools. See [memory and reasoning controls](memory-and-context.md).
+The ordinary default remains20minutes for the whole prompt, including input
+processing and tools. For the16October expansion, the owner explicitly accepts
+slower Coder-Next80B, Gemma31 and QwenQ6 tests; these experimental tasks use a
+six-hour whole-prompt ceiling. A completed answer must still pass review before
+it supports a recommendation. See [memory and reasoning controls](memory-and-context.md).
+
+Coder-Next80B illustrates why isolated code quality is insufficient for this
+workflow: its public Python implementation passes6/6 behavior groups, while
+TypeScript passes4/6 and its SQLite migration fails. Its real-instruction audit
+repeats incorrect paths until the16-tool-turn limit, with no final answer after
+67m55s. More waiting did not produce a completed repository audit in that run.
+[Measured attempt and limits](../reports/2026-10-16-coder-next.json).
+
+Dense Gemma31 improves the private merge helper to6/6, including mutable-copy
+isolation, but its overall instruction audit is26/36 after2h00m34s. It omits
+required guidance and misreports its read inventory. Public Python also passes
+6/6, while TypeScript passes5/6 and SQLite fails on foreign keys. Its separate
+test block lacks an import; combining the unchanged code and tests passes all
+six self-tests. Long reasoning and a dense architecture did not establish a
+better complete workflow in this case. [Dense results](../reports/2026-10-16-gemma31.json).

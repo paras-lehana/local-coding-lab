@@ -32,7 +32,14 @@ reused history; omitting history removed access to those facts. See the
 opt-out. Public Python passes6/6, TypeScript4/6, SQL fails, and the history retry
 passes. The actual-instruction audit repeats unavailable paths and reaches its
 16-tool-turn limit after67m55s without a final answer; it has no private quality
-score and is not promoted. Dense Gemma31 and matched QwenQ6/Q4 trials are next.
+score and is not promoted. Dense Gemma31 uses3.175GiB CPU KV and5.648GiB
+dedicated VRAM. Its isolated public Python passes6/6, TypeScript5/6 and SQLite
+fails on foreign keys; its10K history check passes in33m49s. Its private audit
+scores26/36 in2h00m34s, including a correct6/6 merge helper but incomplete
+instructions and inaccurate read accounting. It is not promoted. A template
+change may improve history-prefix reuse, but its
+inference benefit remains untested.
+The matched QwenQ6/Q4 trials follow. [Dense loading evidence](reports/2026-10-16-gemma31.json).
 
 ## Start here
 

@@ -12,9 +12,12 @@ Exact retired weight files were deleted only after evidence preservation.
 ## Completed campaign and remaining quality limits
 
 **16 October expansion is active.** Context allocation/recall measurements are
-complete through about120K input tokens. Coder-Next80B is now collecting actual
-answers after a stock mmap startup failure and a validated isolated prefetch
-opt-out. Dense Gemma31 and the matched QwenQ4/Q6 pair follow sequentially with
+complete through about120K input tokens. Coder-Next80B completed public coding
+and history checks after a stock mmap startup failure and an isolated prefetch
+opt-out. Its private audit reached the tool-turn limit without a final answer;
+it is not promoted. Dense Gemma31 now has isolated public Python6/6, TS5/6,
+SQL foreign-key failure, passing10K history and private26/36 in2h00m34s. The frozen
+dense layer-placement diagnostic and matched QwenQ4/Q6 pair follow sequentially with
 explicit six-hour whole-prompt limits. Previous capacity/calibration exclusions
 are historical, not completed quality verdicts. See the
 [current task report](tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md).

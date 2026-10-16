@@ -1,0 +1,507 @@
+{
+  "status": "native_public_private_completed_reviewed_graded_placement_diagnostics_pending",
+  "apps_open_snapshot": {
+    "local_time": "2026-10-16T19:51:50.111460+05:30",
+    "source": "private system-io-v3 observer",
+    "physical_total_gib": 63.909725189208984,
+    "physical_available_gib": 5.6181640625,
+    "server_resident_gib_rounded": 17.202,
+    "server_private_commit_gib_rounded": 10.02,
+    "edge_summed_working_sets_gib_rounded": 7.97,
+    "vscode_summed_working_sets_gib_rounded": 7.263,
+    "webview_summed_working_sets_gib_rounded": 1.591,
+    "existing_pagefile_usage_gib": 3.9169921875,
+    "caveat": "Process working sets can overlap shared pages; these are separate counters, not an exact additive physical-memory partition. Private commit and pagefile usage are not extra physical RAM. Active CPU KV is already inside the server process footprint."
+  },
+  "artifact": {
+    "name": "Gemma 4 31B IT official QAT Q4_0",
+    "repo": "google/gemma-4-31B-it-qat-q4_0-gguf",
+    "revision": "59dde24573e7e61570dba08b18a2e1fe246955ed",
+    "filename": "gemma-4-31B_q4_0-it.gguf",
+    "bytes": 17651001568,
+    "sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
+    "url": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-gguf/resolve/59dde24573e7e61570dba08b18a2e1fe246955ed/gemma-4-31B_q4_0-it.gguf"
+  },
+  "download_full_sha_verified": true,
+  "profile": "gemma4-dense-publisher64-candidate",
+  "runtime_variant": {
+    "id": "b11562-noprefetch-v1",
+    "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+  },
+  "context_tokens": 65536,
+  "kv_types": [
+    "q8_0",
+    "q8_0"
+  ],
+  "kv_placement": "CPU",
+  "loader_buffers_mib": {
+    "cpu_mapped_file_span": 16818.14,
+    "cuda_weights": 4745.6,
+    "cpu_global_kv": 2720.0,
+    "cpu_swa_kv": 531.25,
+    "cuda_compute": 797.63,
+    "cuda_host_compute": 7.99,
+    "cuda_host_output": 1.0
+  },
+  "mapped_span_note": "Virtual file-backed span is not resident CPU weight size. Do not add it to RSS or treat it as distinct CPU-only tensors.",
+  "readiness_gpu": {
+    "dedicated_gib": 5.647861480712891,
+    "shared_gib": 0.083984375
+  },
+  "early_process_snapshot": {
+    "rss_gib": 17.20227813720703,
+    "private_gib": 9.795330047607422,
+    "system_free_ram_gib": 6.687,
+    "device_free_vram_mib": 1047.0,
+    "scope": "15:25 IST early collection snapshot, not full-run extrema"
+  },
+  "smoke": {
+    "whole_seconds": 8.5,
+    "text": "READY",
+    "reasoning_budget_tokens": 0,
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 21,
+      "prompt_ms": 5139.888,
+      "prompt_per_token_ms": 244.75657142857142,
+      "prompt_per_second": 4.08569213959526,
+      "predicted_n": 5,
+      "predicted_ms": 3324.15,
+      "predicted_per_token_ms": 831.0375,
+      "predicted_per_second": 1.2033151331919438
+    },
+    "scope": "Five generated tokens, not coding throughput or quality"
+  },
+  "template_probe_status": "passed; see 2026-10-16-gemma-template.json",
+  "quality_score": null,
+  "production_promoted": false,
+  "effective_reasoning_control": {
+    "native_request_log_budget_tokens": 2147483647,
+    "meaning": "No separate practical reasoning-token ceiling; max_tokens and whole-prompt deadline still apply",
+    "native_request_max_tokens": 16384,
+    "whole_prompt_deadline_seconds": 21600,
+    "smoke_budget_tokens": 0,
+    "supports_reasoning_effort_metadata": false,
+    "evidence": "Three native tool turns log common_reaso activated budget2147483647; only the initial smoke logs forced budget0",
+    "public_coding_request_max_tokens": 16384,
+    "private_request_max_tokens": 24576,
+    "private_sampling_note": "Private audit inherits legacy top_k20/preserve_thinkingtrue; public suite uses server top_k64/preserve_thinkingfalse. Both use temperature1 and native thinking. This is a separate request configuration, not a controlled public/private quality pair."
+  },
+  "public_core": {
+    "status": "completed_source_reviewed_isolated_graded",
+    "wall_seconds": 3944.578,
+    "turns": 3,
+    "successful_source_reads": 7,
+    "first_final_answer_text_seconds": 2364.75,
+    "final_turn_uncached_prefill_tokens_per_second": 17.54954697962521,
+    "final_turn_generation_tokens_per_second": 1.1858518966258909,
+    "instruction_findings": [
+      "Correct v2 precedence and explicit linked-file loading",
+      "Supported host facts and no invented absent service settings",
+      "Truthful seven-file inventory and no unrun tests claimed"
+    ],
+    "code_review_findings": [
+      "Unchanged recursive deep-copy implementation passes6/6 independent isolated behavior groups",
+      "Incorrect AttributeError explanation for dictionary.update with an integer",
+      "Separate six-method unittest block omits merge_config import; original and combined blocks preserved",
+      "Written tests do not mutate a retained dictionary nested inside a list"
+    ],
+    "behavior_score": {
+      "passed": 6,
+      "total": 6
+    },
+    "own_tests_score": {
+      "combined_unchanged_blocks": {
+        "passed": 6,
+        "total": 6
+      },
+      "standalone": {
+        "errors": 6,
+        "total": 6,
+        "cause": "missing merge_config binding"
+      }
+    },
+    "reviewer": "Codex source assessment; not independent human review",
+    "delivery_milestones": {
+      "first_answer_text_seconds": 2364.75,
+      "first_code_fence_seconds": 2938.2339999999967,
+      "complete_implementation_fence_seconds": 3250.8280000000086,
+      "complete_model_tests_fence_seconds": 3804.8589999999967,
+      "whole_prompt_seconds": 3944.5780000000086
+    },
+    "all_turn_timings": {
+      "prefill_seconds": 103.64066199999999,
+      "generation_seconds": 3840.6782909999997,
+      "new_input_tokens": 1795,
+      "completion_tokens_including_reasoning_tools": 4560,
+      "weighted_prefill_tokens_per_second": 17.319457106516747,
+      "weighted_generation_tokens_per_second": 1.1872902790857576,
+      "scope": "Sum of API timing fields over all turns; includes reasoning and tool-call generation, not only visible answer text. Whole wall time is recorded separately."
+    }
+  },
+  "context_checkpoint": {
+    "maximum_retained": 1,
+    "observed_serialized_sizes_mib": [
+      3.322,
+      425.013
+    ],
+    "interpretation": "Checkpoint size grows with occupied sliding-window state and then reaches a bound; separate from the fixed active KV buffers. Old checkpoint replaced at limit1. Not total process RAM.",
+    "scope": "Observed during first public coding and TypeScript/SQL tool reads; not an isolated checkpoint-count A/B trial"
+  },
+  "mid_generation_residency_observation": {
+    "before": {
+      "time": 1792151344.4272091,
+      "process_working_set_gib": 17.20229721069336,
+      "process_private_gib": 10.026020050048828,
+      "ram_free_gib": 5.982845306396484,
+      "commit_available_gib": 10.66817855834961,
+      "vram_free_mib": 937.0
+    },
+    "after": {
+      "time": 1792151455.2493227,
+      "process_working_set_gib": 14.21921157836914,
+      "process_private_gib": 10.026020050048828,
+      "ram_free_gib": 9.839649200439453,
+      "commit_available_gib": 10.792839050292969,
+      "vram_free_mib": 923.0
+    },
+    "scope": "Same ongoing TS/SQL generation turn and unchanged profile; residency change cause not attributed. Committed and resident memory differ."
+  },
+  "public_ts_sql": {
+    "status": "completed_source_reviewed_isolated_graded",
+    "wall_seconds": 4463.031,
+    "turns": 7,
+    "successful_source_reads": 6,
+    "maximum_input_tokens": 1226,
+    "first_final_answer_text_seconds": 3315.094,
+    "final_turn_generation_tokens_per_second": 1.272314109478161,
+    "final_turn_uncached_prefill_tokens_per_second": 10.390247532965601,
+    "typescript_behavior_score": {
+      "passed": 5,
+      "total": 6,
+      "strict_compilation_passed": true
+    },
+    "sqlite_behavior_score": {
+      "status": "migration_execution_failed",
+      "error": "FOREIGN KEY constraint failed",
+      "note": "The migration did not complete; not six independently failed assertions."
+    },
+    "source_findings": [
+      "Truthful inventory, no fabricated deployment URL or execution claim",
+      "Missing plain-object prototype validation",
+      "foreign_keys OFF inside BEGIN is ineffective; referenced jobs table is then dropped",
+      "Required constraints are declared, but isolated execution fails while dropping the referenced jobs table"
+    ],
+    "reviewer": "Codex source assessment; not independent human review",
+    "sqlite_reference": "https://www.sqlite.org/pragma.html#pragma_foreign_keys",
+    "all_turn_timings": {
+      "prefill_seconds": 84.447334,
+      "generation_seconds": 4378.139031,
+      "new_input_tokens": 1222,
+      "completion_tokens_including_reasoning_tools": 5572,
+      "weighted_prefill_tokens_per_second": 14.470557471950507,
+      "weighted_generation_tokens_per_second": 1.2726868563439186,
+      "scope": "Sum of API timing fields over all turns; includes reasoning and tool-call generation, not only visible answer text. Whole wall time is recorded separately."
+    }
+  },
+  "history_prefix_diagnostic": {
+    "time": 1792154308.282469,
+    "scope": "Actual template/tokenizer only; no inference or cache reuse measurement",
+    "prompt_sha256": {
+      "request03-preserve-false": "ed38061affef76f36237308cc459cea9d9468c9f8e3f65369fc078360572e45d",
+      "request03-preserve-true": "ed38061affef76f36237308cc459cea9d9468c9f8e3f65369fc078360572e45d",
+      "request04-preserve-false": "d8f71c5ffdab83b65f0c590eeed90745e571aea26b993783466c53546aaed663",
+      "request04-preserve-true": "aa8b79c4abb44ee1c43436f75932c6e4d2ebab4e0ada366221db7fa04efbeb38"
+    },
+    "comparisons": {
+      "false": {
+        "previous_prompt_tokens": 10024,
+        "followup_prompt_tokens": 9778,
+        "identical_prefix_tokens": 137
+      },
+      "true": {
+        "previous_prompt_tokens": 10024,
+        "followup_prompt_tokens": 10119,
+        "identical_prefix_tokens": 10021
+      }
+    },
+    "tokenizer_note": "Counts exclude one automatically added BOS token; actual API prompt usage is one larger.",
+    "observed_native_behavior": "On request04 the server reports forcing full prompt re-processing because the existing SWA checkpoint cannot restore the earlier prefix; cached tokens reset to0. Default preserve_thinking=false.",
+    "limits": "preserve_thinking=true was rendered/tokenized only. No cache reuse, speed or quality benefit has yet been measured under that setting. Four lightweight template/tokenizer pairs occurred during native history inference."
+  },
+  "public_history": {
+    "reviewer": "Codex source assessment; not independent human review",
+    "status": "passed",
+    "wall_seconds": 2029.031,
+    "turns": 6,
+    "maximum_input_tokens": 10133,
+    "record_count_correct": true,
+    "facts": {
+      "region": true,
+      "auditOwner": true,
+      "release": true,
+      "retryLimit": true,
+      "runtimeRevision": true,
+      "redisSentinelPort": true
+    },
+    "successful_reads": 6,
+    "distinct_sources": 5,
+    "all_delivered_sources_match_frozen_bytes": true,
+    "followup_read_inventory_truthful": true,
+    "unavailable_ledger_read_attempted": false,
+    "limits": "Two user phases near10K input, not a64K/many-turn quality guarantee; no tool-error-recovery claim because no unavailable-ledger read was attempted.",
+    "source_checks": [
+      {
+        "phase": 0,
+        "path": "AGENTS.md",
+        "complete_source_match": true,
+        "error": null
+      },
+      {
+        "phase": 0,
+        "path": ".claude/CLAUDE.md",
+        "complete_source_match": true,
+        "error": null
+      },
+      {
+        "phase": 0,
+        "path": "rules/v2/runtime.md",
+        "complete_source_match": true,
+        "error": null
+      },
+      {
+        "phase": 0,
+        "path": "docs/archive-ledger.md",
+        "complete_source_match": true,
+        "error": null
+      },
+      {
+        "phase": 0,
+        "path": "docs/runtime.md",
+        "complete_source_match": true,
+        "error": null
+      },
+      {
+        "phase": 1,
+        "path": "docs/runtime.md",
+        "complete_source_match": true,
+        "error": null
+      }
+    ],
+    "followup_initial_cached_tokens": 0,
+    "followup_initial_prefill_seconds": 513.073392,
+    "followup_after_file_cached_tokens": 10056,
+    "final_generation_tokens_per_second": 1.2593817814476143,
+    "all_turn_timings": {
+      "prefill_seconds": 1043.7470480000002,
+      "generation_seconds": 984.806397,
+      "new_input_tokens": 19896,
+      "completion_tokens_including_reasoning_tools": 1268,
+      "weighted_prefill_tokens_per_second": 19.062089840756126,
+      "weighted_generation_tokens_per_second": 1.287562716755992,
+      "scope": "Sum of API timing fields over all turns; includes reasoning and tool-call generation, not only visible answer text. Whole wall time is recorded separately."
+    }
+  },
+  "public_resource_summary": {
+    "samples": 2079,
+    "peak_rss_gib": 17.202396392822266,
+    "peak_private_gib": 10.033607482910156,
+    "minimum_free_ram_gib": 4.265270233154297,
+    "minimum_available_commit_gib": 9.3048095703125,
+    "minimum_free_vram_mib": 678.0,
+    "maximum_gpu_core_c": 57.0,
+    "server_outcome": {
+      "status": "requested_stop"
+    },
+    "working_set_limit": 17.202354431152344
+  },
+  "public_io_observations": {
+    "samples": 318,
+    "mean_system_disk_read_mib_per_second": 4.194854775314811,
+    "median_system_disk_read_mib_per_second": 0.0,
+    "mean_server_cpu_core_equivalents": 6.573081761006289,
+    "mean_gpu_device_utilization_percent": 30.559748427672957,
+    "mean_server_page_faults_per_second": 729.874213836478,
+    "scope": "30-second observer samples during public PID63976 lifetime. System disk/GPU include other apps; process page faults include soft faults; not a causal hardware/kernel benchmark."
+  },
+  "private_progress": {
+    "status": "running",
+    "checkpoint_local": "2026-10-16T18:49:00+05:30",
+    "first_tool_turn_wall_seconds": 1451.625,
+    "first_turn_input_tokens": 2050,
+    "first_turn_completion_tokens": 1731,
+    "successful_tool_ranges_so_far": 7,
+    "distinct_sources_including_entry_so_far": 8,
+    "source_errors_so_far": 0,
+    "correct_codex_guide_and_readme_delivered": true,
+    "active_followup_input_tokens_from_server_log": 17363,
+    "active_followup_cached_prefix_tokens_from_server_log": 3547,
+    "quality_score": null,
+    "note": "Progress checkpoint only. Seven complete requested sources plus the supplied entry match the frozen text; no final answer yet."
+  },
+  "private_request_controls": {
+    "max_tokens": 24576,
+    "seed": 73,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0,
+    "repeat_penalty": 1.0,
+    "cache_prompt": true,
+    "chat_template_kwargs": {
+      "preserve_thinking": true
+    },
+    "scope": "Actual frozen-audit request controls override server defaults; no inference settings were changed after collection began. These are not publisher-native sampling claims."
+  },
+  "private_gpu_snapshot": {
+    "time": 1792158788.006879,
+    "dedicated_gib": 5.700595855712891,
+    "shared_gib": 0.083984375,
+    "note": "Shared usage overlaps host RAM; do not add it to process working set.",
+    "scope": "One during-audit snapshot; not a full-run maximum"
+  },
+  "private_working_set_limit_gib": 19.21820831298828,
+  "private_resident_cap_intervention": {
+    "time": 1792159661.339289,
+    "status": "reduced_verified",
+    "reason": "System headroom fell below4GiB while server RSS/private remained flat. Reduce only our residency to the public-suite validated cap; preserve sampling, placement, cache capacity and all stop floors.",
+    "timing_caveat": "This private audit has a recorded mid-run resident-cap intervention; it is not an unchanged-cap timing comparison.",
+    "before": {
+      "time": 1792159661.2411468,
+      "platform": "win32",
+      "ram_total_gib": 63.909725189208984,
+      "ram_free_gib": 3.812206268310547,
+      "commit_limit_gib": 84.90972518920898,
+      "commit_available_gib": 11.68997573852539,
+      "vram_total_mib": 10240.0,
+      "vram_free_mib": 972.0,
+      "gpu_c": 44.0,
+      "gpu": "NVIDIA GeForce RTX 3080",
+      "driver": "617.42"
+    },
+    "after": {
+      "time": 1792159661.8060281,
+      "platform": "win32",
+      "ram_total_gib": 63.909725189208984,
+      "ram_free_gib": 5.76446533203125,
+      "commit_limit_gib": 84.90972518920898,
+      "commit_available_gib": 11.690032958984375,
+      "vram_total_mib": 10240.0,
+      "vram_free_mib": 975.0,
+      "gpu_c": 44.0,
+      "gpu": "NVIDIA GeForce RTX 3080",
+      "driver": "617.42"
+    },
+    "original_limit_gib": 19.21820831298828,
+    "new_limit_gib": 17.202354431152344,
+    "monitor_before": {
+      "time": 1792159659.3854265,
+      "process_working_set_gib": 19.218185424804688,
+      "process_private_gib": 10.020179748535156,
+      "ram_free_gib": 3.8370285034179688,
+      "commit_available_gib": 11.710060119628906,
+      "vram_free_mib": 973.0
+    },
+    "monitor_after": {
+      "time": 1792159674.755535,
+      "process_working_set_gib": 17.20232391357422,
+      "process_private_gib": 10.020179748535156,
+      "ram_free_gib": 5.9044036865234375,
+      "commit_available_gib": 11.893119812011719,
+      "vram_free_mib": 985.0
+    }
+  },
+  "quality_score_scope": "No combined score across different tasks; private 36-point assessment is recorded separately.",
+  "private_audit": {
+    "status": "completed_reviewed_graded",
+    "wall_seconds": 7234.171000000002,
+    "turns": 3,
+    "maximum_input_tokens": 22740,
+    "distinct_delivered_sources": 9,
+    "successful_tool_ranges": 8,
+    "rejected_tool_ranges": 0,
+    "prefill_seconds": 1051.10033,
+    "generation_seconds": 6182.262893,
+    "uncached_prefill_tokens_per_second": 18.922075688055394,
+    "generation_tokens_per_second": 1.1706069646753858,
+    "peak_sampled_rss_gib": 19.218212127685547,
+    "peak_sampled_private_commit_gib": 10.020179748535156,
+    "minimum_free_ram_gib": 3.609180450439453,
+    "minimum_available_commit_gib": 11.173458099365234,
+    "minimum_free_vram_mib": 910.0,
+    "maximum_gpu_core_c": 57.0,
+    "monitor_samples": 1469,
+    "stop": {
+      "status": "requested_stop"
+    },
+    "assessment": {
+      "semantic_facets": {
+        "1": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "2": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "3": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "4": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "5": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "6": [
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      "semantic_score": 16,
+      "citations_by_question": [
+        1,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "citation_score": 4,
+      "code_score": 6,
+      "total_score": 26
+    },
+    "reviewer": "Codex source assessment; not independently human-reviewed",
+    "answer_sha256": "879bd4045b32dfa946d1d9cd3bbb25fac113feb6655f6b4e4ed36a3ab8daf6ff",
+    "isolated_result_sha256": "e6543704a0c888ace39962383d431066537700a99a35e2693882df7f3ac2193c",
+    "findings": [
+      "Pure merge implementation passes all six behavior groups, including no mutable aliases.",
+      "Correct physical-host/mapping facts and real installer control-flow distinction.",
+      "Required nested/shared instruction consultation and adapter-maintenance conditions incomplete.",
+      "Shared repository log locations are not distinguished correctly; permanent cache-retention limits are omitted.",
+      "Final inventory omits one delivered router and describes a registry request that never occurred; the absent port itself is not invented.",
+      "Required unrun-check list is absent. Public and private effective sampling differ; private timing includes a resident-cap reduction."
+    ],
+    "system_observer": {
+      "samples": 220,
+      "whole_system_disk_read_mib_per_second_mean": 2.414463758468628,
+      "whole_device_gpu_utilization_percent_mean": 27.813636363636363,
+      "scope": "Shared-desktop samples, not isolated hardware throughput or a causal kernel benchmark."
+    }
+  }
+}

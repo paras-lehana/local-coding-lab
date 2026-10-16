@@ -11,7 +11,7 @@ separates completed measurements, downloads and conditional exclusions.
 | Smaller candidate | `gemma4-26b-qat` | 13.448 | Python and 52K-input history pass; unrestricted SQL 6/6 and TS 5/6; capped and native private audits both 19/36 |
 | Distinct reasoning family | `glm47-udq4` | 16.317 | Capped private audit 21/36; f16 native Python 6/6 but history count fails; native f16 private 27/36 |
 | Matched precision comparison | `glm47-q5` | 19.939 | Bounded Python 5/6, 0/6, 0/6; native 6/6, 6/6, 0/6; private retry 21/36; exact weight retired with reports retained |
-| Dense extended trial | `gemma4-31b-qat` | 16.439 | Earlier 0.95 tok/s calibration was interrupted, not quality-scored; new mapped 64K native-thinking/publisher-sampling artifact downloading for a longer trial |
+| Dense extended trial | `gemma4-31b-qat` | 16.439 | Native public Python6/6, TS5/6, SQLite FK failure; private26/36 in2h00m34s; correct private merge but weaker instruction coverage; not promoted |
 | Non-thinking coding control | `qwencoder30-udq4` | 16.452 | Python 2/6, 3/6, 1/6; private deadline, unscored; exact weight retired with reports retained |
 | Conditional precision | `qwen36-q5` | 24.639 | Matched public Python repeats 6/6; native private 28/36, including only 2/6 code groups and accurate 14-source inventory; no repeatable precision advantage established |
 | Matched precision trial | `qwen36-q6` | 29.657 | Header inspected; earlier resident-memory exclusion reopened with an explicit mapped profile and matched Q4 control; full download and quality comparison pending |
@@ -41,8 +41,11 @@ is a fallback to pin and verify if needed, not an automatic silent substitution.
 
 Qwen3-Coder-30B-A3B is **MoE and non-thinking**, not dense. It is a useful possible
 code-edit baseline, but has no native thinking mode to set to ultra/high.
-Gemma 4 31B QAT exceeded its earlier calibration deadline; the owner now accepts
-slower completed tests, so that exclusion is being revisited. Qwen Q5
+Gemma 4 31B QAT has now completed longer native-thinking tests: public Python6/6,
+TS5/6, SQLite foreign-key failure and private26/36 in2h00m34s. Its private merge
+helper passes6/6, but instruction coverage and read accounting remain weaker
+than the working Qwen reference. Dense placement diagnostics remain separate
+from that quality assessment. Qwen Q5
 can isolate weight precision more cleanly than changing families, but adds
 roughly 4 GiB to the current Q4 artifact.
 
