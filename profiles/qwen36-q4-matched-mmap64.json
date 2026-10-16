@@ -71,5 +71,6 @@
   "stop_gpu_c": 84,
   "validation_status": "experimental_pending",
   "stop_min_commit_available_gib": 1.0,
-  "working_set_limit_gib": 16
+  "working_set_limit_gib": 48,
+  "working_set_reserve_gib": 5
 }

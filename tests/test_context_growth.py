@@ -42,6 +42,15 @@ class GrowthTests(unittest.TestCase):
         snapshot['commit_available_gib'] = 2
         lab.check_memory(snapshot, profile, loading=False)
 
+    def test_resident_bound_preserves_requested_headroom(self) -> None:
+        """More available RAM may help a mapped model without consuming the floor."""
+        profile = {'working_set_limit_gib': 20, 'working_set_reserve_gib': 5,
+                   'stop_min_ram_free_gib': 2.5}
+        self.assertEqual(lab.working_set_cap(profile, {'ram_free_gib': 22}), 17)
+        self.assertEqual(lab.working_set_cap(profile, {'ram_free_gib': 40}), 20)
+        with self.assertRaises(ValueError):
+            lab.working_set_cap(profile, {'ram_free_gib': 4})
+
     @unittest.skipUnless(sys.platform == 'win32', 'Windows working-set API')
     def test_working_set_bound_on_owned_child(self) -> None:
         """Read back the hard maximum on a disposable idle Python process."""

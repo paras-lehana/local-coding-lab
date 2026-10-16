@@ -5,8 +5,8 @@ Status: in progress, 16 October 2026 (Asia/Kolkata). This report extends the
 
 | Owner point | Status | Evidence and next step |
 |---|---|---|
-| RAM use and KV growth | In progress | Measure unloaded/loaded RAM, configured buffers and increasing token occupancy separately. |
-| Qwen3-Coder-Next 80B | Queued | Attempt the pinned Q4 artifact with file-backed mapping and monitored offload. |
+| RAM use and KV growth | Measured | 2K–120K occupancy, 64K/128K reservations, CPU/GPU placement, retained and omitted history. |
+| Qwen3-Coder-Next 80B | Downloading | Pinned Q4 artifact; file-backed mapping and monitored offload follow verification. |
 | Gemma 4 31B dense | Queued | Repeat beyond the previous latency gate; collect complete answers before judging quality. |
 | Qwen3.6 Q6 | Queued | Attempt mapping/placement appropriate to current headroom, then matched quality checks. |
 | Independent research and reasoning | In progress | Re-read supplied research and verify runtime behavior and publisher facts. |
@@ -59,7 +59,54 @@ The follow-up retained all three source markers and applied runtime revision2
 and retryLimit0 in 15.047 seconds. The server reused 59,951 input tokens and
 processed only116 new tokens. That demonstrates reuse of delivered chat history,
 not permanent memory of files that the client never supplied. After this follow-up
-the process used about18.02GiB RAM. The 128K run is still being collected.
+the process used about18.02GiB RAM.
+
+At128K configured capacity, the all-CPU KV profile completed119,943 input tokens
+in733.063seconds (12m13s):709.020seconds input processing,169.17 input tokens/s,
+and2.69 generated tokens/s. All five facts were correct, but the answer included
+a Markdown code fence despite the plain-JSON instruction. Recall passes;
+strict formatting fails. The changed-revision follow-up completed in26.563s
+with correct facts and the same formatting mistake. Removing the supplied
+history produced `UNKNOWN` in1.094s, as requested. A cache is not independent,
+permanent knowledge of a conversation the client omitted.
+
+Resident process RAM stayed around18.45–18.59GiB during the long input. Free
+physical memory remained above4GiB, while available Windows commit approached
+1.28GiB. These are separate constraints: sufficient free physical RAM does not
+imply sufficient commit allowance. The existing pagefile was not changed.
+
+The GPU-offloaded128K counterpart completed too. Only cache/state placement
+changes relative to CPU128; both use the same weights and layer placement.
+Its GPU compute buffer is507MiB too. The default offload follows layer placement,
+so this comparison is all-CPU KV versus mixed CPU/GPU KV. The latter allocates
+272MiB KV onCPU and1088MiB onGPU; recurrent state splits18.84/43.97MiB.
+
+| At119,943 input tokens | All KV/state on CPU | Default mixed placement |
+|---|---:|---:|
+| Whole request | 733.063s | 610.016s |
+| Input processing | 709.020s /169.17tok/s | 594.367s /201.80tok/s |
+| Generation | 2.69tok/s | 4.15tok/s |
+| Resident process RAM after answer | 18.580GiB | 17.477GiB |
+| Dedicated process VRAM | 5.104GiB | 6.199GiB |
+| Correct source facts | 5/5 | 5/5 |
+| Plain JSON instruction | Failed: code fence | Failed: code fence |
+| Updated-file/history follow-up | 26.563s, correct facts | 17.141s, correct facts |
+| History omitted | UNKNOWN | UNKNOWN |
+
+The GPU follow-up reused119,939 input tokens and processed121 new ones. This
+shows the benefit of a retained prefix, not permanent file memory. The updated
+file was supplied inline in these probes; real tool discovery is assessed
+separately. Recall requests used temperature0 and reasoning budget0 to isolate
+memory behavior; these are not native-thinking coding scores. All three context
+servers stopped cleanly. Raw measurements are summarized in
+[the public result](../../../reports/2026-10-16-context-growth.json).
+
+My recommendation from this pair is to keep GPU cache placement when headroom
+allows, and use CPU KV to recover VRAM when necessary.128K is an optional long
+input profile, not automatically a better everyday default. At120K the GPU
+run left only775MiB device VRAM free and about1.76GiB available commit, despite
+6.44GiB physical RAM available.64K remains the conservative working profile
+pending the remaining candidate and editor comparisons.
 
 The much smaller change in resident RAM within a fixed context follows from
 preallocation. Increasing the configured capacity changes the reservation;
@@ -90,6 +137,37 @@ experimental paging profile, not a speed or stability guarantee.
 Raw local evidence: `local-data/2026-10-16-expansion/`. Public aggregate results
 will be added after reviewing complete answers. Existing working profiles and
 baseline weights are retained. No new model is promoted merely for loading.
+
+## Independent interpretation of the supplied research
+
+The report is a useful hypothesis list, not a verified experiment log. Today's
+measurements support its small Qwen cache estimate, but contradict the earlier
+chat advice that128K always requires tens of GiB of KV. Cache shape depends on
+the architecture; dense versus MoE alone does not determine it. Native context
+capacity also does not guarantee retrieval accuracy, instruction compliance,
+or that an editor actually sends every referenced file.
+
+The claim that Q4 cannot cause the remaining coding errors is unproven. So is
+the opposite claim that a Q6 upgrade guarantees correct syntax or fixes all
+bugs. Q6 and a matched Q4 control are scheduled with the same runtime, tasks,
+sampling and placement policy. Different physical residency and desktop load
+will still limit timing comparisons. These mixed quantization artifacts do
+not represent a uniform four- versus six-bit change to every tensor.
+
+Coder-Next80B has an explicit trial despite exceeding currently available
+resident RAM. File-backed mapping can trade repeated storage reads for a lower
+resident working set; it does not make all80B weights resident or increase
+available RAM. A launch rejection will be recorded separately from quality.
+The pinned Coder-Next Instruct checkpoint is non-thinking: an effort flag
+cannot turn it into a trained thinking model. Dense Gemma31, by contrast,
+will receive native thinking and a longer collection deadline; the earlier
+five-minute calibration is not a completed quality evaluation.
+
+The report's blanket GLM-Q5 failure prediction and incorrect Gemma/Kimi layer
+counts were already corrected by the15October campaign. Its claim that an
+8GiB default prompt cache caused our stops also does not apply to the actual
+launcher, which already used `--cache-ram 0`. Preserve those distinctions when
+comparing the research with measurements.
 
 ## Source provenance
 

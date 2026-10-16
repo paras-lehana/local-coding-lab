@@ -300,3 +300,5 @@ Current recommendations:
 | Review SQLite migrations on disposable copies | High | Open |
 | Keep durable decisions in versioned notes and re-read changed files | High | Open |
 | Preserve QwenQ4 and lower-memory Gemma fallback | High | Done |
+
+11:08 IST checkpoint: context collection complete and reviewed. CPU64 fixed680MiB KV across2K-60K; CPU128 fixed1360MiB across2K-120K. At119943tokens CPU/GPU whole733.063/610.016s, decode2.69/4.15tok/s, RSS18.580/17.477GiB, dedicatedVRAM5.104/6.199GiB. Facts5/5 in both but plainJSON failed by code fences; follow-ups correct, omitted history UNKNOWN. Clean stops; CoderNext80 download started.26 offline tests pass10.886s; final candidate quality work pending.

@@ -1,5 +1,35 @@
 # RAM, VRAM, quantization and context
 
+## Measured capacity versus occupied tokens
+
+The [16 October growth experiment](../reports/2026-10-16-context-growth.json)
+distinguishes **configured capacity**, **occupied token cells** and **process
+memory**. With 64K CPU q8 KV, the runtime reserves 680 MiB at load. Increasing input
+from 1,995 to 59,955 tokens left this reservation unchanged and post-answer process
+RAM near 17.88–17.89 GiB. All five requested source facts passed; the subsequent
+changed-file/history answer also passed and reused 59,951 cached input tokens.
+
+Increasing the server setting to 128K reserves 1360 MiB CPU KV at load. Recurrent
+state remains 62.81 MiB, while GPU compute buffers increase 273→507 MiB. Thus
+occupied context grows without a corresponding linear rise in the process
+graph, but a larger configured capacity can increase multiple allocations.
+The 120K-input and GPU-placement follow-ups are still in progress; no result is
+claimed for them here yet. These synthetic probes do not certify retrieval of
+arbitrary repository instructions or persistence after client history is omitted.
+
+The launcher also supports an optional `stop_min_commit_available_gib` guard.
+Physical availability and Windows commit headroom are distinct constraints.
+Experimental mmap profiles may set `working_set_limit_gib` to bound only the
+owned server's resident pages. This is neither a commit limit nor extra memory;
+it may cause page faults and slower inference. Actual guard/limit receipts are
+saved beside each run. The existing working profile is unchanged.
+
+With `working_set_reserve_gib`, the resolved cap is the smaller of the explicit
+limit and currently available physical RAM minus that reserve. The new larger-model
+trials leave 5 GiB at preflight and can use more RAM when it is actually available;
+they do not assume that every process may consume the machine's full 64 GB.
+The guard continues monitoring afterward because other applications can grow.
+
 | Concept | Changes | Does not guarantee |
 |---|---|---|
 | Weight quantization | Stored parameter precision and footprint | Correct syntax or reasoning at Q6/Q8; automatic failure at 3-bit |

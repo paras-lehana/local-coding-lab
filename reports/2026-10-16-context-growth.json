@@ -1,7 +1,7 @@
 {
   "date": "2026-10-16",
   "scope": "synthetic memory/recall probes",
-  "status": "in_progress",
+  "status": "collected",
   "profiles": [
     {
       "profile": "qwen36-context-cpu64",
@@ -24,6 +24,7 @@
             "predicted_per_second": 12.18659284758538
           },
           "exact_json_match": true,
+          "facts_match": true,
           "process_ram_gib": 17.880779266357422,
           "private_commit_gib": 23.224544525146484,
           "free_ram_gib": 3.99334716796875,
@@ -48,6 +49,7 @@
             "predicted_per_second": 8.767612498870614
           },
           "exact_json_match": true,
+          "facts_match": true,
           "process_ram_gib": 17.884170532226562,
           "private_commit_gib": 23.227867126464844,
           "free_ram_gib": 3.9473800659179688,
@@ -72,6 +74,7 @@
             "predicted_per_second": 6.388724658961215
           },
           "exact_json_match": true,
+          "facts_match": true,
           "process_ram_gib": 17.88907241821289,
           "private_commit_gib": 23.232711791992188,
           "free_ram_gib": 4.000156402587891,
@@ -96,6 +99,7 @@
             "predicted_per_second": 4.372225165446112
           },
           "exact_json_match": true,
+          "facts_match": true,
           "process_ram_gib": 17.893333435058594,
           "private_commit_gib": 23.23702621459961,
           "free_ram_gib": 4.571266174316406,
@@ -114,6 +118,7 @@
       ],
       "history_followup": {
         "exact_json_match": true,
+        "facts_match": true,
         "wall_seconds": 15.047000000005937,
         "timings": {
           "cache_n": 59951,
@@ -130,7 +135,7 @@
     },
     {
       "profile": "qwen36-context-cpu128",
-      "status": "running",
+      "status": "collected",
       "samples": [
         {
           "target": 2048,
@@ -149,12 +154,63 @@
             "predicted_per_second": 11.538823349024177
           },
           "exact_json_match": true,
+          "facts_match": true,
           "process_ram_gib": 18.564167022705078,
           "private_commit_gib": 24.133804321289062,
           "free_ram_gib": 4.128803253173828,
           "available_commit_gib": 1.9818344116210938,
           "dedicated_vram_gib": 5.103752136230469,
           "slot_tokens": 2054
+        },
+        {
+          "target": 60000,
+          "status": "completed",
+          "input_tokens": 59955,
+          "wall_seconds": 342.68799999999464,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 59955,
+            "prompt_ms": 329600.71,
+            "prompt_per_token_ms": 5.497468267867568,
+            "prompt_per_second": 181.9019139855615,
+            "predicted_n": 60,
+            "predicted_ms": 12974.904,
+            "predicted_per_token_ms": 219.9136271186441,
+            "predicted_per_second": 4.547239810020945
+          },
+          "exact_json_match": true,
+          "facts_match": true,
+          "process_ram_gib": 18.572174072265625,
+          "private_commit_gib": 24.141834259033203,
+          "free_ram_gib": 4.36749267578125,
+          "available_commit_gib": 1.7184715270996094,
+          "dedicated_vram_gib": 5.103752136230469,
+          "slot_tokens": 60014
+        },
+        {
+          "target": 120000,
+          "status": "completed",
+          "input_tokens": 119943,
+          "wall_seconds": 733.0629999999946,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 119943,
+            "prompt_ms": 709019.78,
+            "prompt_per_token_ms": 5.911306037034258,
+            "prompt_per_second": 169.16735383602415,
+            "predicted_n": 65,
+            "predicted_ms": 23808.902,
+            "predicted_per_token_ms": 372.01409375,
+            "predicted_per_second": 2.6880702016413864
+          },
+          "exact_json_match": false,
+          "facts_match": true,
+          "process_ram_gib": 18.58000946044922,
+          "private_commit_gib": 24.149906158447266,
+          "free_ram_gib": 6.042144775390625,
+          "available_commit_gib": 1.2993583679199219,
+          "dedicated_vram_gib": 5.103752136230469,
+          "slot_tokens": 120007
         }
       ],
       "allocations": [
@@ -164,7 +220,113 @@
         "llama_memory_recurrent:        CPU RS buffer size =    62.81 MiB",
         "sched_reserve:      CUDA0 compute buffer size =   507.00 MiB",
         "sched_reserve:  CUDA_Host compute buffer size =    38.36 MiB"
-      ]
+      ],
+      "history_followup": {
+        "exact_json_match": false,
+        "facts_match": true,
+        "wall_seconds": 26.562999999994645,
+        "timings": {
+          "cache_n": 119939,
+          "prompt_n": 121,
+          "prompt_ms": 2256.027,
+          "prompt_per_token_ms": 18.64485123966942,
+          "prompt_per_second": 53.63410987545805,
+          "predicted_n": 65,
+          "predicted_ms": 24058.875,
+          "predicted_per_token_ms": 375.919921875,
+          "predicted_per_second": 2.6601410082557893
+        }
+      },
+      "history_omitted": {
+        "content": "UNKNOWN",
+        "wall_seconds": 1.0939999999973224
+      }
+    },
+    {
+      "profile": "qwen36-context-gpu128",
+      "status": "collected",
+      "samples": [
+        {
+          "target": 2048,
+          "status": "completed",
+          "input_tokens": 1995,
+          "wall_seconds": 13.281000000002678,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 1995,
+            "prompt_ms": 9177.546,
+            "prompt_per_token_ms": 4.600273684210526,
+            "prompt_per_second": 217.37837108089678,
+            "predicted_n": 60,
+            "predicted_ms": 4047.995,
+            "predicted_per_token_ms": 68.6100847457627,
+            "predicted_per_second": 14.575116817090931
+          },
+          "exact_json_match": true,
+          "facts_match": true,
+          "process_ram_gib": 17.46070098876953,
+          "private_commit_gib": 24.129478454589844,
+          "free_ram_gib": 6.840244293212891,
+          "available_commit_gib": 1.4597434997558594,
+          "dedicated_vram_gib": 6.199462890625,
+          "slot_tokens": 2054
+        },
+        {
+          "target": 120000,
+          "status": "completed",
+          "input_tokens": 119943,
+          "wall_seconds": 610.0160000000033,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 119943,
+            "prompt_ms": 594366.959,
+            "prompt_per_token_ms": 4.955411812277498,
+            "prompt_per_second": 201.79957547068156,
+            "predicted_n": 65,
+            "predicted_ms": 15409.311,
+            "predicted_per_token_ms": 240.770484375,
+            "predicted_per_second": 4.1533330075562755
+          },
+          "exact_json_match": false,
+          "facts_match": true,
+          "process_ram_gib": 17.477127075195312,
+          "private_commit_gib": 24.146312713623047,
+          "free_ram_gib": 6.4444580078125,
+          "available_commit_gib": 1.7552032470703125,
+          "dedicated_vram_gib": 6.199462890625,
+          "slot_tokens": 120007
+        }
+      ],
+      "allocations": [
+        "load_tensors:        CUDA0 model buffer size =  4383.13 MiB",
+        "load_tensors:    CUDA_Host model buffer size = 16715.52 MiB",
+        "llama_kv_cache:        CPU KV buffer size =   272.00 MiB",
+        "llama_kv_cache:      CUDA0 KV buffer size =  1088.00 MiB",
+        "llama_memory_recurrent:        CPU RS buffer size =    18.84 MiB",
+        "llama_memory_recurrent:      CUDA0 RS buffer size =    43.97 MiB",
+        "sched_reserve:      CUDA0 compute buffer size =   507.00 MiB",
+        "sched_reserve:  CUDA_Host compute buffer size =    38.36 MiB"
+      ],
+      "history_followup": {
+        "exact_json_match": false,
+        "facts_match": true,
+        "wall_seconds": 17.14100000000326,
+        "timings": {
+          "cache_n": 119939,
+          "prompt_n": 121,
+          "prompt_ms": 1553.592,
+          "prompt_per_token_ms": 12.839603305785126,
+          "prompt_per_second": 77.88402617933151,
+          "predicted_n": 65,
+          "predicted_ms": 15387.664,
+          "predicted_per_token_ms": 240.43225,
+          "predicted_per_second": 4.1591758177199605
+        }
+      },
+      "history_omitted": {
+        "content": "UNKNOWN",
+        "wall_seconds": 0.8120000000053551
+      }
     }
   ],
   "caveats": [

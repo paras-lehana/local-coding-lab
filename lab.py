@@ -291,6 +291,19 @@ def limit_owned_working_set(pid: int, maximum_gib: float) -> dict:
         kernel.CloseHandle(handle)
 
 
+def working_set_cap(profile: dict, snapshot: dict) -> float:
+    """Use available RAM up to an explicit cap while preserving host headroom."""
+    maximum = float(profile['working_set_limit_gib'])
+    if 'working_set_reserve_gib' in profile:
+        reserve = float(profile['working_set_reserve_gib'])
+        if reserve < profile['stop_min_ram_free_gib']:
+            raise ValueError('Working-set reserve cannot be below the RAM stop floor')
+        maximum = min(maximum, snapshot['ram_free_gib'] - reserve)
+    if maximum <= 0:
+        raise ValueError('No resident working-set allowance remains')
+    return maximum
+
+
 def build_command(exe: Path, model: Path, profile: dict, port: int) -> list[str]:
     """Build an argument array, never interpolate paths into shell commands."""
     return [str(exe), "-m", str(model), "--host", "127.0.0.1", "--port", str(port),
@@ -382,7 +395,8 @@ def run_server(args: argparse.Namespace, data: Path) -> None:
     verify(model, spec)
     since = datetime.now(timezone.utc).isoformat()
     check_hardware_events(since)
-    check_memory(memory_snapshot(), profile, loading=True)
+    preflight_memory = memory_snapshot()
+    check_memory(preflight_memory, profile, loading=True)
     check_single_server()
     with socket.socket() as probe:
         probe.bind(("127.0.0.1", args.port))
@@ -397,7 +411,8 @@ def run_server(args: argparse.Namespace, data: Path) -> None:
         raise ValueError("Runtime commit differs from pinned b11562; create a reviewed profile/catalog update")
     run_dir = data / "runs" / time.strftime("server-%Y%m%d-%H%M%S")
     run_dir.mkdir(parents=True, exist_ok=False)
-    save_json(run_dir / "launch.json", {"command": command, "profile": profile})
+    save_json(run_dir / "launch.json", {"command": command, "profile": profile,
+                                        "preflight_memory": preflight_memory})
     env = dict(os.environ)
     env["LLAMA_ARG_CHAT_TEMPLATE_KWARGS"] = json.dumps(profile["template_kwargs"])
     child = None
@@ -410,7 +425,7 @@ def run_server(args: argparse.Namespace, data: Path) -> None:
             if profile.get('working_set_limit_gib') is not None:
                 save_json(run_dir / 'working-set-limit.json',
                           limit_owned_working_set(
-                              child.pid, profile['working_set_limit_gib']))
+                              child.pid, working_set_cap(profile, preflight_memory)))
             save_json(run_dir / "process.json", {"pid": child.pid,
                       "launcher_pid": os.getpid(), "stop_file": str(stop_file) if stop_file else None})
             print(f"PID {child.pid}; loading. Logs: {run_dir}; health at localhost:{args.port}/health")

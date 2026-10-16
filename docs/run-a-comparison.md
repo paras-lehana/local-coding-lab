@@ -40,6 +40,25 @@ answer is incomplete and unscored. `collected` means answers were saved; it does
 not mean the model passed. A deadline, worker error or harness error stops
 further tasks in that attempt; an answer with code bugs is still collected.
 
+For explicitly slower experiments, a task's `deadline` may be increased to at
+most 21600 seconds. The default stays 1200. `trial.py --load-timeout` and
+`--smoke-timeout` control the separate startup probes; neither changes a task's
+whole-prompt allowance. Keep all settings in the saved task/profile record.
+
+To measure growing input on a server you explicitly started and own:
+
+```powershell
+python context_growth.py --endpoint http://127.0.0.1:8081/v1 --model qwen36-lab --pid YOUR_SERVER_PID --targets 2048 16000 32000 60000 --output local-data/context-attempt-1
+```
+
+Replace `YOUR_SERVER_PID` with the PID in that launcher's `process.json`.
+Use a context limit above the largest input plus chat overhead and output.
+The collector freezes requests and records actual tokenizer counts, slot state,
+process RAM, dedicated VRAM, timing, source-marker recall, changed-file history
+and a request that deliberately omits history. It does not launch or stop a
+server, alter editor settings, or execute generated code. Its request worker is
+cancelled at the explicit deadline; confirm the owned server is idle afterward.
+
 Review `request-*.json`, successful file reads, final text, reasoning, timings
 and memory telemetry. Grade source claims against the bytes actually delivered.
 Then review generated code and use the [isolated graders](grading.md). The
