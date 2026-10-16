@@ -9,8 +9,57 @@ Last updated: 2026-10-17 (Asia/Kolkata); continuation of the16October expansion.
 | 1 | Measure RAM and growing KV context | Measured | 2K-120K occupancy, fixed KV reservations, CPU/GPU placement, history retention and omission tested. |
 | 2 | Test Qwen3-Coder-Next 80B | Tested; audit failed | Public code/history reviewed; private audit reaches16 tool turns without a final in67m55s, so no private quality score. |
 | 3 | Retest Gemma 31B dense | Reviewed; not promoted | Private26/36; Python6/6, TS5/6, SQLFKfailure. CPU-KV pair complete; GPU-KV short answer unchanged,8K stopped at394MiB freeVRAM and unscored. |
-| 4 | Test Qwen3.6 Q6 | Downloading | Native-thinking matched Q4/Q6 plan frozen; six public tasks include640-record history, followed by the private audit. |
+| 4 | Test Qwen3.6 Q6 | Reviewed; matched control pending | Python6/6 three times, TS5/6, SQLFKfailure; private28/36 including5/6 code in35m. Both history lengths pass. Matched Q4 remains. |
 | 5 | Independent research and report | In progress | Supplied research re-read; primary sources and runtime inspected. |
+
+02:54 IST quiet validation:27 offline tests pass, both PowerShell scripts parse,
+147-file public audit has0findings and git diff whitespace check passes. Frozen
+Q4/Q6 profile hashes/task equality pass. Unloaded21.265GiB freeRAM/20.289GiB
+availablecommit/6734MiB freeVRAM and5.285GiB E: disk free; no inference active.
+Matched Q4 can proceed after this publication checkpoint.
+
+02:53 IST Q6 review checkpoint: all six public cases plus private completed
+with normal server stops. Five isolation preflights pass after inference ends.
+Python implementations6/6 each; own tests6/6,6/7,6/7 (false empty-dict assertion).
+StrictTS compiles5/6; SQLite FK execution failure. Private19semantic+4citation+
+5code=28/36 in2099.672s; mutable alias fails, local-only keys also lost by source
+inspection outside frozen checks.14sources/13successful ranges/2oversize errors,
+no invented port or execution claim. Corrected shared-guide omissions/citations
+are documented. Full tokenizer metadata matches Q4/Q6; only10.9MB headers read.
+No production changes; fresh guards and frozen-input check precede matched Q4.
+
+00:42 IST17October continuation: recovered current receipts and ownedPID56440;
+Q6 core73 completed604.609s, two turns/seven complete source returns. All visible
+content and source bytes reviewed; implementation/tests packaged unchanged for
+quiet-period isolation. Correct v2 precedence, missing-fact abstention and read
+inventory; bug diagnosis misattributes unknown-key omission and own tests omit
+retained nested-list mutation. Second seed active; no executable score yet.
+Read project/parent guidance, shared Windows guide/router/platform/logging,
+Python/testing/discovery/git/documentation rules and grading methodology.
+2d1579dCI38951495133 succeeds. No active settings changed or heavy checks run.
+
+02:12 IST Q6 public suite completes normally:640-record history3296.891s,
+READY640/all six facts/fresh revision2/retry0 pass; max input51411. Initial
+phase3248.360s; cached changed-file phase48.515s. All source bytes and visible
+answers reviewed. No read-error recovery exercised. PrivatePID63928 is active
+under controller30694 with resolved17.243698GiB resident cap; all executable
+grading and tokenizer-array checks wait until it stops. MatchedQ4 follows.
+
+01:21 IST Q6 history checkpoint:120-record history completes628.735s, exact
+READY120/all six facts/fresh runtime revision2 and retry0. Source review and
+returned-byte comparison pass; max input11396tokens. No unavailable-ledger
+attempt, so no error-recovery claim.640-record case remains active; no code
+execution during inference. Gemma report now links reviewed placement outcomes.
+
+00:59 IST Q6 public checkpoint: three native Python repeats completed in
+604.609/453.922/588.953s. Seven source returns each; all visible text and
+source bytes reviewed. Separate unchanged implementation/self-tests queued
+for quiet isolation; only core74's project import is mapped to candidate.
+Core74/75 contain false empty-dict expectations. Core75 improves retained
+nested-list mutation coverage but misdiagnoses dictionary/scalar control flow.
+TS/SQL active after ordered entry/router/linked-source reads. No code grade yet.
+Saved header comparison confirms identical chat template, architecture fields
+and tensor shapes; skipped tokenizer arrays are not claimed identical.
 
 The current request supersedes the former 20-minute preference for these tests.
 Applications stay open; resource guards remain. Full record:
@@ -106,6 +155,9 @@ reviewed, without diagnosing the Windows11 host or earlierVRAM stop. Lab output
 note clarified; numerical counters/floors unchanged.27offline tests10.205s,
 twoPowerShell parses,146-file audit0findings and diffcheck pass. Q6 transfer is
 nearly complete; checksum/loads remain pending.966db75CI38948818005 succeeds.
+
+
+00:31 IST17October Q6 start: full31843777504-byte pinned artifact/SHA verified after two resumed early transfers, E:5.30GiB free. Frozen six-task/profile checks pass; unloaded22.826GiB RAM/21.020GiB commit/6584MiB VRAM passes gate. Owned public PID56440 now runs native core-seed73; GPUweights4114.80/KV680/state62.81/compute566MiB. Actual resident cap17.777596GiB, ready dedicatedGPUcounter5.52484GiB. Smoke 3.609s returnsREADY. with extra period; transport only, not exact-format quality pass. Later private follows only successful collection/normal stop. No heavy auxiliary work during inference; mapped span is not RAM.
 
 ## 2026-10-15 — Autonomous research campaign
 

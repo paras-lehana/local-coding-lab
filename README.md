@@ -45,7 +45,13 @@ The32K dense placement pair improves short generation but leaves8K latency
 about7.7minutes. Moving525MiB KV ontoGPU leaves short latency unchanged and
 the longer follow-up stops below the400MiB free-VRAM floor, unscored.
 [Placement evidence](reports/2026-10-16-dense-placement.json).
-The matched QwenQ6/Q4 trials follow; their
+Qwen Q6 is reviewed: three Python implementations pass 6/6 each, TypeScript
+passes 5/6 and SQLite fails foreign-key enforcement. Its actual-instruction
+audit scores 28/36 in 35 minutes, including a mutable-alias bug. Both history
+cases pass. The larger
+case reaches 51,411 input tokens and takes 54m57s overall, while its cached
+changed-file follow-up takes about 49s. Matched Q4 collection still follows;
+no precision winner is selected. [Reviewed Q6 evidence](reports/2026-10-17-qwen-precision.json). Their
 [six-task public plan](reports/2026-10-16-qwen-precision-plan.json) is published
 before collection. [Dense loading evidence](reports/2026-10-16-gemma31.json).
 

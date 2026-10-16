@@ -94,6 +94,14 @@ locating delivered code; an implementation can precede the final message.
    ledger facts and changed-file reads. A tool-failure recovery claim additionally
    requires observing an attempted unavailable-ledger read and its handling.
 
+Repeated seeds in one server are not identical cold starts. Record each turn's
+cached and newly processed tokens: native outputs and retained checkpoints can
+change prefix reuse even when the task order is fixed. A fresh server also does
+not clear Windows' file cache. Hashing/downloading a model can warm that cache;
+do not silently flush the owner's system cache to manufacture a cold result.
+The Q4/Q6 comparison keeps task order and policy fixed, but desktop load, file
+cache state and resolved resident caps remain practical timing limitations.
+
 Inspect saved serialized requests before describing effective controls. On
 16October, the separate legacy private audit sent `top_k=20`,
 `preserve_thinking=true` and `max_tokens=24576`. These override Gemma's server

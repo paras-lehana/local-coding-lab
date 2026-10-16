@@ -69,6 +69,13 @@ doubling gives 680 MiB attention KV at 64K; state does not necessarily scale
 the same way. A generic claim that every model needs 16 GB KV at 32K is wrong.
 Architecture, layers, heads, dimensions, precision, slots and backend all matter.
 
+For this Qwen architecture at64K, the pinned block layouts imply attention
+payloads of1280MiB f16,680MiB q8_0 and360MiB q4_0. Quantized blocks also store a
+scale, so q4 is not exactly half the q8 bytes: its calculated saving is320MiB.
+Only q8 is measured in the current context sweep; the q4 figure is not a load,
+compatibility or recall-quality result. Additional state/workspaces are separate.
+[Source and calculation](../research/reviews/2026-10-14-gemini.md#16-october-measured-context-allocation-and-retention).
+
 The selected configuration2.0 now confirms the64K allocation directly:
 **680MiB attention KV =136MiB CPU +544MiB GPU**, with **62.81MiB recurrent
 state =18.84MiB CPU +43.97MiB GPU**. Model buffers are4383.13MiB GPU and
@@ -168,6 +175,15 @@ while the active3251.25MiB KV allocation stays reserved. Old checkpoints are
 replaced at the configured one-checkpoint limit. Thus some context-related
 memory can grow with occupancy even though the primary KV buffers are fixed;
 neither number alone is total process RAM.
+
+The 17 October Qwen Q6 private run provides a different measured pattern:
+serialized recurrent checkpoints are 62.813 MiB each when their recorded
+token counts are 423, 2,193 and 14,911. The configured maximum is four, and the log
+records replacement of older checkpoints. Active attention KV remains a
+separate 680 MiB GPU allocation. A checkpoint count can change context-related
+storage without growing the primary attention buffer; do not attribute the
+entire process-memory change to those checkpoints or add them again to an
+already measured process total.
 
 Cache allocation also does not guarantee reuse. In the dense Gemma history
 follow-up, the server explicitly reset cached tokens to zero and reprocessed

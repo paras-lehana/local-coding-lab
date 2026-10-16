@@ -1,7 +1,16 @@
 {
   "status": "metadata_comparison_only",
-  "source": "Pinned GGUF headers; Q4 artifact present and previously verified, Q6 full download and quality evaluation pending.",
+  "source": "Pinned GGUF headers; Q4 artifact previously verified and Q6 full artifact/SHA verified17October. Matched quality evaluation is in progress, not scored here.",
   "type_reference": "https://github.com/ggml-org/llama.cpp/blob/b2f036c0f138414dedc987446f1d9d802f920275/ggml/include/ggml.h",
+  "matched_metadata_check": {
+    "checked_local_date": "2026-10-17",
+    "architecture": "qwen35moe",
+    "retained_architecture_fields_equal": true,
+    "tensor_names_and_shapes_equal": true,
+    "embedded_chat_templates_equal": true,
+    "chat_template_utf8_sha256": "55d4931433fe502b794226ee7f4d206a6bdd436ac9f80eb7d8ebb4c639f9ea0c",
+    "scope": "Compared the previously saved pinned-header metadata; no new weight reads or runtime changes during inference. The metadata reader skips tokenizer arrays, so this check alone does not establish complete tokenizer-array identity."
+  },
   "artifacts": [
     {
       "artifact": "qwen36-q4",
@@ -90,5 +99,65 @@
       "file_bytes": 31843777504
     }
   ],
-  "limitation": "Tensor counts are not parameter counts. Storage spans include alignment. Precision metadata does not establish a coding-quality ranking."
+  "limitation": "Tensor counts are not parameter counts. Storage spans include alignment. Precision metadata does not establish a coding-quality ranking.",
+  "complete_tokenizer_check": {
+    "checked_local_date": "2026-10-17",
+    "status": "identical",
+    "scope": "All tokenizer-prefixed metadata, including vocabulary, merge arrays, special-token settings and chat template. Compare SHA256 of exact GGUF type and encoded value bytes.",
+    "metadata_bytes_read_per_artifact": 10943779,
+    "tensor_data_read": false,
+    "fields": {
+      "tokenizer.ggml.model": {
+        "type": 8,
+        "encoded_bytes": 16,
+        "sha256": "35b5fa96b5f7fc8c0addda0366ee9029c0e3f4c0fb1b604032bc88054dc127a6"
+      },
+      "tokenizer.ggml.pre": {
+        "type": 8,
+        "encoded_bytes": 18,
+        "sha256": "0eec5afe652b51a6f219feb6fd8f3975d782abde075ba8c55cd875280dd21355"
+      },
+      "tokenizer.ggml.tokens": {
+        "type": 9,
+        "encoded_bytes": 4853374,
+        "sha256": "869290532de410966a10d91ac7ae4732e0b2cd4e922526eb80721e2cb9c12e63"
+      },
+      "tokenizer.ggml.token_type": {
+        "type": 9,
+        "encoded_bytes": 993296,
+        "sha256": "4bddc4d296effefebabd3a691aae0da83cfda957a7609e395a20ee1e6b5dc018"
+      },
+      "tokenizer.ggml.merges": {
+        "type": 9,
+        "encoded_bytes": 5086384,
+        "sha256": "7f25b97883a9768c07745d8c6c2ea8bcf732391d28db490ea3308472e5906e01"
+      },
+      "tokenizer.ggml.eos_token_id": {
+        "type": 4,
+        "encoded_bytes": 8,
+        "sha256": "2b0547c6fd6bc4dd9d5f3566dc0921aba18beb176bd8a830ed548053ff846530"
+      },
+      "tokenizer.ggml.padding_token_id": {
+        "type": 4,
+        "encoded_bytes": 8,
+        "sha256": "a59ed4bb8c2c5809a9ce559824a5c233c7a7cfe2f4bd43e00e522361a81843c0"
+      },
+      "tokenizer.ggml.bos_token_id": {
+        "type": 4,
+        "encoded_bytes": 8,
+        "sha256": "f099a39272b432c161b735a5509b9bec426cc05f9057cb03faa5c83904ff1bb7"
+      },
+      "tokenizer.ggml.add_bos_token": {
+        "type": 7,
+        "encoded_bytes": 5,
+        "sha256": "e16ab60aa1eeb7074ca590e8a95bc4ce6264aa74f4f79359e580ede60b892bbe"
+      },
+      "tokenizer.chat_template": {
+        "type": 8,
+        "encoded_bytes": 8069,
+        "sha256": "6d70f642730bfbca3ca860bc789856895bc08e31b469b3a56635cce8f9472fab"
+      }
+    },
+    "note": "All ten tokenizer-prefixed fields match exactly between Q4/Q6, including encoded arrays. This supplements the earlier array-skipping metadata comparison; no claim of numerical weight equivalence."
+  }
 }

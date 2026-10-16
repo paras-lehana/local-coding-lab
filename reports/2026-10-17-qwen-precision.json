@@ -1,0 +1,604 @@
+{
+  "status": "q6_reviewed_q4_matched_control_pending",
+  "updated_local_date": "2026-10-17",
+  "reviewer": "Codex source assessment; not independently human-reviewed",
+  "plan": "reports/2026-10-16-qwen-precision-plan.json",
+  "q6": {
+    "artifact": "Qwen3.6-35B-A3B-UD-Q6_K_XL.gguf",
+    "sha256": "f6b6c6d5cfa6f00d964eeb7add28eb14ce7481734d506b90681007678cd2c484",
+    "file_bytes": 31843777504,
+    "profile": "qwen36-q6-noprefetch64-candidate",
+    "runtime": "b11562-noprefetch-v1",
+    "public": {
+      "tasks": {
+        "core-seed73": {
+          "status": "completed_source_reviewed_isolated_graded",
+          "wall_seconds": 604.6089999999967,
+          "review_sha256": "c0a6680c52fbbcbb0c3904d9116d78852c67a5846fe26e21b42683f2746c5bad",
+          "timings": {
+            "turns": [
+              {
+                "turn": 0,
+                "input_tokens": 654,
+                "cache_n": 0,
+                "prompt_n": 654,
+                "prompt_ms": 52919.052,
+                "predicted_n": 803,
+                "predicted_ms": 59924.817
+              },
+              {
+                "turn": 1,
+                "input_tokens": 2316,
+                "cache_n": 1456,
+                "prompt_n": 860,
+                "prompt_ms": 26964.51,
+                "predicted_n": 6168,
+                "predicted_ms": 464641.333
+              }
+            ],
+            "maximum_input_tokens": 2316,
+            "prefill_seconds": 79.88356200000001,
+            "generation_seconds": 524.56615,
+            "uncached_input_tokens_per_second": 18.952585013672774,
+            "generation_tokens_per_second": 13.289077078267441
+          },
+          "grade_sha256": "04e38a007ad518fac594314ea26636f0c696a06f1f5a68e8c0248179b81eb757",
+          "independent_behavior": {
+            "status": "completed",
+            "tests_run": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "returncode": 0,
+            "all_passed": true
+          },
+          "model_written_tests": {
+            "status": "completed",
+            "tests_run": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "returncode": 0,
+            "all_passed": true
+          },
+          "answer_sha256": "b0474ffda4366e3d85c23da02c0c1128c22820fce7857becb5fafe84974c6997",
+          "source_delivery_verified": true
+        },
+        "core-seed74": {
+          "status": "completed_source_reviewed_isolated_graded",
+          "wall_seconds": 453.9219999999914,
+          "review_sha256": "e618511d0a0b59f4d8cdd71de7959f8af72f640d65cd7457684ee7436f72d294",
+          "timings": {
+            "turns": [
+              {
+                "turn": 0,
+                "input_tokens": 654,
+                "cache_n": 283,
+                "prompt_n": 371,
+                "prompt_ms": 13144.681,
+                "predicted_n": 1091,
+                "predicted_ms": 77974.677
+              },
+              {
+                "turn": 1,
+                "input_tokens": 2604,
+                "cache_n": 1744,
+                "prompt_n": 860,
+                "prompt_ms": 27478.115,
+                "predicted_n": 4553,
+                "predicted_ms": 335130.663
+              }
+            ],
+            "maximum_input_tokens": 2604,
+            "prefill_seconds": 40.622796,
+            "generation_seconds": 413.10533999999996,
+            "uncached_input_tokens_per_second": 30.303182479118373,
+            "generation_tokens_per_second": 13.662374831562333
+          },
+          "grade_sha256": "99813e8e589b6f553ea725013c33e86ff75ba3eedef08766c882a5babbcad2b7",
+          "independent_behavior": {
+            "status": "completed",
+            "tests_run": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "returncode": 0,
+            "all_passed": true
+          },
+          "model_written_tests": {
+            "status": "completed",
+            "tests_run": 7,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "returncode": 1,
+            "all_passed": false
+          },
+          "answer_sha256": "6473a8c663f930ae2fd50641b36eb34fbe62875d1485eb71afa73b6cd0935fe1",
+          "source_delivery_verified": true
+        },
+        "core-seed75": {
+          "status": "completed_source_reviewed_isolated_graded",
+          "wall_seconds": 588.9530000000086,
+          "review_sha256": "c2f716d1412b97d867346544dae7102dd1eb971daac9662ac0b049616319b880",
+          "timings": {
+            "turns": [
+              {
+                "turn": 0,
+                "input_tokens": 654,
+                "cache_n": 283,
+                "prompt_n": 371,
+                "prompt_ms": 10226.921,
+                "predicted_n": 788,
+                "predicted_ms": 55822.221
+              },
+              {
+                "turn": 1,
+                "input_tokens": 2301,
+                "cache_n": 1441,
+                "prompt_n": 860,
+                "prompt_ms": 27777.63,
+                "predicted_n": 6604,
+                "predicted_ms": 494922.551
+              }
+            ],
+            "maximum_input_tokens": 2301,
+            "prefill_seconds": 38.004551,
+            "generation_seconds": 550.744772,
+            "uncached_input_tokens_per_second": 32.39085761071089,
+            "generation_tokens_per_second": 13.421825091786799
+          },
+          "grade_sha256": "4d12005dd1d7f81100fae4d6979a2cdfa44ff16c5b7ef5920c56474619e81be1",
+          "independent_behavior": {
+            "status": "completed",
+            "tests_run": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "returncode": 0,
+            "all_passed": true
+          },
+          "model_written_tests": {
+            "status": "completed",
+            "tests_run": 7,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0,
+            "returncode": 1,
+            "all_passed": false
+          },
+          "answer_sha256": "be8bc9e2689fe23f677f72e301ed3f8fc06458fc8e488272013ad7244ab6e817",
+          "source_delivery_verified": true
+        },
+        "ts-sql-v1": {
+          "status": "completed_source_reviewed_isolated_graded",
+          "wall_seconds": 454.75,
+          "review_sha256": "c93f958967e1252766c4eb076e36b94c4f0a346e93fe61857eb1dbf6bcf0b872",
+          "timings": {
+            "turns": [
+              {
+                "turn": 0,
+                "input_tokens": 400,
+                "cache_n": 0,
+                "prompt_n": 400,
+                "prompt_ms": 25982.687,
+                "predicted_n": 186,
+                "predicted_ms": 14579.807
+              },
+              {
+                "turn": 1,
+                "input_tokens": 655,
+                "cache_n": 585,
+                "prompt_n": 70,
+                "prompt_ms": 4097.646,
+                "predicted_n": 65,
+                "predicted_ms": 4646.655
+              },
+              {
+                "turn": 2,
+                "input_tokens": 782,
+                "cache_n": 719,
+                "prompt_n": 63,
+                "prompt_ms": 3095.414,
+                "predicted_n": 194,
+                "predicted_ms": 14240.335
+              },
+              {
+                "turn": 3,
+                "input_tokens": 1426,
+                "cache_n": 975,
+                "prompt_n": 451,
+                "prompt_ms": 16555.321,
+                "predicted_n": 4615,
+                "predicted_ms": 371264.691
+              }
+            ],
+            "maximum_input_tokens": 1426,
+            "prefill_seconds": 49.731068,
+            "generation_seconds": 404.731488,
+            "uncached_input_tokens_per_second": 19.78642405186231,
+            "generation_tokens_per_second": 12.502115970774184
+          },
+          "grade_sha256": "2abecdf60051468a740dd2f6a00fe72b687c41df808e89d8243e5d1366635843",
+          "typescript": {
+            "returncode": 1,
+            "records": [
+              {
+                "compile_code": 0,
+                "stdout": "",
+                "stderr": ""
+              },
+              {
+                "groups": [
+                  {
+                    "name": "defaults, trimming, order and exact output shape",
+                    "passed": true
+                  },
+                  {
+                    "name": "zero, false, empty tags and explicit undefined survive",
+                    "passed": true
+                  },
+                  {
+                    "name": "invalid roots, nonplain jobs, empty and duplicate ids",
+                    "passed": false,
+                    "error": "AssertionError [ERR_ASSERTION]: Missing expected exception (TypeError)."
+                  },
+                  {
+                    "name": "strict count, boolean and tag validation",
+                    "passed": true
+                  },
+                  {
+                    "name": "input immutability and bidirectional alias isolation",
+                    "passed": true
+                  },
+                  {
+                    "name": "distinct default arrays and frozen input",
+                    "passed": true
+                  }
+                ],
+                "passed": 5,
+                "total": 6
+              }
+            ]
+          },
+          "sqlite": {
+            "returncode": 1,
+            "records": [
+              {
+                "migration_error": "FOREIGN KEY constraint failed",
+                "passed": 0,
+                "total": 6
+              }
+            ]
+          },
+          "sqlite_scope": "A migration error is an execution failure, not six independently observed failed assertions.",
+          "answer_sha256": null,
+          "source_delivery_verified": true
+        },
+        "context-v1": {
+          "status": "completed_source_reviewed",
+          "wall_seconds": 628.7350000000006,
+          "review_sha256": "c65d9f257605f2db30cca11fd2f8a3eed98b2b8a65b2fab6ddae480de9f81617",
+          "timings": {
+            "turns": [
+              {
+                "turn": 0,
+                "input_tokens": 349,
+                "cache_n": 268,
+                "prompt_n": 81,
+                "prompt_ms": 4924.549,
+                "predicted_n": 91,
+                "predicted_ms": 7094.29
+              },
+              {
+                "turn": 1,
+                "input_tokens": 509,
+                "cache_n": 439,
+                "prompt_n": 70,
+                "prompt_ms": 4005.433,
+                "predicted_n": 83,
+                "predicted_ms": 6382.983
+              },
+              {
+                "turn": 2,
+                "input_tokens": 663,
+                "cache_n": 591,
+                "prompt_n": 72,
+                "prompt_ms": 3404.661,
+                "predicted_n": 189,
+                "predicted_ms": 14391.088
+              },
+              {
+                "turn": 3,
+                "input_tokens": 10159,
+                "cache_n": 851,
+                "prompt_n": 9308,
+                "prompt_ms": 465623.995,
+                "predicted_n": 907,
+                "predicted_ms": 67756.569
+              },
+              {
+                "turn": 4,
+                "input_tokens": 11160,
+                "cache_n": 11065,
+                "prompt_n": 95,
+                "prompt_ms": 5160.929,
+                "predicted_n": 184,
+                "predicted_ms": 14524.516
+              },
+              {
+                "turn": 5,
+                "input_tokens": 11396,
+                "cache_n": 11343,
+                "prompt_n": 53,
+                "prompt_ms": 3642.23,
+                "predicted_n": 380,
+                "predicted_ms": 31320.646
+              }
+            ],
+            "maximum_input_tokens": 11396,
+            "prefill_seconds": 486.761797,
+            "generation_seconds": 141.470092,
+            "uncached_input_tokens_per_second": 19.88446928179945,
+            "generation_tokens_per_second": 12.963870837095378
+          },
+          "answer_sha256": [
+            "a98997fe16125908370bf1e0940c92591110559030c47a5adcbf5ee63e8cc5fa",
+            "9d07560ccb9805e771a4ad11e41a11f908e4788004b2bcecfafb35ac6aa60808"
+          ],
+          "source_delivery_verified": true,
+          "fact_checks": {
+            "region": true,
+            "auditOwner": true,
+            "release": true,
+            "retryLimit": true,
+            "runtimeRevision": true,
+            "redisSentinelPort": true
+          },
+          "fresh_runtime_read": true,
+          "ready_count_passed": true,
+          "error_recovery_exercised": false
+        },
+        "context-large-v1": {
+          "status": "completed_source_reviewed",
+          "wall_seconds": 3296.8910000000033,
+          "review_sha256": "61e62e94069ac0c63e34433777acdfa9f783ce6b3a483682546d0fc0f81a5487",
+          "timings": {
+            "turns": [
+              {
+                "turn": 0,
+                "input_tokens": 349,
+                "cache_n": 0,
+                "prompt_n": 349,
+                "prompt_ms": 31122.706,
+                "predicted_n": 91,
+                "predicted_ms": 7729.954
+              },
+              {
+                "turn": 1,
+                "input_tokens": 509,
+                "cache_n": 439,
+                "prompt_n": 70,
+                "prompt_ms": 5469.982,
+                "predicted_n": 74,
+                "predicted_ms": 5429.234
+              },
+              {
+                "turn": 2,
+                "input_tokens": 654,
+                "cache_n": 582,
+                "prompt_n": 72,
+                "prompt_ms": 3714.519,
+                "predicted_n": 196,
+                "predicted_ms": 15099.625
+              },
+              {
+                "turn": 3,
+                "input_tokens": 50815,
+                "cache_n": 849,
+                "prompt_n": 49966,
+                "prompt_ms": 3155546.793,
+                "predicted_n": 291,
+                "predicted_ms": 23884.933
+              },
+              {
+                "turn": 4,
+                "input_tokens": 51200,
+                "cache_n": 51105,
+                "prompt_n": 95,
+                "prompt_ms": 4296.315,
+                "predicted_n": 159,
+                "predicted_ms": 12167.76
+              },
+              {
+                "turn": 5,
+                "input_tokens": 51411,
+                "cache_n": 51358,
+                "prompt_n": 53,
+                "prompt_ms": 3310.282,
+                "predicted_n": 338,
+                "predicted_ms": 28326.699
+              }
+            ],
+            "maximum_input_tokens": 51411,
+            "prefill_seconds": 3203.4605970000002,
+            "generation_seconds": 92.638205,
+            "uncached_input_tokens_per_second": 15.796979069257457,
+            "generation_tokens_per_second": 12.403090064191119
+          },
+          "answer_sha256": [
+            "63867d0c134ef5ff6bcce297588601cfaef3fd4bce60e8efa438dc0f11890f38",
+            "9d07560ccb9805e771a4ad11e41a11f908e4788004b2bcecfafb35ac6aa60808"
+          ],
+          "source_delivery_verified": true,
+          "fact_checks": {
+            "region": true,
+            "auditOwner": true,
+            "release": true,
+            "retryLimit": true,
+            "runtimeRevision": true,
+            "redisSentinelPort": true
+          },
+          "fresh_runtime_read": true,
+          "ready_count_passed": true,
+          "error_recovery_exercised": false
+        }
+      },
+      "resources": {
+        "process_working_set_gib": 17.777626037597656,
+        "process_private_gib": 7.076805114746094,
+        "ram_free_gib": 2.8826141357421875,
+        "commit_available_gib": 13.189823150634766,
+        "vram_free_mib": 981.0,
+        "gpu_c": 48.0
+      },
+      "resource_scope": "Whole public server lifetime including loading; RSS/private are maxima, free memory minima. Shared desktop and adaptive resident cap apply.",
+      "resident_cap_gib": 17.77759552001953,
+      "stop": {
+        "status": "requested_stop"
+      }
+    },
+    "private": {
+      "status": "completed_source_reviewed_isolated_graded",
+      "wall_seconds": 2099.672000000006,
+      "semantic_facets": {
+        "1": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "2": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "3": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "4": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "5": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "6": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "semantic_score": 19,
+      "citation_by_question": [
+        1,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "citation_score": 4,
+      "code_score": 5,
+      "code_cases": {
+        "given_merge": true,
+        "deep_nesting": true,
+        "false_null_empty": true,
+        "type_conflicts": true,
+        "input_immutability": true,
+        "no_mutable_aliases": false
+      },
+      "total_score": 28,
+      "score_maximum": 36,
+      "answer_sha256": "628d7329b9380dc7f3d670138d9e78536be7b355a908dec40d46690cefb53cde",
+      "code_sha256": "eea088875fcbb284aa5e08e2b5f640414a018fc63eb55e035bd70649b4bfc9a9",
+      "grade_sha256": "a5e97ad524a4a364e35fd7a28d81d3ff6251c2b72aba260d7da002fa3f087731",
+      "timings": {
+        "turns": [
+          {
+            "turn": 0,
+            "input_tokens": 2197,
+            "cache_n": 0,
+            "prompt_n": 2197,
+            "prompt_ms": 115189.416,
+            "predicted_n": 402,
+            "predicted_ms": 31862.298
+          },
+          {
+            "turn": 1,
+            "input_tokens": 14915,
+            "cache_n": 2598,
+            "prompt_n": 12317,
+            "prompt_ms": 543152.067,
+            "predicted_n": 284,
+            "predicted_ms": 22061.277
+          },
+          {
+            "turn": 2,
+            "input_tokens": 33076,
+            "cache_n": 15198,
+            "prompt_n": 17878,
+            "prompt_ms": 827151.663,
+            "predicted_n": 6838,
+            "predicted_ms": 559519.39
+          }
+        ],
+        "maximum_input_tokens": 33076,
+        "prefill_seconds": 1485.493146,
+        "generation_seconds": 613.442965,
+        "uncached_input_tokens_per_second": 21.80555331892457,
+        "generation_tokens_per_second": 12.265198933367833
+      },
+      "distinct_sources_including_entry": 14,
+      "successful_tool_ranges": 13,
+      "rejected_ranges": 2,
+      "source_returns_match_frozen_reader": true,
+      "resources": {
+        "process_working_set_gib": 17.24371337890625,
+        "process_private_gib": 7.055290222167969,
+        "ram_free_gib": 3.8643112182617188,
+        "commit_available_gib": 13.363807678222656,
+        "vram_free_mib": 1021.0,
+        "gpu_c": 47.0
+      },
+      "resource_scope": "Whole private server lifetime, including loading; shared desktop remains active.",
+      "resident_cap_gib": 17.243698120117188,
+      "stop": {
+        "status": "requested_stop"
+      },
+      "findings": [
+        "All three visible turns reviewed: turns0/1 contain no visible prose, only read_files calls; turn2 contains the complete answer and one Python implementation.",
+        "Host, nested Windows mappings, explicit local-inference exception and host-fact ownership are correct.",
+        "Q2 names the project AGENTS and shared Codex guide but omits applicable nested guides and the explicit complete entry/router/platform/logging reading workflow. Actual successful retrieval is reported separately. Correct v2 preference, docstrings, service-health rule and progressive loading receive credit.",
+        "Q3 identifies canonical rule/host owners and skill, but omits review of affected Windows adapters. Its claim that entry points should change only when the pointed-to source updates does not express the required routing/compatibility condition or no-duplication rule. The accompanying citation does not support that paraphrase.",
+        "Q4 correctly distinguishes link-collision guards from the unguarded initial clone relocation, gives the exact requested merge and read-only/native-runtime behavior. Calling normal relocation an early-exit special case is imprecise: normal relocation continues after setting REPO. No separate penalty for that wording.",
+        "The Python helper iterates only base keys, so local-only keys would be lost, and directly assigns existing local mutable values, creating aliases. No import-time external access, dynamic execution or IO; preserve code unchanged for isolation. Local-only-key loss is a source-inspection finding outside the six frozen behavior groups.",
+        "Q5 correctly describes recovery, completing log writes before visible A-F/G, local validation and limits of paths/KV. It wrongly generalizes project/docs to the shared configuration repository; that repository requires its nested .github/docs destinations. Generic logging-protocol citations do not support this local exception.",
+        "Q6 does not invent the absent service port and identifies missing registry evidence. Fourteen enumerated files and ranges match delivered sources, including the supplied entry. The heading says15 while listing14: record the counting typo without inventing an unread-file claim.",
+        "Two oversized range errors were followed by successful first200-line requests. The logging source has487 lines and the coding source243; their tails were available in further ranges. The answer honestly lists them as unread but incorrectly attributes this to an insufficient snapshot.",
+        "No claims of executing the installer, tests or deployment. The shared repository root AGENTS was available but never read. No syntax/type-hint/docstring compliance credit is inferred from knowing the Python rules.",
+        "Citation points are for materially supported positive claims, not exact wording; omissions are semantic failures rather than automatic duplicate citation deductions. Codex assessment, not independent human review."
+      ]
+    },
+    "take": "Three public Python implementations pass, but generated tests, TypeScript validation, SQLite migration, private merge aliasing and instruction coverage still fail. Q6 is not promoted; await matched Q4."
+  },
+  "limitations": [
+    "Native thinking, no separate reasoning ceiling; no xhigh claim.",
+    "No generated code executed on Windows. Five separate isolation preflights passed after inference stopped.",
+    "Code correctness and source assessment are separate. SQL execution failure is not six independently failed assertions.",
+    "Same-server seed repeats reuse prefixes differently. Desktop load, resolved resident caps and Windows file-cache state limit causal speed comparisons.",
+    "Both history lengths use the same target facts. They test length and fresh-file handling, not two independent domains or unavailable-read recovery.",
+    "Private frozen code checks miss local-only-key loss; source inspection found it. Preserve the frozen scores and report this coverage limitation.",
+    "The historical production Q4 profile is not this pending matched control. No numerical quantization advantage claimed."
+  ]
+}

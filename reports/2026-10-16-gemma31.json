@@ -1,5 +1,10 @@
 {
-  "status": "native_public_private_completed_reviewed_graded_placement_diagnostics_pending",
+  "status": "native_public_private_completed_reviewed_graded_placement_diagnostics_reviewed",
+  "placement_followup": {
+    "report": "reports/2026-10-16-dense-placement.json",
+    "status": "reviewed_completed_cpu_pair_and_interrupted_gpu_cache_followup",
+    "conclusion": "Complete-layer placement improves short generation but not the8K whole-prompt latency. Moving525MiB KV toGPU leaves the short latency unchanged; the8K follow-up stops below400MiB freeVRAM and is unscored. No production promotion."
+  },
   "apps_open_snapshot": {
     "local_time": "2026-10-16T19:51:50.111460+05:30",
     "source": "private system-io-v3 observer",

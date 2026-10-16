@@ -1,6 +1,10 @@
 # Prompt log — Local Coding Lab
 
-00:28 IST17October checkpoint validation:27offline tests10.205s, twoPowerShell parses,146-file audit0findings and diffcheck pass. Precision plan published before either arm; new per-process GPU observer and counter limits recorded in tasks/memory guide. Q6 checksum/loads remain pending. The owner's expansion remains active; no replacement selected.
+Current phase, 17 October: Q6 public/private review and isolated grading are
+complete. Python6/6 three times, TS5/6, SQL foreign-key failure; private28/36
+including5/6 code. Both history cases pass. The matched Q4 control follows.
+Last quiet tooling validation: 27 tests, two PowerShell parses,
+147-file public audit and whitespace check passed. No replacement is selected.
 
 Last updated: 2026-10-17. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
@@ -660,3 +664,76 @@ Owner requests RAM/KV growth measurement, actual Coder-Next 80B and Qwen Q6 atte
 
 
 23:52 IST pre-collection precision plan extension: Q6 transfer active, neither Q4/Q6 matched trial has started. Archived earlier five-task plan and added existing640-record context-large-v1 to both arms, alongside120-record history, threePython seeds and TS/SQL. Same profile hashes, requests controls, native thinking, six-hour deadline and frozen questions/checks. Previous Qwen input was about52K tokens; actual new usage must be measured. This extends long-file coverage before seeing either candidate answer.
+
+
+00:31 IST17October Q6 start: full31843777504-byte pinned artifact/SHA verified after two resumed early transfers, E:5.30GiB free. Frozen six-task/profile checks pass; unloaded22.826GiB RAM/21.020GiB commit/6584MiB VRAM passes gate. Owned public PID56440 now runs native core-seed73; GPUweights4114.80/KV680/state62.81/compute566MiB. Actual resident cap17.777596GiB, ready dedicatedGPUcounter5.52484GiB. Smoke 3.609s returnsREADY. with extra period; transport only, not exact-format quality pass. Later private follows only successful collection/normal stop. No heavy auxiliary work during inference; mapped span is not RAM.
+
+00:42 IST17October continuation (owner: "continue"): recovered current receipts
+and ownedPID56440. Q6 core73 completed604.609s, two turns/seven complete source
+returns. All visible content and source bytes reviewed; implementation/tests
+packaged unchanged for quiet-period isolation. Correct v2 precedence,
+missing-fact abstention and read inventory; bug diagnosis misattributes unknown
+key omission and own tests omit retained nested-list mutation. Second seed
+active; no executable score yet. Read project/parent guidance, shared Windows
+guide/router/platform/logging, Python/testing/discovery/git/documentation rules
+and grading methodology.2d1579dCI38951495133 succeeds. No active settings changed
+or heavy checks run; final A–G remains pending the complete requested matrix.
+
+00:47 IST research re-read: read the archived Gemini source across its full
+sections and rechecked the Qwen publisher card. Additional pinned-code
+correction: q4_0 uses18bytes/32values versusq8_0's34, so64K Qwen attention
+payload is360versus680MiB, saving320MiB, not340. Confirmed local block-layout
+file unchanged atb2f036c; two web fetches of that file timed out. This is a
+calculation, not a q4 load/quality claim. Updated memory guide/critical review;
+frozen q8 comparison unchanged. Diff check passes; quiet-period checks pending.
+
+00:59 IST Q6 public checkpoint: three native Python repeats completed in
+604.609/453.922/588.953s. Seven source returns each; all visible text and
+source bytes reviewed. Separate unchanged implementation/self-tests queued
+for quiet isolation; only core74's project import is mapped to candidate.
+Core74/75 contain false empty-dict expectations. Core75 improves retained
+nested-list mutation coverage but misdiagnoses dictionary/scalar control flow.
+TS/SQL active after ordered entry/router/linked-source reads. No code grade yet.
+Saved header comparison confirms identical chat template, architecture fields
+and tensor shapes; skipped tokenizer arrays are not claimed identical.
+
+01:12 IST source review and context maintenance: Q6 TS/SQL completed454.750s,
+four turns/six full correct-path source reads. Reviewed all visible text; code
+preserved for isolation. Plain-object validation is absent; SQL drops a referenced
+table with foreign_keys ON. Final inventory has a typescript-ssql filename typo,
+and the proposed uniqueness test conflicts with the pre-migration schema.
+The120-record history input is active. Applied the context-maintenance skill to
+the cache-state timing lesson in project methodology/comparison guide. Reviewed
+Windows Codex/Claude/Continue/Copilot and project adapters; existing pointers
+already cover methodology, so adapters/shared policy sources remain unchanged.
+Shared repository's two unrelated dirty files are preserved. No active model,
+request, sampler or resource-limit changes; no executable grades claimed.
+
+01:21 IST continuation: checked receipts and livePID56440 before reporting the
+large-history run active. The120-record case completed628.735s across six turns,
+with all six facts, READY120, an actual changed-file reread and revision2/retry0
+correct. Reviewed visible answers, marker lines and all returned source bytes;
+no unavailable-ledger read occurred, so no error-recovery claim. Maximum input
+was11396tokens. The640-record case is processing its larger input. Source review
+and light documentation only; isolated grading/offline checks wait for inference
+to stop. Corrected the Gemma result's stale placement-pending status and linked
+the already-reviewed completed pair/interrupted GPU-KV follow-up. Recovered
+project/parent/shared guides and current logs; final closeout remains pending.
+
+02:12 IST Q6 public completion: all six cases collected; server stopped normally.
+The640-record case completes3296.891s, READY640/all six facts/fresh runtime
+revision2 and retry0 pass, max input51411. All visible turns/source returns
+reviewed and returned bytes verified. Initial phase ends3248.360s; changed-file
+phase adds48.515s, reusing51105 then51358 tokens. No unavailable-ledger attempt;
+no error-recovery claim. The matching target facts across the two history
+lengths are intentional controls, not independent knowledge questions.
+Private audit now runs underPID63928/server-20261017-021105; controller30694
+owns it. Fresh private preflight22.187GiB RAM/20.850GiB commit/6715MiB VRAM;
+actual resolved resident cap17.243698GiB, no mid-run intervention. Code remains
+queued for quiet isolation. Prepared ignored summary/tokenizer-comparison helpers;
+both parse but have not run. The tokenizer check is deferred until inference
+stops and reads only10.9MB metadata per verified artifact. Progress helper's
+optional brief mode was exercised. No publication/checks or model retirement yet.
+
+
+02:53 IST17October Q6 review checkpoint: all six public and private cases completed; five isolated grading preflights pass after inference stops. Python6/6 three times, own tests6/6,6/7,6/7; strictTS5/6, SQLiteFKfailure. Private28/36=19semantic+4citation+5code in2099.672s. Mutable alias confirmed; source review also finds local-only-key loss outside frozen check coverage.14actualsources/13ranges/2oversizeerrors; no port fabrication or execution claim. Full tokenizer metadata matches across Q4/Q6. Public report2026-10-17-qwen-precision.json added; matchedQ4 remains, production unchanged.

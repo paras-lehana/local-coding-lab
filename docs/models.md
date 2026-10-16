@@ -1,6 +1,6 @@
 # Model shortlist and exact artifacts
 
-Checked 16 October 2026. Sizes are GiB of **weights**, not total memory.
+Checked 17 October 2026. Sizes are GiB of **weights**, not total memory.
 Download keys resolve to full pinned revisions and SHA256 in
 [catalog/models.json](../catalog/models.json). The [live campaign report](../reports/2026-10-15-campaign.md)
 separates completed measurements, downloads and conditional exclusions.
@@ -14,7 +14,7 @@ separates completed measurements, downloads and conditional exclusions.
 | Dense extended trial | `gemma4-31b-qat` | 16.439 | Native public Python6/6, TS5/6, SQLite FK failure; private26/36 in2h00m34s; correct private merge but weaker instruction coverage; not promoted |
 | Non-thinking coding control | `qwencoder30-udq4` | 16.452 | Python 2/6, 3/6, 1/6; private deadline, unscored; exact weight retired with reports retained |
 | Conditional precision | `qwen36-q5` | 24.639 | Matched public Python repeats 6/6; native private 28/36, including only 2/6 code groups and accurate 14-source inventory; no repeatable precision advantage established |
-| Matched precision trial | `qwen36-q6` | 29.657 | Header inspected; earlier resident-memory exclusion reopened with an explicit mapped profile and matched Q4 control; full download and quality comparison pending |
+| Matched precision trial | `qwen36-q6` | 29.657 | Reviewed Python6/6 three times; TS5/6, SQL FK failure; private28/36 in35m including mutable alias bug. Both history lengths pass, larger case54m57s with49s cached follow-up. Matched Q4 remains. |
 | Conditional precision | `glm47-udq6` | 24.378 | Public capped Python 5/6, 0/6, 6/6; native 5/6; history count fails; native private 24/36 |
 | Linear-attention alternative | `kimi-linear-q4` | 27.997 | Matching f16 public core4/6, malformed call/no code,6/6; TS4/6, SQL syntax failure;64K private gate rejected; exact weight retired with reports |
 | Larger coding model | `qwencoder-next-q4` | 45.196 | Verified and loaded using an isolated prefetch opt-out: Python 6/6, TS 4/6, SQL foreign-key failure; recovered history passes all six facts; actual-instruction audit hits16-turn limit without a final answer in67m55s |

@@ -53,6 +53,9 @@ Both arms use the same context, cache types, native thinking, sampling and
 placement policy. The larger ledger previously produced about52K Qwen input
 tokens; always record actual counts for your model. Desktop load and automatic
 resident caps can still differ, so these are not isolated speed measurements.
+The repeated seeds share a server; record actual prefix-cache reuse rather than
+calling every prompt cold. A new server does not reset the operating-system
+file cache. See the [timing controls](methodology.md#fair-comparisons).
 The separate real-instruction audit uses private owner files and is not included
 in the public plan. Use your own reviewed corpus for that part.
 

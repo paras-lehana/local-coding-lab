@@ -11,7 +11,7 @@ replacement has been selected.
 | Explain 64 GB use and test growing KV | Measured | Actual input from 2K to 120K, CPU/GPU cache placement, reused history and omitted history tested. Main KV reserves capacity at load. |
 | Test Qwen3-Coder-Next 80B | Tested; not promoted | Python 6/6, TS 4/6, SQL fails. History passes. Private audit repeats wrong paths and reaches its tool-turn limit without a final answer. |
 | Retest Gemma 4 31B dense | Reviewed; not promoted | Public/private Python helpers pass 6/6; TS 5/6, SQL fails. Private instruction audit 26/36 in 2h00m34s. Placement diagnostics do not establish a faster file-heavy workflow. |
-| Test shortlisted Qwen3.6 Q6 | Downloading | Pinned mixed-precision artifact and matched Q4 control prepared; verification and collection remain. |
+| Test shortlisted Qwen3.6 Q6 | Reviewed; comparison pending | Python6/6 three times, TS5/6, SQL fails; private28/36 in35m. Both history lengths pass. Matched Q4 remains. |
 | Independently assess the research | Ongoing | Publisher-score attribution, cache sizing, template reuse and Windows loading claims checked against sources and measurements. |
 
 ## Business summary and current recommendation
@@ -276,7 +276,7 @@ a better overall workflow. Longer thinking is not a guarantee of correct
 instructions, citations or migrations. [Dense results](../../../reports/2026-10-16-gemma31.json),
 [template evidence](../../../reports/2026-10-16-gemma-template.json).
 
-## 4. Matched Qwen3.6 Q6/Q4 — prepared, not yet measured
+## 4. Matched Qwen3.6 Q6/Q4 — Q6 reviewed, Q4 pending
 
 The requested Q6 artifact is `Qwen3.6-35B-A3B-UD-Q6_K_XL.gguf`, 29.657 GiB,
 pinned revision `a483e9e6cbd595906af30beda3187c2663a1118c`. Current Q4 is
@@ -286,6 +286,74 @@ Among the 120 routed-expert tensors, Q4 uses 80 Q4_K, 37 Q5_K and 3 Q6_K;
 Q6 uses 78 Q6_K and 42 Q8_0. Most other quantized tensors are already Q8_0 in
 Q4. Counts are not parameter-weighted precision or quality scores.
 [Header evidence](../../../reports/2026-10-16-quantization-headers.json).
+
+Q6's full 31,843,777,504-byte artifact and pinned SHA256 verified on 17 October
+after two resumed early transfers. A fresh 22.826 GiB free RAM, 21.020 GiB
+available commit and 6,584 MiB free VRAM snapshot passed the loading gates.
+
+| Q6 loading measurement | Value |
+|---|---:|
+| GPU weight buffers | 4,114.80 MiB |
+| GPU attention KV / recurrent state | 680 / 62.81 MiB |
+| GPU compute workspace | 566 MiB |
+| Ready dedicated-process GPU counter | 5.525 GiB |
+| Resolved process resident cap | 17.778 GiB |
+| CPU mapped address span, **not resident RAM** | 27,644.08 MiB |
+
+These measurements establish loading behavior, not coding quality.
+The 40-block model uses `--gpu-layers all` with `--n-cpu-moe 37`: the first
+37 routed-expert blocks remain on CPU. The loader's aggregate “41/41 layers”
+offload line does not override that tensor placement. GPU cache and workspace
+also need VRAM; a low utilization percentage alone does not show unused capacity.
+
+| Q6 case | Whole task | Reviewed result |
+|---|---:|---|
+| Python seed 73 | 604.609s | Seven full source reads; implementation6/6, generated tests6/6. |
+| Python seed 74 | 453.922s | Seven full source reads; implementation6/6, generated tests6/7. |
+| Python seed 75 | 588.953s | Seven full source reads; implementation6/6, generated tests6/7. |
+| TypeScript / SQLite | 454.750s | Strict TS compiles,5/6; SQL foreign-key execution failure. |
+| 120-record history | 628.735s | Exact count, six facts, fresh revision 2 / retry 0 and honest read inventory pass. Maximum input: 11,396 tokens. |
+| 640-record history | 3,296.891s | Exact count, six facts, fresh revision 2 / retry 0 and honest read inventory pass. Maximum input: 51,411 tokens. |
+| Actual-instruction private audit | 2,099.672s | 19/24 semantic +4/6 citation +5/6 code =28/36. Fourteen sources,13 successful tool ranges,2 oversized-range errors. |
+
+The Python answers handle instruction precedence and absent facts correctly,
+but their bug explanations contain errors. Two self-test suites contradict the
+empty-dictionary contract; the third repeat improves retained nested-list
+mutation coverage. Original implementations and tests remain unchanged.
+
+TypeScript misses plain-object validation. The SQL drops a referenced table
+with foreign keys enabled; isolation confirms its execution failure. The final
+source inventory mistypes one filename even though the tool read the correct
+path. These are separate behavior and read-accounting issues. All five code
+isolation preflights passed after both inference servers had stopped normally.
+
+The private helper keeps aliases to local mutable values, failing one frozen
+check. Inspection also finds local-only keys would be dropped; the existing six
+checks do not cover that case, so report it separately without changing scores.
+The answer omits nested/shared reading details and affected Windows adapters,
+misstates when adapters should change, and gives the wrong shared-repository
+log location. It does not invent the missing service port or claim execution.
+Its14 listed files/ranges match delivery despite a15-file heading typo. Two
+oversized requests recovered to first200-line reads, but later source lines
+were available; its claim of an insufficient snapshot is incorrect.
+
+Public peak resident/private memory was17.778/7.077GiB; minima were2.883GiB
+freeRAM,13.190GiB availablecommit and981MiB freeVRAM. Private peak resident/
+private memory was17.244/7.055GiB; minima3.864GiB/13.364GiB/1021MiB respectively.
+Resolved resident caps differed between these launches; neither changed during
+collection. Private uncached prefill averaged21.81tokens/s and generation12.27.
+These are whole-server-lifetime resource samples on the shared desktop.
+[Reviewed evidence and per-turn timings](../../../reports/2026-10-17-qwen-precision.json).
+
+The larger history case shows both the cost and benefit of caching. Processing
+49,966 new tokens took 3,155.547s (15.83 tokens/s), followed by 291 generated
+tokens in 23.885s. The initial user phase reached its last stream event at
+3,248.360s. The changed-file phase then finished in another 48.515s, reusing
+51,105 tokens and processing 95 new ones before its fresh file read, then
+reusing 51,358 with 53 new. It did not request the unavailable ledger again, so
+this proves retained-fact recall and fresh-file handling, not read-error recovery.
+These two history lengths intentionally share the same target facts; they are
+length controls, not independent domain-knowledge questions.
 
 The frozen pair uses the same isolated runtime, native thinking, temperature
 .6, top-k 20, preservation true, context and expert-placement policy. It includes
@@ -298,6 +366,12 @@ usage must be measured. No profile, question or check was changed.
 Desktop usage and adaptive resident caps remain
 timing confounders. Fresh memory/VRAM/disk checks precede each load. Keep the
 verified Q4 baseline; do not infer Q6 superiority before answers are graded.
+
+After inference stopped, an exact comparison of all tokenizer-prefixed GGUF
+fields, including vocabulary, merges, special tokens and chat template, matched
+between Q4/Q6. The check read only10,943,779 metadata bytes per artifact; earlier
+full-file hashes establish weight identity. This removes a tokenizer mismatch
+as an explanation, but does not prove numerical or quality equivalence.
 
 ## 5. Critical interpretation of the research
 
@@ -313,6 +387,9 @@ records primary sources and disagreements:
   load with apps open despite the report's blanket capacity prediction.
 - Dense/MoE labels alone do not determine KV size or instruction reliability.
   Qwen Coder 30B is MoE. An active-parameter count is not stored weight size.
+- At64K, q4 KV would reduce this Qwen's attention payload from680to360MiB,
+  saving320MiB rather than the report's340. This is a pinned-source block-size
+  calculation, not a q4 compatibility or quality test; q8 stays fixed for the pair.
 - Neither “Q4 cannot cause errors” nor “Q6 fixes syntax” follows from the
   evidence. Precision effects require matched cases; interruption is unscored.
 - Initial Windows prefetch can cause pressure outside a process working set.
@@ -369,7 +446,7 @@ Chronological details and validations remain in [tasks](../../tasks.md) and
 | Item | Next step |
 |---|---|
 | Dense placement diagnostics | Reviewed: CPU-KV pair complete; GPU-KV short probe complete, 8K interrupted for VRAM and unscored. No unchanged retry. |
-| Q6 / matched Q4 | Verify download, collect repeated coding/history/private cases, review and isolate code. |
+| Q6 / matched Q4 | Q6 fully reviewed and isolated graded; collect and review the matched Q4 control before choosing. |
 | Final working setup | Choose from completed quality evidence, validate fresh capacity and any changed editor integration before promotion. |
 | Final report/publication | Reconcile this report and public summaries, run checks/audit, publish and report remaining limits. |
 
