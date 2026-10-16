@@ -1,17 +1,18 @@
 # Prompt log — Local Coding Lab
 
-Current phase, 17 October: Q6 public/private review and isolated grading are
-complete. Python6/6 three times, TS5/6, SQL foreign-key failure; private28/36
-including5/6 code. Both history cases pass. The matched Q4 control follows.
-Last quiet tooling validation: 27 tests, two PowerShell parses,
-147-file public audit and whitespace check passed. No replacement is selected.
+Current phase, 17 October: all five expanded research points are complete.
+Matched Q4 private31/36 in11m40s versus Q628/36 in35m; both public Python6/6
+three times, TS5/6, SQL failure and passing histories. Post-review checks find
+local-key loss and nested aliases beyond the frozen score. Retain Q4 and
+recommend its mapped apps-open policy; production/editor configuration is
+unchanged and inference is stopped. Final validation/publication is in progress.
 
 Last updated: 2026-10-17. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
-| 7 | 2026-10-16 | 10:23 | KV growth and remaining candidates | Research | In progress | [Entry](#memory-and-remaining-candidate-expansion) |
+| 7 | 2026-10-16 | 10:23 | KV growth and remaining candidates | Research | Five points completed; Q4 retained | [Entry](#memory-and-remaining-candidate-expansion) |
 | 1 | 2026-10-14 | 22:35 | Establish reusable research repository | Infrastructure | Done | [Entry](#repository-creation) |
 | 2 | 2026-10-14 | 23:12 | Start research: controlled Qwen placement | Research | Done | [Entry](#research-placement-experiment) |
 | 3 | 2026-10-15 | 00:47 | Autonomous full research campaign | Research | In progress | [Entry](#autonomous-research-campaign) |

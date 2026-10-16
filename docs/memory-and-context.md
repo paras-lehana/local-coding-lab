@@ -292,3 +292,31 @@ it then waits30seconds. A desktop-process counter is already larger than the
 contemporaneous device-used total, so this cannot establish exclusive ownership
 of every byte. No monitoring floor is changed, and no retrospective cause is
 assigned to the dense GPU-cache stop.
+
+
+## Completed apps-open precision comparison
+
+The mapped Q4 control peaks at16.384GiB resident RAM and6.213GiB private commit
+in the public suite, leaving at least3.696GiB system RAM and1909MiB device VRAM
+free. Its private audit scores31/36 in11m40s. Q6 peaks at17.778GiB resident and
+7.077GiB private commit, with2.883GiB RAM and981MiB VRAM minimum headroom; it
+scores28/36 in35m. These are different resident caps on a shared desktop, not
+an exclusive total-memory partition or proof all weights fit physically.
+
+Keep64K q8 GPU KV and native thinking. CPU KV is an option when VRAM is the
+binding limit; it does not improve intelligence or guarantee persistent files.
+The old non-mapped launcher can require about24GiB private commit. At the
+closeout snapshot only18.4GiB commit was available before loading, so it was
+not restarted. The mapped profile's guarded alternative is:
+
+```powershell
+python lab.py --data-dir E:\llm\lab-data run --profile qwen36-q4-noprefetch64-control --runtime-dir E:\llm\runtimes\b11562-noprefetch-v1 --model-path E:\llm\models\Qwen3.6-35B-A3B-UD-Q4_K_M.gguf --port 8081 --experimental --apply
+```
+
+The isolated runtime must be built/verified as documented in
+[the runtime experiment](../experiments/llama-mmap-prefetch/README.md); do not
+substitute stock binaries silently. The frozen profile intentionally retains
+its original pre-test metadata. This command is an explicit lab start, not a
+production-editor promotion; current editor aliases/settings remain unchanged.
+It retains physical/commit/VRAM/temperature/WHEA guards and a resident cap based
+on fresh headroom. See [the completed pair](../reports/2026-10-17-qwen-precision.json).

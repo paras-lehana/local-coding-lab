@@ -35,6 +35,19 @@ the saved return codes and unittest output; a generated test can fail while
 the separately checked implementation passes. Do not call such a failure a
 model syntax error. The runner returns nonzero on either failed grading pass.
 
+Run grading invocations sequentially on the shared WSL host. On 17 October,
+concurrent invocations passed their namespace probes but three later processes
+failed with `bwrap: fork: Resource temporarily unavailable`. Preserve those
+outputs as infrastructure failures, then retry unchanged inputs and limits in
+new result files. Record the selected result and both hashes; never count a
+process-creation failure as an incorrect model answer or relax isolation.
+
+A passing finite suite is not proof of a correct implementation. The frozen
+private merge checks missed local-only keys and nested mutable values inside
+shallow copies. Additional checks exposed both after source review. Preserve
+the frozen scores and label these as post-review diagnostics, including when
+they were prepared; do not retrospectively call them held out.
+
 Inspect **all visible assistant turns** in `turns.json`, not just `answer.txt`.
 The latter contains the final tool-free message. A model may provide an
 implementation before another tool call and finish with the migration/tests.

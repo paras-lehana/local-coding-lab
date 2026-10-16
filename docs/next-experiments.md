@@ -11,7 +11,7 @@ Exact retired weight files were deleted only after evidence preservation.
 
 ## Completed campaign and remaining quality limits
 
-**16 October expansion is active.** Context allocation/recall measurements are
+**16 October expansion is complete.** Context allocation/recall measurements are
 complete through about120K input tokens. Coder-Next80B completed public coding
 and history checks after a stock mmap startup failure and an isolated prefetch
 opt-out. Its private audit reached the tool-turn limit without a final answer;
@@ -20,7 +20,10 @@ SQL foreign-key failure, passing10K history and private26/36 in2h00m34s. The fro
 dense CPU-KV layer-placement pair is complete: short generation improves,8K
 latency does not. A GPU-KV follow-up stops during8K prefill below400MiB freeVRAM;
 its completed2K latency is unchanged. No unchanged retry is queued. The matched
-QwenQ4/Q6 pair follows with explicit six-hour whole-prompt limits.
+QwenQ4/Q6 pair is reviewed: private31/36 in11m40s versus28/36 in35m; both
+three public Python6/6, TS5/6 and SQL failure. Retain Q4. Post-review checks
+find local-key loss and nested aliases in both private helpers. No automatic
+inference queue remains; mapped Q4 editor validation is a separate optional step.
 Previous capacity/calibration exclusions
 are historical, not completed quality verdicts. See the
 [current task report](tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md).

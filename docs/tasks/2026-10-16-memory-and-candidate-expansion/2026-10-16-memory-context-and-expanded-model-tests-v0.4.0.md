@@ -1,18 +1,18 @@
 # Memory, context and expanded local-model tests — v0.4.0
 
-**Status: in progress, updated 17 October 2026, Asia/Kolkata.** The growing-context
-measurements, Coder-Next attempt and dense Gemma native quality review are
-complete. Dense CPU-KV placement diagnostics are complete; the GPU-KV follow-up
-was stopped for low VRAM. The matched Qwen Q6/Q4 comparison remains. No
-replacement has been selected.
+**Status: all five requested research points completed and reviewed, 17 October 2026.**
+The matched Q4/Q6 comparison is complete. Retain Qwen3.6 Q4 for this workstation
+and workflow; the larger models did not establish a worthwhile improvement.
+The mapped Q4 control is the recommended apps-open candidate. Production/editor
+configuration is unchanged; this is not a new editor-validation claim.
 
 | Owner point | Status | Result / next action |
 |---|---|---|
 | Explain 64 GB use and test growing KV | Measured | Actual input from 2K to 120K, CPU/GPU cache placement, reused history and omitted history tested. Main KV reserves capacity at load. |
 | Test Qwen3-Coder-Next 80B | Tested; not promoted | Python 6/6, TS 4/6, SQL fails. History passes. Private audit repeats wrong paths and reaches its tool-turn limit without a final answer. |
 | Retest Gemma 4 31B dense | Reviewed; not promoted | Public/private Python helpers pass 6/6; TS 5/6, SQL fails. Private instruction audit 26/36 in 2h00m34s. Placement diagnostics do not establish a faster file-heavy workflow. |
-| Test shortlisted Qwen3.6 Q6 | Reviewed; comparison pending | Python6/6 three times, TS5/6, SQL fails; private28/36 in35m. Both history lengths pass. Matched Q4 remains. |
-| Independently assess the research | Ongoing | Publisher-score attribution, cache sizing, template reuse and Windows loading claims checked against sources and measurements. |
+| Test shortlisted Qwen3.6 Q6 | Done; retain Q4 | Matched Q4 private31/36 in11m40s versus Q628/36 in35m; both three Python6/6, TS5/6, SQL fails. Both history lengths pass. |
+| Independently assess the research | Done | Publisher-score attribution, cache sizing, template reuse and Windows loading claims checked against sources and measurements. |
 
 ## Business summary and current recommendation
 
@@ -25,7 +25,11 @@ The two larger candidates now have actual evidence. Coder-Next can run through
 file-backed paging, but failed the real-instruction workflow. Dense Gemma
 produced a correct private merge helper after a long wait, yet its overall
 instruction answer was weaker than the historical Qwen reference. Neither is
-promoted. Q6 still deserves the requested matched test before a final choice.
+promoted. The matched Q6 trial also fails to establish a quality gain: Q4
+completes the private instruction audit at31/36 in11m40s; Q6 scores28/36 in35m.
+These small cases support keeping Q4, not a universal claim that lower precision
+is smarter. Both models still produce incorrect tests, merge defects and unsafe
+SQLite migrations. Use independent tests and source checks.
 
 All scores here are small local cases, not universal model rankings. Instruction
 and citation assessments are by Codex, without independent human review;
@@ -276,7 +280,7 @@ a better overall workflow. Longer thinking is not a guarantee of correct
 instructions, citations or migrations. [Dense results](../../../reports/2026-10-16-gemma31.json),
 [template evidence](../../../reports/2026-10-16-gemma-template.json).
 
-## 4. Matched Qwen3.6 Q6/Q4 — Q6 reviewed, Q4 pending
+## 4. Matched Qwen3.6 Q6/Q4 — completed comparison
 
 The requested Q6 artifact is `Qwen3.6-35B-A3B-UD-Q6_K_XL.gguf`, 29.657 GiB,
 pinned revision `a483e9e6cbd595906af30beda3187c2663a1118c`. Current Q4 is
@@ -365,13 +369,93 @@ usage must be measured. No profile, question or check was changed.
 [Public task plan and identities](../../../reports/2026-10-16-qwen-precision-plan.json).
 Desktop usage and adaptive resident caps remain
 timing confounders. Fresh memory/VRAM/disk checks precede each load. Keep the
-verified Q4 baseline; do not infer Q6 superiority before answers are graded.
+verified Q4 baseline. Completed results below do not establish a Q6 advantage.
 
 After inference stopped, an exact comparison of all tokenizer-prefixed GGUF
 fields, including vocabulary, merges, special tokens and chat template, matched
 between Q4/Q6. The check read only10,943,779 metadata bytes per artifact; earlier
 full-file hashes establish weight identity. This removes a tokenizer mismatch
 as an explanation, but does not prove numerical or quality equivalence.
+
+### Matched Q4 results and decision
+
+All six public cases and the private audit completed with normal server stops.
+Q4's GPU buffers are3381.34MiB weights,680MiB attention KV,62.81MiB state and
+408MiB workspace; its readiness dedicated-process counter was4.654GiB. The
+public/private resident caps were16.384/15.954GiB, fixed during each run.
+
+| Case | Q4 whole time / result | Q6 whole time / result |
+|---|---|---|
+| Python73 | 302.063s; implementation6/6, own tests6/7 | 604.609s;6/6, own6/6 |
+| Python74 | 313.484s;6/6; standalone tests0/7, unchanged combined7/7 | 453.922s;6/6, own6/7 |
+| Python75 | 248.922s;6/6; standalone tests0/7, unchanged combined7/7 | 588.953s;6/6, own6/7 |
+| TypeScript / SQLite | 251.062s; strict TS5/6, SQL FK execution failure | 454.750s; same outcomes |
+| 120-record history | 175.859s; all checks pass,10959max input | 628.735s; all pass,11396max input |
+| 640-record history | 724.063s; all checks pass,51580max input | 3296.891s; all pass,51411max input |
+| Actual-instruction audit | 699.656s;20 semantic+5 citations+6 code=31/36 | 2099.672s;19+4+5=28/36 |
+
+Q4's seed73 test expects a removed list key. Seeds74/75 omit the import needed
+to run the tests separately; concatenating the unchanged supplied code/tests
+passes all seven. These packaging diagnostics are reported beside, not instead
+of, the original NameErrors. Three concurrent grader processes encountered
+fork failures after passing isolation preflight. Preserved sequential retries
+use the same code, checks and resource limits; infrastructure errors are unscored.
+
+Q4's private answer reads15 distinct sources including the supplied entry,
+with16 successful tool ranges and two oversized-range errors. It recovers to
+read all487 logging lines; only coding lines201-243 remain unread, honestly
+disclosed. Its inventory lists15 actual sources under a16-file heading. It
+correctly gives the shared log destinations, missing-port abstention and cache
+limits, but omits parts of nested/shared discovery and adapter review. Its
+written merge example wrongly restores a default list despite its own code
+preserving the empty local list. This loses the merge fact and citation point.
+
+The private Q4 function passes the frozen6/6 groups, but that suite's containers
+are too shallow to expose all aliasing. Source review prompted separate tests:
+both Q4/Q6 lose local-only keys and return an empty result for an empty base.
+These two diagnostics were prepared after Q6 and before Q4's private answer.
+After both answers, two nested-alias diagnostics find Q4 aliases both retained
+local and newly inserted base values; Q6 aliases local values but deep-copies
+base values. Original31/36 and28/36 scores stay unchanged. Neither helper is
+correct across the full contract. These are post-review tests, not held out.
+
+| Whole-server resource samples | Q4 public / private | Q6 public / private |
+|---|---:|---:|
+| Peak resident RAM, GiB | 16.384 /15.954 | 17.778 /17.244 |
+| Peak private commit, GiB | 6.213 /6.169 | 7.077 /7.055 |
+| Minimum free system RAM, GiB | 3.696 /4.221 | 2.883 /3.864 |
+| Minimum available commit, GiB | 13.594 /13.828 | 13.190 /13.364 |
+| Minimum device free VRAM, MiB | 1909 /1907 | 981 /1021 |
+| Maximum GPU core temperature, C | 58 /58 | 48 /47 |
+
+The larger Q4 ledger turn processes49931 new tokens in627.185s (79.61tokens/s),
+versus Q6's49966 in3155.547s (15.83tokens/s). Its cached changed-file phase is
+53.610s versus48.515s, but final generated length is969 versus338 tokens.
+Do not treat this follow-up as an isolated cache-speed result. Both recover the
+facts without re-requesting the unavailable ledger; read-error recovery is not
+exercised in these history cases. Separate private oversized-read recovery is.
+
+All seven initial outgoing request JSON objects match, including messages,
+tools and sampling. Subsequent text/tool requests differ. Identical tokenizer
+metadata does not equalize desktop load, file-cache warmth or adaptive resident
+caps. The measurements establish practical outcomes here, not a causal4.5x
+quantization-speed law or statistically certain quality ranking.
+
+**Choice:** retain `Qwen3.6-35B-A3B-UD-Q4_K_M.gguf`. Prefer the measured mapped
+`qwen36-q4-noprefetch64-control` policy for apps-open use:64K context, q8 K/V on
+GPU, native thinking/preservation,4 generation/8 batch threads,512/128 batches,
+37 CPU expert blocks, all other eligible tensors on GPU, four checkpoints and
+cache-ram0. Explicit isolated runtime identity and memory guards are required.
+`--reasoning-budget -1` removes a separate reasoning ceiling; output/context
+limits and the task deadline still apply. It is not an OpenAI-style xhigh mode.
+
+The frozen profile retains its pre-test metadata for reproducibility; this
+report supplies its completed status. A changed production/editor integration
+still needs actual UI checks. The15October non-mapped profile has historical
+editor evidence, but about24GiB private commit; the fresh unloaded host has only
+about18.4GiB commit available, so it is deliberately not restarted unchanged.
+All inference is stopped at this research closeout; the recommended mapped
+profile can be explicitly started with the guarded command in the memory guide.
 
 ## 5. Critical interpretation of the research
 
@@ -402,7 +486,8 @@ records primary sources and disagreements:
   Gemma MTP. None is selected or tested here. Repacking can add committed CPU
   allocations; MTP requires measured acceptance and total latency, not an
   assumed 2x gain. A newer zero-free-VRAM runtime fix does not diagnose these
-  dense delays or earlier restarts. Finish the requested matrix first.
+  dense delays or earlier restarts. The requested matrix is now complete; no
+  further candidate download or inference is automatically queued.
 
 ## Technical summary, validation and reproducibility
 
@@ -424,13 +509,19 @@ The isolated runtime is `b11562-noprefetch-v1` at stock commit
 `7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009`.
 Stock binaries remain preserved. [Controls](../../../reports/2026-10-16-runtime-controls.json).
 
-Latest quiet-interval tooling check: 27 offline tests pass in 10.205s; both
-public PowerShell scripts parse. All four new Gemma isolated executions pass
-the namespace preflight, including the deliberately preserved standalone-test
-failure. Code runs only with selected read-only files, no host homes/drives or
-network, and time/memory limits. The updated profile check passes; the public
-audit reports zero findings in 146 files,
-and the whitespace check passes. No new editor UI validation is claimed.
+Final quiet-interval validation:27 offline tests pass in10.134s; both public
+PowerShell scripts parse;148 Git-visible files pass the public-content audit
+with zero findings; whitespace check passes. No inference overlapped these
+checks. Q4/Q6 isolated code and additional diagnostic runs pass namespace
+preflight; preserved code failures are model outcomes, not lab-test failures.
+No new editor UI validation is claimed.
+
+After preserving reviewed evidence, the retained Q4 baseline and all three
+nonleaders were fully size/SHA-verified again. Only the exact Coder-Next80B,
+Gemma31 and QwenQ6 weight files were deleted, freeing91.291GiB. Q4 and Gemma26
+remain, together with the tiny runtime-control fixture. Reports, raw results,
+source snapshots and binaries remain intact. No directory was deleted.
+[Retirement identities and receipts](../../../reports/2026-10-17-retirement.json).
 
 Maintainer sources actually read include project/parent guides, the maintained
 Windows/shared Codex and Claude entry points, platform/logging/Python/testing
@@ -441,19 +532,26 @@ Chronological details and validations remain in [tasks](../../tasks.md) and
 [prompt history](../../prompts.md). Private raw evidence is under
 `local-data/2026-10-16-expansion/`; reports publish reviewed aggregates only.
 
-## Pending work and recommendations
+## Completed scope and optional next experiments
 
-| Item | Next step |
+All five requested research points are complete, with unsuccessful or interrupted
+experiments preserved and unscored where no final answer exists. No candidate
+passed every correctness check. Optional work, not part of a hidden active queue:
+
+| Item | Status / next condition |
 |---|---|
-| Dense placement diagnostics | Reviewed: CPU-KV pair complete; GPU-KV short probe complete, 8K interrupted for VRAM and unscored. No unchanged retry. |
-| Q6 / matched Q4 | Q6 fully reviewed and isolated graded; collect and review the matched Q4 control before choosing. |
-| Final working setup | Choose from completed quality evidence, validate fresh capacity and any changed editor integration before promotion. |
-| Final report/publication | Reconcile this report and public summaries, run checks/audit, publish and report remaining limits. |
+| Mapped Q4 in real editors | Benchmark recommendation only; repeat greeting, source reads and changed-file/history UI checks before claiming a new working editor profile. |
+| Instruction coverage | Test a required source/range manifest and a real repository patch before broader autonomous edits. |
+| Dense improvements | Gemma preserved-thinking inference A/B, repacking and MTP remain untested; each needs its own capacity and compatibility plan. |
+| Additional dense family | Qwen3.5-27B is a possible future comparison, not a downloaded/tested replacement. |
+| q4 KV | Only calculated; saves320MiB at64K here. Keep q8 without evidence a quality trade-off is worthwhile. |
+| Earlier restarts | Cause unresolved; these results do not establish a failing component or validate RAM tuning. |
 
-Keep independent tests for mutation/type edges and database migrations. Require
-an actual source inventory before trusting instruction-heavy answers. Maintain
-project decisions in versioned notes and re-read changed files. GPU utilization
-alone is not the objective: completed, correctly grounded work is.
+Use Q4 for supervised Python changes, configuration explanations and file-backed
+questions; require a source inventory, independent mutation/type tests and
+disposable-database checks. Maintain durable decisions in versioned notes and
+re-read changed files. GPU utilization alone is not the objective: completed,
+correctly grounded work is.
 
 ## Source provenance
 

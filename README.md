@@ -8,10 +8,11 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Status: v0.4.0, experimental; expanded memory/candidate tests in progress.**
+**Status: v0.4.0, experimental; expanded memory/candidate comparison complete.**
 The owner now accepts slower tests for Coder-Next 80B, dense Gemma31 and QwenQ6;
 see the [new task record](docs/tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md).
-The working selection is unchanged pending complete evidence. Follow the
+The completed comparison retains Qwen3.6 Q4; mapped apps-open settings are
+recommended from benchmarks, with new editor validation still separate. Follow the
 [live campaign evidence](reports/2026-10-15-campaign.md). Repeated coding,
 long-document, changed-file and actual-instruction tests now cover Qwen,
 Gemma, GLM, Kimi and Qwen Coder. A working Qwen profile is selected and its
@@ -20,6 +21,11 @@ file-read and changed-file/history probes. Both still miss Python-specific
 instruction routing; integration success is not answer-quality certification.
 [Editor evidence](reports/2026-10-15-editor-results.json).
 Clean-machine installation remains unvalidated.
+
+At the17October research closeout, inference is stopped and editor settings
+remain unchanged. The older non-mapped launcher needs more commit headroom than
+is currently available. See the [guarded mapped alternative](docs/memory-and-context.md#completed-apps-open-precision-comparison)
+for an explicit lab start; new editor validation is not yet claimed.
 
 **New memory result:** Qwen Q4 completed a 119,943-token recall prompt in 12m13s
 with all KV on CPU, or 10m10s with default GPU/CPU placement. Both recovered the
@@ -50,8 +56,11 @@ passes 5/6 and SQLite fails foreign-key enforcement. Its actual-instruction
 audit scores 28/36 in 35 minutes, including a mutable-alias bug. Both history
 cases pass. The larger
 case reaches 51,411 input tokens and takes 54m57s overall, while its cached
-changed-file follow-up takes about 49s. Matched Q4 collection still follows;
-no precision winner is selected. [Reviewed Q6 evidence](reports/2026-10-17-qwen-precision.json). Their
+changed-file follow-up takes about49s. Matched Q4 completes three Python6/6,
+TS5/6 and the same SQL failure; its large history passes in12m04s with a54s cached
+follow-up. Its private audit scores31/36 in11m40s. Additional checks reveal
+local-key loss and nested aliases in both private helpers, outside those frozen
+scores. Keep Q4; Q6 did not demonstrate an improvement. [Matched precision evidence](reports/2026-10-17-qwen-precision.json). Their
 [six-task public plan](reports/2026-10-16-qwen-precision-plan.json) is published
 before collection. [Dense loading evidence](reports/2026-10-16-gemma31.json).
 
@@ -165,3 +174,5 @@ Run `python -m unittest discover -s tests -v` and
 `python scripts/audit_public.py` before contributing. See [CONTRIBUTING.md](CONTRIBUTING.md)
 and [SECURITY.md](SECURITY.md). Original lab code/docs are MIT; external research,
 model weights and llama.cpp retain their respective rights/licenses.
+
+17October: [matched Q4/Q6 results](reports/2026-10-17-qwen-precision.json) complete; [verified candidate retirement](reports/2026-10-17-retirement.json) frees91.291GiB while retaining Q4/Gemma26 and all reports.

@@ -1,0 +1,46 @@
+{
+  "status": "completed",
+  "started_utc": "2026-10-16T22:23:06.045172+00:00",
+  "authorization": "Owner15October autonomous test/report/delete instruction; reviewed nonleaders only.",
+  "baseline_retained_verified": "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+  "baseline_sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61",
+  "reports_sha256": {
+    "reports/2026-10-16-coder-next.json": "5ceffc4a819fa0228300f57e5c4f58cb840dc44a51a568d5b4bc71b053078cc3",
+    "reports/2026-10-16-gemma31.json": "3127f7aae3edb9c90e61cb1ad0aef78cc79ab28f96ea8b3daf44d3e3f9e593e0",
+    "reports/2026-10-16-dense-placement.json": "a14e158009ac14345aeaa2ea9a3cf7536c7f8ac02a3282c04ad5fbb85221f1b4",
+    "reports/2026-10-17-qwen-precision.json": "3b46b5bff549d1efa47ba547f5238aa854c84e054777403dc036545b369c100c"
+  },
+  "before_free_bytes": 5659881472,
+  "artifacts": [
+    {
+      "model": "qwencoder-next-q4",
+      "filename": "Qwen3-Coder-Next-Q4_K_M.gguf",
+      "bytes": 48528320544,
+      "sha256": "9e6032d2f3b50a60f17ce8bf5a1d85c71af9b53b89c7978020ae7c660f29b090",
+      "status": "retired"
+    },
+    {
+      "model": "gemma4-31b-qat",
+      "filename": "gemma-4-31B_q4_0-it.gguf",
+      "bytes": 17651001568,
+      "sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
+      "status": "retired"
+    },
+    {
+      "model": "qwen36-q6",
+      "filename": "Qwen3.6-35B-A3B-UD-Q6_K_XL.gguf",
+      "bytes": 31843777504,
+      "sha256": "f6b6c6d5cfa6f00d964eeb7add28eb14ce7481734d506b90681007678cd2c484",
+      "status": "retired"
+    }
+  ],
+  "finished_utc": "2026-10-16T22:24:11.919920+00:00",
+  "after_free_bytes": 103682977792,
+  "retired_bytes": 98023099616,
+  "retained_models": [
+    "gemma-4-26B_q4_0-it.gguf",
+    "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+    "stories260K.gguf"
+  ],
+  "note": "Reports, source snapshots, raw responses, grades and runtime binaries retained. No directory deletion."
+}

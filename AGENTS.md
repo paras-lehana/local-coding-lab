@@ -53,6 +53,16 @@ Shared instructions and frozen benchmark source copies remain unchanged.
 Before reporting an experiment as running, verify its current trial/stop receipt
 and process liveness; the last server log line can be stale. Keep grading/builds
 out of constrained inference intervals after the16October history RAM stop.
+Run isolated graders sequentially; preserve process-creation failures and their
+unchanged-input retries separately, as described in docs/grading.md. Keep
+post-review diagnostic findings separate from frozen benchmark scores.
+
+The expanded matrix is now reviewed in the same task report. Matched mapped
+Q4 scores31/36 versus Q6's28/36 on the private audit; both retain coding defects.
+The mapped Q4 control is the recommended apps-open candidate, not a newly
+editor-validated replacement. Frozen profiles retain their original metadata;
+consult the report for current evidence. The old non-mapped launcher may need
+about24GiB available commit, so physical RAM alone is not a sufficient start gate.
 
 The15October working choice is `profiles/qwen36-instructions-64k.json`.
 Read the [forwardable report](docs/tasks/2026-10-15-autonomous-model-campaign/2026-10-15-model-comparison-and-editor-validation-v0.3.9.md)

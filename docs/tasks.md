@@ -9,8 +9,44 @@ Last updated: 2026-10-17 (Asia/Kolkata); continuation of the16October expansion.
 | 1 | Measure RAM and growing KV context | Measured | 2K-120K occupancy, fixed KV reservations, CPU/GPU placement, history retention and omission tested. |
 | 2 | Test Qwen3-Coder-Next 80B | Tested; audit failed | Public code/history reviewed; private audit reaches16 tool turns without a final in67m55s, so no private quality score. |
 | 3 | Retest Gemma 31B dense | Reviewed; not promoted | Private26/36; Python6/6, TS5/6, SQLFKfailure. CPU-KV pair complete; GPU-KV short answer unchanged,8K stopped at394MiB freeVRAM and unscored. |
-| 4 | Test Qwen3.6 Q6 | Reviewed; matched control pending | Python6/6 three times, TS5/6, SQLFKfailure; private28/36 including5/6 code in35m. Both history lengths pass. Matched Q4 remains. |
-| 5 | Independent research and report | In progress | Supplied research re-read; primary sources and runtime inspected. |
+| 4 | Test Qwen3.6 Q6 | Done; retain Q4 | Q4 private31/36 in11m40s versus Q628/36 in35m. Both three Python6/6, TS5/6, SQL failure; histories pass. Separate diagnostics find local-key loss and nested aliases. |
+| 5 | Independent research and report | Done | Research reread and corrected against primary sources, pinned code and measured results; all five points reconciled in the canonical report. |
+
+03:53 IST final comparison: all Q4 public/private source reviews and isolated
+grading complete. Frozen private20+5+6=31/36; Q628/36. Q4 standalone generated
+tests74/75 fail missing imports; unchanged combined variants pass7/7. Three
+concurrent grader fork failures retained, sequential unchanged-limit retries
+complete. Both helpers fail two post-Q6 local-key diagnostics; post-both-answer
+nested-alias tests fail2/2 for Q4 and1/2 for Q6, separate from frozen scores.
+Q4 public peakRSS16.384/private6.213GiB,minRAM3.696/VRAM1909MiB; private
+peakRSS15.954/private6.169GiB,minRAM4.221/VRAM1907MiB. No inference active.
+Fresh unloaded18.93GiB physical/18.39GiB commit available; do not restart the
+old non-mapped ~24GiB-commit launcher. Recommend measured mapped Q4 policy,
+native thinking/64Kq8, with new editor validation separate. Existing editor
+settings preserved. No WHEA since00:28 in the checked window; boot unchanged.
+Used context-maintenance skill for project grading lessons; reviewed shared
+Codex/Claude/Windows routing, no adapter change needed, frozen sources untouched.
+Three nonleaders queued for exact verified-file retirement; Q4/Gemma26 retained.
+
+03:30 IST matched Q4 public completes normally. TS/SQL251.062s reviewed;
+plain-object validation missing, SQL FK failure predicted, false JS empty-array
+truthiness explanation. Both histories pass:175.859s/10959maxinput and724.063s/
+51580maxinput. Large49931new tokens627.185s; cached changed-file53.610s versus
+Q6's48.515s with different generated length. Private PID61712/run032930 starts,
+resident cap15.954GiB; no heavy grading during inference. All raw code preserved;
+five Python packaging runs, TS/SQL, private grade and separate local-only-key
+diagnostics await quiet review/execution. Production selection unchanged.
+
+03:11 IST matched Q4 checkpoint: published74b76e7 passesCI38969216780.
+Q4 controller5621, ownedPID71560, explicit isolatedruntime, resident cap16.384GiB.
+GPUweights3381.34MiB/KV680/state62.81/compute408; readinessGPUcounter4.654GiB.
+Three public Python answers complete302.063/313.484/248.922s; all visible content
+and seven delivered sources per case reviewed. Code appears correct, but own
+seed73 list test expects a removed key;74/75 omit imports. Preserve standalone
+and labeled unchanged combined forms; isolated grading waits until all inference
+ends. TypeScript/SQL active. A separate post-Q6 local-only-key diagnostic is
+prepared before Q4 private answer, outside frozen scores. No new boot/WHEA since
+Q6 launch in the inspected event window; no hardware-cause conclusion.
 
 02:54 IST quiet validation:27 offline tests pass, both PowerShell scripts parse,
 147-file public audit has0findings and git diff whitespace check passes. Frozen
@@ -435,3 +471,6 @@ Current recommendations:
 | Review SQLite migrations on disposable copies | High | Open |
 | Keep durable decisions in versioned notes and re-read changed files | High | Open |
 | Preserve QwenQ4 and lower-memory Gemma fallback | High | Done |
+
+
+03:55 IST17October closeout validation:27 tests pass10.134s;2PSparsers,148-file public audit0findings and diffcheck pass. Full baseline and three candidate SHA/size verification completed; exact80B/Gemma31/Q6 files retired91.291GiB, Q4/Gemma26 and all evidence retained. Owned observer stop marker set. No inference or new UI test active. All five research points complete; publish final results next.
