@@ -573,3 +573,35 @@ correctly grounded work is.
 > - Reread the report and you dont read it blindly, its for you to think what else can be done based on its reasoning, have your research and reaosing too, you have full system access and you can just try things, get stats, and try experiements, its only for you to fill you with good starting and knowledge, but you are free to test things more based on what you learnt from the system experiement and from the theory report gave you.
 >
 > Complete all these points one by one.
+
+
+## Final publication and change record
+
+Evidence commit `116a67d` on `main` is published. Both Windows and Ubuntu jobs
+pass in [CI38975676188](https://github.com/paras-lehana/local-coding-lab/actions/runs/38975676188).
+All152 relative Markdown file links resolve; this check does not validate anchors
+or external URLs. The owned resource observer stopped normally; no automatic
+inference queue remains. The exact user-facing A-G closeout is in the prompt log.
+
+| Changed file | Purpose |
+|---|---|
+| `AGENTS.md` | Sequential isolation, frozen-score and commit-headroom guidance |
+| `README.md` | Completed recommendation and stopped-server state |
+| `docs/grading.md` | Infrastructure retries and post-review diagnostic limits |
+| `docs/memory-and-context.md` | Matched memory measurements and guarded mapped start |
+| `docs/models.md` | Completed Q6 comparison and retention disposition |
+| `docs/next-experiments.md` | Close the requested matrix; distinguish optional follow-ups |
+| `docs/prompts.md` | Current status and exact prepared closeout |
+| `docs/tasks.md` | Final scores, checks, retirement and publication chronology |
+| `docs/tasks/README.md` | Completed task index |
+| This task report | One forwardable result for all five owner points |
+| `reports/2026-10-17-qwen-precision.json` | Matched Q4/Q6 results, timings, source checks, retry provenance and diagnostics |
+| `reports/2026-10-17-retirement.json` | Verified identities and exact-file retirement receipts |
+| `research/reviews/2026-10-14-gemini.md` | Completed precision interpretation; original research unchanged |
+
+No public executable code, model profile, frozen source or assertion changed in
+this final documentation update, so the lab version remains0.4.0. Local-only
+review/export helpers never execute model code on Windows. The installed
+dependencies and editor settings remain unchanged. Shared instruction ownership
+was checked through the maintenance skill; project guidance changed, shared
+adapters did not need routing changes. Earlier unrelated shared-repo edits remain.

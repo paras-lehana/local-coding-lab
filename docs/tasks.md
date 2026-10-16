@@ -474,3 +474,6 @@ Current recommendations:
 
 
 03:55 IST17October closeout validation:27 tests pass10.134s;2PSparsers,148-file public audit0findings and diffcheck pass. Full baseline and three candidate SHA/size verification completed; exact80B/Gemma31/Q6 files retired91.291GiB, Q4/Gemma26 and all evidence retained. Owned observer stop marker set. No inference or new UI test active. All five research points complete; publish final results next.
+
+
+Final publication: evidence116a67d pushed to main; CI38975676188 succeeds on Windows and Ubuntu.152 relative Markdown file links resolve (anchors/external URLs not validated by that check). Exact prepared A-G summary saved in prompts.md before the visible response. Owned observer34860 stopped normally. No server or inference queue active; all five requested research points complete. Optional mapped-profile editor regression remains explicit, not claimed done.

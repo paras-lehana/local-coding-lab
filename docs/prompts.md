@@ -5,13 +5,14 @@ Matched Q4 private31/36 in11m40s versus Q628/36 in35m; both public Python6/6
 three times, TS5/6, SQL failure and passing histories. Post-review checks find
 local-key loss and nested aliases beyond the frozen score. Retain Q4 and
 recommend its mapped apps-open policy; production/editor configuration is
-unchanged and inference is stopped. Final validation/publication is in progress.
+unchanged and inference is stopped. Evidence116a67d is published; Windows/Ubuntu CI38975676188 passes. Final closeout follows below.
 
 Last updated: 2026-10-17. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
+| 8 | 2026-10-17 | 04:00 | Complete expanded comparison | Research | Done | [Closeout](#expanded-comparison-closeout) |
 | 7 | 2026-10-16 | 10:23 | KV growth and remaining candidates | Research | Five points completed; Q4 retained | [Entry](#memory-and-remaining-candidate-expansion) |
 | 1 | 2026-10-14 | 22:35 | Establish reusable research repository | Infrastructure | Done | [Entry](#repository-creation) |
 | 2 | 2026-10-14 | 23:12 | Start research: controlled Qwen placement | Research | Done | [Entry](#research-placement-experiment) |
@@ -738,3 +739,66 @@ optional brief mode was exercised. No publication/checks or model retirement yet
 
 
 02:53 IST17October Q6 review checkpoint: all six public and private cases completed; five isolated grading preflights pass after inference stops. Python6/6 three times, own tests6/6,6/7,6/7; strictTS5/6, SQLiteFKfailure. Private28/36=19semantic+4citation+5code in2099.672s. Mutable alias confirmed; source review also finds local-only-key loss outside frozen check coverage.14actualsources/13ranges/2oversizeerrors; no port fabrication or execution claim. Full tokenizer metadata matches across Q4/Q6. Public report2026-10-17-qwen-precision.json added; matchedQ4 remains, production unchanged.
+
+
+## Expanded comparison closeout
+
+User prompt: "continue"; complete the five memory/model/research pointers preserved in the canonical task report.
+
+**A. Business summary**
+
+All five research points are complete. **My choice remains Qwen3.6-35B-A3B UD-Q4_K_M.** The alternatives did not demonstrate a better overall result for your instruction-heavy coding workflow.
+
+| Model | Actual-instruction audit | Time | My take |
+|---|---:|---:|---|
+| **Qwen3.6 Q4** | **31/36** | **11m40s** | Keep it; strongest practical result in this comparison |
+| Qwen3.6 Q6 | 28/36 | 35m | More memory, no demonstrated quality gain |
+| Gemma 4 31B dense QAT | 26/36 | 2h00m34s | Correct private merge helper, weaker instruction coverage |
+| Qwen3-Coder-Next 80B Q4 | Unscored | 67m55s | Repeated unavailable paths; reached the tool limit without a final answer |
+
+These are small local tests, not universal rankings. [Full report and evidence](https://github.com/paras-lehana/local-coding-lab/blob/main/docs/tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md).
+
+**B. Technical summary**
+
+- **RAM/KV:** usable RAM is 63.91 GiB; applications/Windows occupied about 42.76 GiB at the initial snapshot. Qwen reserves **680 MiB q8 KV at 64K**, or **1,360 MiB at 128K**, at load. Occupied tokens grow inside that reservation; checkpoints can grow separately. Cache does **not** permanently remember omitted files or chat history.
+- **Measured mapped Q4:** peak resident RAM **16.38 GiB**, peak private commit **6.21 GiB**, readiness GPU counter **4.65 GiB**; minimum device VRAM headroom **1.9 GiB**. These counters overlap and must not be added as independent allocations.
+- **Recommended settings:** 64K context, q8 K/V, native thinking with no separate reasoning ceiling, 37 CPU expert blocks, other eligible tensors on GPU, and the explicitly verified mmap runtime. This is not an “ultra/xhigh” effort setting.
+- Both Q4/Q6 passed all three public Python implementation runs, scored TypeScript **5/6**, and failed the SQLite migration. Q4’s roughly 52K-input history case passed in **12m04s**, versus Q6’s **54m57s**. Desktop load and cache differences limit speed conclusions.
+
+Updated comparison/retirement evidence, memory/model/grading guides, research corrections and project logs. Published on `main`, evidence commit `116a67d`; **27 tests**, PowerShell parsing, public-content audit and Windows/Ubuntu CI passed.
+
+**C. Your pointers**
+
+| # | Pointer task | Original pointer text | Status | What was done |
+|---|---|---|---|---|
+| 1 | RAM and KV | “kv in ram shuld grow” | DONE | Tested 2K–120K input, CPU/GPU cache, retained and omitted history |
+| 2 | Coder-Next 80B | “still should be tested” | DONE | Coding, history and actual-instruction audit; failure preserved |
+| 3 | Dense Gemma 31B | “i can wait even longer” | DONE | Extended quality runs plus placement/cache experiments |
+| 4 | Q6 comparison | “try the Q6” | DONE | Matched Q4/Q6 prompts, source review and isolated grading |
+| 5 | Independent analysis | “dont read it blindly” | DONE | Corrected research claims using source inspection and measurements |
+
+**D. Additional findings**
+
+Extra checks exposed local-key loss and nested aliasing in **both Qwen private helpers**, including defects missed by the frozen score. Higher precision did not eliminate bugs.
+
+Deleted the three verified non-leading weight files, freeing **91.29 GiB**. Q4, Gemma 26B and all reports/raw evidence remain.
+
+**E. Pending and deferred**
+
+| Item | Status / reason |
+|---|---|
+| Mapped Q4 in Copilot/Continue | Benchmark recommendation; new editor validation remains separate. Existing settings are unchanged. |
+| Running server | Stopped. The old launcher needs roughly 24 GiB commit; the latest available allowance was 18.4 GiB. A guarded mapped-start command is documented. |
+| Restart cause | Unresolved; these results do not identify a faulty component. |
+
+**F. My recommendation**
+
+Keep Q4 with **64K/q8/native thinking**. For your workflow, prioritize verified file reads, a source inventory, durable project notes and independent code tests. The evidence supports improving those controls before buying more precision or choosing a larger model.
+
+**G. Manager copy block**
+
+```text
+What's done: Completed the requested model and memory comparisons. The existing Qwen model remains the best practical choice in these tests. Larger alternatives did not improve the overall result. Reports are published and unused model files removed.
+
+Suggested next steps: Validate the recommended memory-saving setup in the editors, then test a real project change with explicit source tracking and independent checks. Continue reviewing generated code; every candidate has limitations.
+```
