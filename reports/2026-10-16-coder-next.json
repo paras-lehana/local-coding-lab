@@ -57,10 +57,31 @@
     "server_working_set_gib": 17.63766860961914,
     "server_private_gib": 7.5312652587890625,
     "recovery_profile": "qwencoder-next-noprefetch64-recovery",
-    "recovery_status": "running",
-    "cause": "Outside-process/system allocation growth not attributable from the available telemetry; prior WSL grading is a possible contributor"
+    "recovery_status": "completed",
+    "cause": "Outside-process/system allocation growth not attributable from the available telemetry; prior WSL grading is a possible contributor",
+    "recovery_review": {
+      "reviewer": "Codex source assessment",
+      "whole_prompt_seconds": 1177.594,
+      "initial_ready_count": 120,
+      "expected_count": 120,
+      "final_facts_correct": 6,
+      "final_facts_total": 6,
+      "fresh_runtime_read": true,
+      "honest_followup_inventory": true,
+      "failed_ledger_recovery_observed": false,
+      "mistyped_path_recovery_observed": true,
+      "maximum_input_tokens": 10102,
+      "findings": [
+        "All nine visible turns and seven tool responses reviewed; five distinct sources delivered, six successful reads including fresh runtime reread.",
+        "One mistyped .clude/CLAUDE.md request failed and was corrected to .claude/CLAUDE.md; do not count the failed request as a read.",
+        "READY120 exact; all earlier markers, revision2/retry0 and missing port null correct.",
+        "Followup reads only docs/runtime.md and accurately lists that path.",
+        "No unavailable-ledger retry attempted; this is preserved history and a separate mistyped-path recovery, not proof of permanent memory.",
+        "Recovery uses changed residency, GPU KV and microbatch; do not claim an isolated performance effect. No grading/builds/downloads overlapped this retry."
+      ]
+    }
   },
-  "private_actual_instructions": "not_started_after_resource_stop; conditional after revised history trial",
+  "private_actual_instructions": "running on recovery profile after normal public stop",
   "grading": "Codex source review followed by namespace-isolated independent checks; not independently human reviewed",
   "timing_caveat": "Grading was completed during context-v1 prefill after headroom increased to9.5GiB; source review preceded execution. Context timing includes this work and normal desktop activity.",
   "recovery_loading": {

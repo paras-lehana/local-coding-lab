@@ -6,7 +6,7 @@ Status: in progress, 16 October 2026 (Asia/Kolkata). This report extends the
 | Owner point | Status | Evidence and next step |
 |---|---|---|
 | RAM use and KV growth | Measured | 2K–120K occupancy, 64K/128K reservations, CPU/GPU placement, retained and omitted history. |
-| Qwen3-Coder-Next 80B | Recovery trial | Python6/6, TS4/6, SQL FK failure; first history run stopped for RAM. Revised residency/placement retry and private audit pending. |
+| Qwen3-Coder-Next 80B | Private audit running | Python6/6, TS4/6, SQL FK failure; revised history retry passes. Actual-instruction audit remains in progress. |
 | Gemma 4 31B dense | Queued | Repeat beyond the previous latency gate; collect complete answers before judging quality. |
 | Qwen3.6 Q6 | Queued | Attempt mapping/placement appropriate to current headroom, then matched quality checks. |
 | Independent research and reasoning | In progress | Re-read supplied research and verify runtime behavior and publisher facts. |
@@ -250,6 +250,21 @@ It repeats only the interrupted history case before the frozen private audit.
 No grading, builds or model downloads overlap this retry. The private observer
 now records process-family memory totals as well as system I/O. Prior failed
 and completed evidence remains intact; applications are not closed.
+
+The recovery history case completed normally in1177.594seconds (19m38s), with
+maximum input10,102tokens. `READY120` and all six final facts are correct;
+the model re-reads runtime revision2/retries0 and honestly lists only that
+follow-up read. It also recovers from a mistyped `.clude/CLAUDE.md` path by
+requesting the correct path. It does not attempt the unavailable-ledger read,
+so that separate failure-recovery behavior is not demonstrated. This10K case
+does not establish52K/128K or permanent-memory performance.
+
+The recovery loader records43,984.94MiB CPU-mapped weights,3459.58MiB GPU weights,
+816MiB GPU KV,75.38MiB GPU recurrent state and885MiB GPU compute. The actual
+public-run resident cap is12.331GiB and readiness dedicatedVRAM5.343GiB.
+It stops normally before a fresh private-audit load. That load uses a14GiB
+resident maximum derived from its own current preflight. The actual-instruction
+audit is now running; its answer and36-point assessment remain pending.
 
 The report is a useful hypothesis list, not a verified experiment log. Today's
 measurements support its small Qwen cache estimate, but contradict the earlier
