@@ -51,7 +51,8 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
         raise ValueError("Benchmark redirects are disabled")
 
 
-def stream_turn(endpoint: str, payload: dict, output: Path, started: float) -> dict:
+def stream_turn(endpoint: str, payload: dict, output: Path, started: float,
+                timeout: float = 1200) -> dict:
     """Collect streamed reasoning, final text and fragmented tool calls separately."""
     request = urllib.request.Request(endpoint + "/chat/completions",
                                      data=json.dumps(payload).encode(),
@@ -62,7 +63,7 @@ def stream_turn(endpoint: str, payload: dict, output: Path, started: float) -> d
                     "finish_reason": None, "usage": None, "timings": None}
     with output.open("w", encoding="utf-8") as evidence:
         # The parent enforces the whole run deadline, including silent prefill.
-        with opener.open(request, timeout=1200) as response:
+        with opener.open(request, timeout=timeout) as response:
             for line in response:
                 decoded = line.decode("utf-8").strip()
                 if not decoded.startswith("data:"):
@@ -134,7 +135,8 @@ def worker(run: Path) -> int:
             payload["tools"] = [tool]
         save_json(run / f"request-{turn_index:02d}.json", payload)
         result = stream_turn(manifest["endpoint"], payload,
-                             run / f"stream-{turn_index:02d}.jsonl", started)
+                             run / f"stream-{turn_index:02d}.jsonl", started,
+                             timeout=manifest["deadline_seconds"])
         turns.append(result)
         save_json(run / "turns.json", turns)
         if result["finish_reason"] not in ("stop", "tool_calls"):
@@ -171,8 +173,8 @@ def worker(run: Path) -> int:
 def collect(args: argparse.Namespace) -> int:
     """Freeze first, then start a disposable network worker with one time limit."""
     endpoint = validate_endpoint(args.endpoint)
-    if not 0 < args.deadline <= 1200:
-        raise ValueError("Deadline must be >0 and <=1200 seconds")
+    if not 0 < args.deadline <= 21600:
+        raise ValueError("Deadline must be >0 and <=21600 seconds; default is 1200")
     if not 1 <= args.max_tokens <= 32768:
         raise ValueError("max-tokens must be 1..32768")
     run = Path(args.output).resolve()

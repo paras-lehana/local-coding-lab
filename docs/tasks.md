@@ -1,6 +1,28 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-10-15 (Asia/Kolkata).
+Last updated: 2026-10-16 (Asia/Kolkata).
+
+## 2026-10-16 — Memory and remaining-candidate expansion
+
+| # | Task | Status | Notes |
+|---|---|---|---|
+| 1 | Measure RAM and growing KV context | In progress | Separate allocation, occupancy and total process use. |
+| 2 | Test Qwen3-Coder-Next 80B | Queued | Explicitly attempt file-backed Q4 despite previous resident-capacity rejection. |
+| 3 | Retest Gemma 31B dense | Queued | Owner accepts longer than previous latency gate. |
+| 4 | Test Qwen3.6 Q6 | Queued | Try monitored placement/mapping; no premature quality rejection. |
+| 5 | Independent research and report | In progress | Supplied research re-read; primary sources and runtime inspected. |
+
+The current request supersedes the former 20-minute preference for these tests.
+Applications stay open; resource guards remain. Full record:
+[expanded experiments](tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md).
+
+10:35 IST:64K CPU-KV sweep complete with1995/15928/31936/59955 actual input
+tokens, all five-fact checks passing. Follow-up reused59951 tokens and correctly
+applied revision2/retries0 in15.047s.128K CPU sweep started; measured KV1360MiB
+and compute507MiB versus680/273 at64K. No new model download yet; pinned headers
+and metadata inspected for the80B, dense andQ6 candidates.25 offline tests pass,
+PowerShell parsing and public-content audit pass. Larger-model profiles use
+explicit file mapping/resident caps, not a waived physical-memory floor.
 
 ## 2026-10-15 — Autonomous research campaign
 

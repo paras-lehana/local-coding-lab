@@ -204,6 +204,11 @@ def check_memory(snapshot: dict, profile: dict, loading: bool) -> None:
         threshold = profile[f"{prefix}_{field}"]
         if field not in snapshot or snapshot[field] < threshold:
             raise ValueError(f"{field} below {threshold} or unavailable")
+    commit_floor = profile.get(f"{prefix}_commit_available_gib")
+    if commit_floor is not None and (
+            "commit_available_gib" not in snapshot
+            or snapshot["commit_available_gib"] < commit_floor):
+        raise ValueError(f"commit_available_gib below {commit_floor} or unavailable")
     if snapshot.get("gpu_c", 100) >= profile["stop_gpu_c"]:
         raise ValueError("GPU temperature reached the profile stop threshold")
 
@@ -238,7 +243,50 @@ def process_memory(pid: int) -> dict:
             return {"process_memory_error": "GetProcessMemoryInfo failed"}
         return {"process_working_set_gib": counters.working / GIB,
                 "process_private_gib": counters.private / GIB,
+                "process_page_fault_count": counters.faults,
                 "process_peak_working_set_gib": counters.peak_working / GIB}
+    finally:
+        kernel.CloseHandle(handle)
+
+
+def limit_owned_working_set(pid: int, maximum_gib: float) -> dict:
+    """Bound only an owned child's resident set for an explicit mmap trial.
+
+    This is not an allocation/commit cap and does not change Windows pagefile
+    settings. Page faults include soft faults; they are not disk-read counts.
+    """
+    if sys.platform != 'win32' or maximum_gib <= 0:
+        raise ValueError('A positive Windows working-set limit is required')
+    from ctypes import wintypes
+    kernel = ctypes.WinDLL('kernel32', use_last_error=True)
+    kernel.OpenProcess.argtypes = [wintypes.DWORD, wintypes.BOOL, wintypes.DWORD]
+    kernel.OpenProcess.restype = wintypes.HANDLE
+    kernel.CloseHandle.argtypes = [wintypes.HANDLE]
+    kernel.SetProcessWorkingSetSizeEx.argtypes = [
+        wintypes.HANDLE, ctypes.c_size_t, ctypes.c_size_t, wintypes.DWORD]
+    kernel.GetProcessWorkingSetSizeEx.argtypes = [
+        wintypes.HANDLE, ctypes.POINTER(ctypes.c_size_t),
+        ctypes.POINTER(ctypes.c_size_t), ctypes.POINTER(wintypes.DWORD)]
+    handle = kernel.OpenProcess(0x100 | 0x400, False, pid)
+    if not handle:
+        raise ctypes.WinError(ctypes.get_last_error())
+    try:
+        maximum = int(maximum_gib * GIB)
+        # MIN_DISABLE (2), MAX_ENABLE (4): no minimum residency reservation.
+        if not kernel.SetProcessWorkingSetSizeEx(handle, 204800, maximum, 6):
+            raise ctypes.WinError(ctypes.get_last_error())
+        minimum_read, maximum_read = ctypes.c_size_t(), ctypes.c_size_t()
+        flags = wintypes.DWORD()
+        if not kernel.GetProcessWorkingSetSizeEx(
+                handle, ctypes.byref(minimum_read), ctypes.byref(maximum_read),
+                ctypes.byref(flags)):
+            raise ctypes.WinError(ctypes.get_last_error())
+        if not flags.value & 4 or maximum_read.value > maximum + 4096:
+            raise ValueError('Windows did not confirm the resident-set bound')
+        return {'pid': pid, 'requested_maximum_gib': maximum_gib,
+                'maximum_bytes': maximum_read.value,
+                'minimum_bytes': minimum_read.value, 'flags': flags.value,
+                'note': 'Resident working-set cap, not total commit or GPU allocation cap.'}
     finally:
         kernel.CloseHandle(handle)
 
@@ -359,6 +407,10 @@ def run_server(args: argparse.Namespace, data: Path) -> None:
         with (run_dir / "server.log").open("wb") as log:
             child = subprocess.Popen(command, stdout=log, stderr=log, env=env,
                                      creationflags=subprocess.CREATE_NO_WINDOW)
+            if profile.get('working_set_limit_gib') is not None:
+                save_json(run_dir / 'working-set-limit.json',
+                          limit_owned_working_set(
+                              child.pid, profile['working_set_limit_gib']))
             save_json(run_dir / "process.json", {"pid": child.pid,
                       "launcher_pid": os.getpid(), "stop_file": str(stop_file) if stop_file else None})
             print(f"PID {child.pid}; loading. Logs: {run_dir}; health at localhost:{args.port}/health")

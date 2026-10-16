@@ -1,0 +1,176 @@
+{
+  "date": "2026-10-16",
+  "scope": "synthetic memory/recall probes",
+  "status": "in_progress",
+  "profiles": [
+    {
+      "profile": "qwen36-context-cpu64",
+      "status": "collected",
+      "samples": [
+        {
+          "target": 2048,
+          "status": "completed",
+          "input_tokens": 1995,
+          "wall_seconds": 15.311999999990803,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 1995,
+            "prompt_ms": 10420.548,
+            "prompt_per_token_ms": 5.223332330827068,
+            "prompt_per_second": 191.44866469594496,
+            "predicted_n": 60,
+            "predicted_ms": 4841.386,
+            "predicted_per_token_ms": 82.05738983050848,
+            "predicted_per_second": 12.18659284758538
+          },
+          "exact_json_match": true,
+          "process_ram_gib": 17.880779266357422,
+          "private_commit_gib": 23.224544525146484,
+          "free_ram_gib": 3.99334716796875,
+          "available_commit_gib": 3.1159210205078125,
+          "dedicated_vram_gib": 4.875202178955078,
+          "slot_tokens": 2054
+        },
+        {
+          "target": 16000,
+          "status": "completed",
+          "input_tokens": 15928,
+          "wall_seconds": 88.5,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 15928,
+            "prompt_ms": 81701.66,
+            "prompt_per_token_ms": 5.129436212958312,
+            "prompt_per_second": 194.9531992373227,
+            "predicted_n": 60,
+            "predicted_ms": 6729.312,
+            "predicted_per_token_ms": 114.05613559322033,
+            "predicted_per_second": 8.767612498870614
+          },
+          "exact_json_match": true,
+          "process_ram_gib": 17.884170532226562,
+          "private_commit_gib": 23.227867126464844,
+          "free_ram_gib": 3.9473800659179688,
+          "available_commit_gib": 3.1263465881347656,
+          "dedicated_vram_gib": 4.875202178955078,
+          "slot_tokens": 15987
+        },
+        {
+          "target": 32000,
+          "status": "completed",
+          "input_tokens": 31936,
+          "wall_seconds": 178.53100000000268,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 31936,
+            "prompt_ms": 169216.68,
+            "prompt_per_token_ms": 5.298618486973948,
+            "prompt_per_second": 188.72843977319494,
+            "predicted_n": 60,
+            "predicted_ms": 9235.02,
+            "predicted_per_token_ms": 156.52576271186442,
+            "predicted_per_second": 6.388724658961215
+          },
+          "exact_json_match": true,
+          "process_ram_gib": 17.88907241821289,
+          "private_commit_gib": 23.232711791992188,
+          "free_ram_gib": 4.000156402587891,
+          "available_commit_gib": 2.90631103515625,
+          "dedicated_vram_gib": 4.875202178955078,
+          "slot_tokens": 31995
+        },
+        {
+          "target": 60000,
+          "status": "completed",
+          "input_tokens": 59955,
+          "wall_seconds": 345.98399999999674,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 59955,
+            "prompt_ms": 332334.653,
+            "prompt_per_token_ms": 5.543068184471687,
+            "prompt_per_second": 180.40550228146085,
+            "predicted_n": 60,
+            "predicted_ms": 13494.273,
+            "predicted_per_token_ms": 228.71649152542372,
+            "predicted_per_second": 4.372225165446112
+          },
+          "exact_json_match": true,
+          "process_ram_gib": 17.893333435058594,
+          "private_commit_gib": 23.23702621459961,
+          "free_ram_gib": 4.571266174316406,
+          "available_commit_gib": 2.9413795471191406,
+          "dedicated_vram_gib": 4.875202178955078,
+          "slot_tokens": 60014
+        }
+      ],
+      "allocations": [
+        "load_tensors:        CUDA0 model buffer size =  4383.13 MiB",
+        "load_tensors:    CUDA_Host model buffer size = 16715.52 MiB",
+        "llama_kv_cache:        CPU KV buffer size =   680.00 MiB",
+        "llama_memory_recurrent:        CPU RS buffer size =    62.81 MiB",
+        "sched_reserve:      CUDA0 compute buffer size =   273.00 MiB",
+        "sched_reserve:  CUDA_Host compute buffer size =    22.36 MiB"
+      ],
+      "history_followup": {
+        "exact_json_match": true,
+        "wall_seconds": 15.047000000005937,
+        "timings": {
+          "cache_n": 59951,
+          "prompt_n": 116,
+          "prompt_ms": 1685.847,
+          "prompt_per_token_ms": 14.533163793103448,
+          "prompt_per_second": 68.80814213864011,
+          "predicted_n": 60,
+          "predicted_ms": 13246.181,
+          "predicted_per_token_ms": 224.51154237288137,
+          "predicted_per_second": 4.454113981984694
+        }
+      }
+    },
+    {
+      "profile": "qwen36-context-cpu128",
+      "status": "running",
+      "samples": [
+        {
+          "target": 2048,
+          "status": "completed",
+          "input_tokens": 1995,
+          "wall_seconds": 15.718999999997322,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 1995,
+            "prompt_ms": 10563.067,
+            "prompt_per_token_ms": 5.2947704260651625,
+            "prompt_per_second": 188.8656012500915,
+            "predicted_n": 60,
+            "predicted_ms": 5113.173,
+            "predicted_per_token_ms": 86.66394915254237,
+            "predicted_per_second": 11.538823349024177
+          },
+          "exact_json_match": true,
+          "process_ram_gib": 18.564167022705078,
+          "private_commit_gib": 24.133804321289062,
+          "free_ram_gib": 4.128803253173828,
+          "available_commit_gib": 1.9818344116210938,
+          "dedicated_vram_gib": 5.103752136230469,
+          "slot_tokens": 2054
+        }
+      ],
+      "allocations": [
+        "load_tensors:        CUDA0 model buffer size =  4383.13 MiB",
+        "load_tensors:    CUDA_Host model buffer size = 16715.52 MiB",
+        "llama_kv_cache:        CPU KV buffer size =  1360.00 MiB",
+        "llama_memory_recurrent:        CPU RS buffer size =    62.81 MiB",
+        "sched_reserve:      CUDA0 compute buffer size =   507.00 MiB",
+        "sched_reserve:  CUDA_Host compute buffer size =    38.36 MiB"
+      ]
+    }
+  ],
+  "caveats": [
+    "Apps stayed open; desktop memory varies.",
+    "Documentation/tooling edits and offline tests overlapped some inference.",
+    "These are not coding or autonomous file-discovery scores.",
+    "WDDM shared bytes overlap host RAM; not added to resident totals."
+  ]
+}

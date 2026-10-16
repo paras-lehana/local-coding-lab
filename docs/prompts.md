@@ -1,10 +1,11 @@
 # Prompt log — Local Coding Lab
 
-Last updated: 2026-10-15. Public project history excludes earlier credentials,
+Last updated: 2026-10-16. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
+| 7 | 2026-10-16 | 10:23 | KV growth and remaining candidates | Research | In progress | [Entry](#memory-and-remaining-candidate-expansion) |
 | 1 | 2026-10-14 | 22:35 | Establish reusable research repository | Infrastructure | Done | [Entry](#repository-creation) |
 | 2 | 2026-10-14 | 23:12 | Start research: controlled Qwen placement | Research | Done | [Entry](#research-placement-experiment) |
 | 3 | 2026-10-15 | 00:47 | Autonomous full research campaign | Research | In progress | [Entry](#autonomous-research-campaign) |
@@ -586,3 +587,8 @@ Suggested next steps
 - Check generated work independently, especially database changes and shared data structures.
 - Keep the earlier computer restart listed as unresolved; these successful tests do not identify its cause.
 ```
+
+
+## Memory and remaining-candidate expansion
+
+Owner requests RAM/KV growth measurement, actual Coder-Next 80B and Qwen Q6 attempts, a longer dense Gemma31 trial, and independent reasoning beyond the supplied report. Full wording is preserved in [the task folder](tasks/2026-10-16-memory-and-candidate-expansion/owner-request.txt). Applications stay open; the former 20-minute latency preference is relaxed for explicit experimental runs. Resource stops and frozen evidence remain required. Work is in progress; final A-G outcomes will follow measured results.

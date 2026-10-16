@@ -129,7 +129,8 @@ def worker(root: Path) -> int:
                 payload['reasoning_budget_tokens'] = manifest['reasoning_budget']
             lab.save_json(root / f'request-{index:02d}.json', payload)
             turn = benchmark.stream_turn(manifest['endpoint'], payload,
-                                         root / f'stream-{index:02d}.jsonl', started)
+                                         root / f'stream-{index:02d}.jsonl', started,
+                                         timeout=manifest['deadline_seconds'])
             turn['phase'] = phase_index
             turns.append(turn)
             lab.save_json(root / 'turns.json', turns)
@@ -192,8 +193,8 @@ def main() -> int:
     args = parser.parse_args()
     if args.worker:
         return worker(args.worker)
-    if not args.scenario or not args.output or not 0 < args.deadline <= 1200:
-        parser.error('Scenario/output and deadline <=1200 seconds required')
+    if not args.scenario or not args.output or not 0 < args.deadline <= 21600:
+        parser.error('Scenario/output and deadline <=21600 seconds required')
     if not 1 <= args.max_tokens <= 32768:
         parser.error('max-tokens must be 1..32768')
     frozen = case(args.scenario)

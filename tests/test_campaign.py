@@ -45,7 +45,8 @@ class CampaignTests(unittest.TestCase):
         """Phase two returns the update, preserves prior text and hides checks."""
         payloads = []
 
-        def fake_turn(endpoint, payload, output, started):
+        def fake_turn(endpoint, payload, output, started, timeout=1200):
+            self.assertEqual(timeout, 21600)
             payloads.append(json.loads(json.dumps(payload)))
             index = len(payloads)
             calls = []
@@ -67,7 +68,7 @@ class CampaignTests(unittest.TestCase):
             lab.save_json(root / 'manifest.json', {
                 'model': 'fake', 'endpoint': 'http://127.0.0.1:1/v1',
                 'seed': 73, 'temperature': 0.6, 'max_tokens': 100,
-                'reasoning_budget': 32})
+                'reasoning_budget': 32, 'deadline_seconds': 21600})
             with mock.patch('scenarios.benchmark.stream_turn', side_effect=fake_turn):
                 self.assertEqual(scenarios.worker(root), 0)
             reads = lab.read_json(root / 'tools.json')

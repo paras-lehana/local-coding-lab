@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.0 - 2026-10-16 (experiments in progress)
+
+- Add token-occupancy, recall and process-memory collection for increasing
+  context on an explicitly started local model.
+- Allow explicit whole-prompt deadlines up to six hours for the owner's slower
+  candidate tests, preserving the 1200-second default and incomplete statuses.
+- Start controlled RAM-KV context scaling and reopen the 80B, dense and Q6
+  candidates. No quality outcome or replacement is claimed before measurement.
+
 ## 0.3.9 - 2026-10-15
 
 - Complete both Qwen finalist suites with three seeds, strict TypeScript/SQLite

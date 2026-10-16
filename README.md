@@ -8,7 +8,10 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Status: v0.3.9, experimental; campaign and actual editor probes reviewed.** Follow the
+**Status: v0.4.0, experimental; expanded memory/candidate tests in progress.**
+The owner now accepts slower tests for Coder-Next 80B, dense Gemma31 and QwenQ6;
+see the [new task record](docs/tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md).
+The working selection is unchanged pending complete evidence. Follow the
 [live campaign evidence](reports/2026-10-15-campaign.md). Repeated coding,
 long-document, changed-file and actual-instruction tests now cover Qwen,
 Gemma, GLM, Kimi and Qwen Coder. A working Qwen profile is selected and its

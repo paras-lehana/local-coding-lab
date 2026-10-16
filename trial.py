@@ -76,7 +76,7 @@ def run(args: argparse.Namespace) -> int:
             state.update(status='loading', launcher_pid=launcher.pid)
             checkpoint(root, state)
             start = time.monotonic()
-            while time.monotonic() - start < 300:
+            while time.monotonic() - start < args.load_timeout:
                 if launcher.poll() is not None:
                     raise RuntimeError('Monitored launcher exited before ready')
                 try:
@@ -89,7 +89,7 @@ def run(args: argparse.Namespace) -> int:
                     pass
                 time.sleep(2)
             else:
-                raise TimeoutError('Model load exceeded five minutes')
+                raise TimeoutError('Model load exceeded configured deadline')
             lab.save_json(root / 'props.json', request_json(endpoint, '/props'))
             process_records = list((root/'server/runs').glob('*/process.json'))
             server_pid = lab.read_json(process_records[0])['pid']
@@ -99,7 +99,8 @@ def run(args: argparse.Namespace) -> int:
                 'max_tokens': 64, 'temperature': 0, 'seed': 73,
                 'reasoning_budget_tokens': 0}
             started = time.monotonic()
-            answer = request_json(endpoint, '/v1/chat/completions', smoke, 90)
+            answer = request_json(endpoint, '/v1/chat/completions', smoke,
+                                  args.smoke_timeout)
             lab.save_json(root / 'smoke.json', {'request': smoke,
                           'response': answer, 'seconds': time.monotonic()-started})
             if not answer.get('choices', [{}])[0].get('message', {}).get('content'):
@@ -127,7 +128,8 @@ def run(args: argparse.Namespace) -> int:
                 print('Starting', task['name'], flush=True)
                 with (root / (task['name'] + '.log')).open('wb') as task_log:
                     completed = subprocess.run(command, stdout=task_log,
-                                               stderr=task_log, timeout=1240)
+                                               stderr=task_log,
+                                               timeout=task.get('deadline', 1200)+40)
                 result = lab.read_json(output / 'result.json') if (
                     output / 'result.json').exists() else {'status': 'harness_error'}
                 state['tasks'].append({'task': task, 'returncode': completed.returncode,
@@ -169,12 +171,17 @@ def main() -> int:
     parser.add_argument('--tasks', required=True)
     parser.add_argument('--output', required=True)
     parser.add_argument('--port', type=int, default=8081)
+    parser.add_argument('--load-timeout', type=int, default=300)
+    parser.add_argument('--smoke-timeout', type=int, default=90)
     parser.add_argument('--apply', action='store_true')
     args = parser.parse_args()
     if not args.apply:
         parser.error('This performs inference; --apply is required')
     if sys.platform != 'win32':
         parser.error('Monitored launcher requires Windows')
+    if not (0 < args.load_timeout <= 21600
+            and 0 < args.smoke_timeout <= 21600):
+        parser.error('Load and smoke timeouts must be 1..21600 seconds')
     return run(args)
 
 

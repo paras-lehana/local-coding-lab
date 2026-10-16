@@ -1,0 +1,9 @@
+thats good, but i have points stil need to be solved.
+
+- the kv in ram shuld grow as the context grows right? we should have tested that. How are we utiizing our 64GB RAM currently?
+- Qwen3-coder-next-80B still should be tested, nothing should be left
+- same for gemmma 4 31B dense ( i can wait even longer if things are better)
+- we should try the Q6 of current shiortlisted one.
+- Reread the report and you dont read it blindly, its for you to think what else can be done based on its reasoning, have your research and reaosing too, you have full system access and you can just try things, get stats, and try experiements, its only for you to fill you with good starting and knowledge, but you are free to test things more based on what you learnt from the system experiement and from the theory report gave you.
+
+Complete all these points one by one.
