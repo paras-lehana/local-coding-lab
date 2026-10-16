@@ -258,3 +258,21 @@ on measured benefit and headroom, not automatically preferable for every
 architecture and placement. The completed CPU pair also returns UNKNOWN when
 history is omitted; neither RAM nor VRAM cache supplies persistent cross-request
 knowledge by itself. [Requests, buffers and outcomes](../reports/2026-10-16-dense-placement.json).
+
+## GPU counter limits
+
+Per-process WDDM dedicated/shared counters are supporting measurements, not a
+partition of physical VRAM. Cross-process graphics surfaces can appear against
+several processes, so summing them double-counts memory. Microsoft also documents
+incorrect GPU-process counters on affected Windows10 systems; that article does
+not by itself diagnose this Windows11 host. Use loader buffers, device-wide free
+VRAM and timestamped process trends together.
+[Microsoft counter explanation](https://devblogs.microsoft.com/directx/gpus-in-the-task-manager/),
+[documented counter issue](https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/gpu-process-memory-counters-report-wrong-value).
+
+Before either Q4/Q6 arm, a read-only observer adds per-process GPU samples to
+the existing30-second system observations. Its first collection takes2.437s;
+it then waits30seconds. A desktop-process counter is already larger than the
+contemporaneous device-used total, so this cannot establish exclusive ownership
+of every byte. No monitoring floor is changed, and no retrospective cause is
+assigned to the dense GPU-cache stop.

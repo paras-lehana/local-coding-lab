@@ -97,6 +97,16 @@ edits; no runtime code changed.146-file audit has0findings and diffcheck passes.
 Q6 download is active; neither matched arm has collected answers. Prior
 d2927ae checkpoint's Windows/UbuntuCI38945253367 passed.
 
+00:28 IST17October monitoring checkpoint: before precision inference, stopped
+the ownedv3 observer normally and startedv4 with per-process WDDM GPU counters.
+First sample85rows/2.437s; each collection is followed by30s sleep. Process
+totals cannot be added as exclusiveVRAM; a desktop counter already exceeds the
+contemporaneous device-used total. Microsoft sharing/counter-limit sources
+reviewed, without diagnosing the Windows11 host or earlierVRAM stop. Lab output
+note clarified; numerical counters/floors unchanged.27offline tests10.205s,
+twoPowerShell parses,146-file audit0findings and diffcheck pass. Q6 transfer is
+nearly complete; checksum/loads remain pending.966db75CI38948818005 succeeds.
+
 ## 2026-10-15 — Autonomous research campaign
 
 Owner explicitly authorized downloads, rigorous testing, reports and selected

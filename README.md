@@ -27,6 +27,8 @@ facts but added unwanted Markdown fences. At 128K, attention KV reserves 1.33 Gi
 at load; it does not grow by tens of GiB as the prompt fills. The follow-up
 reused history; omitting history removed access to those facts. See the
 [measured comparison and limits](docs/tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md).
+The [memory guide](docs/memory-and-context.md#gpu-counter-limits) also explains
+why process GPU counters cannot be summed as exclusive physical VRAM.
 
 **80B follow-up:** Coder-Next Q4 now loads using an isolated Windows prefetch
 opt-out. Public Python passes6/6, TypeScript4/6, SQL fails, and the history retry

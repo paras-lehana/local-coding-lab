@@ -72,6 +72,11 @@ with the observed 1.103 GiB resident difference. Private commit is not another
 physical-memory allocation to add to RAM and VRAM. Shared GPU memory also
 overlaps system RAM.
 
+Dedicated process GPU figures are WDDM counter samples. They are useful alongside
+loader buffers and device-wide headroom, but are not an exclusive physical-memory
+partition to sum across processes. The later per-process observer exposed that
+limitation on this desktop; see the [counter notes](../../memory-and-context.md#gpu-counter-limits).
+
 These were temperature-zero, reasoning-budget-zero **inline recall probes**.
 They establish supplied-fact recall and cache reuse, not autonomous discovery
 of 120K tokens of repository files. All servers stopped normally. Near the long
@@ -342,7 +347,7 @@ The isolated runtime is `b11562-noprefetch-v1` at stock commit
 `7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009`.
 Stock binaries remain preserved. [Controls](../../../reports/2026-10-16-runtime-controls.json).
 
-Latest quiet-interval tooling check: 27 offline tests pass in 10.087s; both
+Latest quiet-interval tooling check: 27 offline tests pass in 10.205s; both
 public PowerShell scripts parse. All four new Gemma isolated executions pass
 the namespace preflight, including the deliberately preserved standalone-test
 failure. Code runs only with selected read-only files, no host homes/drives or

@@ -345,7 +345,7 @@ def check_single_server() -> None:
 
 
 def process_gpu_snapshot(pid: int) -> dict:
-    """Capture WDDM dedicated/shared usage without treating shared RAM as VRAM."""
+    """Sample WDDM process counters; do not infer an exclusive VRAM partition."""
     if sys.platform != 'win32' or not isinstance(pid, int) or pid <= 0:
         return {'error': 'Windows process ID required'}
     script = ("$ErrorActionPreference='Stop'; "
@@ -363,7 +363,7 @@ def process_gpu_snapshot(pid: int) -> dict:
         return {'time': time.time(), 'pid': pid, 'rows': rows,
                 'dedicated_gib': sum(row['DedicatedUsage'] for row in rows)/GIB,
                 'shared_gib': sum(row['SharedUsage'] for row in rows)/GIB,
-                'note': 'Shared usage overlaps host RAM; do not add it to process working set.'}
+                'note': 'WDDM process counters can overlap across processes and have reporting limitations. Do not sum them as exclusive physical VRAM; compare device-wide headroom and loader buffers. Shared usage also overlaps host RAM; do not add it to process working set.'}
     except (ValueError, TypeError, KeyError, OSError, subprocess.SubprocessError):
         return {'time': time.time(), 'pid': pid, 'error': 'WDDM counters unavailable'}
 

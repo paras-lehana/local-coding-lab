@@ -21,6 +21,8 @@
   completed8K requests show no latency gain. Interrupted output is unscored.
 - Publish the six-task Q4/Q6 precision plan before collection, including the
   existing640-record history case and portable configuration hashes.
+- Clarify WDDM process-counter limits without changing resource values or stop
+  floors; add per-process GPU observation before the matched precision runs.
 
 ## 0.3.9 - 2026-10-15
 
