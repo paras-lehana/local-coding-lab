@@ -12,7 +12,7 @@ private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
-| 8 | 2026-10-17 | 04:00 | Complete expanded comparison | Research | Done | [Closeout](#expanded-comparison-closeout) |
+| 8 | 2026-10-17 | 03:57 | Complete expanded comparison | Research | Done | [Closeout](#expanded-comparison-closeout) |
 | 7 | 2026-10-16 | 10:23 | KV growth and remaining candidates | Research | Five points completed; Q4 retained | [Entry](#memory-and-remaining-candidate-expansion) |
 | 1 | 2026-10-14 | 22:35 | Establish reusable research repository | Infrastructure | Done | [Entry](#repository-creation) |
 | 2 | 2026-10-14 | 23:12 | Start research: controlled Qwen placement | Research | Done | [Entry](#research-placement-experiment) |
