@@ -6,7 +6,7 @@ Status: in progress, 16 October 2026 (Asia/Kolkata). This report extends the
 | Owner point | Status | Evidence and next step |
 |---|---|---|
 | RAM use and KV growth | Measured | 2K–120K occupancy, 64K/128K reservations, CPU/GPU placement, retained and omitted history. |
-| Qwen3-Coder-Next 80B | Collecting answers | Verified Q4; isolated prefetch opt-out loads after stock failure. First coding answer complete; grading and remaining tasks pending. |
+| Qwen3-Coder-Next 80B | Recovery trial | Python6/6, TS4/6, SQL FK failure; first history run stopped for RAM. Revised residency/placement retry and private audit pending. |
 | Gemma 4 31B dense | Queued | Repeat beyond the previous latency gate; collect complete answers before judging quality. |
 | Qwen3.6 Q6 | Queued | Attempt mapping/placement appropriate to current headroom, then matched quality checks. |
 | Independent research and reasoning | In progress | Re-read supplied research and verify runtime behavior and publisher facts. |
@@ -231,6 +231,25 @@ generated code sees only the selected read-only files and no host drives, homes
 or network. Grading briefly overlaps context-test prefill, which is recorded as
 a timing caveat. These first answers do not establish an80B quality upgrade;
 history and the actual-instruction audit remain pending.
+
+At13:15:17 the physical-memory guard stopped the model with2.269GiB free RAM.
+The history scenario was383.359seconds into collection and is unscored; the
+controller correctly did not proceed to the private audit. The process working
+set stayed17.638GiB and private allocation7.531GiB while available system memory
+fell from9.6GiB to2.27GiB. This does not identify the responsible outside-process
+allocation. WSL grading overlapped earlier in that interval and is a possible
+contributor; no per-process history was available to assign causality. No new
+WHEA event or reboot was found. A progress update based on a stale log line was
+corrected after checking the actual stop receipt.
+
+The new recovery profile limits resident RAM to the smaller of14GiB and current
+free RAM minus7GiB. It keeps the same resource stop floors, moves one additional
+expert block to CPU (46), moves KV/state to GPU and raises microbatch128to256.
+This is a practical multi-variable recovery, not an isolated cache-speed claim.
+It repeats only the interrupted history case before the frozen private audit.
+No grading, builds or model downloads overlap this retry. The private observer
+now records process-family memory totals as well as system I/O. Prior failed
+and completed evidence remains intact; applications are not closed.
 
 The report is a useful hypothesis list, not a verified experiment log. Today's
 measurements support its small Qwen cache estimate, but contradict the earlier

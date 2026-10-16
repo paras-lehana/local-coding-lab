@@ -33,6 +33,22 @@ instructions to the maintainer. CLAUDE.md and the Copilot adapter point here.
 
 ## Current evidence and editor regression checks
 
+The16October expansion reopens Coder-Next80B, dense Gemma31 and QwenQ6 with
+explicit longer whole-prompt allowances; ordinary defaults remain1200seconds.
+Recover the live phase from docs/tasks.md and the
+[expansion report](docs/tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md)
+before starting another server. Do not reuse historical capacity/calibration
+exclusions as completed quality results. The stock80B Windows mmap attempt
+exhausted memory before inference; a process working-set cap did not prevent
+whole-file prefetch pressure. Do not repeat that unchanged load. The isolated
+prefetch opt-out requires its explicit runtime identity and DLL hash; never
+silently present its results as stock. See experiments/llama-mmap-prefetch/.
+KV buffer allocation, occupied tokens and resident RAM are separate measures.
+Shared instructions and frozen benchmark source copies remain unchanged.
+Before reporting an experiment as running, verify its current trial/stop receipt
+and process liveness; the last server log line can be stale. Keep grading/builds
+out of constrained inference intervals after the16October history RAM stop.
+
 The15October working choice is `profiles/qwen36-instructions-64k.json`.
 Read the [forwardable report](docs/tasks/2026-10-15-autonomous-model-campaign/2026-10-15-model-comparison-and-editor-validation-v0.3.9.md)
 and selection receipt before changing it. All candidates have limitations;

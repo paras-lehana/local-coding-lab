@@ -49,8 +49,29 @@
       "Recreates forbidden global uniqueness and omits required tenant composite uniqueness"
     ]
   },
-  "context": "running",
-  "private_actual_instructions": "pending",
+  "context": {
+    "status": "interrupted_unscored",
+    "wall_seconds": 383.359,
+    "stop_reason": "ram_free_gib below2.5GiB",
+    "last_free_ram_gib": 2.268779754638672,
+    "server_working_set_gib": 17.63766860961914,
+    "server_private_gib": 7.5312652587890625,
+    "recovery_profile": "qwencoder-next-noprefetch64-recovery",
+    "recovery_status": "running",
+    "cause": "Outside-process/system allocation growth not attributable from the available telemetry; prior WSL grading is a possible contributor"
+  },
+  "private_actual_instructions": "not_started_after_resource_stop; conditional after revised history trial",
   "grading": "Codex source review followed by namespace-isolated independent checks; not independently human reviewed",
-  "timing_caveat": "Grading was completed during context-v1 prefill after headroom increased to9.5GiB; source review preceded execution. Context timing includes this work and normal desktop activity."
+  "timing_caveat": "Grading was completed during context-v1 prefill after headroom increased to9.5GiB; source review preceded execution. Context timing includes this work and normal desktop activity.",
+  "recovery_loading": {
+    "resident_cap_gib": 12.330902099609375,
+    "readiness_dedicated_vram_gib": 5.343235015869141,
+    "cpu_mapped_weights_mib": 43984.94,
+    "gpu_weights_mib": 3459.58,
+    "gpu_kv_mib": 816.0,
+    "gpu_recurrent_mib": 75.38,
+    "gpu_compute_mib": 885.0,
+    "initial_free_ram_gib": 6.853824615478516,
+    "initial_free_vram_mib": 1077.0
+  }
 }
