@@ -1,0 +1,476 @@
+{
+  "status": "reviewed_completed_cpu_pair_and_interrupted_gpu_cache_followup",
+  "interpretation": "The completed CPU-KV pair improves short generation but not8K whole latency. Default mixed KV uses5.906GiB dedicated VRAM and leaves2K latency unchanged;8K is interrupted below400MiB freeVRAM, unscored. No quality or production promotion. Shared-desktop load and adaptive resident caps prevent isolated speed attribution.",
+  "scope": "Inline recall and weight-placement diagnostic, not coding quality",
+  "plan": {
+    "status": "weight_pair_completed_cache_offload_followup_frozen",
+    "scope": "Dense placement and occupancy diagnostics only; finish native quality before these probes",
+    "targets": [
+      2048,
+      8192
+    ],
+    "request_temperature": 0,
+    "request_reasoning_budget": 0,
+    "max_output_tokens": 256,
+    "deadline_seconds": 21600,
+    "runs": [
+      {
+        "profile": "gemma4-dense-ffn32-diagnostic",
+        "name": "gemma31-kv32-ffn-control",
+        "profile_sha256": "7afd89a9dbc615303d5227eda0acfc8eefb5118ba003a55018a4afec7ae44283"
+      },
+      {
+        "profile": "gemma4-dense-layer15-32-diagnostic",
+        "name": "gemma31-kv32-layer15",
+        "profile_sha256": "c709e0659649d587f13cea1df7858156e0553757b295b54bd4a3d7563131fd3b"
+      },
+      {
+        "profile": "gemma4-dense-layer15-gpukv32-diagnostic",
+        "name": "gemma31-kv32-layer15-gpu",
+        "profile_sha256": "7e7c0b3e1576bb3429428c9bac6c3efedf305869764e45d0d101e626039ed41d"
+      }
+    ],
+    "runtime": "E:/llm/runtimes/b11562-noprefetch-v1",
+    "variable": "First pair changes weight placement at CPUKV; third arm changes KV offload and associated scheduling from the second. Desktop/cap differences remain timing confounders.",
+    "sizing_only": "4789.20MiB estimated GPU weights in layer15 versus4745.60MiB measured current weights; do not assume identical total allocation.",
+    "context_tokens": 32768,
+    "reason": "Current freeVRAM below6400MiB rejects the original64K diagnostic. Use32K for both2K/8K probes, reducing context-dependent scratch and host KV. Actual allocation must be measured; no speed/quality claim from this estimate.",
+    "cache_followup_reason": "Complete-layer placement improved short generation but not8K whole latency. Test default cache offload at unchanged32K capacity if fresh6650MiB VRAM gate passes; preserve rejection otherwise."
+  },
+  "original64_preflight": {
+    "status": "preflight_rejected_no_load",
+    "snapshot": {
+      "time": 1792171489.6045039,
+      "platform": "win32",
+      "ram_total_gib": 63.909725189208984,
+      "ram_free_gib": 22.582420349121094,
+      "commit_limit_gib": 84.90972518920898,
+      "commit_available_gib": 20.854625701904297,
+      "vram_total_mib": 10240.0,
+      "vram_free_mib": 6284.0,
+      "gpu_c": 41.0,
+      "gpu": "NVIDIA GeForce RTX 3080",
+      "driver": "617.42"
+    },
+    "reason": "vram_free_mib below 6400 or unavailable",
+    "profile": "gemma4-dense-publisher64-candidate",
+    "scope": "No64K diagnostic inference started; completed native64K results remain valid."
+  },
+  "runs": [
+    {
+      "name": "gemma31-kv32-ffn-control",
+      "profile": "gemma4-dense-ffn32-diagnostic",
+      "profile_sha256": "7afd89a9dbc615303d5227eda0acfc8eefb5118ba003a55018a4afec7ae44283",
+      "status": "collected",
+      "preflight": {
+        "time": 1792171749.0938182,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 22.774375915527344,
+        "commit_limit_gib": 84.90972518920898,
+        "commit_available_gib": 21.359420776367188,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6494.0,
+        "gpu_c": 39.0,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "617.42"
+      },
+      "postflight": {
+        "time": 1792172479.5613775,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 24.796489715576172,
+        "commit_limit_gib": 84.90972518920898,
+        "commit_available_gib": 21.615859985351562,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6620.0,
+        "gpu_c": 43.0,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "617.42"
+      },
+      "server_outcome": {
+        "status": "requested_stop"
+      },
+      "samples": [
+        {
+          "target": 2048,
+          "status": "completed",
+          "input_tokens": 2060,
+          "wall_seconds": 160.46899999999732,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 2060,
+            "prompt_ms": 104627.37,
+            "prompt_per_token_ms": 50.789985436893204,
+            "prompt_per_second": 19.68892078621493,
+            "predicted_n": 67,
+            "predicted_ms": 55789.731,
+            "predicted_per_token_ms": 845.2989545454545,
+            "predicted_per_second": 1.1830134115541802
+          },
+          "scored": true,
+          "exact_json_match": false,
+          "facts_match": true,
+          "answer": "```json\n{\n  \"region\": \"bramble-east\",\n  \"auditOwner\": \"Sable-732\",\n  \"release\": \"Kite-184\",\n  \"runtimeRevision\": 1,\n  \"retryLimit\": 4\n}\n```",
+          "process_ram_gib": 17.682415008544922,
+          "private_commit_gib": 8.296249389648438,
+          "free_ram_gib": 6.898834228515625,
+          "dedicated_vram_gib": 5.315822601318359,
+          "slot_tokens": 2126
+        },
+        {
+          "target": 8192,
+          "status": "completed",
+          "input_tokens": 8115,
+          "wall_seconds": 457.6100000000006,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 8115,
+            "prompt_ms": 403016.196,
+            "prompt_per_token_ms": 49.66311719038817,
+            "prompt_per_second": 20.135667202813856,
+            "predicted_n": 67,
+            "predicted_ms": 54537.067,
+            "predicted_per_token_ms": 826.319196969697,
+            "predicted_per_second": 1.2101860923323946
+          },
+          "scored": true,
+          "exact_json_match": false,
+          "facts_match": true,
+          "answer": "```json\n{\n  \"region\": \"bramble-east\",\n  \"auditOwner\": \"Sable-732\",\n  \"release\": \"Kite-184\",\n  \"runtimeRevision\": 1,\n  \"retryLimit\": 4\n}\n```",
+          "process_ram_gib": 17.682373046875,
+          "private_commit_gib": 8.29952621459961,
+          "free_ram_gib": 7.122047424316406,
+          "dedicated_vram_gib": 5.315822601318359,
+          "slot_tokens": 8181
+        }
+      ],
+      "allocations": [
+        "load_tensors:   CPU_Mapped model buffer size = 16818.14 MiB",
+        "load_tensors:        CUDA0 model buffer size =  4745.60 MiB",
+        "llama_kv_cache:        CPU KV buffer size =  1360.00 MiB",
+        "llama_kv_cache:        CPU KV buffer size =   531.25 MiB",
+        "sched_reserve:      CUDA0 compute buffer size =   403.63 MiB",
+        "sched_reserve:  CUDA_Host compute buffer size =     5.99 MiB"
+      ],
+      "resident_limit_gib": 17.682464599609375,
+      "memory": {
+        "peak_rss_gib": 17.68246841430664,
+        "peak_private_commit_gib": 8.305656433105469,
+        "minimum_free_ram_gib": 4.963901519775391,
+        "minimum_free_vram_mib": 1110.0,
+        "minimum_available_commit_gib": 12.867698669433594,
+        "maximum_gpu_core_c": 57.0,
+        "samples": 223
+      },
+      "request_sha256": {
+        "tokens-2048": "760a79c44d8920974b1e91c03f5de3906c951076a028b23c75954d275510e38d",
+        "tokens-8192": "48a7b6c4416faa3908855d5aee7c65f54c62e49085ee67e21a85d07ba7884fe0",
+        "history-followup": "e26f66fee54abbec74fc07c173d3ec826e788e4652cb743756dac6fc6cd973a4",
+        "history-omitted": "c332d91a7928b7d8f41ae58d2a9e48e7706bf52e7fab760adf87442531f0acbf"
+      },
+      "history": {
+        "status": "completed",
+        "content": "```json\n{\n  \"region\": \"bramble-east\",\n  \"auditOwner\": \"Sable-732\",\n  \"release\": \"Kite-184\",\n  \"runtimeRevision\": 2,\n  \"retryLimit\": 0\n}\n```",
+        "wall_seconds": 66.67200000000594,
+        "timings": {
+          "cache_n": 8115,
+          "prompt_n": 117,
+          "prompt_ms": 10855.487,
+          "prompt_per_token_ms": 92.78194017094016,
+          "prompt_per_second": 10.777959570123386,
+          "predicted_n": 67,
+          "predicted_ms": 55740.489,
+          "predicted_per_token_ms": 844.5528636363637,
+          "predicted_per_second": 1.184058503684817
+        },
+        "exact_json_match": false,
+        "facts_match": true
+      },
+      "history_omitted": {
+        "status": "completed",
+        "content": "UNKNOWN",
+        "wall_seconds": 7.625,
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 45,
+          "prompt_ms": 5226.654,
+          "prompt_per_token_ms": 116.14786666666667,
+          "prompt_per_second": 8.609714742931136,
+          "predicted_n": 5,
+          "predicted_ms": 2351.986,
+          "predicted_per_token_ms": 587.9965,
+          "predicted_per_second": 1.7006903952659582
+        }
+      }
+    },
+    {
+      "name": "gemma31-kv32-layer15",
+      "profile": "gemma4-dense-layer15-32-diagnostic",
+      "profile_sha256": "c709e0659649d587f13cea1df7858156e0553757b295b54bd4a3d7563131fd3b",
+      "status": "collected",
+      "preflight": {
+        "time": 1792172497.0367243,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 24.753551483154297,
+        "commit_limit_gib": 84.90972518920898,
+        "commit_available_gib": 21.57406234741211,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6617.0,
+        "gpu_c": 42.0,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "617.42"
+      },
+      "postflight": {
+        "time": 1792173207.6421254,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 23.833866119384766,
+        "commit_limit_gib": 84.90972518920898,
+        "commit_available_gib": 21.28255844116211,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6717.0,
+        "gpu_c": 45.0,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "617.42"
+      },
+      "server_outcome": {
+        "status": "requested_stop"
+      },
+      "samples": [
+        {
+          "target": 2048,
+          "status": "completed",
+          "input_tokens": 2060,
+          "wall_seconds": 146.04699999999139,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 2060,
+            "prompt_ms": 103807.167,
+            "prompt_per_token_ms": 50.3918286407767,
+            "prompt_per_second": 19.844487230828676,
+            "predicted_n": 67,
+            "predicted_ms": 42201.627,
+            "predicted_per_token_ms": 639.4185909090909,
+            "predicted_per_second": 1.5639207464679028
+          },
+          "scored": true,
+          "exact_json_match": false,
+          "facts_match": true,
+          "answer": "```json\n{\n  \"region\": \"bramble-east\",\n  \"auditOwner\": \"Sable-732\",\n  \"release\": \"Kite-184\",\n  \"runtimeRevision\": 1,\n  \"retryLimit\": 4\n}\n```",
+          "process_ram_gib": 19.249370574951172,
+          "private_commit_gib": 8.37276840209961,
+          "free_ram_gib": 5.296222686767578,
+          "dedicated_vram_gib": 5.391994476318359,
+          "slot_tokens": 2126
+        },
+        {
+          "target": 8192,
+          "status": "completed",
+          "input_tokens": 8115,
+          "wall_seconds": 462.23399999999674,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 8115,
+            "prompt_ms": 413726.514,
+            "prompt_per_token_ms": 50.982934565619225,
+            "prompt_per_second": 19.61440643854892,
+            "predicted_n": 67,
+            "predicted_ms": 48463.645,
+            "predicted_per_token_ms": 734.2976515151514,
+            "predicted_per_second": 1.3618455648558834
+          },
+          "scored": true,
+          "exact_json_match": false,
+          "facts_match": true,
+          "answer": "```json\n{\n  \"region\": \"bramble-east\",\n  \"auditOwner\": \"Sable-732\",\n  \"release\": \"Kite-184\",\n  \"runtimeRevision\": 1,\n  \"retryLimit\": 4\n}\n```",
+          "process_ram_gib": 19.250625610351562,
+          "private_commit_gib": 8.373847961425781,
+          "free_ram_gib": 4.586341857910156,
+          "dedicated_vram_gib": 5.391994476318359,
+          "slot_tokens": 8181
+        }
+      ],
+      "allocations": [
+        "load_tensors:   CPU_Mapped model buffer size = 13131.50 MiB",
+        "load_tensors:        CUDA0 model buffer size =  4789.22 MiB",
+        "llama_kv_cache:        CPU KV buffer size =  1360.00 MiB",
+        "llama_kv_cache:        CPU KV buffer size =   531.25 MiB",
+        "sched_reserve:      CUDA0 compute buffer size =   409.53 MiB",
+        "sched_reserve:  CUDA_Host compute buffer size =     5.99 MiB"
+      ],
+      "resident_limit_gib": 19.790748596191406,
+      "memory": {
+        "peak_rss_gib": 19.257240295410156,
+        "peak_private_commit_gib": 8.380241394042969,
+        "minimum_free_ram_gib": 4.422992706298828,
+        "minimum_free_vram_mib": 1191.0,
+        "minimum_available_commit_gib": 12.727924346923828,
+        "maximum_gpu_core_c": 57.0,
+        "samples": 219
+      },
+      "request_sha256": {
+        "tokens-2048": "760a79c44d8920974b1e91c03f5de3906c951076a028b23c75954d275510e38d",
+        "tokens-8192": "48a7b6c4416faa3908855d5aee7c65f54c62e49085ee67e21a85d07ba7884fe0",
+        "history-followup": "e26f66fee54abbec74fc07c173d3ec826e788e4652cb743756dac6fc6cd973a4",
+        "history-omitted": "c332d91a7928b7d8f41ae58d2a9e48e7706bf52e7fab760adf87442531f0acbf"
+      },
+      "history": {
+        "status": "completed",
+        "content": "```json\n{\n  \"region\": \"bramble-east\",\n  \"auditOwner\": \"Sable-732\",\n  \"release\": \"Kite-184\",\n  \"runtimeRevision\": 2,\n  \"retryLimit\": 0\n}\n```",
+        "wall_seconds": 61.11000000000058,
+        "timings": {
+          "cache_n": 8115,
+          "prompt_n": 117,
+          "prompt_ms": 12544.246,
+          "prompt_per_token_ms": 107.21577777777777,
+          "prompt_per_second": 9.32698545612068,
+          "predicted_n": 67,
+          "predicted_ms": 48514.493,
+          "predicted_per_token_ms": 735.0680757575758,
+          "predicted_per_second": 1.3604182156453744
+        },
+        "exact_json_match": false,
+        "facts_match": true
+      },
+      "history_omitted": {
+        "status": "completed",
+        "content": "UNKNOWN",
+        "wall_seconds": 7.26600000000326,
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 45,
+          "prompt_ms": 4958.828,
+          "prompt_per_token_ms": 110.19617777777779,
+          "prompt_per_second": 9.074724914838747,
+          "predicted_n": 5,
+          "predicted_ms": 2268.963,
+          "predicted_per_token_ms": 567.24075,
+          "predicted_per_second": 1.7629198889536761
+        }
+      }
+    },
+    {
+      "name": "gemma31-kv32-layer15-gpu",
+      "profile": "gemma4-dense-layer15-gpukv32-diagnostic",
+      "profile_sha256": "7e7c0b3e1576bb3429428c9bac6c3efedf305869764e45d0d101e626039ed41d",
+      "status": "incomplete",
+      "preflight": {
+        "time": 1792173487.4651191,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 23.810100555419922,
+        "commit_limit_gib": 84.90972518920898,
+        "commit_available_gib": 21.388545989990234,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6714.0,
+        "gpu_c": 36.0,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "617.42"
+      },
+      "postflight": {
+        "time": 1792174001.2035758,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 23.226764678955078,
+        "commit_limit_gib": 84.90972518920898,
+        "commit_available_gib": 20.84006118774414,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6687.0,
+        "gpu_c": 54.0,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "617.42"
+      },
+      "server_outcome": {
+        "status": "stopped",
+        "reason": "vram_free_mib below 400 or unavailable"
+      },
+      "samples": [
+        {
+          "target": 2048,
+          "status": "completed",
+          "input_tokens": 2060,
+          "wall_seconds": 146.10899999999674,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 2060,
+            "prompt_ms": 103863.46,
+            "prompt_per_token_ms": 50.419155339805826,
+            "prompt_per_second": 19.833731708918613,
+            "predicted_n": 67,
+            "predicted_ms": 42209.02,
+            "predicted_per_token_ms": 639.530606060606,
+            "predicted_per_second": 1.5636468224090492
+          },
+          "scored": true,
+          "exact_json_match": false,
+          "facts_match": true,
+          "answer": "```json\n{\n  \"region\": \"bramble-east\",\n  \"auditOwner\": \"Sable-732\",\n  \"release\": \"Kite-184\",\n  \"runtimeRevision\": 1,\n  \"retryLimit\": 4\n}\n```",
+          "process_ram_gib": 18.738147735595703,
+          "private_commit_gib": 8.379119873046875,
+          "free_ram_gib": 5.0830841064453125,
+          "dedicated_vram_gib": 5.905670166015625,
+          "slot_tokens": 2126
+        },
+        {
+          "target": 8192,
+          "status": "worker_error",
+          "input_tokens": null,
+          "wall_seconds": null,
+          "timings": null,
+          "scored": false,
+          "exact_json_match": null,
+          "facts_match": null,
+          "answer": null,
+          "process_ram_gib": 17.405426025390625,
+          "private_commit_gib": 1.7040061950683594,
+          "free_ram_gib": 5.335697174072266,
+          "dedicated_vram_gib": null,
+          "slot_tokens": null
+        }
+      ],
+      "allocations": [
+        "load_tensors:   CPU_Mapped model buffer size = 13131.50 MiB",
+        "load_tensors:        CUDA0 model buffer size =  4789.22 MiB",
+        "llama_kv_cache:        CPU KV buffer size =   952.00 MiB",
+        "llama_kv_cache:      CUDA0 KV buffer size =   408.00 MiB",
+        "llama_kv_cache:        CPU KV buffer size =   414.38 MiB",
+        "llama_kv_cache:      CUDA0 KV buffer size =   116.88 MiB",
+        "sched_reserve:      CUDA0 compute buffer size =   409.53 MiB",
+        "sched_reserve:  CUDA_Host compute buffer size =     5.99 MiB"
+      ],
+      "resident_limit_gib": 18.86526107788086,
+      "memory": {
+        "peak_rss_gib": 18.738136291503906,
+        "peak_private_commit_gib": 8.379173278808594,
+        "minimum_free_ram_gib": 4.73126220703125,
+        "minimum_free_vram_mib": 394.0,
+        "minimum_available_commit_gib": 12.489250183105469,
+        "maximum_gpu_core_c": 55.0,
+        "samples": 182
+      },
+      "request_sha256": {
+        "tokens-2048": "760a79c44d8920974b1e91c03f5de3906c951076a028b23c75954d275510e38d",
+        "tokens-8192": "48a7b6c4416faa3908855d5aee7c65f54c62e49085ee67e21a85d07ba7884fe0"
+      }
+    }
+  ],
+  "caveats": [
+    "Same synthetic prompts, temperature0, seed73, reasoning budget0 and32K q8KV. First two arms have CPUKV; optional third uses default offload.",
+    "Desktop load and adaptive resident caps can differ; no isolated speed guarantee.",
+    "Higher GPU weight residency does not prove all operations run there when KV is onCPU.",
+    "Retained and omitted history tests establish supplied-context behavior, not permanent file memory.",
+    "No generated-code grading or model downloads overlap these probes."
+  ],
+  "request_pairs_byte_identical": {
+    "tokens-2048": true,
+    "tokens-8192": true,
+    "history-followup": true,
+    "history-omitted": true
+  },
+  "cache_followup_requests_byte_identical": {
+    "tokens-2048": true,
+    "tokens-8192": true
+  }
+}

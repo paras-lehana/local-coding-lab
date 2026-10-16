@@ -8,7 +8,7 @@ Last updated: 2026-10-16 (Asia/Kolkata).
 |---|---|---|---|
 | 1 | Measure RAM and growing KV context | Measured | 2K-120K occupancy, fixed KV reservations, CPU/GPU placement, history retention and omission tested. |
 | 2 | Test Qwen3-Coder-Next 80B | Tested; audit failed | Public code/history reviewed; private audit reaches16 tool turns without a final in67m55s, so no private quality score. |
-| 3 | Retest Gemma 31B dense | Native quality graded; placement next | Private26/36 in2h00m34s; publicPython6/6, TS5/6, SQLFKfailure, historypass. Revised32K placement pair prepared after64K preflight rejection. |
+| 3 | Retest Gemma 31B dense | Reviewed; not promoted | Private26/36; Python6/6, TS5/6, SQLFKfailure. CPU-KV pair complete; GPU-KV short answer unchanged,8K stopped at394MiB freeVRAM and unscored. |
 | 4 | Test Qwen3.6 Q6 | Queued | Try monitored placement/mapping; no premature quality rejection. |
 | 5 | Independent research and report | In progress | Supplied research re-read; primary sources and runtime inspected. |
 
@@ -81,6 +81,9 @@ explicit file mapping/resident caps, not a waived physical-memory floor.
 22:58 IST continuation (owner: "continue"): verified native Gemma private completed20:19:33 with normal stop and unchanged boot. All returned sources and visible turns reviewed. Private26/36=16semantic+4citation+6code, 7234.171s; no mutable-alias bug, but missing guidance and inaccurate read inventory. Public isolated Python6/6, combined self-tests6/6, original standalone6NameErrors; TSstrictcompilepass5/6; SQLFKfailure. Four isolation preflights pass; no host execution.27offline tests pass10.666s, twoPSscripts parse. Original64K dense diagnostic rejected before load at6284<6400MiB freeVRAM. Preserved plan; froze both32K arms for unchanged2K/8K probes with6000MiB loadgate and unchanged stopfloors. Rewrote canonical report around verified outcomes; prior chronological text retained privately. Q6/matchedQ4 unstarted. No promotion, app closures or hardware changes.
 
 23:00 IST validation checkpoint:27 offline tests10.666s, updated-profile targeted check, twoPowerShell parses,142-file public audit0findings,13local report links and corrected whitespace check pass. Native dense scores and pending32K/Q6 experiments are documented before checkpoint publication.
+
+
+23:37 IST dense placement checkpoint: two32K recall/history CPUKV arms completed with normal stops; all four requests byte-identical. CPUKV control/complete-layer 2K160.469/146.047s and8K457.610/462.234s. Default cache-offload follow-up2K146.109s; dedicatedVRAM5.906GiB. ActualGPUKV408+116.88MiB, weights4789.22/compute409.53MiB. Third8K stopped at394MiB freeVRAM below400floor during prefill; incomplete/unscored, no history follow-ups. Two shared requests byte-identical to second arm. No reboot; additionalVRAM consumer not attributed. Completed answers recover facts but add forbidden JSON fences; CPUKV changed/omitted history pass. These are budget0 recall diagnostics, not native coding scores. Desktop/resident-cap differences prevent isolated speed attribution. No grading/build/download overlapped. Q6 download and matchedQ4 quality follow; production selection unchanged.
 
 ## 2026-10-15 — Autonomous research campaign
 

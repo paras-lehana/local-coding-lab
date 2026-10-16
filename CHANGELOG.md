@@ -16,6 +16,9 @@
   instruction/citation defects and isolated code results separately.
 - Record effective client overrides, context-checkpoint growth, history-prefix
   reuse and a timed resident-cap intervention; prepare a dense placement control.
+- Complete the dense CPU-KV placement pair and preserve a separate GPU-KV
+  follow-up stopped below the VRAM floor. Short generation improves; the
+  completed8K requests show no latency gain. Interrupted output is unscored.
 
 ## 0.3.9 - 2026-10-15
 

@@ -240,3 +240,21 @@ in its process footprint. Filling more tokens does not add that allocation a
 second time. The owned server's resident cap was reduced during the private
 audit; the intervention and unchanged commit counter are recorded separately in
 [the dense result](../reports/2026-10-16-gemma31.json).
+
+## Dense placement follow-up
+
+At 32K capacity, Gemma31 reserves 1,360 MiB global plus 531.25 MiB sliding-window
+q8 KV. A completed pair keeps that cache on CPU while changing weight placement:
+all FFNs on CPU versus 14 complete repeating blocks plus output on GPU.
+Short-answer generation rises from 1.18 to 1.56 tokens/s, but an 8,115-token
+request stays about 7.7 minutes. Cache and weight locations are separate controls.
+
+A third arm moves 408 + 116.88 MiB of KV onto GPU without changing weight
+placement. Its 2,060-token request takes 146.109s versus 146.047s with CPU KV,
+using 5.906 GiB dedicated process VRAM. The 8K attempt stops during prefill when
+free device VRAM falls to 394 MiB; that answer is unscored. The additional consumer
+is not identified by the available counters. GPU cache is therefore conditional
+on measured benefit and headroom, not automatically preferable for every
+architecture and placement. The completed CPU pair also returns UNKNOWN when
+history is omitted; neither RAM nor VRAM cache supplies persistent cross-request
+knowledge by itself. [Requests, buffers and outcomes](../reports/2026-10-16-dense-placement.json).

@@ -39,6 +39,10 @@ scores26/36 in2h00m34s, including a correct6/6 merge helper but incomplete
 instructions and inaccurate read accounting. It is not promoted. A template
 change may improve history-prefix reuse, but its
 inference benefit remains untested.
+The32K dense placement pair improves short generation but leaves8K latency
+about7.7minutes. Moving525MiB KV ontoGPU leaves short latency unchanged and
+the longer follow-up stops below the400MiB free-VRAM floor, unscored.
+[Placement evidence](reports/2026-10-16-dense-placement.json).
 The matched QwenQ6/Q4 trials follow. [Dense loading evidence](reports/2026-10-16-gemma31.json).
 
 ## Start here

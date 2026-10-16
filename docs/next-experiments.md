@@ -17,8 +17,11 @@ and history checks after a stock mmap startup failure and an isolated prefetch
 opt-out. Its private audit reached the tool-turn limit without a final answer;
 it is not promoted. Dense Gemma31 now has isolated public Python6/6, TS5/6,
 SQL foreign-key failure, passing10K history and private26/36 in2h00m34s. The frozen
-dense layer-placement diagnostic and matched QwenQ4/Q6 pair follow sequentially with
-explicit six-hour whole-prompt limits. Previous capacity/calibration exclusions
+dense CPU-KV layer-placement pair is complete: short generation improves,8K
+latency does not. A GPU-KV follow-up stops during8K prefill below400MiB freeVRAM;
+its completed2K latency is unchanged. No unchanged retry is queued. The matched
+QwenQ4/Q6 pair follows with explicit six-hour whole-prompt limits.
+Previous capacity/calibration exclusions
 are historical, not completed quality verdicts. See the
 [current task report](tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md).
 

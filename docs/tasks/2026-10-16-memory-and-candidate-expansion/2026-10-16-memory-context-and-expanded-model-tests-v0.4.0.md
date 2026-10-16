@@ -2,15 +2,16 @@
 
 **Status: in progress, 16 October 2026, Asia/Kolkata.** The growing-context
 measurements, Coder-Next attempt and dense Gemma native quality review are
-complete. Dense placement diagnostics and the matched Qwen Q6/Q4 comparison
-remain. No replacement has been selected.
+complete. Dense CPU-KV placement diagnostics are complete; the GPU-KV follow-up
+was stopped for low VRAM. The matched Qwen Q6/Q4 comparison remains. No
+replacement has been selected.
 
 | Owner point | Status | Result / next action |
 |---|---|---|
 | Explain 64 GB use and test growing KV | Measured | Actual input from 2K to 120K, CPU/GPU cache placement, reused history and omitted history tested. Main KV reserves capacity at load. |
 | Test Qwen3-Coder-Next 80B | Tested; not promoted | Python 6/6, TS 4/6, SQL fails. History passes. Private audit repeats wrong paths and reaches its tool-turn limit without a final answer. |
-| Retest Gemma 4 31B dense | Native quality reviewed; placement diagnostics next | Public/private Python helpers pass 6/6; TS 5/6, SQL fails. Private instruction audit 26/36 in 2h00m34s. |
-| Test shortlisted Qwen3.6 Q6 | Pending | Pinned mixed-precision artifact and matched Q4 control prepared; download and collection remain. |
+| Retest Gemma 4 31B dense | Reviewed; not promoted | Public/private Python helpers pass 6/6; TS 5/6, SQL fails. Private instruction audit 26/36 in 2h00m34s. Placement diagnostics do not establish a faster file-heavy workflow. |
+| Test shortlisted Qwen3.6 Q6 | Downloading | Pinned mixed-precision artifact and matched Q4 control prepared; verification and collection remain. |
 | Independently assess the research | Ongoing | Publisher-score attribution, cache sizing, template reuse and Windows loading claims checked against sources and measurements. |
 
 ## Business summary and current recommendation
@@ -183,6 +184,11 @@ never happened. It does not invent the absent port. All nine delivered source
 texts were checked against frozen bytes; no tool read failed. No private source
 or answer is published in the public aggregate.
 
+One additional style mismatch is outside the frozen behavior score: the answer
+names type hints and docstrings as requirements, but its own helper omits them.
+That is instruction/style noncompliance, not a Python syntax failure; no new
+post-hoc scoring criterion is added.
+
 Public sampling is temperature 1, top-p .95, top-k 64 and
 `preserve_thinking=false`, with 16,384 output tokens. The legacy private client
 actually overrides top-k to 20, preservation to true and output allowance to
@@ -194,7 +200,7 @@ remained unchanged, and generation continued without restarting. This is not
 a fixed-cap timing comparison. Private minimum free RAM was 3.609 GiB and free
 VRAM 910 MiB; it stopped normally with no new hardware-event stop.
 
-### What caused the long waits, and the next diagnostic
+### What caused the long waits, and the placement diagnostics
 
 Python spent about 104s processing input and 3,841s generating; TS/SQL spent
 84s and 4,378s. Their small inputs were not filling 64K. Private weighted
@@ -202,18 +208,48 @@ prefill/generation rates were 18.92/1.17 tokens/s. Whole-system private disk rea
 averaged only 2.41 MiB/s, unlike the 80B paging-heavy run. This motivates testing
 how dense weights use the available GPU, not adding cache capacity blindly.
 
-A complete-layer placement is prepared at approximately 4,789 MiB GPU weights,
-close to the current 4,746 MiB: last 14 repeating blocks plus output weights
-on GPU, rather than all FFNs on CPU. CPU KV means this is a **weight placement**
-description, not proof every operation executes on GPU.
-
 At 22:54, current free VRAM was 6,284 MiB, below the original 64K diagnostic's
 6,400 MiB loading gate. No diagnostic load began. The original plan is preserved;
 both new arms use 32K context for the same frozen 2K/8K recall/history probes,
 temperature zero and reasoning budget zero. A 6,000 MiB loading gate accompanies
-the expected smaller workspace; all runtime stop floors remain unchanged.
-Actual buffers and performance must be measured. These probes are not native
-coding scores or a basis for promotion by themselves.
+the smaller workspace; all runtime stop floors remain unchanged.
+
+Both CPU-KV arms completed and stopped normally:
+
+| Same request | FFNs on CPU, selected attention on GPU | Last 14 complete blocks + output on GPU |
+|---|---:|---:|
+| 2,060-token input, whole request | 160.469s | 146.047s |
+| Short-answer generation | 1.183 tokens/s | 1.564 tokens/s |
+| 8,115-token input, whole request | 457.610s | 462.234s |
+| Changed-value follow-up | 66.672s | 61.110s |
+| History deliberately omitted | UNKNOWN, 7.625s | UNKNOWN, 7.266s |
+
+All supplied facts and changed values are correct; both add a Markdown fence
+despite the required plain JSON format. Each follow-up reuses 8,115 tokens and
+processes 117 new ones. The complete-layer loader records 4,789.22 MiB GPU
+weights and 409.53 MiB workspace, versus 4,745.60 / 403.63 MiB for the control.
+Both reserve 1,360 + 531.25 MiB CPU KV. CPU KV makes this a weight-placement
+description, not proof that every operation executes on GPU. Desktop load and
+adaptive resident caps differ, so this is not a controlled hardware speed claim.
+
+The generation improvement did not improve the file-heavy request. A separately
+frozen third arm removes `--no-kv-offload` at the same 32K capacity and complete-
+layer placement. Its fresh 6,714 MiB free VRAM passes the 6,650 MiB loading gate.
+The loader measures 408 + 116.88 MiB GPU KV, matching the estimate from three
+global and eleven sliding-window blocks. Its short request completes in
+146.109s, essentially unchanged from 146.047s with CPU KV. It uses 5.906 GiB
+dedicated VRAM. During the 8K prefill, free device VRAM falls to 394 MiB and
+the monitor stops the server at the unchanged 400 MiB floor. The last progress
+entry is 6,536 of 8,115 input tokens; this interrupted answer is unscored and
+the third arm's history follow-ups were not run. The additional VRAM consumer
+is not attributed by the collected counters; no reboot occurred.
+
+All four requests are byte-identical across the completed pair; both submitted
+requests match in the GPU-cache follow-up. This changes cache placement and
+associated scheduling, not weight precision. There is no demonstrated
+file-heavy latency improvement, and the third arm has less desktop margin.
+These recall probes are not native coding scores or a basis for promotion.
+[Placement measurements](../../../reports/2026-10-16-dense-placement.json).
 
 ### Template and history reuse
 
@@ -301,12 +337,12 @@ The isolated runtime is `b11562-noprefetch-v1` at stock commit
 `7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009`.
 Stock binaries remain preserved. [Controls](../../../reports/2026-10-16-runtime-controls.json).
 
-Latest quiet-interval tooling check: 27 offline tests pass in 10.666s; both
+Latest quiet-interval tooling check: 27 offline tests pass in 10.087s; both
 public PowerShell scripts parse. All four new Gemma isolated executions pass
 the namespace preflight, including the deliberately preserved standalone-test
 failure. Code runs only with selected read-only files, no host homes/drives or
 network, and time/memory limits. The updated profile check passes; the public
-audit reports zero findings in 142 files, all 13 local report links resolve,
+audit reports zero findings in 144 files,
 and the whitespace check passes. No new editor UI validation is claimed.
 
 Maintainer sources actually read include project/parent guides, the maintained
@@ -322,7 +358,7 @@ Chronological details and validations remain in [tasks](../../tasks.md) and
 
 | Item | Next step |
 |---|---|
-| Dense placement pair | Run revised 32K arms sequentially; inspect actual allocation and complete recall/history answers. |
+| Dense placement diagnostics | Reviewed: CPU-KV pair complete; GPU-KV short probe complete, 8K interrupted for VRAM and unscored. No unchanged retry. |
 | Q6 / matched Q4 | Verify download, collect repeated coding/history/private cases, review and isolate code. |
 | Final working setup | Choose from completed quality evidence, validate fresh capacity and any changed editor integration before promotion. |
 | Final report/publication | Reconcile this report and public summaries, run checks/audit, publish and report remaining limits. |

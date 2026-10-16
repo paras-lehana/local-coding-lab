@@ -491,6 +491,7 @@
     "isolated_result_sha256": "e6543704a0c888ace39962383d431066537700a99a35e2693882df7f3ac2193c",
     "findings": [
       "Pure merge implementation passes all six behavior groups, including no mutable aliases.",
+      "Additional unscored style observation: the private answer names type hints and docstrings as requirements, but its example helper omits them. The frozen six code groups assess behavior; no new scoring criterion is added.",
       "Correct physical-host/mapping facts and real installer control-flow distinction.",
       "Required nested/shared instruction consultation and adapter-maintenance conditions incomplete.",
       "Shared repository log locations are not distinguished correctly; permanent cache-retention limits are omitted.",
