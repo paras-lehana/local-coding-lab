@@ -1,0 +1,94 @@
+{
+  "status": "metadata_comparison_only",
+  "source": "Pinned GGUF headers; Q4 artifact present and previously verified, Q6 full download and quality evaluation pending.",
+  "type_reference": "https://github.com/ggml-org/llama.cpp/blob/b2f036c0f138414dedc987446f1d9d802f920275/ggml/include/ggml.h",
+  "artifacts": [
+    {
+      "artifact": "qwen36-q4",
+      "tensor_types": [
+        {
+          "role": "other tensors",
+          "ggml_type_id": 14,
+          "count": 1,
+          "bytes": 417177600,
+          "ggml_type": "q6_k"
+        },
+        {
+          "role": "other tensors",
+          "ggml_type_id": 0,
+          "count": 361,
+          "bytes": 104581632,
+          "ggml_type": "f32"
+        },
+        {
+          "role": "other tensors",
+          "ggml_type_id": 8,
+          "count": 251,
+          "bytes": 2033254400,
+          "ggml_type": "q8_0"
+        },
+        {
+          "role": "routed experts",
+          "ggml_type_id": 13,
+          "count": 37,
+          "bytes": 6828326912,
+          "ggml_type": "q5_k"
+        },
+        {
+          "role": "routed experts",
+          "ggml_type_id": 12,
+          "count": 80,
+          "bytes": 12079595520,
+          "ggml_type": "q4_k"
+        },
+        {
+          "role": "routed experts",
+          "ggml_type_id": 14,
+          "count": 3,
+          "bytes": 660602880,
+          "ggml_type": "q6_k"
+        }
+      ],
+      "filename": "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+      "pinned_sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61",
+      "file_bytes": 22134528992
+    },
+    {
+      "artifact": "qwen36-q6",
+      "tensor_types": [
+        {
+          "role": "other tensors",
+          "ggml_type_id": 8,
+          "count": 252,
+          "bytes": 2573598720,
+          "ggml_type": "q8_0"
+        },
+        {
+          "role": "other tensors",
+          "ggml_type_id": 0,
+          "count": 361,
+          "bytes": 104581632,
+          "ggml_type": "f32"
+        },
+        {
+          "role": "routed experts",
+          "ggml_type_id": 8,
+          "count": 42,
+          "bytes": 11978932224,
+          "ggml_type": "q8_0"
+        },
+        {
+          "role": "routed experts",
+          "ggml_type_id": 14,
+          "count": 78,
+          "bytes": 17175674880,
+          "ggml_type": "q6_k"
+        }
+      ],
+      "filename": "Qwen3.6-35B-A3B-UD-Q6_K_XL.gguf",
+      "pinned_sha256": "f6b6c6d5cfa6f00d964eeb7add28eb14ce7481734d506b90681007678cd2c484",
+      "file_bytes": 31843777504
+    }
+  ],
+  "limitation": "Tensor counts are not parameter counts. Storage spans include alignment. Precision metadata does not establish a coding-quality ranking."
+}

@@ -1,8 +1,8 @@
 {
   "model": "qwen36-q4",
   "alias": "qwen36-lab",
-  "locally_tested": false,
-  "evidence": "16 October expansion; explicit owner request. A larger time allowance does not waive resource monitoring.",
+  "locally_tested": true,
+  "evidence": "16 October completed memory/recall collection; see reports/2026-10-16-context-growth.json. CPU/GPU128 recovered all five facts at119943tokens but failed plain-JSON formatting. Native-thinking code and actual-editor quality are not established by these zero-budget probes. Future load guards require25.5GiB available commit; recorded launch snapshots retain original thresholds.",
   "load_min_ram_free_gib": 21.2,
   "load_min_vram_free_mib": 5900,
   "template_kwargs": {
@@ -70,6 +70,7 @@
   "stop_min_ram_free_gib": 2.5,
   "stop_min_vram_free_mib": 400,
   "stop_gpu_c": 84,
-  "validation_status": "experimental_pending",
-  "stop_min_commit_available_gib": 1.0
+  "validation_status": "measured_recall_only_not_coding_selection",
+  "stop_min_commit_available_gib": 1,
+  "load_min_commit_available_gib": 25.5
 }

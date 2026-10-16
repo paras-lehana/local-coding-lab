@@ -161,6 +161,14 @@ sampling and placement policy. Different physical residency and desktop load
 will still limit timing comparisons. These mixed quantization artifacts do
 not represent a uniform four- versus six-bit change to every tensor.
 
+Header inspection makes that concrete. The current Q4 artifact stores its
+120 routed-expert tensors as 80 Q4_K, 37 Q5_K and 3 Q6_K tensors. The Q6 artifact
+uses 78 Q6_K and 42 Q8_0 expert tensors. Most other quantized tensors are already
+Q8_0 in the Q4 file; its output tensor changes from Q6_K to Q8_0 in Q6. Tensor
+counts are not parameter counts, and this is not a quality score. The files are
+20.61 versus 29.66 GiB, about 44% more storage for Q6. See the
+[header evidence](../../../reports/2026-10-16-quantization-headers.json).
+
 Coder-Next80B has an explicit trial despite exceeding currently available
 resident RAM. File-backed mapping can trade repeated storage reads for a lower
 resident working set; it does not make all80B weights resident or increase
