@@ -13,9 +13,19 @@ Increasing the server setting to 128K reserves 1360 MiB CPU KV at load. Recurren
 state remains 62.81 MiB, while GPU compute buffers increase 273→507 MiB. Thus
 occupied context grows without a corresponding linear rise in the process
 graph, but a larger configured capacity can increase multiple allocations.
-The 120K-input and GPU-placement follow-ups are still in progress; no result is
-claimed for them here yet. These synthetic probes do not certify retrieval of
-arbitrary repository instructions or persistence after client history is omitted.
+At 119,943 input tokens, all-CPU KV completed in 733.063 seconds and default
+mixed CPU/GPU placement in 610.016 seconds. Both recovered all five facts, but
+both added a Markdown fence against the plain-JSON instruction. Updated-file
+history follow-ups passed; omitting history returned UNKNOWN. These synthetic
+inline probes do not certify autonomous retrieval of repository instructions.
+
+The 128K CPU run used 18.580 GiB resident RAM and 5.104 GiB dedicated VRAM;
+mixed placement used 17.477 and 6.199 GiB respectively. Private committed bytes
+stayed near 24.15 GiB in both. These counters overlap different resources and
+must not be added as three independent physical allocations. The GPU run left
+775 MiB device VRAM free and about 1.76 GiB available commit at the reported
+post-answer snapshot. Keep 64K as the working default until a larger profile
+earns its place through actual workload tests.
 
 The launcher also supports an optional `stop_min_commit_available_gib` guard.
 Physical availability and Windows commit headroom are distinct constraints.
@@ -26,7 +36,9 @@ saved beside each run. The existing working profile is unchanged.
 
 With `working_set_reserve_gib`, the resolved cap is the smaller of the explicit
 limit and currently available physical RAM minus that reserve. The new larger-model
-trials leave 5 GiB at preflight and can use more RAM when it is actually available;
+initial trials reserve 5 GiB at preflight; the revised 80B profile reserves
+7 GiB and additionally caps resident RAM at 14 GiB. These limits allow use of
+more RAM only when it is actually available;
 they do not assume that every process may consume the machine's full 64 GB.
 The guard continues monitoring afterward because other applications can grow.
 

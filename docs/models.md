@@ -1,6 +1,6 @@
 # Model shortlist and exact artifacts
 
-Checked 15 October 2026. Sizes are GiB of **weights**, not total memory.
+Checked 16 October 2026. Sizes are GiB of **weights**, not total memory.
 Download keys resolve to full pinned revisions and SHA256 in
 [catalog/models.json](../catalog/models.json). The [live campaign report](../reports/2026-10-15-campaign.md)
 separates completed measurements, downloads and conditional exclusions.
@@ -11,13 +11,13 @@ separates completed measurements, downloads and conditional exclusions.
 | Smaller candidate | `gemma4-26b-qat` | 13.448 | Python and 52K-input history pass; unrestricted SQL 6/6 and TS 5/6; capped and native private audits both 19/36 |
 | Distinct reasoning family | `glm47-udq4` | 16.317 | Capped private audit 21/36; f16 native Python 6/6 but history count fails; native f16 private 27/36 |
 | Matched precision comparison | `glm47-q5` | 19.939 | Bounded Python 5/6, 0/6, 0/6; native 6/6, 6/6, 0/6; private retry 21/36; exact weight retired with reports retained |
-| Dense conditional gate | `gemma4-31b-qat` | 16.439 | RAM-KV calibration 0.95 tok/s, deadline; weight file retired after preservation |
+| Dense extended trial | `gemma4-31b-qat` | 16.439 | Earlier 0.95 tok/s calibration was interrupted, not quality-scored; new mapped 64K native-thinking/publisher-sampling artifact downloading for a longer trial |
 | Non-thinking coding control | `qwencoder30-udq4` | 16.452 | Python 2/6, 3/6, 1/6; private deadline, unscored; exact weight retired with reports retained |
 | Conditional precision | `qwen36-q5` | 24.639 | Matched public Python repeats 6/6; native private 28/36, including only 2/6 code groups and accurate 14-source inventory; no repeatable precision advantage established |
-| Optional precision | `qwen36-q6` | 29.657 | Header inspected; full download rejected at27.426<28.5GiB freeRAM; final26.794GiB snapshot also below gate; no quality score |
+| Matched precision trial | `qwen36-q6` | 29.657 | Header inspected; earlier resident-memory exclusion reopened with an explicit mapped profile and matched Q4 control; full download and quality comparison pending |
 | Conditional precision | `glm47-udq6` | 24.378 | Public capped Python 5/6, 0/6, 6/6; native 5/6; history count fails; native private 24/36 |
 | Linear-attention alternative | `kimi-linear-q4` | 27.997 | Matching f16 public core4/6, malformed call/no code,6/6; TS4/6, SQL syntax failure;64K private gate rejected; exact weight retired with reports |
-| Larger coding model | `qwencoder-next-q4` | 45.196 | Current apps-open resident-capacity exclusion, no quality score |
+| Larger coding model | `qwencoder-next-q4` | 45.196 | Verified and loaded using an isolated prefetch opt-out: Python 6/6, TS 4/6, SQL foreign-key failure; recovered history passes all six facts; actual-instruction audit hits16-turn limit without a final answer in67m55s |
 
 Model and artifact sources:
 
@@ -41,12 +41,18 @@ is a fallback to pin and verify if needed, not an automatic silent substitution.
 
 Qwen3-Coder-30B-A3B is **MoE and non-thinking**, not dense. It is a useful possible
 code-edit baseline, but has no native thinking mode to set to ultra/high.
-Gemma 4 31B QAT failed its measured dense latency gate. Qwen Q5
+Gemma 4 31B QAT exceeded its earlier calibration deadline; the owner now accepts
+slower completed tests, so that exclusion is being revisited. Qwen Q5
 can isolate weight precision more cleanly than changing families, but adds
 roughly 4 GiB to the current Q4 artifact.
 
-Kimi-Linear 48B and Qwen3-Coder-Next 80B require a larger free-memory envelope
-than the recent apps-open snapshots. Mainline large Kimi, GLM, DeepSeek and
+Kimi-Linear's previous 64K private load was rejected by its resident-memory gate.
+Coder-Next 80B now runs with file-backed paging, but input processing is slow
+and one history attempt hit the physical-memory stop before a revised profile
+completed it. Its stock Windows mmap load also failed before inference; the
+successful runs use an explicitly identified modified runtime, not the stock
+binary. See the [expanded evidence](tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md).
+Mainline large Kimi, GLM, DeepSeek and
 Llama releases must be evaluated by **total stored parameters/artifact size**;
 a low active-parameter count does not make all weights fit. See the retained
 research for wider candidates, but independently verify each exact artifact.
@@ -58,5 +64,8 @@ the provisional working choice:31/36 private, successful52K history, but code
 defects remain. The faster2GiB-cache version scores27/36 private and fails
 held-out strict TypeScript. Gemma26QAT is retained as a lower-memory fallback.
 GLMQ4/Q6 and QwenQ5 weights were retired after complete reviews, full SHA
-verification and evidence preservation. Actual editor validation remains pending;
-none is certified for unattended coding. See the campaign's selection rationale.
+verification and evidence preservation. The selected Qwen profile completed six
+actual Copilot/Continue probes on 15 October; both editors missed Python-specific
+instruction routing, and Copilot cited an unread report. No expanded candidate
+has passed new editor validation or been promoted. None is certified for
+unattended coding. See the campaign's selection rationale.

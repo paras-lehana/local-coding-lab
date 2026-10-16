@@ -1,0 +1,29 @@
+{
+  "scope": "Offline sandboxed Jinja rendering only; actual llama.cpp API rendering still required",
+  "template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+  "results": {
+    "false": {
+      "thinking_trigger_present": true,
+      "old_tool_thought_present": false,
+      "old_final_thought_present": false,
+      "current_tool_thought_present": true,
+      "old_source_fact_present": true,
+      "new_source_fact_present": true,
+      "double_argument_braces": false
+    },
+    "true": {
+      "thinking_trigger_present": true,
+      "old_tool_thought_present": true,
+      "old_final_thought_present": false,
+      "current_tool_thought_present": true,
+      "old_source_fact_present": true,
+      "new_source_fact_present": true,
+      "double_argument_braces": false
+    }
+  },
+  "selected_template_kwargs": {
+    "enable_thinking": true,
+    "preserve_thinking": false
+  },
+  "runtime_api_render": "pending model load"
+}

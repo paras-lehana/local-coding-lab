@@ -6,8 +6,8 @@ Status: in progress, 16 October 2026 (Asia/Kolkata). This report extends the
 | Owner point | Status | Evidence and next step |
 |---|---|---|
 | RAM use and KV growth | Measured | 2K–120K occupancy, 64K/128K reservations, CPU/GPU placement, retained and omitted history. |
-| Qwen3-Coder-Next 80B | Private audit running | Python6/6, TS4/6, SQL FK failure; revised history retry passes. Actual-instruction audit remains in progress. |
-| Gemma 4 31B dense | Queued | Repeat beyond the previous latency gate; collect complete answers before judging quality. |
+| Qwen3-Coder-Next 80B | Tested; private audit failed | Python6/6, TS4/6, SQL FK failure; history passes. Private audit reaches16 tool turns without a final answer. |
+| Gemma 4 31B dense | Downloading | Native-thinking publisher sampling and revised64K RAM/GPU placement; quality collection pending. |
 | Qwen3.6 Q6 | Queued | Attempt mapping/placement appropriate to current headroom, then matched quality checks. |
 | Independent research and reasoning | In progress | Re-read supplied research and verify runtime behavior and publisher facts. |
 
@@ -302,6 +302,92 @@ counts were already corrected by the 15 October campaign. Its claim that an
 8 GiB default prompt cache caused our stops also does not apply to the actual
 launcher, which already used `--cache-ram 0`. Preserve those distinctions when
 comparing the research with measurements.
+
+### Remaining trials frozen before collection
+
+The Q4/Q6 pair now has three Python seeds (73/74/75), the same TypeScript/SQLite
+case, changed-file/history scenario, and frozen actual-instruction audit. The
+runtime, placement policy, thinking mode and sampling match. Actual resident
+caps depend on free RAM at each launch, so timing comparisons still include
+that limitation. No outcome is claimed before collection.
+
+For dense Gemma31, a separately named publisher-sampling profile changes the
+prepared temperature from0.6 to1.0, with top_p0.95/top_k64 and native thinking.
+The [publisher guidance](https://huggingface.co/google/gemma-4-31B-it#best-practices)
+also retains thoughts during ongoing tool turns but excludes earlier thoughts
+once a new user turn starts. The effective template must be checked; an accepted
+flag alone is insufficient. The previous prepared0.6 profile remains unrun.
+This is a family-appropriate practical trial, not a controlled cross-family
+sampling comparison. Its longer deadline, CPU q8KV and one checkpoint remain.
+
+The exact embedded Gemma template was then rendered offline with synthetic
+markers in a sandboxed Jinja environment. `preserve_thinking=false` retains
+current tool-sequence thoughts, removes thoughts from the previous user turn,
+and preserves both earlier and current source contents. `true` additionally
+retains old tool-call thoughts. The prepared publisher profile now uses false,
+while retaining the runtime reasoning transport flag. This avoids conflating
+old reasoning with file memory. The first preparation is preserved; neither
+preparation has run inference yet. Actual runtime API rendering remains pending.
+See the [template checks](../../../reports/2026-10-16-gemma-template.json).
+
+A time-adjacent14:01 apps-open snapshot records63.91GiB physical capacity,
+9.159GiB available and a14GiB server working set. Browser process working sets
+are approximately8.3GiB and editor processes6.5GiB; those aggregates can count
+shared pages twice and are not a complete additive physical-memory breakdown.
+Windows, other applications, mappings and caches account for additional usage.
+The existing pagefile is21GiB allocated and about5GiB used in that observation.
+Neither allocated pagefile nor private commit is extra physical RAM.
+
+The ongoing80B audit also exposes a separate allocation: runtime logs create
+and replace context checkpoints of75.376MiB each, up to the configured four.
+As input grows from14.5K to20K tokens, resident RAM remains capped at14GiB,
+while private allocation changes from6.907 to6.984GiB. These snapshots alone
+cannot assign every byte, but the logs directly establish bounded checkpoint
+storage alongside the fixed816MiB active GPU KV buffer. Thus "KV reserves
+capacity up front" does not mean every other runtime allocation stays fixed.
+
+### Coder-Next private audit: completed attempt, failed workflow
+
+The actual-instruction attempt ended at the16-tool-turn limit after4075.125s
+(67m55s), with no final answer. All16 visible assistant content fields are empty;
+only tool calls were delivered. Eleven distinct source files were supplied,
+including the initial entry document. There were10 successful tool ranges and
+15 failed reads:13 unavailable paths and two oversized ranges. The model
+repeatedly added an extra policy-directory component to the Codex paths despite
+the exact available inventory. It recovered one oversized read by requesting
+100lines, but never successfully read the actual Codex guide or README.
+
+This is a measured end-to-end tool-use failure. It is not a private code score
+of zero, a timeout, or a memory stop. There is no private implementation to run
+in isolation. The earlier completed public implementation and history results
+remain valid. Do not promote this profile for instruction-heavy repository work.
+A different sampling/scaffolding retry could be a separate future experiment;
+this result does not prove every possible configuration will fail.
+
+The run reached25,063 input tokens. Weighted uncached prefill was6.27tokens/s;
+generation of tool calls was5.80tokens/s. Peak sampled resident RAM was14.000GiB,
+minimum freeRAM6.466GiB, minimum availablecommit11.266GiB, minimum freeVRAM517MiB,
+and maximum GPU core temperature48C. The launcher stopped normally after the
+audit reported its limit. No new hardware error or restart was observed in this
+run. [Aggregate evidence](../../../reports/2026-10-16-coder-next.json).
+
+Across127 observations during the failed private audit, whole-system disk reads
+averaged254.5MiB/s and GPU utilization18.4%. These samples include other apps;
+page-fault counters include soft faults. They describe a paging-heavy run and
+are not isolated storage/GPU benchmarks or proof of a universal speed ceiling.
+
+### Dense placement revision before first load
+
+After unloading80B, the desktop had22.99GiB freeRAM and6639MiB freeVRAM, below
+the initially prepared6700MiB VRAM gate. The preceding run also observed roughly
+600MiB of desktop VRAM variation. The revised unrun Gemma publisher profile
+therefore places attention tensors from the first12blocks on CPU as well as all
+dense FFNs. Their exact header spans total909.836MiB; the remaining48attention
+blocks and output head stay eligible for GPU. This trades more host residency
+and CPU work for GPU headroom. Actual loader buffers and speed remain pending.
+The preflight gate becomes6400MiB for the smaller predicted GPU placement;
+the400MiB runtime stop threshold is unchanged. All prior preparation revisions
+are preserved, and this is not an isolated speed comparison with the old16K run.
 
 ## Source provenance
 

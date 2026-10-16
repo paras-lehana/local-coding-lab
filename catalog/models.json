@@ -11,7 +11,7 @@
       "bytes": 22134528992,
       "sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61",
       "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
-      "status": "selected-instruction-priority-working-profile-with-documented-defects-editor-ui-pending",
+      "status": "selected-working-profile-editor-probes-complete-with-documented-defects",
       "thinking": "enable_thinking and preserve_thinking; no native xhigh"
     },
     "gemma4-26b-qat": {
@@ -54,7 +54,7 @@
       "filename": "gemma-4-31B_q4_0-it.gguf",
       "bytes": 17651001568,
       "sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
-      "status": "tested-profiles-rejected-resource-and-latency-weights-removed",
+      "status": "extended-publisher-sampling-mapped-trial-downloading",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "qwencoder30-udq4": {
@@ -84,7 +84,7 @@
       "filename": "Qwen3.6-35B-A3B-UD-Q6_K_XL.gguf",
       "bytes": 31843777504,
       "sha256": "f6b6c6d5cfa6f00d964eeb7add28eb14ce7481734d506b90681007678cd2c484",
-      "status": "current-apps-open-resident-capacity-rejected-no-quality-score",
+      "status": "header-inspected-extended-mapped-matched-trial-prepared-download-pending",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "glm47-udq6": {
@@ -114,8 +114,8 @@
       "filename": "Qwen3-Coder-Next-Q4_K_M.gguf",
       "bytes": 48528320544,
       "sha256": "9e6032d2f3b50a60f17ce8bf5a1d85c71af9b53b89c7978020ae7c660f29b090",
-      "status": "current-apps-open-resident-capacity-rejected-no-quality-score",
-      "thinking": "Verify native template; do not assume a reasoning-effort control."
+      "status": "public-tests-reviewed-private-tool-round-failure-not-selected",
+      "thinking": "Publisher non-thinking-only checkpoint; no native high/xhigh reasoning mode."
     }
   }
 }

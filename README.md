@@ -28,6 +28,12 @@ at load; it does not grow by tens of GiB as the prompt fills. The follow-up
 reused history; omitting history removed access to those facts. See the
 [measured comparison and limits](docs/tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md).
 
+**80B follow-up:** Coder-Next Q4 now loads using an isolated Windows prefetch
+opt-out. Public Python passes6/6, TypeScript4/6, SQL fails, and the history retry
+passes. The actual-instruction audit repeats unavailable paths and reaches its
+16-tool-turn limit after67m55s without a final answer; it has no private quality
+score and is not promoted. Dense Gemma31 and matched QwenQ6/Q4 trials are next.
+
 ## Start here
 
 | I want to… | Read / run |

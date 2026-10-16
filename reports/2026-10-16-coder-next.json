@@ -1,5 +1,5 @@
 {
-  "status": "partial_collection_in_progress",
+  "status": "completed_tests_with_private_tool_round_failure",
   "artifact": {
     "name": "Qwen3-Coder Next 80B A3B Q4_K_M",
     "repo": "unsloth/Qwen3-Coder-Next-GGUF",
@@ -7,8 +7,7 @@
     "filename": "Qwen3-Coder-Next-Q4_K_M.gguf",
     "bytes": 48528320544,
     "sha256": "9e6032d2f3b50a60f17ce8bf5a1d85c71af9b53b89c7978020ae7c660f29b090",
-    "status": "current-apps-open-resident-capacity-rejected-no-quality-score",
-    "thinking": "Verify native template; do not assume a reasoning-effort control.",
+    "thinking": "Native non-thinking checkpoint",
     "url": "https://huggingface.co/unsloth/Qwen3-Coder-Next-GGUF/resolve/ce09c67b53bc8739eef83fe67b2f5d293c270632/Qwen3-Coder-Next-Q4_K_M.gguf"
   },
   "profile": "qwencoder-next-noprefetch64-candidate",
@@ -81,7 +80,45 @@
       ]
     }
   },
-  "private_actual_instructions": "running on recovery profile after normal public stop",
+  "private_actual_instructions": {
+    "status": "tool_round_limit",
+    "quality_score": null,
+    "whole_seconds": 4075.125,
+    "tool_turns": 16,
+    "maximum_input_tokens": 25063,
+    "distinct_delivered_sources": 11,
+    "successful_tool_ranges": 10,
+    "failed_tool_reads": 15,
+    "error_counts": {
+      "Unavailable in frozen source inventory": 13,
+      "Use 1-based ranges of at most 200 lines": 2
+    },
+    "peak_sampled_rss_gib": 14.000015258789062,
+    "minimum_free_ram_gib": 6.466381072998047,
+    "minimum_free_vram_mib": 517.0,
+    "minimum_available_commit_gib": 11.265525817871094,
+    "maximum_gpu_core_c": 48.0,
+    "uncached_prefill_tokens_per_second": 6.267873824041461,
+    "generation_tokens_per_second": 5.8011898051326485,
+    "server_stop": {
+      "status": "requested_stop"
+    },
+    "findings": [
+      "All16 visible assistant contents are empty; only tool calls were delivered. No final answer or private code is available to grade.",
+      "Repeated wrong nested Codex paths despite the exact available inventory; no successful read of the actual Codex guide/README.",
+      "Oversized general-guidance reads failed twice, then a100-line read succeeded. The logging document was read only through line100.",
+      "Complete public coding/history evidence remains valid. This is an end-to-end tool-use failure, not a private code score of zero or a resource/timeout failure.",
+      "Do not promote this profile; continue the requested dense and precision matrix before deciding whether additional targeted recovery work merits its cost."
+    ],
+    "sampled_io": {
+      "scope": "Descriptive30-second samples during the whole failed private audit; whole-system I/O includes other applications; faults include soft faults. Not an isolated hardware benchmark.",
+      "samples": 127,
+      "system_disk_read_mib_per_second_mean": 254.46717288550428,
+      "server_page_faults_per_second_mean": 142014.968503937,
+      "gpu_utilization_percent_mean": 18.393700787401574,
+      "gpu_power_watts_mean": 48.58803149606299
+    }
+  },
   "grading": "Codex source review followed by namespace-isolated independent checks; not independently human reviewed",
   "timing_caveat": "Grading was completed during context-v1 prefill after headroom increased to9.5GiB; source review preceded execution. Context timing includes this work and normal desktop activity.",
   "recovery_loading": {
