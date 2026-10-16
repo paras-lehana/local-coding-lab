@@ -21,6 +21,13 @@ instruction routing; integration success is not answer-quality certification.
 [Editor evidence](reports/2026-10-15-editor-results.json).
 Clean-machine installation remains unvalidated.
 
+**New memory result:** Qwen Q4 completed a 119,943-token recall prompt in 12m13s
+with all KV on CPU, or 10m10s with default GPU/CPU placement. Both recovered the
+facts but added unwanted Markdown fences. At 128K, attention KV reserves 1.33 GiB
+at load; it does not grow by tens of GiB as the prompt fills. The follow-up
+reused history; omitting history removed access to those facts. See the
+[measured comparison and limits](docs/tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md).
+
 ## Start here
 
 | I want to… | Read / run |

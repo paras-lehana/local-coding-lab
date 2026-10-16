@@ -134,6 +134,13 @@ only on the server process owned by the launcher. It does not cap total commit,
 reserve extra RAM, modify other apps, or change the pagefile. This is an
 experimental paging profile, not a speed or stability guarantee.
 
+Before candidate inference, unloaded desktop RAM varied around 19–23 GiB.
+The mapped candidate profiles therefore accept at least 16 GiB free, derive
+their resident bound from current free RAM minus 5 GiB, and retain the 2.5 GiB
+physical / 1 GiB commit stop floors. Dense Gemma also uses mapped CPU weights
+to reduce anonymous weight commit; this differs from its old latency-only
+calibration. Exact caps and buffer placement will be recorded per load.
+
 Raw local evidence: `local-data/2026-10-16-expansion/`. Public aggregate results
 will be added after reviewing complete answers. Existing working profiles and
 baseline weights are retained. No new model is promoted merely for loading.

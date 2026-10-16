@@ -2,8 +2,8 @@
   "model": "gemma4-31b-qat",
   "alias": "gemma4-dense-lab",
   "locally_tested": false,
-  "evidence": "16 October explicit expansion. Mapping/residency limits are experiments, not proof of fit or quality. Longer deadlines authorized; existing baseline and apps remain untouched.",
-  "load_min_ram_free_gib": 20,
+  "evidence": "16 October explicit expansion. Mapping/residency limits are experiments, not proof of fit or quality. Longer deadlines authorized; existing baseline and apps remain untouched. Before inference, use mapped CPU weights to avoid unnecessary anonymous weight commit, with a current-free-RAM-minus5GiB resident cap. This differs from the earlier no-mmap latency-only calibration; compare quality and observed memory rather than claim an isolated speed result.",
+  "load_min_ram_free_gib": 16,
   "load_min_vram_free_mib": 6700,
   "template_kwargs": {
     "enable_thinking": true,
@@ -56,7 +56,7 @@
     "off",
     "--perf",
     "--load-mode",
-    "none",
+    "mmap",
     "--no-repack",
     "--verbosity",
     "4",
@@ -71,5 +71,8 @@
   "stop_min_vram_free_mib": 400,
   "stop_gpu_c": 84,
   "validation_status": "experimental_pending",
-  "stop_min_commit_available_gib": 1.0
+  "stop_min_commit_available_gib": 1.0,
+  "working_set_limit_gib": 48,
+  "working_set_reserve_gib": 5,
+  "load_min_commit_available_gib": 12
 }

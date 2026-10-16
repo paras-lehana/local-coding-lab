@@ -2,8 +2,8 @@
   "model": "qwencoder-next-q4",
   "alias": "qwencoder-next-lab",
   "locally_tested": false,
-  "evidence": "16 October explicit expansion. Mapping/residency limits are experiments, not proof of fit or quality. Longer deadlines authorized; existing baseline and apps remain untouched.",
-  "load_min_ram_free_gib": 20,
+  "evidence": "16 October explicit expansion. Mapping/residency limits are experiments, not proof of fit or quality. Longer deadlines authorized; existing baseline and apps remain untouched. Unloaded desktop measurements now vary below20GiB. The mapped experiment accepts at least16GiB free, derives a resident cap from free minus5GiB, and retains the2.5GiB physical/1GiB commit stop floors. This is a paging allowance, not resident-fit evidence.",
+  "load_min_ram_free_gib": 16,
   "load_min_vram_free_mib": 6300,
   "template_kwargs": {},
   "args": [
@@ -70,5 +70,6 @@
   "validation_status": "experimental_pending",
   "stop_min_commit_available_gib": 1.0,
   "working_set_limit_gib": 48,
-  "working_set_reserve_gib": 5
+  "working_set_reserve_gib": 5,
+  "load_min_commit_available_gib": 10
 }
