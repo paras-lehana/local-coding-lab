@@ -19,6 +19,8 @@
 - Complete the dense CPU-KV placement pair and preserve a separate GPU-KV
   follow-up stopped below the VRAM floor. Short generation improves; the
   completed8K requests show no latency gain. Interrupted output is unscored.
+- Publish the six-task Q4/Q6 precision plan before collection, including the
+  existing640-record history case and portable configuration hashes.
 
 ## 0.3.9 - 2026-10-15
 

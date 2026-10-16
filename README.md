@@ -43,7 +43,9 @@ The32K dense placement pair improves short generation but leaves8K latency
 about7.7minutes. Moving525MiB KV ontoGPU leaves short latency unchanged and
 the longer follow-up stops below the400MiB free-VRAM floor, unscored.
 [Placement evidence](reports/2026-10-16-dense-placement.json).
-The matched QwenQ6/Q4 trials follow. [Dense loading evidence](reports/2026-10-16-gemma31.json).
+The matched QwenQ6/Q4 trials follow; their
+[six-task public plan](reports/2026-10-16-qwen-precision-plan.json) is published
+before collection. [Dense loading evidence](reports/2026-10-16-gemma31.json).
 
 ## Start here
 

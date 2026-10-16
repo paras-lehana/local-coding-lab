@@ -1,6 +1,6 @@
 # Memory, context and expanded local-model tests — v0.4.0
 
-**Status: in progress, 16 October 2026, Asia/Kolkata.** The growing-context
+**Status: in progress, updated 17 October 2026, Asia/Kolkata.** The growing-context
 measurements, Coder-Next attempt and dense Gemma native quality review are
 complete. Dense CPU-KV placement diagnostics are complete; the GPU-KV follow-up
 was stopped for low VRAM. The matched Qwen Q6/Q4 comparison remains. No
@@ -284,8 +284,13 @@ Q4. Counts are not parameter-weighted precision or quality scores.
 
 The frozen pair uses the same isolated runtime, native thinking, temperature
 .6, top-k 20, preservation true, context and expert-placement policy. It includes
-Python seeds 73/74/75, TypeScript/SQLite, changed-file history and the same
-private instruction audit. Desktop usage and adaptive resident caps remain
+Python seeds 73/74/75, TypeScript/SQLite, both 120- and 640-record changed-file
+history cases, and the same private instruction audit. The existing 640-record
+case was added to both arms before either collected answers; the earlier plan
+is archived. It previously produced about 52K Qwen input tokens, but new actual
+usage must be measured. No profile, question or check was changed.
+[Public task plan and identities](../../../reports/2026-10-16-qwen-precision-plan.json).
+Desktop usage and adaptive resident caps remain
 timing confounders. Fresh memory/VRAM/disk checks precede each load. Keep the
 verified Q4 baseline; do not infer Q6 superiority before answers are graded.
 
@@ -342,7 +347,7 @@ public PowerShell scripts parse. All four new Gemma isolated executions pass
 the namespace preflight, including the deliberately preserved standalone-test
 failure. Code runs only with selected read-only files, no host homes/drives or
 network, and time/memory limits. The updated profile check passes; the public
-audit reports zero findings in 144 files,
+audit reports zero findings in 146 files,
 and the whitespace check passes. No new editor UI validation is claimed.
 
 Maintainer sources actually read include project/parent guides, the maintained

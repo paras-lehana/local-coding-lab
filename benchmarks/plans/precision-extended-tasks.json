@@ -1,0 +1,45 @@
+[
+  {
+    "name": "core-seed73",
+    "seed": 73,
+    "max_tokens": 16384,
+    "deadline": 21600,
+    "temperature": 0.6
+  },
+  {
+    "name": "core-seed74",
+    "seed": 74,
+    "max_tokens": 16384,
+    "deadline": 21600,
+    "temperature": 0.6
+  },
+  {
+    "name": "core-seed75",
+    "seed": 75,
+    "max_tokens": 16384,
+    "deadline": 21600,
+    "temperature": 0.6
+  },
+  {
+    "name": "ts-sql-v1",
+    "scenario": "ts-sql-v1",
+    "max_tokens": 16384,
+    "deadline": 21600,
+    "temperature": 0.6
+  },
+  {
+    "name": "context-v1",
+    "scenario": "context-v1",
+    "max_tokens": 4096,
+    "deadline": 21600,
+    "temperature": 0.6
+  },
+  {
+    "name": "context-large-v1",
+    "scenario": "context-large-v1",
+    "seed": 73,
+    "max_tokens": 4096,
+    "deadline": 21600,
+    "temperature": 0.6
+  }
+]

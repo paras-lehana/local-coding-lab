@@ -32,6 +32,7 @@ checkpoint from an earlier boot does not mean the process still exists.
 | `dense-calibration-tasks.json` | One 500-token inline probe, capped at five minutes; no autonomous file-discovery score |
 | `placement-tasks.json` | One core seed and changed-file history for placement comparisons |
 | `long-history-tasks.json` | 320- and 640-record ledgers; use a sufficiently large context and record model-specific token counts |
+| `precision-extended-tasks.json` | Three Python seeds, TypeScript/SQLite, 120- and 640-record history; explicitly allows six hours per task |
 
 The ordinary whole-task deadline is 1200 seconds across all tool calls and user
 phases. A per-request reasoning ceiling is separate from that deadline and does
@@ -44,6 +45,30 @@ For explicitly slower experiments, a task's `deadline` may be increased to at
 most 21600 seconds. The default stays 1200. `trial.py --load-timeout` and
 `--smoke-timeout` control the separate startup probes; neither changes a task's
 whole-prompt allowance. Keep all settings in the saved task/profile record.
+
+The October Qwen Q4/Q6 precision comparison has a
+[published plan and configuration hashes](../reports/2026-10-16-qwen-precision-plan.json).
+Its six public tasks were frozen before either precision arm collected answers.
+Both arms use the same context, cache types, native thinking, sampling and
+placement policy. The larger ledger previously produced about52K Qwen input
+tokens; always record actual counts for your model. Desktop load and automatic
+resident caps can still differ, so these are not isolated speed measurements.
+The separate real-instruction audit uses private owner files and is not included
+in the public plan. Use your own reviewed corpus for that part.
+
+The matching profiles require the explicitly identified
+[prefetch runtime experiment](../experiments/llama-mmap-prefetch/README.md).
+Do not point them at stock binaries and call the configuration equivalent.
+For example, after verifying that runtime and the pinned Q6 artifact:
+
+```powershell
+python trial.py --profile qwen36-q6-noprefetch64-candidate --runtime-dir E:\llm\runtimes\b11562-noprefetch-v1 --model-path E:\llm\models\Qwen3.6-35B-A3B-UD-Q6_K_XL.gguf --tasks benchmarks/plans/precision-extended-tasks.json --output local-data/q6-precision-1 --load-timeout 1800 --smoke-timeout 1800 --apply
+```
+
+Review the outcome before trying the Q4 control with its own profile, artifact
+and fresh output directory. The plan includes portable canonical-JSON hashes
+beside raw local-file hashes, because Git can normalize JSON line endings.
+Binary model/runtime hashes always cover the exact artifact bytes.
 
 To measure growing input on a server you explicitly started and own:
 

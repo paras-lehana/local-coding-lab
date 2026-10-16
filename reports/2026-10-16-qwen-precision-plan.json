@@ -1,0 +1,42 @@
+{
+  "status": "frozen_before_either_precision_arm_collects_answers",
+  "published_plan_local_time": "2026-10-17T00:05:26.648788",
+  "public_tasks": "benchmarks/plans/precision-extended-tasks.json",
+  "task_file_sha256": "3b8e952b674ee33bd45660d7c3a601af5380b5eb426db705f2f69ae7d4785de0",
+  "profiles": {
+    "qwen36-q4-noprefetch64-control": {
+      "profile_sha256": "e26c20a24bd690ce53294b7dbcc91131070d2e40aba6ea5a53ea9f588643687c",
+      "model": "qwen36-q4",
+      "profile_json_sha256": "055dbcec7844e7535ce081f40434f884e040e128eb47015386a9efc4d99f963b"
+    },
+    "qwen36-q6-noprefetch64-candidate": {
+      "profile_sha256": "ad8f0ac7c980131c8f0c12cd6842ae5ee5f252c50a7ef1d53d3e67d1bb61f7cd",
+      "model": "qwen36-q6",
+      "profile_json_sha256": "124491726603112c3c9fbe00ceecf6ada4cdacc19fd559ab2a4b142225c6d647"
+    }
+  },
+  "order": "Q6 public plus private, then matched Q4 public plus private; inspect each load and stop before advancing",
+  "controls": "Native thinking, temperature0.6, top_p0.95, top_k20, preserve_thinkingtrue,64K q8KV, same isolated runtime and placement policy. Exact flags and floors are in the hash-identified profiles.",
+  "runtime_variant": {
+    "id": "b11562-noprefetch-v1",
+    "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+  },
+  "public_output_limits": {
+    "coding_tokens": 16384,
+    "history_tokens": 4096,
+    "whole_task_seconds": 21600
+  },
+  "large_history_case_sha256": "8f3388309287bd3a9eb7e858240889e46267d2e71a8b9714703291016af115b0",
+  "long_history_extension": {
+    "time_local": "2026-10-16T23:52:55.943939",
+    "reason": "Owner prioritizes long files and retained instructions. Add the existing640-record case (previously about52K Qwen inputtokens) before either arm collects answers; retain original120-record case too.",
+    "previous_plan_retained": true,
+    "profiles_changed": false,
+    "questions_or_checks_changed": false,
+    "task_file_sha256": "3b8e952b674ee33bd45660d7c3a601af5380b5eb426db705f2f69ae7d4785de0"
+  },
+  "private_audit": "The same locally frozen real-instruction audit follows each public suite, with24576 output tokens and the same sampling/preservation. Private corpus and raw answers are not distributed.",
+  "interpretation": "Compare instruction grounding, independent behavior, repeated seeds and held-out/history tasks before choosing. Adaptive resident caps and shared-desktop load remain timing confounders. Incomplete answers are unscored; no automatic promotion.",
+  "task_json_sha256": "4e72532c85d9c895795d2118e70caffe16a9d7b49545782b16bfae2553ba95e6",
+  "hash_encoding": "file/profile_sha256 fields preserve local collected-file bytes, whose line endings may differ after Git checkout. *_json_sha256 uses UTF-8 json.dumps(sort_keys=True,separators=(comma,colon),ensure_ascii=False), without whitespace or trailing newline. Model/runtime binary SHA256 verification is unchanged. The case SHA uses the collector encoding recorded in scenarios.py, not this additional encoding."
+}
