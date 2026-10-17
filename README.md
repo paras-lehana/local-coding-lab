@@ -16,7 +16,7 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Status: v0.5.0, experimental; native idle unloading and desktop controls tested.**
+**Status: v0.6.0, experimental; Strata comparison and native idle unloading tested.**
 The desktop control has since become a separate public project:
 [LLM Tray](https://github.com/paras-lehana/llm-tray). It adds a compact tray
 resource icon, hover details, pin/drag, customizable shortcuts/metrics and

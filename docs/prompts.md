@@ -96,6 +96,11 @@ markers removed still recognizes the loaded baseline. No broad process kill,
 new inference load, UI edit or atomic cross-launcher lease is claimed. The38
 offline tests, four PowerShell parses and184-file public audit pass afterward.
 
+03:02 IST: first Flash shard fully SHA256-verified; second still downloading.
+Reviewed direct-GGUF unbuffered expert reads and the incompatibility between
+elastic KV growth and a bounded resident expert budget. No Flash fit or quality
+claim follows from these source checks. README status now matches VERSION0.6.0.
+
 ## Repository creation
 
 Project: local-coding-lab. Branch: main. Mode: Default.

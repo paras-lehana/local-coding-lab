@@ -41,6 +41,12 @@ elapsed30minute test gap without claiming a controlled speed or editor result.
 both live marker refusal checks and the normal already-loaded positive path
 pass with production unchanged.38offline tests/four PS parses/public audit pass.
 
+03:02 IST: first Flash-Next shard passes the pinned full SHA256; second shard
+allocation/download remains in progress. Direct GGUF expert views support the
+unbuffered file tier, avoiding an additional roughly40GiB expert copy. The
+planned10GiB resident budget cannot use elastic KV growth; longer-context
+trials must evaluate the separate KV streaming mode. No Flash inference yet.
+
 ## 2026-10-17 — Standalone tray controller
 
 The owner requested compact notification-area meters, hover details, pin/drag,
