@@ -7,7 +7,7 @@ Last updated: 2026-10-18 (Asia/Kolkata); Strata evaluation explicitly reopened.
 | Task | Status | Evidence |
 |---|---|---|
 |Read article and verify current upstream|Done|Pinned v0.1.45; setup explicitly accepts 10 GB. Article compares different quantization/baselines.|
-|Try Strata with guarded memory settings|In progress|Qwen32K completes three workflows; full Flash-Next download underway with bounded HTTP memory.|
+|Try Strata with guarded memory settings|In progress|Qwen32K completes three workflows. Both Flash shards verify; its corrected32K profile loads and answers READY; coding collection is running.|
 |Compare coding/file/history performance|Qwen complete; Flash pending|Same Q4 file: Strata faster in all three cases; both Python/history pass and TS5/6. Strata SQL migration fails; llama SQL6/6.|
 |Assess 8/10 GB changes or fork|In progress|No hardware gate removal needed. Public experimental fork has three separate opt-in/compatibility commits. CUDA tested; real8GB and HIP/SYCL untested.|
 |Publish report and reproduction details|In progress|[Checkpoint report](tasks/2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md); current selection preserved.|
@@ -46,6 +46,40 @@ allocation/download remains in progress. Direct GGUF expert views support the
 unbuffered file tier, avoiding an additional roughly40GiB expert copy. The
 planned10GiB resident budget cannot use elastic KV growth; longer-context
 trials must evaluate the separate KV streaming mode. No Flash inference yet.
+
+03:36 IST: optional MTP metadata inventory resolves31tensors/5,214,301,696bytes
+at its pinned Qwen revision; weights are not downloaded/enabled. Preparation
+needs STRATA_GGUF_PY pointing to the existing pinned llama/GGML checkout.
+Its Python module and Q2_0 support pass an import check; no extra install.
+The conditional larger history question was also frozen before inference.
+
+03:54 IST: both Flash shards passed full SHA256. Pack creation completes in
+4.906s,1.43GiB dense arena, no additional precision conversions. The template
+hash difference was Windows newline normalization, not changed model content.
+Initial --spec0 is rejected by the native pack before model loading; --spec2
+without MTP/suffix drafts is the required one-token path. The1200MiB reserve
+trial stops at539MiB freeVRAM.3072MiB reserve loads; actual device free memory
+is much lower than the engine's own free-VRAM print. Preserve both readings.
+The quality profile turns default STRATA_ROUTE_TAIL_SKIP7 off (all routed
+experts computed), retains10GiB pinned experts and selects automatic2304-token
+prefill chunks. READY answers exactly in13.531s, decode7.0tok/s,0drafts. Router
+collection now runs under its1200second deadline. Production is intentionally
+stopped through its controller for this single-engine experiment.
+
+04:17 IST: Flash router reaches1200.016seconds and is retained unscored. The
+native log confirms disconnect cancellation; memory remains above the floors.
+History collection begins on the unchanged profile. Conditional MTP and128K
+KV-streaming follow-ups are frozen; the31-tensor draft download is not started
+during inference. Windows open-file directory sizes can lag actual SSE bytes;
+direct event reads confirm reasoning streams normally, correcting an initial
+buffering suspicion. The model's slow complete-answer delivery remains real.
+
+04:39 IST: no-draft Flash baseline completes with history6/6 in219.015seconds,
+router and TS/SQL each deadline1200.016seconds/unscored. Cancellation confirmed;
+owned server explicitly stopped before pinned MTP download begins. Peak engine
+RSS14.300GiB, minimum RAM9.325GiB/commit7.116GiB/VRAM780MiB. No guard/WHEA
+stop in that run.38offline tests pass15.283seconds; four PS parsers/diff check
+pass. MTP and128K KV-streaming remain conditional, not measured results yet.
 
 ## 2026-10-17 — Standalone tray controller
 

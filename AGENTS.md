@@ -56,6 +56,17 @@ strata or strata-q36 engine. Live harmless-marker checks cover both Strata names
 without loading another model or stopping production. Process inventory is not
 an atomic cross-launcher lease; continue sequential owned launches.
 
+Flash-Next's two shards now pass full hashes. Its native pack needs --spec2
+even with no MTP/suffix drafts; --spec0 exits before loading. The1200MiB VRAM
+reserve crosses the guard during allocation;3072MiB reaches readiness. Keep
+actual device telemetry separate from the larger free-VRAM value printed by
+the engine. Accuracy trials disable STRATA_ROUTE_TAIL_SKIP (the default7 skips
+some missed lower-ranked experts); record that setting explicitly. Recover
+the current trial and quality results from the task report before another run.
+Windows directory size/mtime for an open SSE evidence file can lag its actual
+contents. Read the file through an open handle and inspect event timestamps
+and server token counters before diagnosing a silent or stalled stream.
+
 17October later: owner requested a tray-first reusable controller. The maintained
 UI now lives in [LLM Tray](https://github.com/paras-lehana/llm-tray); this lab's
 desktop control.ps1 remains the ownership-aware custom backend. Owner shortcuts

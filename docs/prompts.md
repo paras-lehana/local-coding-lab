@@ -2,8 +2,10 @@
 
 Current phase,18October: the owner explicitly reopened comparison work for
 Strata. Existing Qwen Q4 weights and production2.3 settings are preserved;
-the server is restored during the larger artifact download and will be stopped
-through its controller before isolated inference experiments. Apps
+both Flash artifacts now verify. Its no-draft baseline passed history but
+timed out on both coding cases; the separate draft block is now downloading.
+Production is temporarily stopped through its controller and must be restored
+after the isolated comparisons. Apps
 stay open; clocks/drivers and editor settings are unchanged. No editor typing.
 
 Last updated: 2026-10-18. Public project history excludes earlier credentials,

@@ -16,6 +16,9 @@
   SQLite migration failure. Keep the existing128K llama production profile.
 - Review the supplied6x article and distinguish Qwen's full host expert arena/
   GPU KV from Flash-Next's bounded resident tier and separate KV modes.
+- Verify and load full Flash-Next IQ3_XXS on10GB. Its no-draft profile passes
+  retained history but times out on both coding tasks; preserve them unscored
+  and record real RAM/device usage. Drafting/longer-context work continues.
 
 ## Documentation follow-up - 2026-10-17
 

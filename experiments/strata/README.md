@@ -100,10 +100,25 @@ connection reads at most1MiB at once. On this host64connections used about
 
 Use `tools/iq_pack.py` from the pinned Strata checkout after both shards verify;
 omit `--experts-bin` for direct GGUF views to avoid another roughly40GiB copy.
+Its float conversion helpers and the optional MTP tools need llama.cpp's
+`gguf-py` at the pinned commit in `setup.py`. If installing components manually,
+set `STRATA_GGUF_PY` in the preparation process to that checkout's `gguf-py`
+directory. This host reuses the already verified GGML/llama source checkout;
+the Python import and Q2_0 enum check pass. No global Python package is replaced.
 The experimental Flash-Next configuration must use a bounded resident expert
 budget with apps open. Its `--kv-resident` and `--kv-grow` are different modes;
 elastic growth requires every expert in RAM and cannot be assumed compatible
 with the bounded resident tier. These controls do not apply to the Qwen3.6 path.
+
+The native Flash pack requires `--spec 2` or greater even without MTP. To
+measure no-draft inference, omit `--mtp`, use `--suffix-draft 0` and confirm
+zero proposed drafts in the native timing log. This host's1200MiB reserve
+crossed the600MiB free-device guard;3072MiB loaded. The quality profile sets
+`STRATA_ROUTE_TAIL_SKIP=0` because the default7 omits some missed lower-ranked
+expert contributions. Automatic prefill resolves to2304tokens here; record its
+effective value. The32K/int8,10GiB expert-budget run passes the history case
+but times out on both coding cases. It is not a recommended replacement.
+See [Flash evidence](../../reports/2026-10-18-strata-flash.json) for every trial.
 
 ## Monitor checks
 
