@@ -1,6 +1,36 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-10-17 (Asia/Kolkata); continuation of the16October expansion.
+Last updated: 2026-10-17 (Asia/Kolkata); complete inventory and persistent availability.
+
+## 2026-10-17 — Complete inventory and Qwen availability
+
+| # | Task | Status | Notes |
+|---|---|---|---|
+| 1 | All tried/untested models and pros/cons | Done |14 attempted artifacts; originalIQ3/denseQwen3.8 restored to inventory, scores and incomplete stages separated. |
+| 2 | Reread and assess Gemini report | Done |All833 archived lines reread; recommended sequence/settings and factual corrections summarized. |
+| 3 | Explain and restore existing Qwen | API done; current UI unverified |Old non-mapped commit requirement exceeded capacity. Configuration2.1 mapped endpoint restored and left running, same alias. |
+
+The single [forwardable report](tasks/2026-10-17-complete-model-inventory/2026-10-17-all-models-gemini-and-availability-v0.4.1.md)
+contains the full inventory, untested reasons, Gemini summary and operational
+changes. Earlier stopped/unchanged statuses below are historical.
+
+11:02IST recovery: no server; Q4 file present, about18GiB freeRAM/19.5GiB
+availablecommit. Backed up local scripts/settings. Staged mapped editor profile
+with existing alias, dual loopback, explicit isolated runtime and reviewed6000MiB
+loadVRAM gate; runtime floors unchanged.27 offline tests pass10.582s, five
+PowerShell scripts parse, preliminary149-file audit0findings; no inference during
+tests. No editor credentials/settings, hardware, downloads or cloud calls changed.
+
+11:07IST persistent start ready; second invocation returns samePID74136, guarded
+manager79592. Full Q4 SHA and runtime identity verified. Stop dry-run matches
+only configured process. Native greeting13.125s, two-file tool69.484s: all nine
+values/source payloads correct, native reasoning present; JSON-only fences fail.
+All response content and delivered source bytes reviewed. IPv4/localhost/IPv6
+alias checks pass. No current UI pass claimed.11:11snapshotRSS13.306/private6.123,
+freeRAM5.123/commit13.459GiB/freeVRAM1532MiB; earlier GPUprocess4.70GiB.
+Lifecycle guidance updated through maintenance skill; Codex/Claude shared routing
+reviewed, unchanged. No heavy grading or code execution during live inference.
+
 
 ## 2026-10-16 — Memory and remaining-candidate expansion
 
@@ -432,6 +462,11 @@ shared adapters reviewed and unchanged. No further automatic inference queued.
 
 ## Agent Deferred
 
+-17October: current mapped-runtime Copilot/Continue UI regression not rerun;
+  API/source-value verification is complete. Earlier UI quality failures remain.
+-17October: Coder30Q6/Q8, originalNext80BQ4, Qwen2.5Coder14B and other proposed
+  variants/settings remain untested as enumerated in the complete inventory;
+  no automatic experimental queue created for this reporting request.
 - Planned feasible core, held-out, precision/settings and private audits are
   complete with capacity/deadline exclusions explicit. No automatic queue remains.
 - Clean-machine real runtime/model download is not part of offline validation.
@@ -457,6 +492,11 @@ Current dispositions:
 
 ## Agent Suggestions
 
+-17October: retain QwenQ4/Gemma26; prefer held-out real-project edits and explicit
+  source receipts before further model churn. Validate aliases, local keys,
+  type boundaries and SQL rollback independently.
+-17October: preserve the healthy working endpoint after comparison closeout;
+  report measured resource stops and restart explicitly when capacity permits.
 - Start with a fresh memory snapshot; preserve the measured Qwen reference.
 - Keep the research's multi-variable tuning bundle as separate experiments.
 - Prefer Gemma QAT when current app usage makes Qwen's host allocation fragile.

@@ -33,6 +33,19 @@ instructions to the maintainer. CLAUDE.md and the Copilot adapter point here.
 
 ## Current evidence and editor regression checks
 
+17October inventory/availability follow-up: configuration2.1 explicitly starts
+`profiles/qwen36-mapped-editor64.json` with the isolated hash-checked runtime.
+Read the [complete inventory](docs/tasks/2026-10-17-complete-model-inventory/2026-10-17-all-models-gemini-and-availability-v0.4.1.md)
+and availability receipt for current status. Its API/source-value check passes;
+JSON-only formatting fails and new editor UI checks remain separate.
+Benchmark cleanup stops only owned experiment processes. After comparison,
+restore the selected production endpoint when fresh capacity gates permit;
+otherwise report the concrete rejection. A working endpoint stays running
+after the assistant's turn. Explicit manual/reboot/failure/resource stops remain;
+do not add boot startup or an automatic retry loop. Availability requires live
+process/health/alias evidence, not a saved ready flag. Startup/status/stop must
+resolve the configured runtime, including isolated variants.
+
 The16October expansion reopens Coder-Next80B, dense Gemma31 and QwenQ6 with
 explicit longer whole-prompt allowances; ordinary defaults remain1200seconds.
 Recover the live phase from docs/tasks.md and the

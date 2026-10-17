@@ -1,5 +1,10 @@
 # Model shortlist and exact artifacts
 
+The [complete inventory](tasks/2026-10-17-complete-model-inventory/2026-10-17-all-models-gemini-and-availability-v0.4.1.md)
+now covers14 attempted artifacts, all untested proposals/reasons, pros/cons and
+the Gemini recommendation versus measured evidence. This table lists the11
+portable campaign artifacts; the three historical entries below are separate.
+
 Checked 17 October 2026. Sizes are GiB of **weights**, not total memory.
 Download keys resolve to full pinned revisions and SHA256 in
 [catalog/models.json](../catalog/models.json). The [live campaign report](../reports/2026-10-15-campaign.md)
@@ -75,3 +80,18 @@ unattended coding. See the campaign's selection rationale.
 
 
 17October retention: Coder-Next80B, dense Gemma31 and QwenQ6 exact weights were retired after completed reviews and fresh full SHA verification. QwenQ4/Gemma26 remain. [Retirement receipt](../reports/2026-10-17-retirement.json).
+
+Historical artifacts absent from the portable download catalog:
+
+| Model | Evidence | Status |
+|---|---|---|
+| Qwen3-Next80B Instruct IQ3_M,34.128GiB | Eight post-reset answers: intervals94/105, TTL/LRU34/34, DAG64/64;18 completed outputs parsed across two batches. No completed file audit; effort fields did not activate reasoning. | Retired12October; distinct from Coder-Next80B. |
+| Dense Qwen3.8-27B UD-Q6_K,20.474GiB | Short boundary/source checks passed; large audit cancelled after228.86min, unscored. | Retired; no practical long-file result. |
+| Dense Qwen3.8-27B Q8_0,27.052GiB | Corrected short checks passed; long runs interrupted by reboot or lowVRAM. | Retired15October; no established Q8 advantage. |
+
+See the [recovered numeric digest](../reports/2026-10-17-historical-inventory.json).
+Do not merge their old fixture scores into the current36-point audit.
+Current production configuration2.1 uses the37-CPU-expert mapped64K Q4 profile;
+the old34-expert/non-mapped choice above is historical. New API verification is
+recorded in the [availability receipt](../reports/2026-10-17-availability.json);
+new editor UI validation remains separate.

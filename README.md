@@ -8,7 +8,11 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Status: v0.4.0, experimental; expanded memory/candidate comparison complete.**
+**Status: v0.4.1, experimental; full inventory published and Qwen endpoint restored.**
+Start with the [complete14-artifact report](docs/tasks/2026-10-17-complete-model-inventory/2026-10-17-all-models-gemini-and-availability-v0.4.1.md)
+for all attempted models, untested variants and reasons, pros/cons, the Gemini
+summary and the current availability policy. The historical sections below
+preserve their original dates and configuration scope.
 The owner now accepts slower tests for Coder-Next 80B, dense Gemma31 and QwenQ6;
 see the [new task record](docs/tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md).
 The completed comparison retains Qwen3.6 Q4; mapped apps-open settings are
@@ -22,10 +26,15 @@ instruction routing; integration success is not answer-quality certification.
 [Editor evidence](reports/2026-10-15-editor-results.json).
 Clean-machine installation remains unvalidated.
 
-At the17October research closeout, inference is stopped and editor settings
-remain unchanged. The older non-mapped launcher needs more commit headroom than
-is currently available. See the [guarded mapped alternative](docs/memory-and-context.md#completed-apps-open-precision-comparison)
-for an explicit lab start; new editor validation is not yet claimed.
+At11:11IST on17October, the mapped Q4 endpoint is running under configuration2.1;
+the explicit launcher returns while its monitored process stays alive. Editor
+alias/settings remain unchanged. Native greeting13.125s and a two-file API
+round trip69.484s completed; all requested values were correct, but the response
+added unwanted JSON fences. IPv4, localhost andIPv6 checks pass. This is API
+validation, not a fresh Copilot/Continue UI pass. See the
+[availability receipt](reports/2026-10-17-availability.json) and
+[profile](profiles/qwen36-mapped-editor64.json). It requires the explicitly
+identified isolated runtime, not the stock release. No boot autostart is enabled.
 
 **New memory result:** Qwen Q4 completed a 119,943-token recall prompt in 12m13s
 with all KV on CPU, or 10m10s with default GPU/CPU placement. Both recovered the

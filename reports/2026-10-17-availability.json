@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-17T11:11:33.020229+05:30",
+  "profile": "qwen36-mapped-editor64",
+  "configuration_version": "2.1",
+  "runtime_variant": {
+    "id": "b11562-noprefetch-v1",
+    "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+  },
+  "preflight_memory": {
+    "time": 1792215422.5641282,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 18.305713653564453,
+    "commit_limit_gib": 84.90972518920898,
+    "commit_available_gib": 19.433345794677734,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6548.0,
+    "gpu_c": 41.0,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "617.42"
+  },
+  "resolved_resident_cap": {
+    "pid": 74136,
+    "requested_maximum_gib": 13.305713653564453,
+    "maximum_bytes": 14286901248,
+    "minimum_bytes": 204800,
+    "flags": 6,
+    "note": "Resident working-set cap, not total commit or GPU allocation cap."
+  },
+  "post_api_memory": {
+    "time": 1792215692.944686,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 5.122989654541016,
+    "commit_limit_gib": 84.90972518920898,
+    "commit_available_gib": 13.45943832397461,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 1532.0,
+    "gpu_c": 43.0,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "617.42",
+    "process_working_set_gib": 13.305660247802734,
+    "process_private_gib": 6.123039245605469,
+    "process_page_fault_count": 12141804,
+    "process_peak_working_set_gib": 13.305778503417969
+  },
+  "loopback_alias_verified": {
+    "127.0.0.1": true,
+    "localhost": true,
+    "[::1]": true
+  },
+  "greeting_seconds": 13.125,
+  "two_file_tool_seconds": 69.48399999999674,
+  "greeting_exact_ready": true,
+  "all_nine_source_values_correct": true,
+  "native_reasoning_delivered": true,
+  "raw_json_format_pass": false,
+  "formatting_defect": "Requested JSON only; answer included Markdown fences.",
+  "bounded_tool_generation_tok_s": [
+    16.365149281632892,
+    19.080661908161595,
+    18.749557594708442
+  ],
+  "idempotent_start": "Second explicit start returned same server, no second load",
+  "stop_dry_run": "Matched only owned configured PID; did not stop it",
+  "ui": "Not rerun; API results are not actual Copilot/Continue UI results",
+  "lifecycle": "Detached guarded manager persists past launcher/session. Manual/reboot/failure/resource stop only; no auto-restart.",
+  "later_live_status": {
+    "Timestamp": "2026-10-17T11:14:23.4112629+05:30",
+    "Running": true,
+    "ProcessWorkingSetGiB": 13.31,
+    "ProcessPrivateCommitGiB": 6.12,
+    "ProcessDedicatedVRAMGiB": 4.7,
+    "ProcessSharedGPUMemoryGiB": 0.1,
+    "SystemUsedRAMGiB": 59.36,
+    "GPUUsedMiB": 8925,
+    "GPUFreeMiB": 1129,
+    "FreeRAMGiB": 4.55,
+    "FirstTestPending": false
+  },
+  "model_buffer_mib": {
+    "cpu_mapped_address_range": 19118.08,
+    "gpu_weights": 3381.34,
+    "gpu_kv": 680,
+    "gpu_recurrent": 62.81,
+    "gpu_compute": 408,
+    "host_compute": 20.27
+  }
+}

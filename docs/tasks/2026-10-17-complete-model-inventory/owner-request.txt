@@ -1,0 +1,5 @@
+give me the report for all models tried and if any not tried with reason, pro con everything, refer your report, if that is not in report, refer your context and put that in report first.
+
+then reread the gemini report, summarize it what does it say, recommened etc for me
+
+also why cant i run the existing qwen model, do you always unload it after session?

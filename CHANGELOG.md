@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.4.1 - 2026-10-17
+
+- Consolidate all14 attempted model/quant artifacts, including original IQ3 and
+  dense Qwen3.8 history, untested candidates, pros/cons and the Gemini reread.
+- Add a mapped64K editor profile derived from the completed Q4 control, keeping
+  the existing alias and explicit runtime identity. Record the reviewed6000MiB
+  VRAM load gate and unchanged runtime stop floors.
+- Restore the workstation endpoint with a detached guarded launcher. Record
+  API transport/source-value success and JSON-format failure separately; no new
+  editor UI or full quality rerun is claimed.
+- Preserve the working endpoint after benchmark closeout when capacity permits;
+  report actual stops and avoid automatic boot/start/retry loops.
+
 ## 0.4.0 - 2026-10-16 (experiments in progress)
 
 - Add token-occupancy, recall and process-memory collection for increasing

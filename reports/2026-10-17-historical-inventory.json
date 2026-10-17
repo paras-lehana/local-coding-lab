@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-17",
+  "scope": "Recovered historical evidence; no new inference or code grading of these retired models. Earlier fixtures differ from current public/private campaign.",
+  "sources": [
+    {
+      "name": "model-setup-report-data.json",
+      "sha256": "75c9af6824a408770e54b27c808445be31318c3d59237048c575efdb351a74c2"
+    },
+    {
+      "name": "reasoning-probes.json",
+      "sha256": "7b2a7402a73495bbf5690816e51eb3b845ee767f668867ca962aede13157a7ea"
+    },
+    {
+      "name": "deletion-record.json",
+      "sha256": "5c2f72fde45a80b369f1a0886870928bf14d5817447c0da85c0afc669d14e4a4"
+    },
+    {
+      "name": "historical-results.json",
+      "sha256": "113d0f868a75e9b646520bef3b10ba58021ea94f737461810b2281f3b9352eca"
+    },
+    {
+      "name": "2026-10-14-findings.md",
+      "sha256": "d29268902103f8abae478cdfe9e21a3e3528318521dbcda2ed8ccc9633f32226"
+    }
+  ],
+  "original_qwen_next_iq3": {
+    "model": "Qwen3-Next-80B-A3B-Instruct IQ3_M",
+    "weight_bytes": 36643914208,
+    "completed_post_vram_reset": 8,
+    "completed_pre_restart": 10,
+    "completed_python_outputs_parse": 18,
+    "generation_tok_s": {
+      "min": 6.790992949921149,
+      "max": 7.867536218313017,
+      "median": 7.084211326710791,
+      "aggregate": 7.206956026775467
+    },
+    "quality_rows": [
+      {
+        "task": "intervals",
+        "profile": "greedy",
+        "scoring": {
+          "passed": 94,
+          "total": 105,
+          "finish_reason": "stop",
+          "all_passed": false
+        },
+        "wall_seconds": 105.4849999999999
+      },
+      {
+        "task": "intervals",
+        "profile": "recommended",
+        "scoring": {
+          "passed": 94,
+          "total": 105,
+          "finish_reason": "stop",
+          "all_passed": false
+        },
+        "wall_seconds": 57.375
+      },
+      {
+        "task": "intervals",
+        "profile": "reviewed",
+        "scoring": {
+          "passed": 94,
+          "total": 105,
+          "finish_reason": "stop",
+          "all_passed": false
+        },
+        "wall_seconds": 70.78100000000018
+      },
+      {
+        "task": "ttl_lru",
+        "profile": "recommended",
+        "scoring": {
+          "passed": 34,
+          "total": 34,
+          "finish_reason": "stop",
+          "all_passed": true
+        },
+        "wall_seconds": 72.96900000000005
+      },
+      {
+        "task": "ttl_lru",
+        "profile": "greedy",
+        "scoring": {
+          "passed": 34,
+          "total": 34,
+          "finish_reason": "stop",
+          "all_passed": true
+        },
+        "wall_seconds": 69.0
+      },
+      {
+        "task": "ttl_lru",
+        "profile": "reviewed",
+        "scoring": {
+          "passed": 34,
+          "total": 34,
+          "finish_reason": "stop",
+          "all_passed": true
+        },
+        "wall_seconds": 90.01600000000008
+      },
+      {
+        "task": "dag",
+        "profile": "greedy",
+        "scoring": {
+          "passed": 64,
+          "total": 64,
+          "finish_reason": "stop",
+          "all_passed": true
+        },
+        "wall_seconds": 51.40700000000015
+      },
+      {
+        "task": "dag",
+        "profile": "recommended",
+        "scoring": {
+          "passed": 64,
+          "total": 64,
+          "finish_reason": "stop",
+          "all_passed": true
+        },
+        "wall_seconds": 48.733999999999924
+      }
+    ],
+    "reasoning_probes": [
+      {
+        "variant": "default",
+        "reasoning_characters": 0,
+        "content_sha256": "380362b539999d5002ff834869dac10941714e29a1173f68c08d80a9776decb6"
+      },
+      {
+        "variant": "low",
+        "reasoning_characters": 0,
+        "content_sha256": "380362b539999d5002ff834869dac10941714e29a1173f68c08d80a9776decb6"
+      },
+      {
+        "variant": "high",
+        "reasoning_characters": 0,
+        "content_sha256": "380362b539999d5002ff834869dac10941714e29a1173f68c08d80a9776decb6"
+      },
+      {
+        "variant": "xhigh",
+        "reasoning_characters": 0,
+        "content_sha256": "380362b539999d5002ff834869dac10941714e29a1173f68c08d80a9776decb6"
+      },
+      {
+        "variant": "max",
+        "reasoning_characters": 0,
+        "content_sha256": "380362b539999d5002ff834869dac10941714e29a1173f68c08d80a9776decb6"
+      },
+      {
+        "variant": "ultra",
+        "reasoning_characters": 0,
+        "content_sha256": "380362b539999d5002ff834869dac10941714e29a1173f68c08d80a9776decb6"
+      },
+      {
+        "variant": "thinking_enabled",
+        "reasoning_characters": 0,
+        "content_sha256": "380362b539999d5002ff834869dac10941714e29a1173f68c08d80a9776decb6"
+      },
+      {
+        "variant": "thinking_disabled",
+        "reasoning_characters": 0,
+        "content_sha256": "380362b539999d5002ff834869dac10941714e29a1173f68c08d80a9776decb6"
+      }
+    ],
+    "private_instruction_audit": "not_completed; system crashes interrupted the broader campaign, cause unresolved",
+    "retired": true,
+    "retired_at": "2026-10-12T17:15:16.4135290+05:30"
+  },
+  "dense_qwen38": {
+    "q6_weight_bytes": 21983677344,
+    "q8_weight_bytes": 29047086048,
+    "short_checks": "Historical Q6 low/medium/xhigh and Q8 xhigh short tests:16/16 boundary and5/5 source after grader correction. Does not prove general equivalence.",
+    "q6_large_composite_minutes": 228.86,
+    "q6_large_composite_status": "cancelled_unscored",
+    "q6_42k_prefill_minutes_approx": 42.6,
+    "q8_long_cases": "Restart-interrupted approximately92-minute run; later64K run stopped at348MiB freeVRAM, unscored",
+    "both_retired": true
+  }
+}
