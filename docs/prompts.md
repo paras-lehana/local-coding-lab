@@ -89,6 +89,13 @@ answers exactREADY in25.062s. Full-duration timer gap from17October is now
 closed; existing settings unchanged and no editor typing. This extra check
 uses otherwise idle download time. See reports/2026-10-18-real-idle-cycle.json.
 
+02:43 IST: found normal launcher/controller inventory ignored Strata names.
+Added both native engine names. Harmless live marker programs prove Start
+refuses each while preserving both marker and production; normal Start with
+markers removed still recognizes the loaded baseline. No broad process kill,
+new inference load, UI edit or atomic cross-launcher lease is claimed. The38
+offline tests, four PowerShell parses and184-file public audit pass afterward.
+
 ## Repository creation
 
 Project: local-coding-lab. Branch: main. Mode: Default.

@@ -28,7 +28,7 @@ try {
             $idleDescription="$($prior.idle_seconds) seconds (test setting)"
         }
     }
-    $all=@(Get-CimInstance Win32_Process -Filter "Name='llama-server.exe'")
+    $all=@(Get-CimInstance Win32_Process -Filter "Name='llama-server.exe' OR Name='strata.exe' OR Name='strata-q36.exe'")
     $owned=@($all | Where-Object {
         $_.ExecutablePath -eq $config.runtime_executable -and
         $_.CommandLine.Contains([string]$config.model) -and

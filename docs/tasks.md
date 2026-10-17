@@ -37,6 +37,10 @@ RSS0.579GiB. New API message wakes automatically and returns exactREADY in
 25.062s. Apps/bounded download remain active. Later evidence closes the earlier
 elapsed30minute test gap without claiming a controlled speed or editor result.
 
+02:43 IST: normal launcher/controller now recognize existing Strata engines;
+both live marker refusal checks and the normal already-loaded positive path
+pass with production unchanged.38offline tests/four PS parses/public audit pass.
+
 ## 2026-10-17 — Standalone tray controller
 
 The owner requested compact notification-area meters, hover details, pin/drag,

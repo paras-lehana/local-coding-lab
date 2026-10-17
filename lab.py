@@ -332,16 +332,18 @@ def check_hardware_events(since: str) -> None:
 
 
 def check_single_server() -> None:
-    """Reject an existing llama-server on any port; never stop another process."""
+    """Reject an existing supported inference engine; never stop another process."""
     script = ("$ErrorActionPreference='Stop'; try { "
-              "$servers=@(Get-CimInstance Win32_Process -Filter \"Name='llama-server.exe'\"); "
+              "$servers=@(Get-CimInstance Win32_Process -Filter \""
+              "Name='llama-server.exe' OR Name='strata.exe' OR "
+              "Name='strata-q36.exe'\"); "
               "if ($servers.Count) { exit 2 }; exit 0 } catch { exit 3 }")
     encoded = base64.b64encode(script.encode('utf-16-le')).decode('ascii')
     result = subprocess.run(['powershell.exe', '-NoProfile', '-NonInteractive',
                              '-EncodedCommand', encoded], capture_output=True,
                             timeout=10, creationflags=subprocess.CREATE_NO_WINDOW)
     if result.returncode:
-        raise ValueError('Another llama-server exists or process inventory is unavailable')
+        raise ValueError('Another inference engine exists or process inventory is unavailable')
 
 
 def process_gpu_snapshot(pid: int) -> dict:

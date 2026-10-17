@@ -51,6 +51,10 @@ During the18October artifact download a real1800.150second idle cycle and
 automatic25.062second API wake complete; see reports/2026-10-18-real-idle-cycle.json.
 Sleeping process RSS0.579GiB. This closes the elapsed-timer gap, not editor
 latency/UI validation. Keep the shortened17October tests as separate evidence.
+The normal launcher and controller must refuse an existing llama-server,
+strata or strata-q36 engine. Live harmless-marker checks cover both Strata names
+without loading another model or stopping production. Process inventory is not
+an atomic cross-launcher lease; continue sequential owned launches.
 
 17October later: owner requested a tray-first reusable controller. The maintained
 UI now lives in [LLM Tray](https://github.com/paras-lehana/llm-tray); this lab's

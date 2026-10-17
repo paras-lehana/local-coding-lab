@@ -4,6 +4,10 @@
 
 - Add a pinned Strata experiment, guarded Windows process ownership and bounded
   resumable HTTP downloads with whole-artifact integrity checks.
+- Recognize Strata engines in the normal launcher/controller's existing-process
+  refusal; verify both names with harmless live markers and preserve production.
+- Observe one real1800second idle cycle and successful automatic wake during
+  the download wait, closing the earlier full-duration timer gap.
 - Publish a separate experimental fork for optional MTP metadata, optional
   pageable experts and Windows copied-GGUF source-page trimming.
 - Complete six same-Qwen32K coding/history collections and isolated grading;
