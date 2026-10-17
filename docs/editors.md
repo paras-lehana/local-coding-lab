@@ -1,5 +1,32 @@
 # VS Code integration
 
+## Copilot rejects a request before inference
+
+The17October user report exposed a failure that a healthy API cannot detect:
+Agent Host rejected system instructions plus tool schemas with
+`compaction_static_context_blocked`, then showed `No response was returned`.
+The local server never received that request. Check Agent Host logs and current
+server activity before blaming reasoning speed or restarting the model.
+
+The installed1.141.1 build does not enable native tool-search deferral for Qwen.
+A model-specific `excludedTools: ["mcp:*"]` override was applied to the owner's
+local Qwen alias to reduce static context while preserving built-in/custom
+coding tools and instructions. It excludes external MCP tools for that model;
+other models are unchanged. This mitigation has **not yet passed a fresh UI
+test**, because the owner requested no editor typing. See the
+[failure/defaults report](tasks/2026-10-17-copilot-context-defaults/2026-10-17-copilot-context-and-defaults-v0.4.1.md)
+for exact settings, evidence and limitations.
+
+For users who want persistent autonomous defaults, this build's newer Copilot
+harness reads `chat.defaultConfiguration` with `mode: "autopilot"` and
+`approvals: "allowAll"`; the Local harness uses
+`chat.permissions.default: "autopilot"`. Merely enabling the older global
+auto-approval/Autopilot switches did not configure the newer session defaults.
+These are optional user preferences, not portable installer defaults. Existing
+chats can retain prior values. Recheck the installed schema after upgrades.
+
+## Configure and verify the connection
+
 First verify the API and exact model alias using the setup guide. This repository
 does not rewrite existing VS Code or Continue settings. Keep a backup and add a
 new local model entry so existing providers remain available.

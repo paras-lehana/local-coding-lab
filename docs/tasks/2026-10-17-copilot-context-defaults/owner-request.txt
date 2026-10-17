@@ -1,0 +1,5 @@
+Not working, also why do i have to always choose allow all permission and autopilot, this should be default
+
+Screenshots: Copilot returned "Error: (query) No response was returned. Send your message again to retry." after "Hiii" at11:30AM. The selected model was Local Qwen3.6 35B A3B Q4 - Thinking. The mode/permission picker showed Autopilot and Allow all.
+
+Follow-up: Continue without typing in the editor for now.

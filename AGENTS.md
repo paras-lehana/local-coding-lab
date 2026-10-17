@@ -33,6 +33,17 @@ instructions to the maintainer. CLAUDE.md and the Copilot adapter point here.
 
 ## Current evidence and editor regression checks
 
+17October Copilot failure/defaults follow-up: read the
+[context rejection report](docs/tasks/2026-10-17-copilot-context-defaults/2026-10-17-copilot-context-and-defaults-v0.4.1.md).
+A healthy server was idle because Agent Host rejected static context before
+inference. Diagnose client logs and SDK/tool budgets before changing model
+placement. Qwen-only MCP exclusions and new-session Autopilot/Allow all defaults
+are configured, but the owner declined editor typing; no fresh UI pass exists.
+Regression: create a fresh session, verify default mode/permissions, then prove
+the greeting and cited file read reach the selected local endpoint. Existing
+session labels and API health do not satisfy it. Do not spoof context/model
+capabilities or publish blanket auto-approval as the installer's default.
+
 17October inventory/availability follow-up: configuration2.1 explicitly starts
 `profiles/qwen36-mapped-editor64.json` with the isolated hash-checked runtime.
 Read the [complete inventory](docs/tasks/2026-10-17-complete-model-inventory/2026-10-17-all-models-gemini-and-availability-v0.4.1.md)

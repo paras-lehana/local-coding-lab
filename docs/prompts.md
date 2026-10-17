@@ -1,16 +1,17 @@
 # Prompt log — Local Coding Lab
 
-Current phase, 17 October11:17IST: complete14-artifact inventory and Gemini
-reread published. QwenQ4 mapped production2.1 is running with verified API/tool
-transport and correct source values; JSON-only formatting fails, current UI not
-rerun. Detached process stays alive after this session. Earlier stopped statuses
-below are historical. Evidence23f84b5, Windows/Ubuntu CI39007400281 successful.
+Current phase, 17 October11:49IST: Copilot static-context rejection diagnosed;
+Qwen-specific MCP exclusion and new-chat Autopilot/Allow all defaults saved.
+Fresh UI verification is deferred at the owner's request for no editor typing.
+QwenQ4 mapped production2.1 remains running; API health rechecked11:46IST.
+The earlier complete inventory and Gemini review remain available below.
 
 Last updated: 2026-10-17. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
+| 10 | 2026-10-17 | 11:49 | Copilot context failure and defaults | Bug Fix / Config | Mitigation applied; fresh UI deferred | [Entry](#copilot-context-rejection-and-persistent-defaults) |
 | 9 | 2026-10-17 | 11:17 | All models, Gemini and availability | Research / Config | Report complete; persistent API restored; current UI separate | [Entry](#complete-model-inventory-and-availability) |
 | 8 | 2026-10-17 | 03:57 | Complete expanded comparison | Research | Done | [Closeout](#expanded-comparison-closeout) |
 | 7 | 2026-10-16 | 10:23 | KV growth and remaining candidates | Research | Five points completed; Q4 retained | [Entry](#memory-and-remaining-candidate-expansion) |
@@ -921,4 +922,90 @@ Suggested next steps
 - Use the selected model with human review and independent tests.
 - Prioritize real project edits, accurate file references and preservation of existing settings before changing models again.
 - Check database changes carefully; several candidates produced unsafe migrations.
+```
+
+
+## Copilot context rejection and persistent defaults
+
+Project: local-coding-lab. Branch: main. Type: Bug Fix / Config.
+Date: 2026-10-17, 11:49 IST. Status: mitigation applied; fresh UI test deferred.
+
+### Original request and subsequent constraint
+
+> Not working, also why do i have to always choose allow all permission and autopilot, this should be default
+
+The screenshots show the no-response query error with the local Qwen selected,
+and the new mode/permission picker. No new screenshot was generated.
+
+> Continue without typing in the editor for now
+
+### Context, evidence and validation
+
+The [single report](tasks/2026-10-17-copilot-context-defaults/2026-10-17-copilot-context-and-defaults-v0.4.1.md)
+records the exact error, settings, source inspection, encrypted backups,
+file inventory and remaining UI check. Static context was rejected before
+inference. Only three User-setting keys were added; every existing value was
+preserved. No editor prompt was sent. Tests: 27 offline passes, four PowerShell
+parsers, JSON and encrypted-backup comparison. Publication checks are recorded
+in the task log. No server restart, new inference, model download/deletion,
+cloud evaluation, dependency change or hardware adjustment occurred.
+
+Context-maintenance skill applied to project regression guidance. Shared
+Codex/Claude adapters were reviewed and left unchanged because routing already
+covers the lesson. Raw source transcripts and backups remain private.
+
+### Canonical closeout
+
+**A. Outcome — partly verified**
+
+I continued without typing in the editor. **Qwen is running; Copilot rejected your message before sending it to Qwen.** Its system instructions and tool definitions exceeded its usable context budget.
+
+I saved **Autopilot + Allow all as new-chat defaults**. The older enablement switches did not set defaults for this newer Copilot interface.
+
+**B. Changes and checks**
+
+- Added a Qwen-specific exclusion for external MCP tools to reduce context overhead. Built-in coding tools and your instructions remain available.
+- Preserved all existing settings; encrypted backups verified. No model restart or dependency changes.
+- **27 offline tests, four PowerShell parsing checks, settings comparison and public-content checks passed.** These do not prove a successful Copilot chat.
+- Updated the project/parent guidance, README, editor guide, task/report indexes and prompt log. [Full report and file inventory](https://github.com/paras-lehana/local-coding-lab/blob/main/docs/tasks/2026-10-17-copilot-context-defaults/2026-10-17-copilot-context-and-defaults-v0.4.1.md). Publication prepared for `main`; commit identity will be recorded after verification.
+
+**C. Your requests**
+
+| # | Pointer Task | Original Pointer Text | Status | What Was Done |
+|---|---|---|---|---|
+| 3 | No editor typing | “Continue without typing in the editor for now” | DONE | No prompt sent or chat cleared. |
+| 1 | Restore chat | “Not working” | PARTIALLY DONE | Cause identified; context mitigation applied; fresh chat untested. |
+| 2 | Persistent defaults | “allow all permission and autopilot, this should be default” | PARTIALLY DONE | Both configured; new-session UI confirmation pending. |
+
+**D. Additional finding**
+
+Chrome DevTools MCP also has an unresolved browser-address setting. I left it unchanged; it is not established as the cause of this failure.
+
+**E. Pending**
+
+| Item | Status | Reason |
+|---|---|---|
+| Fresh-chat response and default selections | Deferred | Honoring your no-typing instruction. |
+| Chrome MCP configuration | Unresolved | Separate issue; repair not attempted. |
+
+**F. My recommendation**
+
+When you next use Copilot, **start a new chat** with the local Qwen model. Existing chats can retain old settings. Try “Hi”, then a cited file read. Keep the reduced tool set until those succeed; add external tools back selectively after measuring their context cost.
+
+**G. Forwardable summary**
+
+```text
+Local Coding Lab — Copilot configuration updated; final interactive check pending.
+
+What's done
+- Identified why the local chat failed: the editor rejected the accumulated instructions and tool descriptions before contacting the model.
+- Configured new conversations to start with Autopilot and Allow all selected.
+- Reduced the external tools offered to the local model while preserving built-in coding tools and existing instructions.
+- Verified that the model remains running, preserved the previous settings, and recorded the findings.
+- Respected the request to continue without typing in the editor.
+
+Suggested next steps
+- Start a fresh conversation and confirm the default selections, a greeting response, and a correct file reference.
+- Restore additional external tools gradually after the basic conversation works.
+- Treat the repair as awaiting interactive verification, rather than confirmed working.
 ```

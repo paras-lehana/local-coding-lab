@@ -9,6 +9,12 @@ reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
 **Status: v0.4.1, experimental; full inventory published and Qwen endpoint restored.**
+**17October Copilot follow-up:** the healthy server did not receive the owner's
+failed greeting: Agent Host rejected static instructions/tool schemas first.
+New-session Autopilot/Allow all defaults and a Qwen-only MCP exclusion are now
+configured. Fresh UI verification is pending at the owner's request to continue
+without editor typing. [Diagnosis and exact changes](docs/tasks/2026-10-17-copilot-context-defaults/2026-10-17-copilot-context-and-defaults-v0.4.1.md).
+
 Start with the [complete14-artifact report](docs/tasks/2026-10-17-complete-model-inventory/2026-10-17-all-models-gemini-and-availability-v0.4.1.md)
 for all attempted models, untested variants and reasons, pros/cons, the Gemini
 summary and the current availability policy. The historical sections below

@@ -2,6 +2,34 @@
 
 Last updated: 2026-10-17 (Asia/Kolkata); complete inventory and persistent availability.
 
+## 2026-10-17 — Copilot context rejection and autonomy defaults
+
+| # | Task | Status | Notes |
+|---|---|---|---|
+| 1 | Diagnose/fix no-response symptom | Mitigation applied; UI pending | Exact static-context rejection occurs before llama inference; Qwen-only MCP exclusion added. |
+| 2 | Default Autopilot and Allow all | Configuration done; UI pending | New Copilot chat.defaultConfiguration and Local chat.permissions.default configured. |
+| 3 | Continue without editor typing | Done | No prompt sent or existing chat cleared; owner response supersedes planned live typing. |
+
+11:32 IST: server74136 still healthy/idle on task385;13.31GiB RSS/4.70GiB
+dedicatedVRAM/freeRAM8.49GiB.11:30 AgentHost warning
+compaction_static_context_blocked precedes the exact no-response error. Failed
+session system body53,305characters/12,291Qwen tokens; tool count/budget unknown.
+Separate unresolved ChromeMCP browser_url error retained without causal claim.
+Running VSCode1.141.1/Copilot0.69.0 source inspected, not pending update bundles.
+
+11:38 IST: encrypted settings/model backups verified; exactly three User setting
+keys added. Model-specific mcp:* exclusion keeps builtin/custom coding tools and
+instructions unchanged. Other values compare equal to decrypted backup. Existing
+globalautoApprove was alreadytrue; newer session defaults were absent. Guarded
+focus attempt failed before NewChat/send; owner declined typing, no further
+editor input attempted. Existing UI labels are not fresh-default verification.
+
+11:43 IST:27 offline tests pass10.168s after idle-slot check; fourPSparsers pass.
+Health remainsok; no server restart/inference/model download/cloud evaluation.
+Report and editor/regression guidance updated through context-maintenance skill;
+shared adapters reviewed, unchanged. Actual fresh-chat verification remains
+explicitly deferred. See the [task report](tasks/2026-10-17-copilot-context-defaults/2026-10-17-copilot-context-and-defaults-v0.4.1.md).
+
 ## 2026-10-17 — Complete inventory and Qwen availability
 
 | # | Task | Status | Notes |
@@ -468,6 +496,11 @@ shared adapters reviewed and unchanged. No further automatic inference queued.
 
 ## Agent Deferred
 
+-17October Copilot no-response: fresh-session Autopilot/Allow all, greeting and
+  cited-file UI checks pending; owner explicitly requested no editor typing.
+  Qwen-only MCP exclusion is a mitigation, not a demonstrated client fix.
+-17October separate Chrome DevTools MCP browser_url substitution error not
+  repaired; outside this scoped local-model context/defaults change.
 -17October: current mapped-runtime Copilot/Continue UI regression not rerun;
   API/source-value verification is complete. Earlier UI quality failures remain.
 -17October: Coder30Q6/Q8, originalNext80BQ4, Qwen2.5Coder14B and other proposed
@@ -498,6 +531,10 @@ Current dispositions:
 
 ## Agent Suggestions
 
+-17October: use a new Copilot chat for changed session-construction settings;
+  verify actual delivery and tool inventory before changing model context or
+  placement. Keep local coding tools/instructions; enable extra external tools
+  deliberately after measuring their static-context cost.
 -17October: retain QwenQ4/Gemma26; prefer held-out real-project edits and explicit
   source receipts before further model churn. Validate aliases, local keys,
   type boundaries and SQL rollback independently.
