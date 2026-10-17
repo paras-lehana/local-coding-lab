@@ -6,6 +6,7 @@ Detailed reusable experiment evidence remains in the repository's `reports/`.
 
 | Date | Task | Status | Report |
 |---|---|---|---|
+|2026-10-18|Strata on10GB and same-weight comparison|Qwen comparison complete; Flash-Next in progress; keep llama128K|[Strata measurements and limits](2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md)|
 | 2026-10-17 | Idle unloading, resource widget and AutoHotkey | Lifecycle/UI tests pass;30minute production timer; Copilot latency remains unresolved | [Measured desktop control report](2026-10-17-idle-widget/2026-10-17-idle-widget-v0.5.0.md) |
 | 2026-10-17 | 128K context and remaining tool pressure | Engine source test completed; owner's greeting slow;70K canceled/unscored | [Context and tool-budget repair](2026-10-17-context128-and-tool-budget/2026-10-17-context128-and-tool-budget-v0.4.2.md) |
 | 2026-10-17 | Copilot no-response and persistent autonomy defaults | Defaults configured; context mitigation applied; fresh UI test deferred by owner | [Context and default settings](2026-10-17-copilot-context-defaults/2026-10-17-copilot-context-and-defaults-v0.4.1.md) |

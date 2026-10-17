@@ -2,7 +2,8 @@
 
 Current phase,18October: the owner explicitly reopened comparison work for
 Strata. Existing Qwen Q4 weights and production2.3 settings are preserved;
-the server is temporarily stopped for isolated inference experiments. Apps
+the server is restored during the larger artifact download and will be stopped
+through its controller before isolated inference experiments. Apps
 stay open; clocks/drivers and editor settings are unchanged. No editor typing.
 
 Last updated: 2026-10-18. Public project history excludes earlier credentials,
@@ -69,6 +70,18 @@ file's length is not downloaded bytes. Owned Xet buffers were released and its
 four incomplete files removed with an exact-path receipt. All apps remain open.
 The context-maintenance skill was applied to the project regression guidance;
 both Windows entry adapters were reviewed and left unchanged.
+
+02:03 IST checkpoint: all same-weight comparisons and isolated grading complete;
+llama history285.891s, TS/SQL357.687s; SQL passes6/6 while Strata's migration
+fails. Published lab646dc2c on experiment branch and main; fork documentation
+f17477d.38offline tests, four PowerShell parsers and183-file public audit pass;
+11 upstream mock effort API tests also pass. Flash template header confirms
+native xhigh/medium/low, high maps to xhigh, reasoning preservation defaults
+true. Header-only inspection is not the full artifact hash gate. Range transfer
+continues,64connections/~140MiB RSS. Production2.3 restored at02:03 with128K
+CPUq8KV and1800second sleep; health/model alias pass, actual short answer is
+READY. (extra period, not exact requested text),7.765s. This is availability
+during download, not a performance or editor UI benchmark.
 
 ## Repository creation
 

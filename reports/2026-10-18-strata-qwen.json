@@ -34,6 +34,13 @@
     "peak_whole_device_vram_used_mib": 9344.0,
     "peak_engine_working_set_gib": 20.09
   },
+  "llama_control_resources": {
+    "minimum_ram_free_gib": 6.28,
+    "minimum_commit_available_gib": 23.508,
+    "minimum_vram_free_mib": 2457.0,
+    "peak_whole_device_vram_used_mib": 7783.0,
+    "peak_engine_working_set_gib": 17.904
+  },
   "native_trials_and_failures": [
     {
       "trial": "q36-bounded-smoke",

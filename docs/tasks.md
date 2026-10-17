@@ -27,6 +27,11 @@ its allocation length is not download progress. A64-connection option remains
 bounded to1MiB read buffers per connection; observed RSS140MiB, unlike Xet's
 6.5GiB retained commit. Downloading remains outside comparative inference.
 
+02:03 IST: restored production2.3 during the remaining download: health and
+alias verified, short availability answer7.765s with an extra period.131072
+context and1800second sleep unchanged. Public Qwen report published646dc2c;
+fork documentationf17477d. No new editor typing or UI validation.
+
 ## 2026-10-17 — Standalone tray controller
 
 The owner requested compact notification-area meters, hover details, pin/drag,
