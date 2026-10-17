@@ -37,6 +37,12 @@ Raw evidence is ignored local-data/2026-10-17-desktop-control. No elapsed30minut
 soak or newly typed editor wake test is claimed. Native guard stops/manual
 stops do not automatically restart. Server and widget are left available.
 
+20:12IST publication: implementation526fa28 pushed to public main; GitHubCI
+39041761773 completed successfully. Final37offline tests passed14.593s,
+171-file public audit has0findings and202relative Markdown targets resolve.
+Only exact path/hash-reviewed widget crops are exempt from binary rejection;
+new/modified images still fail. Canonical A-G closeout saved in prompts.md.
+
 ## 2026-10-17 evening — 128K context and tool-budget repair
 
 Historical work, now closed partial: owner reports still broken and asks why only64K for many instruction

@@ -209,3 +209,9 @@ cached timings separately. It is not started by this report.
 The relevant original owner request is retained in `owner-request.txt` beside
 this document. Its pasted research examples were treated as hypotheses, not
 proof that flags, memory estimates or broad process-kill code were suitable.
+
+Publication: implementation commit526fa28 on public main. Its
+[GitHub CI run](https://github.com/paras-lehana/local-coding-lab/actions/runs/39041761773)
+completed successfully. Final public audit:171files,0findings;202relative
+Markdown targets resolve. Screenshots have exact reviewed-path/hash exceptions;
+this is not permission to publish arbitrary binary files or private screenshots.

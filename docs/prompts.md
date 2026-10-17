@@ -11,7 +11,7 @@ private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
-|12|2026-10-17|20:10|Native idle sleep and desktop controls|Feature / Config|Tested; publication closeout|[Entry](#idle-sleep-and-desktop-controls)|
+|12|2026-10-17|20:12|Native idle sleep and desktop controls|Feature / Config|Published/tested; Copilot latency unresolved|[Entry](#idle-sleep-and-desktop-controls)|
 |11|2026-10-17|19:35|128K and remaining tool pressure|Config / Bug Fix|Partial; superseded by desktop task|[Entry](#context128-and-remaining-tool-pressure)|
 | 10 | 2026-10-17 | 11:49 | Copilot context failure and defaults | Bug Fix / Config | Mitigation applied; fresh UI deferred | [Entry](#copilot-context-rejection-and-persistent-defaults) |
 | 9 | 2026-10-17 | 11:17 | All models, Gemini and availability | Research / Config | Report complete; persistent API restored; current UI separate | [Entry](#complete-model-inventory-and-availability) |
@@ -1062,5 +1062,68 @@ browser/mobile validation. Existing authorization covers install/test/publish.
 
 The [complete measured report](tasks/2026-10-17-idle-widget/2026-10-17-idle-widget-v0.5.0.md)
 records the implementation, full file inventory, tests and corrected failures.
-Native sleep/wake and desktop checks are complete; canonical A–G publication
-closeout follows after the reviewed implementation commit is recorded.
+Native sleep/wake and desktop checks are complete. Canonical published response:
+
+**A. Installed and running**
+
+Press **Ctrl+Alt+L** or click the widget to toggle the model. It shows VRAM, GPU utilization and RAM, with colored readings and model status.
+
+- **30-minute idle sleep is enabled.** The next message reloads a sleeping model. A manual **Stop** requires toggling it back on.
+- After reboot, open [Local LLM Widget.lnk](<E:/llm/Local LLM Widget.lnk>).
+- **Copilot latency remains unresolved:** your greeting eventually answered after about **7m42s**, including queue time.
+
+**B. What I actually tested**
+
+Two accelerated sleep/wake cycles answered short API prompts in **5.36s and 5.00s**, releasing about **3.77 GiB VRAM** during sleep. A longer generation survived the idle timer. Clicks, the global shortcut, tray reopening and notification callbacks passed. **37 tests**, PowerShell parsing and AutoHotkey validation passed.
+
+The [full report](https://github.com/paras-lehana/local-coding-lab/blob/main/docs/tasks/2026-10-17-idle-widget/2026-10-17-idle-widget-v0.5.0.md) includes settings, screenshots, every changed file and defects caught during testing. Published on `main`, implementation commit [526fa28](https://github.com/paras-lehana/local-coding-lab/commit/526fa2859e848afb62e2eeb4628a3fefeb9bd8a3).
+
+**C. Your requests**
+
+| # | Pointer Task | Original Pointer Text | Status | What Was Done |
+|---|---|---|---|---|
+| 1 | Idle sleep | “30 mins… loads automatically” | DONE | Native sleep and automatic wake tested. |
+| 2 | Resource widget | “VRAM, GPU and RAM… toggle” | DONE | Floating taskbar-edge widget and tray icon. |
+| 3 | Shortcut | “autohotkey… toast notification” | DONE | Ctrl+Alt+L with Windows notifications. |
+| 4 | Test behavior | “Do test” | DONE | Live lifecycle/UI checks and failure tests. |
+| 5 | Slow response | “not there after 2 minutes” | PARTIALLY DONE | Measured and explained; speed not fixed. |
+
+**D. Important findings**
+
+The roughly 7GB VRAM reading includes other apps; it is not all model usage. I preserved the model’s reasoning and placement settings.
+
+Sleep also clears **KV cache**. Copilot retains its saved chat, but must resend history, which the model processes again. [llama.cpp documentation](https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md#sleeping-on-idle)
+
+**E. Remaining limits**
+
+| Item | Status |
+|---|---|
+| Faster actual Copilot responses | Unresolved |
+| Full 30-minute elapsed soak | Not run; 15-second cycles tested, deployed 1,800 seconds verified |
+| Fresh editor wake test | No editor typing; automatic wake verified through real API messages |
+
+**F. My recommendation**
+
+Use **Stop before gaming** to prevent background messages from waking the model. The next performance experiment should measure your actual instruction-heavy prompt and additional GPU expert placement; simply filling VRAM is not evidence of improvement.
+
+**G. Copyable summary**
+
+```text
+Local Coding Lab — desktop controls and idle unloading installed (version 0.5.0, 17 October 2026)
+
+What's done
+- The model automatically unloads after thirty idle minutes and reloads when another message arrives.
+- A compact desktop widget displays graphics memory, GPU activity and system memory, with clear model status.
+- Clicking the widget or pressing Ctrl+Alt+L toggles the model and sends a Windows notification.
+- Automatic wake, memory release, active requests, mouse controls, keyboard controls and tray reopening were tested. Problems found during testing were corrected.
+- Model reasoning settings remain unchanged.
+
+Limits
+- The short wake tests succeeded, but they do not establish fast responses for large coding conversations.
+- The earlier Copilot greeting took several minutes. That performance issue remains unresolved.
+- Unloading clears the model's working context, so saved conversation history must be processed again.
+
+Suggested next steps
+- Stop the model before gaming when automatic wake is undesirable.
+- Investigate the real coding prompt and GPU placement before claiming a performance improvement.
+```
