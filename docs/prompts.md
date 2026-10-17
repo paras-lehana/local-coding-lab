@@ -967,7 +967,7 @@ I saved **Autopilot + Allow all as new-chat defaults**. The older enablement swi
 - Added a Qwen-specific exclusion for external MCP tools to reduce context overhead. Built-in coding tools and your instructions remain available.
 - Preserved all existing settings; encrypted backups verified. No model restart or dependency changes.
 - **27 offline tests, four PowerShell parsing checks, settings comparison and public-content checks passed.** These do not prove a successful Copilot chat.
-- Updated the project/parent guidance, README, editor guide, task/report indexes and prompt log. [Full report and file inventory](https://github.com/paras-lehana/local-coding-lab/blob/main/docs/tasks/2026-10-17-copilot-context-defaults/2026-10-17-copilot-context-and-defaults-v0.4.1.md). Publication prepared for `main`; commit identity will be recorded after verification.
+- Updated the project/parent guidance, README, editor guide, task/report indexes and prompt log. [Full report and file inventory](https://github.com/paras-lehana/local-coding-lab/blob/main/docs/tasks/2026-10-17-copilot-context-defaults/2026-10-17-copilot-context-and-defaults-v0.4.1.md). Published on `main`; evidence commit `581ba52`.
 
 **C. Your requests**
 

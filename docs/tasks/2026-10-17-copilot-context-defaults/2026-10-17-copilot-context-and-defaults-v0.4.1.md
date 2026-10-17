@@ -180,3 +180,9 @@ At 11:46 IST, health and model identity still passed, and both production server
 and manager were alive. The public-content audit caught one personal home path
 in this draft; it was replaced with an environment-relative path before commit.
 The checked-in report contains no raw transcript or credential material.
+
+Evidence commit `581ba52` is published on public `main`. The corrected audit
+checked 155 files with zero findings; 181 relative file targets resolved and
+the staged whitespace check passed. CI run 39009418382 was still running at
+closeout preparation; no new CI success is claimed here. The exact prepared
+A-G response is preserved in the prompt log before the final reply.
