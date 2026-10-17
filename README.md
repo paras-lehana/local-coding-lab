@@ -9,6 +9,14 @@ reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
 **Status: v0.5.0, experimental; native idle unloading and desktop controls tested.**
+The desktop control has since become a separate public project:
+[LLM Tray](https://github.com/paras-lehana/llm-tray). It adds a compact tray
+resource icon, hover details, pin/drag, customizable shortcuts/metrics and
+llama.cpp/Ollama/custom-script profiles. The owner's installation uses it with
+this lab's existing guarded launcher; model settings and30minute idle stay the
+same. Its SSH guide covers remote workspaces. Full editor latency remains a
+separate issue.
+
 The owner installation now uses128K CPU KV with30minute native sleep. The new
 [Windows widget](desktop/README.md) displays whole-device VRAM, GPU and RAM,
 with click/AutoHotkey controls and notifications. Two accelerated idle/wake

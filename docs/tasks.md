@@ -2,6 +2,18 @@
 
 Last updated: 2026-10-17 (Asia/Kolkata); idle unloading and native desktop controls.
 
+## 2026-10-17 — Standalone tray controller
+
+The owner requested compact notification-area meters, hover details, pin/drag,
+configurable shortcuts/launchers and remote-workspace access. That work lives
+in [LLM Tray](https://github.com/paras-lehana/llm-tray), public0.1.0. Actual
+native UI/lifecycle checks and13offline tests pass; remote API requests pass
+through two loopback SSH tunnels. Fresh remote editor chats remain untested
+under the no-typing constraint. No cloud calls or model comparisons resumed.
+This lab's `desktop/control.ps1` remains the guarded custom adapter; current
+Qwen Q4/128K CPU KV and1800second sleep are unchanged. Owner shortcuts target
+the new UI. Its task report and prompt log contain the full closeout.
+
 ## 2026-10-17 — Idle sleep, widget and shortcut
 
 Owner redirected work from comparisons. Latest task is30minute native idle

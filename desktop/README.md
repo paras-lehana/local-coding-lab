@@ -1,5 +1,15 @@
 # Local LLM desktop control
 
+**Maintained tray-first UI:** [LLM Tray](https://github.com/paras-lehana/llm-tray).
+The owner moved to that standalone project on17October. Its hover panel has
+pin/drag and configurable metrics, shortcuts and backend profiles. It uses this
+directory's `control.ps1` as a trusted custom adapter, preserving existing
+resource/process safeguards. Both owner launch shortcuts now open LLM Tray.
+
+The following instructions document the original0.5.0 floating widget, retained
+as historical implementation/evidence. Installing it again selects that older
+UI; new users should follow the standalone project's README.
+
 A small Windows taskbar-edge widget and notification-area icon for an existing
 guarded Local Coding Lab installation. It is a floating native window above the
 taskbar, not a modification of Windows Explorer's taskbar.

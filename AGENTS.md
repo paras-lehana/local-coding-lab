@@ -33,6 +33,14 @@ instructions to the maintainer. CLAUDE.md and the Copilot adapter point here.
 
 ## Current evidence and editor regression checks
 
+17October later: owner requested a tray-first reusable controller. The maintained
+UI now lives in [LLM Tray](https://github.com/paras-lehana/llm-tray); this lab's
+desktop control.ps1 remains the ownership-aware custom backend. Owner shortcuts
+use the new tray. Qwen Q4/128K CPU KV and1800seconds idle are unchanged. Two SSH
+workspaces reach this same PC model through loopback tunnels; no separate model
+install, public listener or fresh editor typing. See the new repository's0.1.0
+task report for settings, hover/pin/drag, shortcut and transport evidence.
+
 17October latest owner request supersedes comparison work and always-resident
 operation:30minute native sleep, desktop resource widget and AutoHotkey toggle.
 See [desktop guide](desktop/README.md) and

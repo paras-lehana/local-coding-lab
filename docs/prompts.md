@@ -11,6 +11,7 @@ private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
+|13|2026-10-17|21:05|Standalone tray and SSH access|Feature / Config|Published; remote editor UI untested|[Entry](#standalone-tray-and-ssh-access)|
 |12|2026-10-17|20:12|Native idle sleep and desktop controls|Feature / Config|Published/tested; Copilot latency unresolved|[Entry](#idle-sleep-and-desktop-controls)|
 |11|2026-10-17|19:35|128K and remaining tool pressure|Config / Bug Fix|Partial; superseded by desktop task|[Entry](#context128-and-remaining-tool-pressure)|
 | 10 | 2026-10-17 | 11:49 | Copilot context failure and defaults | Bug Fix / Config | Mitigation applied; fresh UI deferred | [Entry](#copilot-context-rejection-and-persistent-defaults) |
@@ -1127,3 +1128,16 @@ Suggested next steps
 - Stop the model before gaming when automatic wake is undesirable.
 - Investigate the real coding prompt and GPU placement before claiming a performance improvement.
 ```
+
+
+## Standalone tray and SSH access
+
+Owner asked for a tray-first icon, hover/pinned draggable panel, configurable
+metrics/hotkey/backends, remote-workspace access and a separate public repo.
+Canonical original pointers, A-G closeout and measured report belong to
+[LLM Tray](https://github.com/paras-lehana/llm-tray), the new target project.
+This lab received documentation links only; its guarded custom control backend
+and Qwen Q4/128K CPU KV/1800-second idle configuration remain unchanged.
+Two remote API checks answer; fresh remote editor tests remain separate under
+the owner's no-typing instruction. Public artifact excludes private host data.
+No model downloads/deletions, cloud calls or social posts were performed.

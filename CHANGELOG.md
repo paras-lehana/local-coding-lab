@@ -1,5 +1,11 @@
 # Changelog
 
+## Documentation follow-up - 2026-10-17
+
+- Link the extracted public LLM Tray project for tray-first UI, customization
+  and remote-workspace setup. Preserve this lab's monitored launcher and model
+  settings; keep the original desktop implementation as historical evidence.
+
 ## 0.5.0 - 2026-10-17
 
 - Add optional native idle unloading to the guarded launcher without changing
