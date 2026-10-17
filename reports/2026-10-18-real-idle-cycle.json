@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-18",
+  "configuration": "production2.3, Qwen3.6 Q4,128K CPU q8 KV",
+  "idle_seconds_configured": 1800,
+  "observed_native_idle_seconds": 1800.149981,
+  "sleeping_before_request": true,
+  "sleeping_after_request": false,
+  "wake_wall_seconds": 25.062,
+  "response_exact_READY": true,
+  "sleep_process_rss_gib": 0.579,
+  "awake_process_rss_gib": 14.113,
+  "free_vram_before_wake_mib": 6434.0,
+  "free_vram_after_wake_mib": 2594.0,
+  "limits": [
+    "One real 30-minute cycle, after earlier shortened-cycle tests",
+    "Bounded download and everyday apps remain active; wake time is an availability observation, not controlled comparative inference",
+    "Passive props sampling did not prevent sleep",
+    "No editor UI typing or validation; chat history must be resent after KV unload"
+  ]
+}

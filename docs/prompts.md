@@ -83,6 +83,12 @@ CPUq8KV and1800second sleep; health/model alias pass, actual short answer is
 READY. (extra period, not exact requested text),7.765s. This is availability
 during download, not a performance or editor UI benchmark.
 
+02:35 IST: real production idle cycle verified from native logs:1800.149981s
+from idle to sleep, RSS0.57885GiB asleep. A new message wakes automatically and
+answers exactREADY in25.062s. Full-duration timer gap from17October is now
+closed; existing settings unchanged and no editor typing. This extra check
+uses otherwise idle download time. See reports/2026-10-18-real-idle-cycle.json.
+
 ## Repository creation
 
 Project: local-coding-lab. Branch: main. Mode: Default.

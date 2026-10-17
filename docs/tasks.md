@@ -32,6 +32,11 @@ alias verified, short availability answer7.765s with an extra period.131072
 context and1800second sleep unchanged. Public Qwen report published646dc2c;
 fork documentationf17477d. No new editor typing or UI validation.
 
+02:35 IST: native idle observation completes after1800.150seconds; sleeping
+RSS0.579GiB. New API message wakes automatically and returns exactREADY in
+25.062s. Apps/bounded download remain active. Later evidence closes the earlier
+elapsed30minute test gap without claiming a controlled speed or editor result.
+
 ## 2026-10-17 — Standalone tray controller
 
 The owner requested compact notification-area meters, hover details, pin/drag,

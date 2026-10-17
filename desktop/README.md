@@ -80,8 +80,10 @@ detector. A manual Stop can cancel an active answer.
 ## Verification and limitations
 
 See the [measured task report](../docs/tasks/2026-10-17-idle-widget/2026-10-17-idle-widget-v0.5.0.md).
-The accelerated15second test exercises the same native path as1800seconds;
-it is not an elapsed30minute soak. Model reload speed with a tiny API prompt is
+The initial tests used15seconds. A later [real30minute cycle](../reports/2026-10-18-real-idle-cycle.json)
+observes native sleep after1800.150seconds and an automatic API wake answering
+READY in25.062seconds, with the ordinary apps and a bounded download active.
+Sleeping process RSS is0.579GiB. Model reload speed with a tiny API prompt is
 not Copilot end-to-end latency. Native Windows visual/click/shortcut checks
 replace browser/mobile checks for this desktop-only surface.
 

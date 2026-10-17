@@ -83,7 +83,11 @@ icon restores it. Closing the widget leaves the server state unchanged. Open
 
 All timings below are wall times from actual calls. The15second accelerated
 timer exercises the same code path as1800seconds; **an elapsed30minute soak was
-not performed**. Diagnostic short prompts disabled thinking per request only;
+not performed on17October**. A later [18October real cycle](../../../reports/2026-10-18-real-idle-cycle.json)
+observes native sleep after1800.150seconds, sleeping RSS0.579GiB, and automatic
+wake with an exact READY response in25.062seconds. Apps and a bounded download
+remain active, so this is not a controlled wake-speed comparison.
+Diagnostic short prompts in the original17October tests disabled thinking per request only;
 the production native-thinking setting was not changed.
 
 | Check | Result |
@@ -194,7 +198,7 @@ cached sleeping props and passive endpoint behavior before implementation.
 | Item | Status | Reason |
 |---|---|---|
 |Actual Copilot prompt-processing latency|Unresolved|A large instruction/tool prefill still takes minutes. This lifecycle task does not claim a speed fix.|
-|Elapsed30minute idle soak|Not run|Accelerated15second path tested repeatedly; deployed1800 verified.|
+|Elapsed30minute idle soak|Verified18October|Native1800.150second idle and automatic25.062second API wake; later evidence linked above.|
 |Fresh Copilot/Continue UI auto-wake chat|Not typed|Owner's no-editor-input restriction retained. API wake was tested with real messages.|
 |New expert-placement or model comparison|Stopped/deferred|Owner explicitly redirected work; no new placement is silently promoted.|
 

@@ -47,6 +47,10 @@ Pause owned downloads during comparative timings: suspended Xet retained6.5GiB
 commit; the bounded HTTP downloader avoids that allocation. An intervention must
 be labeled, not credited to an engine patch. Preserve the working production
 Qwen/128K/1800second configuration and restore its endpoint after experiments.
+During the18October artifact download a real1800.150second idle cycle and
+automatic25.062second API wake complete; see reports/2026-10-18-real-idle-cycle.json.
+Sleeping process RSS0.579GiB. This closes the elapsed-timer gap, not editor
+latency/UI validation. Keep the shortened17October tests as separate evidence.
 
 17October later: owner requested a tray-first reusable controller. The maintained
 UI now lives in [LLM Tray](https://github.com/paras-lehana/llm-tray); this lab's
