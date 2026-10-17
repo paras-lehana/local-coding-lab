@@ -1,17 +1,17 @@
 # Prompt log — Local Coding Lab
 
-Current phase, 17 October: all five expanded research points are complete.
-Matched Q4 private31/36 in11m40s versus Q628/36 in35m; both public Python6/6
-three times, TS5/6, SQL failure and passing histories. Post-review checks find
-local-key loss and nested aliases beyond the frozen score. Retain Q4 and
-recommend its mapped apps-open policy; production/editor configuration is
-unchanged and inference is stopped. Evidence116a67d is published; Windows/Ubuntu CI38975676188 passes. Final closeout follows below.
+Current phase, 17 October11:17IST: complete14-artifact inventory and Gemini
+reread published. QwenQ4 mapped production2.1 is running with verified API/tool
+transport and correct source values; JSON-only formatting fails, current UI not
+rerun. Detached process stays alive after this session. Earlier stopped statuses
+below are historical. Evidence23f84b5, Windows/Ubuntu CI39007400281 successful.
 
 Last updated: 2026-10-17. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
+| 9 | 2026-10-17 | 11:17 | All models, Gemini and availability | Research / Config | Report complete; persistent API restored; current UI separate | [Entry](#complete-model-inventory-and-availability) |
 | 8 | 2026-10-17 | 03:57 | Complete expanded comparison | Research | Done | [Closeout](#expanded-comparison-closeout) |
 | 7 | 2026-10-16 | 10:23 | KV growth and remaining candidates | Research | Five points completed; Q4 retained | [Entry](#memory-and-remaining-candidate-expansion) |
 | 1 | 2026-10-14 | 22:35 | Establish reusable research repository | Infrastructure | Done | [Entry](#repository-creation) |
@@ -801,4 +801,124 @@ Keep Q4 with **64K/q8/native thinking**. For your workflow, prioritize verified 
 What's done: Completed the requested model and memory comparisons. The existing Qwen model remains the best practical choice in these tests. Larger alternatives did not improve the overall result. Reports are published and unused model files removed.
 
 Suggested next steps: Validate the recommended memory-saving setup in the editors, then test a real project change with explicit source tracking and independent checks. Continue reviewing generated code; every candidate has limitations.
+```
+
+
+## Complete model inventory and availability
+
+### Original request
+
+> give me the report for all models tried and if any not tried with reason, pro con everything, refer your report, if that is not in report, refer your context and put that in report first.
+>
+> then reread the gemini report, summarize it what does it say, recommened etc for me
+>
+> also why cant i run the existing qwen model, do you always unload it after session?
+
+### Recovered context and validation
+
+Project local-coding-lab; branch main; all assets underE:/llm. Read project/parent
+guidance, shared Windows/Codex/router/platform/logging sources, historical and
+campaign reports and all833 archived Gemini lines. Do not equate incomplete
+tests, accepted effort labels or old UI passes with completed current evidence.
+No cloud requests or key access, downloads/deletions or hardware changes.
+Used agent-context-maintenance for project lifecycle rules; shared Codex/Claude
+adapters reviewed and unchanged.27 tests10.582s before load, fivePSparsers,
+153-file audit0findings,174 relative file links resolved, diffcheck passed.
+Implementation23f84b50640e8831bd966d1c3d7a78c6c92a6c02 published; CI39007400281
+successful. Source bytes and all response content reviewed; source-value pass
+and JSON-fence defect preserved. API/runtime changed, not editor credentials.
+Actual current UI not rerun. No heavy grading while server runs.
+
+### Canonical closeout
+
+**A. Business summary — done**
+
+I updated and published the [complete model report](https://github.com/paras-lehana/local-coding-lab/blob/main/docs/tasks/2026-10-17-complete-model-inventory/2026-10-17-all-models-gemini-and-availability-v0.4.1.md). It includes **14 tested model/quant combinations**, missing historical results, untested candidates, pros/cons and the Gemini assessment.
+
+**My recommendation remains Qwen3.6-35B-A3B UD-Q4_K_M**, with Gemma 26 QAT as the smaller fallback. Higher precision and larger models did not demonstrate a better overall result for your instruction-heavy coding workflow.
+
+| Model tried | Strengths | Problems / my take |
+|---|---|---|
+| Original **Qwen3-Next 80B IQ3_M** | TTL/LRU and DAG tests passed; about 7 tok/s; all 18 completed Python outputs parsed | Interval edge-case bugs; file audit incomplete after crashes; no native thinking. The results do **not** support “3-bit always breaks syntax.” |
+| Dense **Qwen3.8-27B Q6** | Short code/source checks passed | Large audit cancelled after 229 minutes. Too slow in the tested setup. |
+| Dense **Qwen3.8-27B Q8** | Corrected short checks passed | Long tests interrupted by restart or lowVRAM; no demonstrated advantage over Q6. |
+| **Qwen3.6 Q4 — retained** | Private instruction audit **31/36 in 11m40s**; Python 6/6 three times; roughly 52K history passed | Missing instructions/citations, nested aliases, lost local keys and SQL bugs remain. Best measured compromise. |
+| **Qwen3.6 Q5** | Python repeats passed; honest file inventory | Private 28/36, weak private merge code, TS/SQL failures. No established upgrade. |
+| **Qwen3.6 Q6** | Python 6/6 three times; long history passed | Private 28/36 in 35 minutes; large history 55 minutes; same important logic defects. Adds 9 GiB without demonstrated benefit. |
+| **Gemma 4 26B-A4B QAT — retained** | Smaller; Python passed; native SQL 6/6 and TS 5/6; long history passed | Private 19/36; weaker instruction retrieval and some count errors. Useful fallback. |
+| **Gemma 4 31B dense QAT** | Python 6/6; private merge helper 6/6 | Overall private 26/36 in **two hours**; SQL and instruction/read-accounting failures. Waiting longer did not make it the winner. |
+| **GLM-4.7-Flash UD-Q4** | Native f16-cache audit 27/36; honest source inventory | Other settings inconsistent; aliasing/count errors and SQL data-loss failures. Not promoted. |
+| **GLM-4.7-Flash Q5** | Some Python runs 6/6; successfully loaded | Other runs 0/6; private 21/36; unread-file claims and unsafe SQL. |
+| **GLM-4.7-Flash UD-Q6** | Completed private 24/36 | Inconsistent Python, TS compilation and SQL failures. More precision did not establish reliability. |
+| **Qwen3-Coder 30B UD-Q4** | TS 5/6; coding-specialized control | Python 2/6,3/6,1/6; private timed out; no native thinking. Q6/Q8 remain untested. |
+| **Kimi-Linear 48B Q4** | f16-cache loading worked; one Python 6/6; retrieved history facts | Cache compatibility issues, malformed tool call, SQL/count errors; 64K private audit rejected by memory gate. |
+| **Qwen3-Coder-Next 80B Q4** | Actually loaded and tested; Python 6/6; recovered history passed | Private audit looped over wrong paths and produced **no final answer in68 minutes**. Huge memory/paging cost; not promoted. |
+
+The private scores are out of 36. These are separate local test results—not a universal leaderboard. Interrupted answers are unscored, and older models used different questions.
+
+**Not tried:** original Next 80B Q4 was bypassed under the initial memory plan; Coder 30 Q6/Q8 were proposed but the campaign selected UD-Q4; Qwen2.5-Coder 14B was never needed as the emergency fallback. Dense Qwen3.5-27B and several larger Qwen/GLM/Kimi/DeepSeek/Llama proposals never received verified local trial profiles. The report lists each group and its reason. OpenRouter produced **no completed comparisons** because the earlier account/IP restriction blocked it; no cloud ranking exists.
+
+**What Gemini recommends:** I reread all 833 lines of the archived document you shared.
+
+- Tune **Qwen3.6 Q4 first**; keep **Gemma 26 QAT** as the lower-memory alternative.
+- Try GLM-4.7-Flash conditionally; treat Coder 30 as a non-thinking coding control and dense Gemma31 as a latency experiment.
+- With applications closed and roughly 50 GiB free, explore higher quants, KimiLinear and Coder-Next 80B. Your apps-open tests are a different condition.
+- Separate weight precision, KV/cache memory and offloading. Test real instruction routing, current files, missing information and long conversations—not just syntax or tokens/sec.
+
+**My assessment:** useful direction, unreliable in several specifics. Its predicted GLM-Q5/80B impossibility was disproved by loading tests, although 80B remained impractical. Some architecture counts and a vendor-score attribution were wrong. It blamed an 8 GiB prompt cache when your configuration already disabled that cache. Its proposed flags and precision upgrades were hypotheses, not proven fixes.
+
+**Why Qwen was unavailable:** the file was still installed, but the server had been stopped between experiments and not restored. The old launcher needed about 24 GiB available committed memory; Windows had around 19.5 GiB. Leaving you without the working endpoint was an operational gap.
+
+**It is running again**, using the tested mapped approach. A greeting took 13 seconds; a two-file tool task took 69 seconds and returned all requested values correctly. It still added unwanted Markdown fences. This verifies the API, not a fresh Copilot/Continue UI test.
+
+I am **leaving it running after this session**. It can stop on reboot, manual stop, failure or measured resource pressure. There is no automatic boot startup. Use [start-server.bat](/E:/llm/start-server.bat) to start it and [server-status.bat](/E:/llm/server-status.bat) to check it.
+
+**B. Technical summary — done, with UI validation separate**
+
+Current Qwen: **64K context, q8 K/V, native thinking, temperature 0.6**, most expert weights on CPU, mapped loading through the explicitly identified modified runtime. Snapshot: **13.3 GiB resident RAM, 6.1 GiB private commit and 4.7 GiB dedicated VRAM**. These counters measure different things and should not be added together.
+
+Its attention KV reserves **680 MiB**, plus about 63 MiB recurrent state. Token occupancy grows inside that allocation. It is **not permanent file/chat memory**: the editor must supply history or reread sources, and restarting loses the live cache. Qwen3.6 has no verified native `ultra`/`xhigh` selector.
+
+Changes: the report/owner-request pair, two evidence JSON files, mapped profile, README, CHANGELOG, VERSION, model/task/prompt indexes and project guidance. Local runtime configuration, start/status/stop scripts and parent guidance were updated with backups; generated logs remain private. The report contains the file inventory. No dependency, download, hardware or editor-credential changes.
+
+Validation: 27 offline tests, five PowerShell parsing checks, public-content audit and relative-file links passed. Live health/model identity, IPv4/IPv6, actual file-tool responses and repeated-start behavior passed. Published on `main`, implementation commit `23f84b5`; [Windows/Ubuntu CI passed](https://github.com/paras-lehana/local-coding-lab/actions/runs/39007400281). Final documentation is also saved and published. No new editor UI pass is claimed.
+
+**C. Your requests**
+
+| # | Pointer task | Original pointer text | Status | What was done |
+|---|---|---|---|---|
+| 1 | Complete model report | “all models tried and if any not tried with reason, pro con everything” | DONE | Consolidated 14 attempted artifacts and explicit gaps before this reply. |
+| 2 | Gemini assessment | “reread the gemini report, summarize it” | DONE | Full archived body reread; recommendations and corrections recorded. |
+| 3 | Qwen availability | “why cant i run the existing qwen model…always unload” | DONE | Explained stopped server, restored persistent API and retained stop protections. |
+
+**D. Additional findings**
+
+Neither greater precision nor a passing syntax check guarantees correct code. Your most relevant remaining failures are incomplete instruction loading, unsupported file claims, nested configuration bugs and unsafe SQL. I also corrected the lifecycle guidance so benchmark cleanup does not leave the selected endpoint unnecessarily unavailable.
+
+**E. Pending / deferred**
+
+| Item | Status | Reason |
+|---|---|---|
+| Fresh Copilot/Continue UI checks | Not rerun | New launcher is API-verified; previous UI results belong to the older profile. |
+| Untried variants and settings | Explicitly untested | Listed individually in the report; no scores invented or new automatic test queue started. |
+
+**F. My suggestions**
+
+Keep Qwen Q4 and the Gemma fallback. Next, prioritize held-out edits from your actual projects with explicit file-read receipts and independent tests—especially local-key preservation, nested mutation and database rollback—before another model swap.
+
+**G. Copyable summary**
+
+```text
+Local Coding Lab — full comparison and working model restored, version 0.4.1, 17 October 2026.
+
+What's done
+- Consolidated 14 tested model variants, their strengths, failures and incomplete experiments. Untested alternatives have explicit reasons.
+- Reread the supplied Gemini research and separated useful recommendations from claims contradicted by measurements.
+- Retained Qwen3.6 Q4 as the best measured choice for this computer and Gemma 26 as the smaller fallback. Higher precision and larger models did not demonstrate a better overall workflow.
+- Restored the local service and left it running. Basic conversation and reading two files completed successfully, although exact response formatting still failed. Fresh checks through both editors remain outstanding.
+
+Suggested next steps
+- Use the selected model with human review and independent tests.
+- Prioritize real project edits, accurate file references and preservation of existing settings before changing models again.
+- Check database changes carefully; several candidates produced unsafe migrations.
 ```

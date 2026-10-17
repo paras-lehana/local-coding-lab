@@ -32,6 +32,12 @@ Lifecycle guidance updated through maintenance skill; Codex/Claude shared routin
 reviewed, unchanged. No heavy grading or code execution during live inference.
 
 
+11:17IST publication: implementation23f84b5 pushed to main; Windows/Ubuntu
+CI39007400281 succeeds.153-file audit0findings,174relative file links and diffcheck
+pass. Exact prepared A–G response saved in prompts.md before final. No current
+editor UI claim. Last recorded11:14 process still running at13.31GiB RSS,
+4.70GiB dedicatedVRAM,4.55GiB system freeRAM. Preserve the endpoint at closeout.
+
 ## 2026-10-16 — Memory and remaining-candidate expansion
 
 | # | Task | Status | Notes |
