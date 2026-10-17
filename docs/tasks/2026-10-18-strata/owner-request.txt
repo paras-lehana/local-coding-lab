@@ -1,0 +1,9 @@
+lets also try strata, we incorporate in report too.
+
+i know strata needs 12 GB VRAM atleast, but that is like a hard limit, we shjould see what to change or what to figure out or maybe make a fork when we are sure we can run it on 8 or 10 GB VRAM. we compare it to our current model reports too
+
+Github: https://github.com/Niko1221/Strata
+
+Refer the report i attached, if that helps.
+
+The attached third-party article is retained privately; the public task report records its title, provenance hash and critical review.

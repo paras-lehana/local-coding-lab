@@ -1,16 +1,16 @@
 # Prompt log — Local Coding Lab
 
-Current phase,17October evening: owner redirected work to idle unloading and
-desktop controls. Production2.3 uses1800second native sleep, same QwenQ4/128K
-CPU-KV settings. Native wake/click/shortcut/tray tests pass. The owner's actual
-Copilot greeting eventually answered after~7m42s; latency remains unresolved.
-No editor typing by the assistant. Model comparison work is stopped.
+Current phase,18October: the owner explicitly reopened comparison work for
+Strata. Existing Qwen Q4 weights and production2.3 settings are preserved;
+the server is temporarily stopped for isolated inference experiments. Apps
+stay open; clocks/drivers and editor settings are unchanged. No editor typing.
 
-Last updated: 2026-10-17. Public project history excludes earlier credentials,
+Last updated: 2026-10-18. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
+|14|2026-10-18|00:00|Strata on 10 GB|Research / Experiment|In progress|[Entry](#strata-on-10-gb)|
 |13|2026-10-17|21:05|Standalone tray and SSH access|Feature / Config|Published; remote editor UI untested|[Entry](#standalone-tray-and-ssh-access)|
 |12|2026-10-17|20:12|Native idle sleep and desktop controls|Feature / Config|Published/tested; Copilot latency unresolved|[Entry](#idle-sleep-and-desktop-controls)|
 |11|2026-10-17|19:35|128K and remaining tool pressure|Config / Bug Fix|Partial; superseded by desktop task|[Entry](#context128-and-remaining-tool-pressure)|
@@ -24,6 +24,51 @@ private instruction contents and raw editor chats.
 | 4 | 2026-10-15 | 15:17 | Recover after unexpected shutdown | Infrastructure / Research | Evidence reviewed; cause unknown | [Entry](#unexpected-shutdown-recovery) |
 | 5 | 2026-10-15 | 20:58 | Working selection, comparison and editor gate | Research / Config | API done; UI blocked | [Entry](#working-selection-and-editor-gate) |
 | 6 | 2026-10-15 | 23:06 | Actual editor validation after unlock | Research / Config | Six probes complete; quality defects retained | [Entry](#actual-editor-validation-after-unlock) |
+
+## Strata on 10 GB
+
+Project: local-coding-lab. Branch: experiment/strata-20261018. Mode: Default.
+
+Original request: try Strata, incorporate it in the comparison report, inspect
+the believed12GB requirement and consider a fork if8/10GB becomes practical.
+Use the supplied article as research input. Source: Niko1221/Strata.
+
+Read: project/parent instructions, shared Codex/platform/topic/logging guides,
+Python/Git/coding rules; Strata AGENTS, AI_SETUP, QWEN36 and relevant build,
+loader, memory and server source. The complete supplied article is private.
+
+Decisions so far: pin v0.1.45 and verify its Windows archive; no12GB hard gate
+exists. Test the exact existing Qwen3.6 Q4 first. Its original release load
+failed before allocation because optional non-MTP metadata was required.
+Develop a small loader compatibility patch with geometry/layout regressions.
+Qwen3.6 uses GPU KV and a full host expert arena, unlike Flash-Next's separate
+memory paths. Download only pinned Flash-Next IQ3_XXS shards, with hashes, to
+evaluate the memory-budget path. The broad setup command was blocked by
+automatic review; the accepted alternative only downloads explicit artifacts
+and does not perform setup's cross-install discovery or file relocation.
+
+Validation and closeout: six Qwen workflow collections and isolated grading now
+complete; Flash-Next remains in download. A forced memory-floor check has
+verified owned-job cleanup while leaving an unrelated child alive.
+Stock Qwen3.6 failure is preserved and is not a quality or VRAM-fit score.
+
+01:37 IST checkpoint: experimental fork published at
+https://github.com/paras-lehana/Strata/tree/experiment/qwen36-no-mtp . CUDA source
+commit6ef632f; documentation21d48b3. No upstream PR or HIP/SYCL validation.
+The no-download trim/no-trim32K control establishes a residency benefit. Initial
+graph-enabled API profile hits the VRAM guard;64-token/no-graph profile completes
+router286.516s, history250.625s and TS/SQL203.765s. Isolated Python6/6 and model
+tests7/7 pass; public router review40/40 (one run, separate40-point rubric),
+history6/6 facts; TS5/6 with nonplain-input failure; SQL fails during migration
+on foreign keys. These are not editor UI or128K Strata quality results.
+Same-weight llama32K comparison is active on8081: router completes436.469s;
+history is running, TS/SQL remains next. Production8080 is still stopped for
+the experiments and must be restored. Flash-Next has no verified shard yet:
+the bounded range downloader is paused during timings. A preallocated working
+file's length is not downloaded bytes. Owned Xet buffers were released and its
+four incomplete files removed with an exact-path receipt. All apps remain open.
+The context-maintenance skill was applied to the project regression guidance;
+both Windows entry adapters were reviewed and left unchanged.
 
 ## Repository creation
 

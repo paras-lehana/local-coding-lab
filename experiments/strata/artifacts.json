@@ -1,0 +1,53 @@
+{
+  "upstream": "https://github.com/Niko1221/Strata",
+  "tag": "v0.1.45",
+  "commit": "477ac13cbe8e582c20484871ce459d20d82df09d",
+  "windows_cuda_archive": {
+    "url": "https://github.com/Niko1221/Strata/releases/download/v0.1.45/strata-windows-x64.zip",
+    "bytes": 165243142,
+    "sha256": "a1d4cafb8319c253f3010ff118dbd5ed07c232056b939ac7735819559f3b859e"
+  },
+  "same_weights_candidate": {
+    "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+    "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+    "file": "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+    "bytes": 22134528992,
+    "sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61",
+    "mtp": false,
+    "stock_status": "Rejected by v0.1.45: missing optional nextn_predict_layers metadata"
+  },
+  "flash_next_candidate": {
+    "repo": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+    "revision": "ed59f92082b1e93c0e96d60a8b11aab089b52f09",
+    "files": [
+      {
+        "file": "IQ3_XXS/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00001-of-00002.gguf",
+        "bytes": 47039860096,
+        "sha256": "219ea929900dfa9ef091f3aa473fdba6874b65fcb36526d7d851ac9e95856d15"
+      },
+      {
+        "file": "IQ3_XXS/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00002-of-00002.gguf",
+        "bytes": 28800138432,
+        "sha256": "316b46f3a2dbd68c900f43136ab9449f9dcc3725dfd8c794847c204bc161e113"
+      }
+    ],
+    "scope": "Full Flash-Next, distinct from the previously tested dense Qwen3.8"
+  },
+  "experimental_fork": {
+    "url": "https://github.com/paras-lehana/Strata",
+    "branch": "experiment/qwen36-no-mtp",
+    "code_commit": "6ef632f76fd1b549cbe34ba8c6232238b447a361",
+    "documentation_commit": "f17477d",
+    "q36_exe_sha256": "a6c8f74b78df6c60823303ab046baab4ec54ec11aa62ec5aa99340fe5f74de5a",
+    "cuda": "13.3.33",
+    "sm": 86,
+    "tested_backends": [
+      "CUDA"
+    ],
+    "unverified": [
+      "HIP",
+      "SYCL",
+      "actual 8GB hardware"
+    ]
+  }
+}

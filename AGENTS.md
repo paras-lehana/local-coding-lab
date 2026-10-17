@@ -33,6 +33,21 @@ instructions to the maintainer. CLAUDE.md and the Copilot adapter point here.
 
 ## Current evidence and editor regression checks
 
+18October Strata explicitly reopens engine/model comparisons. Recover the live
+phase from docs/tasks.md and the Strata task report before loading anything.
+Pinned v0.1.45 permits smaller GPUs; there is no hard12GB gate to remove. The
+existing Qwen GGUF lacks optional MTP metadata and needs the separately identified
+experimental loader patch. Its Qwen engine keeps fp32 KV on GPU and copies the
+full expert arena into RAM; Flash-Next KV/budget flags do not apply to this path.
+The fork's Windows GGUF trimming enables32K smoke tests, but the initial serving
+profile VRAM-stops during a tool request.64-token chunks/no-graph completes the
+public router/history/TS-SQL cases; retain every failed trial unscored. Numerical
+equivalence,128K serving and real8GB hardware are not established by these tests.
+Pause owned downloads during comparative timings: suspended Xet retained6.5GiB
+commit; the bounded HTTP downloader avoids that allocation. An intervention must
+be labeled, not credited to an engine patch. Preserve the working production
+Qwen/128K/1800second configuration and restore its endpoint after experiments.
+
 17October later: owner requested a tray-first reusable controller. The maintained
 UI now lives in [LLM Tray](https://github.com/paras-lehana/llm-tray); this lab's
 desktop control.ps1 remains the ownership-aware custom backend. Owner shortcuts

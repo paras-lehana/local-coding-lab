@@ -1,0 +1,546 @@
+{
+  "date": "2026-10-18",
+  "scope": "Same Qwen3.6 UD-Q4_K_M bytes, practical 32K configurations; one sample per case, not a pure engine or accuracy leaderboard",
+  "model_sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61",
+  "strata_code": "6ef632f76fd1b549cbe34ba8c6232238b447a361",
+  "strata_exe_sha256": "a6c8f74b78df6c60823303ab046baab4ec54ec11aa62ec5aa99340fe5f74de5a",
+  "llama_dll_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009",
+  "controls": {
+    "context": 32768,
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0,
+    "presence_penalty": 0,
+    "repeat_penalty": 1,
+    "seed": 73,
+    "max_tokens": 8192,
+    "reasoning_budget_per_turn": 2048,
+    "whole_case_deadline_seconds": 1200,
+    "downloads_paused": true
+  },
+  "limitations": [
+    "Desktop load/file cache vary",
+    "KV placement and precision, expert placement, CPU threads and tool serialization differ",
+    "Case outputs and lengths differ",
+    "No fresh editor UI test or production replacement",
+    "Rubric assessment by Codex, not independent human review",
+    "Migration failure prevents independent SQL assertions; it is not six separate failed assertions"
+  ],
+  "strata_serving_resources": {
+    "minimum_ram_free_gib": 2.619,
+    "minimum_commit_available_gib": 3.92,
+    "minimum_vram_free_mib": 896.0,
+    "peak_whole_device_vram_used_mib": 9344.0,
+    "peak_engine_working_set_gib": 20.09
+  },
+  "native_trials_and_failures": [
+    {
+      "trial": "q36-bounded-smoke",
+      "reason": "guard/error: ValueError: ram_free_gib below 2.5 or unavailable",
+      "code": 1,
+      "seconds": 14.109,
+      "min_free_ram_gib": 1.802,
+      "min_free_commit_gib": 5.459,
+      "peak_whole_gpu_mib": 7894.0,
+      "native_trials": []
+    },
+    {
+      "trial": "q36-native-smoke",
+      "reason": "process exited",
+      "code": 1,
+      "seconds": 3.156,
+      "min_free_ram_gib": 22.823,
+      "min_free_commit_gib": 26.313,
+      "peak_whole_gpu_mib": 3696.0,
+      "native_trials": []
+    },
+    {
+      "trial": "q36-no-trim32-no-download",
+      "reason": "guard/error: ValueError: ram_free_gib below 2.5 or unavailable",
+      "code": 1,
+      "seconds": 12.36,
+      "min_free_ram_gib": 2.388,
+      "min_free_commit_gib": 6.944,
+      "peak_whole_gpu_mib": 8662.0,
+      "native_trials": []
+    },
+    {
+      "trial": "q36-pageable-smoke",
+      "reason": "process exited",
+      "code": 0,
+      "seconds": 64.39,
+      "min_free_ram_gib": 2.903,
+      "min_free_commit_gib": 3.671,
+      "peak_whole_gpu_mib": 9126.0,
+      "native_trials": [
+        {
+          "pp_tokens": 64,
+          "pp_tps": 68.7,
+          "tg_tokens": 16,
+          "tg_tps": 17.7
+        },
+        {
+          "pp_tokens": 64,
+          "pp_tps": 92.6,
+          "tg_tokens": 16,
+          "tg_tps": 11.3
+        },
+        {
+          "pp_tokens": 64,
+          "pp_tps": 30.5,
+          "tg_tokens": 16,
+          "tg_tps": 11.1
+        }
+      ]
+    },
+    {
+      "trial": "q36-pageable32-small-smoke",
+      "reason": "guard/error: ValueError: ram_free_gib below 2.5 or unavailable",
+      "code": 1,
+      "seconds": 41.204,
+      "min_free_ram_gib": 1.585,
+      "min_free_commit_gib": 4.265,
+      "peak_whole_gpu_mib": 9129.0,
+      "native_trials": []
+    },
+    {
+      "trial": "q36-pageable32-smoke",
+      "reason": "guard/error: ValueError: ram_free_gib below 2.5 or unavailable",
+      "code": 1,
+      "seconds": 49.812,
+      "min_free_ram_gib": 1.083,
+      "min_free_commit_gib": 3.405,
+      "peak_whole_gpu_mib": 9563.0,
+      "native_trials": []
+    },
+    {
+      "trial": "q36-patched-smoke-dllpath",
+      "reason": "guard/error: ValueError: ram_free_gib below 2.5 or unavailable",
+      "code": 1,
+      "seconds": 13.281,
+      "min_free_ram_gib": 2.432,
+      "min_free_commit_gib": 4.391,
+      "peak_whole_gpu_mib": 9173.0,
+      "native_trials": []
+    },
+    {
+      "trial": "q36-server-pinned32",
+      "reason": "guard/error: ValueError: vram_free_mib below 600 or unavailable",
+      "code": 1,
+      "seconds": 204.984,
+      "min_free_ram_gib": 4.387,
+      "min_free_commit_gib": 3.585,
+      "peak_whole_gpu_mib": 9734.0,
+      "native_trials": []
+    },
+    {
+      "trial": "q36-trim-pageable32-no-download",
+      "reason": "process exited",
+      "code": 0,
+      "seconds": 53.563,
+      "min_free_ram_gib": 6.183,
+      "min_free_commit_gib": 6.017,
+      "peak_whole_gpu_mib": 9214.0,
+      "native_trials": [
+        {
+          "pp_tokens": 256,
+          "pp_tps": 99.8,
+          "tg_tokens": 64,
+          "tg_tps": 20.6
+        },
+        {
+          "pp_tokens": 256,
+          "pp_tps": 136.8,
+          "tg_tokens": 64,
+          "tg_tps": 21.2
+        },
+        {
+          "pp_tokens": 256,
+          "pp_tps": 108.6,
+          "tg_tokens": 64,
+          "tg_tps": 18.3
+        }
+      ]
+    },
+    {
+      "trial": "q36-trim-pageable32-smoke",
+      "reason": "guard/error: ValueError: commit_available_gib below 2 or unavailable",
+      "code": 1,
+      "seconds": 4.281,
+      "min_free_ram_gib": 22.332,
+      "min_free_commit_gib": 0.455,
+      "peak_whole_gpu_mib": 8646.0,
+      "native_trials": []
+    },
+    {
+      "trial": "q36-trim-pinned32-no-download",
+      "reason": "process exited",
+      "code": 0,
+      "seconds": 54.25,
+      "min_free_ram_gib": 5.566,
+      "min_free_commit_gib": 5.739,
+      "peak_whole_gpu_mib": 9181.0,
+      "native_trials": [
+        {
+          "pp_tokens": 256,
+          "pp_tps": 96.2,
+          "tg_tokens": 64,
+          "tg_tps": 21.9
+        },
+        {
+          "pp_tokens": 256,
+          "pp_tps": 129.7,
+          "tg_tokens": 64,
+          "tg_tps": 21.0
+        },
+        {
+          "pp_tokens": 256,
+          "pp_tps": 129.4,
+          "tg_tokens": 64,
+          "tg_tps": 21.2
+        }
+      ]
+    },
+    {
+      "trial": "q36-trim32-smoke",
+      "reason": "guard/error: ValueError: commit_available_gib below 2 or unavailable",
+      "code": 1,
+      "seconds": 7.906,
+      "min_free_ram_gib": 15.7,
+      "min_free_commit_gib": 1.303,
+      "peak_whole_gpu_mib": 8681.0,
+      "native_trials": []
+    },
+    {
+      "trial": "q36-unpacked-smoke",
+      "reason": "guard/error: ValueError: ram_free_gib below 2.5 or unavailable",
+      "code": 1,
+      "seconds": 8.922,
+      "min_free_ram_gib": 1.753,
+      "min_free_commit_gib": 5.402,
+      "peak_whole_gpu_mib": 7947.0,
+      "native_trials": []
+    },
+    {
+      "trial": "q36-patched-smoke",
+      "reason": "guard/error: NoSuchProcess: process PID not found (pid=42012)",
+      "code": 1,
+      "seconds": 0.25
+    },
+    {
+      "trial": "q36-server-nograph32",
+      "reason": "explicit stop",
+      "code": 0,
+      "seconds": 840.532,
+      "minimum_ram_free_gib": 2.619,
+      "minimum_commit_available_gib": 3.92,
+      "minimum_vram_free_mib": 896.0,
+      "peak_whole_device_vram_used_mib": 9344.0,
+      "peak_engine_working_set_gib": 20.09
+    }
+  ],
+  "cases": [
+    {
+      "backend": "Strata experimental CUDA",
+      "case": "router",
+      "status": "completed",
+      "wall_seconds": 286.516,
+      "turns": 2,
+      "fixture": "router-v1",
+      "question_sha256": "097b3d020d4133cc3b9d874027f2640b9d976d0a34a53f1d921a8c4273f9a3a6",
+      "source_sha256": {
+        ".claude/CLAUDE.md": "d39a91d7b728539bcae9097d5f6fda6413cf8451ce6766a1934c389784ec6b7d",
+        ".github/instructions/python-v1.md": "0196cefacef6ef96b621423dd678ec16dd4b3cacde71935de3263bdae17a2033",
+        ".github/instructions/v2/python.md": "ea0547bcc0909a2d0bdcd1bff26ea06fef1a35d3aa218d07fdb51647d8717ca8",
+        "AGENTS.md": "e050ee4825a61bbc63beb6ba6f125fdcdef0c8613ab26c08566987c93f5c4699",
+        "docs/config-contract.md": "2fdb47962dc0836ac22b70ee49e1b0ab9b025762f8cd84f19bce3dcaccb58235",
+        "docs/host.md": "13e41df574cc7ec6a65426345c1a2eb45463e1d97eae42ac3e38f2b4dc060931",
+        "src/config_loader.py": "9fa72de9856b1446f041d7f925de606989e15cb87e179660ffa710abd29139ff"
+      },
+      "mode": "tools",
+      "temperature": 0.6,
+      "seed": 73,
+      "max_tokens": 8192,
+      "reasoning_budget": 2048,
+      "deadline_seconds": 1200.0,
+      "assessment": {
+        "assessor": "Codex source review plus isolated independent checks; not independent human review",
+        "rubric": "public router-v1, 40 points; distinct from historical private 36-point audit",
+        "scores": {
+          "instruction_discovery": 8,
+          "file_grounding": 6,
+          "unknown_fact_honesty": 6,
+          "code_behavior": 12,
+          "tests_and_execution_honesty": 5,
+          "tool_source_accounting": 3
+        },
+        "total": 40,
+        "maximum": 40,
+        "python_behavior_groups": "6/6",
+        "model_tests": "7/7 with import-only fixture adapter; original answer preserved",
+        "reads": 7,
+        "limits": [
+          "One seed/run; no general accuracy claim",
+          "Parallel read list does not prove the described chronological discovery order",
+          "TypeScript/SQLite defects are scored separately"
+        ]
+      },
+      "isolated_grade": {
+        "probe": {
+          "status": "exited",
+          "returncode": 0,
+          "stdout": "{\"environment_keys\": [\"HOME\", \"LC_CTYPE\", \"PATH\", \"PWD\"]}\n{\"isolated_network\": true, \"no_host_homes\": true, \"python\": \"3.14.4\"}\n",
+          "stderr": ""
+        },
+        "limits": {
+          "wall_seconds_per_process": 20,
+          "cpu_seconds": 10,
+          "address_space_mib": 512
+        },
+        "runs": {
+          "behavior_checks.py": {
+            "status": "exited",
+            "returncode": 0,
+            "stdout": "",
+            "stderr": "test_deep_mutable_isolation (__main__.ContractTests.test_deep_mutable_isolation) ... ok\ntest_dictionary_scalar_conflicts (__main__.ContractTests.test_dictionary_scalar_conflicts) ... ok\ntest_false_and_empty_values (__main__.ContractTests.test_false_and_empty_values) ... ok\ntest_invalid_roots (__main__.ContractTests.test_invalid_roots) ... ok\ntest_nested_defaults_and_unknown_keys (__main__.ContractTests.test_nested_defaults_and_unknown_keys) ... ok\ntest_repeated_calls (__main__.ContractTests.test_repeated_calls) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nOK\n"
+          },
+          "model_tests.py": {
+            "status": "exited",
+            "returncode": 0,
+            "stdout": "",
+            "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.000s\n\nOK\n"
+          }
+        }
+      }
+    },
+    {
+      "backend": "Strata experimental CUDA",
+      "case": "history",
+      "status": "completed",
+      "wall_seconds": 250.625,
+      "turns": 6,
+      "case_sha256": "8f1f7b1abf0393780b0d6f3e54136027647b79ab000bc5615c0c329c152cdbed",
+      "temperature": 0.6,
+      "seed": 73,
+      "max_tokens": 8192,
+      "reasoning_budget": 2048,
+      "deadline_seconds": 1200.0,
+      "assessment": {
+        "assessor": "Codex source/response review; no independent human review",
+        "facts": {
+          "region": true,
+          "auditOwner": true,
+          "release": true,
+          "retryLimit": true,
+          "runtimeRevision": true,
+          "redisSentinelPort": true
+        },
+        "passed": 6,
+        "total": 6,
+        "phase0_exact": true,
+        "format": "JSON in Markdown fence followed by requested actual-read list; not a JSON-only compliance test",
+        "actual_followup_read_claim": [
+          "docs/runtime.md"
+        ],
+        "case_sha256": "8f1f7b1abf0393780b0d6f3e54136027647b79ab000bc5615c0c329c152cdbed",
+        "case_file_bytes_sha256": "30754f0f0f09182bf5f84d0615a1db582442f8d86a9894ebc059c6600f2d6d75",
+        "not_proven": [
+          "128K recall",
+          "attempted unavailable-ledger tool error recovery",
+          "permanent history across server unload"
+        ]
+      }
+    },
+    {
+      "backend": "Strata experimental CUDA",
+      "case": "ts-sql",
+      "status": "completed",
+      "wall_seconds": 203.765,
+      "turns": 4,
+      "case_sha256": "af8630ea22910674d17ebc43b6731e45b9ebacf19c2514f736b33fc7f0ec330e",
+      "temperature": 0.6,
+      "seed": 73,
+      "max_tokens": 8192,
+      "reasoning_budget": 2048,
+      "deadline_seconds": 1200.0,
+      "isolated_grade": {
+        "probe": {
+          "status": "exited",
+          "returncode": 0,
+          "stdout": "Separate network/process namespaces; no host homes or drives; input files read-only\n",
+          "stderr": ""
+        },
+        "runs": {
+          "typescript": {
+            "status": "exited",
+            "returncode": 1,
+            "stdout": "{\"compile_code\": 0, \"stdout\": \"\", \"stderr\": \"\"}\n{\"groups\":[{\"name\":\"defaults, trimming, order and exact output shape\",\"passed\":true},{\"name\":\"zero, false, empty tags and explicit undefined survive\",\"passed\":true},{\"name\":\"invalid roots, nonplain jobs, empty and duplicate ids\",\"passed\":false,\"error\":\"AssertionError [ERR_ASSERTION]: Missing expected exception (TypeError).\"},{\"name\":\"strict count, boolean and tag validation\",\"passed\":true},{\"name\":\"input immutability and bidirectional alias isolation\",\"passed\":true},{\"name\":\"distinct default arrays and frozen input\",\"passed\":true}],\"passed\":5,\"total\":6}\n",
+            "stderr": ""
+          },
+          "sqlite": {
+            "status": "exited",
+            "returncode": 1,
+            "stdout": "{\"migration_error\": \"FOREIGN KEY constraint failed\", \"passed\": 0, \"total\": 6}\n",
+            "stderr": ""
+          }
+        },
+        "limits": {
+          "typescript_virtual_address_mib": 8192,
+          "typescript_heap_mib": 128,
+          "typescript_wall_seconds": 60,
+          "sqlite_address_mib": 512,
+          "sqlite_wall_seconds": 20
+        }
+      }
+    },
+    {
+      "backend": "llama.cpp b11562-noprefetch-v1",
+      "case": "router",
+      "status": "completed",
+      "wall_seconds": 436.469,
+      "turns": 2,
+      "fixture": "router-v1",
+      "question_sha256": "097b3d020d4133cc3b9d874027f2640b9d976d0a34a53f1d921a8c4273f9a3a6",
+      "source_sha256": {
+        ".claude/CLAUDE.md": "d39a91d7b728539bcae9097d5f6fda6413cf8451ce6766a1934c389784ec6b7d",
+        ".github/instructions/python-v1.md": "0196cefacef6ef96b621423dd678ec16dd4b3cacde71935de3263bdae17a2033",
+        ".github/instructions/v2/python.md": "ea0547bcc0909a2d0bdcd1bff26ea06fef1a35d3aa218d07fdb51647d8717ca8",
+        "AGENTS.md": "e050ee4825a61bbc63beb6ba6f125fdcdef0c8613ab26c08566987c93f5c4699",
+        "docs/config-contract.md": "2fdb47962dc0836ac22b70ee49e1b0ab9b025762f8cd84f19bce3dcaccb58235",
+        "docs/host.md": "13e41df574cc7ec6a65426345c1a2eb45463e1d97eae42ac3e38f2b4dc060931",
+        "src/config_loader.py": "9fa72de9856b1446f041d7f925de606989e15cb87e179660ffa710abd29139ff"
+      },
+      "mode": "tools",
+      "temperature": 0.6,
+      "seed": 73,
+      "max_tokens": 8192,
+      "reasoning_budget": 2048,
+      "deadline_seconds": 1200.0,
+      "assessment": {
+        "assessor": "Codex source review plus isolated independent checks; not independent human review",
+        "rubric": "public router-v1, 40 points; distinct from historical private 36-point audit",
+        "scores": {
+          "instruction_discovery": 8,
+          "file_grounding": 6,
+          "unknown_fact_honesty": 6,
+          "code_behavior": 12,
+          "tests_and_execution_honesty": 5,
+          "tool_source_accounting": 3
+        },
+        "total": 40,
+        "maximum": 40,
+        "python_behavior_groups": "6/6",
+        "model_tests": "7/7 with original implementation and test fences concatenated unchanged",
+        "reads": 7,
+        "limits": [
+          "One seed/run; no general accuracy claim",
+          "Original implementation and self-test fences combined to supply the function scope assumed by its test comment",
+          "TypeScript/SQLite evaluated separately"
+        ]
+      },
+      "isolated_grade": {
+        "probe": {
+          "status": "exited",
+          "returncode": 0,
+          "stdout": "{\"environment_keys\": [\"HOME\", \"LC_CTYPE\", \"PATH\", \"PWD\"]}\n{\"isolated_network\": true, \"no_host_homes\": true, \"python\": \"3.14.4\"}\n",
+          "stderr": ""
+        },
+        "limits": {
+          "wall_seconds_per_process": 20,
+          "cpu_seconds": 10,
+          "address_space_mib": 512
+        },
+        "runs": {
+          "behavior_checks.py": {
+            "status": "exited",
+            "returncode": 0,
+            "stdout": "",
+            "stderr": "test_deep_mutable_isolation (__main__.ContractTests.test_deep_mutable_isolation) ... ok\ntest_dictionary_scalar_conflicts (__main__.ContractTests.test_dictionary_scalar_conflicts) ... ok\ntest_false_and_empty_values (__main__.ContractTests.test_false_and_empty_values) ... ok\ntest_invalid_roots (__main__.ContractTests.test_invalid_roots) ... ok\ntest_nested_defaults_and_unknown_keys (__main__.ContractTests.test_nested_defaults_and_unknown_keys) ... ok\ntest_repeated_calls (__main__.ContractTests.test_repeated_calls) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nOK\n"
+          },
+          "model_tests.py": {
+            "status": "exited",
+            "returncode": 0,
+            "stdout": "",
+            "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.000s\n\nOK\n"
+          }
+        }
+      }
+    },
+    {
+      "backend": "llama.cpp b11562-noprefetch-v1",
+      "case": "history",
+      "status": "completed",
+      "wall_seconds": 285.891,
+      "turns": 6,
+      "case_sha256": "8f1f7b1abf0393780b0d6f3e54136027647b79ab000bc5615c0c329c152cdbed",
+      "temperature": 0.6,
+      "seed": 73,
+      "max_tokens": 8192,
+      "reasoning_budget": 2048,
+      "deadline_seconds": 1200.0,
+      "assessment": {
+        "assessor": "Codex source/response review, not independent human review",
+        "facts": {
+          "region": true,
+          "auditOwner": true,
+          "release": true,
+          "retryLimit": true,
+          "runtimeRevision": true,
+          "redisSentinelPort": true
+        },
+        "passed": 6,
+        "total": 6,
+        "phase0_exact": true,
+        "actual_followup_read_claim": [
+          "docs/runtime.md"
+        ],
+        "format": "Unfenced JSON object followed by requested actual-read list",
+        "case_sha256": "8f1f7b1abf0393780b0d6f3e54136027647b79ab000bc5615c0c329c152cdbed"
+      }
+    },
+    {
+      "backend": "llama.cpp b11562-noprefetch-v1",
+      "case": "ts-sql",
+      "status": "completed",
+      "wall_seconds": 357.687,
+      "turns": 4,
+      "case_sha256": "af8630ea22910674d17ebc43b6731e45b9ebacf19c2514f736b33fc7f0ec330e",
+      "temperature": 0.6,
+      "seed": 73,
+      "max_tokens": 8192,
+      "reasoning_budget": 2048,
+      "deadline_seconds": 1200.0,
+      "isolated_grade": {
+        "probe": {
+          "status": "exited",
+          "returncode": 0,
+          "stdout": "Separate network/process namespaces; no host homes or drives; input files read-only\n",
+          "stderr": ""
+        },
+        "runs": {
+          "typescript": {
+            "status": "exited",
+            "returncode": 1,
+            "stdout": "{\"compile_code\": 0, \"stdout\": \"\", \"stderr\": \"\"}\n{\"groups\":[{\"name\":\"defaults, trimming, order and exact output shape\",\"passed\":true},{\"name\":\"zero, false, empty tags and explicit undefined survive\",\"passed\":true},{\"name\":\"invalid roots, nonplain jobs, empty and duplicate ids\",\"passed\":false,\"error\":\"AssertionError [ERR_ASSERTION]: Missing expected exception (TypeError).\"},{\"name\":\"strict count, boolean and tag validation\",\"passed\":true},{\"name\":\"input immutability and bidirectional alias isolation\",\"passed\":true},{\"name\":\"distinct default arrays and frozen input\",\"passed\":true}],\"passed\":5,\"total\":6}\n",
+            "stderr": ""
+          },
+          "sqlite": {
+            "status": "exited",
+            "returncode": 0,
+            "stdout": "{\"groups\": [{\"name\": \"data and event preservation\", \"passed\": true}, {\"name\": \"foreign key restoration\", \"passed\": true}, {\"name\": \"tenant-scoped uniqueness\", \"passed\": true}, {\"name\": \"attempt constraints and default\", \"passed\": true}, {\"name\": \"referential integrity enforcement\", \"passed\": true}, {\"name\": \"migration transaction\", \"passed\": true}], \"passed\": 6, \"total\": 6}\n",
+            "stderr": ""
+          }
+        },
+        "limits": {
+          "typescript_virtual_address_mib": 8192,
+          "typescript_heap_mib": 128,
+          "typescript_wall_seconds": 60,
+          "sqlite_address_mib": 512,
+          "sqlite_wall_seconds": 20
+        }
+      }
+    }
+  ],
+  "recommendation": "Keep production llama.cpp Qwen Q4/128K CPU KV. Strata is an experimental faster 32K candidate with a failed SQLite migration and unverified long-context serving."
+}

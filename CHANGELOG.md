@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.0 - 2026-10-18 (Flash-Next evaluation in progress)
+
+- Add a pinned Strata experiment, guarded Windows process ownership and bounded
+  resumable HTTP downloads with whole-artifact integrity checks.
+- Publish a separate experimental fork for optional MTP metadata, optional
+  pageable experts and Windows copied-GGUF source-page trimming.
+- Complete six same-Qwen32K coding/history collections and isolated grading;
+  preserve every failed load and interrupted request without a quality score.
+- Record practical timing gains alongside TypeScript defects and Strata's
+  SQLite migration failure. Keep the existing128K llama production profile.
+- Review the supplied6x article and distinguish Qwen's full host expert arena/
+  GPU KV from Flash-Next's bounded resident tier and separate KV modes.
+
 ## Documentation follow-up - 2026-10-17
 
 - Link the extracted public LLM Tray project for tray-first UI, customization

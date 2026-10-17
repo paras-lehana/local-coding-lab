@@ -1,5 +1,13 @@
 # Local Coding Lab
 
+**18 October: Strata on10GB.** The experimental fork completes all three
+same-Qwen32K workflows faster in single runs, but its SQL migration fails where
+the llama control passes. Keep the working llama128K setup. Flash-Next's bounded
+memory path is still being evaluated. [Full report](docs/tasks/2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md)
+· [Measurements](reports/2026-10-18-strata-qwen.json)
+· [Reproduction](experiments/strata/README.md)
+· [Public fork](https://github.com/paras-lehana/Strata/tree/experiment/qwen36-no-mtp).
+
 **Find a local coding model that follows your project instructions, reads the
 right files, and finishes useful work on your actual PC.**
 

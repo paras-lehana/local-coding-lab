@@ -1,6 +1,31 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-10-17 (Asia/Kolkata); idle unloading and native desktop controls.
+Last updated: 2026-10-18 (Asia/Kolkata); Strata evaluation explicitly reopened.
+
+## 2026-10-18 — Strata on 10 GB
+
+| Task | Status | Evidence |
+|---|---|---|
+|Read article and verify current upstream|Done|Pinned v0.1.45; setup explicitly accepts 10 GB. Article compares different quantization/baselines.|
+|Try Strata with guarded memory settings|In progress|Qwen32K completes three workflows; full Flash-Next download underway with bounded HTTP memory.|
+|Compare coding/file/history performance|Qwen complete; Flash pending|Same Q4 file: Strata faster in all three cases; both Python/history pass and TS5/6. Strata SQL migration fails; llama SQL6/6.|
+|Assess 8/10 GB changes or fork|In progress|No hardware gate removal needed. Public experimental fork has three separate opt-in/compatibility commits. CUDA tested; real8GB and HIP/SYCL untested.|
+|Publish report and reproduction details|In progress|[Checkpoint report](tasks/2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md); current selection preserved.|
+
+Initial snapshot: 64 GB DDR4 / Ryzen 7 5800X / RTX 3080 10 GB, about25 GiB
+RAM and6.8 GiB VRAM free with apps open. Installed driver617.42 supports the
+isolated CUDA13 libraries. No driver, BIOS or application-closure changes.
+The article's full text stays private; the public report will contain a review.
+
+01:48 IST: all six same-weight workflow collections and isolated grading are
+complete. Router wall time286.516s Strata /436.469s llama; history250.625/285.891s;
+TS-SQL203.765/357.687s. Single samples with different placement/tool serialization,
+not a general engine ratio. No current replacement recommendation. Both experiment
+servers stopped; production will be restored after remaining guarded trials.
+Offline suite38 tests passes. Range downloader integrity/recovery checks pass;
+its allocation length is not download progress. A64-connection option remains
+bounded to1MiB read buffers per connection; observed RSS140MiB, unlike Xet's
+6.5GiB retained commit. Downloading remains outside comparative inference.
 
 ## 2026-10-17 — Standalone tray controller
 
