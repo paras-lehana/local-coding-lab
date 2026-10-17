@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.5.0 - 2026-10-17
+
+- Add optional native idle unloading to the guarded launcher without changing
+  frozen model settings. Owner production uses1800seconds with automatic wake.
+- Add a portable AutoHotkey2.0.30 resource widget, Ctrl+Alt+L toggle and native
+  notifications. Install by pinned hash; keep all runtime data outside Git.
+- Verify exact owned process/manager ancestry and stop receipts. Serialize
+  actions; keep resource and status sampling passive during native sleep.
+- Record two automatic wake answers, memory release and a request that exceeds
+  the short test timer. Verify actual desktop click and global shortcut cycles.
+- Publish128K CPU-KV/installed-engine evidence and the owner's slow actual
+  greeting. Preserve the deliberately interrupted70K result as unscored.
+
 ## 0.4.1 - 2026-10-17
 
 - Consolidate all14 attempted model/quant artifacts, including original IQ3 and

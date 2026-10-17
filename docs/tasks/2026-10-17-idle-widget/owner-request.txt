@@ -1,0 +1,14 @@
+Relevant original owner request, 17 October 2026:
+
+LEAVE THAT, i am trying it in the same window as yours. Now i wrote hi, saw 131K context but the response is stil not there after 2 minutes. Man do you even test thigns before changing. I see 7GB used VRAM, we could still use 3 GB, i dont think it is of use anyways.
+
+The owner supplied research examples for native llama-server idle sleep,
+Ollama keep-alive, a game process monitor and a Python tray controller.
+These examples are proposals, not measured results. The explicit implementation
+request below selects idle sleep, a resource widget and an AutoHotkey toggle.
+
+So what we can do is first have this idle configurationof 30 mins (i hope that it loads automatically when i start new message. do test). Also we build a cute good widget for task bar that shows current VRAM, GPU and RAM usage in text (coloured as per %) and also a icon like green or red which shows if the model is on or off. Cliocking the widget we can toggle also.
+
+Also use autohotkey to make a keybinding (easy to remember for local llm) which does this also shows a toast notification.
+
+Do test

@@ -1,16 +1,18 @@
 # Prompt log — Local Coding Lab
 
-Current phase, 17 October11:49IST: Copilot static-context rejection diagnosed;
-Qwen-specific MCP exclusion and new-chat Autopilot/Allow all defaults saved.
-Fresh UI verification is deferred at the owner's request for no editor typing.
-QwenQ4 mapped production2.1 remains running; API health rechecked11:46IST.
-The earlier complete inventory and Gemini review remain available below.
+Current phase,17October evening: owner redirected work to idle unloading and
+desktop controls. Production2.3 uses1800second native sleep, same QwenQ4/128K
+CPU-KV settings. Native wake/click/shortcut/tray tests pass. The owner's actual
+Copilot greeting eventually answered after~7m42s; latency remains unresolved.
+No editor typing by the assistant. Model comparison work is stopped.
 
 Last updated: 2026-10-17. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
+|12|2026-10-17|20:10|Native idle sleep and desktop controls|Feature / Config|Tested; publication closeout|[Entry](#idle-sleep-and-desktop-controls)|
+|11|2026-10-17|19:35|128K and remaining tool pressure|Config / Bug Fix|Partial; superseded by desktop task|[Entry](#context128-and-remaining-tool-pressure)|
 | 10 | 2026-10-17 | 11:49 | Copilot context failure and defaults | Bug Fix / Config | Mitigation applied; fresh UI deferred | [Entry](#copilot-context-rejection-and-persistent-defaults) |
 | 9 | 2026-10-17 | 11:17 | All models, Gemini and availability | Research / Config | Report complete; persistent API restored; current UI separate | [Entry](#complete-model-inventory-and-availability) |
 | 8 | 2026-10-17 | 03:57 | Complete expanded comparison | Research | Done | [Closeout](#expanded-comparison-closeout) |
@@ -1009,3 +1011,56 @@ Suggested next steps
 - Restore additional external tools gradually after the basic conversation works.
 - Treat the repair as awaiting interactive verification, rather than confirmed working.
 ```
+
+## Context128 and remaining tool pressure
+
+17October2026,19:35IST. Configuration/bug fix, partially complete, then owner
+redirected the task. This entry recovers the preceding interrupted session.
+
+Original request: "not working. also why do i see 64K context. dont we need a
+lot of cotnmext as our main issue was multiplle instruction file etc."
+The owner also required continuing without typing in the editor.
+
+The actual128K CPU-KV profile loaded with98304input/16384output and16384margin.
+Native engine greeting and four-file test completed; all required facts were
+correct but one citation was wrong. Native budgeting fixture used17tools and
+reached its mock endpoint at both64K/128K; that is not inference. SDK/Qwen
+tokenizer discrepancy motivated the margin. The70K experiment was deliberately
+interrupted to release the sole slot for the owner's real greeting. That
+greeting had28659prompt tokens,372.689seconds prefill and~7m42s final response
+latency including queue time. It is a response, not a satisfactory speed fix.
+The user clarified the same local window was in use; prior optional window
+clarification is resolved. No assistant editor typing was performed.
+
+Full implementation, evidence, sources and limits:
+[128K report](tasks/2026-10-17-context128-and-tool-budget/2026-10-17-context128-and-tool-budget-v0.4.2.md).
+No additional long-context score was assigned, and comparison work is stopped.
+
+## Idle sleep and desktop controls
+
+17October2026,20:10IST. Feature/configuration; project local-coding-lab, main.
+
+Original request excerpts, verbatim:
+> LEAVE THAT, i am trying it in the same window as yours. Now i wrote hi, saw 131K context but the response is stil not there after 2 minutes. Man do you even test thigns before changing. I see 7GB used VRAM, we could still use 3 GB, i dont think it is of use anyways.
+>
+> So what we can do is first have this idle configurationof 30 mins (i hope that it loads automatically when i start new message. do test). Also we build a cute good widget for task bar that shows current VRAM, GPU and RAM usage in text (coloured as per %) and also a icon like green or red which shows if the model is on or off. Cliocking the widget we can toggle also.
+>
+> Also use autohotkey to make a keybinding (easy to remember for local llm) which does this also shows a toast notification.
+>
+> Do test
+
+The pasted research offered native sleep, Ollama, a game watcher and pystray.
+Those were starting proposals; the explicit request above selected native
+idle sleep, desktop resource control and AutoHotkey. No game watcher installed.
+
+Pre-flight context: project instructions and task logs recovered on main;
+existing owner model/settings retained; no editor input; guarded process
+ownership, native Windows UI, E-drive installation and public-secret audit.
+UI design/context-maintenance skill sources were read, and applicable shared
+sources are listed in the task report. Native desktop QA applies instead of
+browser/mobile validation. Existing authorization covers install/test/publish.
+
+The [complete measured report](tasks/2026-10-17-idle-widget/2026-10-17-idle-widget-v0.5.0.md)
+records the implementation, full file inventory, tests and corrected failures.
+Native sleep/wake and desktop checks are complete; canonical A–G publication
+closeout follows after the reviewed implementation commit is recorded.

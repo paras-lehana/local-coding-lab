@@ -393,6 +393,13 @@ def runtime_environment(runtime: Path, profile: dict) -> tuple[dict, dict | None
 def run_server(args: argparse.Namespace, data: Path) -> None:
     """Own one foreground session, monitoring resources until it stops."""
     profile = read_json(ROOT / "profiles" / (args.profile + ".json"))
+    idle_seconds = getattr(args, "idle_seconds", None)
+    if idle_seconds is not None:
+        if not 1 <= idle_seconds <= 86400:
+            raise ValueError("Idle timeout must be between 1 and 86400 seconds")
+        if "--sleep-idle-seconds" in profile["args"]:
+            raise ValueError("Profile already specifies an idle timeout")
+        profile["args"].extend(["--sleep-idle-seconds", str(idle_seconds)])
     if not profile["locally_tested"] and not args.experimental:
         raise ValueError("Untested profile: inspect it, then use --experimental")
     spec = model_spec(profile["model"])
@@ -503,6 +510,8 @@ def main() -> int:
     run.add_argument("--apply", action="store_true")
     run.add_argument("--experimental", action="store_true")
     run.add_argument("--stop-file", help="Fresh file path; create it to stop only this session")
+    run.add_argument("--idle-seconds", type=int,
+                     help="Native idle unload timeout, 1..86400 seconds; next task reloads")
     args = parser.parse_args()
     data = Path(args.data_dir).resolve()
     try:

@@ -1,0 +1,3 @@
+not working. also why do i see 64K context. dont we need a lot of cotnmext as our main issue was multiplle instruction file etc.
+
+Existing constraint retained: Continue without typing in the editor for now.

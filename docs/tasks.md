@@ -1,6 +1,74 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-10-17 (Asia/Kolkata); Copilot context diagnosis and session defaults.
+Last updated: 2026-10-17 (Asia/Kolkata); idle unloading and native desktop controls.
+
+## 2026-10-17 — Idle sleep, widget and shortcut
+
+Owner redirected work from comparisons. Latest task is30minute native idle
+unload, automatic wake, colored text resource widget and AutoHotkey toggle
+with notifications. No editor typing, model download or placement change.
+
+| Task | Status | Evidence |
+|---|---|---|
+|30minute idle/automatic wake|Done|Native15second path tested twice; production1800seconds verified.|
+|VRAM/GPU/RAM widget and clicks|Done|Native meter, status dot/tray icon, click stop/start/wake and actual tray restoration.|
+|AutoHotkey toggle/notifications|Done|Ctrl+Alt+L global stop/start; Windows delivery callbacks.|
+|Validation|Done|35tests pass14.317s, sevenPSparsers, AHKvalidate, native screenshots and hidden reload.|
+|Copilot latency|Unresolved|Owner's actual greeting took~7m42s; lifecycle feature does not fix prefill.|
+
+19:35 onward: runtime help/local source confirmed native sleep and passive
+props/health/models. Pinned AutoHotkey2.0.30 archive verified and installed on
+E-drive. Initial idle-test collector stdout inheritance fixed; test continued
+against the same15second server. Two wake responses5.359/5.000s;28.5s active
+request survived15s idle threshold. VRAM drop3857MiB; final RAM16.907→0.638GiB.
+
+19:48–19:56: widget sleep-wake click, global shortcut and separate click cycle
+completed. First stop refused a valid venv-wrapper PID relationship; exact
+live ancestry check fixed, then passed. Production2.3 started with1800seconds,
+same131072context, model alias and inference settings. No broad process kill.
+
+20:02–20:04: actual Windows tray overflow icon restores hidden widget after
+explicit left-click callback fix. Hidden-window exit persistence bug fixed;
+single-instance hidden reload passes. Screenshots actually viewed; palette
+contrast8.11–11.40:1. Current resources and identity saved in private receipts.
+
+See [one forwardable report](tasks/2026-10-17-idle-widget/2026-10-17-idle-widget-v0.5.0.md).
+Raw evidence is ignored local-data/2026-10-17-desktop-control. No elapsed30minute
+soak or newly typed editor wake test is claimed. Native guard stops/manual
+stops do not automatically restart. Server and widget are left available.
+
+## 2026-10-17 evening — 128K context and tool-budget repair
+
+Historical work, now closed partial: owner reports still broken and asks why only64K for many instruction
+files. No editor typing remains in force. New1.142.0 logs again reject static
+context despite applying native mcp:* exclusion. External editor tools can be
+custom tools; updated Qwen-only scope to builtin:* with mcp:*/custom:* excluded.
+Native SDK loopback fixture measures15,245 system +6,737 tool +67 conversation
+tokens,17 native tools, and succeeds at both64K/128K. Fixture is not inference.
+
+19:05 IST: idle64K server gracefully stopped via owned stop request. New
+production2.2 profile qwen36-mapped-editor128-cpukv loaded, PID74684,
+manager47660, run logs mapped-production-20261017-190514105.131072capacity,
+q8CPU KV1360MiB/state62.81MiB,3381.34MiB GPU weights/439MiB GPU workspace.
+Client budgets110000input/16384output/131072total. Native thinking unchanged.
+Six DPAPI backups verified;27 offline tests pass10.444s before inference.
+
+19:09 IST: installed Copilot engine native greeting returnsREADY. Captured
+68,818-character system text and four allowlisted source-file test running in
+isolated SDK session; no editor input. It read all four files successfully;
+final answer not yet reviewed. Greater-than64K input/history test planned next.
+Read-only UI saw an SSH project window; optional owner clarification about
+which window fails is pending. Local endpoint remains one slot with guards.
+See [new report](tasks/2026-10-17-context128-and-tool-budget/2026-10-17-context128-and-tool-budget-v0.4.2.md).
+
+19:15 IST: actual installed-engine source test completed378.437s, four reads,
+correct required facts, one wrong citation path; no SDK warning/error. Separate
+70K API capacity/recall/history collection started with1200s per-prompt limit,
+zero reasoning only for this synthetic diagnostic. Native production thinking
+is unchanged. Collector exec session89923; output local-data/2026-10-17-context128/growth70k.
+19:18: final client input reduced from110000 to98304 with16384output and16384
+additional margin, based on measured SDK15241 vsQwen16139 tokens for the same
+system text. No server restart; earlier raw requests retain their110000 limit.
 
 ## 2026-10-17 — Copilot context rejection and autonomy defaults
 

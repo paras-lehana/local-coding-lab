@@ -8,7 +8,16 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Status: v0.4.1, experimental; full inventory published and Qwen endpoint restored.**
+**Status: v0.5.0, experimental; native idle unloading and desktop controls tested.**
+The owner installation now uses128K CPU KV with30minute native sleep. The new
+[Windows widget](desktop/README.md) displays whole-device VRAM, GPU and RAM,
+with click/AutoHotkey controls and notifications. Two accelerated idle/wake
+cycles, an active-request check and actual widget/shortcut actions passed.
+The real Copilot greeting eventually answered after~7m42s; this release does
+not claim to fix that latency. [Measured lifecycle report](docs/tasks/2026-10-17-idle-widget/2026-10-17-idle-widget-v0.5.0.md)
+and [128K integration evidence](docs/tasks/2026-10-17-context128-and-tool-budget/2026-10-17-context128-and-tool-budget-v0.4.2.md).
+
+The following17October morning note is historical:
 **17October Copilot follow-up:** the healthy server did not receive the owner's
 failed greeting: Agent Host rejected static instructions/tool schemas first.
 New-session Autopilot/Allow all defaults and a Qwen-only MCP exclusion are now
@@ -89,6 +98,7 @@ before collection. [Dense loading evidence](reports/2026-10-16-gemma31.json).
 | See what actually worked | [Current campaign](reports/2026-10-15-campaign.md), [placement experiment](reports/2026-10-14-placement.md), [historical results](reports/2026-10-14-findings.md) |
 | Share the campaign outcome | [Forwardable task report](docs/tasks/2026-10-15-autonomous-model-campaign/2026-10-15-model-comparison-and-editor-validation-v0.3.9.md) |
 | Understand RAM, VRAM and KV cache | [Memory guide](docs/memory-and-context.md) |
+| Free memory and toggle the model | [Native Windows widget and idle sleep](desktop/README.md) |
 | Connect VS Code | [Editor guide](docs/editors.md) |
 | Compare models fairly | [Run a comparison](docs/run-a-comparison.md), [methodology](docs/methodology.md), [questions](benchmarks/questions/router-v1.txt), [rubric](benchmarks/rubrics/router-v1.md) |
 | Check generated code | [Optional isolated grading](docs/grading.md) |
@@ -175,6 +185,8 @@ and interrupted-attempt records are in the current report.
 catalog/                 pinned model and runtime metadata
 profiles/                historical reference and explicitly proposed settings
 scripts/                 Windows bootstrap and publication audit
+desktop/                 Native resource widget, pinned installer and owned controls
+docs/DESIGN.md           Desktop visual design and verified readability
 benchmarks/fixtures/     synthetic project with deliberate bugs
 benchmarks/questions/    frozen evaluation prompts
 benchmarks/rubrics/      source-review criteria, never sent to the model

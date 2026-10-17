@@ -33,6 +33,49 @@ instructions to the maintainer. CLAUDE.md and the Copilot adapter point here.
 
 ## Current evidence and editor regression checks
 
+17October latest owner request supersedes comparison work and always-resident
+operation:30minute native sleep, desktop resource widget and AutoHotkey toggle.
+See [desktop guide](desktop/README.md) and
+[measured lifecycle report](docs/tasks/2026-10-17-idle-widget/2026-10-17-idle-widget-v0.5.0.md).
+Model/settings remain QwenQ4/128K CPU KV; production2.3 uses1800seconds idle.
+Sleep frees model weights AND KV; a new task reloads and must receive the
+history again. Native wake is not a fresh launcher preflight; existing running
+guards remain active. Manual Stop disables the endpoint until explicit Start.
+Use passive /props for widget status, never poll /slots during sleep. Windows
+venv wrapper PID and real manager PID can differ: verify live ancestry and
+exact model/runtime/session/stop receipt. Never kill by process name.
+The owner's actual greeting eventually answered but took~7m42s; do not describe
+this lifecycle work as a Copilot latency fix.70K test was canceled, unscored.
+No editor typing is authorized. Tests may interact with the owned widget only.
+
+## Browser Test Cases / native desktop equivalents
+
+This controller is a native Windows surface, so browser/mobile/public-URL gates
+do not apply. Verify its actual desktop rendering, labels and interactions:
+- Short idle timer unloads memory while /props polling continues; next POST
+  wakes and answers; repeat; an active request must outlive the idle interval.
+- Restore1800seconds and inspect actual process arguments, not saved labels.
+- Click loaded -> stopped -> loaded and sleeping -> awake. Confirm model/port.
+- GlobalCtrl+Alt+L from the owned widget stops/starts and shows native notices.
+- Green/amber/red text and unavailable data remain readable; loading cannot
+  flash a false stopped state; hidden widget can be reopened via tray.
+- Foreign inference process, stale receipt, concurrent actions and failed
+  starts must not launch another model or stop unrelated work.
+- Keep the editor greeting/source-reference regression separate; API health,
+  widget tests and short wake prompts cannot substitute for it.
+
+## Historical evidence
+
+17October evening work: see docs/tasks.md and the
+[128K/tool-budget report](docs/tasks/2026-10-17-context128-and-tool-budget/2026-10-17-context128-and-tool-budget-v0.4.2.md).
+Current production2.2 uses mapped Q4 with128K CPU q8KV and98304input/16384output
+client budgets. Native MCP-only exclusions did not cover custom editor tools;
+Qwen is now scoped to builtin:* while mcp:*/custom:* are excluded. The native
+SDK budget fixture is not model inference or editor UI proof. Do not type in
+the editor; that owner constraint persists. Preserve current server and guard
+receipts. The installed-engine check completed and long-input work was canceled
+when the owner redirected the task; do not silently resume comparisons.
+
 17October Copilot failure/defaults follow-up: read the
 [context rejection report](docs/tasks/2026-10-17-copilot-context-defaults/2026-10-17-copilot-context-and-defaults-v0.4.1.md).
 A healthy server was idle because Agent Host rejected static context before

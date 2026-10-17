@@ -1,10 +1,28 @@
 """Audit Git-visible files for accidental private data and generated artifacts."""
 from pathlib import Path
+import hashlib
 import re
 import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+
+# These exact widget-only crops were opened and visually reviewed by Codex.
+# Do not allow arbitrary images: every new/changed binary requires a new review.
+REVIEWED_IMAGES = {
+    "reports/assets/desktop-v0.5.0-ready.png":
+        "662f3342fd6206e20be3ee55a34ca273f477f19c8cf59193bf2aae7e2c1e2f3c",
+    "reports/assets/desktop-v0.5.0-stopped.png":
+        "6eb733db058cac44b671f9f79b437a99ed87a742cc107b53d0b7af7e40dbff7f",
+    "reports/assets/desktop-v0.5.0-working.png":
+        "2d5fe903c794b61713a496f2dd2092126c624fbf96dc0320b65edafb046871d4",
+}
+
+
+def reviewed_image(name: str, content: bytes) -> bool:
+    """Accept only an exact path and digest, not a binary file extension."""
+    return (name in REVIEWED_IMAGES and
+            hashlib.sha256(content).hexdigest() == REVIEWED_IMAGES[name])
 
 
 def main() -> int:
@@ -26,6 +44,8 @@ def main() -> int:
         count += 1
         if path.stat().st_size > 1024 * 1024:
             failures.append((name, "file exceeds public 1 MiB limit"))
+            continue
+        if reviewed_image(name, path.read_bytes()):
             continue
         if path.suffix.lower() in (".gguf", ".exe", ".dll", ".zip", ".part", ".log", ".html"):
             failures.append((name, "generated/binary artifact"))
