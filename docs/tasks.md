@@ -10,7 +10,7 @@ Last updated: 2026-10-18 (Asia/Kolkata); Strata evaluation explicitly reopened.
 |Try Strata with guarded memory settings|Done with limits|Qwen32K and full Flash load on10GB; failed profiles retained. Production Qwen128K restored.|
 |Compare coding/file/history performance|Done with limits|Same Q4 faster in Strata; Python/history pass, TS5/6, SQL fails. Flash four coding deadlines;51K history empty then diagnostic6/6 recoveries.|
 |Assess 8/10 GB changes or fork|Done on10GB|No hardware gate removal needed. Public experimental fork has three separate opt-in/compatibility commits. CUDA tested; real8GB and HIP/SYCL untested.|
-|Publish report and reproduction details|Final evidence ready|[Full report](tasks/2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md); recommendation remains llamaQwen128K.|
+|Publish report and reproduction details|Done|Evidence466d2f1 published to main and experiment branch; [full report](tasks/2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md). Recommendation remains llamaQwen128K.|
 
 Initial snapshot: 64 GB DDR4 / Ryzen 7 5800X / RTX 3080 10 GB, about25 GiB
 RAM and6.8 GiB VRAM free with apps open. Installed driver617.42 supports the
@@ -126,6 +126,14 @@ Qwen restored, health/alias/actual128K CPUq8KV/1800idle verified; API READY. in
 7.125seconds adds an unwanted period. Endpoint left available. No editor test,
 clock/driver changes, cloud calls or automatic comparison queue. Final report
 and public aggregates ready for publication; all limitations remain explicit.
+
+06:06 IST publication: evidence466d2f1 is on remote main and
+experiment/strata-20261018; fork branch remains published atf17477d with code
+6ef632f.188public files audit clean;98relative documentation links resolve
+(absolute/external/anchor links excluded; first checker incorrectly treated
+two historical Windows absolute paths as relative, corrected without editing
+them). Diff check passes. Exact prepared visibleA–G is saved in prompts.md.
+Working endpoint remains available; no experiment or owner approval pending.
 
 ## 2026-10-17 — Standalone tray controller
 

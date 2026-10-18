@@ -6,14 +6,15 @@ four coding trials deadline. Its51K RAM-KV workflow returns an empty final;
 two separate final-turn replays recover6/6facts, not a retroactive workflow pass.
 Existing Qwen Q4/128K CPUq8KV/1800idle is restored and API-verified. Apps stay
 open; clocks/drivers and editor settings are unchanged. No editor typing or
-automatic experimental queue. Final evidence/closeout is being published.
+automatic experimental queue. Evidence466d2f1 is published on main and the
+experiment branch; matching closeout is recorded below.
 
 Last updated: 2026-10-18. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
-|14|2026-10-18|00:00|Strata on 10 GB|Research / Experiment|Complete with limits; final publication|[Entry](#strata-on-10-gb)|
+|14|2026-10-18|00:00|Strata on 10 GB|Research / Experiment|Published; Qwen restored; limitations explicit|[Entry](#strata-on-10-gb)|
 |13|2026-10-17|21:05|Standalone tray and SSH access|Feature / Config|Published; remote editor UI untested|[Entry](#standalone-tray-and-ssh-access)|
 |12|2026-10-17|20:12|Native idle sleep and desktop controls|Feature / Config|Published/tested; Copilot latency unresolved|[Entry](#idle-sleep-and-desktop-controls)|
 |11|2026-10-17|19:35|128K and remaining tool pressure|Config / Bug Fix|Partial; superseded by desktop task|[Entry](#context128-and-remaining-tool-pressure)|
@@ -118,6 +119,71 @@ actually replies7.125seconds with extra period. Actual128K CPUq8KV and1800idle
 verified. Context-maintenance source is projectAGENTS; both shared adapters
 already route here and require no edits. No new editor UI, BIOS/driver/cloud
 work. Final publication and matching visibleA–G record follow below.
+
+### Final Strata closeout — prepared visible response
+
+**A. Outcome**
+
+**Strata runs on your 10GB card, but I recommend keeping llama.cpp as your daily setup.** The report and experimental fork are public, and your normal Qwen endpoint is restored. Actual 8GB hardware remains untested.
+
+[Full report](https://github.com/paras-lehana/local-coding-lab/blob/main/docs/tasks/2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md) · [Experimental fork](https://github.com/paras-lehana/Strata/tree/experiment/qwen36-no-mtp)
+
+**B. Measured results**
+
+| Setup | What happened |
+|---|---|
+| Qwen3.6-35B-A3B Q4 through Strata, 32K | Three tasks finished 1.14–1.76× faster than the llama control. Python 6/6; TypeScript 5/6; SQL migration failed. This is not a general 6× speedup. |
+| Same Qwen through llama.cpp | Python 6/6, TypeScript 5/6, SQL 6/6. Its existing 128K configuration remains selected. |
+| Full Qwen3.8-Flash-Next IQ3_XXS | Fits 10GB. Four coding attempts across three profiles hit 20 minutes. Increasing expert RAM improved short-probe speed, but did not produce a completed coding answer. |
+
+Flash's **RAM-backed KV worked**: 1.55GiB host cache, 32K GPU-resident capacity, and real RAM reads beyond 32K. The 51.5K history task returned an empty final answer; unchanged/medium final-turn replays recovered 6/6 facts. Those recoveries are separate from the failed original workflow.
+
+Validation: 38 offline tests, 4 PowerShell parses and 188-file public audit passed. The report lists actual files, sources, commands and exclusions. Evidence commit `466d2f1` is published on `main` and `experiment/strata-20261018`; fork code is `6ef632f`.
+
+**C. Your requests**
+
+| # | Task | Your pointer | Status | Outcome |
+|---|---|---|---|---|
+|1|Try Strata|“lets also try strata”|DONE|Two model paths tested|
+|2|Update report|“incorporate in report”|DONE|Results and failures published|
+|4|Experimental fork|“maybe make a fork”|DONE|Qwen compatibility/memory changes published|
+|5|Compare results|“compare it to our current model reports”|DONE|Same-weight control and historical limits included|
+|6|Review article|“Refer the report i attached”|DONE|Reviewed its claims; no hard 12GB gate found ([upstream guide](https://github.com/Niko1221/Strata/blob/v0.1.45/docs/INSTALL.md))|
+|3|Smaller VRAM|“run it on 8 or 10GB”|PARTIALLY DONE|10GB measured; 8GB hardware unavailable|
+
+**D. Additional work**
+
+Verified the real 30-minute idle unload and automatic wake. Updated the launcher to refuse concurrent Strata engines. Your restored Qwen API answered in 7.1 seconds; 128K CPU q8 KV and 1,800-second idle settings were verified.
+
+**E. Limits**
+
+| Unverified | Reason |
+|---|---|
+|Actual 8GB, HIP/SYCL|Only this 10GB CUDA machine tested|
+|Full 128K Strata accuracy, broad quality ranking|Smaller measured inputs and single samples|
+|Fresh Copilot/Continue UI|Your no-editor-typing constraint remains|
+
+**F. My take**
+
+Keep **Qwen Q4 + llama.cpp + 128K CPU KV**. Strata is a useful experimental alternative for shorter tasks. Further work should target long-context memory support and reliable final-answer delivery before promotion.
+
+**G. Copyable summary**
+
+```text
+Local Coding Lab — Strata evaluation completed, 18 October 2026
+
+What's done
+- Strata was tested successfully on this computer's 10GB graphics card. The tested release does not impose the assumed 12GB minimum.
+- The existing Qwen model completed three smaller-conversation tasks faster through Strata, but coding errors remained, including a failed database migration.
+- The larger Flash-Next model loaded successfully. Its tested coding answers did not finish within the 20-minute limit.
+- Long-history testing used system memory as well as graphics memory. One response was empty; repeating the final request recovered all six facts. That recovery does not erase the original failure.
+- A detailed report and experimental public fork were published. The existing working model was restored with its 30-minute idle unloading policy.
+
+Suggested next steps
+- Keep the existing setup for daily work.
+- Treat Strata as experimental until longer conversations and answer delivery are more reliable.
+- Validate actual 8GB hardware separately before advertising support based on this computer's results.
+```
 
 ## Repository creation
 
