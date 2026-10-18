@@ -1,19 +1,19 @@
 # Prompt log — Local Coding Lab
 
-Current phase,18October: the owner explicitly reopened comparison work for
-Strata. Existing Qwen Q4 weights and production2.3 settings are preserved;
-both Flash artifacts now verify. Its no-draft baseline passed history but
-timed out on both coding cases; the separate draft block is now downloading.
-Production is temporarily stopped through its controller and must be restored
-after the isolated comparisons. Apps
-stay open; clocks/drivers and editor settings are unchanged. No editor typing.
+Current phase,18October: Strata evaluation is complete with explicit limits.
+Same-weight Qwen32K is faster but has code defects; full Flash fits10GB, while
+four coding trials deadline. Its51K RAM-KV workflow returns an empty final;
+two separate final-turn replays recover6/6facts, not a retroactive workflow pass.
+Existing Qwen Q4/128K CPUq8KV/1800idle is restored and API-verified. Apps stay
+open; clocks/drivers and editor settings are unchanged. No editor typing or
+automatic experimental queue. Final evidence/closeout is being published.
 
 Last updated: 2026-10-18. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
-|14|2026-10-18|00:00|Strata on 10 GB|Research / Experiment|In progress|[Entry](#strata-on-10-gb)|
+|14|2026-10-18|00:00|Strata on 10 GB|Research / Experiment|Complete with limits; final publication|[Entry](#strata-on-10-gb)|
 |13|2026-10-17|21:05|Standalone tray and SSH access|Feature / Config|Published; remote editor UI untested|[Entry](#standalone-tray-and-ssh-access)|
 |12|2026-10-17|20:12|Native idle sleep and desktop controls|Feature / Config|Published/tested; Copilot latency unresolved|[Entry](#idle-sleep-and-desktop-controls)|
 |11|2026-10-17|19:35|128K and remaining tool pressure|Config / Bug Fix|Partial; superseded by desktop task|[Entry](#context128-and-remaining-tool-pressure)|
@@ -102,6 +102,22 @@ offline tests, four PowerShell parses and184-file public audit pass afterward.
 Reviewed direct-GGUF unbuffered expert reads and the incompatibility between
 elastic KV growth and a bounded resident expert budget. No Flash fit or quality
 claim follows from these source checks. README status now matches VERSION0.6.0.
+
+05:34 IST: MTP block and derived runtime verify.10GiB MTP router times out;
+the accepted draft fraction alone did not improve throughput. Two fixed capped
+probes at14GiB expert RAM reach8.8/9.6tok/s versus5.9/6.7 at10GiB, with reduced
+file reads. These are unscored throughput probes with different cache/app states.
+The14GiB complete router follow-up is running.128K/32K-resident KV with12GiB
+experts and prefill-head aliasing remains a frozen conditional test, not evidence.
+
+06:02 IST: full Strata comparison complete with explicit exclusions. Main
+report records8Flash server trials/6workflow collections plus distinct RAM
+probes/final-turn effort diagnostics, and the earlier same-weight Qwen pair.
+38offline tests pass15.086seconds/4PSparses pass; production restored and
+actually replies7.125seconds with extra period. Actual128K CPUq8KV and1800idle
+verified. Context-maintenance source is projectAGENTS; both shared adapters
+already route here and require no edits. No new editor UI, BIOS/driver/cloud
+work. Final publication and matching visibleA–G record follow below.
 
 ## Repository creation
 

@@ -67,6 +67,16 @@ Windows directory size/mtime for an open SSE evidence file can lag its actual
 contents. Read the file through an open handle and inspect event timestamps
 and server token counters before diagnosing a silent or stalled stream.
 
+Flash follow-up: MTP reduces this10GB profile's GPU expert/prefill capacity;
+accepted draft percentage is not an observed speedup.10/14GiB MTP router runs
+both deadline;14GiB improves capped throughput but is not a completed quality
+result.128K/int8 with32K GPU-resident cells really allocates1.55GiB hostKV and
+streams fromRAM. The larger-history workflow returns an empty final response;
+its separate replay recovers facts, not a retroactive whole-case pass. Keep
+those diagnostic controls/cache states distinct. Do not expose reasoning as
+an invented final answer. The source/host allocation, resident pages and live
+token count are different measures. Recover final dispositions from the report.
+
 17October later: owner requested a tray-first reusable controller. The maintained
 UI now lives in [LLM Tray](https://github.com/paras-lehana/llm-tray); this lab's
 desktop control.ps1 remains the ownership-aware custom backend. Owner shortcuts

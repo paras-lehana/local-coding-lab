@@ -3,8 +3,10 @@
 **18 October: Strata on10GB.** The experimental fork completes all three
 same-Qwen32K workflows faster in single runs, but its SQL migration fails where
 the llama control passes. Keep the working llama128K setup. Full Flash-Next
-IQ3_XXS also fits10GB with bounded RAM; its no-draft profile passes history but
-times out on both coding cases. Drafting and longer-context trials continue.
+IQ3_XXS also fits10GB with bounded RAM. Four coding attempts across no-draft,
+MTP and larger-RAM profiles time out. RAM-backed128K KV works through51Kinput,
+but its history workflow returns an empty final; two diagnostic replays recover
+all facts. That recovery does not turn the original workflow into a pass.
 [Full report](docs/tasks/2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md)
 · [Measurements](reports/2026-10-18-strata-qwen.json)
 · [Reproduction](experiments/strata/README.md)

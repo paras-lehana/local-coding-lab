@@ -1,0 +1,49 @@
+{
+  "observed_at": "2026-10-18T06:01:59.050615+05:30",
+  "alias": "qwen3.6-35b-a3b-q4",
+  "health_pass": true,
+  "models_pass": true,
+  "reply": "READY.",
+  "exact_ready": false,
+  "wall_seconds": 7.125,
+  "usage": {
+    "completion_tokens": 69,
+    "prompt_tokens": 14,
+    "total_tokens": 83,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "timings": {
+    "cache_n": 0,
+    "prompt_n": 14,
+    "prompt_ms": 1564.84,
+    "prompt_per_token_ms": 111.77428571428571,
+    "prompt_per_second": 8.946601569489532,
+    "predicted_n": 69,
+    "predicted_ms": 5545.425,
+    "predicted_per_token_ms": 81.55036764705882,
+    "predicted_per_second": 12.26236041421532
+  },
+  "scope": "Restored production API availability only; no editor UI or coding-quality claim",
+  "actual_process_flags": {
+    "--ctx-size": "131072",
+    "--sleep-idle-seconds": "1800",
+    "--cache-type-k": "q8_0",
+    "--cache-type-v": "q8_0",
+    "--n-cpu-moe": "37",
+    "--gpu-layers": "all",
+    "--no-kv-offload": true
+  },
+  "process_rss_gib": 13.726,
+  "system_free_ram_gib": 10.52,
+  "whole_device_gpu_snapshot": "6577, 3477, 4, 40",
+  "gpu_snapshot_units": "usedMiB,freeMiB,utilizationPercent,temperatureC; includes other applications",
+  "is_sleeping": false,
+  "slots": 1,
+  "runtime": "b11562-noprefetch-v1",
+  "configured_context": 131072,
+  "idle_seconds": 1800,
+  "endpoint_left_available": true,
+  "resource_snapshot_note": "Post-reply sample taken during06:02IST; observed_at above identifies the response receipt"
+}

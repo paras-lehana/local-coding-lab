@@ -16,18 +16,19 @@
       "sha256": "316b46f3a2dbd68c900f43136ab9449f9dcc3725dfd8c794847c204bc161e113"
     }
   ],
-  "controls": {
+  "case_control_defaults": {
     "temperature": 1.0,
     "top_p": 0.95,
     "top_k": 20,
     "min_p": 0,
     "repeat_penalty": 1,
     "seed": 73,
-    "max_tokens": 8192,
+    "max_tokens_default": 8192,
+    "per_case_manifest_overrides_defaults": true,
     "reasoning_budget_per_turn": 2048,
     "native_effort": "xhigh unless explicitly marked medium",
     "route_tail_skip": 0,
-    "resident_expert_budget_gib": 10,
+    "resident_expert_budget_default_gib": 10,
     "whole_case_deadline_seconds": 1200,
     "downloads_paused": true
   },
@@ -37,6 +38,39 @@
       "reason": "process exited",
       "code": 1,
       "seconds": 3.8429999999971187,
+      "profile": {
+        "configured_flags": {
+          "--max-context": "32768",
+          "--kv": "int8",
+          "--resident-budget-gib": "10",
+          "--vram-reserve-mib": "1200",
+          "--pool-workers": "7",
+          "--spec": "0",
+          "--prefill": "256",
+          "--expert-cache": "auto",
+          "--suffix-draft": "0",
+          "--prefill-head-alias": false,
+          "--no-capture": false,
+          "--mtp": false
+        },
+        "server_effort": "high",
+        "child_environment": {
+          "STRATA_FILE_RELEASE": "1"
+        },
+        "guard_policy": {
+          "load_min_ram_free_gib": 22,
+          "load_min_vram_free_mib": 6000,
+          "load_min_commit_available_gib": 24,
+          "stop_min_ram_free_gib": 2.5,
+          "stop_min_vram_free_mib": 600,
+          "stop_min_commit_available_gib": 2,
+          "stop_gpu_c": 84
+        },
+        "working_set_limits_gib": {
+          "strata.exe": 18.0
+        },
+        "config_sha256": "21006ba7c32f63e87db3e184d4cccb92188db81a266d7fb79408f3acb515d129"
+      },
       "resources": {
         "samples": 3,
         "minimum_ram_free_gib": 24.759,
@@ -47,10 +81,93 @@
       }
     },
     {
+      "trial": "flash-server-full-experts128",
+      "reason": "explicit stop",
+      "code": 0,
+      "seconds": 1003.030999999999,
+      "profile": {
+        "configured_flags": {
+          "--max-context": "131072",
+          "--kv": "int8",
+          "--kv-resident": "32768",
+          "--resident-budget-gib": "10",
+          "--vram-reserve-mib": "3072",
+          "--pool-workers": "7",
+          "--spec": "2",
+          "--prefill": "auto",
+          "--expert-cache": "auto",
+          "--suffix-draft": "0",
+          "--prefill-head-alias": false,
+          "--no-capture": false,
+          "--mtp": false
+        },
+        "server_effort": "high",
+        "child_environment": {
+          "STRATA_FILE_RELEASE": "1",
+          "STRATA_ROUTE_TAIL_SKIP": "0"
+        },
+        "guard_policy": {
+          "load_min_ram_free_gib": 22,
+          "load_min_vram_free_mib": 6000,
+          "load_min_commit_available_gib": 24,
+          "stop_min_ram_free_gib": 2.5,
+          "stop_min_vram_free_mib": 600,
+          "stop_min_commit_available_gib": 2,
+          "stop_gpu_c": 84
+        },
+        "working_set_limits_gib": {
+          "strata.exe": 18.0
+        },
+        "config_sha256": "e06fa9643c3bac01e07d237200cdc58527519db40ba8cca5ab9614b15ac2e845"
+      },
+      "resources": {
+        "samples": 851,
+        "minimum_ram_free_gib": 7.685,
+        "minimum_commit_available_gib": 5.099,
+        "minimum_vram_free_mib": 986.0,
+        "peak_whole_device_vram_used_mib": 9254.0,
+        "peak_engine_working_set_gib": 14.318
+      }
+    },
+    {
       "trial": "flash-server-full-experts32",
       "reason": "explicit stop",
       "code": 0,
       "seconds": 2728.0,
+      "profile": {
+        "configured_flags": {
+          "--max-context": "32768",
+          "--kv": "int8",
+          "--resident-budget-gib": "10",
+          "--vram-reserve-mib": "3072",
+          "--pool-workers": "7",
+          "--spec": "2",
+          "--prefill": "auto",
+          "--expert-cache": "auto",
+          "--suffix-draft": "0",
+          "--prefill-head-alias": false,
+          "--no-capture": false,
+          "--mtp": false
+        },
+        "server_effort": "high",
+        "child_environment": {
+          "STRATA_FILE_RELEASE": "1",
+          "STRATA_ROUTE_TAIL_SKIP": "0"
+        },
+        "guard_policy": {
+          "load_min_ram_free_gib": 22,
+          "load_min_vram_free_mib": 6000,
+          "load_min_commit_available_gib": 24,
+          "stop_min_ram_free_gib": 2.5,
+          "stop_min_vram_free_mib": 600,
+          "stop_min_commit_available_gib": 2,
+          "stop_gpu_c": 84
+        },
+        "working_set_limits_gib": {
+          "strata.exe": 18.0
+        },
+        "config_sha256": "e17d9249378933a497a39519b107e5bed38b06622aca3528be129fc1849427e4"
+      },
       "resources": {
         "samples": 2406,
         "minimum_ram_free_gib": 9.325,
@@ -61,10 +178,192 @@
       }
     },
     {
+      "trial": "flash-server-mtp12g128-headalias",
+      "reason": "guard/error: ValueError: vram_free_mib below 600 or unavailable",
+      "code": 1,
+      "seconds": 14.84400000000096,
+      "profile": {
+        "configured_flags": {
+          "--max-context": "131072",
+          "--kv": "int8",
+          "--kv-resident": "32768",
+          "--resident-budget-gib": "12",
+          "--vram-reserve-mib": "3584",
+          "--pool-workers": "7",
+          "--spec": "4",
+          "--spec-min-p": "0.5",
+          "--prefill": "auto",
+          "--expert-cache": "auto",
+          "--suffix-draft": "0",
+          "--short-read": "0",
+          "--prefill-head-alias": true,
+          "--no-capture": false,
+          "--mtp": true
+        },
+        "server_effort": "high",
+        "child_environment": {
+          "STRATA_FILE_RELEASE": "1",
+          "STRATA_ROUTE_TAIL_SKIP": "0"
+        },
+        "guard_policy": {
+          "load_min_ram_free_gib": 22,
+          "load_min_vram_free_mib": 6000,
+          "load_min_commit_available_gib": 24,
+          "stop_min_ram_free_gib": 2.5,
+          "stop_min_vram_free_mib": 600,
+          "stop_min_commit_available_gib": 2,
+          "stop_gpu_c": 84
+        },
+        "working_set_limits_gib": {
+          "strata.exe": 18.0
+        },
+        "config_sha256": "f16053f4d38c9c28e659fe52308bde72922918c044c35aaf7d9e67ebb28ebff0"
+      },
+      "resources": {
+        "samples": 14,
+        "minimum_ram_free_gib": 7.996,
+        "minimum_commit_available_gib": 4.611,
+        "minimum_vram_free_mib": 566.0,
+        "peak_whole_device_vram_used_mib": 9674.0,
+        "peak_engine_working_set_gib": 13.849
+      }
+    },
+    {
+      "trial": "flash-server-mtp14g32",
+      "reason": "explicit stop",
+      "code": 0,
+      "seconds": 1382.8129999999983,
+      "profile": {
+        "configured_flags": {
+          "--max-context": "32768",
+          "--kv": "int8",
+          "--resident-budget-gib": "14",
+          "--vram-reserve-mib": "3072",
+          "--pool-workers": "7",
+          "--spec": "4",
+          "--spec-min-p": "0.5",
+          "--prefill": "auto",
+          "--expert-cache": "auto",
+          "--suffix-draft": "0",
+          "--prefill-head-alias": false,
+          "--no-capture": false,
+          "--mtp": true
+        },
+        "server_effort": "high",
+        "child_environment": {
+          "STRATA_FILE_RELEASE": "1",
+          "STRATA_ROUTE_TAIL_SKIP": "0"
+        },
+        "guard_policy": {
+          "load_min_ram_free_gib": 22,
+          "load_min_vram_free_mib": 6000,
+          "load_min_commit_available_gib": 24,
+          "stop_min_ram_free_gib": 2.5,
+          "stop_min_vram_free_mib": 600,
+          "stop_min_commit_available_gib": 2,
+          "stop_gpu_c": 84
+        },
+        "working_set_limits_gib": {
+          "strata.exe": 18.0
+        },
+        "config_sha256": "70d1b3c50d8a8ec2b700fc02d0d421a2241f80310bc1108d32588597f8422a49"
+      },
+      "resources": {
+        "samples": 1216,
+        "minimum_ram_free_gib": 6.057,
+        "minimum_commit_available_gib": 2.904,
+        "minimum_vram_free_mib": 993.0,
+        "peak_whole_device_vram_used_mib": 9247.0,
+        "peak_engine_working_set_gib": 17.839
+      }
+    },
+    {
+      "trial": "flash-server-mtp32",
+      "reason": "explicit stop",
+      "code": 0,
+      "seconds": 1370.625,
+      "profile": {
+        "configured_flags": {
+          "--max-context": "32768",
+          "--kv": "int8",
+          "--resident-budget-gib": "10",
+          "--vram-reserve-mib": "3072",
+          "--pool-workers": "7",
+          "--spec": "4",
+          "--spec-min-p": "0.5",
+          "--prefill": "auto",
+          "--expert-cache": "auto",
+          "--suffix-draft": "0",
+          "--prefill-head-alias": false,
+          "--no-capture": false,
+          "--mtp": true
+        },
+        "server_effort": "high",
+        "child_environment": {
+          "STRATA_FILE_RELEASE": "1",
+          "STRATA_ROUTE_TAIL_SKIP": "0"
+        },
+        "guard_policy": {
+          "load_min_ram_free_gib": 22,
+          "load_min_vram_free_mib": 6000,
+          "load_min_commit_available_gib": 24,
+          "stop_min_ram_free_gib": 2.5,
+          "stop_min_vram_free_mib": 600,
+          "stop_min_commit_available_gib": 2,
+          "stop_gpu_c": 84
+        },
+        "working_set_limits_gib": {
+          "strata.exe": 18.0
+        },
+        "config_sha256": "98ed48cdc9cea57d11f0bcb688392d8db5cb0f81882d6deefcdb8b49926e44eb"
+      },
+      "resources": {
+        "samples": 1203,
+        "minimum_ram_free_gib": 9.079,
+        "minimum_commit_available_gib": 6.861,
+        "minimum_vram_free_mib": 742.0,
+        "peak_whole_device_vram_used_mib": 9498.0,
+        "peak_engine_working_set_gib": 13.865
+      }
+    },
+    {
       "trial": "flash-server-nodraft32",
       "reason": "guard/error: ValueError: vram_free_mib below 600 or unavailable",
       "code": 1,
       "seconds": 7.139999999999418,
+      "profile": {
+        "configured_flags": {
+          "--max-context": "32768",
+          "--kv": "int8",
+          "--resident-budget-gib": "10",
+          "--vram-reserve-mib": "1200",
+          "--pool-workers": "7",
+          "--spec": "2",
+          "--prefill": "256",
+          "--expert-cache": "auto",
+          "--suffix-draft": "0",
+          "--prefill-head-alias": false,
+          "--no-capture": false,
+          "--mtp": false
+        },
+        "server_effort": "high",
+        "child_environment": {
+          "STRATA_FILE_RELEASE": "1"
+        },
+        "guard_policy": {
+          "load_min_ram_free_gib": 22,
+          "load_min_vram_free_mib": 6000,
+          "load_min_commit_available_gib": 24,
+          "stop_min_ram_free_gib": 2.5,
+          "stop_min_vram_free_mib": 600,
+          "stop_min_commit_available_gib": 2,
+          "stop_gpu_c": 84
+        },
+        "working_set_limits_gib": {
+          "strata.exe": 18.0
+        },
+        "config_sha256": "b8ee6472cf58e79aef2998058d515b31cd8dcdd2fc2c92314186901a0474b935"
+      },
       "resources": {
         "samples": 7,
         "minimum_ram_free_gib": 22.656,
@@ -79,6 +378,39 @@
       "reason": "explicit stop",
       "code": 0,
       "seconds": 77.86000000000058,
+      "profile": {
+        "configured_flags": {
+          "--max-context": "32768",
+          "--kv": "int8",
+          "--resident-budget-gib": "10",
+          "--vram-reserve-mib": "3072",
+          "--pool-workers": "7",
+          "--spec": "2",
+          "--prefill": "256",
+          "--expert-cache": "auto",
+          "--suffix-draft": "0",
+          "--prefill-head-alias": false,
+          "--no-capture": false,
+          "--mtp": false
+        },
+        "server_effort": "high",
+        "child_environment": {
+          "STRATA_FILE_RELEASE": "1"
+        },
+        "guard_policy": {
+          "load_min_ram_free_gib": 22,
+          "load_min_vram_free_mib": 6000,
+          "load_min_commit_available_gib": 24,
+          "stop_min_ram_free_gib": 2.5,
+          "stop_min_vram_free_mib": 600,
+          "stop_min_commit_available_gib": 2,
+          "stop_gpu_c": 84
+        },
+        "working_set_limits_gib": {
+          "strata.exe": 18.0
+        },
+        "config_sha256": "49c790c6894a4839dd62cf0002a1727104a9ffee15ab47d12d8677645dc18aa4"
+      },
       "resources": {
         "samples": 70,
         "minimum_ram_free_gib": 11.718,
@@ -94,6 +426,12 @@
       "run": "flash-history",
       "status": "completed",
       "wall_seconds": 219.015,
+      "profile_association": {
+        "server_trial": "flash-server-full-experts32",
+        "server_config_sha256": "e17d9249378933a497a39519b107e5bed38b06622aca3528be129fc1849427e4",
+        "guard_config_sha256": "0a184287fe4cb1e56903ff0cc4ba085b058affb5a4f8df04bfff3c9d2eedac15",
+        "source": "Saved owned-server launch and matching native request log; added association without changing benchmark manifest/question/sources"
+      },
       "scenario": "context-v1",
       "case_sha256": "8f1f7b1abf0393780b0d6f3e54136027647b79ab000bc5615c0c329c152cdbed",
       "seed": 73,
@@ -297,9 +635,368 @@
       }
     },
     {
+      "run": "flash-large-history",
+      "status": "empty",
+      "wall_seconds": null,
+      "collection_observation": {
+        "assessor": "Codex response/source review; not an independent human review",
+        "original_status": "empty",
+        "quality_scored": false,
+        "elapsed_to_last_sse_seconds": 468.0779999999977,
+        "elapsed_source": "stream-05.jsonl monotonic seconds since the whole worker began; original empty result omits wall_seconds",
+        "phase0_exact_READY_640": true,
+        "actual_changed_runtime_read": true,
+        "last_final_chars": 0,
+        "last_reasoning_chars": 1049,
+        "last_finish_reason": "stop",
+        "max_input_tokens": 51534,
+        "completion_tokens": 1233,
+        "native_kv": {
+          "host_pinned_gib_reported": 1.55,
+          "gpu_resident_cells_per_qsa_layer": 32768,
+          "configured_context": 131072,
+          "long_turn_host_read_mib": 146.8,
+          "long_turn_gpu_hit_percent": 97.01
+        },
+        "all_visible_turns_reviewed": true,
+        "limitations": [
+          "No delivered final fact object; no six-fact quality score",
+          "KV allocation and real RAM reads are demonstrated, not full128K accuracy",
+          "No attempt to read unavailable ledger in phase1",
+          "Follow-up diagnostic replays do not change this original result"
+        ]
+      },
+      "profile_association": {
+        "server_trial": "flash-server-full-experts128",
+        "server_config_sha256": "e06fa9643c3bac01e07d237200cdc58527519db40ba8cca5ab9614b15ac2e845",
+        "guard_config_sha256": "f0b43ba4d82f73c19eefdb8fcf67e3d3884a98b32661ddead190fea47ec286d8",
+        "source": "Saved owned-server launch and matching native log; association adds no changes to frozen case"
+      },
+      "scenario": "context-large-v1",
+      "case_sha256": "8f3388309287bd3a9eb7e858240889e46267d2e71a8b9714703291016af115b0",
+      "seed": 73,
+      "temperature": 1.0,
+      "max_tokens": 8192,
+      "reasoning_budget": 2048,
+      "deadline_seconds": 1200.0,
+      "completed_turns": 6,
+      "turn_measurements": [
+        {
+          "phase": 0,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "prompt_tokens": 378,
+            "completion_tokens": 89,
+            "total_tokens": 467,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 378,
+            "prompt_ms": 7313.1,
+            "prompt_per_token_ms": 19.347,
+            "prompt_per_second": 51.7,
+            "predicted_n": 89,
+            "predicted_ms": 13250.8,
+            "predicted_per_token_ms": 148.885,
+            "predicted_per_second": 6.7,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "first_event_seconds": 0.046999999998661224,
+          "first_final_seconds": null
+        },
+        {
+          "phase": 0,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "prompt_tokens": 536,
+            "completion_tokens": 46,
+            "total_tokens": 582,
+            "prompt_tokens_details": {
+              "cached_tokens": 466
+            }
+          },
+          "timings": {
+            "cache_n": 466,
+            "prompt_n": 70,
+            "prompt_ms": 3638.6,
+            "prompt_per_token_ms": 51.98,
+            "prompt_per_second": 19.2,
+            "predicted_n": 46,
+            "predicted_ms": 8087.8,
+            "predicted_per_token_ms": 175.822,
+            "predicted_per_second": 5.7,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "first_event_seconds": 20.65599999999904,
+          "first_final_seconds": null
+        },
+        {
+          "phase": 0,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "prompt_tokens": 653,
+            "completion_tokens": 174,
+            "total_tokens": 827,
+            "prompt_tokens_details": {
+              "cached_tokens": 581
+            }
+          },
+          "timings": {
+            "cache_n": 581,
+            "prompt_n": 72,
+            "prompt_ms": 3640.7,
+            "prompt_per_token_ms": 50.565,
+            "prompt_per_second": 19.8,
+            "predicted_n": 174,
+            "predicted_ms": 28952.7,
+            "predicted_per_token_ms": 166.395,
+            "predicted_per_second": 6.0,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "first_event_seconds": 32.42199999999866,
+          "first_final_seconds": null
+        },
+        {
+          "phase": 0,
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 50757,
+            "completion_tokens": 97,
+            "total_tokens": 50854,
+            "prompt_tokens_details": {
+              "cached_tokens": 826
+            }
+          },
+          "timings": {
+            "cache_n": 826,
+            "prompt_n": 49931,
+            "prompt_ms": 248411.6,
+            "prompt_per_token_ms": 4.975,
+            "prompt_per_second": 201.0,
+            "predicted_n": 97,
+            "predicted_ms": 13345.0,
+            "predicted_per_token_ms": 137.577,
+            "predicted_per_second": 7.3,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "first_event_seconds": 65.0779999999977,
+          "first_final_seconds": 325.85899999999674
+        },
+        {
+          "phase": 1,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "prompt_tokens": 50948,
+            "completion_tokens": 534,
+            "total_tokens": 51482,
+            "prompt_tokens_details": {
+              "cached_tokens": 50853
+            }
+          },
+          "timings": {
+            "cache_n": 50853,
+            "prompt_n": 95,
+            "prompt_ms": 3743.3,
+            "prompt_per_token_ms": 39.403,
+            "prompt_per_second": 25.4,
+            "predicted_n": 534,
+            "predicted_ms": 78956.2,
+            "predicted_per_token_ms": 147.858,
+            "predicted_per_second": 6.8,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "first_event_seconds": 326.90599999999904,
+          "first_final_seconds": null
+        },
+        {
+          "phase": 1,
+          "finish_reason": "stop",
+          "usage": {
+            "prompt_tokens": 51534,
+            "completion_tokens": 293,
+            "total_tokens": 51827,
+            "prompt_tokens_details": {
+              "cached_tokens": 51481
+            }
+          },
+          "timings": {
+            "cache_n": 51481,
+            "prompt_n": 53,
+            "prompt_ms": 8825.1,
+            "prompt_per_token_ms": 166.511,
+            "prompt_per_second": 6.0,
+            "predicted_n": 293,
+            "predicted_ms": 49561.8,
+            "predicted_per_token_ms": 169.153,
+            "predicted_per_second": 5.9,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "first_event_seconds": 409.67199999999866,
+          "first_final_seconds": null
+        }
+      ],
+      "quality_scored": false,
+      "note": "Incomplete; saved turns exclude any unfinished stream."
+    },
+    {
+      "run": "flash-mtp-router",
+      "status": "deadline",
+      "wall_seconds": 1200.031,
+      "profile_association": {
+        "server_trial": "flash-server-mtp32",
+        "server_config_sha256": "98ed48cdc9cea57d11f0bcb688392d8db5cb0f81882d6deefcdb8b49926e44eb",
+        "guard_config_sha256": "b3524ce174f0be252751585bacafd03e3ce5d509ea417fa81c9e594fbd000f14",
+        "source": "Saved owned-server launch and matching native request log; added association without changing benchmark manifest/question/sources"
+      },
+      "fixture": "router-v1",
+      "question_sha256": "097b3d020d4133cc3b9d874027f2640b9d976d0a34a53f1d921a8c4273f9a3a6",
+      "source_sha256": {
+        ".claude/CLAUDE.md": "d39a91d7b728539bcae9097d5f6fda6413cf8451ce6766a1934c389784ec6b7d",
+        ".github/instructions/python-v1.md": "0196cefacef6ef96b621423dd678ec16dd4b3cacde71935de3263bdae17a2033",
+        ".github/instructions/v2/python.md": "ea0547bcc0909a2d0bdcd1bff26ea06fef1a35d3aa218d07fdb51647d8717ca8",
+        "AGENTS.md": "e050ee4825a61bbc63beb6ba6f125fdcdef0c8613ab26c08566987c93f5c4699",
+        "docs/config-contract.md": "2fdb47962dc0836ac22b70ee49e1b0ab9b025762f8cd84f19bce3dcaccb58235",
+        "docs/host.md": "13e41df574cc7ec6a65426345c1a2eb45463e1d97eae42ac3e38f2b4dc060931",
+        "src/config_loader.py": "9fa72de9856b1446f041d7f925de606989e15cb87e179660ffa710abd29139ff"
+      },
+      "mode": "tools",
+      "seed": 73,
+      "temperature": 1.0,
+      "max_tokens": 8192,
+      "reasoning_budget": 2048,
+      "deadline_seconds": 1200.0,
+      "completed_turns": 1,
+      "turn_measurements": [
+        {
+          "finish_reason": "tool_calls",
+          "usage": {
+            "prompt_tokens": 683,
+            "completion_tokens": 392,
+            "total_tokens": 1075,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 683,
+            "prompt_ms": 15011.8,
+            "prompt_per_token_ms": 21.979,
+            "prompt_per_second": 45.5,
+            "predicted_n": 392,
+            "predicted_ms": 63280.9,
+            "predicted_per_token_ms": 161.431,
+            "predicted_per_second": 6.2,
+            "draft_n": 326,
+            "draft_n_accepted": 248
+          },
+          "first_event_seconds": 0.046999999998661224,
+          "first_final_seconds": null
+        }
+      ],
+      "quality_scored": false,
+      "note": "Incomplete; saved turns exclude any unfinished stream.",
+      "incomplete_observation": {
+        "observed": "Frontend final-turn cancellation",
+        "generated_tokens": 6185,
+        "displayed_seconds": 1122,
+        "displayed_tokens_per_second": 5.6,
+        "cancelled": true,
+        "quality_scored": false,
+        "source_server": "flash-server-mtp32",
+        "source_sha256": "961c287c18d5308e383708c4a365b726d7baa81333bd0d8818e819d6e6d28b2c",
+        "note": "Incomplete stream only; rounded frontend counters, not whole-case completion or an independently timed engine ratio"
+      }
+    },
+    {
+      "run": "flash-mtp14-router",
+      "status": "deadline",
+      "wall_seconds": 1200.016,
+      "profile_association": {
+        "server_trial": "flash-server-mtp14g32",
+        "server_config_sha256": "70d1b3c50d8a8ec2b700fc02d0d421a2241f80310bc1108d32588597f8422a49",
+        "guard_config_sha256": "908647be952d5d78676619905b385e3e3325cac95d0bd7e44906778f23dcf9c8",
+        "source": "Saved owned-server launch and matching native request log; added association without changing benchmark manifest/question/sources"
+      },
+      "fixture": "router-v1",
+      "question_sha256": "097b3d020d4133cc3b9d874027f2640b9d976d0a34a53f1d921a8c4273f9a3a6",
+      "source_sha256": {
+        ".claude/CLAUDE.md": "d39a91d7b728539bcae9097d5f6fda6413cf8451ce6766a1934c389784ec6b7d",
+        ".github/instructions/python-v1.md": "0196cefacef6ef96b621423dd678ec16dd4b3cacde71935de3263bdae17a2033",
+        ".github/instructions/v2/python.md": "ea0547bcc0909a2d0bdcd1bff26ea06fef1a35d3aa218d07fdb51647d8717ca8",
+        "AGENTS.md": "e050ee4825a61bbc63beb6ba6f125fdcdef0c8613ab26c08566987c93f5c4699",
+        "docs/config-contract.md": "2fdb47962dc0836ac22b70ee49e1b0ab9b025762f8cd84f19bce3dcaccb58235",
+        "docs/host.md": "13e41df574cc7ec6a65426345c1a2eb45463e1d97eae42ac3e38f2b4dc060931",
+        "src/config_loader.py": "9fa72de9856b1446f041d7f925de606989e15cb87e179660ffa710abd29139ff"
+      },
+      "mode": "tools",
+      "seed": 73,
+      "temperature": 1.0,
+      "max_tokens": 16384,
+      "reasoning_budget": 2048,
+      "deadline_seconds": 1200.0,
+      "completed_turns": 1,
+      "turn_measurements": [
+        {
+          "finish_reason": "tool_calls",
+          "usage": {
+            "prompt_tokens": 683,
+            "completion_tokens": 296,
+            "total_tokens": 979,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 683,
+            "prompt_ms": 13344.5,
+            "prompt_per_token_ms": 19.538,
+            "prompt_per_second": 51.2,
+            "predicted_n": 296,
+            "predicted_ms": 38609.3,
+            "predicted_per_token_ms": 130.437,
+            "predicted_per_second": 7.7,
+            "draft_n": 255,
+            "draft_n_accepted": 196
+          },
+          "first_event_seconds": 0.03200000000288128,
+          "first_final_seconds": null
+        }
+      ],
+      "quality_scored": false,
+      "note": "Incomplete; saved turns exclude any unfinished stream.",
+      "incomplete_observation": {
+        "observed": "Frontend final-turn cancellation",
+        "generated_tokens": 7936,
+        "displayed_seconds": 1148,
+        "displayed_tokens_per_second": 7,
+        "cancelled": true,
+        "quality_scored": false,
+        "source_server": "flash-server-mtp14g32",
+        "source_sha256": "e3572a84666218e58c8ee9e8cfab65553690564d80d635cdaddcbad53971a9ea",
+        "note": "Incomplete stream only; rounded frontend counters, not whole-case completion or an independently timed engine ratio"
+      }
+    },
+    {
       "run": "flash-router",
       "status": "deadline",
       "wall_seconds": 1200.016,
+      "profile_association": {
+        "server_trial": "flash-server-full-experts32",
+        "server_config_sha256": "e17d9249378933a497a39519b107e5bed38b06622aca3528be129fc1849427e4",
+        "guard_config_sha256": "0a184287fe4cb1e56903ff0cc4ba085b058affb5a4f8df04bfff3c9d2eedac15",
+        "source": "Saved owned-server launch and matching native request log; added association without changing benchmark manifest/question/sources"
+      },
       "fixture": "router-v1",
       "question_sha256": "097b3d020d4133cc3b9d874027f2640b9d976d0a34a53f1d921a8c4273f9a3a6",
       "source_sha256": {
@@ -347,12 +1044,29 @@
         }
       ],
       "quality_scored": false,
-      "note": "Incomplete; saved turns exclude any unfinished stream."
+      "note": "Incomplete; saved turns exclude any unfinished stream.",
+      "incomplete_observation": {
+        "observed": "Frontend final-turn cancellation",
+        "generated_tokens": 6579,
+        "displayed_seconds": 1119,
+        "displayed_tokens_per_second": 5.9,
+        "cancelled": true,
+        "quality_scored": false,
+        "source_server": "flash-server-full-experts32",
+        "source_sha256": "6c15941667e277643dcce882008cc300e8527c7bd23eefcc028a022c21866e19",
+        "note": "Incomplete stream only; rounded frontend counters, not whole-case completion or an independently timed engine ratio"
+      }
     },
     {
       "run": "flash-ts-sql",
       "status": "deadline",
       "wall_seconds": 1200.016,
+      "profile_association": {
+        "server_trial": "flash-server-full-experts32",
+        "server_config_sha256": "e17d9249378933a497a39519b107e5bed38b06622aca3528be129fc1849427e4",
+        "guard_config_sha256": "0a184287fe4cb1e56903ff0cc4ba085b058affb5a4f8df04bfff3c9d2eedac15",
+        "source": "Saved owned-server launch and matching native request log; added association without changing benchmark manifest/question/sources"
+      },
       "scenario": "ts-sql-v1",
       "case_sha256": "af8630ea22910674d17ebc43b6731e45b9ebacf19c2514f736b33fc7f0ec330e",
       "seed": 73,
@@ -445,9 +1159,57 @@
         }
       ],
       "quality_scored": false,
-      "note": "Incomplete; saved turns exclude any unfinished stream."
+      "note": "Incomplete; saved turns exclude any unfinished stream.",
+      "incomplete_observation": {
+        "observed": "Frontend final-turn cancellation",
+        "generated_tokens": 6125,
+        "displayed_seconds": 1109,
+        "displayed_tokens_per_second": 5.6,
+        "cancelled": true,
+        "quality_scored": false,
+        "source_server": "flash-server-full-experts32",
+        "source_sha256": "6c15941667e277643dcce882008cc300e8527c7bd23eefcc028a022c21866e19",
+        "note": "Incomplete stream only; rounded frontend counters, not whole-case completion or an independently timed engine ratio"
+      }
     }
   ],
+  "mtp_artifacts": {
+    "upstream": "477ac13cbe8e582c20484871ce459d20d82df09d",
+    "expert_quant": "q2_0",
+    "draft_projection_quant": "q8_0",
+    "artifacts": [
+      {
+        "file": "mtp-q2_0.gguf",
+        "bytes": 889017216,
+        "sha256": "a22206a4d74eafbf31063a84610292535fb3b49af9a339963817fd04aed81e4d"
+      },
+      {
+        "file": "mtp-q2_0.gguf.report.json",
+        "bytes": 3754,
+        "sha256": "d2cb091a7098e52255279db0b25aeaf10fd4af3962ca363e365861d3c1b2eeb7"
+      },
+      {
+        "file": "rt\\dense.bin",
+        "bytes": 116099072,
+        "sha256": "c724dc0b0822ada5d2977bf5bde821605feabaa64ea2e0045b67ca656329070a"
+      },
+      {
+        "file": "rt\\dense.txt",
+        "bytes": 1880,
+        "sha256": "8773c81ebb0986e37fe94a8a9933e87be48b1fabc6889a0106bcdab179d1c2ac"
+      },
+      {
+        "file": "rt\\experts.bin",
+        "bytes": 707788800,
+        "sha256": "09398406be61f1f54c93861f449e48b8df0bfccbc9ec9b2b7636775a6ea9244f"
+      },
+      {
+        "file": "upstream/data/draft_vocab_en.bin",
+        "bytes": 162100,
+        "sha256": "369151522226a5edaa5f12cfd1e2ae7db8f4fbdbd222f3dcf327dced9597fb25"
+      }
+    ]
+  },
   "limitations": [
     "Single samples; public fixtures, not held-out ranking",
     "Desktop/cache state and output lengths vary",

@@ -120,6 +120,55 @@ effective value. The32K/int8,10GiB expert-budget run passes the history case
 but times out on both coding cases. It is not a recommended replacement.
 See [Flash evidence](../../reports/2026-10-18-strata-flash.json) for every trial.
 
+### Optional MTP follow-up
+
+The tested MTP source is the official Qwen repository/revision in `artifacts.json`,
+with31 tensors totaling5,214,301,696bytes. The private experiment fetched only
+those checkpoint ranges, bypassed upstream `resolve_repo()`'s fallback to `main`,
+and independently checked every size/SHA256 before packing. Do not treat a
+successful download or upstream's cached verification stamp as that full check.
+The manifest contains the expected hashes for an independent reproduction.
+
+Using the pinned tools and verified tensor directory, preparation was:
+
+```text
+python tools/mtp_pack.py --src <verified-MTP-directory> --experts q2_0 --out <draft.gguf>
+python tools/mtp_rt.py --gguf <draft.gguf> --out <draft-runtime-directory>
+```
+
+The main target weights stay unchanged. Add these native arguments to the
+bounded Flash server profile, replacing its existing `--spec` value:
+
+```text
+--mtp <draft-runtime-directory> --mtp-draft-vocab <Strata>/data/draft_vocab_en.bin
+--spec 4 --spec-min-p 0.5 --suffix-draft 0
+```
+
+The tested32K profile uses3072MiB reserve and either10 or14GiB resident experts,
+with the same runtime stop floors. On this PC MTP consumes enough GPU memory
+to reduce the expert cache904→361slots and auto prefill2304→256tokens. The10GiB
+router still times out. Two deliberately capped probes improve at14GiB RAM,
+but those probes do not provide coding quality evidence. Read the final task
+report before selecting a configuration; neither generic MTP nor accepted draft
+percentage guarantees a faster complete answer.
+
+### RAM-backed KV result
+
+The measured no-draft fallback adds `--max-context 131072 --kv-resident 32768`
+to the10GiB expert/int8/3072MiB-reserve profile. Remove any prior max-context
+argument rather than passing conflicting values. It allocates1.55GiB pinned
+hostKV and selects1536-token prefill/799GPU expert slots. Actual logs show
+KV reads fromRAM after processing more than32Kinput; the resident cache size
+does not truncate the host history to32K.
+
+The frozen51K history case rereads the changed file but ends with no final
+answer. Two separately recorded final-turn replays recover6/6facts (unchanged
+and medium effort). This is a delivery failure plus diagnostic recovery, not
+a passed original workflow or128K accuracy validation. The MTP/head-alias
+variant with12GiB experts/3584MiB reserve crosses the device-VRAM floor during
+startup and is unscored. Keep those results separate; see the full report and
+[replay evidence](../../reports/2026-10-18-strata-history-replays.json).
+
 ## Monitor checks
 
 Use the isolated Strata Python environment for `guard.py` and `check_guard.py`:

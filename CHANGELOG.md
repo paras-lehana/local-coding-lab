@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.6.0 - 2026-10-18 (Flash-Next evaluation in progress)
+## 0.6.0 - 2026-10-18
 
 - Add a pinned Strata experiment, guarded Windows process ownership and bounded
   resumable HTTP downloads with whole-artifact integrity checks.
@@ -18,7 +18,11 @@
   GPU KV from Flash-Next's bounded resident tier and separate KV modes.
 - Verify and load full Flash-Next IQ3_XXS on10GB. Its no-draft profile passes
   retained history but times out on both coding tasks; preserve them unscored
-  and record real RAM/device usage. Drafting/longer-context work continues.
+  and record real RAM/device usage. MTP alone does not improve the coding result;
+  a14GiB expert pool improves capped throughput but still times out on router.
+- Measure128K/int8 RAM-backed KV with a32K GPU cache through51Kinput. Preserve
+  an empty final response, then separately record successful unchanged/medium
+  final-turn replays; do not promote those into a whole-workflow pass.
 
 ## Documentation follow-up - 2026-10-17
 

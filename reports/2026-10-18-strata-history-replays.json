@@ -1,0 +1,180 @@
+{
+  "date": "2026-10-18",
+  "scope": "Two final-turn diagnostic replays after an empty long-history result; not a whole-case pass",
+  "profile": "flash-server-full-experts128",
+  "controls": {
+    "configured_context": 131072,
+    "kv": "int8",
+    "gpu_resident_kv_cells": 32768,
+    "resident_expert_gib": 10,
+    "mtp": false,
+    "seed": 73,
+    "temperature": 1.0,
+    "max_tokens": 8192,
+    "reasoning_budget_per_turn": 2048,
+    "deadline_seconds_per_diagnostic": 600
+  },
+  "original_observation": {
+    "assessor": "Codex response/source review; not an independent human review",
+    "original_status": "empty",
+    "quality_scored": false,
+    "elapsed_to_last_sse_seconds": 468.0779999999977,
+    "elapsed_source": "stream-05.jsonl monotonic seconds since the whole worker began; original empty result omits wall_seconds",
+    "phase0_exact_READY_640": true,
+    "actual_changed_runtime_read": true,
+    "last_final_chars": 0,
+    "last_reasoning_chars": 1049,
+    "last_finish_reason": "stop",
+    "max_input_tokens": 51534,
+    "completion_tokens": 1233,
+    "native_kv": {
+      "host_pinned_gib_reported": 1.55,
+      "gpu_resident_cells_per_qsa_layer": 32768,
+      "configured_context": 131072,
+      "long_turn_host_read_mib": 146.8,
+      "long_turn_gpu_hit_percent": 97.01
+    },
+    "all_visible_turns_reviewed": true,
+    "limitations": [
+      "No delivered final fact object; no six-fact quality score",
+      "KV allocation and real RAM reads are demonstrated, not full128K accuracy",
+      "No attempt to read unavailable ledger in phase1",
+      "Follow-up diagnostic replays do not change this original result"
+    ]
+  },
+  "replays": [
+    {
+      "run": "replay-history-existing",
+      "manifest": {
+        "source_request_sha256": "3e4ecec50b657ea5d694a65fc744ce6b27bac1496edd936c46927f956e7609ba",
+        "request_sha256": "3e4ecec50b657ea5d694a65fc744ce6b27bac1496edd936c46927f956e7609ba",
+        "effort": "existing",
+        "change": "none",
+        "deadline_seconds": 600,
+        "scope": "One final turn, retained original history, no tool execution",
+        "quality_scored": false
+      },
+      "result": {
+        "status": "completed_final_turn",
+        "wall_seconds": 49.29599999999846,
+        "quality_scored": false,
+        "note": "Diagnostic replay; original whole-case result remains empty"
+      },
+      "measurements": {
+        "first_event_seconds": 0.0459999999984575,
+        "first_final_seconds": 30.562000000001717,
+        "usage": {
+          "prompt_tokens": 51534,
+          "completion_tokens": 273,
+          "total_tokens": 51807,
+          "prompt_tokens_details": {
+            "cached_tokens": 51529
+          }
+        },
+        "timings": {
+          "cache_n": 51529,
+          "prompt_n": 5,
+          "prompt_ms": 888.2,
+          "prompt_per_token_ms": 177.64,
+          "prompt_per_second": 5.6,
+          "predicted_n": 273,
+          "predicted_ms": 48344.3,
+          "predicted_per_token_ms": 177.085,
+          "predicted_per_second": 5.6,
+          "draft_n": 0,
+          "draft_n_accepted": 0
+        },
+        "finish_reason": "stop"
+      },
+      "assessment": {
+        "assessor": "Codex visible-response/source review; no independent human review",
+        "diagnostic_only": true,
+        "original_whole_case_status": "empty",
+        "facts": {
+          "region": true,
+          "auditOwner": true,
+          "release": true,
+          "retryLimit": true,
+          "runtimeRevision": true,
+          "redisSentinelPort": true
+        },
+        "passed": 6,
+        "total": 6,
+        "format": "JSON Markdown fence plus paths list",
+        "source_accounting": "Lists docs/runtime.md supplied by the original phase1 tool read; replay executes no fresh file tools",
+        "response_sha256": "af1e6a4e91636af41f5f4909bacdf0d37985a8acdf65a2ea8ced0f329d5e6d05",
+        "no_retroactive_whole_case_pass": true
+      }
+    },
+    {
+      "run": "replay-history-medium",
+      "manifest": {
+        "source_request_sha256": "3e4ecec50b657ea5d694a65fc744ce6b27bac1496edd936c46927f956e7609ba",
+        "request_sha256": "f1d31664ae1ba292235d2925ffdeca9efda29585bf00aa6ae0f109aca4ebaa87",
+        "effort": "medium",
+        "change": "only explicit native reasoning_effort=medium",
+        "deadline_seconds": 600,
+        "scope": "One final turn, retained original history, no tool execution",
+        "quality_scored": false
+      },
+      "result": {
+        "status": "completed_final_turn",
+        "wall_seconds": 314.4379999999983,
+        "quality_scored": false,
+        "note": "Diagnostic replay; original whole-case result remains empty"
+      },
+      "measurements": {
+        "first_event_seconds": 0.06299999999828287,
+        "first_final_seconds": 298.40599999999904,
+        "usage": {
+          "prompt_tokens": 51496,
+          "completion_tokens": 331,
+          "total_tokens": 51827,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 51496,
+          "prompt_ms": 253965.6,
+          "prompt_per_token_ms": 4.932,
+          "prompt_per_second": 202.8,
+          "predicted_n": 331,
+          "predicted_ms": 60396.9,
+          "predicted_per_token_ms": 182.468,
+          "predicted_per_second": 5.5,
+          "draft_n": 0,
+          "draft_n_accepted": 0
+        },
+        "finish_reason": "stop"
+      },
+      "assessment": {
+        "assessor": "Codex visible-response/source review; no independent human review",
+        "diagnostic_only": true,
+        "original_whole_case_status": "empty",
+        "facts": {
+          "region": true,
+          "auditOwner": true,
+          "release": true,
+          "retryLimit": true,
+          "runtimeRevision": true,
+          "redisSentinelPort": true
+        },
+        "passed": 6,
+        "total": 6,
+        "format": "Bare JSON object plus paths list",
+        "source_accounting": "Lists docs/runtime.md supplied by original phase1; replay executes no fresh file tools",
+        "response_sha256": "7a22e6a86b0c323a530c8655f39e934ad8f6390700c56755d24742764a985264",
+        "no_retroactive_whole_case_pass": true
+      }
+    }
+  ],
+  "limitations": [
+    "Original frozen whole case remains empty and unscored",
+    "No fresh tool reads in either replay; supplied tool history retained",
+    "Unchanged replay reuses51529tokens, medium reprocesses51496tokens; not a latency ranking",
+    "Single samples, changing GPU/CPU cache and desktop state; root cause of empty final not established",
+    "No real128K recall or editor UI test"
+  ]
+}

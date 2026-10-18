@@ -7,10 +7,10 @@ Last updated: 2026-10-18 (Asia/Kolkata); Strata evaluation explicitly reopened.
 | Task | Status | Evidence |
 |---|---|---|
 |Read article and verify current upstream|Done|Pinned v0.1.45; setup explicitly accepts 10 GB. Article compares different quantization/baselines.|
-|Try Strata with guarded memory settings|In progress|Qwen32K completes three workflows. Both Flash shards verify; its corrected32K profile loads and answers READY; coding collection is running.|
-|Compare coding/file/history performance|Qwen complete; Flash pending|Same Q4 file: Strata faster in all three cases; both Python/history pass and TS5/6. Strata SQL migration fails; llama SQL6/6.|
-|Assess 8/10 GB changes or fork|In progress|No hardware gate removal needed. Public experimental fork has three separate opt-in/compatibility commits. CUDA tested; real8GB and HIP/SYCL untested.|
-|Publish report and reproduction details|In progress|[Checkpoint report](tasks/2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md); current selection preserved.|
+|Try Strata with guarded memory settings|Done with limits|Qwen32K and full Flash load on10GB; failed profiles retained. Production Qwen128K restored.|
+|Compare coding/file/history performance|Done with limits|Same Q4 faster in Strata; Python/history pass, TS5/6, SQL fails. Flash four coding deadlines;51K history empty then diagnostic6/6 recoveries.|
+|Assess 8/10 GB changes or fork|Done on10GB|No hardware gate removal needed. Public experimental fork has three separate opt-in/compatibility commits. CUDA tested; real8GB and HIP/SYCL untested.|
+|Publish report and reproduction details|Final evidence ready|[Full report](tasks/2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md); recommendation remains llamaQwen128K.|
 
 Initial snapshot: 64 GB DDR4 / Ryzen 7 5800X / RTX 3080 10 GB, about25 GiB
 RAM and6.8 GiB VRAM free with apps open. Installed driver617.42 supports the
@@ -80,6 +80,52 @@ owned server explicitly stopped before pinned MTP download begins. Peak engine
 RSS14.300GiB, minimum RAM9.325GiB/commit7.116GiB/VRAM780MiB. No guard/WHEA
 stop in that run.38offline tests pass15.283seconds; four PS parsers/diff check
 pass. MTP and128K KV-streaming remain conditional, not measured results yet.
+
+05:00 IST: all31MTP tensors verify (5.214GB,667.812seconds download including
+a rejected incomplete-range retry). q2_0 packing348.453seconds and runtime
+relayout3.828seconds complete; derived hashes are saved. MTP/spec4 with the
+English/code subset loads at32K. READY13.125seconds,26generated tokens,
+18/21drafts accepted, native6.0tok/s: not a speed claim. Main GPU expert cache
+falls904→361slots and auto prefill2304→256tokens. Router comparison is running
+as flash-mtp-router under the unchanged1200second limit. Production remains
+stopped; restore it after experiments. A conditional14GiB RAM-budget variant
+is frozen from measured headroom; not loaded. No actual8GB or editor test.
+
+05:34 IST: MTP10GiB router also reaches1200.016seconds/unscored. Two capped
+throughput probes per profile measure5.9/6.7tok/s at10GiB versus8.8/9.6 at14GiB,
+with reduced file reads; desktop/cache states differ and these are not quality
+scores.14GiB router runs with a declared16,384output cap, unchanged2048thinking
+ceiling/1200second deadline. Initial RSS17.8GiB, freeRAM6.4/commit3.4GiB.
+The conditional128K plan uses12GiB experts,32K resident GPU KV,3584MiB reserve
+and prefill-head aliasing; it is not yet a measured result. Production remains
+stopped only for sequential experiments. Report/source provenance updated.
+
+05:44 IST:14GiB router also deadlines1200.016seconds; final-turn cancellation
+7936tokens/1148seconds/7.0tok/s, unscored. Further MTP coding repeats deferred.
+Owned server stopped.128K12GiB/MTP/head-alias loads but immediately crosses
+theVRAMfloor at566MiB, guardstop14.844seconds before any quality request.
+Frozen no-MTP10GiB128K fallback loads, reports1.55GiB pinned hostKV and32K
+GPU window,799expert slots/1536prefill. READY14.313seconds exact; frozen larger
+history case running. No fresh editor UI or actual8GB claim. Restore production
+after this context check; no candidate promoted.
+
+05:54 IST: larger history reaches51,534input tokens; actualKV streaming reads
+fromRAM and phase0exactREADY640 pass. Phase1 rereads changed runtime but returns
+only reasoning/empty final content at lastSSE468.078seconds; original status
+empty/unscored retained. Two final-turn diagnostic replays frozen separately.
+Unchanged replay returns6/6facts in49.296seconds with a warm51,529token prefix;
+medium-effort replay is running and requires full prompt processing. No fresh
+file reads in those replay requests; they reuse delivered tool history and do
+not turn the original workflow into a pass. Production still awaits restoration.
+
+06:02 IST: medium final-turn replay returns6/6facts in314.438seconds, including
+253.966seconds full prefill; unchanged replay49.296seconds uses cached input.
+No effort-speed ranking or retroactive whole-case pass. Strata owned job stopped;
+38offline tests pass15.086seconds,4PSparsers pass, public audit clean. Production
+Qwen restored, health/alias/actual128K CPUq8KV/1800idle verified; API READY. in
+7.125seconds adds an unwanted period. Endpoint left available. No editor test,
+clock/driver changes, cloud calls or automatic comparison queue. Final report
+and public aggregates ready for publication; all limitations remain explicit.
 
 ## 2026-10-17 — Standalone tray controller
 
