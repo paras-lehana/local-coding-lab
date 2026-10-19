@@ -348,6 +348,10 @@ pass. The relative Markdown check resolves 239 links (external URLs, anchors
 and two historical host-absolute links are outside that check). Publication
 details are recorded in the prompt/task logs. No new generated-code grader was
 run: the interrupted workflow delivered no complete implementation to grade.
+[GitHub CI39290022175](https://github.com/paras-lehana/local-coding-lab/actions/runs/39290022175)
+passes on both Windows and Ubuntu at published revision `38d0e1b`. Later CI
+receipt/summary changes are documentation only. Both remote branches were
+verified at that revision, with a clean working tree and no inference listener.
 
 The offline suite command is `python -m unittest discover -s tests -v`;
 publication audit is `python scripts/audit_public.py`. PowerShell validation

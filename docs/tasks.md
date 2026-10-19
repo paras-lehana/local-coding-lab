@@ -54,6 +54,9 @@ the final summary insertion;diffcheck passes. Corrected the documented MSVC
 flag to match the successful build. Prepared matching A-G summary is saved
 in prompts.md before publication to main and the experiment branch. No model
 process or listener on8080/8086 was present at22:25; no inference was launched.
+Publication verified at38d0e1b on both remote branches. GitHub run39290022175
+passes on Windows and Ubuntu for that revision. Final CI receipt/summary edits
+are documentation only; the working tree was clean after publication.
 
 ## 2026-10-18 — Strata on 10 GB
 

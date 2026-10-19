@@ -82,7 +82,7 @@ At 28 layers, peak process RAM was **14.24 GiB**, total device VRAM **8.71 GiB**
 
 **Strata:** My experimental fork handles optional MTP metadata and reduces redundant Windows memory residency. The same Qwen completed three workflows **1.14–1.76× faster** than the llama control. Python and history checks passed, but Strata's SQL migration failed and both engines retained TypeScript bugs. Strata Qwen at 128K remains unvalidated. Larger Flash-Next fitted, but four coding attempts exceeded 20 minutes; its original long-history workflow returned no final answer.
 
-Validation: **38 offline tests passed**, four PowerShell scripts parsed, and the public audit checked **200 files with zero findings**. No fresh editor test or completed new-code grading is claimed. The report lists every changed file, source read, dependency, build command and exclusion. Evidence commit [1faf278](https://github.com/paras-lehana/local-coding-lab/commit/1faf278) is published to `main` and `experiment/azllm-20261019`.
+Validation: **38 offline tests passed**, four PowerShell scripts parsed, and the public audit checked **200 files with zero findings**. [GitHub checks passed on Windows and Ubuntu](https://github.com/paras-lehana/local-coding-lab/actions/runs/39290022175). No fresh editor test or completed new-code grading is claimed. The report lists every changed file, source read, dependency, build command and exclusion. Evidence commit [1faf278](https://github.com/paras-lehana/local-coding-lab/commit/1faf278) is published to `main` and `experiment/azllm-20261019`.
 
 **C. Request status**
 
