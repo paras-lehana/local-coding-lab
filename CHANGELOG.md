@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.7.0 - 2026-10-19 (research in progress)
+
+- Add an attributed azllm article review and pin the inspected fork, upstream,
+  compatible llama.cpp-tq3 source and TQ3_4S-v2 model artifact.
+- Publish header-based capacity evidence: main dense blocks alone exceed the
+  RTX3080's10GiB VRAM; separate host KV support from dense layer offload.
+- Add a hash-verified bounded downloader and frozen CPU/GPU fallback plan.
+- Preserve earlier Strata/Flash quality failures alongside measured speed and
+  RAM-KV gains. No production recommendation changes or new quality score yet.
+
 ## 0.6.0 - 2026-10-18
 
 - Add a pinned Strata experiment, guarded Windows process ownership and bounded

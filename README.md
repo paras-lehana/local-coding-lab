@@ -1,5 +1,11 @@
 # Local Coding Lab
 
+**19 October: azllm / TurboQuant investigation in progress.** The article's
+27B TQ3_4S main layers alone exceed this10GiB GPU. We are testing the author's
+separate llama.cpp-tq3 CPU/GPU route with the same weights; this does not
+reproduce the207tok/s all-GPU headline. [Experiment and current status](docs/tasks/2026-10-19-azllm/2026-10-19-azllm-and-turboquant-v0.7.0.md)
+and [article review](research/reviews/2026-10-19-azllm.md).
+
 **18 October: Strata on10GB.** The experimental fork completes all three
 same-Qwen32K workflows faster in single runs, but its SQL migration fails where
 the llama control passes. Keep the working llama128K setup. Full Flash-Next
@@ -20,7 +26,7 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Status: v0.6.0, experimental; Strata comparison and native idle unloading tested.**
+**Status: v0.7.0 research branch; TurboQuant trials in progress. Strata comparison and native idle unloading tested.**
 The desktop control has since become a separate public project:
 [LLM Tray](https://github.com/paras-lehana/llm-tray). It adds a compact tray
 resource icon, hover details, pin/drag, customizable shortcuts/metrics and

@@ -1,6 +1,27 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-10-18 (Asia/Kolkata); Strata evaluation explicitly reopened.
+Last updated: 2026-10-19 (Asia/Kolkata); azllm/TurboQuant experiment in progress.
+
+## 2026-10-19 - azllm and TurboQuant on 10 GB
+
+| Task | Status | Evidence |
+|---|---|---|
+|Read supplied article and pinned implementation|Done|azllm1510768; dense body GPU uploader, host KV/head options; full-GPU27B capacity rejected.|
+|Adapt and measure on this PC|In progress|Same TQ3_4S-v2 file selected for author's CPU/GPU llama.cpp-tq3ecc7678; isolated sm86 build and pinned download.|
+|Compare current models and Strata|Review drafted|Prior32K Strata speed gains/SQL failure and Flash deadlines retained; no new engine quality score yet.|
+|Publish reproducible evidence|In progress|[Task report](tasks/2026-10-19-azllm/2026-10-19-azllm-and-turboquant-v0.7.0.md), source manifest and frozen tests.|
+
+19:03IST: no inference server was running at initial inspection after the
+18October22:04 reboot; this experiment issued no production stop. Header
+inventory confirms64 main layers plus1optional prediction block. Main-layer
+tensor bytes12,185,839,616 (11.349GiB) exceed the entire10GiB GPU before heads,
+KV and scratch. General dense CPU offload is absent in the inspected azllm path.
+Native Windows server uses POSIX APIs; current WSL lacks a CUDA/C++ toolchain.
+The separate llama.cpp-tq3 fallback is explicitly a different engine experiment.
+Two redundant raw Strata MTP source tensors (5,033,164,800bytes) were rehashed
+against the saved manifest and retired to make disk room. Packed draft/runtime,
+main weights, original reports and source hashes remain. All38offline tests pass
+in16.434seconds; build and inference results remain pending.
 
 ## 2026-10-18 — Strata on 10 GB
 

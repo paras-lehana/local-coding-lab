@@ -1,6 +1,11 @@
 # Prompt log — Local Coding Lab
 
-Current phase,18October: Strata evaluation is complete with explicit limits.
+Current phase,19October: azllm/TurboQuant investigation is in progress on
+experiment/azllm-20261019. The full-GPU article path exceeds10GiB; the pinned
+same-weight llama.cpp-tq3 CPU/GPU fallback is building/downloading. No quality
+result exists yet. See docs/tasks.md and the19October task report before loading.
+
+Previous phase,18October: Strata evaluation is complete with explicit limits.
 Same-weight Qwen32K is faster but has code defects; full Flash fits10GB, while
 four coding trials deadline. Its51K RAM-KV workflow returns an empty final;
 two separate final-turn replays recover6/6facts, not a retroactive workflow pass.
@@ -9,11 +14,12 @@ open; clocks/drivers and editor settings are unchanged. No editor typing or
 automatic experimental queue. Evidence466d2f1 is published on main and the
 experiment branch; matching closeout is recorded below.
 
-Last updated: 2026-10-18. Public project history excludes earlier credentials,
+Last updated: 2026-10-19. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
+|15|2026-10-19|18:40|azllm article and TurboQuant on10GB|Research / Experiment|In progress|[Entry](#azllm-and-turboquant-on-10-gb)|
 |14|2026-10-18|00:00|Strata on 10 GB|Research / Experiment|Published; Qwen restored; limitations explicit|[Entry](#strata-on-10-gb)|
 |13|2026-10-17|21:05|Standalone tray and SSH access|Feature / Config|Published; remote editor UI untested|[Entry](#standalone-tray-and-ssh-access)|
 |12|2026-10-17|20:12|Native idle sleep and desktop controls|Feature / Config|Published/tested; Copilot latency unresolved|[Entry](#idle-sleep-and-desktop-controls)|
@@ -28,6 +34,18 @@ private instruction contents and raw editor chats.
 | 4 | 2026-10-15 | 15:17 | Recover after unexpected shutdown | Infrastructure / Research | Evidence reviewed; cause unknown | [Entry](#unexpected-shutdown-recovery) |
 | 5 | 2026-10-15 | 20:58 | Working selection, comparison and editor gate | Research / Config | API done; UI blocked | [Entry](#working-selection-and-editor-gate) |
 | 6 | 2026-10-15 | 23:06 | Actual editor validation after unlock | Research / Config | Six probes complete; quality defects retained | [Entry](#actual-editor-validation-after-unlock) |
+
+## azllm and TurboQuant on 10 GB
+
+Owner asks to try the attached24GB article on this PC, add the article/research
+and measurements to the public repo, compare approaches/current reports, and
+summarize the completed Strata work. Exact relevant request is in the task
+folder's owner-input.txt; full article with private UI/account material stays
+ignored. Read project/parent instructions, shared Codex/platform/router/host
+and relevant v2 discovery, logging, Git, Python, coding and testing instructions.
+Recovered complete Strata and model-inventory reports, methodology and grading.
+No editor input, hardware changes, cloud calls or production stop issued.
+Full A-G closeout will be appended after measured outcomes and publication.
 
 ## Strata on 10 GB
 

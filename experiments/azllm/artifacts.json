@@ -1,0 +1,13 @@
+{
+  "azllm": {"url": "https://github.com/xhinker/azllm", "commit": "1510768a8a6a88f47876ab9293dc3caeaab9c7b4"},
+  "tqllm_inspected_upstream": {"url": "https://github.com/turbo-tan/tqllm", "commit": "d61798611c1942408e2fb32e0be4826f7dd1add5", "scope": "current host-placement options checked; no general dense layer CPU offload found"},
+  "llama_tq3": {"url": "https://github.com/turbo-tan/llama.cpp-tq3", "commit": "ecc76783ed1e9be31f7da2411617b92e066b7101"},
+  "model": {
+    "repo": "YTan2000/Qwen3.8-27B-TQ3_4S",
+    "revision": "a07bc6f260d1a431a38f5332fd8fc512ff7b871f",
+    "file": "Qwen3.8-27B-TQ3_4S-v2.gguf",
+    "bytes": 14495191008,
+    "sha256": "52ef4a8b947aeb9b4df1d0478b03999380e963aa1151f4bd079973f2fdb64074",
+    "url": "https://huggingface.co/YTan2000/Qwen3.8-27B-TQ3_4S/resolve/a07bc6f260d1a431a38f5332fd8fc512ff7b871f/Qwen3.8-27B-TQ3_4S-v2.gguf"
+  }
+}

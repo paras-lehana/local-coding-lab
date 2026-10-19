@@ -1,0 +1,79 @@
+{
+  "status": "preflight_only_inference_pending",
+  "captured_utc": "2026-10-19T13:33:28.574732+00:00",
+  "hardware": {
+    "time": 1792416808.5747461,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 20.33837127685547,
+    "commit_limit_gib": 89.90972518920898,
+    "commit_available_gib": 31.642131805419922,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 7531.0,
+    "gpu_c": 29.0,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "617.42"
+  },
+  "article_sha256": "a9f2d5389602177590f0846126a19aca0ff1052e0595ba452c019f9f390b8d3f",
+  "header_range_bytes": 16777216,
+  "header_sha256": "999059253af9242cd55d8053f21f77a1b454de1863002b937f972fc56a7eb72f",
+  "metadata": {
+    "general.architecture": "qwen35",
+    "general.name": "Qwen3.8-27B",
+    "qwen35.block_count": 65,
+    "qwen35.context_length": 262144,
+    "qwen35.nextn_predict_layers": 1,
+    "template_sha256": "5a3e2f0d5177fcbf7e1505f1f94c75d9f731de47d4329b4bb22a570fc947eee0",
+    "template_controls": {
+      "enable_thinking": true,
+      "reasoning_effort": true,
+      "preserve_thinking": true,
+      "xhigh": true
+    }
+  },
+  "main_block_bytes": 12185839616,
+  "optional_block_bytes": 212441088,
+  "non_block_tensors": [
+    {
+      "name": "output.weight",
+      "shape": [
+        5120,
+        248320
+      ],
+      "type": 14,
+      "bytes": 1042944000,
+      "offset": 0
+    },
+    {
+      "name": "output_norm.weight",
+      "shape": [
+        5120
+      ],
+      "type": 0,
+      "bytes": 20480,
+      "offset": 1042944000
+    },
+    {
+      "name": "token_embd.weight",
+      "shape": [
+        5120,
+        248320
+      ],
+      "type": 14,
+      "bytes": 1042944000,
+      "offset": 1042964480
+    }
+  ],
+  "retired_redundant_mtp_sources": [
+    {
+      "file": "mtp.layers.0.mlp.experts.gate_up_proj.bin",
+      "bytes": 3355443200,
+      "sha256": "839e98f9642ebc884b178abd2090b6dc8b0bcd81ed92d7f7a08314c6a68f96d5"
+    },
+    {
+      "file": "mtp.layers.0.mlp.experts.down_proj.bin",
+      "bytes": 1677721600,
+      "sha256": "539c46234f73bac70450f731f40e715f77ac32faf77def0f3f800e58aaabbbc0"
+    }
+  ]
+}
