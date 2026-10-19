@@ -53,8 +53,88 @@ Continuation request at22:14IST: "continue". Recovered the actual stopped
 process state and preserved the interrupted run. Decoded the startup WHEA
 record against installed SDK layouts; no claim that it proves restart cause
 or RAM-speed blame. Further inference is withheld; no retry or production
-start occurs after the new hardware evidence. Matching A-G closeout follows
-after validation/publication.
+start occurs after the new hardware evidence. Evidence commit `1faf278` records
+the measured results; the matching prepared owner-facing closeout follows.
+
+**A. Outcome**
+
+**Done:** Published the [TurboQuant/azllm report](https://github.com/paras-lehana/local-coding-lab/blob/main/docs/tasks/2026-10-19-azllm/2026-10-19-azllm-and-turboquant-v0.7.0.md), measurements, reproducible settings and Strata comparison.
+
+**Partial:** Six short tests completed. The instruction/code benchmark read seven files, then the PC restarted after **14m22s without a final answer**. It has no coding score.
+
+**Not done:** Remaining coding/history and larger-context tests. **Keep Qwen3.6-35B-A3B Q4 selected; its server is currently off.**
+
+**B. Results and analysis**
+
+The article combines weight compression, compressed KV history, draft-token verification and prefix reuse. These address different costs; none automatically reads your instruction files.
+
+Native azllm's selected dense model needs **11.35 GiB for its main layers alone**, exceeding this 10 GiB GPU. I built the separate compatible **llama.cpp-tq3** runtime to split those weights between CPU and GPU.
+
+| Tested configuration | Short response | Generation |
+|---|---:|---:|
+| 28 GPU layers, no draft | 27.30s | 1.94 tokens/s |
+| 24 layers + MTP | 30.09s | 1.79 tokens/s |
+| 24 layers + DFlash2 | 26.59s | 2.09 tokens/s |
+
+These were tiny, mostly 49-token answers, **not coding benchmarks**. DFlash2 was barely quicker than the simpler 28-layer profile and left less VRAM available.
+
+At 28 layers, peak process RAM was **14.24 GiB**, total device VRAM **8.71 GiB**, and the **32K CPU q8 KV allocation was 1.06 GiB**. KV capacity is allocated ahead of use in this profile; occupied tokens grow within it. Restarting clears that working context.
+
+**Strata:** My experimental fork handles optional MTP metadata and reduces redundant Windows memory residency. The same Qwen completed three workflows **1.14–1.76× faster** than the llama control. Python and history checks passed, but Strata's SQL migration failed and both engines retained TypeScript bugs. Strata Qwen at 128K remains unvalidated. Larger Flash-Next fitted, but four coding attempts exceeded 20 minutes; its original long-history workflow returned no final answer.
+
+Validation: **38 offline tests passed**, four PowerShell scripts parsed, and the public audit checked **200 files with zero findings**. No fresh editor test or completed new-code grading is claimed. The report lists every changed file, source read, dependency, build command and exclusion. Evidence commit [1faf278](https://github.com/paras-lehana/local-coding-lab/commit/1faf278) is published to `main` and `experiment/azllm-20261019`.
+
+**C. Request status**
+
+| # | Pointer Task | Original Pointer Text | Status | What Was Done |
+|---|---|---|---|---|
+| 2 | Publish research | “add it to our repo and report” | DONE | Report, source review, settings and measurements published. |
+| 4 | Compare approaches | “summarize me about the difference” | DONE | Compression, caching, drafting and engine differences explained. |
+| 5 | Explain Strata | “what did you do for strata” | DONE | Fork changes, measured gains and failures included. |
+| 1 | Try and optimize | “try… optimize for our server” | PARTIALLY DONE | Compatible CPU/GPU route and six profiles tested. |
+| 3 | Measure | “measure etc” | PARTIALLY DONE | Short-probe resources/timings complete; coding interrupted. |
+| 6 | Resume work | “continue” | PARTIALLY DONE | Recovered evidence and finished reporting; further inference withheld. |
+
+**D. Additional findings**
+
+Windows logged a **corrected processor-cache hardware event** during startup. This does not establish the restart's cause or blame RAM at 2800. [The host instructions](/E:/llm/AGENTS.md) explicitly say to “stop on a new hardware error,” so I have not launched another inference run.
+
+Only two verified, redundant Strata draft-source tensors were removed to recover **4.69 GiB**; packed artifacts, main models and earlier evidence remain.
+
+**E. Pending**
+
+| Item | Status | Reason |
+|---|---|---|
+| Complete router, history and TS/SQL tests | Deferred | New hardware event |
+| Lower-reasoning diagnostic and 131K capacity test | Not run | Same stop condition |
+| Restart production model | Deferred | Hardware stability needs review |
+
+**F. My recommendation**
+
+Keep the existing Qwen configuration. TurboQuant improves fit, but these measurements do not justify switching for coding. Strata is the more promising speed experiment, subject to its SQL and long-context limitations. Investigate the restart evidence before sustained testing, then resume the frozen cases without discarding the interrupted attempt.
+
+**G. Copyable summary**
+
+```text
+Local Coding Lab — TurboQuant and Strata comparison updated, 19 October 2026
+
+What's done
+- The new article was reviewed against its implementation and adapted for the available graphics card.
+- Six short tests completed. The dense model fitted by sharing work between the processor and graphics card, but generated only about two tokens per second.
+- Drafting added memory use for little improvement over the simpler configuration.
+- The research, measured settings and limitations are documented in the public repository.
+- Earlier Strata tests completed three workflows faster, but retained coding defects. Its larger model repeatedly exceeded the twenty-minute coding limit.
+
+Limits
+- The longer instruction-and-code test was interrupted by another computer restart before delivering an answer.
+- A new hardware error was recorded. Further model testing is withheld, and the selected model remains configured but stopped.
+- There is no completed new coding score or evidence supporting a replacement.
+
+Suggested next steps
+- Keep the existing Qwen selection.
+- Review the recurring hardware instability before sustained testing.
+- Resume the remaining instruction, code and context checks using the preserved questions and evidence.
+```
 
 ## Strata on 10 GB
 

@@ -9,7 +9,7 @@ Last updated: 2026-10-19 (Asia/Kolkata); azllm/TurboQuant evidence reviewed; fur
 |Read supplied article and pinned implementation|Done|azllm1510768; dense body GPU uploader, host KV/head options; full-GPU27B capacity rejected.|
 |Adapt and measure on this PC|Partial|Isolated build, full target/draft hashes and six probes complete. Router interrupted at862.125seconds by unclean restart; remaining quality/capacity cases not run.|
 |Compare current models and Strata|Done with limits|New1.49-2.09tok/s probes, prior32K Strata speed gains/SQL failure and Flash deadlines; no new completed coding score.|
-|Publish reproducible evidence|Finalizing|[Task report](tasks/2026-10-19-azllm/2026-10-19-azllm-and-turboquant-v0.7.0.md), pinned recipe, resource evidence and sanitized restart/CPER record.|
+|Publish reproducible evidence|Done|Evidence commit1faf278; [task report](tasks/2026-10-19-azllm/2026-10-19-azllm-and-turboquant-v0.7.0.md), pinned recipe, resource evidence and sanitized restart/CPER record on main and experiment/azllm-20261019.|
 
 19:03IST: no inference server was running at initial inspection after the
 18October22:04 reboot; this experiment issued no production stop. Header
@@ -46,6 +46,14 @@ old experiment queue from being resumed accidentally. Production stays selected
 but off. Remaining history/TS-SQL/512-budget/131K probes are explicitly unrun.
 Original raw evidence remains untouched; separate recovery metadata records
 the interruption. Final offline suite:38tests pass in15.892seconds.
+
+22:27IST closeout: evidence commit1faf278 records all six probes and the
+interrupted workflow. Four tracked PowerShell scripts parse; public audit
+checks200files with zero findings;239relative Markdown links resolve before
+the final summary insertion;diffcheck passes. Corrected the documented MSVC
+flag to match the successful build. Prepared matching A-G summary is saved
+in prompts.md before publication to main and the experiment branch. No model
+process or listener on8080/8086 was present at22:25; no inference was launched.
 
 ## 2026-10-18 — Strata on 10 GB
 
