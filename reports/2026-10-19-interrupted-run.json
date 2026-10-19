@@ -1,0 +1,69 @@
+{
+  "event_time_utc": "2026-10-19T14:16:56.3098570Z",
+  "event_id": 2,
+  "severity": 2,
+  "notify_type": "e8f56ffe-919c-4cc5-ba88-65abe14913bb",
+  "raw_sha256": "65d257481f44e6d81f6a6d39f5089b9495ee91e8e884000f91e7c4f8282453be",
+  "sections": [
+    {
+      "type_guid": "a5bc1114-6f64-4ede-b863-3e83ed7c83b1",
+      "offset": 416,
+      "length": 80,
+      "severity": 2,
+      "type": "memory",
+      "valid_bits": "0x0"
+    },
+    {
+      "type_guid": "9876ccad-47b4-4bdb-b65e-16f193c4f3db",
+      "offset": 496,
+      "length": 192,
+      "severity": 2,
+      "type": "generic_processor",
+      "valid_bits": "0x17f",
+      "error_type": 1,
+      "operation": 2,
+      "level": 1,
+      "processor_id": 0
+    },
+    {
+      "type_guid": "8a1e1d01-42f9-4557-9c33-565e5cc3f7e8",
+      "offset": 688,
+      "length": 1192,
+      "severity": 2,
+      "type": "xpf_mca",
+      "version": 4,
+      "cpu_vendor": 2,
+      "processor_number": 0,
+      "bank_number": 0,
+      "status": "0x9820100000120145",
+      "apic_id": 0,
+      "status_valid": true,
+      "uncorrected_bit": false,
+      "context_corrupt_bit": false
+    },
+    {
+      "type_guid": "c34832a1-02c3-4c52-a9f1-9f1d5d7723fc",
+      "offset": 1880,
+      "length": 39,
+      "severity": 3
+    }
+  ],
+  "kernel_power_41": {
+    "bugcheck_code": 0,
+    "sleep_in_progress": 0,
+    "power_button_timestamp": 0,
+    "long_press_detected": false
+  },
+  "boot_time_ist": "2026-10-19T19:46:39.500000+05:30",
+  "new_minidump": false,
+  "last_valid_sample": {
+    "time": 1792419381.3523183,
+    "ram_free_gib": 15.81716537475586,
+    "commit_available_gib": 30.520801544189453,
+    "vram_free_mib": 1422.0,
+    "gpu_c": 41.0
+  },
+  "interpretation": "Corrected processor cache/data-write/level1 fields are valid. Memory-section validbits are zero: no DIMM identification. Hardware/firmware record is not proof of the restart root cause; no recorded bugcheck. CPU temperature was not measured.",
+  "decoder_basis": "Installed Windows SDK 10.0.26100.0 cper.h/cperguid.h, packed headers/descriptors/sections; bounded offsets; no physical-address or raw-event publication",
+  "notify_type_name": "MCE_NOTIFY_TYPE_GUID"
+}

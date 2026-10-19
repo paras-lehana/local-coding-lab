@@ -1,9 +1,12 @@
 # Prompt log — Local Coding Lab
 
-Current phase,19October: azllm/TurboQuant investigation is in progress on
-experiment/azllm-20261019. The full-GPU article path exceeds10GiB; the pinned
-same-weight llama.cpp-tq3 CPU/GPU fallback is building/downloading. No quality
-result exists yet. See docs/tasks.md and the19October task report before loading.
+Current phase,19October: azllm/TurboQuant evidence is reviewed on
+experiment/azllm-20261019. Six calibrated CPU/GPU profiles finish; the router
+reads seven files but is interrupted by an unexpected restart before any final
+answer. A corrected processor-cache event is logged during startup. Remaining
+inference is withheld under the parent hardware-stop rule. No completed coding
+score, model replacement or active production endpoint is claimed. Read the
+19October report and recovery receipt before another load.
 
 Previous phase,18October: Strata evaluation is complete with explicit limits.
 Same-weight Qwen32K is faster but has code defects; full Flash fits10GB, while
@@ -19,7 +22,8 @@ private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
-|15|2026-10-19|18:40|azllm article and TurboQuant on10GB|Research / Experiment|In progress|[Entry](#azllm-and-turboquant-on-10-gb)|
+|16|2026-10-19|22:14|Continue after the interrupted experiment|Recovery / Report|Evidence preserved; further inference withheld|[Entry](#azllm-and-turboquant-on-10-gb)|
+|15|2026-10-19|18:40|azllm article and TurboQuant on10GB|Research / Experiment|Six probes complete; coding coverage partial|[Entry](#azllm-and-turboquant-on-10-gb)|
 |14|2026-10-18|00:00|Strata on 10 GB|Research / Experiment|Published; Qwen restored; limitations explicit|[Entry](#strata-on-10-gb)|
 |13|2026-10-17|21:05|Standalone tray and SSH access|Feature / Config|Published; remote editor UI untested|[Entry](#standalone-tray-and-ssh-access)|
 |12|2026-10-17|20:12|Native idle sleep and desktop controls|Feature / Config|Published/tested; Copilot latency unresolved|[Entry](#idle-sleep-and-desktop-controls)|
@@ -45,7 +49,12 @@ ignored. Read project/parent instructions, shared Codex/platform/router/host
 and relevant v2 discovery, logging, Git, Python, coding and testing instructions.
 Recovered complete Strata and model-inventory reports, methodology and grading.
 No editor input, hardware changes, cloud calls or production stop issued.
-Full A-G closeout will be appended after measured outcomes and publication.
+Continuation request at22:14IST: "continue". Recovered the actual stopped
+process state and preserved the interrupted run. Decoded the startup WHEA
+record against installed SDK layouts; no claim that it proves restart cause
+or RAM-speed blame. Further inference is withheld; no retry or production
+start occurs after the new hardware evidence. Matching A-G closeout follows
+after validation/publication.
 
 ## Strata on 10 GB
 

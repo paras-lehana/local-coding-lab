@@ -1,7 +1,7 @@
 # Supplied azllm article: provenance and claims
 
-Received19October2026 as pasted text. Author: Andrew Zhu (xhinker). Title:
-“An Inference Engine Nobody Has Heard Of, Runs Qwen3.8–27B at207tok/s on One
+Received19 October 2026 as pasted text. Author: Andrew Zhu (xhinker). Title:
+“An Inference Engine Nobody Has Heard Of, Runs Qwen 3.8–27B at 207tok/s on One
 RTX3090Ti, Full262k Context”. The paste says “4days ago”; an exact publication
 timestamp and canonical article URL were not provided. Do not infer a date.
 
@@ -20,9 +20,9 @@ Primary implementation links:
 
 | Claim | What a local reproduction must establish |
 |---|---|
-|207decode tok/s on3090Ti;333on5090|Same model/format, draft mode, sampling, input/output lengths and timing definitions; never predict3080 speed from this.|
+|207decode tok/s on 3090Ti; 333on5090|Same model/format, draft mode, sampling, input/output lengths and timing definitions; never predict3080 speed from this.|
 |262144configured context|Actual occupied tokens, successful retrieval and memory, not just a launch flag.|
-|14.5GB TQ3_4S weights plus0.79GB drafter|Exact revisions/hashes, resident buffers and additional scratch/head allocations.|
+|14.5 GB TQ3_4S weights plus0.79 GB drafter|Exact revisions/hashes, resident buffers and additional scratch/head allocations.|
 |Low-bit KV provides long context|Quantization changes cache representation, not weight capacity or client file delivery.|
 |Speculation matches target greedy output|Compare generated token IDs with/without drafts under the same arithmetic; not BF16 quality equivalence.|
 |Large warm-prefix speedup|Repeat the exact prefix, then change a middle file and verify invalidation/reread.|

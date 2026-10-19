@@ -1,0 +1,72 @@
+{
+  "compiler": "MSVC 14.50.35717",
+  "files": [
+    {
+      "sha256": "70132645b3bcac1e7eb2aafe0e5df99d4e2ede039e01ec88278808ba409d279b",
+      "file": "ggml-base.dll",
+      "bytes": 762368
+    },
+    {
+      "sha256": "87458fceb6539dfd8d27846b0cbe7d494fcfac2aaf54798fa9216b1d9f577016",
+      "file": "ggml-cpu.dll",
+      "bytes": 1023488
+    },
+    {
+      "sha256": "aee226c03ee6f04dbb0dd2c4d515d9c65e6d4a371ce7afab4adbac64e8b0ebd9",
+      "file": "ggml-cuda.dll",
+      "bytes": 64836096
+    },
+    {
+      "sha256": "203b42539209b40de6203736022da87a13eb16bffb9f3c69908e6f8f147dfb32",
+      "file": "ggml.dll",
+      "bytes": 61952
+    },
+    {
+      "sha256": "ffc171f5b0f6179651dc8b875dd810f2166c677e6056ac16aa8a888d67ae1099",
+      "file": "llama-bench-impl.dll",
+      "bytes": 942592
+    },
+    {
+      "sha256": "6ecd7fcf809015f2ddb4cf5bae1c386ae0e1b0cde175d9b5b21110a20cac947c",
+      "file": "llama-bench.exe",
+      "bytes": 9728
+    },
+    {
+      "sha256": "40d9e38053363f34e6cec11e759a242e6294a7a8fff7377b7d9f986d3272216b",
+      "file": "llama-common.dll",
+      "bytes": 8454656
+    },
+    {
+      "sha256": "e9746a53eba3d53e64a9f25888a52b0d1277a81594e3a8a75da2b61988d9bdb0",
+      "file": "llama-server-impl.dll",
+      "bytes": 6471168
+    },
+    {
+      "sha256": "a889e85ec5364019c0a04c836aaf3727b72c633350d4eb7a88a97f13430847a1",
+      "file": "llama-server.exe",
+      "bytes": 9728
+    },
+    {
+      "sha256": "4193a86559052e4b3149b3655b9bf37384e4c09913aef9fa7ea01de3f01a6681",
+      "file": "llama.dll",
+      "bytes": 2726912
+    },
+    {
+      "sha256": "05f173d4cfd4d08c749d41b88c0d99916bd05215277acc713db825c8077986e6",
+      "file": "mtmd.dll",
+      "bytes": 2472960
+    }
+  ],
+  "cuda": "13.3.33",
+  "observed_at": "2026-10-19T19:19:14.2963887+05:30",
+  "version_exit": 0,
+  "source_commit": "ecc76783ed1e9be31f7da2411617b92e066b7101",
+  "sm": 86,
+  "compiler_reported": "MSVC 19.50.35725.0",
+  "toolset_directory": "14.50.35717",
+  "device_enumeration": {
+    "CUDA0": "NVIDIA GeForce RTX 3080",
+    "reported_free_mib": 9097,
+    "note": "Not authoritative whole-device freeVRAM; use NVML in guard."
+  }
+}

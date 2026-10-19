@@ -1,14 +1,20 @@
 # Changelog
 
-## 0.7.0 - 2026-10-19 (research in progress)
+## 0.7.0 - 2026-10-19
 
 - Add an attributed azllm article review and pin the inspected fork, upstream,
   compatible llama.cpp-tq3 source and TQ3_4S-v2 model artifact.
 - Publish header-based capacity evidence: main dense blocks alone exceed the
   RTX3080's10GiB VRAM; separate host KV support from dense layer offload.
 - Add a hash-verified bounded downloader and frozen CPU/GPU fallback plan.
-- Preserve earlier Strata/Flash quality failures alongside measured speed and
-  RAM-KV gains. No production recommendation changes or new quality score yet.
+- Build the isolated sm86-compatible engine and measure16/24/28/30-layer,
+  native-MTP and Q4-DFlash2 profiles:1.49-2.09generation tok/s in short probes.
+- Preserve an interrupted seven-file router run and decode the new corrected
+  processor-cache record after an unexpected restart. Do not label it a20minute
+  timeout, model syntax failure, RAM diagnosis or completed coding score.
+- Defer remaining inference and production restart under the existing hardware
+  stop rule; retain selected production configuration and earlier Strata/Flash
+  quality failures alongside measured speed and RAM-KV gains.
 
 ## 0.6.0 - 2026-10-18
 

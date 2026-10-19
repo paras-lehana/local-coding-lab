@@ -1,15 +1,15 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-10-19 (Asia/Kolkata); azllm/TurboQuant experiment in progress.
+Last updated: 2026-10-19 (Asia/Kolkata); azllm/TurboQuant evidence reviewed; further inference withheld after a new hardware event.
 
 ## 2026-10-19 - azllm and TurboQuant on 10 GB
 
 | Task | Status | Evidence |
 |---|---|---|
 |Read supplied article and pinned implementation|Done|azllm1510768; dense body GPU uploader, host KV/head options; full-GPU27B capacity rejected.|
-|Adapt and measure on this PC|In progress|Same TQ3_4S-v2 file selected for author's CPU/GPU llama.cpp-tq3ecc7678; isolated sm86 build and pinned download.|
-|Compare current models and Strata|Review drafted|Prior32K Strata speed gains/SQL failure and Flash deadlines retained; no new engine quality score yet.|
-|Publish reproducible evidence|In progress|[Task report](tasks/2026-10-19-azllm/2026-10-19-azllm-and-turboquant-v0.7.0.md), source manifest and frozen tests.|
+|Adapt and measure on this PC|Partial|Isolated build, full target/draft hashes and six probes complete. Router interrupted at862.125seconds by unclean restart; remaining quality/capacity cases not run.|
+|Compare current models and Strata|Done with limits|New1.49-2.09tok/s probes, prior32K Strata speed gains/SQL failure and Flash deadlines; no new completed coding score.|
+|Publish reproducible evidence|Finalizing|[Task report](tasks/2026-10-19-azllm/2026-10-19-azllm-and-turboquant-v0.7.0.md), pinned recipe, resource evidence and sanitized restart/CPER record.|
 
 19:03IST: no inference server was running at initial inspection after the
 18October22:04 reboot; this experiment issued no production stop. Header
@@ -21,7 +21,31 @@ The separate llama.cpp-tq3 fallback is explicitly a different engine experiment.
 Two redundant raw Strata MTP source tensors (5,033,164,800bytes) were rehashed
 against the saved manifest and retired to make disk room. Packed draft/runtime,
 main weights, original reports and source hashes remain. All38offline tests pass
-in16.434seconds; build and inference results remain pending.
+in16.434seconds; build and inference results remained pending at that checkpoint.
+
+19:34IST: isolated sm86 build and both target/draft full hashes pass. Six
+guarded availability probes finish:16/24/28/30 target GPU layers, native MTP
+at24layers, and Q4 DFlash2 at24layers.28layers/no draft is selected before
+quality collection (27.296seconds,1.939generation tok/s). MTP83%acceptance
+barely changes time; DFlash100%acceptance gives26.594seconds but leaves only
+817MiB freeVRAM versus1,324MiB for28layers. No headline reproduction or
+equivalence claim. Fresh-server router/history/TS-SQL collection is running
+sequentially with2048reasoning/8192output per turn and1200seconds whole-case.
+The predeclared512-budget router diagnostic runs only after a router deadline.
+
+22:14-22:20IST continuation: owner says"continue". Live inventory finds no
+inference process; original stream ends at862.125seconds with seven successful
+reads and no visible final answer. Windows booted unexpectedly at19:46:39;
+Event41 has BugcheckCode0 and no new minidump. A19:46:56WHEA corrected record
+decodes to processor-cache/data-write/level1, APIC0/bank0. Memory-section
+validbits0do not identify a DIMM. It is logged during startup and does not
+establish restart causation. ParentAGENTS requires stopping on new hardware
+errors, so the contemplated reduced-thread retry is not launched. No BIOS,
+driver, clocks or user apps are changed. A private stop marker prevents the
+old experiment queue from being resumed accidentally. Production stays selected
+but off. Remaining history/TS-SQL/512-budget/131K probes are explicitly unrun.
+Original raw evidence remains untouched; separate recovery metadata records
+the interruption. Final offline suite:38tests pass in15.892seconds.
 
 ## 2026-10-18 — Strata on 10 GB
 
@@ -743,6 +767,11 @@ shared adapters reviewed and unchanged. No further automatic inference queued.
 
 ## Agent Deferred
 
+| Item | Deferred on | Reason | Status |
+|---|---|---|---|
+|TQ router completion, history, TS/SQL, smaller-reasoning diagnostic and131K capacity|2026-10-19|Unexpected restart and new corrected processor-cache record; preserve the interrupted result and hardware-stop rule|Pending; no automatic retry|
+|Production endpoint restoration after this restart|2026-10-19|Selected profile is preserved; new hardware evidence prevents a fresh inference load in this campaign|Pending stability review|
+
 -17October Copilot no-response: fresh-session Autopilot/Allow all, greeting and
   cited-file UI checks pending; owner explicitly requested no editor typing.
   Qwen-only MCP exclusion is a mitigation, not a demonstrated client fix.
@@ -777,6 +806,11 @@ Current dispositions:
 | Restart component cause | Unknown | New diagnostic evidence; no RAM-speed assumption |
 
 ## Agent Suggestions
+
+| Suggestion | Raised on | Priority | Status |
+|---|---|---|---|
+|Correlate recurrent restarts with CPU/cache, firmware/power and CPU-temperature evidence before sustained model testing; do not infer a defective part or RAM-speed cause from this record|2026-10-19|High|Open|
+|Retain selected Qwen MoE Q4; resume pending frozen cases in fresh directories only after stability review and label changed profiles|2026-10-19|High|Open|
 
 -17October: use a new Copilot chat for changed session-construction settings;
   verify actual delivery and tool inventory before changing model context or

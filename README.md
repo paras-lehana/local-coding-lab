@@ -1,9 +1,14 @@
 # Local Coding Lab
 
-**19 October: azllm / TurboQuant investigation in progress.** The article's
-27B TQ3_4S main layers alone exceed this10GiB GPU. We are testing the author's
+**19 October: azllm / TurboQuant measured on 10 GB, with limits.** The article's
+27B TQ3_4S main layers alone exceed this10GiB GPU. We tested the author's
 separate llama.cpp-tq3 CPU/GPU route with the same weights; this does not
-reproduce the207tok/s all-GPU headline. [Experiment and current status](docs/tasks/2026-10-19-azllm/2026-10-19-azllm-and-turboquant-v0.7.0.md)
+reproduce the207tok/s all-GPU headline. Six guarded probes give1.49-2.09tok/s;
+MTP/DFlash acceptance does not translate into a large practical gain here.
+The linked-file coding run is interrupted by an unexpected PC restart; a
+corrected processor-cache hardware event is logged during startup. Remaining
+inference tests and production restart are withheld. No new coding score or
+replacement is claimed. [Experiment and current status](docs/tasks/2026-10-19-azllm/2026-10-19-azllm-and-turboquant-v0.7.0.md)
 and [article review](research/reviews/2026-10-19-azllm.md).
 
 **18 October: Strata on10GB.** The experimental fork completes all three
@@ -26,7 +31,7 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Status: v0.7.0 research branch; TurboQuant trials in progress. Strata comparison and native idle unloading tested.**
+**Status: v0.7.0. Six TurboQuant probes completed; coding evaluation interrupted by a restart. Further inference is withheld after a new hardware event. Strata comparison and native idle unloading have separate completed results.**
 The desktop control has since become a separate public project:
 [LLM Tray](https://github.com/paras-lehana/llm-tray). It adds a compact tray
 resource icon, hover details, pin/drag, customizable shortcuts/metrics and

@@ -2,6 +2,23 @@
   "azllm": {"url": "https://github.com/xhinker/azllm", "commit": "1510768a8a6a88f47876ab9293dc3caeaab9c7b4"},
   "tqllm_inspected_upstream": {"url": "https://github.com/turbo-tan/tqllm", "commit": "d61798611c1942408e2fb32e0be4826f7dd1add5", "scope": "current host-placement options checked; no general dense layer CPU offload found"},
   "llama_tq3": {"url": "https://github.com/turbo-tan/llama.cpp-tq3", "commit": "ecc76783ed1e9be31f7da2411617b92e066b7101"},
+  "dflash": {
+    "repo": "z-lab/Qwen3.8-27B-DFlash2-GGUF",
+    "revision": "2d9571f8ce46e151f61c6499c99dee6079e1d610",
+    "file": "Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+    "bytes": 1143006816,
+    "sha256": "1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd",
+    "url": "https://huggingface.co/z-lab/Qwen3.8-27B-DFlash2-GGUF/resolve/2d9571f8ce46e151f61c6499c99dee6079e1d610/Qwen3.8-27B-DFlash2-Q4_K_M.gguf"
+  },
+  "mtp_vocabulary": {
+    "repo": "YTan2000/Qwen3.8-27B-TQ3_4S",
+    "revision": "a07bc6f260d1a431a38f5332fd8fc512ff7b871f",
+    "file": "draft-vocab-40960.txt",
+    "bytes": 238328,
+    "sha256": "9cc3682a7e0a91708a61dd8e3fbe38bf83ebd31eb6a12ff7f7432a4018a693c7",
+    "notice_file": "draft-vocab-40960.NOTICE",
+    "notice_sha256": "e808874c1f099dd136dd5ef79e47d19438e90a22d3b15d1296ee9a61558f4d7d"
+  },
   "model": {
     "repo": "YTan2000/Qwen3.8-27B-TQ3_4S",
     "revision": "a07bc6f260d1a431a38f5332fd8fc512ff7b871f",

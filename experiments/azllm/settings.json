@@ -1,5 +1,6 @@
 {
   "status": "frozen_plan_not_a_production_profile",
+  "campaign_outcome": "Six calibration probes complete. Router interrupted by unexpected restart before deadline; no completed coding score. Corrected processor-cache event logged during startup; remaining inference withheld under existing hardware-stop rule. Original plans below are not completed measurements.",
   "context_smoke": 16384,
   "context_workflows": 32768,
   "gpu_layers_trials": [16, 24, 28, 30],
@@ -14,6 +15,8 @@
   "reasoning": {"enabled": true, "preserve": true, "template_effort": "xhigh", "budget_per_turn": 2048, "output_tokens_per_turn": 8192},
   "whole_case_deadline_seconds": 1200,
   "conditional_router_retry": {"trigger": "complete high-budget run reaches deadline", "reasoning_budget_per_turn": 512, "other_controls": "unchanged", "scoring": "separate diagnostic; never replaces original"},
+  "conditional_mtp": {"trigger": "no-draft profile loads with sufficient measured headroom", "source": "optional prediction block already in target GGUF", "draft_max": 2, "vocabulary": "pinned draft-vocab-40960.txt", "controls": "first compare bounded identical greedy inline probes; run workflow follow-up only if useful", "scope": "native MTP is not the article's DFlash2 engine or a greedy-equivalence proof"},
+  "conditional_dflash": {"trigger": "baseline fit and verified draft file", "source": "z-lab Q4_K_M DFlash2, distinct from azllm TQ3 drafter", "target_gpu_layers": [24, 20], "context": 32768, "draft_gpu_layers": "all", "draft_max": 7, "scope": "llama.cpp-tq3 engine, first guarded readiness and greedy inline probes; no quality or equivalence assumed"},
   "guard": {
     "load_min_ram_free_gib": 18,
     "load_min_commit_available_gib": 20,
@@ -23,6 +26,8 @@
     "stop_min_vram_free_mib": 600,
     "stop_gpu_c": 84
   },
+  "quality_selection_after_calibration": {"gpu_layers": 28, "context": 32768, "speculation": "none", "reason": "DFlash2 whole probe26.594s versus28-layer no-draft27.296s; draft leaves817MiB freeVRAM versus1324MiB.30layers show no token-rate gain. Single probes, no universal optimum claim."},
+  "post_quality_capacity_probe": {"gpu_layers": 28, "context": 131072, "kv": "CPU q8_0/q8_0", "scope": "guarded load and tiny no-thinking availability request only; not131K recall accuracy"},
   "cases": ["router-v1", "context-v1", "ts-sql-v1"],
   "context_case_sha256": "8f1f7b1abf0393780b0d6f3e54136027647b79ab000bc5615c0c329c152cdbed",
   "ts_sql_case_sha256": "af8630ea22910674d17ebc43b6731e45b9ebacf19c2514f736b33fc7f0ec330e"

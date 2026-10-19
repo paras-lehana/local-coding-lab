@@ -1,0 +1,496 @@
+{
+  "date": "2026-10-19",
+  "scope": "Single practical Windows CPU/GPU split trials, not an azllm reproduction or leaderboard",
+  "engine": "llama.cpp-tq3 ecc76783ed1e9be31f7da2411617b92e066b7101",
+  "model": "Qwen3.8-27B-TQ3_4S-v2",
+  "context_workflows": 32768,
+  "device_memory_includes_other_apps": true,
+  "calibrations": [
+    {
+      "profile": "16-16384",
+      "run_result": {
+        "reason": "explicit stop",
+        "code": 0,
+        "seconds": 60.328000000008615,
+        "final": {
+          "time": 1792418272.213907,
+          "platform": "win32",
+          "ram_total_gib": 63.909725189208984,
+          "ram_free_gib": 22.51921844482422,
+          "commit_limit_gib": 89.90972518920898,
+          "commit_available_gib": 33.584651947021484,
+          "vram_total_mib": 10240.0,
+          "vram_free_mib": 7475.0,
+          "gpu_c": 31.0,
+          "gpu": "NVIDIA GeForce RTX 3080",
+          "driver": "617.42"
+        }
+      },
+      "telemetry": {
+        "samples": 52,
+        "invalid_partial_lines": 0,
+        "ram_free_min_gib": 8.70755386352539,
+        "commit_free_min_gib": 27.37042236328125,
+        "device_vram_peak_mib": 6823.0,
+        "device_vram_free_min_mib": 3417.0,
+        "server_rss_peak_gib": 13.688926696777344,
+        "gpu_temperature_peak_c": 33.0
+      },
+      "wall_seconds": 35.78100000000268,
+      "first_visible_seconds": 3.6560000000026776,
+      "usage": {
+        "completion_tokens": 49,
+        "prompt_tokens": 63,
+        "total_tokens": 112,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 63,
+        "prompt_ms": 3567.983,
+        "prompt_per_token_ms": 56.6346507936508,
+        "prompt_per_second": 17.65703480089451,
+        "predicted_n": 49,
+        "predicted_ms": 32126.426,
+        "predicted_per_token_ms": 669.3005416666666,
+        "predicted_per_second": 1.4940971024912637
+      },
+      "strict_json": true,
+      "facts_correct": true,
+      "answer_sha256": "43dc8658e80744d0f4108d7fac79d3f15120a1a977ab01d4e13e02798c9c1068",
+      "config_sha256": "8df33db640887f7dac5030043baee798458166519a53cbd4976f2f4ed3fd55ae"
+    },
+    {
+      "profile": "24-32768",
+      "run_result": {
+        "reason": "explicit stop",
+        "code": 0,
+        "seconds": 56.875,
+        "final": {
+          "time": 1792418330.7638557,
+          "platform": "win32",
+          "ram_total_gib": 63.909725189208984,
+          "ram_free_gib": 22.903850555419922,
+          "commit_limit_gib": 89.90972518920898,
+          "commit_available_gib": 34.15142822265625,
+          "vram_total_mib": 10240.0,
+          "vram_free_mib": 7548.0,
+          "gpu_c": 33.0,
+          "gpu": "NVIDIA GeForce RTX 3080",
+          "driver": "617.42"
+        }
+      },
+      "telemetry": {
+        "samples": 49,
+        "invalid_partial_lines": 0,
+        "ram_free_min_gib": 8.40854263305664,
+        "commit_free_min_gib": 25.709095001220703,
+        "device_vram_peak_mib": 8383.0,
+        "device_vram_free_min_mib": 1857.0,
+        "server_rss_peak_gib": 14.235942840576172,
+        "gpu_temperature_peak_c": 35.0
+      },
+      "wall_seconds": 30.436999999990803,
+      "first_visible_seconds": 3.125,
+      "usage": {
+        "completion_tokens": 49,
+        "prompt_tokens": 63,
+        "total_tokens": 112,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 63,
+        "prompt_ms": 3084.265,
+        "prompt_per_token_ms": 48.9565873015873,
+        "prompt_per_second": 20.426260389428275,
+        "predicted_n": 49,
+        "predicted_ms": 27324.967,
+        "predicted_per_token_ms": 569.2701458333333,
+        "predicted_per_second": 1.7566352413161193
+      },
+      "strict_json": true,
+      "facts_correct": true,
+      "answer_sha256": "43dc8658e80744d0f4108d7fac79d3f15120a1a977ab01d4e13e02798c9c1068",
+      "config_sha256": "5a1236e8fddcc8095a5d276751559db61104638805bcc8771df0da1ec01bac14"
+    },
+    {
+      "profile": "28-32768",
+      "run_result": {
+        "reason": "explicit stop",
+        "code": 0,
+        "seconds": 37.796999999991385,
+        "final": {
+          "time": 1792418370.1448698,
+          "platform": "win32",
+          "ram_total_gib": 63.909725189208984,
+          "ram_free_gib": 22.868972778320312,
+          "commit_limit_gib": 89.90972518920898,
+          "commit_available_gib": 34.1270637512207,
+          "vram_total_mib": 10240.0,
+          "vram_free_mib": 7563.0,
+          "gpu_c": 34.0,
+          "gpu": "NVIDIA GeForce RTX 3080",
+          "driver": "617.42"
+        }
+      },
+      "telemetry": {
+        "samples": 32,
+        "invalid_partial_lines": 0,
+        "ram_free_min_gib": 8.524322509765625,
+        "commit_free_min_gib": 25.256561279296875,
+        "device_vram_peak_mib": 8916.0,
+        "device_vram_free_min_mib": 1324.0,
+        "server_rss_peak_gib": 14.23828125,
+        "gpu_temperature_peak_c": 37.0
+      },
+      "wall_seconds": 27.296000000002095,
+      "first_visible_seconds": 2.5460000000020955,
+      "usage": {
+        "completion_tokens": 49,
+        "prompt_tokens": 63,
+        "total_tokens": 112,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 63,
+        "prompt_ms": 2507.748,
+        "prompt_per_token_ms": 39.80552380952381,
+        "prompt_per_second": 25.122141459189677,
+        "predicted_n": 49,
+        "predicted_ms": 24753.83,
+        "predicted_per_token_ms": 515.7047916666667,
+        "predicted_per_second": 1.9390938695143336
+      },
+      "strict_json": true,
+      "facts_correct": true,
+      "answer_sha256": "43dc8658e80744d0f4108d7fac79d3f15120a1a977ab01d4e13e02798c9c1068",
+      "config_sha256": "43bb6e593355d3ebe677e4d42b466529ab894e3524e1401d7c224c2823675d4a"
+    },
+    {
+      "profile": "30-32768",
+      "run_result": {
+        "reason": "explicit stop",
+        "code": 0,
+        "seconds": 41.21899999999732,
+        "final": {
+          "time": 1792418412.4121506,
+          "platform": "win32",
+          "ram_total_gib": 63.909725189208984,
+          "ram_free_gib": 22.70264434814453,
+          "commit_limit_gib": 89.90972518920898,
+          "commit_available_gib": 33.894290924072266,
+          "vram_total_mib": 10240.0,
+          "vram_free_mib": 7539.0,
+          "gpu_c": 35.0,
+          "gpu": "NVIDIA GeForce RTX 3080",
+          "driver": "617.42"
+        }
+      },
+      "telemetry": {
+        "samples": 35,
+        "invalid_partial_lines": 0,
+        "ram_free_min_gib": 8.420753479003906,
+        "commit_free_min_gib": 24.824718475341797,
+        "device_vram_peak_mib": 9293.0,
+        "device_vram_free_min_mib": 947.0,
+        "server_rss_peak_gib": 14.2393798828125,
+        "gpu_temperature_peak_c": 38.0
+      },
+      "wall_seconds": 30.093000000008033,
+      "first_visible_seconds": 2.5310000000026776,
+      "usage": {
+        "completion_tokens": 54,
+        "prompt_tokens": 63,
+        "total_tokens": 117,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 63,
+        "prompt_ms": 2498.985,
+        "prompt_per_token_ms": 39.666428571428575,
+        "prompt_per_second": 25.210235355554353,
+        "predicted_n": 54,
+        "predicted_ms": 27557.023,
+        "predicted_per_token_ms": 519.9438301886793,
+        "predicted_per_second": 1.9232846741101168
+      },
+      "strict_json": false,
+      "facts_correct": true,
+      "answer_sha256": "8f762ff671ce50c558c6bb02c6b00540ae3ac047879378ead922bf7dacbfef60",
+      "config_sha256": "25733d72b8c9a4645ed2fb3c9c83aa5e3fd07f9c6fb6395f865784733573dbc2"
+    },
+    {
+      "profile": "mtp-24-32768",
+      "run_result": {
+        "reason": "explicit stop",
+        "code": 0,
+        "seconds": 38.9380000000092,
+        "final": {
+          "time": 1792418452.4413521,
+          "platform": "win32",
+          "ram_total_gib": 63.909725189208984,
+          "ram_free_gib": 22.807456970214844,
+          "commit_limit_gib": 89.90972518920898,
+          "commit_available_gib": 34.03366470336914,
+          "vram_total_mib": 10240.0,
+          "vram_free_mib": 7545.0,
+          "gpu_c": 36.0,
+          "gpu": "NVIDIA GeForce RTX 3080",
+          "driver": "617.42"
+        }
+      },
+      "telemetry": {
+        "samples": 33,
+        "invalid_partial_lines": 0,
+        "ram_free_min_gib": 7.753593444824219,
+        "commit_free_min_gib": 24.47515869140625,
+        "device_vram_peak_mib": 8550.0,
+        "device_vram_free_min_mib": 1690.0,
+        "server_rss_peak_gib": 14.931324005126953,
+        "gpu_temperature_peak_c": 38.0
+      },
+      "wall_seconds": 30.093999999997322,
+      "first_visible_seconds": 3.2660000000032596,
+      "usage": {
+        "completion_tokens": 49,
+        "prompt_tokens": 63,
+        "total_tokens": 112,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 63,
+        "prompt_ms": 3232.947,
+        "prompt_per_token_ms": 51.31661904761905,
+        "prompt_per_second": 19.486864461434102,
+        "predicted_n": 49,
+        "predicted_ms": 26818.351,
+        "predicted_per_token_ms": 558.7156458333333,
+        "predicted_per_second": 1.789819217445547,
+        "draft_n": 36,
+        "draft_n_accepted": 30
+      },
+      "strict_json": true,
+      "facts_correct": true,
+      "answer_sha256": "43dc8658e80744d0f4108d7fac79d3f15120a1a977ab01d4e13e02798c9c1068",
+      "config_sha256": "ea9891cbf9445316940ae12014c896dad0dc74b7247eda59e0aad82571e210f8"
+    },
+    {
+      "profile": "dflash-24-32768",
+      "run_result": {
+        "reason": "explicit stop",
+        "code": 0,
+        "seconds": 38.09399999999732,
+        "final": {
+          "time": 1792418491.672387,
+          "platform": "win32",
+          "ram_total_gib": 63.909725189208984,
+          "ram_free_gib": 25.464984893798828,
+          "commit_limit_gib": 89.90972518920898,
+          "commit_available_gib": 34.099185943603516,
+          "vram_total_mib": 10240.0,
+          "vram_free_mib": 7542.0,
+          "gpu_c": 37.0,
+          "gpu": "NVIDIA GeForce RTX 3080",
+          "driver": "617.42"
+        }
+      },
+      "telemetry": {
+        "samples": 32,
+        "invalid_partial_lines": 0,
+        "ram_free_min_gib": 6.429981231689453,
+        "commit_free_min_gib": 23.43731689453125,
+        "device_vram_peak_mib": 9423.0,
+        "device_vram_free_min_mib": 817.0,
+        "server_rss_peak_gib": 16.660816192626953,
+        "gpu_temperature_peak_c": 40.0
+      },
+      "wall_seconds": 26.593999999997322,
+      "first_visible_seconds": 3.6560000000026776,
+      "usage": {
+        "completion_tokens": 49,
+        "prompt_tokens": 63,
+        "total_tokens": 112,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 63,
+        "prompt_ms": 3607.88,
+        "prompt_per_token_ms": 57.26793650793651,
+        "prompt_per_second": 17.461778107919333,
+        "predicted_n": 49,
+        "predicted_ms": 22938.273,
+        "predicted_per_token_ms": 477.8806875,
+        "predicted_per_second": 2.0925725315066224,
+        "draft_n": 42,
+        "draft_n_accepted": 42
+      },
+      "strict_json": true,
+      "facts_correct": true,
+      "answer_sha256": "43dc8658e80744d0f4108d7fac79d3f15120a1a977ab01d4e13e02798c9c1068",
+      "config_sha256": "9d6d47bfc962b413b0852f15c206d6c8915df3818ec32c69fae20bb4ed416ca3"
+    }
+  ],
+  "quality": [
+    {
+      "case": "router-28",
+      "result": {
+        "status": "interrupted",
+        "scored": false,
+        "reason": "Unexpected Windows restart; no final answer or natural1200s deadline. Recovered from saved stream/process/log evidence, not a native collector result.",
+        "last_stream_seconds": 862.125,
+        "last_native_turn_generated_tokens": 1173,
+        "last_native_turn_tok_s": 1.77,
+        "actual_source_files_read": 7,
+        "recovery_record_ist": "2026-10-19T22:17:09.117802+05:30"
+      },
+      "record_source": "recovery_after_restart",
+      "telemetry": {
+        "samples": 769,
+        "invalid_partial_lines": 1,
+        "ram_free_min_gib": 10.487319946289062,
+        "commit_free_min_gib": 24.617942810058594,
+        "device_vram_peak_mib": 9018.0,
+        "device_vram_free_min_mib": 1222.0,
+        "server_rss_peak_gib": 14.571186065673828,
+        "gpu_temperature_peak_c": 45.0
+      },
+      "manifest": {
+        "fixture": "router-v1",
+        "delivery": "frozen-snapshot",
+        "endpoint": "http://127.0.0.1:8086/v1",
+        "model": "qwen38-tq3-lab",
+        "mode": "tools",
+        "seed": 73,
+        "temperature": 0.6,
+        "max_tokens": 8192,
+        "reasoning_budget": 2048,
+        "deadline_seconds": 1200.0,
+        "question_sha256": "097b3d020d4133cc3b9d874027f2640b9d976d0a34a53f1d921a8c4273f9a3a6",
+        "source_sha256": {
+          ".claude/CLAUDE.md": "d39a91d7b728539bcae9097d5f6fda6413cf8451ce6766a1934c389784ec6b7d",
+          ".github/instructions/python-v1.md": "0196cefacef6ef96b621423dd678ec16dd4b3cacde71935de3263bdae17a2033",
+          ".github/instructions/v2/python.md": "ea0547bcc0909a2d0bdcd1bff26ea06fef1a35d3aa218d07fdb51647d8717ca8",
+          "AGENTS.md": "e050ee4825a61bbc63beb6ba6f125fdcdef0c8613ab26c08566987c93f5c4699",
+          "docs/config-contract.md": "2fdb47962dc0836ac22b70ee49e1b0ab9b025762f8cd84f19bce3dcaccb58235",
+          "docs/host.md": "13e41df574cc7ec6a65426345c1a2eb45463e1d97eae42ac3e38f2b4dc060931",
+          "src/config_loader.py": "9fa72de9856b1446f041d7f925de606989e15cb87e179660ffa710abd29139ff"
+        }
+      },
+      "completed_turn_usage": [
+        {
+          "usage": {
+            "completion_tokens": 119,
+            "prompt_tokens": 803,
+            "total_tokens": 922,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 803,
+            "prompt_ms": 9259.932,
+            "prompt_per_token_ms": 11.531671232876713,
+            "prompt_per_second": 86.71769943882956,
+            "predicted_n": 119,
+            "predicted_ms": 63713.677,
+            "predicted_per_token_ms": 539.9464152542373,
+            "predicted_per_second": 1.8520356312193376
+          },
+          "finish_reason": "tool_calls",
+          "phase": null
+        },
+        {
+          "usage": {
+            "completion_tokens": 191,
+            "prompt_tokens": 1216,
+            "total_tokens": 1407,
+            "prompt_tokens_details": {
+              "cached_tokens": 799
+            }
+          },
+          "timings": {
+            "cache_n": 799,
+            "prompt_n": 417,
+            "prompt_ms": 15870.015,
+            "prompt_per_token_ms": 38.05758992805755,
+            "prompt_per_second": 26.275967603055193,
+            "predicted_n": 191,
+            "predicted_ms": 102832.542,
+            "predicted_per_token_ms": 541.2239052631579,
+            "predicted_per_second": 1.847664137292259
+          },
+          "finish_reason": "tool_calls",
+          "phase": null
+        }
+      ],
+      "actual_reads": [
+        {
+          "phase": null,
+          "path": "AGENTS.md",
+          "error": null
+        },
+        {
+          "phase": null,
+          "path": ".claude/CLAUDE.md",
+          "error": null
+        },
+        {
+          "phase": null,
+          "path": "docs/config-contract.md",
+          "error": null
+        },
+        {
+          "phase": null,
+          "path": "docs/host.md",
+          "error": null
+        },
+        {
+          "phase": null,
+          "path": "src/config_loader.py",
+          "error": null
+        },
+        {
+          "phase": null,
+          "path": ".github/instructions/python-v1.md",
+          "error": null
+        },
+        {
+          "phase": null,
+          "path": ".github/instructions/v2/python.md",
+          "error": null
+        }
+      ],
+      "largest_native_prompt_tokens": 1982,
+      "last_native_generation_progress": {
+        "tokens": 1173,
+        "tok_s": 1.77
+      },
+      "last_turn_visible_content_chars": 0
+    }
+  ],
+  "unrun_after_restart": [
+    "context-v1",
+    "ts-sql-v1",
+    "router512 diagnostic",
+    "131072 context capacity probe"
+  ],
+  "disposition": "No further inference after corrected processor-cache event and unexpected reboot; no new completed coding quality score; production remains selected but is not running."
+}
