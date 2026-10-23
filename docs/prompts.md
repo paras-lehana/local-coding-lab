@@ -1,5 +1,10 @@
 # Prompt log — Local Coding Lab
 
+Current phase,23October: Recursive Flint evaluation and reconciliation of
+Claude's20-21October work. Pinned model/runtime installation is in progress;
+see docs/tasks.md and the Flint task report. Historical statuses below remain
+as dated records. No Flint benchmark result is claimed at this checkpoint.
+
 Current phase,19October: azllm/TurboQuant evidence is reviewed on
 experiment/azllm-20261019. Six calibrated CPU/GPU profiles finish; the router
 reads seven files but is interrupted by an unexpected restart before any final
@@ -17,11 +22,12 @@ open; clocks/drivers and editor settings are unchanged. No editor typing or
 automatic experimental queue. Evidence466d2f1 is published on main and the
 experiment branch; matching closeout is recorded below.
 
-Last updated: 2026-10-19. Public project history excludes earlier credentials,
+Last updated: 2026-10-23. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
+|17|2026-10-23|21:55|Claude review and Recursive Flint|Research / Experiment|In progress|[Entry](#recursive-flint-and-claude-review)|
 |16|2026-10-19|22:14|Continue after the interrupted experiment|Recovery / Report|Evidence preserved; further inference withheld|[Entry](#azllm-and-turboquant-on-10-gb)|
 |15|2026-10-19|18:40|azllm article and TurboQuant on10GB|Research / Experiment|Six probes complete; coding coverage partial|[Entry](#azllm-and-turboquant-on-10-gb)|
 |14|2026-10-18|00:00|Strata on 10 GB|Research / Experiment|Published; Qwen restored; limitations explicit|[Entry](#strata-on-10-gb)|
@@ -1408,3 +1414,34 @@ and Qwen Q4/128K CPU KV/1800-second idle configuration remain unchanged.
 Two remote API checks answer; fresh remote editor tests remain separate under
 the owner's no-typing instruction. Public artifact excludes private host data.
 No model downloads/deletions, cloud calls or social posts were performed.
+
+## Recursive Flint and Claude review
+
+23 October 2026; project local-coding-lab; branch experiment/flint-20261023.
+
+### Original prompt
+
+> awesome, there were some new changes and analysis done by Claude. Read them out, update your learnings, summarize also to me in the last.
+>
+> then get started with this: https://recursive.com/updates/introducing-recursive-flint
+>
+> It was just released, we test it on the same (latest) metrics after installing and make report (add it to current report and also make a seperate report about it, infact update claude project file, we do this for all as we might later need to publish blogs about each model tried and its comparison).
+
+### Pre-flight context and progress
+
+- Preserve Claude's existing changes (initial branch experiment/azllm-20261019).
+- Read latest private local-llm skill/campaign and actual receipts before comparing.
+- Keep installations under the owner's LLM data root; one engine at a time;
+  apps stay open; no editor typing, driver/clock changes or broad process kills.
+- Apply agent-context-maintenance to project guidance; standalone plus aggregate
+  reports now required for each candidate.
+
+22:14 IST checkpoint: separate runtime b11838 installed/hash verified; model
+download nearly complete. Tests40pass17.222s, PSparserchecks pass, public audit
+223files0findings at earlier checkpoint. Frozen comparison plan saved privately.
+Reviewed Claude's actual LFM public-score/coding grades and candidate receipts;
+incomplete cases and partial composite coverage remain explicit. Public
+instructions do not expose private fixture text. Generated code is not executed
+automatically: collection preserves raw requests/streams for review first.
+
+Canonical A-G closeout will be added after measured results and publication.

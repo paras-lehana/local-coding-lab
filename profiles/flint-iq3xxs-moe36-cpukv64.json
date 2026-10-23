@@ -1,0 +1,32 @@
+{
+  "model": "flint-iq3xxs",
+  "alias": "flint-lab",
+  "locally_tested": false,
+  "validation_status": "proposed-not-measured",
+  "evidence": "23 October initial apps-open profile. Header estimate: 8.699 GiB CPU experts and 4.833 GiB other weight spans before embedding placement, scratch and cache. 64K CPU q8 KV estimated about 1 GiB with sliding-window allocation. Source review shows lazy-mode does not mark Flint expert tensors; use load-mode none to avoid Windows whole-file mmap prefetch, with a separate 18 GiB commit gate. Measure actual allocations before scoring.",
+  "load_min_ram_free_gib": 13,
+  "load_min_vram_free_mib": 6100,
+  "load_min_commit_available_gib": 18,
+  "stop_min_ram_free_gib": 2.5,
+  "stop_min_vram_free_mib": 400,
+  "stop_min_commit_available_gib": 1,
+  "stop_gpu_c": 84,
+  "template_kwargs": {"preserve_reasoning": true},
+  "args": [
+    "--gpu-layers", "all", "--n-cpu-moe", "36",
+    "--ctx-size", "65536", "--no-kv-offload",
+    "--threads", "4", "--threads-batch", "8",
+    "--cpu-mask", "0x5554", "--cpu-strict", "1",
+    "--cpu-mask-batch", "0xFFFC",
+    "--batch-size", "512", "--ubatch-size", "128",
+    "--flash-attn", "on", "--cache-type-k", "q8_0",
+    "--cache-type-v", "q8_0", "--jinja",
+    "--reasoning", "on", "--reasoning-format", "deepseek",
+    "--reasoning-budget", "-1", "--reasoning-preserve",
+    "--predict", "16384", "--temp", "1.0", "--top-p", "0.95",
+    "--top-k", "20", "--min-p", "0", "--repeat-penalty", "1",
+    "--cache-ram", "0", "--fit", "off", "--perf",
+    "--load-mode", "none", "--no-repack", "--ctx-checkpoints", "4",
+    "--timeout", "1200", "--metrics"
+  ]
+}

@@ -438,8 +438,12 @@ def run_server(args: argparse.Namespace, data: Path) -> None:
             raise ValueError(f"Runtime does not advertise {flag}")
     version = subprocess.run([str(executables[0]), "--version"], capture_output=True,
                              text=True, encoding="utf-8", errors="replace", timeout=30)
-    if "b2f036c0f" not in version.stdout + version.stderr:
-        raise ValueError("Runtime commit differs from pinned b11562; create a reviewed profile/catalog update")
+    runtime_catalog = read_json(ROOT / "catalog/runtime.json")
+    reviewed = [runtime_catalog["commit"][:9]] + [
+        alternate["commit"][:9] for alternate in runtime_catalog.get("reviewed_alternates", [])]
+    if not any(commit in version.stdout + version.stderr for commit in reviewed):
+        raise ValueError("Runtime commit is not the pinned b11562 or a reviewed alternate; "
+                         "add a hash-verified entry to catalog/runtime.json reviewed_alternates")
     env, variant = runtime_environment(runtime, profile)
     run_dir = data / "runs" / time.strftime("server-%Y%m%d-%H%M%S")
     run_dir.mkdir(parents=True, exist_ok=False)

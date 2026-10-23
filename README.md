@@ -1,5 +1,13 @@
 # Local Coding Lab
 
+**23 October, v0.8.0 work in progress:** Claude's newer candidate results are
+reconciled in the [current comparison](docs/model-comparison.md). Recursive
+Flint's pinned Windows installation and apps-open evaluation are in progress;
+no Flint quality score or replacement is claimed yet.
+[Standalone Flint report](docs/tasks/2026-10-23-flint/2026-10-23-recursive-flint-v0.8.0.md)
+and [per-model reporting policy](docs/model-reporting.md). The older campaign
+status below describes its dated experiment, not the current active phase.
+
 **19 October: azllm / TurboQuant measured on 10 GB, with limits.** The article's
 27B TQ3_4S main layers alone exceed this10GiB GPU. We tested the author's
 separate llama.cpp-tq3 CPU/GPU route with the same weights; this does not

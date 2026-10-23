@@ -3,6 +3,17 @@
   "verified_metadata_date": "2026-10-15",
   "note": "Bytes are GGUF size, not required RAM. Hashes are publisher LFS metadata. Consult individual status and campaign reports, not catalog presence, for actual loading and quality evidence. Model licenses apply separately.",
   "models": {
+    "flint-iq3xxs": {
+      "name": "Recursive Flint 40B-A2.5B UD-IQ3_XXS",
+      "repo": "unsloth/flint-GGUF",
+      "revision": "20468edfc38ab43d6914cc88b08cbecb05d0fc62",
+      "filename": "flint-UD-IQ3_XXS.gguf",
+      "bytes": 14535427520,
+      "sha256": "7a0a095dde1d931063a5d571e19497d997edbc783eb1ed6b86529bfab9d94804",
+      "upstream": "https://huggingface.co/RecursiveSI/flint",
+      "status": "experimental-installation-in-progress-2026-10-23",
+      "thinking": "Native reasoning_content history; inspected template has no low/high/xhigh effort switch. Preserve reasoning; verify runtime parsing."
+    },
     "qwen36-q4": {
       "name": "Qwen3.6-35B-A3B UD-Q4_K_M",
       "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
@@ -116,6 +127,98 @@
       "sha256": "9e6032d2f3b50a60f17ce8bf5a1d85c71af9b53b89c7978020ae7c660f29b090",
       "status": "public-tests-reviewed-private-tool-round-failure-not-selected",
       "thinking": "Publisher non-thinking-only checkpoint; no native high/xhigh reasoning mode."
+    },
+    "k2-mova-36b-q4": {
+      "name": "K2 Horizon MoVA 36B-A4B Q4_K_M",
+      "repo": "IFM/K2-Horizon-MoVA-36B-A4B-GGUF",
+      "revision": "00cce3151bdce384661cb33603853ccfe6209de9",
+      "filename": "K2-Horizon-MoVA-36B-A4B-Q4_K_M.gguf",
+      "bytes": 22368011616,
+      "sha256": "513dd78590ac29135a7cea5a99865d57d65291b1f857a8904fb9b1878d4f4cbd",
+      "upstream": "https://huggingface.co/IFM/K2-Horizon-MoVA-36B-A4B",
+      "status": "candidate-20261020-not-downloaded",
+      "thinking": "reasoning effort high recommended; K2 tool/reasoning parser (llama.cpp PR #29535)",
+      "url": "https://huggingface.co/IFM/K2-Horizon-MoVA-36B-A4B-GGUF/resolve/00cce3151bdce384661cb33603853ccfe6209de9/K2-Horizon-MoVA-36B-A4B-Q4_K_M.gguf"
+    },
+    "nemotron-bolt-74b-24gb": {
+      "name": "NVIDIA Nemotron 3.5 Bolt 74B-A9B 24GB (QAD low-bit)",
+      "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+      "revision": "e0fecb69cb3e5e4c5e8a056fa2aec98c78e91246",
+      "filename": "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf",
+      "bytes": 22018326528,
+      "sha256": "91d63363e782c8a3d5f4be42816eba8e0d42dd2530bd07a7d0d2dc440599af75",
+      "upstream": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB",
+      "status": "candidate-20261020-not-downloaded",
+      "thinking": "thinking off/medium/high; needs llama.cpp b11669+ (PR #30520)",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF/resolve/e0fecb69cb3e5e4c5e8a056fa2aec98c78e91246/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf"
+    },
+    "lfm25-24b-q8": {
+      "name": "LiquidAI LFM2.5-24B-A2B Q8_0",
+      "repo": "LiquidAI/LFM2.5-24B-A2B-GGUF",
+      "revision": "0912d33141f77e10705345a6732bfd83f0252fdc",
+      "filename": "LFM2.5-24B-A2B-Q8_0.gguf",
+      "bytes": 25493732640,
+      "sha256": "f09bf094a8a138c5b645598ca1abb6696a0fde26662d7af649b0713fdef330b6",
+      "upstream": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B",
+      "status": "candidate-20261020-not-downloaded",
+      "thinking": "always thinks; lfm2moe; tool parser with --jinja",
+      "url": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B-GGUF/resolve/0912d33141f77e10705345a6732bfd83f0252fdc/LFM2.5-24B-A2B-Q8_0.gguf"
+    },
+    "bonsai2-27b-pq2": {
+      "name": "Ternary Bonsai 2 27B PQ2_0 (ternary Qwen3.8-27B)",
+      "repo": "prism-ml/Ternary-Bonsai-2-27B-gguf",
+      "revision": "b072e1d3b35a0a630cece372c2127528e0994386",
+      "filename": "Ternary-Bonsai-2-27B-PQ2_0.gguf",
+      "bytes": 7206168928,
+      "sha256": "3907dc1658db1f78a9826bf8d5bcb8dc65db0d466388937af57f2294fae62ec1",
+      "upstream": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf",
+      "status": "candidate-20261020-not-downloaded",
+      "thinking": "effort medium/high/xhigh; Q2_0 support merged 11 Oct (PR #29600)",
+      "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf/resolve/b072e1d3b35a0a630cece372c2127528e0994386/Ternary-Bonsai-2-27B-PQ2_0.gguf"
+    },
+    "lfm25-24b-qad-q4": {
+      "name": "LiquidAI LFM2.5-24B-A2B QAD Q4_0",
+      "repo": "LiquidAI/LFM2.5-24B-A2B-GGUF",
+      "revision": "0912d33141f77e10705345a6732bfd83f0252fdc",
+      "filename": "LFM2.5-24B-A2B-QAD-Q4_0.gguf",
+      "bytes": 13578190880,
+      "sha256": "d1c03f73ecaf61017d70419eec9e5dc0b05d50ae26c23d522829b934fbabf8a5",
+      "upstream": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B",
+      "status": "candidate-20261020-not-downloaded",
+      "thinking": "always thinks; quantization-aware distilled Q4_0"
+    },
+    "bonsai2-27b-ptq1": {
+      "name": "Ternary Bonsai 2 27B PTQ1_0 (dense trit packing)",
+      "repo": "prism-ml/Ternary-Bonsai-2-27B-gguf",
+      "revision": "b072e1d3b35a0a630cece372c2127528e0994386",
+      "filename": "Ternary-Bonsai-2-27B-PTQ1_0.gguf",
+      "bytes": 5946648928,
+      "sha256": "53107f530aa52eb00912263ab1ee29bd199261c87cd7b4ad4ca1318c1fe33ee3",
+      "upstream": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf",
+      "status": "candidate-20261020",
+      "thinking": "effort medium/high/xhigh (default xhigh); needs Prism fork; fits fully in 10 GB VRAM"
+    },
+    "qwen36-iq4xs": {
+      "name": "Qwen3.6-35B-A3B UD-IQ4_XS",
+      "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+      "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+      "filename": "Qwen3.6-35B-A3B-UD-IQ4_XS.gguf",
+      "bytes": 17730509792,
+      "sha256": "649d7508507b84638732c4f52c24c8b15843c6dca2f3ff793ae07c14a67ebbb3",
+      "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "status": "candidate-20-oct: same revision as the 31/36 Q4_K_M leader, 4 GiB smaller so it fits with the owner's apps open",
+      "thinking": "enable_thinking and preserve_thinking; no native xhigh"
+    },
+    "qwen36-iq3s": {
+      "name": "Qwen3.6-35B-A3B UD-IQ3_S",
+      "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+      "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+      "filename": "Qwen3.6-35B-A3B-UD-IQ3_S.gguf",
+      "bytes": 13676723168,
+      "sha256": "66a3ca888ce13482b40c333db2432c0ebde3a7b13754fc29f0c6f5e89703ec66",
+      "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "status": "candidate-21-oct: same release as the leader at 13.7 GB, sized to run with apps open; a 3-bit quant, so a quality drop is expected and must be measured",
+      "thinking": "enable_thinking and preserve_thinking; no native xhigh"
     }
   }
 }

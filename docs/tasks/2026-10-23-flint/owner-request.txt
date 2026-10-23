@@ -1,0 +1,5 @@
+awesome, there were some new changes and analysis done by Claude. Read them out, update your learnings, summarize also to me in the last.
+
+then get started with this: https://recursive.com/updates/introducing-recursive-flint
+
+It was just released, we test it on the same (latest) metrics after installing and make report (add it to current report and also make a seperate report about it, infact update claude project file, we do this for all as we might later need to publish blogs about each model tried and its comparison).

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.8.0 - 2026-10-23 (in progress)
+
+- Reconcile Claude's newer candidate results and explicitly separate partial
+  scorecard coverage from complete comparisons.
+- Pin Recursive Flint UD-IQ3_XXS and isolated llama.cpp b11838 CUDA12.4 assets;
+  add an explicit bounded-memory installer, header estimates and trial profile.
+- Add standalone model-report requirements and a current comparison index,
+  linked from Claude and shared project guidance for future blog evidence.
+- Preserve the retained Qwen/Gemma baselines; retire only the verified completed
+  LFM candidate to make download space. Inference outcomes remain pending.
+
 ## 0.7.0 - 2026-10-19
 
 - Add an attributed azllm article review and pin the inspected fork, upstream,

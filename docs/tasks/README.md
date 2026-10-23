@@ -6,6 +6,7 @@ Detailed reusable experiment evidence remains in the repository's `reports/`.
 
 | Date | Task | Status | Report |
 |---|---|---|---|
+|2026-10-23|Recursive Flint and Claude campaign reconciliation|In progress: pinned installation, latest scorecard, standalone reporting policy|[Flint evidence](2026-10-23-flint/2026-10-23-recursive-flint-v0.8.0.md)|
 |2026-10-19|azllm/TurboQuant article and10GB adaptation|Six probes measured; coding interrupted by restart; further inference withheld after hardware event|[Analysis and measurements](2026-10-19-azllm/2026-10-19-azllm-and-turboquant-v0.7.0.md)|
 |2026-10-18|Strata on10GB and same-weight comparison|Complete with limits: faster32K Qwen, Flash coding deadlines/empty history; keep llama128K|[Strata measurements and limits](2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md)|
 | 2026-10-17 | Idle unloading, resource widget and AutoHotkey | Lifecycle/UI tests pass;30minute production timer; Copilot latency remains unresolved | [Measured desktop control report](2026-10-17-idle-widget/2026-10-17-idle-widget-v0.5.0.md) |

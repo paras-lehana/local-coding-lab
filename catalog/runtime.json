@@ -17,5 +17,66 @@
       "bytes": 391443627,
       "sha256": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6"
     }
+  ],
+  "reviewed_alternates": [
+    {
+      "tag": "b11838",
+      "commit": "4231b23dc2c46661d01157aac5245bdcf03ce4b1",
+      "platform": "windows-x64-cuda12.4",
+      "source": "https://github.com/ggml-org/llama.cpp/releases/tag/b11838",
+      "verified_metadata_date": "2026-10-23",
+      "reason": "Native Flint architecture support; isolated experiment, production runtime unchanged. Asset sizes and hashes in experiments/flint/pins.json.",
+      "assets": [
+        {
+          "filename": "llama-b11838-bin-win-cuda-12.4-x64.zip",
+          "bytes": 272332183,
+          "sha256": "84589aea6b7b55e08cb9e2a6aab43b41cbb3a067e8274019bef93788d76027d6"
+        },
+        {
+          "filename": "cudart-llama-bin-win-cuda-12.4-x64.zip",
+          "bytes": 391443627,
+          "sha256": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6"
+        }
+      ]
+    },
+    {
+      "tag": "b11669",
+      "commit": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "platform": "windows-x64-cuda12.4",
+      "source": "https://github.com/ggml-org/llama.cpp/releases/tag/b11669",
+      "verified_metadata_date": "2026-10-20",
+      "install_dir": "E:/llm/runtimes/b11669",
+      "reason": "Nemotron 3.5 Bolt support (PR #30520) and newer architectures; production stays on b11562",
+      "notes": "v0.7.0 changes the default port to 9931; profiles always pass --port explicitly via lab.py",
+      "assets": [
+        {
+          "filename": "llama-b11669-bin-win-cuda-12.4-x64.zip",
+          "bytes": 266582698,
+          "sha256": "c2da1f73ed176ae093ac5aceb978a7b167a16113f6d74c6789eeaee2135cb8dc"
+        },
+        {
+          "filename": "cudart-llama-bin-win-cuda-12.4-x64.zip",
+          "bytes": 391443627,
+          "sha256": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6",
+          "note": "identical to the b11562 cudart package; DLLs copied from E:/llm/llama.cpp"
+        }
+      ]
+    },
+    {
+      "tag": "prism-b10787-73bfe6c",
+      "commit": "73bfe6cc485554822f80c473a3c0c4f25e80f41b",
+      "platform": "windows-x64-cuda12.4",
+      "source": "https://github.com/PrismML-Eng/llama.cpp/releases/tag/prism-b10787-73bfe6c",
+      "verified_metadata_date": "2026-10-20",
+      "install_dir": "E:/llm/runtimes/prism-b10787",
+      "reason": "PrismML fork with PQ2_0/PTQ1_0 ternary kernels (ggml type 142) for Ternary Bonsai 2; mainline b11669 rejects PQ2_0",
+      "assets": [
+        {
+          "filename": "llama-prism-b10787-73bfe6c-bin-win-cuda-12.4-x64.zip",
+          "bytes": 314639598,
+          "sha256": "64ca6810aae0e6bbb28d22f888bd009b9bdd0c24c5af8a6a7490b3eaf75ccd57"
+        }
+      ]
+    }
   ]
 }

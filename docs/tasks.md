@@ -1,6 +1,28 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-10-19 (Asia/Kolkata); azllm/TurboQuant evidence reviewed; further inference withheld after a new hardware event.
+Last updated: 2026-10-23 (Asia/Kolkata); Flint installation and Claude campaign reconciliation in progress.
+
+## 2026-10-23 - Recursive Flint and Claude campaign review
+
+| Task | Status | Evidence |
+|---|---|---|
+| Read Claude changes and update learnings | Done, reconciliation ongoing | local-llm skill, private campaign, latest stop receipts; docs/model-comparison.md |
+| Install and test Flint using latest metrics | In progress | Pinned 13.54 GiB UD-IQ3_XXS download and separate b11838 CUDA runtime |
+| Standalone and aggregate reports | In progress | Flint task report and docs/model-comparison.md |
+| Reporting rule for all future models | Done | AGENTS.md, CLAUDE.md, docs/model-reporting.md |
+
+Initial review: 38 baseline offline tests pass (19.894 s). No llama/Strata
+process and no Ollama model loaded. RAM 3000 MT/s, GPU driver 621.01; current
+boot has no returned WHEA events. A fresh launch still requires live gates.
+Verified and retired only the completed LFM GGUF to make download space;
+reports/2026-10-23-retirement.json retains its identity and rationale. Working
+Qwen Q4 and Gemma fallback retained. No applications, clocks or drivers changed.
+The second IQ3_S run was not running: its stop receipt reports free-VRAM floor;
+no result/answer exists. Do not turn its stale manifest into a quality result.
+
+Claude's uncommitted catalog/runtime/launcher work remains in the checkout;
+Flint work proceeds on experiment/flint-20261023. No editor typing or production
+stop has been performed. See the Flint report for current collection status.
 
 ## 2026-10-19 - azllm and TurboQuant on 10 GB
 
