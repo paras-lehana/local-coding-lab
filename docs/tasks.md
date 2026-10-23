@@ -1,6 +1,6 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-10-24 (Asia/Kolkata); Flint evaluation complete with limitations; publication and production check in progress.
+Last updated: 2026-10-24 (Asia/Kolkata); Flint evaluation/reporting complete with limitations; Qwen restored.
 
 ## 2026-10-23 - Recursive Flint and Claude campaign review
 
@@ -77,7 +77,9 @@ Qwen restoration preflight passes with 18.60 GiB RAM/24.46 GiB commit available;
 existing launcher invoked. Live health/model/context checks pass; API returns
 `READY.` in 15.641 seconds, so availability passes but exact-literal formatting
 does not. Production Qwen remains running with unchanged 128K/1800-second idle
-settings. No new editor UI claim. Final publication checks follow.
+settings. No new editor UI claim. Results commit1f8fa59 is pushed and its
+Windows/Ubuntu CI passes. Final public audit scans239files with0findings;
+Git whitespace checks pass. Canonical A-G closeout is recorded in prompts.md.
 
 ## 2026-10-19 - azllm and TurboQuant on 10 GB
 

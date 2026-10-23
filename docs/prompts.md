@@ -1,11 +1,12 @@
 # Prompt log — Local Coding Lab
 
-Current phase,23October: Recursive Flint evaluation and reconciliation of
-Claude's20-21October work. Pinned model/runtime installation is in progress;
-see docs/tasks.md and the Flint task report. Historical statuses below remain
-as dated records. No Flint benchmark result is claimed at this checkpoint.
+Current phase,24October: Recursive Flint evaluation and Claude reconciliation
+are complete with explicit limitations. Standalone/comparison reports record
+private29/36, router39/40, coding11 completed passes/12 and separate history8/8.
+No full composite or promotion. Tested Flint weights are retired, Qwen Q4 is
+restored unchanged, and the canonical closeout is recorded in the entry below.
 
-Current phase,19October: azllm/TurboQuant evidence is reviewed on
+Historical phase,19October: azllm/TurboQuant evidence is reviewed on
 experiment/azllm-20261019. Six calibrated CPU/GPU profiles finish; the router
 reads seven files but is interrupted by an unexpected restart before any final
 answer. A corrected processor-cache event is logged during startup. Remaining
@@ -22,12 +23,12 @@ open; clocks/drivers and editor settings are unchanged. No editor typing or
 automatic experimental queue. Evidence466d2f1 is published on main and the
 experiment branch; matching closeout is recorded below.
 
-Last updated: 2026-10-23. Public project history excludes earlier credentials,
+Last updated: 2026-10-24. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
-|17|2026-10-23|21:55|Claude review and Recursive Flint|Research / Experiment|In progress|[Entry](#recursive-flint-and-claude-review)|
+|17|2026-10-23/24|21:55 start|Claude review and Recursive Flint|Research / Experiment|Done with measured limitations|[Entry](#recursive-flint-and-claude-review)|
 |16|2026-10-19|22:14|Continue after the interrupted experiment|Recovery / Report|Evidence preserved; further inference withheld|[Entry](#azllm-and-turboquant-on-10-gb)|
 |15|2026-10-19|18:40|azllm article and TurboQuant on10GB|Research / Experiment|Six probes complete; coding coverage partial|[Entry](#azllm-and-turboquant-on-10-gb)|
 |14|2026-10-18|00:00|Strata on 10 GB|Research / Experiment|Published; Qwen restored; limitations explicit|[Entry](#strata-on-10-gb)|
@@ -1444,7 +1445,7 @@ incomplete cases and partial composite coverage remain explicit. Public
 instructions do not expose private fixture text. Generated code is not executed
 automatically: collection preserves raw requests/streams for review first.
 
-Canonical A-G closeout will be added after measured results and publication.
+Canonical A-G closeout appears below after the measured-result checkpoints.
 
 23 October resume: owner said "continue". Re-read project guidance, methodology,
 task report and mandatory shared logging protocol. Smoke succeeded; public
@@ -1472,3 +1473,72 @@ unchanged at128K/1800seconds idle. API responds READY. in15.641seconds; the
 period fails the exact-literal check. No new hardware event or editor typing.
 Final offline41tests pass18.161seconds;4PowerShell files parse. Public audit,
 publication and canonical A-G closeout follow.
+
+### Canonical closeout — 24 October 2026
+
+**A. Outcome**
+
+Completed the Claude review and Flint evaluation. **Keep Qwen Q4 as the default for your instruction-heavy workflow.**
+
+- **Claude's results:** Qwen Q4 remains the reference; Q5/Q6 did not improve its instruction score. LFM completed 6/12 coding tasks successfully; Bonsai failed to finish its workflow. Qwen's earlier 86.3 was a partial score, not a complete ranking.
+- **Flint:** strong direct coding, but weaker instruction adherence and file-tool reliability. It does not replace Qwen based on this trial.
+
+[Flint report](https://github.com/paras-lehana/local-coding-lab/blob/main/docs/tasks/2026-10-23-flint/2026-10-23-recursive-flint-v0.8.0.md) · [All-model comparison](https://github.com/paras-lehana/local-coding-lab/blob/main/docs/model-comparison.md)
+
+**B. Measurements and implementation**
+
+- Tested **Flint UD-IQ3_XXS**, llama.cpp b11838, native reasoning, 64K context and GPU q8 KV. No native `xhigh` setting exists in this template.
+- **Private instructions: 29/36**, versus Qwen's 31/36. **Public router: 39/40.** These are single-run, agent-assessed scores.
+- **Coding: 11 completed passes/12; all 374 checks on completed answers pass.** CSV exhausted its output budget without code. A separate test found that the cache accepts an invalid NaN TTL.
+- **History diagnostic: 8/8 in 5m28s** with a larger output budget. The original history failure and file-driven TS/SQL tool-loop failure remain recorded; no full composite is claimed.
+- About **10.2 GiB process RAM**, **5.47 GiB dedicated VRAM**, including **0.96 GiB GPU KV**; roughly **21–23 tokens/s**. CPU-KV variants both exceeded the router deadline.
+- **Qwen is running again:** 128K context, existing 30-minute idle sleep. API reply took 15.6 seconds; its extra period failed the exact-format request. No fresh editor test is claimed.
+
+Validation: 41 offline tests, four PowerShell parses and Windows/Ubuntu CI passed. Results commit: `1f8fa59`; published in the public repository's main branch. The report lists changed files, commands, sources read and limitations. Private evidence remains outside Git.
+
+**C. Request status**
+
+| # | Pointer Task | Original Pointer Text | Status | What Was Done |
+|---|---|---|---|---|
+| 1 | Review Claude | “Read them out” | DONE | Reconciled newer results and stop receipts |
+| 2 | Update learnings | “update your learnings” | DONE | Updated campaign, skills and leaderboard |
+| 3 | Summarize findings | “summarize also to me” | DONE | Summary above and full reports linked |
+| 4 | Test Flint | “same (latest) metrics” | DONE | All three suites attempted and reviewed |
+| 5 | Update comparison | “add it to current report” | DONE | Component scores and limitations added |
+| 6 | Separate report | “make a seperate report” | DONE | Standalone evidence report published |
+| 7 | Maintain guidance | “update claude project file” | DONE | Reporting required for future models |
+
+**D. Additional work**
+
+Fixed incomplete-stream evidence handling and misleading partial-score wording. Retired the verified LFM and Flint downloads after preserving evidence; retained Qwen/Gemma and reproducible installers.
+
+**E. Untested items**
+
+| Item | Status | Reason |
+|---|---|---|
+| Higher Flint quantization / larger context | Not tested | This trial covers the selected low-memory 64K configuration |
+| Complete Qwen coding baseline | Missing | Historical reference lacks the twelve-task component |
+| Repeated finalist / editor checks | Deferred | Flint failed promotion gates; your no-editor-typing constraint remains |
+
+**F. My recommendation**
+
+Fill Qwen's missing coding baseline first. If revisiting Flint, test higher precision and file-tool recovery as separate experiments. Its direct coding results are promising; they do not establish reliable unattended work across your instruction files.
+
+**G. Forwardable summary**
+
+```text
+Local Coding Lab — Flint evaluation and comparison reports completed (version 0.8.0, 24 October 2026)
+
+What's done
+- Reviewed Claude's newer results and corrected comparisons that mixed incomplete and complete evaluations.
+- Tested Flint across instructions, file-based workflows and twelve coding tasks. Eleven coding answers passed every standard check; one task produced no finished code.
+- A separate history exercise passed with a larger answer allowance. The original unsuccessful attempt remains recorded.
+- Found instruction omissions, unreliable file-tool behavior and an additional cache edge-case bug. Flint is promising, but these results do not justify replacing Qwen for this workflow.
+- Published standalone and comparison reports, and made evidence reporting part of future model evaluations.
+- Preserved the evidence, removed the tested Flint download and restored the existing Qwen service with its normal idle behavior.
+
+Suggested next steps
+- Keep Qwen as the default for instruction-heavy work.
+- Complete its missing coding comparison before declaring an overall winner.
+- Revisit Flint's precision and file-handling behavior through separate controlled trials, with independent checks on generated code.
+```

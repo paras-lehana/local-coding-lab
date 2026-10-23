@@ -499,11 +499,12 @@ WSL/bubblewrap, Python, Linux Node 24.22 and TypeScript 5.9.3 perform grading.
 No UI changed, so no new browser/mobile test is claimed.
 
 Latest local validation: **41 offline tests pass in 18.161 seconds**; all four
-PowerShell files parse. Public-content audit and Git whitespace checks are
-required after the final documentation sweep. Earlier CI for commits 321be33
-and a507173 passed on Windows and Ubuntu; final publication is recorded in
-the task/prompt logs. No model weights, private prompts, credentials or raw
-answers are staged into the public repository.
+PowerShell files parse. Final public-content audit scans239files with0findings;
+Git whitespace checks pass. Results commit **1f8fa59** passes
+[Windows/Ubuntu CI](https://github.com/paras-lehana/local-coding-lab/actions/runs/40014077502),
+as did earlier implementation commits321be33/a507173. Canonical closeout is
+recorded in docs/prompts.md; publication targets the existing public main branch.
+No model weights, private prompts, credentials or raw answers are staged.
 
 ## Owner request
 
