@@ -1,0 +1,132 @@
+{
+  "profile": "flint-iq3xxs-moe38-gpukv64",
+  "model": "flint-UD-IQ3_XXS",
+  "runtime": "b11838-4231b23dc",
+  "public_total": null,
+  "public_maximum": 60,
+  "completed_workflows": 1,
+  "planned_workflows": 3,
+  "router": {
+    "score": 39,
+    "maximum": 40,
+    "reviewer": "Codex",
+    "rubric": "router-v1",
+    "semantic_source_review_points": 27,
+    "independent_behavior_points": 12,
+    "independent_behavior_groups_passed": 6,
+    "model_self_tests_passed": 8,
+    "limitation": "Single-seed agent-assessed result. Test coverage omissions deduct1point. Not a complete public suite or human-reviewed result."
+  },
+  "ts_sql": {
+    "status": "tool_turn_limit",
+    "turns": 16,
+    "tool_calls": 32,
+    "valid_reads": 6,
+    "unavailable_reads": 26,
+    "typescript_score": null,
+    "sqlite_score": null
+  },
+  "history": {
+    "status": "incomplete",
+    "reason": "length",
+    "wall_seconds": 226.71899999999732,
+    "score": null
+  },
+  "gate": "Incomplete workflows prevent complete public score/composite/promotion.",
+  "measurements": {
+    "router_turn_timings": [
+      {
+        "usage": {
+          "completion_tokens": 113,
+          "prompt_tokens": 493,
+          "total_tokens": 606,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 493,
+          "prompt_ms": 2493.093,
+          "prompt_per_token_ms": 5.056983772819472,
+          "prompt_per_second": 197.7463335703883,
+          "predicted_n": 113,
+          "predicted_ms": 4225.921,
+          "predicted_per_token_ms": 37.731437500000006,
+          "predicted_per_second": 26.503098377844733
+        },
+        "first_event_seconds": 2.547000000005937,
+        "first_content_seconds": 4.375
+      },
+      {
+        "usage": {
+          "completion_tokens": 69,
+          "prompt_tokens": 1136,
+          "total_tokens": 1205,
+          "prompt_tokens_details": {
+            "cached_tokens": 605
+          }
+        },
+        "timings": {
+          "cache_n": 605,
+          "prompt_n": 531,
+          "prompt_ms": 2109.943,
+          "prompt_per_token_ms": 3.9735273069679855,
+          "prompt_per_second": 251.66556632098587,
+          "predicted_n": 69,
+          "predicted_ms": 2279.676,
+          "predicted_per_token_ms": 33.524647058823525,
+          "predicted_per_second": 29.828800233015567
+        },
+        "first_event_seconds": 8.922000000005937,
+        "first_content_seconds": 9.375
+      },
+      {
+        "usage": {
+          "completion_tokens": 10907,
+          "prompt_tokens": 1493,
+          "total_tokens": 12400,
+          "prompt_tokens_details": {
+            "cached_tokens": 1204
+          }
+        },
+        "timings": {
+          "cache_n": 1204,
+          "prompt_n": 289,
+          "prompt_ms": 1324.272,
+          "prompt_per_token_ms": 4.582256055363321,
+          "prompt_per_second": 218.23311223071997,
+          "predicted_n": 10907,
+          "predicted_ms": 510392.528,
+          "predicted_per_token_ms": 46.79924151843022,
+          "predicted_per_second": 21.367867673799488
+        },
+        "first_event_seconds": 12.593999999997322,
+        "first_content_seconds": 432.57799999999406
+      }
+    ],
+    "peak_process_ram_gib": 10.193675994873047,
+    "peak_process_private_gib": 15.77853775024414,
+    "min_system_available_ram_gib": 6.197765350341797,
+    "min_commit_available_gib": 2.3159942626953125,
+    "min_device_free_vram_mib": 1247.0,
+    "max_gpu_c": 56.19,
+    "loaded_gpu": {
+      "time": 1792777760.0235512,
+      "pid": 61748,
+      "rows": [
+        {
+          "Name": "pid_61748_luid_0x00000000_0x000162D7_phys_0",
+          "DedicatedUsage": 5845192704,
+          "SharedUsage": 10250878976
+        }
+      ],
+      "dedicated_gib": 5.443759918212891,
+      "shared_gib": 9.546875,
+      "note": "WDDM process counters can overlap across processes and have reporting limitations. Do not sum them as exclusive physical VRAM; compare device-wide headroom and loader buffers. Shared usage also overlaps host RAM; do not add it to process working set."
+    },
+    "gpu_kv_mib": 979.89,
+    "gpu_model_buffer_mib": 4184.29,
+    "host_model_buffer_mib": 9672.56
+  }
+}

@@ -20,9 +20,31 @@ Qwen Q4 and Gemma fallback retained. No applications, clocks or drivers changed.
 The second IQ3_S run was not running: its stop receipt reports free-VRAM floor;
 no result/answer exists. Do not turn its stale manifest into a quality result.
 
-Claude's uncommitted catalog/runtime/launcher work remains in the checkout;
-Flint work proceeds on experiment/flint-20261023. No editor typing or production
-stop has been performed. See the Flint report for current collection status.
+Reviewed Claude catalog/runtime/launcher changes are included in321be33 on
+experiment/flint-20261023. Other Claude candidate profiles/receipts remain
+untracked and untouched. No editor typing or production stop was performed.
+Flint's model and separate runtime pass full hashes. The smoke answers READY
+in0.937seconds, with10.377GiB peak process RAM and5.097GiB dedicated GPU memory.
+Public attempt a was interrupted without a stop receipt or completed answer;
+no new Windows boot/hardware event was found. Its original evidence is retained
+unscored. Fresh attempt b uses identical settings and a hidden detached
+controller. See the Flint report for current collection status.
+
+22:57 IST: attempt b reaches1200.031seconds with seven successful reads and
+zero final-content characters; stopped normally, no new hardware event.
+Remaining uncapped cases skipped after the gate failure. Prepared and launched
+a separate2048-token reasoning-cap variant with the same questions/settings
+otherwise. Private skill now explicitly avoids run_candidate's legacy
+automatic coding grading; collection, review and isolated execution are separate.
+
+Post-public checkpoint: CPU cap variant also deadlines at1200.016seconds; its
+visible content continues planning, so channel transition is not an answer.
+GPU KV with CPU-MoE threshold38 allocates979.89MiB KV on GPU. Router completes
+in522.985seconds, scores39/40 after reviewed isolated6/6behavior and8/8self-tests.
+TS/SQL hits16tool rounds with26unavailable reads; history hits4096output tokens
+before its first phase completes. Neither is scored; no complete public total.
+All41offline tests pass18.871seconds. Private audit launched in a fresh owned
+session; coding collector hash re-frozen after EOF-evidence handling fix.
 
 ## 2026-10-19 - azllm and TurboQuant on 10 GB
 

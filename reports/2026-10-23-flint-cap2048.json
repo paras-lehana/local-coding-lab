@@ -1,0 +1,22 @@
+{
+  "profile": "flint-iq3xxs-moe36-cpukv64-b2048",
+  "status": "stopped_after_failed_task",
+  "server_outcome": {
+    "status": "requested_stop"
+  },
+  "result": {
+    "status": "deadline",
+    "scored": false,
+    "wall_seconds": 1200.0160000000033
+  },
+  "reasoning_characters": 10547,
+  "content_characters": 52945,
+  "first_content_seconds": 181.40600000000268,
+  "quality": "Unscored: deadline; visible content continues planning/revisions, not a finished answer.",
+  "peak_process_working_set_gib": 10.602775573730469,
+  "peak_process_private_gib": 15.823307037353516,
+  "minimum_system_ram_available_gib": 6.609127044677734,
+  "minimum_commit_available_gib": 5.206623077392578,
+  "minimum_device_vram_free_mib": 949.0,
+  "new_hardware_event": false
+}

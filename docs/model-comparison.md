@@ -25,7 +25,9 @@ not independently human-reviewed. It is not a controlled universal ranking.
 | Qwen3.6 UD-IQ3_S | Not run | No complete router answer | Not run | First attempt capacity-rejected; second stopped below 400 MiB free VRAM; stale running manifest corrected in this summary |
 | K2 Horizon MoVA 36B-A4B Q4 | Not run | Not run | Not run | Downloaded, queued; no demonstrated apps-open fit |
 | Nemotron 3.5 Bolt 74B-A9B 24GB | Not run | Not run | Not run | Downloaded, queued; no demonstrated apps-open fit |
-| Recursive Flint UD-IQ3_XXS | Pending | Pending | Pending | Installation and controlled trial in progress; no promotion |
+| Recursive Flint UD-IQ3_XXS, uncapped reasoning | Not run after gate failure | Router deadline | Not run after gate failure | 1200.031 s, seven reads, zero final text; clean shutdown, unscored |
+| Recursive Flint UD-IQ3_XXS, CPU KV, 2048 cap | Not run after gate failure | Router deadline | Not run after gate failure | 1200.016 s; visible planning after cap, no finished answer |
+| Recursive Flint UD-IQ3_XXS, GPU KV | In progress | Router39/40; TS/SQL tool limit; history output limit | Pending | Router522.985 s,6/6independent groups; only1of3public workflows completes, no valid /60total or promotion |
 
 ## What changed in Claude's work
 
@@ -53,6 +55,14 @@ after renormalization. No complete three-suite leader exists. Keep component
 scores visible and collect comparable missing components before declaring a
 new composite winner. Current driver 621.01 differs from the earlier 617.42;
 timing comparisons across those conditions are observational.
+
+On this desktop,10GiB GPU memory is not all available to inference: applications
+already occupy roughly3GiB. Flint's short probe uses5.097GiB dedicated GPU memory
+and10.377GiB peak process RAM, leaving about1.4GiB device VRAM at its lowest
+sample. Filling the remaining VRAM is not itself an optimization target; the
+profile must retain scratch/headroom under real prompts. Its13.537GiB mixed
+GGUF is a constrained experiment, not the publisher's distilled NVFP4 artifact.
+No conclusion about higher Flint quantizations follows from this one profile.
 
 ## Reports and provenance
 

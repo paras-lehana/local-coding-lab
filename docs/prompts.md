@@ -1445,3 +1445,19 @@ instructions do not expose private fixture text. Generated code is not executed
 automatically: collection preserves raw requests/streams for review first.
 
 Canonical A-G closeout will be added after measured results and publication.
+
+23 October resume: owner said "continue". Re-read project guidance, methodology,
+task report and mandatory shared logging protocol. Smoke succeeded; public
+attempt a stopped after148seconds with no completed answer, no stop receipt
+and no surviving controller/server. Windows boot remains00:14; no new relevant
+hardware/restart/application-crash event found. Cause unknown, not a model score.
+Saved separate recovery receipt; original manifest remains untouched. Attempt b
+uses the same frozen profile/questions in a new directory and a hidden detached
+controller, with the same resource gates and1200second prompt deadlines.
+
+Follow-up: native attempt b deadlines at1200.031seconds with seven successful
+reads and zero final content. Capped2048 variant transitions to API content near
+three minutes, but review finds continued planning/revisions. Corrected the
+early interpretation: channel transition is not a finished usable answer. No
+quality or latency pass is awarded. Preparing a separate GPU-KV placement test
+with two more expert blocks on CPU to preserve GPU headroom; not yet measured.

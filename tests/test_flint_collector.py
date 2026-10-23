@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 @contextmanager
-def endpoint(delay: float):
+def endpoint(delay: float, completed: bool = True):
     """Serve synthetic SSE only; no real inference or generated-code execution."""
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *args):
@@ -32,10 +32,13 @@ def endpoint(delay: float):
                 {"choices": [{"delta": {"content": "answer"}, "finish_reason": "stop"}],
                  "usage": {"completion_tokens": 2}},
             ]
+            if not completed:
+                events[-1] = {"choices": [{"delta": {"content": "partial answer"}}]}
             try:
                 for event in events:
                     self.wfile.write(("data: " + json.dumps(event) + "\n\n").encode())
-                self.wfile.write(b"data: [DONE]\n\n")
+                if completed:
+                    self.wfile.write(b"data: [DONE]\n\n")
                 self.wfile.flush()
             except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
                 pass
@@ -86,6 +89,17 @@ class FlintCollectorTests(unittest.TestCase):
             response = json.loads((output / "responses/one.json").read_text())
             self.assertEqual(response["benchmark"]["error"], "whole_prompt_deadline")
             self.assertNotIn("choices", response)
+
+    def test_early_stream_close_preserves_partial_unscored(self):
+        """EOF without a terminal finish cannot become a completed coding answer."""
+        with tempfile.TemporaryDirectory() as tmp, endpoint(0, completed=False) as url:
+            process, output = self.run_case(Path(tmp), url, "5")
+            self.assertEqual(process.returncode, 2, process.stderr)
+            response = json.loads((output / "responses/one.json").read_text())
+            self.assertEqual(response["benchmark"]["error"], "unexpected_finish_reason")
+            self.assertIsNone(response["benchmark"]["finish_reason"])
+            self.assertEqual(response["choices"][0]["message"]["content"], "partial answer")
+            self.assertFalse((output / "grades.json").exists())
 
 
 if __name__ == "__main__":

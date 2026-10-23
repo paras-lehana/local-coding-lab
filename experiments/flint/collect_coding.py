@@ -29,6 +29,12 @@ def worker(request_file: Path) -> int:
         benchmark.validate_endpoint(spec["endpoint"]), spec["payload"],
         request_file.with_suffix(".events.jsonl"), started,
         timeout=spec["deadline"])
+    error = None
+    if result["finish_reason"] not in ("stop", "length"):
+        error = "unexpected_finish_reason"
+    elif result["finish_reason"] == "stop" and (
+            not result["content"].strip() or result["tool_calls"]):
+        error = "empty_or_tool_only_answer"
     response = {"choices": [{"finish_reason": result["finish_reason"],
                              "message": {"role": "assistant",
                                          "content": result["content"],
@@ -39,9 +45,9 @@ def worker(request_file: Path) -> int:
                               "finish_reason": result["finish_reason"],
                               "first_event_seconds": result["first_event_seconds"],
                               "first_content_seconds": result["first_final_seconds"],
-                              "error": None}}
+                              "error": error}}
     lab.save_json(Path(spec["response_file"]), response)
-    return 0
+    return 2 if error else 0
 
 
 def collect(args: argparse.Namespace) -> int:
@@ -104,9 +110,11 @@ def collect(args: argparse.Namespace) -> int:
                 child.wait(timeout=5)
                 raise
         if error:
-            lab.save_json(response_file, {"benchmark": {
-                "wall_seconds": time.monotonic()-started,
-                "error": error, "finish_reason": None}})
+            partial = lab.read_json(response_file) if response_file.exists() else {}
+            details = partial.setdefault("benchmark", {
+                "wall_seconds": time.monotonic()-started, "finish_reason": None})
+            details["error"] = details.get("error") or error
+            lab.save_json(response_file, partial)
         body = lab.read_json(response_file)
         row = {"task": task_id, "language": task["language"],
                **body["benchmark"],
