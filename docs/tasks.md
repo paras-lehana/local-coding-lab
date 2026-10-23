@@ -1,14 +1,14 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-10-23 (Asia/Kolkata); Flint installation and Claude campaign reconciliation in progress.
+Last updated: 2026-10-24 (Asia/Kolkata); Flint evaluation complete with limitations; publication and production check in progress.
 
 ## 2026-10-23 - Recursive Flint and Claude campaign review
 
 | Task | Status | Evidence |
 |---|---|---|
-| Read Claude changes and update learnings | Done, reconciliation ongoing | local-llm skill, private campaign, latest stop receipts; docs/model-comparison.md |
-| Install and test Flint using latest metrics | In progress | Pinned 13.54 GiB UD-IQ3_XXS download and separate b11838 CUDA runtime |
-| Standalone and aggregate reports | In progress | Flint task report and docs/model-comparison.md |
+| Read Claude changes and update learnings | Done | local-llm skill, private campaign, latest stop receipts; docs/model-comparison.md |
+| Install and test Flint using latest metrics | Done | All three components attempted; incomplete answers retained; larger-output history diagnostic separate |
+| Standalone and aggregate reports | Done | Flint task report, sanitized JSON receipts and docs/model-comparison.md |
 | Reporting rule for all future models | Done | AGENTS.md, CLAUDE.md, docs/model-reporting.md |
 
 Initial review: 38 baseline offline tests pass (19.894 s). No llama/Strata
@@ -45,6 +45,39 @@ TS/SQL hits16tool rounds with26unavailable reads; history hits4096output tokens
 before its first phase completes. Neither is scored; no complete public total.
 All41offline tests pass18.871seconds. Private audit launched in a fresh owned
 session; coding collector hash re-frozen after EOF-evidence handling fix.
+
+23:47 IST: private GPU-KV audit completes in 692.5 seconds. Reviewed score is
+29/36 (19 semantic, 4 citations, 6 isolated code), versus retained Qwen Q4's
+31/36. Four separate nested-alias/local-only-key diagnostics also pass without
+changing the frozen score. Observed live sequence reaches 48,035 tokens with
+the same 979.89 MiB allocated KV arena. No new hardware event; owned shutdown.
+23:53 IST: detached coding controller starts the unchanged twelve-task suite,
+native reasoning, 16,384 output tokens, 1,200 seconds per task. Source review
+and isolated grading follow collection, never automatic host execution.
+
+24 October 00:22 IST: coding collection remains active. Intervals completes
+502.984 s, TTL/LRU 225.625 s, dependency ordering 159.891 s. CSV exhausts
+16,384 output tokens after 760.860 s with no delivered code; unscored.
+Completed sources reviewed, executable grading pending after owned shutdown.
+
+01:00 IST: all twelve coding cases attempted; eleven complete answers pass
+374/374 frozen checks in isolated grading. CSV is output-limited and unscored.
+Separate post-review NaN TTL check fails (ValueError not raised), without
+altering the frozen score. Coding server stops normally; no new hardware
+event. A fresh 8,192-output-token history diagnostic is running with unchanged
+questions and the same 1,200-second whole-workflow deadline.
+
+01:06 IST: 8K-output history completes in 328.016 seconds and passes 8/8.
+No failed ledger read was attempted, so error recovery remains untested; this
+does not replace the original 4K failure. Normal stop, no new hardware event.
+01:09 IST: full Flint SHA rechecked, exact GGUF retired, 18.64 GiB E: free.
+All reports/raw evidence/runtime/pins preserved; Qwen/Gemma untouched. Latest
+offline run: 41 tests pass in 18.161 seconds; four PowerShell files parse.
+Qwen restoration preflight passes with 18.60 GiB RAM/24.46 GiB commit available;
+existing launcher invoked. Live health/model/context checks pass; API returns
+`READY.` in 15.641 seconds, so availability passes but exact-literal formatting
+does not. Production Qwen remains running with unchanged 128K/1800-second idle
+settings. No new editor UI claim. Final publication checks follow.
 
 ## 2026-10-19 - azllm and TurboQuant on 10 GB
 

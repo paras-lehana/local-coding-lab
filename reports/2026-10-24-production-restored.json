@@ -1,0 +1,36 @@
+{
+  "model": "Qwen3.6-35B-A3B UD-Q4_K_M",
+  "alias": "qwen3.6-35b-a3b-q4",
+  "configuration_version": "2.3",
+  "profile": "qwen36-mapped-editor128-cpukv",
+  "runtime": "b11562-noprefetch-v1",
+  "context_tokens_from_props": 131072,
+  "idle_seconds": 1800,
+  "preflight": {
+    "ram_free_gib": 18.60082244873047,
+    "commit_available_gib": 24.459583282470703,
+    "vram_free_mib": 6829
+  },
+  "health": "ok",
+  "models_alias_verified": true,
+  "api_reply": {
+    "request": "Reply exactly READY.",
+    "max_tokens": 256,
+    "temperature": 0.6,
+    "seed": 73,
+    "wall_seconds": 15.64100000000326,
+    "finish_reason": "stop",
+    "content": "READY.",
+    "response_received": true,
+    "exact_literal_pass": false,
+    "finding": "The extra period violates the requested exact literal. Availability passes; exact-format adherence does not."
+  },
+  "snapshot_after_probe": {
+    "process_ram_gib": 13.605209350585938,
+    "process_private_commit_gib": 6.564388275146484,
+    "system_ram_available_gib": 4.998680114746094,
+    "device_vram_free_mib": 2822
+  },
+  "policy": "Leave the healthy owned production endpoint running. Existing 30-minute idle sleep and resource/hardware stops remain; no new boot/start/retry behavior.",
+  "limitations": "API availability only; no new Copilot/Continue typing or editor integration claim. Production was already off at task start. Model, settings and runtime were not changed."
+}

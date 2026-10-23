@@ -1,0 +1,14 @@
+{
+  "status": "retired",
+  "retired_local_time": "2026-10-24T01:09:14.1270551+05:30",
+  "disk_free_gib_after": 18.643104553222656,
+  "authorization": "Owner's autonomous local-model campaign includes exact-file retirement after preserving evidence; local-llm campaign decision policy",
+  "path": "E:\\llm\\models\\flint-UD-IQ3_XXS.gguf",
+  "repo": "unsloth/flint-GGUF",
+  "revision": "20468edfc38ab43d6914cc88b08cbecb05d0fc62",
+  "bytes": 14535427520,
+  "sha256": "7a0a095dde1d931063a5d571e19497d997edbc783eb1ed6b86529bfab9d94804",
+  "reason": "Preserved all three suite outcomes and the larger-output history diagnostic. Eleven coding passes are promising, but the file-driven TS/SQL tool loop and private instruction omissions fail production promotion. Retain Qwen Q4 and Gemma fallback; exact pinned installer permits reproducible re-download.",
+  "preserved": ["standalone report", "aggregate comparison", "raw private evidence", "pins and reproducible installer", "separate b11838 runtime", "production Qwen and Gemma weights"],
+  "verification": "Full expected SHA256 and exact size rechecked immediately before deletion. Resolved regular-file path confined to E:/llm/models; no inference engine running; exact LiteralPath removed and absence confirmed. No directory deletion."
+}

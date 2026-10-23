@@ -1,0 +1,38 @@
+{
+  "model": "Recursive Flint UD-IQ3_XXS",
+  "profile": "flint-iq3xxs-moe38-gpukv64",
+  "runtime": "llama.cpp b11838 CUDA12.4",
+  "diagnostic": "Same context-v1 questions with 8192 output tokens instead of 4096",
+  "status": "completed",
+  "temperature": 1.0,
+  "seed": 73,
+  "whole_workflow_deadline_seconds": 1200,
+  "wall_seconds": 328.01600000000326,
+  "assistant_turns": 7,
+  "user_phases": 2,
+  "grade": {
+    "facts": [6, 6],
+    "ready_count": [1, 1],
+    "read_inventory": [1, 1],
+    "total": [8, 8]
+  },
+  "reviewer": "Codex; existing textual grader confirmed by source review",
+  "last_phase_successful_reads": ["docs/runtime.md"],
+  "transient_tool_error_exercised": false,
+  "final_turn_input_tokens": 12703,
+  "final_turn_cached_input_tokens": 12662,
+  "final_turn_generated_tokens": 2392,
+  "final_turn_decode_tok_s": 22.100768950547433,
+  "final_turn_first_content_workflow_seconds": 324.875,
+  "resources": {
+    "peak_process_ram_gib": 10.180137634277344,
+    "peak_process_private_commit_gib": 15.747261047363281,
+    "minimum_system_ram_available_gib": 6.146900177001953,
+    "minimum_commit_available_gib": 1.2819442749023438,
+    "minimum_device_vram_free_mib": 1247,
+    "maximum_gpu_c": 51.59
+  },
+  "owned_stop": "requested_stop",
+  "new_hardware_event": false,
+  "limits": "Fresh-server diagnostic, not a replacement for the original 4096-token output-limit failure. Cache state differs from the original public sequence. No full public total or composite; no 64K/128K maximum-context or editor validation. No unavailable-ledger read was attempted in phase 1, so error recovery was not demonstrated."
+}

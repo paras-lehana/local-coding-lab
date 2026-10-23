@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.8.0 - 2026-10-23 (in progress)
+## 0.8.0 - 2026-10-24
 
 - Reconcile Claude's newer candidate results and explicitly separate partial
   scorecard coverage from complete comparisons.
@@ -9,7 +9,15 @@
 - Add standalone model-report requirements and a current comparison index,
   linked from Claude and shared project guidance for future blog evidence.
 - Preserve the retained Qwen/Gemma baselines; retire only the verified completed
-  LFM candidate to make download space. Inference outcomes remain pending.
+  LFM candidate to make download space.
+- Measure native/capped CPU-KV router deadlines and the successful GPU-KV
+  placement bundle: router 39/40, private 29/36, coding 11 completed passes of
+  12. Preserve tool/output-limit failures and a separate NaN TTL defect.
+- Add a hard-deadline coding collector that preserves early-EOF evidence and
+  keeps source review separate from isolated grading; 41 offline tests pass.
+- Complete a separate 8K-output history diagnostic, scoring 8/8 without
+  rewriting the original 4K-output failure. Preserve Qwen as the default;
+  retire the tested Flint weights after a fresh full hash and evidence record.
 
 ## 0.7.0 - 2026-10-19
 

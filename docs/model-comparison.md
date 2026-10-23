@@ -1,6 +1,6 @@
 # Current model comparison
 
-Updated 23 October 2026. Components and completion gates matter more than a
+Updated 24 October 2026. Components and completion gates matter more than a
 single leaderboard number. Claude's newer campaign was private; this table
 brings its reviewed summary into the public lab. Results are agent-assessed,
 not independently human-reviewed. It is not a controlled universal ranking.
@@ -27,7 +27,7 @@ not independently human-reviewed. It is not a controlled universal ranking.
 | Nemotron 3.5 Bolt 74B-A9B 24GB | Not run | Not run | Not run | Downloaded, queued; no demonstrated apps-open fit |
 | Recursive Flint UD-IQ3_XXS, uncapped reasoning | Not run after gate failure | Router deadline | Not run after gate failure | 1200.031 s, seven reads, zero final text; clean shutdown, unscored |
 | Recursive Flint UD-IQ3_XXS, CPU KV, 2048 cap | Not run after gate failure | Router deadline | Not run after gate failure | 1200.016 s; visible planning after cap, no finished answer |
-| Recursive Flint UD-IQ3_XXS, GPU KV | In progress | Router39/40; TS/SQL tool limit; history output limit | Pending | Router522.985 s,6/6independent groups; only1of3public workflows completes, no valid /60total or promotion |
+| Recursive Flint UD-IQ3_XXS, GPU KV | 29 | Router 39/40; TS/SQL tool limit; history output limit | **11 completed passes of 12** | All 374 frozen checks on eleven complete answers pass; CSV produces no code before output limit. Private 692.5 s; separate NaN TTL bug; no full public total or promotion |
 
 ## What changed in Claude's work
 
@@ -63,6 +63,37 @@ sample. Filling the remaining VRAM is not itself an optimization target; the
 profile must retain scratch/headroom under real prompts. Its13.537GiB mixed
 GGUF is a constrained experiment, not the publisher's distilled NVFP4 artifact.
 No conclusion about higher Flint quantizations follows from this one profile.
+
+Flint's GPU-KV profile is more promising than its CPU-KV variants: the router
+finishes in 523 seconds and its private audit in 693 seconds. The latter scores
+29/36 versus Qwen Q4's 31/36. Its deep merge passes the frozen checks and all four
+extra nested-alias/local-only-key diagnostics. The lost audit points concern
+instruction omissions, incomplete platform guidance and unsupported citations.
+However, the public TypeScript/SQLite tool loop and history output limit prevent
+a complete public score. Good code on the finished merge tasks is not sufficient
+evidence for replacing the owner's instruction-heavy coding assistant.
+
+The twelve direct coding prompts show a different strength: Flint completes
+and passes eleven, including both SQLite queries, strict TypeScript, exact-money
+changes across two files, and JavaScript concurrency/deep cloning. CSV uses its
+16,384-token allowance without delivering code. Median completed-task time is
+225.6 seconds; the worker pool takes 688.1 seconds. All 374 frozen behavior and
+compiler checks on the eleven complete answers pass, but a separate positive-TTL
+diagnostic exposes acceptance of NaN and non-expiring entries. This is not
+bug-free certification. It is 11 completed passes versus LFM's 6 on the same
+questions, under different recorded sampling/runtime/desktop conditions; Qwen
+still lacks this component, so there is no matched all-model coding ranking.
+
+Flint's direct SQL and TypeScript success does not erase the file-driven
+TS/SQL tool-loop failure. The distinction is important for this owner's work:
+being given a precise function contract is easier to use reliably than having
+to discover files, recover from missing paths and maintain project instructions.
+
+A separate fresh-server history diagnostic raises the output allowance to
+8,192 tokens and passes 8/8 in 328.016 seconds. It does not replace the original
+4K-output failure or establish tool-error recovery/maximum context. Flint's
+tested weights were retired after a fresh full hash, while its installer,
+runtime and evidence remain. Qwen Q4 stays selected for the owner's workflow.
 
 ## Reports and provenance
 

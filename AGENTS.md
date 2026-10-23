@@ -24,6 +24,13 @@ three-component baseline exists. A stale running JSON is not a live process:
 the 21 October IQ3_S run has a VRAM stop receipt and no completed router answer.
 Keep these limitations in any model comparison or publication.
 
+Flint's 23-24 October campaign is complete; consult its report for outcomes.
+GPU KV improves completion, but native/capped CPU KV fail the router deadline.
+Private29/36, router39/40, coding11 completed passes/12, and a separate8K-output
+history8/8 are not a full composite. Preserve the original4K history failure
+and the post-review NaN TTL defect. Tested Flint weights are exact-file retired;
+runtime/pins/evidence remain. Qwen stays selected, subject to fresh load gates.
+
 - Keep portable code, public synthetic fixtures and reviewed evidence in Git.
   Keep credentials, weights, binaries, raw editor transcripts and host-specific
   settings in ignored local-data/ or an external data directory.

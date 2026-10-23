@@ -1,0 +1,70 @@
+{
+  "semantic": 19,
+  "citations": 4,
+  "code": 6,
+  "total": 29,
+  "maximum": 36,
+  "wall_seconds": 692.5,
+  "reviewer": "Codex",
+  "status": "completed",
+  "limits": "Single-seed agent assessment, no independent human review. Private sources remain local. No complete public score; not eligible for overall promotion.",
+  "model": "flint-UD-IQ3_XXS",
+  "profile": "flint-iq3xxs-moe38-gpukv64",
+  "findings": [
+    "Correct host distinctions and missing-service honesty",
+    "Incomplete required-reading and Windows adapter guidance",
+    "Missing permanent-memory/KV explanation",
+    "Incorrectly supported credential claim and ambiguous Git-ahead guard wording",
+    "All6frozen merge cases pass; type hints/docstring omitted outside frozen behavior score"
+  ],
+  "context_observation": {
+    "capacity_tokens": 65536,
+    "observed_live_sequence_tokens": 48035,
+    "gpu_kv_allocated_mib": 979.89,
+    "note": "Occupied sequence observed during audit, not a maximum-context validation."
+  },
+  "resources": {
+    "peak_process_working_set_gib": 10.195449829101562,
+    "peak_process_private_commit_gib": 15.7598876953125,
+    "minimum_system_ram_available_gib": 8.959110260009766,
+    "minimum_commit_available_gib": 6.160148620605469,
+    "minimum_device_vram_free_mib": 1263,
+    "maximum_gpu_c": 61.16
+  },
+  "post_review_diagnostics": [
+    {
+      "diagnostic": "nested",
+      "checks": {
+        "scope": "Post-both-answer diagnostic; no score changes",
+        "cases": [
+          {
+            "name": "retained_local_nested_list",
+            "passed": true
+          },
+          {
+            "name": "inserted_base_nested_dict",
+            "passed": true
+          }
+        ]
+      },
+      "candidate_sha256": "4354ec9f97706824ae7e8521c6387f323ebf78d940cd1b9e83ecb98fe86e48dc"
+    },
+    {
+      "diagnostic": "localkeys",
+      "checks": {
+        "scope": "Post-Q6 diagnostic; no frozen-score changes",
+        "cases": [
+          {
+            "name": "local_only_nested_keys",
+            "passed": true
+          },
+          {
+            "name": "empty_base_independent_copy",
+            "passed": true
+          }
+        ]
+      },
+      "candidate_sha256": "4354ec9f97706824ae7e8521c6387f323ebf78d940cd1b9e83ecb98fe86e48dc"
+    }
+  ]
+}

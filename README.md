@@ -1,9 +1,13 @@
 # Local Coding Lab
 
-**23 October, v0.8.0 work in progress:** Claude's newer candidate results are
+**24 October, v0.8.0:** Claude's newer candidate results are
 reconciled in the [current comparison](docs/model-comparison.md). Recursive
-Flint's pinned Windows installation and apps-open evaluation are in progress;
-no Flint quality score or replacement is claimed yet.
+Flint was installed and tested: GPU KV delivers 39/40 on the public router,
+29/36 on the private instruction audit and 11 completed coding passes of 12.
+Two public workflows and coding CSV are incomplete; an extra TTL edge case
+also fails. A separate larger-output history diagnostic passes 8/8. There is
+no complete score or production replacement. Flint's tested weights are retired;
+the evidence, separate runtime and reproducible installer remain.
 [Standalone Flint report](docs/tasks/2026-10-23-flint/2026-10-23-recursive-flint-v0.8.0.md)
 and [per-model reporting policy](docs/model-reporting.md). The older campaign
 status below describes its dated experiment, not the current active phase.
@@ -39,7 +43,9 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Status: v0.7.0. Six TurboQuant probes completed; coding evaluation interrupted by a restart. Further inference is withheld after a new hardware event. Strata comparison and native idle unloading have separate completed results.**
+**Current release: v0.8.0, Flint evaluation.** The TurboQuant restart and
+its withheld follow-ups above describe the 19 October experiment. Flint's new
+guarded trials have separate hardware and resource receipts.
 The desktop control has since become a separate public project:
 [LLM Tray](https://github.com/paras-lehana/llm-tray). It adds a compact tray
 resource icon, hover details, pin/drag, customizable shortcuts/metrics and
@@ -192,7 +198,7 @@ upgrade across the full workflow or real editors. Follow the evidence above.
 - Recent memory pressure stopped inference twice. Today's free memory must be
   checked; installed RAM and yesterday's fit are insufficient.
 
-**Working choice:** Qwen3.6 UD-Q4 with the
+**15 October historical selection:** Qwen3.6 UD-Q4 with the
 [`qwen36-instructions-64k`](profiles/qwen36-instructions-64k.json) profile:
 30GPU layers,34CPU expert blocks,64K q8 KV and native thinking. It uses about
 5.38GiB dedicatedVRAM and peaks at18.09GiB processRAM in the finalist suite.
@@ -223,6 +229,7 @@ and interrupted-attempt records are in the current report.
 ```text
 catalog/                 pinned model and runtime metadata
 profiles/                historical reference and explicitly proposed settings
+experiments/flint/       pinned Flint installer, collections and reproduction guide
 scripts/                 Windows bootstrap and publication audit
 desktop/                 Native resource widget, pinned installer and owned controls
 docs/DESIGN.md           Desktop visual design and verified readability
@@ -233,6 +240,8 @@ reports/                 curated measurements and their limitations
 research/raw/            external research, preserved separately
 research/reviews/        fact checks and decisions
 docs/                    setup, methodology, plans and project log
+docs/model-comparison.md current component scores and candidate dispositions
+docs/model-reporting.md  standalone evidence requirements for every new model
 local-data/              ignored downloads, binaries, answers and telemetry
 ```
 

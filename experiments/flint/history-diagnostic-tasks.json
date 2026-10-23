@@ -1,0 +1,10 @@
+[
+  {
+    "name": "context-v1-output8192",
+    "scenario": "context-v1",
+    "max_tokens": 8192,
+    "deadline": 1200,
+    "temperature": 1.0,
+    "seed": 73
+  }
+]

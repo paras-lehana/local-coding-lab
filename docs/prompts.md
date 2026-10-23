@@ -1461,3 +1461,14 @@ three minutes, but review finds continued planning/revisions. Corrected the
 early interpretation: channel transition is not a finished usable answer. No
 quality or latency pass is awarded. Preparing a separate GPU-KV placement test
 with two more expert blocks on CPU to preserve GPU headroom; not yet measured.
+
+24 October final-measurement checkpoint: GPU-KV native router39/40, private29/36,
+coding11 completed passes/12 with374/374 frozen checks on the complete answers.
+CSV produces no final code by the output limit. A separate NaN TTL diagnostic
+fails, outside the frozen score. Larger-output history8/8 in328.016seconds
+is recorded separately from the original4K failure. No full public score or
+composite/promotion. Exact Flint weights rehashed and retired; Qwen restored
+unchanged at128K/1800seconds idle. API responds READY. in15.641seconds; the
+period fails the exact-literal check. No new hardware event or editor typing.
+Final offline41tests pass18.161seconds;4PowerShell files parse. Public audit,
+publication and canonical A-G closeout follow.
