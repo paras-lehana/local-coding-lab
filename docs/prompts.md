@@ -9,8 +9,10 @@ answers with6passes; bounded IQ4 finishes public55/private29 but its coding
 controls fail completion, and its exact file is retired. Native Q4 attempts
 all12 questions with9 frozen passes,2 failures and1 output limit, plus two
 extra JavaScript defects. A separate resident7/cache/general32K interval
-times out without code. Higher Qwen plainQ6 is downloading; FlintQ3XL ranges
-are checkpointed. Verified FlintQ4 misses both router deadlines and is retired.
+times out without code. Higher Qwen plainQ6 is verified and its resident7
+public router reaches1200seconds with seven reads and an incomplete answer;
+a larger-residency follow-up is pending. FlintQ3XL ranges are checkpointed.
+Verified FlintQ4 misses both router deadlines and is retired.
 Production is stopped during the active campaign; no new promotion.
 
 Previous phase,24October: Recursive Flint evaluation and Claude reconciliation
@@ -1600,3 +1602,21 @@ An initial PowerShell stderr pipeline exits1 despite42/OK; preserved original
 and direct subprocess exit0 establish the test outcome. Primary-source review
 adds ik Windows memory paths and community mixed-precision limitations. Work
 continues on higher quants/remaining candidates; final A–G remains pending.
+
+22:23IST progress checkpoint: plainQ6 full file is verified; resident7 public
+router misses1200seconds after seven successful reads and an incomplete final.
+Minimum freeRAM9.263GiB/commit6.313GiB/VRAM594MiB, no hardware event. The
+fresh original18GiB profile rejects17.40GiB availableRAM; a distinct fixed10GiB
+resident follow-up now collects with unchanged6.5GiB reserve and stop floors.
+Its smoke completes6.672s. Gemma/K2 smaller-resident plans remain unrun.
+Q6 paging observations and exact artifact/settings/result receipts are saved.
+
+The ambiguous period in the READY smoke is now explicitly excluded from
+quality conclusions; original requests, literal checks and scores remain.
+Agent-context-maintenance reviewed project/shared routing; authoritative
+docs/grading.md and projectAGENTS updated, Claude/shared adapters unchanged.
+42offline tests pass18.544s, fourPSparses, audit294/0 and whitespace check pass.
+Previous CI40110363216 Windows has a20s mocked subprocess timeout, Ubuntu
+passes; automatic approval review rejects an unchanged failed-job rerun.
+No CI success claimed for that checkpoint. Campaign and production restoration
+remain active work; no final A–G or model promotion yet.

@@ -21,7 +21,7 @@ isolated grading. No cloud inference or exposed historical key is used.
 | Candidate / gap | Next action | State |
 |---|---|---|
 | Qwen Q4 twelve coding tasks | Original native64K/.6/seed73, then separately declared cache/general32K control |All12 attempted across original+resume:9frozen passes,2failures,TTL output limit. OriginalRAM interruption and two extraJS defects retained. Separate resident7/cache/general32K interval deadline; original larger-resident profile unrun |
-| Plain Qwen Q6_K higher precision |Distinct artifact pinned/header inspected; full download then cache/general32K quality and long-file work under gates |Downloading; full hash/load pending. Old Q6_K_XL result does not transfer |
+| Plain Qwen Q6_K higher precision |Distinct artifact pinned/header inspected; full download then guarded quality and long-file work |Full hash verified21:57; resident7 router1200.016s deadline after seven valid reads. No grade. Fresh unloaded18.21GiB permits reconsidering the original larger profile; separately frozen resident10 is a fallback, not yet run. Old XL scores do not transfer |
 | Qwen IQ3_S interrupted public / missing private and coding |38 CPU expert blocks; conservative stop floors | Native public52/60, private29/36; separate cap4096/cache1536 coding6/12, all twelve complete; no mixed composite |
 | Qwen IQ4_XS interrupted public / missing private and coding |CPU35 with bounded resident memory after fresh RAM stop |Public55/60; private29/36 in725.4s; native interval1200s deadline and presence1.5 control16K output limit; subsequent unchanged coding cases interrupted/unrun. Exact weights retired21:07 after fresh full hash |
 | Gemma26 fallback missing latest public/coding | Collect missing suites under its recorded template and sampling | Pending |
@@ -35,6 +35,15 @@ isolated grading. No cloud inference or exposed historical key is used.
 Capacity exclusions are not completed quality tests. A benchmark can finish
 with a demonstrated bug or deadline: completing coverage does not mean making
 every candidate pass. No historical failed answer will be replaced by a retry.
+
+The separately frozen Gemma26 and K2 `resident8-calibration` profiles are
+fallbacks if their original18GiB profiles remain inadmissible. Each fixes the
+owned resident maximum at8GiB, reserves6.5GiB and requires14.5GiB freeRAM;
+original commit/VRAM admission and runtime stop floors remain. Model-specific
+GPU placement, KV and actual request settings stay as documented in each
+profile. These smaller resident sets deliberately allow paging, do not bound
+total allocations, and are not proven fits. A short smoke must complete before
+quality collection; no baseline score transfers. They are unrun at22:10IST.
 
 ### Audit of older candidates,24October
 

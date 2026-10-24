@@ -37,6 +37,8 @@ Qwen Q4's24October native coding attempts all12 questions across two loads:
 remains; both resumed JavaScript answers pass frozen checks but fail separate
 source-motivated edge tests. Follow docs/grading.md: preserve frozen scores,
 label new diagnostics and never equate a finite pass with correct code.
+The existing READY smoke has ambiguous sentence-final punctuation. Preserve
+its literal check but follow docs/grading.md before calling it a quality defect.
 
 Flint's 23-24 October campaign is complete; consult its report for outcomes.
 GPU KV improves completion, but native/capped CPU KV fail the router deadline.

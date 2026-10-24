@@ -1,0 +1,49 @@
+{
+  "campaign_date": "2026-10-24",
+  "model": "Qwen3.6-35B-A3B",
+  "quant": "UD-Q6_K (plain, not XL)",
+  "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+  "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+  "filename": "Qwen3.6-35B-A3B-UD-Q6_K.gguf",
+  "bytes": 29308320736,
+  "sha256": "4fe53b148b46f9b88830e2a3055c5b15c3a4d1e3ddc9a1384a108d8b9d59f043",
+  "download_status": "full-hash-verified",
+  "verification_note": "Downloader full SHA256 before rename; launcher independently verifies before load. Range checkpoint bytes were not individually hash-verified.",
+  "profile": "qwen36-q6plain-cache2048-resident7-calibration",
+  "preflight": {
+    "time": 1792859277.5132241,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 16.95507049560547,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 13.999652862548828,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6610.0,
+    "gpu_c": 50.56,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "smoke": {
+    "seconds": 8.0,
+    "visible": "READY.",
+    "exact_format_pass": false,
+    "literal_check_target": "READY",
+    "format_caveat": "The actual request is Reply with exactly READY. Its trailing punctuation is ambiguous. The old literal check fails, but this is not counted as a model-quality defect. Transport only requires nonempty content.",
+    "reasoning_budget_tokens": 0,
+    "max_tokens": 64,
+    "temperature": 0,
+    "seed": 73,
+    "scope": "Transport and short load only; not native-reasoning coding quality."
+  },
+  "allocation_mib": {
+    "gpu_weights": 2038.8,
+    "gpu_attention_kv": 680,
+    "gpu_recurrent": 62.81,
+    "gpu_compute": 504,
+    "host_compute": 20.27,
+    "cpu_mapped_span_not_rss": 27423.72
+  },
+  "quality_status": "Public native-thinking workflow collecting; no score or promotion. Actual public output ceilings16K/16K/4K override server32K.",
+  "raw_evidence": "local-data/2026-10-24-precision/qwen-q6plain-resident7-public-a",
+  "captured_at": "2026-10-24T16:30:10.521898+00:00"
+}

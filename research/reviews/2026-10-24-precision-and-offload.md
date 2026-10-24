@@ -6,6 +6,26 @@ outcomes live in the [precision campaign](../../docs/tasks/2026-10-24-precision-
 
 ## Recommended order
 
+Progress at22:00IST: the order below is the original plan, not a claim that
+these controls remain untried. Native Qwen Q4 now attempts all twelve coding
+questions: nine frozen passes, two failures and one output limit. Two passing
+JavaScript answers also fail separate post-review checks. Higher Flint Q4
+misses the router deadline in both tested placements. Qwen's fixed7GiB-resident
+cache control loads but times out without code; plain Q6 has now passed full
+file verification and short loading, with its public workflow still running.
+The linked campaign is authoritative for subsequent outcomes.
+
+During the Q6 file trial, three read-only Windows counter samples at
+22:06:30-22:06:42IST show E: reads of67.6-135.3MiB/s and856-2245 system
+hard-page read operations per second. The owned model process reports roughly
+176K-216K page faults per second, which include soft faults. These separately
+sampled counters are not additive or process-attributed disk measurements;
+the owner's applications remain active. In particular, process IOReadBytes
+reports zero despite system disk traffic, so that counter alone cannot rule
+out memory-mapped reads. This supports investigating residency/I/O overhead;
+it does not prove every disk read belongs to the model or measure a cold-cache
+speedup. Raw sample receipt: the Q6 public trial's `io-observation.json`.
+
 1. **Finish comparable quality coverage first.** Qwen Q4's retained instruction
    score does not include the newer twelve-task coding suite. Complete it and
    the smaller IQ3/IQ4 variants before calling any model the overall winner.
@@ -37,6 +57,33 @@ outcomes live in the [precision campaign](../../docs/tasks/2026-10-24-precision-
 | mmap without initial prefetch | Avoids eagerly pulling the whole mapped file into RAM | Later demand paging remains; it cannot create physical memory or bandwidth |
 | Pinned host weights | Faster transfers for suitable non-mapped configurations | Cannot rely on eviction to disk when the same weights must remain pinned |
 | Speculative decoding / MTP | May reduce decode latency with useful accepted drafts | Additional weights, cache and compute; acceptance is not end-to-end speedup |
+
+### Precision is a recipe, not a guarantee
+
+An increase from three to six bits is useful only if the resulting model
+finishes and improves the tasks that matter. More accurate weights cannot
+repair a client that omits instructions, a wrong tool path, a truncated answer,
+or every learned coding mistake. Conversely, our smaller quants have delivered
+syntactically valid code with behavioral bugs. The measured evidence rejects
+the blanket explanation that every missing bracket or wrong answer is caused
+by being below four bits.
+
+[Google's Gemma QAT card](https://huggingface.co/google/gemma-4-26B-A4B-it-qat-q4_0-gguf)
+describes training specifically for quantized deployment, rather than only
+compressing a fixed full-precision checkpoint afterwards. That motivates
+keeping the installed QAT fallback in the comparison; it does not establish
+local superiority over a six-bit Qwen. Google's current recommended sampler is
+temperature1/top-p.95/top-k64. It retains thoughts within tool-call turns but
+excludes them from earlier completed user turns. Our frozen Gemma coverage
+profile instead uses.6/top-k20 and preserved thinking; report those actual
+controls, and keep any publisher-setting follow-up separate.
+
+[IFM's K2 card](https://huggingface.co/IFM/K2-Horizon-MoVA-36B-A4B#best-practices)
+recommends native high effort, temperature1 and top-p.95. Its published serving
+recipe uses twoH200s and an explicit router-numerics setting. Neither those
+benchmark scores nor that recipe validate our single3080 GGUF path. Its
+MoVA value experts and much larger KV requirement also need their own memory
+plan; Qwen's small hybrid-attention cache estimate does not transfer.
 
 llama.cpp generally reserves a cache arena for configured context. Occupied
 tokens increase inside that arena; resident host pages are another measurement.

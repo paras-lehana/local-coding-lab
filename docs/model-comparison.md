@@ -12,7 +12,8 @@ not independently human-reviewed. It is not a controlled universal ranking.
 | Qwen3.6 Q4 CPU40/cache2GiB/resident7/general32K |Unrun |Unrun |Interval1200.016s deadline; TTL unrun |Separate smaller-memory calibration loads, but no visible code by deadline. RAM/VRAM/hardware guards clear; last intermediate decode6.69tok/s. No quality score |
 | Qwen3.6 Q4, historical2GiB expert cache |27 |Separate historical cases |Not collected |Private402.703s; strict TypeScript and SQL defects; different placement/non-mapped profile, not evidence that expert caching intrinsically lowers intelligence |
 | Qwen3.6 Q5 | 28 | Separate historical cases | Not comparable | Lower private score; retired |
-| Qwen3.6 UD-Q6_K_XL | 28 | Historical completed cases | Not comparable | Private 2099.7 s, exceeds current gate; retired. Plain UD-Q6_K is a different, untested artifact |
+| Qwen3.6 UD-Q6_K_XL | 28 | Historical completed cases | Not comparable | Private 2099.7 s, exceeds current gate; retired. Plain UD-Q6_K below is a different artifact |
+| Qwen3.6 plain UD-Q6_K, CPU40/cache2GiB/resident7 |Unrun after gate failure |Router1200.016s deadline |Unrun after gate failure |Seven successful reads; first visible answer1080.828s, incomplete at deadline. Resource/hardware checks clear; no correctness grade. Larger-residency follow-up pending |
 | GLM-4.7-Flash UD-Q4_K_XL, f16 KV | 27 | Separate historical cases | Not comparable | Private 942 s, below Qwen on this audit; retired |
 | Gemma 4 26B-A4B QAT Q4_0 | 19 | Separate historical cases | Not comparable | Retained lower-memory fallback; private 400 s |
 | Gemma 4 31B dense QAT Q4_0 | 26 | Historical completed cases | Not comparable | Private 7234 s; fails current latency gate; retired |
@@ -54,10 +55,13 @@ cases are interrupted/unrun. Native thinking is retained in both controls. Missi
 compatible components still prevent a composite.
 
 At21:07IST the exact tested IQ4_XS file is hash-verified and retired; its scores
-remain above. Higher Qwen plainQ6 and FlintQ3XL are downloading, not loaded.
-Reduced-residency Q4/Q6 calibration profiles are separately frozen; their
-13.5GiB admission also rejects the latest13.213GiB freeRAM snapshot. The
-original profile gates and all runtime stop floors remain unchanged.
+remain above. Qwen plainQ6 subsequently finishes download/full SHA and loads
+at21:58; its public workflow then reaches the deadline without a complete answer. FlintQ3XL remains partial and is
+paused during inference. Reduced-residency Q4/Q6 profiles preserve the original
+larger profiles: the7GiB Q4 coding calibration hits its deadline without code,
+while the7GiB Q6 smoke succeeds. The earlier13.213GiB capacity rejection remains
+historical; Q6's fresh launch has16.98GiB available RAM. All runtime stop floors
+remain unchanged.
 
 - Added the twelve-task executable suite and a consistent 50/30/20 scorecard;
   regraded the public baseline as 52/60 and LFM as 48/60.

@@ -1,0 +1,36 @@
+{
+  "model": "k2-mova-36b-q4",
+  "alias": "k2-lab",
+  "locally_tested": false,
+  "validation_status": "planned-smaller-resident-calibration-not-promoted",
+  "evidence": "Separate24October apps-open calibration preserving the original18GiB profile. Same IFM K2 MoVA Q4 artifact, all48 FFN experts and3.955GiB attention-value experts on CPU. Estimated18.851GiB host expert spans plus0.336GiB embeddings;1.634GiB other GPUweights and3.375GiB64K GPUq4KV before scratch. Fixed8GiB resident maximum and6.5GiB reserve reduce residency but require paging; not a total allocation cap or measured fit. Short smoke first, no score inherited. Native high,temperature1/topP.95, frozen topK20/16Koutput. Every runtime stop floor remains unchanged.",
+  "load_min_ram_free_gib": 14.5,
+  "load_min_vram_free_mib": 6200,
+  "load_min_commit_available_gib": 10,
+  "stop_min_ram_free_gib": 2.5,
+  "stop_min_vram_free_mib": 400,
+  "stop_min_commit_available_gib": 1,
+  "stop_gpu_c": 84,
+  "working_set_limit_gib": 8,
+  "working_set_reserve_gib": 6.5,
+  "template_kwargs": {"reasoning_effort": "high"},
+  "runtime_variant": {
+    "id": "b11838-noprefetch-v1",
+    "llama_sha256": "10331e86ab5bd3f8c08c486f42d900f1dd09dbab218ce54a8684b7ec7b65c35f"
+  },
+  "args": [
+    "--gpu-layers", "all", "--n-cpu-moe", "48",
+    "--override-tensor", "\\.attn_v_exps\\.weight=CPU",
+    "--ctx-size", "65536", "--threads", "4", "--threads-batch", "8",
+    "--cpu-mask", "0x5554", "--cpu-strict", "1", "--cpu-mask-batch", "0xFFFC",
+    "--batch-size", "512", "--ubatch-size", "128", "--flash-attn", "on",
+    "--cache-type-k", "q4_0", "--cache-type-v", "q4_0",
+    "--jinja", "--reasoning", "on", "--reasoning-format", "deepseek",
+    "--reasoning-budget", "-1", "--predict", "16384",
+    "--temp", "1.0", "--top-p", "0.95", "--top-k", "20", "--min-p", "0",
+    "--repeat-penalty", "1", "--cache-ram", "0", "--fit", "off",
+    "--perf", "--load-mode", "mmap", "--no-repack",
+    "--timeout", "1200", "--metrics", "--verbosity", "4",
+    "--host", "127.0.0.1,::1"
+  ]
+}

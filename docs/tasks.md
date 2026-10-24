@@ -1084,3 +1084,30 @@ Downloads resume (Q6 wrapper21792; FlintQ3XL18004) only after engine exit.
 42tests pass19.594s/direct subprocess exit0,4PowerShell parses, audit289/0.
 First PowerShell stderr-pipeline exit1 despite42/OK is retained; direct capture
 retry resolves test status. No campaign closeout or promotion.
+
+21:53IST: CI40110363216 Windows failed one mocked controller Start subprocess at20seconds; Ubuntu passed. Same controller/test code as prior passing checkpoint and42local checks pass. Failed-job retry was rejected by automatic approval review (blocked by policy); no workaround or code change. Original failed job/log preserved; CI unresolved. Q6 download89%, no inference active.
+
+21:57-22:05IST: plain Q6 full SHA verified; downloader exits before inference.
+Fresh16.98GiB RAM/14.05GiB commit/6610MiB VRAM admit only the separately
+frozen resident7 calibration, not the original18GiB profile. Smoke8.0s,
+READY. punctuation miss; native public router collecting, all seven correct
+fixture reads delivered after its first turn. No grade yet. Actual GPUweights
+2038.80MiB/KV680MiB/compute504MiB. Added a separate unrun Gemma resident8
+calibration for later fresh admission; preserves original18GiB profiles and
+stop floors. Research records publisher-specific QAT/sampling/history rules.
+
+22:18-22:22IST: Q6 resident7 public router deadlines1200.016s: seven valid
+reads, first visible1080.828s,1840partial visible characters, unscored.
+Normal stop/no hardware event; minimumRAM9.263GiB/commit6.313GiB/VRAM594MiB.
+Full result exported before a new engine.42offline tests pass18.544s
+(19.109s command), four PSparses, audit294files/zero findings. Added the
+authoritative smoke-punctuation ambiguity note to docs/grading.md; preserved
+historical literal checks and all question/answer bytes. ProjectAGENTS points
+there; Claude importsAGENTS, both shared routers already cover it and remain
+unchanged. No scoring change from ambiguous smoke punctuation.
+
+At22:21 freshRAM17.401GiB rejects the original18GiB Q6 profile, despite an
+earlier18.211GiB snapshot. The new fixed10GiB profile admits with16.5GiB load
+gate and unchanged6.5GiB reserve; controller77704 collects the same public
+workflow. No download, grading or build overlaps inference. Gemma/K2 resident8
+profiles remain unrun. This checkpoint is progress, not campaign completion.

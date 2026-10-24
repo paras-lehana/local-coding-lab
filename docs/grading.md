@@ -115,3 +115,14 @@ and results. They are post-review diagnostics, not held-out tests or a
 retroactive scoring change. Add such cases only in a separately versioned
 future benchmark applied consistently to candidates. See the24October Qwen
 model report for evidence.
+
+## Smoke wording is not a quality benchmark
+
+The existing smoke asks `Reply with exactly READY.` while old report checks
+expect the literal `READY` without a period. Because the prompt itself ends
+with that period, `READY.` is ambiguous evidence of a formatting mistake.
+Preserve the actual request, answer and historical literal-check result, but
+do not count this punctuation alone as an instruction-following defect or a
+reason to reject a model. The current smoke only gates nonempty transport.
+Use an explicitly quoted target in a separately versioned future format test;
+do not rewrite a request after seeing its response.
