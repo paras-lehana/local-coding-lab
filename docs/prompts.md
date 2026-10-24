@@ -1573,3 +1573,15 @@ artifact-label corrections are recorded. Public audit275files/zero findings,
 four PowerShell parses and whitespace check pass; latest offline suite42passes
 19.108s. No promotion or completed-campaign claim; remaining candidates and
 production restoration are still active work.
+
+20:40IST progress checkpoint: native Q4 completes all12 question attempts
+across original/resumed runs:11 delivered answers,9 frozen task passes,2
+failures,1 output limit. Two passing JavaScript answers also fail separately
+recorded post-review diagnostics. Original RAM interruption remains preserved.
+IQ4 native/presence controls fail completion. Flint Q4 exact-file retirement
+after full hash frees space for the distinct plain Q6 download, now active.
+42 offline tests pass in18.925s; four existing PowerShell files parse; public
+audit283files/zero findings and whitespace check pass. An initial parse command
+named a nonexistent install.ps1; corrected enumeration checks install-widget.ps1.
+This is an in-progress checkpoint, with cached Qwen, higher Q6, other candidates
+and production restoration still pending. No completed-campaign claim.

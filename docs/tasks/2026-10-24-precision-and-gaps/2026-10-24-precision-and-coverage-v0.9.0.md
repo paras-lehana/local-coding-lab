@@ -2,7 +2,10 @@
 
 Started 24 October 2026 (Asia/Kolkata). Status: active; Qwen IQ3_S public/private
 graded; higher Flint Q4 controls deadline; IQ3 cached/capped coding6/12;
-IQ4 bounded-resident public55/60 and private29/36 after a separate RAM stop.
+IQ4 bounded-resident public55/60 and private29/36 after a separate RAM stop;
+its native coding controls fail completion. Q4 native now attempts all12
+questions across an original run and JavaScript resume:9 frozen passes,2
+failures,1 output limit; two additional JS defects remain.
 This continues the completed [Flint trial](../2026-10-23-flint/2026-10-23-recursive-flint-v0.8.0.md).
 
 ## Request and constraints
@@ -17,13 +20,14 @@ isolated grading. No cloud inference or exposed historical key is used.
 
 | Candidate / gap | Next action | State |
 |---|---|---|
-| Qwen Q4 twelve coding tasks | Fresh capacity check; collect at 64K, native reasoning, temperature .6, seed73 | Pending |
+| Qwen Q4 twelve coding tasks | Original native64K/.6/seed73, then separately declared cache/general32K control |All12 attempted across original+resume:9frozen passes,2failures,TTL output limit. OriginalRAM interruption preserved; two extraJS checks fail. Cached/general32K next |
+| Plain Qwen Q6_K higher precision |Distinct artifact pinned/header inspected; full download then cache/general32K quality and long-file work under gates |Download pending; old Q6_K_XL result does not transfer |
 | Qwen IQ3_S interrupted public / missing private and coding |38 CPU expert blocks; conservative stop floors | Native public52/60, private29/36; separate cap4096/cache1536 coding6/12, all twelve complete; no mixed composite |
-| Qwen IQ4_XS interrupted public / missing private and coding |CPU35 with bounded resident memory after fresh RAM stop |Public55/60; private29/36 in725.4s; coding pending |
+| Qwen IQ4_XS interrupted public / missing private and coding |CPU35 with bounded resident memory after fresh RAM stop |Public55/60; private29/36 in725.4s; native interval1200s deadline and presence1.5 control16K output limit; subsequent unchanged coding cases interrupted/unrun |
 | Gemma26 fallback missing latest public/coding | Collect missing suites under its recorded template and sampling | Pending |
 | K2 MoVA / Nemotron Bolt downloaded but untested | Verify identity; calculate placement and gates; trial if capacity permits | Pending |
-| Flint higher precision | Pinned Unsloth Q4 first, Q3_K_XL fallback; isolated opt-in mmap build | Both Q4 CPU44 and CPU48/cache1536 router trials deadline; further tuning/recipes unresolved |
-| Flint CSV / history output limits | Separate 32768-output diagnostic with unchanged 1200-second deadline | Q4 installed; router deadline prevents full-workflow qualification; diagnostic still pending |
+| Flint higher precision | Pinned Unsloth Q4 first, Q3_K_XL fallback; isolated opt-in mmap build | Both Q4 CPU44 and CPU48/cache1536 router trials deadline; exact Q4 file retired after fresh full hash. Q3XL/NVFP4 still queued |
+| Flint CSV / history output limits | Separate 32768-output diagnostic with unchanged 1200-second deadline | Original8K history diagnostic already passes8/8 separately; original CSV32K diagnostic pending. Q4 router deadlines prevent full-workflow qualification |
 | Flint file-driven TS/SQL | Check template/parser provenance, rerun native tool workflow before trying a separately labeled scaffold change | Pending |
 | Old dense,80B,Bonsai,LFM gate failures | Reopen only where a specific runtime/template/budget change addresses the measured failure; otherwise record unresolved quality coverage and exact gate | Audit recorded below; unchanged configurations remain excluded, missing newer scores explicitly identified |
 | Qwen full scorecard / finalists | Do not invent missing values or merge incompatible profiles; repeat eligible finalists on seeds74/75 | Pending earlier components |
@@ -461,3 +465,80 @@ processresident13.356GiB. No new hardware event. A short-lived private-controlle
 argument-quoting error occurs before loading and is retained separately; the
 corrected controller starts the same18GiB-gated profile after freeRAM recovers
 to19.16GiB. No application is closed. Private audit collecting; coding next.
+
+17:36-17:46 IST: bounded IQ4 private audit is reviewed and isolated-graded:
+29/36 (19 semantic,4 citation,6 code),725.4seconds,15 actual file reads. Four
+retained alias/local-key diagnostics also pass. Contradictory policy mapping,
+missing routing steps and an unsupported installer-branch explanation remain.
+Minimum freeRAM4.340GiB/VRAM841MiB; peak processresident14.048GiB/GPU58.06C.
+Normal stop, no hardware event. Receipt: reports/2026-10-24-qwen-iq4xs-private.json.
+IQ4 native direct coding starts17:36:45; the first case is still reasoning at
+nine minutes. A separately frozen presence1.5 diagnostic retains all original
+settings, including repeat_last_n64; it is unrun and inherits no quality score.
+
+Progress checkpoint d90e41b is pushed to experiment/flint-precision-20261024.
+CI40093080544 passes both Windows and Ubuntu. This is an in-progress checkpoint;
+remaining coding/candidates and production restoration are still required.
+
+17:57-17:58IST: IQ4 native interval coding hits1200.016s without visible code; eleven later tasks unrun. Normal owned stop, no hardware event. RAM minimum3.927GiB/commit6.988GiB/VRAM914MiB; resident13.105GiB. Separate presence1.5 native-thinking control starts17:58; actual sampler value verified, repeat_last_n64 unchanged. No native score inherited. Raw/controller identity and report saved.
+
+18:19-18:20IST: IQ4 presence1.5 control exhausts16384reasoning tokens in1187.703s without code. TTL deliberately stopped47.875s; ten later tasks unrun. Normal owned stop, hardware clear; resource receipt saved. PlainQ6 header fetched only between engines: CPU40 experts24.791GiB, embeddings0.503GiB, otherweights1.991GiB. Full download not done. Q4 native twelve-task collection begins with original CPU37 profile; fresh gates/identity remain enforced.
+
+18:25IST follow-up frozen, not yet run: Q4 CPU40/cache2048/general32K.
+This combines the publisher's general-thinking temperature1/presence1.5 recipe
+with native reasoning,32K coding output and2GiB GPU expert cache. It is a joint
+usability configuration, not an isolated quant/cache experiment. Header-only
+estimates put CPU experts18.225GiB, embeddings0.503GiB and otherweights1.876GiB;
+cache/KV/runtime allocations still need measurement. The native Q4 baseline
+runs first. Its results do not transfer to this new configuration. All physical
+RAM, commit, VRAM, hardware and1200second gates stay unchanged.
+
+The distinct plain Q6 artifact is now catalog-pinned and header-inspected,
+with full download/load pending. It has24.791GiB CPU expert spans atCPU40;
+substantial paging is expected with apps open. Before calling it unusable,
+a changed placement/cache profile may be tested, but decode-only gains do not
+address the slow prefill observed in the historical larger XL artifact.
+
+18:33-18:44IST: Q4 native interval request completes623.235seconds,
+9636generated tokens,15.629decode tok/s; visible source starts604.047seconds.
+Source review saves two defects before execution: the merge aliases/mutates
+the first input interval, and subtraction omits the surviving final tail.
+No isolated score yet. TTL/LRU and subsequent questions continue in the same
+owned server. Q4 native results remain separate from the queued CPU40/cache2GiB
+publisher-general/32K-output configuration. No other model or grader is active.
+
+19:25IST Q4 native coding midpoint: five of six attempted questions deliver
+code. Intervals623.235s has input-mutation and missing-tail source defects;
+TTL1052.078s exhausts16384 reasoning tokens without code, unscored. DAG370.609s,
+scheduling349.921s and inventory317.844s appear contract-consistent on source
+review, with executable checks pending. CSV911.640s delivers source but treats
+quoted commas as separators and mishandles quoted CR/CRLF characters. Every
+completed visible implementation has a hash-linked review; none executed on
+the host or while inference is active. The two-file money task is collecting.
+
+19:57IST Q4 native coverage: eight of nine tasks have delivered implementations;
+TTL remains an unscored16K reasoning-only limit. Money finishes503.921s,
+SQL report557.828s and SQL interval union577.562s. Visible source reviews
+are saved before execution; TypeScript is still collecting. Windows dedicated
+GPU counter19:52:40 reports4.679GiB for the known server PID and13.861GiB
+resident RAM. Device-wide8268MiB includes applications, not only the model.
+The sampled link is PCIe4.0x16; no clock/hardware settings changed. No score
+is assigned until shutdown and isolated grading.
+
+20:04?20:08IST Q4 native collection stops at2.449GiB availableRAM; no hardware event. Nine completed answers isolated-graded: seven passes, intervals31/105 andCSV69/120 failures. TTL16K output-limited, worker pool resource-interrupted415.547s, deep mergeunrun. Complete-answer median557.828s. New receipt reports/2026-10-24-qwen-q4-native-coding.json. Post-grading freeRAM15.029GiB misses16GiB next-load gate; no app closed. Remaining native JavaScript and separate cache/general32K trials remain pending.
+
+20:10?20:12IST: Flint Q4 XL exact-file retirement succeeds after full hash recheck; two failed router profiles preserved. FreeRAM recovers16.639GiB after grading with apps unchanged. Resume only Q4 native js_pool/js_merge in fresh guarded server using original profile and fresh smaller resident-cap resolution; original RAM interruption remains. Raw qwen-q4-native-coding-js-resume-a, controller21556. No concurrent download or grading.
+
+20:34?20:37IST: Q4 native JavaScript resume completes, normal stop/no new hardware event. Frozen workerpool11/11 andmerge8/8 pass; separate post-review checks expose synchronous-second-worker scheduling and array-to-object replacement bugs (11/12 and8/9 with original checks retained). All12 native questions now attempted across runs:9frozen task passes,2failures,1output limit. First RAM interruption remains. Updated authoritative docs/grading.md and projectAGENTS; Claude importsAGENTS, both shared routers already cover it, adapters unchanged. Cache/general32K and plainQ6 remain pending.
+
+20:40IST progress checkpoint: native Q4 completes all12 question attempts
+across original/resumed runs:11 delivered answers,9 frozen task passes,2
+failures,1 output limit. Two passing JavaScript answers also fail separately
+recorded post-review diagnostics. Original RAM interruption remains preserved.
+IQ4 native/presence controls fail completion. Flint Q4 exact-file retirement
+after full hash frees space for the distinct plain Q6 download, now active.
+42 offline tests pass in18.925s; four existing PowerShell files parse; public
+audit283files/zero findings and whitespace check pass. An initial parse command
+named a nonexistent install.ps1; corrected enumeration checks install-widget.ps1.
+This is an in-progress checkpoint, with cached Qwen, higher Q6, other candidates
+and production restoration still pending. No completed-campaign claim.

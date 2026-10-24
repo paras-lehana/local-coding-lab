@@ -1012,3 +1012,51 @@ Current recommendations:
 
 
 Final publication: evidence116a67d pushed to main; CI38975676188 succeeds on Windows and Ubuntu.152 relative Markdown file links resolve (anchors/external URLs not validated by that check). Exact prepared A-G summary saved in prompts.md before the visible response. Owned observer34860 stopped normally. No server or inference queue active; all five requested research points complete. Optional mapped-profile editor regression remains explicit, not claimed done.
+
+17:57-17:58IST: IQ4 native interval coding hits1200.016s without visible code; eleven later tasks unrun. Normal owned stop, no hardware event. RAM minimum3.927GiB/commit6.988GiB/VRAM914MiB; resident13.105GiB. Separate presence1.5 native-thinking control starts17:58; actual sampler value verified, repeat_last_n64 unchanged. No native score inherited. Raw/controller identity and report saved.
+
+18:19-18:20IST: IQ4 presence1.5 control exhausts16384reasoning tokens in1187.703s without code. TTL deliberately stopped47.875s; ten later tasks unrun. Normal owned stop, hardware clear; resource receipt saved. PlainQ6 header fetched only between engines: CPU40 experts24.791GiB, embeddings0.503GiB, otherweights1.991GiB. Full download not done. Q4 native twelve-task collection begins with original CPU37 profile; fresh gates/identity remain enforced.
+
+18:33-18:44IST: Q4 native interval request completes623.235seconds,
+9636generated tokens,15.629decode tok/s; visible source starts604.047seconds.
+Source review saves two defects before execution: the merge aliases/mutates
+the first input interval, and subtraction omits the surviving final tail.
+No isolated score yet. TTL/LRU and subsequent questions continue in the same
+owned server. Q4 native results remain separate from the queued CPU40/cache2GiB
+publisher-general/32K-output configuration. No other model or grader is active.
+
+19:25IST Q4 native coding midpoint: five of six attempted questions deliver
+code. Intervals623.235s has input-mutation and missing-tail source defects;
+TTL1052.078s exhausts16384 reasoning tokens without code, unscored. DAG370.609s,
+scheduling349.921s and inventory317.844s appear contract-consistent on source
+review, with executable checks pending. CSV911.640s delivers source but treats
+quoted commas as separators and mishandles quoted CR/CRLF characters. Every
+completed visible implementation has a hash-linked review; none executed on
+the host or while inference is active. The two-file money task is collecting.
+
+19:57IST Q4 native coverage: eight of nine tasks have delivered implementations;
+TTL remains an unscored16K reasoning-only limit. Money finishes503.921s,
+SQL report557.828s and SQL interval union577.562s. Visible source reviews
+are saved before execution; TypeScript is still collecting. Windows dedicated
+GPU counter19:52:40 reports4.679GiB for the known server PID and13.861GiB
+resident RAM. Device-wide8268MiB includes applications, not only the model.
+The sampled link is PCIe4.0x16; no clock/hardware settings changed. No score
+is assigned until shutdown and isolated grading.
+
+20:04?20:08IST Q4 native collection stops at2.449GiB availableRAM; no hardware event. Nine completed answers isolated-graded: seven passes, intervals31/105 andCSV69/120 failures. TTL16K output-limited, worker pool resource-interrupted415.547s, deep mergeunrun. Complete-answer median557.828s. New receipt reports/2026-10-24-qwen-q4-native-coding.json. Post-grading freeRAM15.029GiB misses16GiB next-load gate; no app closed. Remaining native JavaScript and separate cache/general32K trials remain pending.
+
+20:10?20:12IST: Flint Q4 XL exact-file retirement succeeds after full hash recheck; two failed router profiles preserved. FreeRAM recovers16.639GiB after grading with apps unchanged. Resume only Q4 native js_pool/js_merge in fresh guarded server using original profile and fresh smaller resident-cap resolution; original RAM interruption remains. Raw qwen-q4-native-coding-js-resume-a, controller21556. No concurrent download or grading.
+
+20:34?20:37IST: Q4 native JavaScript resume completes, normal stop/no new hardware event. Frozen workerpool11/11 andmerge8/8 pass; separate post-review checks expose synchronous-second-worker scheduling and array-to-object replacement bugs (11/12 and8/9 with original checks retained). All12 native questions now attempted across runs:9frozen task passes,2failures,1output limit. First RAM interruption remains. Updated authoritative docs/grading.md and projectAGENTS; Claude importsAGENTS, both shared routers already cover it, adapters unchanged. Cache/general32K and plainQ6 remain pending.
+
+20:40IST progress checkpoint: native Q4 completes all12 question attempts
+across original/resumed runs:11 delivered answers,9 frozen task passes,2
+failures,1 output limit. Two passing JavaScript answers also fail separately
+recorded post-review diagnostics. Original RAM interruption remains preserved.
+IQ4 native/presence controls fail completion. Flint Q4 exact-file retirement
+after full hash frees space for the distinct plain Q6 download, now active.
+42 offline tests pass in18.925s; four existing PowerShell files parse; public
+audit283files/zero findings and whitespace check pass. An initial parse command
+named a nonexistent install.ps1; corrected enumeration checks install-widget.ps1.
+This is an in-progress checkpoint, with cached Qwen, higher Q6, other candidates
+and production restoration still pending. No completed-campaign claim.

@@ -1,0 +1,16 @@
+{
+    "date":  "2026-10-24T20:10:06.0841433+05:30",
+    "action":  "exact-file-retirement",
+    "candidate":  "flint-q4xl",
+    "filename":  "flint-UD-Q4_K_XL.gguf",
+    "bytes":  25054688704,
+    "sha256":  "63c2ecc461ca545134b670c660e76fa20f47240f8d39b6510bfd21c4dd6e072f",
+    "revision":  "20468edfc38ab43d6914cc88b08cbecb05d0fc62",
+    "reason":  "Two distinct native GPU-KV router profiles exceed1200seconds; preserve both unscored outcomes and free disk for requested plain Q6 trial. Other higher-Flint variants remain separately queued.",
+    "reports":  [
+                    "reports/2026-10-24-flint-q4xl-cpu44.json",
+                    "reports/2026-10-24-flint-q4xl-cache1536.json"
+                ],
+    "production_qwen_and_gemma_preserved":  true,
+    "deletion_verified":  true
+}

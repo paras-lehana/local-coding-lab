@@ -32,6 +32,12 @@ three-component baseline exists. A stale running JSON is not a live process:
 the 21 October IQ3_S run has a VRAM stop receipt and no completed router answer.
 Keep these limitations in any model comparison or publication.
 
+Qwen Q4's24October native coding attempts all12 questions across two loads:
+9 frozen task passes,2 failures,1 output limit. The original RAM interruption
+remains; both resumed JavaScript answers pass frozen checks but fail separate
+source-motivated edge tests. Follow docs/grading.md: preserve frozen scores,
+label new diagnostics and never equate a finite pass with correct code.
+
 Flint's 23-24 October campaign is complete; consult its report for outcomes.
 GPU KV improves completion, but native/capped CPU KV fail the router deadline.
 Private29/36, router39/40, coding11 completed passes/12, and a separate8K-output

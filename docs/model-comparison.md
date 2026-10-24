@@ -8,6 +8,7 @@ not independently human-reviewed. It is not a controlled universal ranking.
 | Candidate | Private /36 | Public /60 | Coding /12 | Practical result |
 |---|---:|---:|---:|---|
 | Qwen3.6 35B-A3B UD-Q4_K_M, mapped64 | 31 | 52 | Not collected | Retained leader on available components; private 699.7 s; SQL failure and aliasing diagnostics remain |
+| Qwen3.6 Q4 CPU37/native64K,24October |Unrun |Unrun |9 frozen task passes;2 failures;1 output limit |All12 attempted across original+JSresume. Original RAM stop preserved. Interval/CSV failures; separate checks expose JS scheduling/replacement bugs despite frozen passes. No historical scores transferred |
 | Qwen3.6 Q4, historical2GiB expert cache |27 |Separate historical cases |Not collected |Private402.703s; strict TypeScript and SQL defects; different placement/non-mapped profile, not evidence that expert caching intrinsically lowers intelligence |
 | Qwen3.6 Q5 | 28 | Separate historical cases | Not comparable | Lower private score; retired |
 | Qwen3.6 UD-Q6_K_XL | 28 | Historical completed cases | Not comparable | Private 2099.7 s, exceeds current gate; retired. Plain UD-Q6_K is a different, untested artifact |
@@ -23,7 +24,7 @@ not independently human-reviewed. It is not a controlled universal ranking.
 | Bonsai 2 27B PTQ1_0 | Not run | Deadline | Not run | Full GPU, router exceeds 1200 s after one tool turn; retired |
 | LFM2.5 24B-A2B QAD Q4_0 | Deadline | 48 | 6 completed passes of 12 | Private reasoning loop; coding includes deadline/truncation, so 6/12 is task completion, not twelve completed correctness grades; retired 23 October |
 | Qwen3.6 UD-IQ4_XS | Not run | Router 39/40 only | Not run | TS/SQL interrupted by RAM guard; not a complete public score |
-| Qwen3.6 UD-IQ4_XS,CPU35 bounded64K,24October |29 |55 |Pending |Private725.4s,code6/6 plus extra4/4. Instruction omissions/path contradiction/control-flow misexplanation remain. Public SQL uniqueness/FK and TS object validation fail; prior RAM stop preserved |
+| Qwen3.6 UD-IQ4_XS,CPU35 bounded64K,24October |29 |55 |First task1200s deadline; eleven unrun |Private725.4s,code6/6 plus extra4/4. Instruction omissions/path contradiction/control-flow misexplanation remain. Native interval problem delivers no code; public SQL/TS bugs and prior RAM stop preserved |
 | Qwen3.6 UD-IQ3_S,38 CPU expert blocks |29 |52 |Two reasoning-only16K output limits; later cases interrupted/unrun |24October: private638.6s, all public workflows complete; alias, TS validation and SQL migration bugs; exact smoke punctuation fails. Separate capped controls appear below |
 | Qwen3.6 UD-IQ3_S,4096 reasoning ceiling |Not collected on this variant |Not collected on this variant |Two completed passes; deliberately stopped before full suite |Intervals105/105 and TTL34/34; native scores above cannot be transferred. Redundant interval work and extra NaN TTL finding remain |
 | Qwen3.6 UD-IQ3_S,4096 ceiling plus1536MiB GPU expert cache |Not collected on this variant |Not collected on this variant |6/12; all twelve complete |Median134s,31–37tok/s. Interval,CSV,money,strictTS,worker-pool and deep-merge defects. Worker-pool lexical false alarm corrected by hash-scoped unchanged-source recheck; six task passes unchanged. Extra NaN TTL fails |
@@ -44,9 +45,12 @@ collection with conservative guards. Higher Flint Q4 is verified; its uncached
 CPU44 profile and CPU48/1536MiB expert-cache variant both miss the router
 deadline. No higher-Flint-precision quality score exists yet. IQ3 capped/cached
 coding completes6/12 passes; its native settings remain a separate experiment.
-IQ4's new bounded-memory router completes536seconds and awaits isolated
-grading while the other public cases collect. Missing compatible components
-still prevent a composite.
+IQ4's bounded-memory workflows score55/60 and private audit29/36 after source
+review and isolated checks. Its native direct-coding interval task then reaches
+1200seconds with no delivered code; eleven later tasks are unrun. A separate
+presence1.5 control also exhausts16K reasoning tokens without code; later
+cases are interrupted/unrun. Native thinking is retained in both controls. Missing
+compatible components still prevent a composite.
 
 - Added the twelve-task executable suite and a consistent 50/30/20 scorecard;
   regraded the public baseline as 52/60 and LFM as 48/60.

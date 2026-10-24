@@ -1,0 +1,801 @@
+{
+  "date": "2026-10-24",
+  "model": {
+    "name": "Qwen3.6-35B-A3B UD-Q4_K_M",
+    "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+    "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+    "filename": "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+    "bytes": 22134528992,
+    "sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61",
+    "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+    "status": "selected-working-profile-editor-probes-complete-with-documented-defects",
+    "thinking": "enable_thinking and preserve_thinking; no native xhigh",
+    "url": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/a483e9e6cbd595906af30beda3187c2663a1118c/Qwen3.6-35B-A3B-UD-Q4_K_M.gguf"
+  },
+  "profile_name": "qwen36-q4-coverage64",
+  "profile": {
+    "model": "qwen36-q4",
+    "alias": "qwen36-lab",
+    "locally_tested": false,
+    "evidence": "24 October missing coding baseline. Retains mapped64 Q4 placement, GPU q8 KV, native thinking and .6 sampling. Adds recorded core0 exclusion and current1200s gate. Historical quality is not a new score.",
+    "load_min_ram_free_gib": 16,
+    "load_min_vram_free_mib": 6000,
+    "template_kwargs": {
+      "enable_thinking": true,
+      "preserve_thinking": true
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--ctx-size",
+      "65536",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--batch-size",
+      "512",
+      "--ubatch-size",
+      "128",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--timeout",
+      "1200",
+      "--reasoning-budget",
+      "-1",
+      "--reasoning-preserve",
+      "--predict",
+      "16384",
+      "--temp",
+      "0.6",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "20",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--n-cpu-moe",
+      "37",
+      "--verbosity",
+      "4",
+      "--ctx-checkpoints",
+      "4",
+      "--metrics",
+      "--host",
+      "127.0.0.1,::1",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC"
+    ],
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_gpu_c": 84,
+    "validation_status": "planned-coverage-not-measured",
+    "stop_min_commit_available_gib": 1.0,
+    "working_set_limit_gib": 48,
+    "working_set_reserve_gib": 5,
+    "load_min_commit_available_gib": 10,
+    "runtime_variant": {
+      "id": "b11562-noprefetch-v1",
+      "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+    }
+  },
+  "status": "collection_stopped",
+  "started": "2026-10-24T12:49:46.245600+00:00",
+  "finished": "2026-10-24T14:34:34.163356+00:00",
+  "preflight": {
+    "time": 1792846186.2456,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 18.659610748291016,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 14.167285919189453,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6474.0,
+    "gpu_c": 49.91,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "postflight": {
+    "time": 1792852474.1633568,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 16.652328491210938,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 13.893321990966797,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6636.0,
+    "gpu_c": 52.72,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "controller_sha256": "98655372fcc92d6aa72e51c836870e1a6d6e8165759831868a48c84e13943ae0",
+  "collector_sha256": "e6c1d8e4c9afa38aa8916ad0401d2ab6f507aa31d56f45d32d0bffdfded9a16e",
+  "suite_sha256": "d69a90527dc9939d32c7a7751bb080064fcc24acfeeef97ab8c1fada84bceea5",
+  "request_controls": {
+    "model": "qwen36-lab",
+    "max_tokens": 16384,
+    "deadline": 1200.0,
+    "temperature": 0.6,
+    "seed": 73
+  },
+  "tasks": [
+    {
+      "task": "intervals",
+      "language": "python",
+      "wall_seconds": 623.2350000000151,
+      "finish_reason": "stop",
+      "first_event_seconds": 6.75,
+      "first_content_seconds": 604.0470000000205,
+      "error": null,
+      "decode_tok_s": 15.629152228585069
+    },
+    {
+      "task": "ttl_lru",
+      "language": "python",
+      "wall_seconds": 1052.0779999999795,
+      "finish_reason": "length",
+      "first_event_seconds": 3.765999999974156,
+      "first_content_seconds": null,
+      "error": null,
+      "decode_tok_s": 15.627933650774443
+    },
+    {
+      "task": "dag",
+      "language": "python",
+      "wall_seconds": 370.60900000002584,
+      "finish_reason": "stop",
+      "first_event_seconds": 2.3440000000118744,
+      "first_content_seconds": 352.6720000000205,
+      "error": null,
+      "decode_tok_s": 15.206433746534861
+    },
+    {
+      "task": "csv_stream",
+      "language": "python",
+      "wall_seconds": 911.6399999999849,
+      "finish_reason": "stop",
+      "first_event_seconds": 3.8589999999967404,
+      "first_content_seconds": 878.8279999999795,
+      "error": null,
+      "decode_tok_s": 16.76840972523216
+    },
+    {
+      "task": "schedule",
+      "language": "python",
+      "wall_seconds": 349.9210000000021,
+      "finish_reason": "stop",
+      "first_event_seconds": 3.562000000005355,
+      "first_content_seconds": 340.23399999999674,
+      "error": null,
+      "decode_tok_s": 15.917328427743408
+    },
+    {
+      "task": "inventory_fix",
+      "language": "python",
+      "wall_seconds": 317.8440000000119,
+      "finish_reason": "stop",
+      "first_event_seconds": 4.453000000008615,
+      "first_content_seconds": 309.06299999999464,
+      "error": null,
+      "decode_tok_s": 16.480768648499467
+    },
+    {
+      "task": "multi_file",
+      "language": "multifile",
+      "wall_seconds": 503.9210000000021,
+      "finish_reason": "stop",
+      "first_event_seconds": 5.375,
+      "first_content_seconds": 489.5,
+      "error": null,
+      "decode_tok_s": 15.982663239316121
+    },
+    {
+      "task": "sql_report",
+      "language": "sql",
+      "wall_seconds": 557.8280000000086,
+      "finish_reason": "stop",
+      "first_event_seconds": 5.032000000006519,
+      "first_content_seconds": 533.5470000000205,
+      "error": null,
+      "decode_tok_s": 15.370992683888673
+    },
+    {
+      "task": "sql_islands",
+      "language": "sql",
+      "wall_seconds": 577.5620000000054,
+      "finish_reason": "stop",
+      "first_event_seconds": 3.75,
+      "first_content_seconds": 564.9530000000086,
+      "error": null,
+      "decode_tok_s": 15.637849994336094
+    },
+    {
+      "task": "ts_validation",
+      "language": "typescript",
+      "wall_seconds": 579.1720000000205,
+      "finish_reason": "stop",
+      "first_event_seconds": 5.797000000020489,
+      "first_content_seconds": 554.0780000000086,
+      "error": null,
+      "decode_tok_s": 16.151711609227153
+    },
+    {
+      "task": "js_pool",
+      "language": "javascript",
+      "wall_seconds": 415.5469999999914,
+      "finish_reason": null,
+      "error": "worker_exit_1",
+      "decode_tok_s": null
+    }
+  ],
+  "not_run": [
+    "js_merge"
+  ],
+  "server_outcome": {
+    "status": "stopped",
+    "reason": "ram_free_gib below 2.5 or unavailable"
+  },
+  "new_hardware_event": false,
+  "reason": null,
+  "outputs": {
+    "csv_stream": {
+      "request_sha256": "534078f94c4e59bcc16dc7a270351154ee61e909e9c5323df167aa3f86d1fc5e",
+      "response_sha256": "4bf47769a71ff32b85fc69f93c9fcd95f3986a10169b611d82d194da56b20aef",
+      "events_sha256": "938c79be946387dc7ff62544ecb995b5f7b0f13f79987c83a23a8ffafd924a7c",
+      "reasoning_characters": 59914,
+      "visible_characters": 3022,
+      "first_content_seconds": 878.8279999999795,
+      "last_event_seconds": 911.6399999999849,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 167,
+        "prompt_ms": 3784.191,
+        "prompt_per_token_ms": 22.659826347305387,
+        "prompt_per_second": 44.130964848233084,
+        "predicted_n": 15223,
+        "predicted_ms": 907778.391,
+        "predicted_per_token_ms": 59.635947378793844,
+        "predicted_per_second": 16.76840972523216
+      },
+      "usage": {
+        "completion_tokens": 15223,
+        "prompt_tokens": 167,
+        "total_tokens": 15390,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    "dag": {
+      "request_sha256": "106559ffbdf42c527b19f5280233891a8807544f20373139b68c36780ce8fb3b",
+      "response_sha256": "9b622fdbeb87d9d2dba9e53d9255a652194acb2f8fd9cdd59f81a33e2ccb13a1",
+      "events_sha256": "7f75a69d1add32a2c09d234df6ce56f1c7fb20de50e405bf07f5e608d4b07099",
+      "reasoning_characters": 19826,
+      "visible_characters": 852,
+      "first_content_seconds": 352.6720000000205,
+      "last_event_seconds": 370.60900000002584,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 96,
+        "prompt_ms": 2248.176,
+        "prompt_per_token_ms": 23.418499999999998,
+        "prompt_per_second": 42.70128317355937,
+        "predicted_n": 5601,
+        "predicted_ms": 368265.176,
+        "predicted_per_token_ms": 65.76163857142856,
+        "predicted_per_second": 15.206433746534861
+      },
+      "usage": {
+        "completion_tokens": 5601,
+        "prompt_tokens": 96,
+        "total_tokens": 5697,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    "intervals": {
+      "request_sha256": "fd69f19929ccc0be5d11d0ffaabd2aeeb5ecde894a9bf6befc4505a38c2ff3d4",
+      "response_sha256": "22a38f9ad09fe413606b02fa14f506481701e3e31820191ca8954747a17f41af",
+      "events_sha256": "a5bb8382c56ae0420171a22ec6586f71423994e6650d4ddacccb10041c20718e",
+      "reasoning_characters": 29898,
+      "visible_characters": 1139,
+      "first_content_seconds": 604.0470000000205,
+      "last_event_seconds": 623.2350000000151,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 94,
+        "prompt_ms": 6704.61,
+        "prompt_per_token_ms": 71.32563829787233,
+        "prompt_per_second": 14.020204008883441,
+        "predicted_n": 9636,
+        "predicted_ms": 616476.176,
+        "predicted_per_token_ms": 63.98299699014011,
+        "predicted_per_second": 15.629152228585069
+      },
+      "usage": {
+        "completion_tokens": 9636,
+        "prompt_tokens": 94,
+        "total_tokens": 9730,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    "inventory_fix": {
+      "request_sha256": "a0969391b09eb51e7057107e3a7c5c5282e45eb742e30ae07b13263a22135c4d",
+      "response_sha256": "c015ec6a4da151be333251289b0a1d1785f074debcf440909387aab667dede1a",
+      "events_sha256": "b3e3f40ed69aa5c4c8d854535867c51952549245a988f95bd9ac2012ae914cfa",
+      "reasoning_characters": 19958,
+      "visible_characters": 477,
+      "first_content_seconds": 309.06299999999464,
+      "last_event_seconds": 317.8440000000119,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 165,
+        "prompt_ms": 4341.978,
+        "prompt_per_token_ms": 26.315018181818182,
+        "prompt_per_second": 38.00111377809837,
+        "predicted_n": 5166,
+        "predicted_ms": 313395.577,
+        "predicted_per_token_ms": 60.67678160696999,
+        "predicted_per_second": 16.480768648499467
+      },
+      "usage": {
+        "completion_tokens": 5166,
+        "prompt_tokens": 165,
+        "total_tokens": 5331,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    "js_pool": {
+      "request_sha256": "c81facad43b93ee9598c0fc1847626cbad5888719509e6a6a3d2c91fe032c59a",
+      "response_sha256": "77055e7f6ec0bddb4bfef330c712d7b24696a844227d2f418c35c182d1c2ec35",
+      "events_sha256": "c054df6448210143c1c25c7354331a1532b9f83f3ae0cb6473899f5aed7d65e1",
+      "reasoning_characters": 26884,
+      "visible_characters": 0,
+      "first_content_seconds": null,
+      "last_event_seconds": 415.0,
+      "timings": null,
+      "usage": null
+    },
+    "multi_file": {
+      "request_sha256": "6bc8d50ed2327b97b1b92603b44aafa296bfaaf002efe7f8bb5ab0dc13c7daa9",
+      "response_sha256": "fda4c821a942885fd96dad3feff37d82f89584655829b4ae8bac71fb45ce2703",
+      "events_sha256": "3df3bce18a6b460b8228839ade478a7d099d2d12a8b82311c7aa4fc12cafd541",
+      "reasoning_characters": 27279,
+      "visible_characters": 786,
+      "first_content_seconds": 489.5,
+      "last_event_seconds": 503.9210000000021,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 240,
+        "prompt_ms": 5291.885,
+        "prompt_per_token_ms": 22.049520833333336,
+        "prompt_per_second": 45.352459473325666,
+        "predicted_n": 7969,
+        "predicted_ms": 498540.192,
+        "predicted_per_token_ms": 62.56779518072289,
+        "predicted_per_second": 15.982663239316121
+      },
+      "usage": {
+        "completion_tokens": 7969,
+        "prompt_tokens": 240,
+        "total_tokens": 8209,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    "schedule": {
+      "request_sha256": "a2c4bf0d63ed4769702ea206402b8292d2d8ed6b8a49c254b3393ebd548e1528",
+      "response_sha256": "775d5f32431227286385fe23098b3a77cf5d8bed55e4d5cfcfd42ed5abcbe181",
+      "events_sha256": "4e17a2a8095659d0d7524f42516dabf09ee7adb775ca50222c2c266004d20fa1",
+      "reasoning_characters": 16475,
+      "visible_characters": 408,
+      "first_content_seconds": 340.23399999999674,
+      "last_event_seconds": 349.9059999999881,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 106,
+        "prompt_ms": 3480.518,
+        "prompt_per_token_ms": 32.83507547169811,
+        "prompt_per_second": 30.455236835436565,
+        "predicted_n": 5514,
+        "predicted_ms": 346352.092,
+        "predicted_per_token_ms": 62.8246130963178,
+        "predicted_per_second": 15.917328427743408
+      },
+      "usage": {
+        "completion_tokens": 5514,
+        "prompt_tokens": 106,
+        "total_tokens": 5620,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    "sql_islands": {
+      "request_sha256": "a297a8566a52ae1f5ea2567fd5d87700ba9bca6e2d469a33538fbb57065a29f9",
+      "response_sha256": "c4bc63c3c3f03b0b42d45991827c238af1d23726d45ef180129e84281dbafa16",
+      "events_sha256": "c090bbbee15f52f3d5e26df8dea35e2e4c5d0df255580b3ba2c5341b2ffddc48",
+      "reasoning_characters": 31423,
+      "visible_characters": 740,
+      "first_content_seconds": 564.9530000000086,
+      "last_event_seconds": 577.5620000000054,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 108,
+        "prompt_ms": 3661.381,
+        "prompt_per_token_ms": 33.90167592592592,
+        "prompt_per_second": 29.497066817138123,
+        "predicted_n": 8974,
+        "predicted_ms": 573800.107,
+        "predicted_per_token_ms": 63.94740967346483,
+        "predicted_per_second": 15.637849994336094
+      },
+      "usage": {
+        "completion_tokens": 8974,
+        "prompt_tokens": 108,
+        "total_tokens": 9082,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    "sql_report": {
+      "request_sha256": "f7bba69bf0170dcea49a37375209b3a79c748524d1a8d331800c807040e42d7e",
+      "response_sha256": "8e24b3d8fb6811408c341f3a08ced44ce189b5f8785151a59e969a6185ad080c",
+      "events_sha256": "3ba365dad36d7a601026646b2f894a6e1d1c8ee7ed42bde590a9397876a762c0",
+      "reasoning_characters": 30046,
+      "visible_characters": 1135,
+      "first_content_seconds": 533.5470000000205,
+      "last_event_seconds": 557.8280000000086,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 198,
+        "prompt_ms": 4949.578,
+        "prompt_per_token_ms": 24.99786868686869,
+        "prompt_per_second": 40.003410391754606,
+        "predicted_n": 8498,
+        "predicted_ms": 552794.486,
+        "predicted_per_token_ms": 65.05760692008944,
+        "predicted_per_second": 15.370992683888673
+      },
+      "usage": {
+        "completion_tokens": 8498,
+        "prompt_tokens": 198,
+        "total_tokens": 8696,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    "ts_validation": {
+      "request_sha256": "efe95ac0000647c6c6b8a248b663d1963d64823a4a1635bf4893f07450cf6fd1",
+      "response_sha256": "71a7682d5de67b8128dddaaece9becce94e6e28993d67c1c52604d8f35178660",
+      "events_sha256": "24fa8e687f559d9156b1e6a1c09277d5c9d7bed637e0358f5d2732370e16a28d",
+      "reasoning_characters": 32554,
+      "visible_characters": 1348,
+      "first_content_seconds": 554.0780000000086,
+      "last_event_seconds": 579.1720000000205,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 186,
+        "prompt_ms": 5695.234,
+        "prompt_per_token_ms": 30.619537634408605,
+        "prompt_per_second": 32.658886360068784,
+        "predicted_n": 9262,
+        "predicted_ms": 573375.765,
+        "predicted_per_token_ms": 61.9129429867185,
+        "predicted_per_second": 16.151711609227153
+      },
+      "usage": {
+        "completion_tokens": 9262,
+        "prompt_tokens": 186,
+        "total_tokens": 9448,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    "ttl_lru": {
+      "request_sha256": "ca87ca5872dd595834a5127fd87aa62bf5a64c66db690beeee85cabab32f4c95",
+      "response_sha256": "7c568c1d61d7e710e1757af9f59db5e0d980c7d67bf1beca2b6be2942b3ac925",
+      "events_sha256": "c95357c15cb43a879e2da58ac78f72b22175fd90a521466c61c1e61d2dbac017",
+      "reasoning_characters": 62891,
+      "visible_characters": 0,
+      "first_content_seconds": null,
+      "last_event_seconds": 1052.0779999999795,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 162,
+        "prompt_ms": 3673.245,
+        "prompt_per_token_ms": 22.674351851851853,
+        "prompt_per_second": 44.10269393955481,
+        "predicted_n": 16384,
+        "predicted_ms": 1048315.175,
+        "predicted_per_token_ms": 63.98798602209608,
+        "predicted_per_second": 15.627933650774443
+      },
+      "usage": {
+        "completion_tokens": 16384,
+        "prompt_tokens": 162,
+        "total_tokens": 16546,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    }
+  },
+  "memory": {
+    "minimum_ram_free_gib": 2.4494705200195312,
+    "minimum_commit_available_gib": 7.438472747802734,
+    "minimum_vram_free_mib": 1300.0,
+    "maximum_gpu_c": 53.16,
+    "maximum_process_working_set_gib": 13.861198425292969,
+    "maximum_process_private_gib": 5.934482574462891
+  },
+  "notes": {
+    "assessment": "Nine completed implementations, seven task passes and two observed behavior failures. TTL consumes16384 output tokens in reasoning without code. Worker pool interrupted by physical RAM floor at415.547s; deep merge not started. These two incomplete tasks and the unrun task have no correctness grade.",
+    "allocation_mib": {
+      "gpu_weights": 3381.34,
+      "gpu_kv": 680,
+      "gpu_recurrent": 62.81,
+      "gpu_compute": 408,
+      "host_compute": 20.27,
+      "cpu_mapped_span_not_resident_ram": 19118.08
+    },
+    "dedicated_gpu_sample": {
+      "timestamp": "2026-10-24T19:52:40.9507149+05:30",
+      "process_name": "llama-server",
+      "counter_instances": 1,
+      "dedicated_gib": 4.679134368896484,
+      "working_set_gib": 13.86117172241211
+    },
+    "reasoning_ceiling": "native-unlimited",
+    "original_output_limit": 16384,
+    "followup": "Finish remaining JavaScript coverage only after fresh capacity gates; separate cached/general32K trial does not inherit these scores.",
+    "resource_note": "RAM minimum2.4494705200195312GiB triggers unchanged2.5GiB floor; no new hardware event. Cap is resident memory, not commit. Desktop headroom changed during the long collection."
+  },
+  "raw_evidence": "local-data/2026-10-24-precision/qwen-q4-native-coding-a",
+  "verified_runtime_variant": {
+    "id": "b11562-noprefetch-v1",
+    "base_commit": "b2f036c0f138414dedc987446f1d9d802f920275",
+    "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009",
+    "stock_llama_sha256": "bbb5b3b15e0515905f401d729aa674ca27fbcaf9c1fcba5eff94d35cb2020467",
+    "patch_sha256": "26d8b3109cbcdb416ed8cd6f2b529c48e093ec9267a710c8546b18d49627ed32",
+    "compiler": "MSVC 14.50.35717, CMake 4.1.2-msvc8, Ninja, Release x64",
+    "unchanged_stock_binaries": {
+      "cublas64_12.dll": "e40202fe4223c1cd2d2dce7beec59e1ed61c7801bd827309183be9b50e358f4c",
+      "cublasLt64_12.dll": "2a896460bef60ed57ef32b0875812f355a6984e671d638bb632f5e8c1d7a831f",
+      "cudart64_12.dll": "d28e42265da7462162a54da6b7a99ea4fa2caf8139d862bb500db875d0b32dfc",
+      "ggml-base.dll": "e0af09585367c835030092722d974a65aaba54e62b4749a7e358a02f8e1aa5bf",
+      "ggml-cpu-alderlake.dll": "dbb2b0a1662c6a9df08f568babcc02b8c0f5be25165dbd3876ec80fb707a732e",
+      "ggml-cpu-cannonlake.dll": "539675328dcc137726c423623b158893e340cd55532a3cd954f62fa45f9fa378",
+      "ggml-cpu-cascadelake.dll": "740e1faa538d475572e11e5e0a7835441ce030ad1806ba015d67dcc2749e52da",
+      "ggml-cpu-cooperlake.dll": "cd091ecfa3023ee8167d9622e2389f4bd658cf6e649afa8302afa391a5df2b21",
+      "ggml-cpu-haswell.dll": "0018cfeb982f2a74a3e6636c59a94b6b97d003c23e18489a713bef2d6057bb13",
+      "ggml-cpu-icelake.dll": "d5487329de823ab2f960ef247ef7a38c600502fe1ba7578ecf5fa023c92de975",
+      "ggml-cpu-ivybridge.dll": "1ad7db6e46162df04084d2de06b515bba244eceaaddc9dea166d8978534f1234",
+      "ggml-cpu-piledriver.dll": "45bbd8bfb29e83f66fb2229fd18c514fa62974ecead4a7cfbcf646c85eda7ffa",
+      "ggml-cpu-sandybridge.dll": "139e96213e6a7f5e04ee3c9bf4a1e5c5d52105ab4bb3aa46aaae08a2feaeb31e",
+      "ggml-cpu-sapphirerapids.dll": "0c68e1d1140b4a6cba997d81722c9715a432251db1642bc4028805daa79eef3a",
+      "ggml-cpu-skylakex.dll": "ff2d08593f21c44bbfee2e6aec312b5a1bc56a5f651f0ea8e2db79feb103241b",
+      "ggml-cpu-sse42.dll": "5918f986ba8b650e74f3e49e1ddf5f882e9be21af6c4c814d18f19edc3854377",
+      "ggml-cpu-x64.dll": "b1a7d5b6656e57bed7f053d1aca63c9a69fb43de688a67aa352297858c929b63",
+      "ggml-cpu-zen4.dll": "2e5d63b61c7da0f393a66b289c0ecbed6a29988167cc852e1c33addac2c67ee6",
+      "ggml-cuda.dll": "b4b6ca3820bad0f08eb67eb308e86b4f40acaf8e240c75e4336ade6ff57dd01e",
+      "ggml-rpc-server.exe": "6ce316609ce309e654ea972e042d2e9bd827dce4176d53fd4d1eb464102644e9",
+      "ggml-rpc.dll": "fd91bca5f412919246c1ceccb86a7c06a4ae362f749b386034b0499de2b857db",
+      "ggml.dll": "7ea2828b78084ed8837b231b2a20cdd3bdda0d08de585c25a806951bf2a7ca0f",
+      "libomp.dll": "a12116ba72d1d6820407cf30be23da04ce79d6bb8a71a5ee71759c5a1faa6f1c",
+      "llama-batched-bench-impl.dll": "73b43f0d1ee3690ae3fcf9d197e31a48dbdbe5c56c45d8fa3751ab232ef00076",
+      "llama-batched-bench.exe": "47ddfeef8e8582a4e326501daeed5b437914260541a8c281a63fd7b11ba4d441",
+      "llama-bench-impl.dll": "72d65fb7ec8a79842cca08f3b563b2d353d8f8380c43048161158f878d64fdca",
+      "llama-bench.exe": "656fe4bb44563e57cb1b1603cd5f020c2d3162a01525b49d8e6adc748c9906ef",
+      "llama-cli-impl.dll": "f5fa264c0c2390d991790151492fdf646368da475015b0873cf820558d4c07d2",
+      "llama-cli.exe": "1203aa885df3c18518d90a2b1ee6563922442b72f5327cdf62dd796c46d69323",
+      "llama-common.dll": "089e484f47f08e825b115bcfd54055503233a45cf229e364dba3fee16a217fe6",
+      "llama-completion-impl.dll": "5b1af53fe8fe8a708720bd3f9276e1ba35249c4c1e256379a8182187116ad987",
+      "llama-completion.exe": "f9059e3433a4b80415da5c3ecb8050cd101886a7f97c6cc7cc58b6bbcfa1563a",
+      "llama-fit-params-impl.dll": "ac0c5915d3245c15169beb0df96713a8c5796f9d54e6225cc5ed51a7140596c1",
+      "llama-fit-params.exe": "ae2202568ee532b6922705f6839993a2b512884b891fa2e6a65b4f1ffc7fc630",
+      "llama-gemma3-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-gguf-split.exe": "573a9fb80d379f0cf43688899c077df00ce138646c5679a1680ec85abdaa894c",
+      "llama-imatrix.exe": "1bc53b83e1638f253039abc3a4ace5758de1d0c06240eae8de44e58a0e469cc0",
+      "llama-llava-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-minicpmv-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-mtmd-cli.exe": "f981773bbb19df265c05c8142a2b75cf4d6c4217f2867f11a88d9dd3e2973c11",
+      "llama-mtmd-debug.exe": "dd68b5e21e5cb4240d65f0bb9a0759c12bf4200236d8b4d1e77176c7f42fe947",
+      "llama-perplexity-impl.dll": "7dfcb2d29374d3fad7543e03a6bd4c8e8eeeb0113c3dfcf1ed92655530b36804",
+      "llama-perplexity.exe": "247b4b9cd4a7bbbf078ec3225bd832618179636d7dd843b3493dcc512cf31120",
+      "llama-quantize-impl.dll": "4791484e3d36f04b799e69bf93faa838fb7f9ba4a1fdf56e50da4b6b0125aa19",
+      "llama-quantize.exe": "b0908bd1adedae40afb78b0b5f344663a66ff6246fe79092b8ff3693af588338",
+      "llama-qwen2vl-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-results.exe": "a5d3d1f32b4759fba908fb362d9fc2b0e0bec31704ff6f668d0abf05dbda023c",
+      "llama-server-impl.dll": "17e98b38dd5ee5290af398d87c346cb9d49cca313ba919409ab32e6128b87ed7",
+      "llama-server.exe": "2f5639beed7f301ab9cbceb81b1023cdfad764688143454dd66ab2db2eef6145",
+      "llama-tokenize.exe": "9596bc9f144dab9cd60cc94f4fee5ae2459f780d3165b2ae3c35884bd895e4a8",
+      "llama-tts.exe": "0b8848937e3081dfcd092fc1dd5c83efa9748b3ef527481230fc5c021f87ffc5",
+      "llama.exe": "1a9b627bca3b26c68a27f3d161df6e73b9fe59d8fcf0d986cd99932a89739fe9",
+      "mtmd.dll": "004fc656ff4af52b69d12e1ab7f68e1ea9d8c7a4abfa3647c0d72f18804420dc"
+    },
+    "scope": "Only llama.dll rebuilt; all original ggml/CUDA/CPU backends retained",
+    "opt_in_environment": {
+      "LLAMA_LAB_NO_MMAP_PREFETCH": "1"
+    }
+  },
+  "mmap_prefetch_disabled": true,
+  "resident_limit_receipt": {
+    "pid": 79616,
+    "requested_maximum_gib": 13.861183166503906,
+    "maximum_bytes": 14883332096,
+    "minimum_bytes": 204800,
+    "flags": 6,
+    "note": "Resident working-set cap, not total commit or GPU allocation cap."
+  },
+  "grading": {
+    "reviewed_before_isolated_execution": true,
+    "grades_sha256": "1b3d242e614a414de3ff0ade727e890d00402ba427c77a06582ca7f8f7c3e8d1",
+    "completed_tasks": 9,
+    "passed_tasks": 7,
+    "rows": [
+      {
+        "task": "intervals",
+        "status": "graded",
+        "passed": false,
+        "checks_passed": 31,
+        "checks_total": 105,
+        "first_failures": [
+          {
+            "label": "edge 1",
+            "passed": false,
+            "error": "AssertionError: expected [[0, 3], [7, 10]], got [[0, 3]]"
+          },
+          {
+            "label": "edge 3",
+            "passed": false,
+            "error": "AssertionError: expected [[0, 5]], got []"
+          }
+        ],
+        "review_sha256": "bf10d405128bb99ec2d9d3591ca2fdce359258a2717d83845877c8bd20526aa4"
+      },
+      {
+        "task": "ttl_lru",
+        "status": "unscored-incomplete",
+        "passed": null,
+        "checks_passed": null,
+        "checks_total": null,
+        "first_failures": [],
+        "review_sha256": "e2922f8e19a281d1e2506063abfdf892bdd2d36b44627bb1c6b26a1fe9e4cd94"
+      },
+      {
+        "task": "dag",
+        "status": "graded",
+        "passed": true,
+        "checks_passed": 64,
+        "checks_total": 64,
+        "first_failures": [],
+        "review_sha256": "5a4fa8b8d4ffe9c63a509d6a9e7db16cde418ecd66800545d18c97783081e18f"
+      },
+      {
+        "task": "csv_stream",
+        "status": "graded",
+        "passed": false,
+        "checks_passed": 69,
+        "checks_total": 120,
+        "first_failures": [
+          {
+            "label": "CSV 7 split 0",
+            "passed": false,
+            "error": "AssertionError: expected [['a,b', 'c']], got [['a', 'b', 'c']]"
+          },
+          {
+            "label": "CSV 7 split 1",
+            "passed": false,
+            "error": "AssertionError: expected [['a,b', 'c']], got [['a', 'b', 'c']]"
+          }
+        ],
+        "review_sha256": "674b602eec3efba4d3b2e944ce5fb076064872b12f582c0b43f0598682afef8c"
+      },
+      {
+        "task": "schedule",
+        "status": "graded",
+        "passed": true,
+        "checks_passed": 61,
+        "checks_total": 61,
+        "first_failures": [],
+        "review_sha256": "09393b395fe468e447eca7d444f11db14b77c1c05e43cbcd7a12c0a629fa8a21"
+      },
+      {
+        "task": "inventory_fix",
+        "status": "graded",
+        "passed": true,
+        "checks_passed": 10,
+        "checks_total": 10,
+        "first_failures": [],
+        "review_sha256": "0e3bc2b3fbe019b4259456ddf623690dd0e6b533090eb6bfc6a9a26458db25fa"
+      },
+      {
+        "task": "multi_file",
+        "status": "graded",
+        "passed": true,
+        "checks_passed": 15,
+        "checks_total": 15,
+        "first_failures": [],
+        "review_sha256": "ebc6095fa9068f0e0198b6f6466e90723d663141e4e6834f66324abf2febff4d"
+      },
+      {
+        "task": "sql_report",
+        "status": "graded",
+        "passed": true,
+        "checks_passed": 20,
+        "checks_total": 20,
+        "first_failures": [],
+        "review_sha256": "a13880b0a0b3d8a68ddc62962d7727ae39d7ba53c7586f974f425ad623129d60"
+      },
+      {
+        "task": "sql_islands",
+        "status": "graded",
+        "passed": true,
+        "checks_passed": 20,
+        "checks_total": 20,
+        "first_failures": [],
+        "review_sha256": "7da487418d1f8fbefac66c1a94dbffb8576fff08e4b9e017cd007ea29ad60322"
+      },
+      {
+        "task": "ts_validation",
+        "status": "graded",
+        "passed": true,
+        "checks_passed": 26,
+        "checks_total": 26,
+        "first_failures": [],
+        "review_sha256": "39f066e6f3779b7e3273c6ea3c6af73d20f669eb3b8f7974e45a57e777b8a3f1"
+      },
+      {
+        "task": "js_pool",
+        "status": "unscored-incomplete",
+        "passed": null,
+        "checks_passed": null,
+        "checks_total": null,
+        "first_failures": [],
+        "review_sha256": "2d97103056e8df35070f9772ac02ca88f12717dd2ae82a228f734294d729a5aa"
+      }
+    ]
+  },
+  "completed_wall_seconds": {
+    "median": 557.8280000000086,
+    "minimum": 317.8440000000119,
+    "maximum": 911.6399999999849
+  },
+  "observed_failures": [
+    "Intervals drops surviving tails and mutates supplied intervals (31/105).",
+    "CSV splits quoted commas and mishandles quoted CR/CRLF characters (69/120)."
+  ]
+}

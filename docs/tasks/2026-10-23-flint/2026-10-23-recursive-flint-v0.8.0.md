@@ -521,3 +521,10 @@ reads but no final answer, after the original VRAM gate rejected. The separate
 CPU48/1536MiB GPU-cache trial also misses1200seconds; partial text begins only
 at1137seconds and remains unfinished. No higher-precision quality score exists
 yet. This follow-up does not replace the IQ3_XXS outcomes above.
+
+20:10IST: Q4 XL's full SHA256 is reverified and its exact25,054,688,704-byte
+file retired to make room for the requested plain Qwen Q6. Both1200second
+router outcomes, runtime, original profiles and raw evidence are retained.
+No code/private quality score is claimed for this rejected configuration.
+Q3 XL and the publisher's distinct distilled NVFP4 remain separately queued.
+[Retirement receipt](../../../reports/2026-10-24-flint-q4xl-retirement.json).

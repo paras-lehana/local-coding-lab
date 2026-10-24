@@ -272,3 +272,101 @@ thinking for messages with tool calls; it does not mean every old final
 answer's reasoning survives. There is no native `reasoning_effort` or
 `thinking_budget` selector in that template. These local source facts justify
 the explicit booleans in the queued profile, not an invented ultra level.
+
+A separate IQ4 presence-penalty control is frozen after its first native coding
+request continues reasoning for nine minutes. The publisher explicitly permits
+presence penalties0..2 to limit repetition, while warning of language mixing
+and possible quality loss. Our .6 precise-coding baseline correctly uses0;
+1.5 is an experimental change, not a correction to the publisher's recipe.
+The installed sampler applies penalties over repeat_last_n64; this remains
+unchanged in the one-variable control. It is not full-history repetition
+suppression. The actual trial exhausts16384 reasoning tokens in1187.703seconds
+without code. It does not restore completion. The larger resolved resident cap
+also differs from the baseline, so the small throughput difference cannot be
+attributed solely to sampling. Full-history penalties or other values remain
+untested; the result is scoped to the recorded1.5/64-token window.
+
+18:25IST follow-up frozen, not yet run: Q4 CPU40/cache2048/general32K.
+This combines the publisher's general-thinking temperature1/presence1.5 recipe
+with native reasoning,32K coding output and2GiB GPU expert cache. It is a joint
+usability configuration, not an isolated quant/cache experiment. Header-only
+estimates put CPU experts18.225GiB, embeddings0.503GiB and otherweights1.876GiB;
+cache/KV/runtime allocations still need measurement. The native Q4 baseline
+runs first. Its results do not transfer to this new configuration. All physical
+RAM, commit, VRAM, hardware and1200second gates stay unchanged.
+
+The distinct plain Q6 artifact is now catalog-pinned and header-inspected,
+with full download/load pending. It has24.791GiB CPU expert spans atCPU40;
+substantial paging is expected with apps open. Before calling it unusable,
+a changed placement/cache profile may be tested, but decode-only gains do not
+address the slow prefill observed in the historical larger XL artifact.
+
+## Additional CPU-oriented engine: ik_llama.cpp
+
+Reviewed primary documentation at commit
+`804ee29c28a5e892df6e84941cb78628ed4c266c`; metadata/text hashes are retained
+locally. No binary was built, installed or benchmarked. Its
+[README](https://github.com/ikawrakow/ik_llama.cpp/blob/804ee29c28a5e892df6e84941cb78628ed4c266c/README.md)
+lists Qwen3.5/3.6, Gemma4 and K2 Horizon support, CUDA and AVX2 CPU paths,
+and improvements to CPU prompt processing. This is relevant to the measured
+prefill bottleneck and deserves a later same-artifact engine comparison.
+
+The author's [Qwen3.6 quantization discussion](https://github.com/ikawrakow/ik_llama.cpp/discussions/1663)
+distinguishes IQ4_KS from trellis quants, warning that trellis CPU execution is
+slower on plain AVX2. Its fast hybrid example uses a Ryzen3995WX and RTX3090
+with an artificial8GiB limit, not a5800X/3080 with open desktop applications.
+Its perplexity comparison is not a coding/instruction score, and the author
+says the illustrated custom quant was not published. A commenter independently
+reports bounded outputs consumed entirely by thinking; that corroborates a
+failure pattern, not a validated fix or a result on this PC.
+
+The [parameter reference](https://github.com/ikawrakow/ik_llama.cpp/blob/804ee29c28a5e892df6e84941cb78628ed4c266c/docs/parameters.md)
+marks expert deferral/prefetch as Linux features. It also documents a separate
+GGML_CUDA_NO_PINNED_WEIGHTS option for keeping CPU-overridden weights mapped,
+and runtime repacking. These are distinct memory behaviors; none proves the
+Windows initial-prefetch issue is solved. Before a trial, inspect actual source,
+Windows build requirements, memory-copy behavior and supported flags; retain
+the pinned baseline and avoid assuming AVX512 benchmark gains on this AVX2 CPU.
+## Distinguish expert-cache implementations and link limits
+
+The native cache's [multi-GPU follow-up](https://github.com/ggml-org/llama.cpp/pull/30112)
+merged8October. Its author's two4090/EPYC example improves decoding while
+reducing prompt throughput; it is not a claim that every stage gets faster.
+This reinforces measuring full file workflows, not only generated tokens/sec.
+The cache size is per GPU. Our single3080 configuration still needs its own
+allocation, completion and correctness results.
+
+The older [hybrid hit/miss RFC](https://github.com/ggml-org/llama.cpp/discussions/24528)
+is a different implementation: it proposes GPU execution of cache hits while
+CPU threads compute misses, with different flags and activation heuristics.
+Its reported multi-GPU/EPYC gains and later user workarounds must not be pasted
+into a native `--moe-cache-mib` profile as if they configure the same engine.
+No extra fork is installed for this source review.
+
+A saved instantaneous device sample during the Q4 native coding run at
+19:50IST reports PCIe4.0x16, matching the reported maximum. It does not show
+an obvious negotiated-link downgrade. GPU utilization18%, graphics405MHz and
+power102W are individual samples during mixed CPU/GPU execution, not sustained
+averages, proof of throttling or a reason to change clocks. Whole-device VRAM
+used8268MiB includes desktop applications; it is not the model's dedicated
+allocation. Compare the forthcoming cached profile using actual wall time.
+
+## What these Qwen quantization names actually contain
+
+Exact saved GGUF headers and the pinned runtime's `ggml_type` enum show mixed
+tensor recipes. The following GiB values are stored tensor spans, including
+alignment; they are neither resident RAM nor a prediction of correctness.
+
+| Artifact label | Header-derived tensor storage |
+|---|---|
+| IQ3_S | IQ2_S 6.406GiB, IQ3_S 3.975GiB, Q6_K 1.851GiB, IQ4_XS 0.398GiB, F32 0.097GiB |
+| IQ4_XS | IQ3_S 8.594GiB, IQ4_XS 4.914GiB, Q8_0 1.894GiB, Q6_K 1.004GiB, F32 0.097GiB |
+| Q4_K_M | Q4_K 11.250GiB, Q5_K 6.359GiB, Q8_0 1.894GiB, Q6_K 1.004GiB, F32 0.097GiB |
+| Q6_K | Q6_K 23.994GiB, Q8_0 3.194GiB, F32 0.097GiB |
+
+Plain Q6 contains117 Q6_K tensors,255 Q8_0 tensors and361 F32 tensors.
+Its full27.296GiB file is still pending download and integrity validation.
+Q4 already keeps many non-expert tensors at higher precision. Therefore a
+higher filename bit count changes a specific recipe, not every tensor equally;
+a claim that Q6 guarantees correct syntax or instructions is unsupported.
+The source headers, byte counts and enum hash are retained locally.

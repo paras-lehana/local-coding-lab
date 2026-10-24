@@ -101,3 +101,17 @@ Actual execution then exposed duplicate scheduling (10/11 checks), so the task
 still failed. Keep both grader hashes/results and the reason for selection.
 Never disable capability screening generally or edit model code to obtain a
 better score. See the24October Qwen model report for the measured example.
+
+## Preserve passing scores alongside newly exposed bugs
+
+The24October native Qwen Q4 JavaScript answers pass the frozen worker-pool
+11/11 and merge8/8 checks, then fail source-motivated isolated diagnostics.
+A synchronous second initial worker can throw while an earlier worker is
+pending; later completion wrongly starts new work. Replacing an array with
+an object can wrongly merge old numeric-index fields. These cases are absent
+from the frozen suite. Keep the original passes and separately identify the
+new test preparation time, exact unchanged response/grader hashes, isolation
+and results. They are post-review diagnostics, not held-out tests or a
+retroactive scoring change. Add such cases only in a separately versioned
+future benchmark applied consistently to candidates. See the24October Qwen
+model report for evidence.
