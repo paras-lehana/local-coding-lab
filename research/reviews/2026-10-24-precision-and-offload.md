@@ -558,3 +558,48 @@ identify the changed tool feedback and never transfer its score to the native
 workflow. Returning invented file contents or handing it the private rubric is
 not an acceptable repair. This is a predeclared unrun recovery experiment,
 not a discovered template fix or proof that more weight precision is required.
+
+## RAM expert management and pinned-memory prefill
+
+The [moe-cache plugin](https://github.com/IbrahimSiddiqui007/moe-cache/blob/bb9315345eea6fbed5c7826a452c5864788ef758/README.md)
+manages CPU expert residency and overlaps disk reads with computation. Its
+author reports gains when weights exceed available RAM, but recommends stock
+llama.cpp when they fit. Exact execution is separate from optional approximate
+routing/hybrid modes. These are author measurements, not our results.
+The documented supported platform is Linux x86-64 with matching shared ggml
+backend APIs. Its Windows layer only has cross-compilation/Wine checks and
+has not run with real Windows llama.cpp. It therefore is not a drop-in plugin
+for our current runtime. A separately bounded WSL or native port experiment
+needs ABI, memory, token-equivalence and whole-workflow checks first. No plugin
+was installed or benchmarked. This is relevant to our restricted resident
+profiles, but does not prove that every slow turn is disk-bound.
+
+The [llama-cpp-perf fork](https://github.com/mateusoro/llama-cpp-perf/blob/191121669732e6fbac9577528912b5df328a2553/README.md)
+reports improved prefill from page-locking mapped expert weights and overlapping
+uploads on another CUDA stream. Its example uses an RTX3060 12GB and2048-token
+physical batches, unlike our measured profiles. It also has a separate hybrid
+expert-cache implementation. The reported token identity and speed gains are
+publisher claims, not locally verified results. Pinning the full host expert
+span conflicts with our need to leave applications open and restrict resident
+RAM; do not enable these flags just to chase the headline. Selective pinning,
+actual committed/resident memory and an identical-artifact comparison would
+need investigation before a local trial. No fork build or inference occurred.
+
+Both README revisions and SHA256 receipts are retained in ignored research
+evidence. These are additional engine leads, not new model scores, and do not
+replace the currently running Gemma or queued higher-precision Flint trials.
+
+## Post-training for shorter useful reasoning
+
+[ThinkingCap Gemma26](https://huggingface.co/bottlecapai/ThinkingCap-gemma-4-26B-A4B-it)
+is a separate post-trained checkpoint, not a reasoning-effort flag or another
+quantization of our current weights. Its publisher reports38.9% fewer thinking
+tokens averaged across twelve benchmarks, with macro accuracy75.0% versus75.2%
+for the base. The long-context results vary by task; equal average accuracy
+does not mean every capability is preserved. Their setup uses GB300, vLLM,
+DFlash and65K output ceilings, so these numbers predict neither our wall time
+nor instruction-file accuracy. A16.6GB MXFP4_MOE GGUF is linked, but has not
+been downloaded, pinned or locally tested here. This is a future candidate
+specifically motivated by our reasoning-only limits. It does not replace the
+remaining campaign's frozen model trials, and its advertised savings are not
+credited to the original Gemma26 results.

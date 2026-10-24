@@ -1,0 +1,64 @@
+{
+  "model": "Gemma4-26B-A4B official QAT Q4_0",
+  "profile": "gemma4-26b-cpu26-publisher-resident8",
+  "public_total": 57,
+  "public_maximum": 60,
+  "composite": null,
+  "reason": "All public cases completed; private/direct-coding absent on this configuration. Missing v2 file remains an explicit discovery failure outside TS/SQL behavior score.",
+  "router": {
+    "score": 38,
+    "maximum": 40,
+    "non_code": 26,
+    "behavior": 12,
+    "frozen_behavior_groups": "6/6",
+    "model_self_tests": "6/7 with stated-scope import assembly; initial7 NameErrors retained",
+    "wall_seconds": 889.985,
+    "first_visible_seconds": 732.375
+  },
+  "typescript": {
+    "score": 5,
+    "maximum": 6,
+    "strict_compile": true,
+    "observed_failure": "nonplain objects accepted"
+  },
+  "sqlite": {
+    "score": 6,
+    "maximum": 6,
+    "observed_failure": null
+  },
+  "ts_sql_wall_seconds": 946.406,
+  "ts_sql_first_visible_seconds": 813.781,
+  "required_instruction_not_read": "rules/v2/typescript-sql.md",
+  "history": {
+    "score": 8,
+    "maximum": 8,
+    "status": "completed",
+    "wall_seconds": 531.344,
+    "output_ceiling": 4096,
+    "second_phase": "completed",
+    "grading_note": "6facts+READY120 pass; correct prose read inventory earns1 by semantic review, while raw bullet-only helper reports inventory false. Not a large-context capacity test."
+  },
+  "reviewer": "Codex source review then existing WSL bubblewrap graders, engine stopped",
+  "evidence_hashes": {
+    "core-seed73/answer.txt": "2313d0fac1f51cc120b14320c4c19465ef8df93b46bd4f655a4749c419391df2",
+    "core-seed73/review.json": "1f7129df8fd50310ac3060cadfba1570e6d3f6aadb37f5cd1d47f84ca1158dc2",
+    "core-seed73/grading-result.json": "b50e4f548a9199cb1cd5c820f4b0f96dc5fc1b69250c93380f880b45bfc7f591",
+    "core-seed73/result.json": "9e6c2df946217b457aaad0a4c3e23254f861337978c59893c9a101bc2ec1d157",
+    "core-seed73/grading-stated-scope-result.json": "5fa09968b00005cdbd08929af0588c38fe1ac17cc34e9a69e8009df3cdd91fc8",
+    "core-seed73/grading-stated-scope-command.json": "085eef0c37d164aa6f266d139dd233b0896968162f218dad29488fa919eb207e",
+    "ts-sql-v1/answer.txt": "8f650286ee129acf14fd450b68e22b531e76549a32c76e4179633b50231c926d",
+    "ts-sql-v1/review.json": "8797cb806d0c80ce06bbb57e11737b00ab9550086ecf57a7ce9ca0282dd681bb",
+    "ts-sql-v1/grading-result.json": "3088bbc315a85c68bcd313f3143b2fbb8e0bb5b01cfdc99cfaadfb6d61fca923",
+    "ts-sql-v1/result.json": "f7c1a959b0c0e17d8b4838be53c1d8ed7ef6c67defff4bfaab9c926ce3301e64",
+    "context-v1/answer.txt": "aa80e26c99647de248f92ca871e3381c8ff89391358566d5d9436f63a79787ec",
+    "context-v1/review.json": "b0076787642d7d7a0bd0778fb11169e7b99a016aaf405e988108558d18ceafbd",
+    "context-v1/grading-result.json": "14bce5a4310faf985a2b279a20d0e822b2abdd1092bc95fd7106507d6c58bccc",
+    "context-v1/result.json": "e59e2c9685eafa399f1dd6d4503b829b08688b2b528239f36ce272c3b01cb2a4",
+    "scripts/run_isolated.py": "f40bb8e86e7fe4006afaeb51615bb07cb64ae8f9e3c2e2438ed5ce4db6913cd9",
+    "scripts/grade_ts_sql.py": "3b91788ab3223ac1695769ad86ee81a4ec7bae6f9f7bc8560574aa2057fa568e",
+    "benchmarks/checks/router_v1.py": "4069c09261ea41a19cae32e65aaaa239fddd697c2dd3255d1850575e3af48c98",
+    "benchmarks/checks/ts_sql_v1.cjs": "75185d070f19840b29238e5eea520586ef6c59a698c59ce3dfbd0525afde2115",
+    "benchmarks/checks/ts_sql_v1.py": "31aa4764a47655d9e45bd25d062bed177be278ad583c019d5580d4d425537078"
+  },
+  "raw_evidence": "local-data/2026-10-24-precision/gemma26-cpu26-publisher-public-c"
+}

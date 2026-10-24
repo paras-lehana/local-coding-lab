@@ -1,6 +1,6 @@
 # Current model comparison
 
-Updated 24 October 2026. Components and completion gates matter more than a
+Updated 25 October 2026. Components and completion gates matter more than a
 single leaderboard number. Claude's newer campaign was private; this table
 brings its reviewed summary into the public lab. Results are agent-assessed,
 not independently human-reviewed. It is not a controlled universal ranking.
@@ -18,7 +18,7 @@ not independently human-reviewed. It is not a controlled universal ranking.
 | GLM-4.7-Flash UD-Q4_K_XL, f16 KV | 27 | Separate historical cases | Not comparable | Private 942 s, below Qwen on this audit; retired |
 | Gemma 4 26B-A4B QAT Q4_0 | 19 | Separate historical cases | Not comparable | Retained lower-memory fallback; private 400 s |
 | Gemma 4 26B-A4B QAT, CPU28/resident8,24October |Unrun on new profile |Router38/40; TS5/6; SQL0/6; history incomplete |Unrun on new profile |Router1031.860s,TS/SQL1142.469s. Python groups6/6 andself-tests8/8 pass; TS prototype validation and SQLite FK error remain. History4096-token reasoning-only limit789.282s; no full total |
-| Gemma 4 26B-A4B QAT, CPU26/resident8/publisher sampler |Unrun |Collecting |Unrun |CPU24 plan capacity-rejected beforeload; CPU26 moves two expert blocks toGPU, public1/.95/64, unchanged64K GPUq8 and stopfloors. Started23:44; no score inherited |
+| Gemma 4 26B-A4B QAT, CPU26/resident8/publisher sampler |Unrun; fresh capacity rejection |57 |Unrun; fresh capacity rejection |Router38/40 in889.985s; TS5/6 andSQL6/6 in946.406s; history8/8 in531.344s. Required TS/SQL v2 file skipped, prototype validation and generated-test defect remain. No composite or promotion; joint placement/sampling change |
 | Gemma 4 31B dense QAT Q4_0 | 26 | Historical completed cases | Not comparable | Private 7234 s; fails current latency gate; retired |
 | Qwen3-Coder-Next 80B Q4 | Unscored | Separate historical cases | Not comparable | Private tool-loop limit after 4075 s; retired |
 | Qwen3-Coder-30B UD-Q4_K_XL | Deadline | Separate historical cases | Not comparable | Public cases complete, private 1200 s deadline |
@@ -72,6 +72,20 @@ also misses1200seconds. Neither attempt has a correctness score; remaining
 suites are explicitly unrun after the principal workflow fails qualification.
 Gemma26's separate smaller-residency public trial starts22:48IST. Full details
 and limitations are in its [report](tasks/2026-10-24-gemma26-coverage/2026-10-24-gemma26-v0.9.0.md).
+
+The separate CPU26/publisher-sampling trial finishes25October00:24IST with
+all public workflows complete:57/60 after source review and isolated checks.
+The Python implementation passes6/6 groups; one of its own seven tests has
+an incorrect assertion after explicitly mutating an input. Its SQL migration
+now passes6/6, while TypeScript still accepts nonplain objects. The model
+honestly lists five TS/SQL file reads but omits a required linked v2 rule.
+History passes the original4K-output two-turn case; its prose read inventory
+is correct even though the old grader only extracts bullets. Both original
+grader outputs and documented assembly/semantic corrections are preserved.
+Minimum freeRAM3.916GiB, commit1.253GiB, VRAM1320MiB; no hardware event.
+Fresh13.115GiB RAM subsequently rejects the next Gemma/Qwen/K2/Bolt/NVFP4
+profiles. These remain capacity dispositions, not quality scores. The paused
+FlintQ3XL download resumes only with inference stopped.
 
 - Added the twelve-task executable suite and a consistent 50/30/20 scorecard;
   regraded the public baseline as 52/60 and LFM as 48/60.

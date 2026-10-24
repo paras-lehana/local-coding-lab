@@ -1652,3 +1652,25 @@ fresh16.104GiB RAM/11.275GiB commit/6263MiB VRAM. Smaller two-block GPU move
 and public1/.95/64 sampler are explicit joint changes; original38/40 router,
 5/12 TS/SQL and incomplete history remain.42offline checks pass18.770s,
 fourPowerShell parses and public audit302/0. No new score or campaign closeout.
+
+23:48IST: checkpoint2589946 pushed and CI40119849141 passes both platforms.
+CPU26 smoke3.875s; measured GPUweights3137.64MiB,816.75MiB more thanCPU28,
+same KV/compute buffers. Public router collecting; no quality/timing conclusion.
+
+25October00:09IST: CPU26/publisher Gemma router completes889.985s; first
+visible732.375s, six required reads. Source review records likely-correct
+implementation but faulty generated isolation assertions; executable grade
+awaits shutdown. TS/SQL collecting, history unrun. Research distinguishes
+Linux RAM expert management, memory-costly host pinning and shorter-reasoning
+post-training from a higher-bit quantization. No newly installed engine or
+tested ThinkingCap model is claimed. Campaign and production restoration
+remain active work; no completed-campaign summary yet.
+
+25October00:32IST checkpoint: Gemma CPU26 public57/60, all workflows complete,
+with missed linked instructions, TS object-validation and generated-test bugs
+preserved. Source-reviewed isolated checks and semantic inventory correction
+are hash-linked; original grader artifacts remain. Follow-up load gates reject
+13.115GiB RAM, so higherFlint download resumes with no engine.42offline tests,
+fourPSparses, audit304files/zero findings and whitespace check pass. New reports
+do not promote Gemma or fill missing private/coding values. Remaining candidate
+work and eventual production restoration continue autonomously.

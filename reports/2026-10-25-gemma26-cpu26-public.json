@@ -1,0 +1,1023 @@
+{
+  "campaign_date": "2026-10-24",
+  "exported_at": "2026-10-24T18:57:41.189574+00:00",
+  "profile_name": "gemma4-26b-cpu26-publisher-resident8",
+  "profile": {
+    "model": "gemma4-26b-qat",
+    "alias": "gemma4-lab",
+    "locally_tested": false,
+    "validation_status": "planned-measured-headroom-followup-not-promoted",
+    "evidence": "Separate24October smaller GPU-placement step after CPU24 profile rejects6313MiB freeVRAM below6400MiB admission. CPU26 instead moves two expert blocks versus measuredCPU28 (header delta0.798GiB, hostexperts10.369GiB). Estimated GPUweights3.064GiB plus812.81MiB64K KV and415.78MiB compute; measuredCPU28 minimum2143MiB freeVRAM suggests more reserve than CPU24. Require6000MiB freshVRAM,14.5GiB RAM/10GiBcommit; retain fixed8GiB residency/6.5GiB reserve and all stop floors. Same publisher1/.95/64, native preserved thinking; not a placement-only comparison with original .6/topK20. Short smoke and actual telemetry required; no inherited score.",
+    "load_min_ram_free_gib": 14.5,
+    "load_min_vram_free_mib": 6000,
+    "load_min_commit_available_gib": 10,
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_min_commit_available_gib": 1,
+    "stop_gpu_c": 84,
+    "working_set_limit_gib": 8,
+    "working_set_reserve_gib": 6.5,
+    "template_kwargs": {
+      "enable_thinking": true,
+      "preserve_thinking": true
+    },
+    "runtime_variant": {
+      "id": "b11562-noprefetch-v1",
+      "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--n-cpu-moe",
+      "26",
+      "--ctx-size",
+      "65536",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC",
+      "--batch-size",
+      "128",
+      "--ubatch-size",
+      "32",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--reasoning-budget",
+      "-1",
+      "--reasoning-preserve",
+      "--predict",
+      "16384",
+      "--temp",
+      "1.0",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "64",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--timeout",
+      "1200",
+      "--metrics",
+      "--verbosity",
+      "4"
+    ]
+  },
+  "artifact": {
+    "name": "Gemma 4 26B-A4B IT official QAT Q4_0",
+    "repo": "google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+    "revision": "d1c082be9cf3c8a514acf63b8761f4b41935842e",
+    "filename": "gemma-4-26B_q4_0-it.gguf",
+    "bytes": 14439363584,
+    "sha256": "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d",
+    "upstream": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+    "status": "retained-lower-memory-fallback-32k-64k-public-and-private-complete",
+    "thinking": "Native tool continuation preservation and runtime 2048 reasoning ceiling observed; no native xhigh label",
+    "url": "https://huggingface.co/google/gemma-4-26B-A4B-it-qat-q4_0-gguf/resolve/d1c082be9cf3c8a514acf63b8761f4b41935842e/gemma-4-26B_q4_0-it.gguf"
+  },
+  "status": "collected",
+  "reason": null,
+  "server_outcome": {
+    "status": "requested_stop"
+  },
+  "hardware": {
+    "new_event": false
+  },
+  "preflight": {
+    "time": 1792865662.9551215,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 16.11209487915039,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 11.316650390625,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6263.0,
+    "gpu_c": 51.75,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "postflight": {
+    "time": 1792868063.2303638,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 12.58242416381836,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 8.444664001464844,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6326.0,
+    "gpu_c": 43.59,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "quality_score": null,
+  "grading": "Not performed by this exporter",
+  "memory": {
+    "minimum_ram_free_gib": 3.915668487548828,
+    "minimum_commit_available_gib": 1.2526969909667969,
+    "minimum_vram_free_mib": 1320.0,
+    "maximum_gpu_c": 55.62,
+    "maximum_process_working_set_gib": 8.000015258789062,
+    "maximum_process_private_gib": 6.641292572021484
+  },
+  "tasks": [
+    {
+      "settings": {
+        "name": "core-seed73",
+        "seed": 73,
+        "max_tokens": 16384,
+        "deadline": 1200,
+        "temperature": 1.0
+      },
+      "completion": {
+        "status": "completed",
+        "scored": false,
+        "note": "Source review and isolated behavioral tests still required",
+        "wall_seconds": 889.9850000000151,
+        "turn_count": 7
+      },
+      "returncode": 0,
+      "streams": [
+        {
+          "filename": "stream-00.jsonl",
+          "sha256": "cbf847592b4c3270a36f1550c57e1cc6f56d3fbeb93d7f8a5d824d25b5796c3f",
+          "reasoning_chars": 3003,
+          "content_chars": 0,
+          "last_seconds": 114.76600000000326,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-01.jsonl",
+          "sha256": "2f4ea7d3d7f99d9465eef20274445f50fd8d5f6d4a6b868cc2e540bc29c4a490",
+          "reasoning_chars": 189,
+          "content_chars": 0,
+          "last_seconds": 130.61000000001513,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-02.jsonl",
+          "sha256": "f185c05dc1194350ac632339b54d7e644a1f2448e459d44b213dbf79ab86e20c",
+          "reasoning_chars": 589,
+          "content_chars": 0,
+          "last_seconds": 161.71900000001187,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-03.jsonl",
+          "sha256": "1a60fa0df4052a406d642efe40c31142767ebfdbf230d9426aed7f6a1c3ef577",
+          "reasoning_chars": 231,
+          "content_chars": 0,
+          "last_seconds": 176.70300000000861,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-04.jsonl",
+          "sha256": "92893477816fa7be4bebb40c05cf4638c674dcee564883c6184452fd64577886",
+          "reasoning_chars": 252,
+          "content_chars": 0,
+          "last_seconds": 190.32800000000861,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-05.jsonl",
+          "sha256": "ecfcb8485fc196ab1803188f71a9e2a34f2ecae57d53cc4aecb7f8adc8508966",
+          "reasoning_chars": 522,
+          "content_chars": 0,
+          "last_seconds": 210.2970000000205,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-06.jsonl",
+          "sha256": "a77656eb3864751b29e3eab8b076391406fb3826f097404bb1e95d9a7a98665b",
+          "reasoning_chars": 18969,
+          "content_chars": 6686,
+          "last_seconds": 889.9690000000119,
+          "malformed_lines": 0
+        }
+      ],
+      "manifest.json_sha256": "0c8b601c80c2784fb46f33de79e3f963dbddc5d1ec1e67a944c14ac1b16060df",
+      "result.json_sha256": "9e6c2df946217b457aaad0a4c3e23254f861337978c59893c9a101bc2ec1d157",
+      "turns.json_sha256": "aae9ba30dad7bd1ae9ae8d107baf64576f68fd115dd3f5a2661adb3d3c876520",
+      "tools.json_sha256": "73d2339428e833b0150ebdd68d2ac47cff9ee9e56b9f895cdf250878136108b0",
+      "tool_calls": 6,
+      "successful_reads": 6,
+      "completed_turns": [
+        {
+          "phase": null,
+          "first_event_seconds": 16.04700000002049,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 969,
+            "prompt_tokens": 472,
+            "total_tokens": 1441,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 472,
+            "prompt_ms": 15945.104,
+            "prompt_per_token_ms": 33.782,
+            "prompt_per_second": 29.60156296252442,
+            "predicted_n": 969,
+            "predicted_ms": 98714.725,
+            "predicted_per_token_ms": 101.97802169421489,
+            "predicted_per_second": 9.806034510049033
+          }
+        },
+        {
+          "phase": null,
+          "first_event_seconds": 120.65700000000652,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 96,
+            "prompt_tokens": 1595,
+            "total_tokens": 1691,
+            "prompt_tokens_details": {
+              "cached_tokens": 1422
+            }
+          },
+          "timings": {
+            "cache_n": 1422,
+            "prompt_n": 173,
+            "prompt_ms": 5799.847,
+            "prompt_per_token_ms": 33.52512716763005,
+            "prompt_per_second": 29.82837305880655,
+            "predicted_n": 96,
+            "predicted_ms": 9952.468,
+            "predicted_per_token_ms": 104.7628210526316,
+            "predicted_per_second": 9.545371057711513
+          }
+        },
+        {
+          "phase": null,
+          "first_event_seconds": 138.57800000000861,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 223,
+            "prompt_tokens": 1869,
+            "total_tokens": 2092,
+            "prompt_tokens_details": {
+              "cached_tokens": 1667
+            }
+          },
+          "timings": {
+            "cache_n": 1667,
+            "prompt_n": 202,
+            "prompt_ms": 7860.876,
+            "prompt_per_token_ms": 38.91522772277228,
+            "prompt_per_second": 25.696881619809293,
+            "predicted_n": 223,
+            "predicted_ms": 23134.011,
+            "predicted_per_token_ms": 104.20725675675675,
+            "predicted_per_second": 9.59626067438111
+          }
+        },
+        {
+          "phase": null,
+          "first_event_seconds": 167.71900000001187,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 88,
+            "prompt_tokens": 2227,
+            "total_tokens": 2315,
+            "prompt_tokens_details": {
+              "cached_tokens": 2071
+            }
+          },
+          "timings": {
+            "cache_n": 2071,
+            "prompt_n": 156,
+            "prompt_ms": 5926.056,
+            "prompt_per_token_ms": 37.987538461538456,
+            "prompt_per_second": 26.324422178933172,
+            "predicted_n": 88,
+            "predicted_ms": 8981.245,
+            "predicted_per_token_ms": 103.2327011494253,
+            "predicted_per_second": 9.686852991984964
+          }
+        },
+        {
+          "phase": null,
+          "first_event_seconds": 182.20300000000861,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 81,
+            "prompt_tokens": 2429,
+            "total_tokens": 2510,
+            "prompt_tokens_details": {
+              "cached_tokens": 2288
+            }
+          },
+          "timings": {
+            "cache_n": 2288,
+            "prompt_n": 141,
+            "prompt_ms": 5365.464,
+            "prompt_per_token_ms": 38.05293617021277,
+            "prompt_per_second": 26.279181073621967,
+            "predicted_n": 81,
+            "predicted_ms": 8137.833,
+            "predicted_per_token_ms": 101.72291249999999,
+            "predicted_per_second": 9.830626900306262
+          }
+        },
+        {
+          "phase": null,
+          "first_event_seconds": 195.96900000001187,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 159,
+            "prompt_tokens": 2678,
+            "total_tokens": 2837,
+            "prompt_tokens_details": {
+              "cached_tokens": 2487
+            }
+          },
+          "timings": {
+            "cache_n": 2487,
+            "prompt_n": 191,
+            "prompt_ms": 5538.344,
+            "prompt_per_token_ms": 28.996565445026178,
+            "prompt_per_second": 34.486842998556966,
+            "predicted_n": 159,
+            "predicted_ms": 14329.91,
+            "predicted_per_token_ms": 90.69563291139241,
+            "predicted_per_second": 11.025889206561661
+          }
+        },
+        {
+          "phase": null,
+          "first_event_seconds": 215.26600000000326,
+          "first_final_seconds": 732.375,
+          "finish_reason": "stop",
+          "usage": {
+            "completion_tokens": 7284,
+            "prompt_tokens": 2995,
+            "total_tokens": 10279,
+            "prompt_tokens_details": {
+              "cached_tokens": 2814
+            }
+          },
+          "timings": {
+            "cache_n": 2814,
+            "prompt_n": 181,
+            "prompt_ms": 4850.953,
+            "prompt_per_token_ms": 26.800845303867405,
+            "prompt_per_second": 37.31225596290048,
+            "predicted_n": 7284,
+            "predicted_ms": 674703.087,
+            "predicted_per_token_ms": 92.64081930523137,
+            "predicted_per_second": 10.794377764570683
+          }
+        }
+      ]
+    },
+    {
+      "settings": {
+        "name": "ts-sql-v1",
+        "scenario": "ts-sql-v1",
+        "max_tokens": 16384,
+        "deadline": 1200,
+        "temperature": 1.0
+      },
+      "completion": {
+        "status": "completed",
+        "scored": false,
+        "wall_seconds": 946.4060000000172,
+        "turn_count": 6,
+        "phase_count": 1
+      },
+      "returncode": 0,
+      "streams": [
+        {
+          "filename": "stream-00.jsonl",
+          "sha256": "02e566bd7043a794a8e6d3e0dd8c7b5b2eac177b98867c9da9eaf8830a748010",
+          "reasoning_chars": 548,
+          "content_chars": 0,
+          "last_seconds": 18.094000000011874,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-01.jsonl",
+          "sha256": "bce29d3260ae05c01b852d8dc975875aba23277b8b0dde13909e7ef4a3c1c7ae",
+          "reasoning_chars": 123,
+          "content_chars": 0,
+          "last_seconds": 27.75,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-02.jsonl",
+          "sha256": "b70f940b4d435f5edf45485ca3a99fe7b014f958feebb03399d4b308ca663822",
+          "reasoning_chars": 254,
+          "content_chars": 0,
+          "last_seconds": 37.76500000001397,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-03.jsonl",
+          "sha256": "f1a5ed95987058ccf48c3b799db94610e19460ec251c7121f8b27ff467cf0103",
+          "reasoning_chars": 1059,
+          "content_chars": 0,
+          "last_seconds": 70.14000000001397,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-04.jsonl",
+          "sha256": "a3e11950c202c9638311b1c18d15ee3b839beecfb31321bcd21fd19e696f39c2",
+          "reasoning_chars": 1109,
+          "content_chars": 0,
+          "last_seconds": 102.35900000002584,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-05.jsonl",
+          "sha256": "27d5026b07731702eabdaddbea729968683584c456e666e5a572b7271c1f6824",
+          "reasoning_chars": 30486,
+          "content_chars": 5996,
+          "last_seconds": 946.4060000000172,
+          "malformed_lines": 0
+        }
+      ],
+      "manifest.json_sha256": "87cae59ea408aff45836f22980339ca7beb2f7ce39d25c66d63b29b1a7a4d630",
+      "result.json_sha256": "f7c1a959b0c0e17d8b4838be53c1d8ed7ef6c67defff4bfaab9c926ce3301e64",
+      "turns.json_sha256": "83075363754f30de40807891adeace3a361dd5ef0dae4e1d2d574a27b589e928",
+      "tools.json_sha256": "7b3a253ff9eb4b732f01fd1cc3040b161eebb95bfc7cf51d5407730d2ddcf617",
+      "tool_calls": 5,
+      "successful_reads": 5,
+      "completed_turns": [
+        {
+          "phase": 0,
+          "first_event_seconds": 5.875,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 165,
+            "prompt_tokens": 190,
+            "total_tokens": 355,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 190,
+            "prompt_ms": 5817.557,
+            "prompt_per_token_ms": 30.618721052631578,
+            "prompt_per_second": 32.65975735175436,
+            "predicted_n": 165,
+            "predicted_ms": 12215.075,
+            "predicted_per_token_ms": 74.48216463414634,
+            "predicted_per_second": 13.42603299611341
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 23.875,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 60,
+            "prompt_tokens": 428,
+            "total_tokens": 488,
+            "prompt_tokens_details": {
+              "cached_tokens": 185
+            }
+          },
+          "timings": {
+            "cache_n": 185,
+            "prompt_n": 243,
+            "prompt_ms": 5704.751,
+            "prompt_per_token_ms": 23.476341563786008,
+            "prompt_per_second": 42.596074745418335,
+            "predicted_n": 60,
+            "predicted_ms": 3887.179,
+            "predicted_per_token_ms": 65.88438983050848,
+            "predicted_per_second": 15.178102166120983
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 31.0,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 95,
+            "prompt_tokens": 557,
+            "total_tokens": 652,
+            "prompt_tokens_details": {
+              "cached_tokens": 423
+            }
+          },
+          "timings": {
+            "cache_n": 423,
+            "prompt_n": 134,
+            "prompt_ms": 3182.595,
+            "prompt_per_token_ms": 23.750708955223878,
+            "prompt_per_second": 42.10400632188513,
+            "predicted_n": 95,
+            "predicted_ms": 6767.461,
+            "predicted_per_token_ms": 71.99426595744681,
+            "predicted_per_second": 13.889995080873017
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 46.39000000001397,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 306,
+            "prompt_tokens": 897,
+            "total_tokens": 1203,
+            "prompt_tokens_details": {
+              "cached_tokens": 552
+            }
+          },
+          "timings": {
+            "cache_n": 552,
+            "prompt_n": 345,
+            "prompt_ms": 8555.575,
+            "prompt_per_token_ms": 24.798768115942032,
+            "prompt_per_second": 40.32458367789423,
+            "predicted_n": 306,
+            "predicted_ms": 23744.052,
+            "predicted_per_token_ms": 77.84935081967213,
+            "predicted_per_second": 12.845322272710655
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 73.20300000000861,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 352,
+            "prompt_tokens": 1300,
+            "total_tokens": 1652,
+            "prompt_tokens_details": {
+              "cached_tokens": 1182
+            }
+          },
+          "timings": {
+            "cache_n": 1182,
+            "prompt_n": 118,
+            "prompt_ms": 2979.873,
+            "prompt_per_token_ms": 25.253161016949154,
+            "prompt_per_second": 39.59900304476063,
+            "predicted_n": 352,
+            "predicted_ms": 29156.321,
+            "predicted_per_token_ms": 83.06644159544159,
+            "predicted_per_second": 12.038555893248672
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 105.67200000002049,
+          "first_final_seconds": 813.7810000000172,
+          "finish_reason": "stop",
+          "usage": {
+            "completion_tokens": 10362,
+            "prompt_tokens": 1757,
+            "total_tokens": 12119,
+            "prompt_tokens_details": {
+              "cached_tokens": 1634
+            }
+          },
+          "timings": {
+            "cache_n": 1634,
+            "prompt_n": 123,
+            "prompt_ms": 3221.689,
+            "prompt_per_token_ms": 26.192593495934958,
+            "prompt_per_second": 38.178731714948285,
+            "predicted_n": 10362,
+            "predicted_ms": 840723.752,
+            "predicted_per_token_ms": 81.14310896631599,
+            "predicted_per_second": 12.323905415247504
+          }
+        }
+      ]
+    },
+    {
+      "settings": {
+        "name": "context-v1",
+        "scenario": "context-v1",
+        "max_tokens": 4096,
+        "deadline": 1200,
+        "temperature": 1.0
+      },
+      "completion": {
+        "status": "completed",
+        "scored": false,
+        "wall_seconds": 531.3440000000119,
+        "turn_count": 8,
+        "phase_count": 2
+      },
+      "returncode": 0,
+      "streams": [
+        {
+          "filename": "stream-00.jsonl",
+          "sha256": "7139a56ca76d6952aaf67faad18f0ebba68bd6c6abc253a21db471cdc5b00228",
+          "reasoning_chars": 568,
+          "content_chars": 0,
+          "last_seconds": 16.062999999994645,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-01.jsonl",
+          "sha256": "652c20b5441c3c37c5a439429e4fed9df1e969b7257e80972c024ea5108a8928",
+          "reasoning_chars": 260,
+          "content_chars": 0,
+          "last_seconds": 28.437999999994645,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-02.jsonl",
+          "sha256": "4132c154ed8a9a3f55d8c08ff1b6610bdc698841d07d641bef911eab9a5d96ed",
+          "reasoning_chars": 502,
+          "content_chars": 0,
+          "last_seconds": 48.0,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-03.jsonl",
+          "sha256": "72af86c27cc15e77ec1493b693c0417c1ed412b198af7a1757ef882fdc3b9fba",
+          "reasoning_chars": 32,
+          "content_chars": 0,
+          "last_seconds": 57.719000000011874,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-04.jsonl",
+          "sha256": "983ef70c001a595096cf95822decc184fc84ccc227240bcf475d2be00dac4f23",
+          "reasoning_chars": 374,
+          "content_chars": 0,
+          "last_seconds": 277.2030000000086,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-05.jsonl",
+          "sha256": "7646a8dacb951db5aba7afb18aecd0cdd715cd288443f24e70dc008248083f5e",
+          "reasoning_chars": 3796,
+          "content_chars": 9,
+          "last_seconds": 433.0940000000119,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-06.jsonl",
+          "sha256": "86ab19c084a59ec6474aae5a055cac1dd3801406d458693905f7b03a6547e4c6",
+          "reasoning_chars": 1399,
+          "content_chars": 0,
+          "last_seconds": 477.375,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-07.jsonl",
+          "sha256": "9fed28f0dfa03cd08d574d93b16fe28744dd58e37c769499d34607ee6dc6110b",
+          "reasoning_chars": 1494,
+          "content_chars": 209,
+          "last_seconds": 531.3440000000119,
+          "malformed_lines": 0
+        }
+      ],
+      "manifest.json_sha256": "11e42e2af9565c65ac056c3c97cccac6c2ec321434f1ac3ea9a2e3766c536e15",
+      "result.json_sha256": "e59e2c9685eafa399f1dd6d4503b829b08688b2b528239f36ce272c3b01cb2a4",
+      "turns.json_sha256": "70b3e511ba89155220a3b917ec8a250c21daaec18c8c4adaca7d63693647d153",
+      "tools.json_sha256": "782db4b4c6f9d27578ceb301f8666e0653130b720e492119bb4f9cd93eb54343",
+      "tool_calls": 6,
+      "successful_reads": 6,
+      "completed_turns": [
+        {
+          "phase": 0,
+          "first_event_seconds": 1.9530000000086147,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 190,
+            "prompt_tokens": 138,
+            "total_tokens": 328,
+            "prompt_tokens_details": {
+              "cached_tokens": 79
+            }
+          },
+          "timings": {
+            "cache_n": 79,
+            "prompt_n": 59,
+            "prompt_ms": 1859.787,
+            "prompt_per_token_ms": 31.521813559322034,
+            "prompt_per_second": 31.724063024421614,
+            "predicted_n": 190,
+            "predicted_ms": 14105.412,
+            "predicted_per_token_ms": 74.63180952380952,
+            "predicted_per_second": 13.399112340710076
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 21.92200000002049,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 99,
+            "prompt_tokens": 401,
+            "total_tokens": 500,
+            "prompt_tokens_details": {
+              "cached_tokens": 133
+            }
+          },
+          "timings": {
+            "cache_n": 133,
+            "prompt_n": 268,
+            "prompt_ms": 5819.621,
+            "prompt_per_token_ms": 21.715003731343284,
+            "prompt_per_second": 46.05110882650261,
+            "predicted_n": 99,
+            "predicted_ms": 6509.525,
+            "predicted_per_token_ms": 66.42372448979592,
+            "predicted_per_second": 15.054861913887727
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 32.953000000008615,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 185,
+            "prompt_tokens": 583,
+            "total_tokens": 768,
+            "prompt_tokens_details": {
+              "cached_tokens": 396
+            }
+          },
+          "timings": {
+            "cache_n": 396,
+            "prompt_n": 187,
+            "prompt_ms": 4458.717,
+            "prompt_per_token_ms": 23.8434064171123,
+            "prompt_per_second": 41.94031601467418,
+            "predicted_n": 185,
+            "predicted_ms": 15039.394,
+            "predicted_per_token_ms": 81.73583695652174,
+            "predicted_per_second": 12.234535513864454
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 55.187999999994645,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 34,
+            "prompt_tokens": 830,
+            "total_tokens": 864,
+            "prompt_tokens_details": {
+              "cached_tokens": 578
+            }
+          },
+          "timings": {
+            "cache_n": 578,
+            "prompt_n": 252,
+            "prompt_ms": 7123.627,
+            "prompt_per_token_ms": 28.268361111111112,
+            "prompt_per_second": 35.37523792304117,
+            "predicted_n": 34,
+            "predicted_ms": 2522.091,
+            "predicted_per_token_ms": 76.42699999999999,
+            "predicted_per_second": 13.084381174192368
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 265.875,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 148,
+            "prompt_tokens": 10047,
+            "total_tokens": 10195,
+            "prompt_tokens_details": {
+              "cached_tokens": 825
+            }
+          },
+          "timings": {
+            "cache_n": 825,
+            "prompt_n": 9222,
+            "prompt_ms": 208019.906,
+            "prompt_per_token_ms": 22.556918889611797,
+            "prompt_per_second": 44.332295775578324,
+            "predicted_n": 148,
+            "predicted_ms": 11315.074,
+            "predicted_per_token_ms": 76.97329251700681,
+            "predicted_per_second": 12.991519100979808
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 279.7030000000086,
+          "first_final_seconds": 432.7190000000119,
+          "finish_reason": "stop",
+          "usage": {
+            "completion_tokens": 1667,
+            "prompt_tokens": 10251,
+            "total_tokens": 11918,
+            "prompt_tokens_details": {
+              "cached_tokens": 10174
+            }
+          },
+          "timings": {
+            "cache_n": 10174,
+            "prompt_n": 77,
+            "prompt_ms": 2350.458,
+            "prompt_per_token_ms": 30.525428571428574,
+            "prompt_per_second": 32.759572815170486,
+            "predicted_n": 1667,
+            "predicted_ms": 153385.712,
+            "predicted_per_token_ms": 92.06825450180072,
+            "predicted_per_second": 10.861507100478825
+          }
+        },
+        {
+          "phase": 1,
+          "first_event_seconds": 436.9220000000205,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 449,
+            "prompt_tokens": 10346,
+            "total_tokens": 10795,
+            "prompt_tokens_details": {
+              "cached_tokens": 10246
+            }
+          },
+          "timings": {
+            "cache_n": 10246,
+            "prompt_n": 100,
+            "prompt_ms": 3653.503,
+            "prompt_per_token_ms": 36.53503,
+            "prompt_per_second": 27.370991620918332,
+            "predicted_n": 449,
+            "predicted_ms": 40439.22,
+            "predicted_per_token_ms": 90.26611607142857,
+            "predicted_per_second": 11.078354132448647
+          }
+        },
+        {
+          "phase": 1,
+          "first_event_seconds": 480.61000000001513,
+          "first_final_seconds": 523.4379999999946,
+          "finish_reason": "stop",
+          "usage": {
+            "completion_tokens": 604,
+            "prompt_tokens": 10852,
+            "total_tokens": 11456,
+            "prompt_tokens_details": {
+              "cached_tokens": 10775
+            }
+          },
+          "timings": {
+            "cache_n": 10775,
+            "prompt_n": 77,
+            "prompt_ms": 2986.028,
+            "prompt_per_token_ms": 38.77958441558441,
+            "prompt_per_second": 25.786764223242383,
+            "predicted_n": 604,
+            "predicted_ms": 50741.032,
+            "predicted_per_token_ms": 84.14764842454395,
+            "predicted_per_second": 11.883873390671283
+          }
+        }
+      ]
+    }
+  ],
+  "notes": {
+    "interpretation": "Complete reviewed public57/60; no private/coding or composite on this exact configuration. Runtime and weights unchanged from CPU28, but CPU expert threshold and sampler change jointly. Single seed and desktop/cache differences prevent causal speed/quality claims.",
+    "grades": "Router38/40 (6/6 behavior); TS5/6; SQL6/6; history8/8 by source-supported semantic inventory review. See separate grades receipt.",
+    "limitations": [
+      "TS/SQL omitted required rules/v2/typescript-sql.md despite correct five-file inventory.",
+      "Router self-test false assertion after explicit mutation; separate import-assembly artifact retained.",
+      "History helper bullet-only inventory false negative corrected by semantic review; not a64K/128K recall test.",
+      "Private/direct coding currently unrun; actual collector top_k20 differs from public inherited64.",
+      "No model promotion or editor typing."
+    ],
+    "actual_public_sampling": {
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "top_k_inherited": 64,
+      "native_reasoning": true,
+      "output_ceilings": [
+        16384,
+        16384,
+        4096
+      ],
+      "whole_prompt_deadline": 1200
+    }
+  },
+  "trial_sha256": "1e3b8079743a8175030914ce40eece1a35423032fb57d8b07e87a55c42f91205",
+  "exporter_sha256": "42b5da5776589eca73eaa2c3a90fb6252841b3f886b6a5035500e39b0ef9d931",
+  "raw_evidence": "local-data/2026-10-24-precision/gemma26-cpu26-publisher-public-c",
+  "runtime_variant": {
+    "id": "b11562-noprefetch-v1",
+    "base_commit": "b2f036c0f138414dedc987446f1d9d802f920275",
+    "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009",
+    "stock_llama_sha256": "bbb5b3b15e0515905f401d729aa674ca27fbcaf9c1fcba5eff94d35cb2020467",
+    "patch_sha256": "26d8b3109cbcdb416ed8cd6f2b529c48e093ec9267a710c8546b18d49627ed32",
+    "compiler": "MSVC 14.50.35717, CMake 4.1.2-msvc8, Ninja, Release x64",
+    "unchanged_stock_binaries": {
+      "cublas64_12.dll": "e40202fe4223c1cd2d2dce7beec59e1ed61c7801bd827309183be9b50e358f4c",
+      "cublasLt64_12.dll": "2a896460bef60ed57ef32b0875812f355a6984e671d638bb632f5e8c1d7a831f",
+      "cudart64_12.dll": "d28e42265da7462162a54da6b7a99ea4fa2caf8139d862bb500db875d0b32dfc",
+      "ggml-base.dll": "e0af09585367c835030092722d974a65aaba54e62b4749a7e358a02f8e1aa5bf",
+      "ggml-cpu-alderlake.dll": "dbb2b0a1662c6a9df08f568babcc02b8c0f5be25165dbd3876ec80fb707a732e",
+      "ggml-cpu-cannonlake.dll": "539675328dcc137726c423623b158893e340cd55532a3cd954f62fa45f9fa378",
+      "ggml-cpu-cascadelake.dll": "740e1faa538d475572e11e5e0a7835441ce030ad1806ba015d67dcc2749e52da",
+      "ggml-cpu-cooperlake.dll": "cd091ecfa3023ee8167d9622e2389f4bd658cf6e649afa8302afa391a5df2b21",
+      "ggml-cpu-haswell.dll": "0018cfeb982f2a74a3e6636c59a94b6b97d003c23e18489a713bef2d6057bb13",
+      "ggml-cpu-icelake.dll": "d5487329de823ab2f960ef247ef7a38c600502fe1ba7578ecf5fa023c92de975",
+      "ggml-cpu-ivybridge.dll": "1ad7db6e46162df04084d2de06b515bba244eceaaddc9dea166d8978534f1234",
+      "ggml-cpu-piledriver.dll": "45bbd8bfb29e83f66fb2229fd18c514fa62974ecead4a7cfbcf646c85eda7ffa",
+      "ggml-cpu-sandybridge.dll": "139e96213e6a7f5e04ee3c9bf4a1e5c5d52105ab4bb3aa46aaae08a2feaeb31e",
+      "ggml-cpu-sapphirerapids.dll": "0c68e1d1140b4a6cba997d81722c9715a432251db1642bc4028805daa79eef3a",
+      "ggml-cpu-skylakex.dll": "ff2d08593f21c44bbfee2e6aec312b5a1bc56a5f651f0ea8e2db79feb103241b",
+      "ggml-cpu-sse42.dll": "5918f986ba8b650e74f3e49e1ddf5f882e9be21af6c4c814d18f19edc3854377",
+      "ggml-cpu-x64.dll": "b1a7d5b6656e57bed7f053d1aca63c9a69fb43de688a67aa352297858c929b63",
+      "ggml-cpu-zen4.dll": "2e5d63b61c7da0f393a66b289c0ecbed6a29988167cc852e1c33addac2c67ee6",
+      "ggml-cuda.dll": "b4b6ca3820bad0f08eb67eb308e86b4f40acaf8e240c75e4336ade6ff57dd01e",
+      "ggml-rpc-server.exe": "6ce316609ce309e654ea972e042d2e9bd827dce4176d53fd4d1eb464102644e9",
+      "ggml-rpc.dll": "fd91bca5f412919246c1ceccb86a7c06a4ae362f749b386034b0499de2b857db",
+      "ggml.dll": "7ea2828b78084ed8837b231b2a20cdd3bdda0d08de585c25a806951bf2a7ca0f",
+      "libomp.dll": "a12116ba72d1d6820407cf30be23da04ce79d6bb8a71a5ee71759c5a1faa6f1c",
+      "llama-batched-bench-impl.dll": "73b43f0d1ee3690ae3fcf9d197e31a48dbdbe5c56c45d8fa3751ab232ef00076",
+      "llama-batched-bench.exe": "47ddfeef8e8582a4e326501daeed5b437914260541a8c281a63fd7b11ba4d441",
+      "llama-bench-impl.dll": "72d65fb7ec8a79842cca08f3b563b2d353d8f8380c43048161158f878d64fdca",
+      "llama-bench.exe": "656fe4bb44563e57cb1b1603cd5f020c2d3162a01525b49d8e6adc748c9906ef",
+      "llama-cli-impl.dll": "f5fa264c0c2390d991790151492fdf646368da475015b0873cf820558d4c07d2",
+      "llama-cli.exe": "1203aa885df3c18518d90a2b1ee6563922442b72f5327cdf62dd796c46d69323",
+      "llama-common.dll": "089e484f47f08e825b115bcfd54055503233a45cf229e364dba3fee16a217fe6",
+      "llama-completion-impl.dll": "5b1af53fe8fe8a708720bd3f9276e1ba35249c4c1e256379a8182187116ad987",
+      "llama-completion.exe": "f9059e3433a4b80415da5c3ecb8050cd101886a7f97c6cc7cc58b6bbcfa1563a",
+      "llama-fit-params-impl.dll": "ac0c5915d3245c15169beb0df96713a8c5796f9d54e6225cc5ed51a7140596c1",
+      "llama-fit-params.exe": "ae2202568ee532b6922705f6839993a2b512884b891fa2e6a65b4f1ffc7fc630",
+      "llama-gemma3-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-gguf-split.exe": "573a9fb80d379f0cf43688899c077df00ce138646c5679a1680ec85abdaa894c",
+      "llama-imatrix.exe": "1bc53b83e1638f253039abc3a4ace5758de1d0c06240eae8de44e58a0e469cc0",
+      "llama-llava-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-minicpmv-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-mtmd-cli.exe": "f981773bbb19df265c05c8142a2b75cf4d6c4217f2867f11a88d9dd3e2973c11",
+      "llama-mtmd-debug.exe": "dd68b5e21e5cb4240d65f0bb9a0759c12bf4200236d8b4d1e77176c7f42fe947",
+      "llama-perplexity-impl.dll": "7dfcb2d29374d3fad7543e03a6bd4c8e8eeeb0113c3dfcf1ed92655530b36804",
+      "llama-perplexity.exe": "247b4b9cd4a7bbbf078ec3225bd832618179636d7dd843b3493dcc512cf31120",
+      "llama-quantize-impl.dll": "4791484e3d36f04b799e69bf93faa838fb7f9ba4a1fdf56e50da4b6b0125aa19",
+      "llama-quantize.exe": "b0908bd1adedae40afb78b0b5f344663a66ff6246fe79092b8ff3693af588338",
+      "llama-qwen2vl-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-results.exe": "a5d3d1f32b4759fba908fb362d9fc2b0e0bec31704ff6f668d0abf05dbda023c",
+      "llama-server-impl.dll": "17e98b38dd5ee5290af398d87c346cb9d49cca313ba919409ab32e6128b87ed7",
+      "llama-server.exe": "2f5639beed7f301ab9cbceb81b1023cdfad764688143454dd66ab2db2eef6145",
+      "llama-tokenize.exe": "9596bc9f144dab9cd60cc94f4fee5ae2459f780d3165b2ae3c35884bd895e4a8",
+      "llama-tts.exe": "0b8848937e3081dfcd092fc1dd5c83efa9748b3ef527481230fc5c021f87ffc5",
+      "llama.exe": "1a9b627bca3b26c68a27f3d161df6e73b9fe59d8fcf0d986cd99932a89739fe9",
+      "mtmd.dll": "004fc656ff4af52b69d12e1ab7f68e1ea9d8c7a4abfa3647c0d72f18804420dc"
+    },
+    "scope": "Only llama.dll rebuilt; all original ggml/CUDA/CPU backends retained",
+    "opt_in_environment": {
+      "LLAMA_LAB_NO_MMAP_PREFETCH": "1"
+    }
+  },
+  "resident_limit": {
+    "pid": 84484,
+    "requested_maximum_gib": 8.0,
+    "maximum_bytes": 8589934592,
+    "minimum_bytes": 204800,
+    "flags": 6,
+    "note": "Resident working-set cap, not total commit or GPU allocation cap."
+  }
+}

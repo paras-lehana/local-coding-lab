@@ -1148,3 +1148,31 @@ updated. No promotion; private/directcoding on this profile remain unrun.
 remain launch gates. Raw gemma26-cpu26-publisher-public-c. CPU24 rejection
 preserved.42offline checks pass18.770s (19.141s command),4PSparses,audit302/0.
 No download, grading or build overlaps the new inference. Not a promotion.
+
+23:48IST: checkpoint2589946 pushed; CI40119849141 succeeds on Ubuntu and
+Windows. CPU26 smoke3.875s READY; GPUweights3137.64MiB confirm816.75MiB
+increase overCPU28, KV/compute unchanged. Native public router still collecting.
+
+25October00:09IST: CPU26/publisher Gemma router completes889.985s with first
+visible732.375s and six successful required reads. All visible turns reviewed;
+implementation appears contract-consistent, but generated isolation assertions
+expect an explicitly mutated99 value to remain3. Provisional non-code26/28;
+isolated code grading waits for engine exit. TS/SQL collecting, history unrun.
+Recovered project/shared guidance and current logs before edits. Source review
+confirms Linux-only RAM expert-cache integration and RAM costs of another
+fork's host pinning; README revisions/hashes saved. ThinkingCap is recorded as
+a publisher-reported post-training research lead, not a tested candidate.
+No inference-overlapping grading, model download, hashing, build or unit tests.
+
+25October00:32IST: CPU26 public completes all cases; reviewed57/60 (router38,
+TS5,SQL6,history8). Times889.985/946.406/531.344s. Required TS/SQL v2 file was
+never read, separate from behavioral score. Python6/6; original self-test
+assemblyNameErrors retained, declared import-only assembly6/7 exposes false
+assertion. History bullet-parser misses correct prose inventory; raw result
+retained and semantic point awarded. No score transfer or full composite.
+Normal stop/no hardware event; minRAM3.916/commit1.253GiB/VRAM1320MiB.
+Fresh13.115GiB RAM rejects Gemma/Qwen/K2/Bolt/NVFP4 next-load profiles.
+FlintQ3XL bounded downloader resumes from28/276 ranges, PID84648; stop verified
+children before inference.42offline tests pass19.267s, fourPSparses, audit304/0,
+whitespace check pass. Candidate report/comparison/leaderboard updated; campaign
+and production restoration remain active. No code or runtime changes here.
