@@ -5,7 +5,8 @@ The stock b11562 runtime remains the reference. On this workstation, mapping
 the 45.20 GiB Coder-Next artifact exhausted physical and commit headroom before
 inference, despite a process working-set maximum. The guard stopped that load.
 The suspected mechanism is whole-file Windows `PrefetchVirtualMemory` during
-initial mapping; the candidate retry is still under evaluation.
+initial mapping. Historical candidate outcomes are in the linked task report;
+the loader change itself does not establish that a larger model is usable.
 
 `loader.patch` applies to the MIT-licensed
 [llama.cpp commit b2f036c0f](https://github.com/ggml-org/llama.cpp/tree/b2f036c0f138414dedc987446f1d9d802f920275).
@@ -56,3 +57,26 @@ and API smoke also complete, with a normal requested stop. These checks do not
 prove full numerical equivalence or candidate coding quality. Consult the
 [task report](../../docs/tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md)
 for the current result and remaining limitations.
+
+## b11838 port for higher Flint precision
+
+`loader-b11838.patch` applies to exact commit
+`4231b23dc2c46661d01157aac5245bdcf03ce4b1`. Use a separate checkout and runtime
+directory, the same build recipe above, and replace only `LLAMA_BUILD_NUMBER`
+with `11838` and `LLAMA_BUILD_COMMIT` with that full commit. This local patch
+adds the same opt-in guard around initial mmap prefetch; it does not change
+attention, expert selection or subsequent demand paging.
+
+The measured variant is `b11838-noprefetch-v1`, with DLL SHA256
+`10331e86ab5bd3f8c08c486f42d900f1dd09dbab218ce54a8684b7ec7b65c35f`.
+For newer variants, the profile and runtime manifest must also match an entry
+in `catalog/runtime.json` under `reviewed_runtime_variants`. A locally edited
+profile alone cannot authorize an unreviewed DLL. The historical b11562
+validation remains supported without changing the production installation.
+
+[Recorded controls](../../reports/2026-10-24-b11838-prefetch-control.json)
+confirm 54 other stock binaries are unchanged and all six small-model CPU/GPU
+runs match across stock, modified-default and modified-opt-in. Only opt-in
+logs disabled prefetch. These controls do not prove full-model equivalence.
+Higher-precision Flint profiles and their actual outcomes belong in the
+[precision campaign](../../docs/tasks/2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md).

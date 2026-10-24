@@ -1,0 +1,23 @@
+diff --git a/src/llama-model-loader.cpp b/src/llama-model-loader.cpp
+--- a/src/llama-model-loader.cpp
++++ b/src/llama-model-loader.cpp
+@@ -10,6 +10,7 @@
+ #include <array>
+ #include <cinttypes>
+ #include <cstdint>
++#include <cstdlib>
+ #include <cstring>
+ #include <future>
+ #include <regex>
+@@ -1418,6 +1419,11 @@
+ void llama_model_loader::init_mappings(bool prefetch, llama_mlocks * mlock_mmaps) {
++    const char * no_prefetch = std::getenv("LLAMA_LAB_NO_MMAP_PREFETCH");
++    if (prefetch && use_mmap && no_prefetch && std::strcmp(no_prefetch, "1") == 0) {
++        prefetch = false;
++        LLAMA_LOG_INFO("%s: initial mmap prefetch disabled by LLAMA_LAB_NO_MMAP_PREFETCH\n", __func__);
++    }
+     // note: read_lazy also requires mmap; this condition make sure it's usable even when --load-mode is not set to mmap
+     if (use_mmap || lazy.any()) {
+         mappings.reserve(files.size());
+         mmaps_used.reserve(files.size());
+         for (uint32_t idx = 0; idx < files.size(); idx++) {

@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.9.0 - 2026-10-24 (in progress)
+
+- Reopen higher Flint precision and missing model-suite coverage with a
+  separate research/experiment record and conservative apps-open profiles.
+- Require catalog-pinned identities for additional experimental mmap runtimes;
+  preserve the existing b11562 production control. Six small-model runtime
+  controls and42 offline checks pass; full-model equivalence is not claimed.
+- Record higher Flint Q4 router deadlines, IQ3 public/private and separate
+  capped/cached coding6/12, plus IQ4 bounded public55/60. Further coverage is
+  active; keep every memory stop, output limit and configuration separate.
+- Correct a JavaScript grader's lexical false positive through an unchanged-
+  source, hash-scoped isolated recheck; preserve the observed scheduling bug.
+
 ## 0.8.0 - 2026-10-24
 
 - Reconcile Claude's newer candidate results and explicitly separate partial

@@ -87,3 +87,17 @@ so loss of original data does not also masquerade as a missing constraint.
 This correction was made during the 15 October campaign: original results are
 retained, unchanged candidates were rerun, and the report identifies affected
 scores. The positive control includes leading line/block comments.
+
+## Screening false positives
+
+On24October the legacy JavaScript coding grader rejected a local scheduler
+function named `process()` through a lexical capability filter. Source review
+confirmed that it did not access Node's global process object. Preserve such
+a screening result as review-required, not an observed malicious action or a
+behavior-test failure. The separately recorded recheck used the exact unchanged
+response hash, identical frozen behavior checks and the existing VM/OS resource
+isolation; only that one name check was bypassed for that reviewed artifact.
+Actual execution then exposed duplicate scheduling (10/11 checks), so the task
+still failed. Keep both grader hashes/results and the reason for selection.
+Never disable capability screening generally or edit model code to obtain a
+better score. See the24October Qwen model report for the measured example.

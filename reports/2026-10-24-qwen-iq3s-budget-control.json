@@ -1,0 +1,282 @@
+{
+  "date": "2026-10-24",
+  "model": {
+    "name": "Qwen3.6-35B-A3B UD-IQ3_S",
+    "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+    "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+    "filename": "Qwen3.6-35B-A3B-UD-IQ3_S.gguf",
+    "bytes": 13676723168,
+    "sha256": "66a3ca888ce13482b40c333db2432c0ebde3a7b13754fc29f0c6f5e89703ec66",
+    "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+    "status": "public-private-completed-coding-pending-20261024",
+    "thinking": "enable_thinking and preserve_thinking; no native xhigh",
+    "url": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/a483e9e6cbd595906af30beda3187c2663a1118c/Qwen3.6-35B-A3B-UD-IQ3_S.gguf"
+  },
+  "profile_name": "qwen36-iq3s-budget4096-coverage64",
+  "profile": {
+    "model": "qwen36-iq3s",
+    "alias": "qwen36-lab",
+    "locally_tested": false,
+    "evidence": "24 October follow-up to native16K coding output-limit failure. Only the runtime reasoning ceiling changes to4096 versus CPU38 native control. Not a native effort label; verify actual reasoning count, delivered code and 1200second completion. No result inherited or overwritten.",
+    "load_min_ram_free_gib": 12,
+    "load_min_vram_free_mib": 6000,
+    "template_kwargs": {
+      "enable_thinking": true,
+      "preserve_thinking": true
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--ctx-size",
+      "65536",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--batch-size",
+      "512",
+      "--ubatch-size",
+      "128",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--timeout",
+      "1200",
+      "--reasoning-budget",
+      "4096",
+      "--reasoning-preserve",
+      "--predict",
+      "16384",
+      "--temp",
+      "0.6",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "20",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--n-cpu-moe",
+      "38",
+      "--verbosity",
+      "4",
+      "--ctx-checkpoints",
+      "4",
+      "--metrics",
+      "--host",
+      "127.0.0.1,::1",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC"
+    ],
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_gpu_c": 84,
+    "validation_status": "planned-separate-budget-diagnostic",
+    "stop_min_commit_available_gib": 1.0,
+    "load_min_commit_available_gib": 8,
+    "runtime_variant": {
+      "id": "b11562-noprefetch-v1",
+      "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+    }
+  },
+  "status": "two-completed-passes-control-intentionally-stopped",
+  "preflight": {
+    "time": 1792837719.9375987,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 18.720783233642578,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 16.37714385986328,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6057.0,
+    "gpu_c": 47.75,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "postflight": {
+    "time": 1792838691.5596442,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 20.007343292236328,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 16.55318832397461,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6338.0,
+    "gpu_c": 47.31,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "suite_sha256": "d69a90527dc9939d32c7a7751bb080064fcc24acfeeef97ab8c1fada84bceea5",
+  "collector_sha256": "e6c1d8e4c9afa38aa8916ad0401d2ab6f507aa31d56f45d32d0bffdfded9a16e",
+  "controller_sha256": "98655372fcc92d6aa72e51c836870e1a6d6e8165759831868a48c84e13943ae0",
+  "grades_sha256": "30cc8e9eeeb12fb8f1aef2d5f3b2cb9cd412def5a3db5a9527e4c3241df4176a",
+  "seed": 73,
+  "temperature": 0.6,
+  "output_limit": 16384,
+  "reasoning_ceiling": 4096,
+  "whole_prompt_deadline_seconds": 1200,
+  "tasks": [
+    {
+      "task": "intervals",
+      "language": "python",
+      "wall_seconds": 517.1410000000033,
+      "finish_reason": "stop",
+      "first_event_seconds": 2.4530000000086147,
+      "first_content_seconds": 273.7030000000086,
+      "error": null,
+      "decode_tok_s": 15.024674554969888
+    },
+    {
+      "task": "ttl_lru",
+      "language": "python",
+      "wall_seconds": 307.1719999999914,
+      "finish_reason": "stop",
+      "first_event_seconds": 1.5780000000086147,
+      "first_content_seconds": 269.48399999999674,
+      "error": null,
+      "decode_tok_s": 15.233360188334727
+    },
+    {
+      "task": "dag",
+      "language": "python",
+      "wall_seconds": 125.85999999998603,
+      "finish_reason": null,
+      "error": "worker_exit_1",
+      "decode_tok_s": null
+    }
+  ],
+  "grades": [
+    {
+      "task": "intervals",
+      "language": "python",
+      "status": "graded",
+      "passed": true,
+      "checks": {
+        "passed": 105,
+        "total": 105
+      }
+    },
+    {
+      "task": "ttl_lru",
+      "language": "python",
+      "status": "graded",
+      "passed": true,
+      "checks": {
+        "passed": 34,
+        "total": 34
+      }
+    },
+    {
+      "task": "dag",
+      "language": "python",
+      "status": "unscored-incomplete",
+      "passed": false,
+      "checks": {
+        "passed": null,
+        "total": null
+      }
+    }
+  ],
+  "outputs": {
+    "intervals": {
+      "response_sha256": "aa74f60fbbdb7f7c8631f394ae318111fa28f27cad29cbea68be4b3b7b359c90",
+      "review_sha256": "39c1d9c7ca40d4fe8d3ac67fe5dbc9ca701d7ebcfbe426105481c12af7734e7e",
+      "visible_characters": 13784,
+      "reasoning_characters": 14158,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 94,
+        "prompt_ms": 2407.016,
+        "prompt_per_token_ms": 25.60655319148936,
+        "prompt_per_second": 39.05250318236356,
+        "predicted_n": 7734,
+        "predicted_ms": 514686.689,
+        "predicted_per_token_ms": 66.55718207681366,
+        "predicted_per_second": 15.024674554969888
+      },
+      "usage": {
+        "completion_tokens": 7734,
+        "prompt_tokens": 94,
+        "total_tokens": 7828,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    "ttl_lru": {
+      "response_sha256": "e3b5b435b3ea2eafcd430abfcde04715e17666b393e4ca26a1fef03ab388502d",
+      "review_sha256": "a4ab0bdbb037fd9d66d086790d7233f26becb3da922dc19ee7d3126b5b9d77d6",
+      "visible_characters": 2406,
+      "reasoning_characters": 16466,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 162,
+        "prompt_ms": 1538.019,
+        "prompt_per_token_ms": 9.493944444444445,
+        "prompt_per_second": 105.33029826029457,
+        "predicted_n": 4656,
+        "predicted_ms": 305579.33,
+        "predicted_per_token_ms": 65.6453984962406,
+        "predicted_per_second": 15.233360188334727
+      },
+      "usage": {
+        "completion_tokens": 4656,
+        "prompt_tokens": 162,
+        "total_tokens": 4818,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    }
+  },
+  "memory": {
+    "minimum_ram_free_gib": 6.03521728515625,
+    "minimum_commit_available_gib": 11.364501953125,
+    "minimum_vram_free_mib": 2599.0,
+    "maximum_gpu_c": 48.78,
+    "maximum_process_working_set_gib": 13.075084686279297,
+    "maximum_process_private_gib": 4.620967864990234
+  },
+  "cleanup": {
+    "status": "requested_stop"
+  },
+  "new_hardware_event": false,
+  "interpretation": [
+    "First frozen interval implementation passes105/105 and TTL passes34/34. Two completed tasks only, not a full12-task score.",
+    "DAG deliberately interrupted125.86s to grade controls and launch a separate full cache trial; not a model deadline or bug. Nine later uncached tasks unrun.",
+    "Interval answer includes two fences. Frozen grader selects the first, containing redundant quadratic work. No source repair or last-fence substitution.",
+    "NaN TTL post-review isolated diagnostic fails (ValueError not raised), outside the frozen34 checks.",
+    "Native public52/60 and private29/36 belong to an uncapped configuration and cannot supply missing components for this capped run."
+  ],
+  "raw_evidence": "local-data/2026-10-24-precision/qwen-iq3s-budget4096-coding-a/",
+  "extra_diagnostic": {
+    "name": "NaN is not a positive TTL",
+    "held_out": false,
+    "affects_frozen_score": false,
+    "cached": "fails: ValueError not raised",
+    "uncached4096_control": "fails: ValueError not raised",
+    "cached_result_sha256": "348737ad76c0636c8ed6a58709dad8cda331df93268a33aa7ff615754b1a8c34",
+    "uncached_result_sha256": "348737ad76c0636c8ed6a58709dad8cda331df93268a33aa7ff615754b1a8c34"
+  }
+}

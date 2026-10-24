@@ -8,11 +8,12 @@ The current limit is **1200 seconds for one whole prompt**, including input
 processing, reasoning, tool turns and final text. Apps stay open. Quality is
 more important than raw tokens/sec, but multi-hour prompts are disqualified.
 
-**16 October expansion:** the owner explicitly relaxed that latency preference
-for the remaining candidates. Collectors still default to 1200 seconds, but an
-explicit `--deadline` may now be up to 21600 seconds. Record that allowance in
-every manifest; do not retroactively pass earlier timeouts. Resource stops and
-the requirement for a complete answer before grading remain unchanged.
+**Historical 16 October expansion:** the owner temporarily relaxed that latency
+preference, and explicit collector deadlines could be up to21600seconds. The
+20 October scorecard and current campaign restore1200seconds. Longer historical
+runs retain their recorded allowance but cannot rank under the current gate.
+Do not retroactively pass earlier timeouts. Resource stops and a completed
+answer before grading remain required.
 
 `router-v1` is a new public synthetic project with deliberate merge bugs. It
 resembles that instruction-routing workflow without publishing personal files.

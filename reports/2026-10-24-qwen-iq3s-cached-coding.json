@@ -1,0 +1,741 @@
+{
+  "date": "2026-10-24",
+  "model": {
+    "name": "Qwen3.6-35B-A3B UD-IQ3_S",
+    "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+    "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+    "filename": "Qwen3.6-35B-A3B-UD-IQ3_S.gguf",
+    "bytes": 13676723168,
+    "sha256": "66a3ca888ce13482b40c333db2432c0ebde3a7b13754fc29f0c6f5e89703ec66",
+    "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+    "status": "public-private-completed-coding-pending-20261024",
+    "thinking": "enable_thinking and preserve_thinking; no native xhigh",
+    "url": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/a483e9e6cbd595906af30beda3187c2663a1118c/Qwen3.6-35B-A3B-UD-IQ3_S.gguf"
+  },
+  "profile_name": "qwen36-iq3s-budget4096-cache1536-coverage64",
+  "profile": {
+    "model": "qwen36-iq3s",
+    "alias": "qwen36-lab",
+    "locally_tested": false,
+    "evidence": "Same CPU38,64K GPUq8 KV,4096 reasoning ceiling,.6 sampling as budget control; adds only1536MiB native expert cache. Unmeasured. Compare the same first tasks before claiming latency or quality benefit. CPU original weights remain.",
+    "load_min_ram_free_gib": 12,
+    "load_min_vram_free_mib": 6000,
+    "template_kwargs": {
+      "enable_thinking": true,
+      "preserve_thinking": true
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--ctx-size",
+      "65536",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--batch-size",
+      "512",
+      "--ubatch-size",
+      "128",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--timeout",
+      "1200",
+      "--reasoning-budget",
+      "4096",
+      "--reasoning-preserve",
+      "--predict",
+      "16384",
+      "--temp",
+      "0.6",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "20",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--n-cpu-moe",
+      "38",
+      "--verbosity",
+      "4",
+      "--ctx-checkpoints",
+      "4",
+      "--metrics",
+      "--host",
+      "127.0.0.1,::1",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC",
+      "--moe-cache-mib",
+      "1536"
+    ],
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_gpu_c": 84,
+    "validation_status": "planned-cache-after-budget-control",
+    "stop_min_commit_available_gib": 1.0,
+    "load_min_commit_available_gib": 8,
+    "runtime_variant": {
+      "id": "b11562-noprefetch-v1",
+      "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+    }
+  },
+  "status": "twelve-completed-six-passes-six-observed-failures",
+  "preflight": {
+    "time": 1792838732.073893,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 17.843860626220703,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 14.305206298828125,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6320.0,
+    "gpu_c": 46.75,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "postflight": {
+    "time": 1792840373.1889384,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 20.686500549316406,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 15.199325561523438,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6285.0,
+    "gpu_c": 54.94,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "suite_sha256": "d69a90527dc9939d32c7a7751bb080064fcc24acfeeef97ab8c1fada84bceea5",
+  "collector_sha256": "e6c1d8e4c9afa38aa8916ad0401d2ab6f507aa31d56f45d32d0bffdfded9a16e",
+  "controller_sha256": "98655372fcc92d6aa72e51c836870e1a6d6e8165759831868a48c84e13943ae0",
+  "original_grades_sha256": "1c93e052abe41c7477497231147e6a42dbff0575d96c535e35cfd7e5b0e323fd",
+  "seed": 73,
+  "temperature": 0.6,
+  "output_limit": 16384,
+  "reasoning_ceiling": 4096,
+  "whole_prompt_deadline_seconds": 1200,
+  "tasks": [
+    {
+      "task": "intervals",
+      "language": "python",
+      "wall_seconds": 145.34399999998277,
+      "finish_reason": "stop",
+      "first_event_seconds": 2.5939999999827705,
+      "first_content_seconds": 128.82800000000861,
+      "error": null,
+      "decode_tok_s": 32.413744133651726,
+      "passed": false,
+      "checks_passed": 79,
+      "checks_total": 105,
+      "failures": [
+        {
+          "label": "edge 3",
+          "passed": false,
+          "error": "AssertionError: expected [[0, 5]], got [[0, 2], [2, 5]]"
+        },
+        {
+          "label": "random 1",
+          "passed": false,
+          "error": "AssertionError: expected [[-12, -11], [-3, -2], [9, 13]], got [[-12, -11], [-3, -2], [9, 12], [12, 13]]"
+        },
+        {
+          "label": "random 4",
+          "passed": false,
+          "error": "AssertionError: expected [[4, 14]], got [[4, 7], [7, 14]]"
+        },
+        {
+          "label": "random 7",
+          "passed": false,
+          "error": "AssertionError: expected [[-12, 0]], got [[-12, -8], [-8, -5], [-5, -4], [-4, 0]]"
+        }
+      ],
+      "response_sha256": "8806251b467012ad21dff0f1996375fd4b125df2ef11344271ee184a045144e5",
+      "review_sha256": "f38e9b6652ed37ca003299d309b201ad554534e150b556b0dbcc08764b74a913",
+      "visible_characters": 1982,
+      "reasoning_characters": 13661,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 94,
+        "prompt_ms": 2556.952,
+        "prompt_per_token_ms": 27.201617021276597,
+        "prompt_per_second": 36.76252037582246,
+        "predicted_n": 4628,
+        "predicted_ms": 142748.088,
+        "predicted_per_token_ms": 30.851110438729197,
+        "predicted_per_second": 32.413744133651726
+      },
+      "usage": {
+        "completion_tokens": 4628,
+        "prompt_tokens": 94,
+        "total_tokens": 4722,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "task": "ttl_lru",
+      "language": "python",
+      "wall_seconds": 140.38999999998487,
+      "finish_reason": "stop",
+      "first_event_seconds": 1.562000000005355,
+      "first_content_seconds": 123.65599999998813,
+      "error": null,
+      "decode_tok_s": 33.40773096239958,
+      "passed": true,
+      "checks_passed": 34,
+      "checks_total": 34,
+      "failures": [],
+      "response_sha256": "a2aa40add5430222c4641ccc88ba26120af058d43c5b316dfb2469f92a3db9cc",
+      "review_sha256": "3fce6cc1de42fdef83584fa9cbbe1ebd5e30c76149a7357659e2285bda8d68ae",
+      "visible_characters": 2373,
+      "reasoning_characters": 15012,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 162,
+        "prompt_ms": 1517.57,
+        "prompt_per_token_ms": 9.367716049382716,
+        "prompt_per_second": 106.74960627845833,
+        "predicted_n": 4639,
+        "predicted_ms": 138830.141,
+        "predicted_per_token_ms": 29.933191246226823,
+        "predicted_per_second": 33.40773096239958
+      },
+      "usage": {
+        "completion_tokens": 4639,
+        "prompt_tokens": 162,
+        "total_tokens": 4801,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "task": "dag",
+      "language": "python",
+      "wall_seconds": 133.51600000000326,
+      "finish_reason": "stop",
+      "first_event_seconds": 0.875,
+      "first_content_seconds": 123.23399999999674,
+      "error": null,
+      "decode_tok_s": 33.224860108411505,
+      "passed": true,
+      "checks_passed": 64,
+      "checks_total": 64,
+      "failures": [],
+      "response_sha256": "2ac381d06e0890c75adffee8248685326393cc12d6d4c6dad1322f7d20b30ce7",
+      "review_sha256": "902dfb8408a38c1f13b50a6cb8a92039cb9189cec8a8e21fcdeaf4203c415c75",
+      "visible_characters": 1238,
+      "reasoning_characters": 14626,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 96,
+        "prompt_ms": 830.129,
+        "prompt_per_token_ms": 8.647177083333334,
+        "prompt_per_second": 115.64467691166072,
+        "predicted_n": 4408,
+        "predicted_ms": 132641.642,
+        "predicted_per_token_ms": 30.09794463353755,
+        "predicted_per_second": 33.224860108411505
+      },
+      "usage": {
+        "completion_tokens": 4408,
+        "prompt_tokens": 96,
+        "total_tokens": 4504,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "task": "csv_stream",
+      "language": "python",
+      "wall_seconds": 127.78099999998813,
+      "finish_reason": "stop",
+      "first_event_seconds": 1.6400000000139698,
+      "first_content_seconds": 113.96799999999348,
+      "error": null,
+      "decode_tok_s": 35.61941904132962,
+      "passed": false,
+      "checks_passed": 46,
+      "checks_total": 120,
+      "failures": [
+        {
+          "label": "CSV 7 split 0",
+          "passed": false,
+          "error": "AssertionError: expected [['a,b', 'c']], got [['a,bc']]"
+        },
+        {
+          "label": "CSV 7 split 1",
+          "passed": false,
+          "error": "AssertionError: expected [['a,b', 'c']], got [['a,bc']]"
+        },
+        {
+          "label": "CSV 7 split 2",
+          "passed": false,
+          "error": "AssertionError: expected [['a,b', 'c']], got [['a,bc']]"
+        },
+        {
+          "label": "CSV 7 split 3",
+          "passed": false,
+          "error": "AssertionError: expected [['a,b', 'c']], got [['a,bc']]"
+        }
+      ],
+      "response_sha256": "4ca5955a21110fbf96a2e70d4fc6527eaa86fa578877e81714d735ad00604aa4",
+      "review_sha256": "1c57dab23cd3fce1b0b3e46f8023d256bf96bd974f61d87f1eec47de587ed99f",
+      "visible_characters": 1894,
+      "reasoning_characters": 16733,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 167,
+        "prompt_ms": 1584.827,
+        "prompt_per_token_ms": 9.489982035928143,
+        "prompt_per_second": 105.37427744479366,
+        "predicted_n": 4494,
+        "predicted_ms": 126139.059,
+        "predicted_per_token_ms": 28.07457355886935,
+        "predicted_per_second": 35.61941904132962
+      },
+      "usage": {
+        "completion_tokens": 4494,
+        "prompt_tokens": 167,
+        "total_tokens": 4661,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "task": "schedule",
+      "language": "python",
+      "wall_seconds": 150.31200000000536,
+      "finish_reason": "stop",
+      "first_event_seconds": 1.1410000000032596,
+      "first_content_seconds": 133.89100000000326,
+      "error": null,
+      "decode_tok_s": 31.05072204492333,
+      "passed": true,
+      "checks_passed": 61,
+      "checks_total": 61,
+      "failures": [],
+      "response_sha256": "b5dd5fa68482c95f9720056836898ffd9345996456ddb7af428388b4c804d841",
+      "review_sha256": "9ee2c965f2fde8f277f6e7b6a9ff1d17bd866378a83a1bf969284e38f07e3d3f",
+      "visible_characters": 2074,
+      "reasoning_characters": 14321,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 106,
+        "prompt_ms": 1078.429,
+        "prompt_per_token_ms": 10.173858490566039,
+        "prompt_per_second": 98.29112533138482,
+        "predicted_n": 4633,
+        "predicted_ms": 149175.275,
+        "predicted_per_token_ms": 32.20537025043178,
+        "predicted_per_second": 31.05072204492333
+      },
+      "usage": {
+        "completion_tokens": 4633,
+        "prompt_tokens": 106,
+        "total_tokens": 4739,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "task": "inventory_fix",
+      "language": "python",
+      "wall_seconds": 138.68799999999464,
+      "finish_reason": "stop",
+      "first_event_seconds": 1.6410000000032596,
+      "first_content_seconds": 128.84400000001187,
+      "error": null,
+      "decode_tok_s": 32.048304325093795,
+      "passed": true,
+      "checks_passed": 10,
+      "checks_total": 10,
+      "failures": [],
+      "response_sha256": "1be913869e4bbcdcdb2d2a4d2a91e78fee7d8d8c20d4e76a5c7cf13a896dcf97",
+      "review_sha256": "5d0bcf569daa5f15344d356efd344bab123420d1ab4d9ca32dd1c5abd9cfb2ee",
+      "visible_characters": 1333,
+      "reasoning_characters": 15137,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 165,
+        "prompt_ms": 1594.132,
+        "prompt_per_token_ms": 9.66140606060606,
+        "prompt_per_second": 103.50460313198656,
+        "predicted_n": 4393,
+        "predicted_ms": 137043.132,
+        "predicted_per_token_ms": 31.20289890710383,
+        "predicted_per_second": 32.048304325093795
+      },
+      "usage": {
+        "completion_tokens": 4393,
+        "prompt_tokens": 165,
+        "total_tokens": 4558,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "task": "multi_file",
+      "language": "multifile",
+      "wall_seconds": 131.48499999998603,
+      "finish_reason": "stop",
+      "first_event_seconds": 1.687999999994645,
+      "first_content_seconds": 125.21900000001187,
+      "error": null,
+      "decode_tok_s": 33.075306139001015,
+      "passed": false,
+      "checks_passed": 7,
+      "checks_total": 15,
+      "failures": [
+        {
+          "label": "round 1.005",
+          "passed": false,
+          "error": "AssertionError: expected 101, got 1"
+        },
+        {
+          "label": "round 2.675",
+          "passed": false,
+          "error": "AssertionError: expected 268, got 3"
+        },
+        {
+          "label": "round -1.005",
+          "passed": false,
+          "error": "AssertionError: expected -101, got -1"
+        },
+        {
+          "label": "round 999999999.995",
+          "passed": false,
+          "error": "AssertionError: expected 100000000000, got 1000000000"
+        }
+      ],
+      "response_sha256": "e5bc46b7807b56dcc4885ca132186dd6814e3adb0fd8a38d635c59c48f05981d",
+      "review_sha256": "9432a053641085331f139f0aaa75270bed0638108a2fb711431b020507634102",
+      "visible_characters": 678,
+      "reasoning_characters": 14999,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 240,
+        "prompt_ms": 1645.935,
+        "prompt_per_token_ms": 6.8580625,
+        "prompt_per_second": 145.81377757930903,
+        "predicted_n": 4294,
+        "predicted_ms": 129794.717,
+        "predicted_per_token_ms": 30.23403610528768,
+        "predicted_per_second": 33.075306139001015
+      },
+      "usage": {
+        "completion_tokens": 4294,
+        "prompt_tokens": 240,
+        "total_tokens": 4534,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "task": "sql_report",
+      "language": "sql",
+      "wall_seconds": 134.2029999999795,
+      "finish_reason": "stop",
+      "first_event_seconds": 1.7969999999913853,
+      "first_content_seconds": 125.06200000000536,
+      "error": null,
+      "decode_tok_s": 33.208462615922514,
+      "passed": true,
+      "checks_passed": 20,
+      "checks_total": 20,
+      "failures": [],
+      "response_sha256": "81d38e5c246c6dc08b398a34251e2bd07f19f88a7612ebf675ccdae687d5dd26",
+      "review_sha256": "d4d2dff0cd596e59658d30b9c36a15582c9cf85bb2e847f00590ae3a2b51f5b9",
+      "visible_characters": 955,
+      "reasoning_characters": 13776,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 198,
+        "prompt_ms": 1759.791,
+        "prompt_per_token_ms": 8.887833333333333,
+        "prompt_per_second": 112.5133609616142,
+        "predicted_n": 4398,
+        "predicted_ms": 132406.009,
+        "predicted_per_token_ms": 30.11280623152149,
+        "predicted_per_second": 33.208462615922514
+      },
+      "usage": {
+        "completion_tokens": 4398,
+        "prompt_tokens": 198,
+        "total_tokens": 4596,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "task": "sql_islands",
+      "language": "sql",
+      "wall_seconds": 125.20299999997951,
+      "finish_reason": "stop",
+      "first_event_seconds": 0.9839999999967404,
+      "first_content_seconds": 119.88999999998487,
+      "error": null,
+      "decode_tok_s": 34.43127119375761,
+      "passed": true,
+      "checks_passed": 20,
+      "checks_total": 20,
+      "failures": [],
+      "response_sha256": "9d2849f490b2dc68422e8c2c92072bef7ac815151824abf599533911f77abbfe",
+      "review_sha256": "f7b0d8e28567865d99740d52630400a2a3cafdf9ad013587cf5e60b3a0c8ed88",
+      "visible_characters": 644,
+      "reasoning_characters": 13484,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 108,
+        "prompt_ms": 930.564,
+        "prompt_per_token_ms": 8.616333333333333,
+        "prompt_per_second": 116.05864830360943,
+        "predicted_n": 4278,
+        "predicted_ms": 124218.475,
+        "predicted_per_token_ms": 29.043365676876316,
+        "predicted_per_second": 34.43127119375761
+      },
+      "usage": {
+        "completion_tokens": 4278,
+        "prompt_tokens": 108,
+        "total_tokens": 4386,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "task": "ts_validation",
+      "language": "typescript",
+      "wall_seconds": 137.04699999999139,
+      "finish_reason": "stop",
+      "first_event_seconds": 1.577999999979511,
+      "first_content_seconds": 123.04699999999139,
+      "error": null,
+      "decode_tok_s": 33.37547482260411,
+      "passed": false,
+      "checks_passed": 25,
+      "checks_total": 26,
+      "failures": [
+        {
+          "label": "TypeScript strict compilation",
+          "passed": false,
+          "error": "../tmp/answer/ts_validation.json.ts(46,31): error TS2322: Type 'number | undefined' is not assignable to type 'number'.\n  Type 'undefined' is not assignable to type 'number'.\n../tmp/answer/ts_validation.json.ts(46,37): error TS2322: Type 'number | undefined' is not assignable to type 'number'.\n  Type 'undefined' is not assignable to type 'number'.\n"
+        }
+      ],
+      "response_sha256": "f79a93c6714dd693b73418a1b058baad86ebf09404e9548ac65533b0e6ed2618",
+      "review_sha256": "0beabc6e34e012c75bc88bc85849b692a6aa1dce969244d1f8a42cce52e72f84",
+      "visible_characters": 1411,
+      "reasoning_characters": 14986,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 186,
+        "prompt_ms": 1534.701,
+        "prompt_per_token_ms": 8.25108064516129,
+        "prompt_per_second": 121.19624604401768,
+        "predicted_n": 4522,
+        "predicted_ms": 135458.747,
+        "predicted_per_token_ms": 29.962120548551205,
+        "predicted_per_second": 33.37547482260411
+      },
+      "usage": {
+        "completion_tokens": 4522,
+        "prompt_tokens": 186,
+        "total_tokens": 4708,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "task": "js_pool",
+      "language": "javascript",
+      "wall_seconds": 121.26599999997416,
+      "finish_reason": "stop",
+      "first_event_seconds": 1.0309999999881256,
+      "first_content_seconds": 112.04699999999139,
+      "error": null,
+      "decode_tok_s": 36.76250332453215,
+      "passed": false,
+      "checks_passed": 10,
+      "checks_total": 11,
+      "failures": [
+        {
+          "label": "order and bounded parallelism",
+          "passed": false,
+          "error": "Error: Expected [0,1,2,3,4,5], got [0,1,1,2,2,2,3,3,3,4,4,4,5,5,5]"
+        }
+      ],
+      "response_sha256": "c2f6b9cdeb84a69412ce045dc938975a4f1f0cdb1fe7cda1e764f59a8c9b27a8",
+      "review_sha256": "6a2a5620e7b0b523b7e6e73c30c0ff5a014581cc34043ae5ec8d49b96dab687b",
+      "visible_characters": 1137,
+      "reasoning_characters": 16308,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 132,
+        "prompt_ms": 996.927,
+        "prompt_per_token_ms": 7.552477272727273,
+        "prompt_per_second": 132.4068863617898,
+        "predicted_n": 4421,
+        "predicted_ms": 120231.203,
+        "predicted_per_token_ms": 27.20162963800905,
+        "predicted_per_second": 36.76250332453215
+      },
+      "usage": {
+        "completion_tokens": 4421,
+        "prompt_tokens": 132,
+        "total_tokens": 4553,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    {
+      "task": "js_merge",
+      "language": "javascript",
+      "wall_seconds": 127.68700000000536,
+      "finish_reason": "stop",
+      "first_event_seconds": 0.889999999984866,
+      "first_content_seconds": 116.88999999998487,
+      "error": null,
+      "decode_tok_s": 35.03912627513575,
+      "passed": false,
+      "checks_passed": 3,
+      "checks_total": 8,
+      "failures": [
+        {
+          "label": "objects arrays null",
+          "passed": false,
+          "error": "Error: Expected {\"a\":{\"x\":1,\"y\":9},\"b\":[3],\"c\":null}, got {\"a\":{\"y\":9},\"b\":[3],\"c\":null}"
+        },
+        {
+          "label": "left-only branches deeply cloned",
+          "passed": false,
+          "error": "TypeError: Cannot read properties of undefined (reading 'y')"
+        },
+        {
+          "label": "unsafe keys at all depths",
+          "passed": false,
+          "error": "Error: Expected {\"left\":{\"safe\":2},\"items\":[{\"ok\":3}]}, got {}"
+        },
+        {
+          "label": "clone and filter left arrays",
+          "passed": false,
+          "error": "Error: Expected {\"a\":[{\"ok\":4}]}, got {}"
+        }
+      ],
+      "response_sha256": "4f773ca2b483ffb572c8684fd5aac5a0369d64ee36d14c2e7856b83967bd5267",
+      "review_sha256": "45c5054df0a3c400858ff4b3000112a98f8bf4bdf1eac5a68f00eb8fc38eb145",
+      "visible_characters": 1227,
+      "reasoning_characters": 15707,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 128,
+        "prompt_ms": 855.085,
+        "prompt_per_token_ms": 6.6803515625,
+        "prompt_per_second": 149.6927206067233,
+        "predicted_n": 4444,
+        "predicted_ms": 126801.107,
+        "predicted_per_token_ms": 28.539524420436642,
+        "predicted_per_second": 35.03912627513575
+      },
+      "usage": {
+        "completion_tokens": 4444,
+        "prompt_tokens": 128,
+        "total_tokens": 4572,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    }
+  ],
+  "memory": {
+    "minimum_ram_free_gib": 6.151100158691406,
+    "minimum_commit_available_gib": 8.389347076416016,
+    "minimum_vram_free_mib": 1037.0,
+    "maximum_gpu_c": 59.94,
+    "maximum_process_working_set_gib": 13.175067901611328,
+    "maximum_process_private_gib": 6.163505554199219
+  },
+  "completed_tasks": 12,
+  "passed_tasks": 6,
+  "whole_task_seconds_median": 133.85949999999139,
+  "whole_task_seconds_range": [
+    121.26599999997416,
+    150.31200000000536
+  ],
+  "decode_tok_s_range": [
+    31.05072204492333,
+    36.76250332453215
+  ],
+  "cleanup": {
+    "status": "requested_stop"
+  },
+  "new_hardware_event": false,
+  "allocations_mib": {
+    "gpu_weights": 2196.81,
+    "gpu_kv": 680,
+    "gpu_expert_cache": 1534.3,
+    "gpu_compute": 268,
+    "host_compute": 20.27,
+    "cpu_mapped_buffer_span_not_resident_memory": 11969.61
+  },
+  "grader_correction": {
+    "prepared": "2026-10-24T11:16:14.115312+00:00",
+    "reason": "Frozen lexical filter mistakes local process() scheduler for an external capability.",
+    "original_grader_sha256": "8d82f5384f037ead61b9f3dd69db3ac07622059146905480ca83f49a019e19c2",
+    "scoped_grader_sha256": "6ead90c7a068e23aec9e3e8f09a963be2394ba9b6031154f47a30d9f86563189",
+    "response_sha256": "c2f6b9cdeb84a69412ce045dc938975a4f1f0cdb1fe7cda1e764f59a8c9b27a8",
+    "changed": "Remove process from call-name regex for this exact response hash and js_pool only.",
+    "unchanged": "All frozen behavior checks, VM context with no process global, codeGeneration disabled, namespace isolation and resource limits. No model code edited.",
+    "original_result_preserved": "coding/grades.json"
+  },
+  "extra_diagnostic": {
+    "name": "NaN is not a positive TTL",
+    "held_out": false,
+    "affects_frozen_score": false,
+    "cached": "fails: ValueError not raised",
+    "uncached4096_control": "fails: ValueError not raised",
+    "cached_result_sha256": "348737ad76c0636c8ed6a58709dad8cda331df93268a33aa7ff615754b1a8c34",
+    "uncached_result_sha256": "348737ad76c0636c8ed6a58709dad8cda331df93268a33aa7ff615754b1a8c34"
+  },
+  "limits": [
+    "One seed; no quality ranking/composite from native public/private scores on a different reasoning/cache configuration.",
+    "Cache changes computation path and generated outputs. Whole-task speed also depends on output length; no numerical-equivalence or intrinsic cache quality penalty is established.",
+    "Worker-pool original lexical screening was a false positive for a local process() function. Unchanged code rerun with hash-scoped bypass and identical behavior/isolation checks; duplicate scheduling fails10/11, not malicious capability use.",
+    "TypeScript has25/26 checks: emitted JavaScript behavior passes, strict compilation fails. Missing exports are an additional source finding outside frozen scoring.",
+    "No editor UI test; native production settings remain unchanged."
+  ],
+  "raw_evidence": "local-data/2026-10-24-precision/qwen-iq3s-budget4096-cache1536-coding-a/"
+}

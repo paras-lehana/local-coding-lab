@@ -11,7 +11,7 @@
       "bytes": 14535427520,
       "sha256": "7a0a095dde1d931063a5d571e19497d997edbc783eb1ed6b86529bfab9d94804",
       "upstream": "https://huggingface.co/RecursiveSI/flint",
-      "status": "experimental-installation-in-progress-2026-10-23",
+      "status": "tested-retired-20261024-see-flint-report",
       "thinking": "Native reasoning_content history; inspected template has no low/high/xhigh effort switch. Preserve reasoning; verify runtime parsing."
     },
     "qwen36-q4": {
@@ -65,7 +65,7 @@
       "filename": "gemma-4-31B_q4_0-it.gguf",
       "bytes": 17651001568,
       "sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
-      "status": "extended-native-reviewed-private26of36-not-promoted-placement-diagnostic-pending",
+      "status": "reviewed-private26of36-in7234s-exceeds-current-deadline-retired20261017",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "qwencoder30-udq4": {
@@ -95,7 +95,7 @@
       "filename": "Qwen3.6-35B-A3B-UD-Q6_K_XL.gguf",
       "bytes": 31843777504,
       "sha256": "f6b6c6d5cfa6f00d964eeb7add28eb14ce7481734d506b90681007678cd2c484",
-      "status": "header-inspected-extended-mapped-matched-trial-prepared-download-pending",
+      "status": "tested-20261016-private28-of36-in2099s-over-current-deadline-retired20261017",
       "thinking": "Verify native template; do not assume a reasoning-effort control."
     },
     "glm47-udq6": {
@@ -136,7 +136,7 @@
       "bytes": 22368011616,
       "sha256": "513dd78590ac29135a7cea5a99865d57d65291b1f857a8904fb9b1878d4f4cbd",
       "upstream": "https://huggingface.co/IFM/K2-Horizon-MoVA-36B-A4B",
-      "status": "candidate-20261020-not-downloaded",
+      "status": "file-present-20261024-awaiting-new-integrity-and-load-check",
       "thinking": "reasoning effort high recommended; K2 tool/reasoning parser (llama.cpp PR #29535)",
       "url": "https://huggingface.co/IFM/K2-Horizon-MoVA-36B-A4B-GGUF/resolve/00cce3151bdce384661cb33603853ccfe6209de9/K2-Horizon-MoVA-36B-A4B-Q4_K_M.gguf"
     },
@@ -148,7 +148,7 @@
       "bytes": 22018326528,
       "sha256": "91d63363e782c8a3d5f4be42816eba8e0d42dd2530bd07a7d0d2dc440599af75",
       "upstream": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB",
-      "status": "candidate-20261020-not-downloaded",
+      "status": "disk-rotated-20261024-quality-still-queued",
       "thinking": "thinking off/medium/high; needs llama.cpp b11669+ (PR #30520)",
       "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF/resolve/e0fecb69cb3e5e4c5e8a056fa2aec98c78e91246/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf"
     },
@@ -172,7 +172,7 @@
       "bytes": 7206168928,
       "sha256": "3907dc1658db1f78a9826bf8d5bcb8dc65db0d466388937af57f2294fae62ec1",
       "upstream": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf",
-      "status": "candidate-20261020-not-downloaded",
+      "status": "tested-CPU-placement-slow-manually-stopped-retired20261021-unscored",
       "thinking": "effort medium/high/xhigh; Q2_0 support merged 11 Oct (PR #29600)",
       "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf/resolve/b072e1d3b35a0a630cece372c2127528e0994386/Ternary-Bonsai-2-27B-PQ2_0.gguf"
     },
@@ -184,7 +184,7 @@
       "bytes": 13578190880,
       "sha256": "d1c03f73ecaf61017d70419eec9e5dc0b05d50ae26c23d522829b934fbabf8a5",
       "upstream": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B",
-      "status": "candidate-20261020-not-downloaded",
+      "status": "public48-private-deadline-coding6-completed-passes-of12-retired20261023",
       "thinking": "always thinks; quantization-aware distilled Q4_0"
     },
     "bonsai2-27b-ptq1": {
@@ -195,7 +195,7 @@
       "bytes": 5946648928,
       "sha256": "53107f530aa52eb00912263ab1ee29bd199261c87cd7b4ad4ca1318c1fe33ee3",
       "upstream": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf",
-      "status": "candidate-20261020",
+      "status": "tested-full-GPU-router1200s-deadline-retired20261021-unscored",
       "thinking": "effort medium/high/xhigh (default xhigh); needs Prism fork; fits fully in 10 GB VRAM"
     },
     "qwen36-iq4xs": {
@@ -206,7 +206,7 @@
       "bytes": 17730509792,
       "sha256": "649d7508507b84638732c4f52c24c8b15843c6dca2f3ff793ae07c14a67ebbb3",
       "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
-      "status": "candidate-20-oct: same revision as the 31/36 Q4_K_M leader, 4 GiB smaller so it fits with the owner's apps open",
+      "status": "bounded64-public55-private29-native-coding-active-20261024",
       "thinking": "enable_thinking and preserve_thinking; no native xhigh"
     },
     "qwen36-iq3s": {
@@ -217,8 +217,44 @@
       "bytes": 13676723168,
       "sha256": "66a3ca888ce13482b40c333db2432c0ebde3a7b13754fc29f0c6f5e89703ec66",
       "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
-      "status": "candidate-21-oct: same release as the leader at 13.7 GB, sized to run with apps open; a 3-bit quant, so a quality drop is expected and must be measured",
+      "status": "public52-private29-native-coding-output-failures-separate-capped-cached-coding6of12-20261024",
       "thinking": "enable_thinking and preserve_thinking; no native xhigh"
+    },
+    "flint-q4xl": {
+      "repo": "unsloth/flint-GGUF",
+      "revision": "20468edfc38ab43d6914cc88b08cbecb05d0fc62",
+      "filename": "flint-UD-Q4_K_XL.gguf",
+      "bytes": 25054688704,
+      "sha256": "63c2ecc461ca545134b670c660e76fa20f47240f8d39b6510bfd21c4dd6e072f",
+      "url": "https://huggingface.co/unsloth/flint-GGUF/resolve/20468edfc38ab43d6914cc88b08cbecb05d0fc62/flint-UD-Q4_K_XL.gguf",
+      "name": "Recursive Flint 40B-A2.5B UD-Q4_K_XL",
+      "upstream": "https://huggingface.co/RecursiveSI/flint",
+      "status": "pinned-not-yet-quality-tested-20261024",
+      "thinking": "Native reasoning; no validated low/high effort switch. Preserve reasoning history."
+    },
+    "flint-q3xl": {
+      "repo": "unsloth/flint-GGUF",
+      "revision": "20468edfc38ab43d6914cc88b08cbecb05d0fc62",
+      "filename": "flint-UD-Q3_K_XL.gguf",
+      "bytes": 18494977472,
+      "sha256": "91b8d85ab6ff7fb095d9a972f9afa6f3fa2b9acb642867a079f3e013ea3c350c",
+      "url": "https://huggingface.co/unsloth/flint-GGUF/resolve/20468edfc38ab43d6914cc88b08cbecb05d0fc62/flint-UD-Q3_K_XL.gguf",
+      "name": "Recursive Flint 40B-A2.5B UD-Q3_K_XL",
+      "upstream": "https://huggingface.co/RecursiveSI/flint",
+      "status": "pinned-not-yet-quality-tested-20261024",
+      "thinking": "Native reasoning; no validated low/high effort switch. Preserve reasoning history."
+    },
+    "flint-nvfp4": {
+      "repo": "RecursiveSI/flint-nvfp4-gguf",
+      "revision": "6ec43e19b565fc8d560e2d04985d7724f20673bf",
+      "filename": "flint-nvfp4.gguf",
+      "bytes": 22863084160,
+      "sha256": "97cc8009ff9b132d5cf3c488e6767962bb5a5dc158a90ed661bbbddf876b8bde",
+      "url": "https://huggingface.co/RecursiveSI/flint-nvfp4-gguf/resolve/6ec43e19b565fc8d560e2d04985d7724f20673bf/flint-nvfp4.gguf",
+      "name": "Recursive Flint 40B-A2.5B official distilled NVFP4",
+      "upstream": "https://huggingface.co/RecursiveSI/flint",
+      "status": "pinned-not-yet-quality-tested-20261024",
+      "thinking": "Native reasoning; no validated low/high effort switch. Preserve reasoning history."
     }
   }
 }

@@ -1,0 +1,3 @@
+yes we should try higher quantization and we should deep research on how people are even makign it better.
+
+For qwen or any other model incompete stuff, please dcomplet.e

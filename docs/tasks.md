@@ -1,6 +1,87 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-10-24 (Asia/Kolkata); Flint evaluation/reporting complete with limitations; Qwen restored.
+Last updated: 2026-10-24 (Asia/Kolkata); higher precision and missing coverage reopened.
+
+## 2026-10-24 - Higher precision and coverage gaps
+
+Owner explicitly reopened higher Flint quantization, deep tuning research and
+all incomplete Qwen/other-model work. Active plan:
+[precision and coverage](tasks/2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md).
+Initial desktop: about14-15GiB RAM free,18.6GiB disk, production asleep.
+Production was verified asleep and stopped at13:23IST. IQ3_S public52/60,
+private29/36 in638.6s are reviewed and isolated-graded; coding remains pending.
+Exact smoke adds an unwanted period. No new hardware event; normal owned stops.
+The isolated b11838 prefetch patch passes six CPU/GPU small-model comparisons
+and42 offline tests. Flint Q4 passes full hash; Bolt's exact verified file was
+rotated for disk, quality still queued. CPU44 Q4 and CPU48/cache1536 both hit
+the router's1200.031second deadline with seven valid reads. The cache variant
+emits a partial answer at1137seconds, but neither completes. Both stop normally
+without new hardware events. Memory caps and desktop headroom differ; this is
+not an isolated cache-speed result. IQ3's twelve coding tasks start15:21IST.
+The separate Qwen model record and tuning research review are linked in the
+task index. Earlier15October Q4 cache27/36 remains a historical result.
+Preserve old failures and unrelated Claude files.
+
+15:38IST: IQ3_S `intervals` uses16384 tokens in1011.172s without visible code;
+output-limited/unscored,16.241tok/s. Remaining coding questions continue.
+
+15:57IST: TTL/LRU also ends at16K reasoning tokens without code (1072.656s).
+Native collection intentionally stopped; DAG's46.735s interruption is not a
+model failure and nine subsequent native cases are unrun. Normal engine stop,
+no hardware event. The wrapper's already-existing stop marker exposed a
+finalizer error; original log retained, shutdown independently reconciled,
+future finalizer corrected. Native receipt saved in reports/.
+15:58IST:42 offline tests pass (18.594s), then start all twelve questions in a
+fresh IQ3 server with only a4096 reasoning ceiling changed. No native scores
+transferred. Current Unsloth Qwen revision still matches our pins; old Q6
+test is specifically UD-Q6_K_XL, distinct from the smaller untested UD-Q6_K.
+
+16:14IST: uncached4096 reasoning control intentionally stopped after two
+completed cases. Isolated grades: intervals105/105, TTL/LRU34/34. DAG's125.86s
+interruption is an intervention, not a failed answer; nine later uncached cases
+unrun. New sanitized control receipt saved. At16:15 the full twelve-question
+suite starts with only1536MiB GPU expert cache added. First two completions are
+145.344/140.390s at32.414/33.408tok/s; source differs, so behavior and latency
+must be scored separately. Cached interval source omits touching-span merging.
+No cached score yet; review while collecting, isolated grading after shutdown.
+
+16:47IST: full cached4096 IQ3 coding now reviewed and isolated-graded:6/12
+passes, all twelve complete, median133.8595s,31–37tok/s. Intervals79/105,
+CSV46/120,money7/15,TS25/26(strictcompilefailure),workerpool10/11 andJSmerge3/8
+fail. Original workerpool lexical filter falsely blocks local process(); a
+hash-scoped unchanged-source recheck preserves isolation/tests and reveals
+duplicate scheduling. Both TTLvariants fail the separateNaN diagnostic.
+No hardware event; normal stop.42 offline tests pass19.108s between loads.
+16:48–16:52: IQ4CPU35 loads, but router interrupts190.25s when freeRAM drops
+to2.436GiB; unscored. Fresh hardware check clear. At16:53 start same settings
+with a13.356GiB resident cap to preserve5GiB initial headroom; all floors
+unchanged. Current public trial collecting. Reports and runtime/evaluation
+guidance updated; shared Claude/Codex adapters already route correctly.
+
+17:16IST: bounded IQ4 public trial completes55/60 after source review and
+isolated grading: router39,TS5,SQL3,history8 in536/406.843/195.375seconds.
+FreeRAM minimum3.862GiB/commit7.300GiB/VRAM794MiB; processresident13.356GiB,
+GPU54.84C maximum. Normal stop, no new hardware event. SQL data survives but
+tenant uniqueness and foreign-key enforcement fail. Fresh RAM recovers to
+19.16GiB without app closures and permits the same profile's private audit.
+Pre-load private-controller quoting failure retained separately, corrected
+launch verified. IQ4 standalone/public receipt and external leaderboard updated.
+The old unchanged-model exclusion audit is recorded, with newer suite gaps
+explicit; the historical Q6 artifact-label correction is added to its report.
+
+17:36IST: IQ4 private audit completes725.4seconds, six turns, all15files read.
+Reviewed score19semantic+4citation+6isolated-code=29/36; four retained extra
+alias/local-key diagnostics also pass. Missing instructions, contradictory
+policy mapping and an unsupported installer-branch explanation remain. Last
+turn41892prompt+3828output=45720tokens; bounded processresident14.048GiB,
+freeRAM4.340GiB/VRAM841MiB minimum; no new hardware event, normal stop.
+Separate private receipt published locally. Start IQ4's native twelve-task
+coding collection17:36:45, using the same profile and16K output limit.
+Public-content audit275files/zero findings, four PowerShell parses and Git
+whitespace check pass. Earlier42offline checks19.108s remain the latest run;
+no public executable source changed since them. Prepare a progress checkpoint,
+not a campaign closeout; production remains off during experiments.
+
 
 ## 2026-10-23 - Recursive Flint and Claude campaign review
 

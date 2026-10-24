@@ -1,0 +1,279 @@
+{
+  "date": "2026-10-24",
+  "candidate": {
+    "name": "Qwen3.6-35B-A3B UD-IQ3_S",
+    "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+    "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+    "filename": "Qwen3.6-35B-A3B-UD-IQ3_S.gguf",
+    "bytes": 13676723168,
+    "sha256": "66a3ca888ce13482b40c333db2432c0ebde3a7b13754fc29f0c6f5e89703ec66",
+    "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+    "status": "candidate-21-oct: same release as the leader at 13.7 GB, sized to run with apps open; a 3-bit quant, so a quality drop is expected and must be measured",
+    "thinking": "enable_thinking and preserve_thinking; no native xhigh",
+    "url": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/a483e9e6cbd595906af30beda3187c2663a1118c/Qwen3.6-35B-A3B-UD-IQ3_S.gguf"
+  },
+  "profile": {
+    "model": "qwen36-iq3s",
+    "alias": "qwen36-lab",
+    "locally_tested": false,
+    "evidence": "24 October completion attempt after earlier memory interruption. More CPU expert blocks than old34 profile to reserve VRAM. Native thinking, GPU q8 KV64K, .6 sampling, core0 exclusion; conservative2.5GiB RAM/1GiB commit/400MiB VRAM stops. No prior score inherited.",
+    "load_min_ram_free_gib": 12,
+    "load_min_vram_free_mib": 6000,
+    "template_kwargs": {
+      "enable_thinking": true,
+      "preserve_thinking": true
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--ctx-size",
+      "65536",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--batch-size",
+      "512",
+      "--ubatch-size",
+      "128",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--timeout",
+      "1200",
+      "--reasoning-budget",
+      "-1",
+      "--reasoning-preserve",
+      "--predict",
+      "16384",
+      "--temp",
+      "0.6",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "20",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--n-cpu-moe",
+      "38",
+      "--verbosity",
+      "4",
+      "--ctx-checkpoints",
+      "4",
+      "--metrics",
+      "--host",
+      "127.0.0.1,::1",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC"
+    ],
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_gpu_c": 84,
+    "validation_status": "planned-coverage-not-measured",
+    "stop_min_commit_available_gib": 1.0,
+    "load_min_commit_available_gib": 8,
+    "runtime_variant": {
+      "id": "b11562-noprefetch-v1",
+      "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+    }
+  },
+  "profile_sha256": "f6d8a76e54be4c915af8fd9eed8e1bdee4d6511aef580f4e2a5b5991d9183a49",
+  "conditions": "Apps open; RAM3000; driver621.01; CPU core0 excluded; no tuning changed",
+  "preflight": {
+    "time": 1792828429.576959,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 15.030208587646484,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 18.24585723876953,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6492.0,
+    "gpu_c": 45.94,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "public": {
+    "profile": "qwen36-iq3s-coverage64",
+    "model": "Qwen3.6 UD-IQ3_S",
+    "public_total": 52,
+    "public_maximum": 60,
+    "completed_workflows": 3,
+    "router": {
+      "score": 39,
+      "maximum": 40,
+      "source_review_points": 27,
+      "behavior_points": 12,
+      "behavior_groups_passed": 6,
+      "self_tests_passed": 7
+    },
+    "ts_sql": {
+      "typescript_score": 5,
+      "typescript_maximum": 6,
+      "strict_compile": "pass",
+      "sqlite_score": 0,
+      "sqlite_maximum": 6,
+      "migration_error": "FOREIGN KEY constraint failed"
+    },
+    "history": {
+      "score": 8,
+      "maximum": 8
+    },
+    "exact_smoke": {
+      "expected": "READY",
+      "observed": "READY.",
+      "passed": false
+    },
+    "promotion": "Not eligible: exact smoke failed; coding/repeated seeds/editor validation missing",
+    "reviewer": "Codex, agent-assessed; not independently human-reviewed"
+  },
+  "private": {
+    "semantic": 20,
+    "citation": 4,
+    "code": 5,
+    "total": 29,
+    "maximum": 36,
+    "wall_seconds": 638.6,
+    "completed": true,
+    "code_defect": "Missing mutable defaults alias base input",
+    "review_sha256": "d229c26985a73d51cb5d58f6f5de84a115935b64841bb9e7c2980f6c4cbf2638",
+    "grading_sha256": "a5e97ad524a4a364e35fd7a28d81d3ff6251c2b72aba260d7da002fa3f087731"
+  },
+  "coding": "not yet collected",
+  "memory": {
+    "public": {
+      "samples": 257,
+      "minimum_free_ram_gib": 5.070171356201172,
+      "minimum_commit_available_gib": 13.033096313476562,
+      "minimum_device_free_vram_mib": 2941.0,
+      "maximum_process_working_set_gib": 13.311698913574219,
+      "maximum_process_private_gib": 4.805488586425781,
+      "maximum_gpu_c": 56.38
+    },
+    "private": {
+      "samples": 211,
+      "minimum_free_ram_gib": 6.072052001953125,
+      "minimum_commit_available_gib": 12.94216537475586,
+      "minimum_device_free_vram_mib": 3021.0,
+      "maximum_process_working_set_gib": 13.317413330078125,
+      "maximum_process_private_gib": 4.800708770751953,
+      "maximum_gpu_c": 58.22
+    }
+  },
+  "public_tasks": {
+    "core-seed73": {
+      "completion": {
+        "status": "completed",
+        "scored": false,
+        "note": "Source review and isolated behavioral tests still required",
+        "wall_seconds": 338.98399999999674,
+        "turn_count": 2
+      },
+      "decode_tok_s_by_turn": [
+        16.142722016492684,
+        16.377256803788928
+      ],
+      "prompt_tok_s_by_turn": [
+        83.24118254409493,
+        137.90183954639917
+      ],
+      "review_sha256": "5b490cf4cc9caf37d0a4ffeecc16ad26224346ef23af38cce734a00cae95de8d",
+      "grading_sha256": "ed9f783a8c6f3a7ee0b98ba8ba5c0f69e4d68453da35686b19e871a532c57f5b",
+      "manifest_sha256": "8214a8e2a98aaa759ca3faf66261bfccebc7c25485461f04fc4961e71816a37b"
+    },
+    "ts-sql-v1": {
+      "completion": {
+        "status": "completed",
+        "scored": false,
+        "wall_seconds": 346.51500000001397,
+        "turn_count": 4,
+        "phase_count": 1
+      },
+      "decode_tok_s_by_turn": [
+        20.134898971324994,
+        15.38793710757755,
+        17.60623602819412,
+        16.159074676695663
+      ],
+      "prompt_tok_s_by_turn": [
+        115.43165378353217,
+        64.42445036740344,
+        72.77759743822858,
+        137.19207072418553
+      ],
+      "review_sha256": "d6871b01fc833b3d3bd20dd61a3417bd3771a7d7ad682b1582669883e53f1583",
+      "grading_sha256": "2abecdf60051468a740dd2f6a00fe72b687c41df808e89d8243e5d1366635843",
+      "manifest_sha256": "3589d4b65c10b68a325d6c2b16467c04c764e4ea76fed2113b38d18ee2525532"
+    },
+    "context-v1": {
+      "completion": {
+        "status": "completed",
+        "scored": false,
+        "wall_seconds": 176.0,
+        "turn_count": 6,
+        "phase_count": 2
+      },
+      "decode_tok_s_by_turn": [
+        17.377910306285667,
+        19.648431766197533,
+        17.89112749091325,
+        16.57441865226577,
+        18.842925266684244,
+        17.63451489266273
+      ],
+      "prompt_tok_s_by_turn": [
+        59.88648184663294,
+        76.75404932434506,
+        82.36695163343961,
+        130.08352251533526,
+        97.93915401189703,
+        58.17782656421515
+      ],
+      "review_sha256": "c50e237b14bc1a93fd4c23b89b79576fc1579616894150dcf403e196b904d5f4",
+      "grading_sha256": "79919328e0c05eea63007de2c6e7ab725abcb9fdb833c725170c01256f2280e8",
+      "manifest_sha256": "e71bf398bb61b864f45ff3f158223cb5e9560e291f4f1f16e20a0da1645c0f9c"
+    }
+  },
+  "allocation_mib": {
+    "cpu_mapped_weights": 11969.61,
+    "gpu_weights": 2196.81,
+    "gpu_kv": 680.0,
+    "gpu_compute": 268.0,
+    "host_compute": 20.27
+  },
+  "limitations": [
+    "Allocated buffers, resident working set and occupied context tokens differ.",
+    "Device VRAM includes desktop applications; no per-process total inferred from it.",
+    "Historical Q4 public52 is an observational comparison across changed placement/desktop conditions.",
+    "History is a two-turn retained-ledger/current-file case, not maximum context certification.",
+    "No new editor UI check; no complete composite or promotion."
+  ],
+  "hardware_clean": true,
+  "raw_evidence": "local-data/2026-10-24-precision/; private instruction audit remains outside Git",
+  "followup_reports": [
+    "2026-10-24-qwen-iq3s-native-coding.json",
+    "2026-10-24-qwen-iq3s-budget-control.json",
+    "2026-10-24-qwen-iq3s-cached-coding.json"
+  ]
+}

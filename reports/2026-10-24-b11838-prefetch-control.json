@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-24",
+  "id": "b11838-noprefetch-v1",
+  "base_commit": "4231b23dc2c46661d01157aac5245bdcf03ce4b1",
+  "llama_sha256": "10331e86ab5bd3f8c08c486f42d900f1dd09dbab218ce54a8684b7ec7b65c35f",
+  "stock_llama_sha256": "2fadbe0fee0b91e79ed01adf132b50d42b5e9ccd3fb6e3e1600770d8b2af5652",
+  "patch_sha256": "8d8b8a6177ce19d099e1373e22f3b09d9e389cf9c7343b13f66e3b9abce0aae1",
+  "compiler": "MSVC 14.50.35717, CMake 4.1.2-msvc8, Ninja, Release x64",
+  "unchanged_stock_binaries_count": 54,
+  "passed": true,
+  "runs": [
+    {
+      "name": "stock-ngl-0",
+      "returncode": 0,
+      "seconds": 0.5150000000139698,
+      "prefetch_disabled_logged": false,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406"
+    },
+    {
+      "name": "modified-default-ngl-0",
+      "returncode": 0,
+      "seconds": 0.6400000000139698,
+      "prefetch_disabled_logged": false,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406"
+    },
+    {
+      "name": "modified-opt-in-ngl-0",
+      "returncode": 0,
+      "seconds": 0.4379999999946449,
+      "prefetch_disabled_logged": true,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406"
+    },
+    {
+      "name": "stock-ngl-all",
+      "returncode": 0,
+      "seconds": 0.5789999999979045,
+      "prefetch_disabled_logged": false,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406"
+    },
+    {
+      "name": "modified-default-ngl-all",
+      "returncode": 0,
+      "seconds": 0.5470000000204891,
+      "prefetch_disabled_logged": false,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406"
+    },
+    {
+      "name": "modified-opt-in-ngl-all",
+      "returncode": 0,
+      "seconds": 0.5620000000053551,
+      "prefetch_disabled_logged": true,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406"
+    }
+  ],
+  "limitations": "Small greedy CPU/GPU output compatibility, not full model numerical/quality equivalence",
+  "production_runtime_unchanged": true
+}

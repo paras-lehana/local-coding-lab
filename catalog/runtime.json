@@ -78,5 +78,13 @@
         }
       ]
     }
-  ]
+  ],
+  "reviewed_runtime_variants": {
+    "b11838-noprefetch-v1": {
+      "base_commit": "4231b23dc2c46661d01157aac5245bdcf03ce4b1",
+      "llama_sha256": "10331e86ab5bd3f8c08c486f42d900f1dd09dbab218ce54a8684b7ec7b65c35f",
+      "validation": "CPU/GPU greedy stories260K output matches stock/default/opt-in; not full equivalence",
+      "source_patch": "experiments/llama-mmap-prefetch/loader-b11838.patch"
+    }
+  }
 }

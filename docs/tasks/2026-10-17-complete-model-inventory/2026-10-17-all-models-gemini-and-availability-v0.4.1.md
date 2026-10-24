@@ -57,6 +57,12 @@ records source hashes and selected numerical results; the
 
 ### Current Qwen family: weight precision and placement
 
+24October artifact-label correction: the29.657GiB Q6 row below used
+**UD-Q6_K_XL**,31,843,777,504bytes, as pinned in the17October retirement
+receipt. Its original abbreviated UD-Q6_K label is retained in the historical
+table for traceability. Plain UD-Q6_K is a distinct29,308,320,736byte file and
+was not tested by that run; do not transfer the XL result to it.
+
 | Model / exact quant | Completed evidence and strengths | Problems / limitations | Decision |
 |---|---|---|---|
 | **Qwen3.6-35B-A3B UD-Q4_K_M**, 20.614 GiB | Matched mapped audit **31/36 in 11m40s**. Public Python **6/6 in all three repeats**, strict TS **5/6**. Both history sizes passed; the larger reached 51,580 input tokens in **12m04s**, with a **54s cached changed-file follow-up**. Separate CPU-KV testing recovered facts at 119,943 input tokens. Actual older-profile Copilot/Continue transport was exercised. | SQLite migration failed FK enforcement; TS missed plain-object validation. Private helper retained mutable aliases and dropped local-only keys in separate diagnostics. Some generated tests had wrong expectations or missing imports. Both editors missed a Python-specific rule; Copilot cited an unread report. | **Keep.** Best completed instruction result at useful measured latency. The new persistent mapped launcher requires its own API/UI evidence, not an inherited UI pass. |

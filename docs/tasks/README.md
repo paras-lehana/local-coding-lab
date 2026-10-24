@@ -6,6 +6,8 @@ Detailed reusable experiment evidence remains in the repository's `reports/`.
 
 | Date | Task | Status | Report |
 |---|---|---|---|
+|2026-10-24|Higher Flint precision, tuning research and missing coverage|Active; frozen old failures retained, capacity checks and new trials underway|[Precision and coverage](2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md)|
+|2026-10-24|Qwen3.6 precision and missing suites|Active; IQ3_S public52/60, private29/36, coding pending|[Qwen model record](2026-10-24-qwen-coverage/2026-10-24-qwen36-v0.9.0.md)|
 |2026-10-23/24|Recursive Flint and Claude campaign reconciliation|Complete with limits: private29/36, router39/40, coding11 completed passes/12, separate history8/8; keep Qwen|[Flint evidence](2026-10-23-flint/2026-10-23-recursive-flint-v0.8.0.md)|
 |2026-10-19|azllm/TurboQuant article and10GB adaptation|Six probes measured; coding interrupted by restart; further inference withheld after hardware event|[Analysis and measurements](2026-10-19-azllm/2026-10-19-azllm-and-turboquant-v0.7.0.md)|
 |2026-10-18|Strata on10GB and same-weight comparison|Complete with limits: faster32K Qwen, Flash coding deadlines/empty history; keep llama128K|[Strata measurements and limits](2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md)|

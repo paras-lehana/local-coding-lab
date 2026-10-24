@@ -1,0 +1,231 @@
+{
+  "date": "2026-10-24",
+  "model": {
+    "name": "Qwen3.6-35B-A3B UD-IQ3_S",
+    "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+    "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+    "filename": "Qwen3.6-35B-A3B-UD-IQ3_S.gguf",
+    "bytes": 13676723168,
+    "sha256": "66a3ca888ce13482b40c333db2432c0ebde3a7b13754fc29f0c6f5e89703ec66",
+    "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+    "status": "public-private-completed-coding-pending-20261024",
+    "thinking": "enable_thinking and preserve_thinking; no native xhigh",
+    "url": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/a483e9e6cbd595906af30beda3187c2663a1118c/Qwen3.6-35B-A3B-UD-IQ3_S.gguf"
+  },
+  "profile_name": "qwen36-iq3s-coverage64",
+  "profile": {
+    "model": "qwen36-iq3s",
+    "alias": "qwen36-lab",
+    "locally_tested": false,
+    "evidence": "24 October completion attempt after earlier memory interruption. More CPU expert blocks than old34 profile to reserve VRAM. Native thinking, GPU q8 KV64K, .6 sampling, core0 exclusion; conservative2.5GiB RAM/1GiB commit/400MiB VRAM stops. No prior score inherited.",
+    "load_min_ram_free_gib": 12,
+    "load_min_vram_free_mib": 6000,
+    "template_kwargs": {
+      "enable_thinking": true,
+      "preserve_thinking": true
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--ctx-size",
+      "65536",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--batch-size",
+      "512",
+      "--ubatch-size",
+      "128",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--timeout",
+      "1200",
+      "--reasoning-budget",
+      "-1",
+      "--reasoning-preserve",
+      "--predict",
+      "16384",
+      "--temp",
+      "0.6",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "20",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--n-cpu-moe",
+      "38",
+      "--verbosity",
+      "4",
+      "--ctx-checkpoints",
+      "4",
+      "--metrics",
+      "--host",
+      "127.0.0.1,::1",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC"
+    ],
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_gpu_c": 84,
+    "validation_status": "planned-coverage-not-measured",
+    "stop_min_commit_available_gib": 1.0,
+    "load_min_commit_available_gib": 8,
+    "runtime_variant": {
+      "id": "b11562-noprefetch-v1",
+      "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+    }
+  },
+  "status": "native-coding-completion-failure-followup-required",
+  "suite_sha256": "d69a90527dc9939d32c7a7751bb080064fcc24acfeeef97ab8c1fada84bceea5",
+  "collector_sha256": "e6c1d8e4c9afa38aa8916ad0401d2ab6f507aa31d56f45d32d0bffdfded9a16e",
+  "controller_sha256": "75e46f7be6d9ca9da474c6d5ce8fa38cec50f34b754fde6f93c0b6ecf445c82e",
+  "preflight": {
+    "time": 1792835474.8162904,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 20.103073120117188,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 17.179325103759766,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6543.0,
+    "gpu_c": 52.03,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "seed": 73,
+  "temperature": 0.6,
+  "output_limit": 16384,
+  "whole_prompt_deadline_seconds": 1200,
+  "tasks": [
+    {
+      "task": "intervals",
+      "language": "python",
+      "wall_seconds": 1011.1720000000205,
+      "finish_reason": "length",
+      "first_event_seconds": 2.4070000000065193,
+      "first_content_seconds": null,
+      "error": null,
+      "decode_tok_s": 16.240710764243268
+    },
+    {
+      "task": "ttl_lru",
+      "language": "python",
+      "wall_seconds": 1072.6560000000172,
+      "finish_reason": "length",
+      "first_event_seconds": 1.5780000000086147,
+      "first_content_seconds": null,
+      "error": null,
+      "decode_tok_s": 15.295840989131422
+    },
+    {
+      "task": "dag",
+      "language": "python",
+      "wall_seconds": 46.735000000015134,
+      "finish_reason": null,
+      "error": "worker_exit_1",
+      "decode_tok_s": null
+    }
+  ],
+  "native_unrun": [
+    "csv_stream",
+    "schedule",
+    "inventory_fix",
+    "multi_file",
+    "sql_report",
+    "sql_islands",
+    "ts_validation",
+    "js_pool",
+    "js_merge"
+  ],
+  "graded_completed_implementations": 0,
+  "explanation": "Both completed streams reached the output limit inside reasoning and delivered no code. DAG was deliberately interrupted46.735seconds after its start to change configuration, not a model deadline or hardware failure. Remaining native cases were not collected; a separate4096 reasoning-ceiling suite follows.",
+  "cleanup": {
+    "status": "requested_stop",
+    "hardware_clean": true,
+    "wrapper_note": "Manual stop exposed non-idempotent stop-marker creation. Original stale manifest/error retained; independent postflight confirmed engine stopped and hardware clean. Future helper fixed."
+  },
+  "memory": {
+    "minimum_ram_free_gib": 5.394412994384766,
+    "minimum_commit_available_gib": 10.88949203491211,
+    "minimum_vram_free_mib": 2274.0,
+    "maximum_gpu_c": 53.5,
+    "maximum_process_working_set_gib": 13.10329818725586,
+    "maximum_process_private_gib": 4.621498107910156
+  },
+  "raw_evidence": "local-data/2026-10-24-precision/qwen-iq3s-coding-a/",
+  "outputs": {
+    "intervals": {
+      "response_sha256": "8107e63b23163bf59a033a424a0dd9d5acabc1e1749e2d9638fe904004715142",
+      "visible_characters": 0,
+      "reasoning_characters": 52055,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 94,
+        "prompt_ms": 2339.558,
+        "prompt_per_token_ms": 24.88891489361702,
+        "prompt_per_second": 40.17852944872493,
+        "predicted_n": 16384,
+        "predicted_ms": 1008761.269,
+        "predicted_per_token_ms": 61.573659830311904,
+        "predicted_per_second": 16.240710764243268
+      },
+      "usage": {
+        "completion_tokens": 16384,
+        "prompt_tokens": 94,
+        "total_tokens": 16478,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    },
+    "ttl_lru": {
+      "response_sha256": "9cee7149772c5266e461a5b235e9b32dd3e5842045416045618bd36d33706276",
+      "visible_characters": 0,
+      "reasoning_characters": 62138,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 162,
+        "prompt_ms": 1538.85,
+        "prompt_per_token_ms": 9.499074074074073,
+        "prompt_per_second": 105.27341846183839,
+        "predicted_n": 16384,
+        "predicted_ms": 1071075.465,
+        "predicted_per_token_ms": 65.37724867240432,
+        "predicted_per_second": 15.295840989131422
+      },
+      "usage": {
+        "completion_tokens": 16384,
+        "prompt_tokens": 162,
+        "total_tokens": 16546,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      }
+    }
+  }
+}

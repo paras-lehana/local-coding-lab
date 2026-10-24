@@ -509,3 +509,15 @@ No model weights, private prompts, credentials or raw answers are staged.
 ## Owner request
 
 See the unchanged owner-request.txt alongside this document.
+
+## Higher-precision follow-up, 24 October
+
+The owner subsequently reopened Flint with higher precision and additional
+tuning research. The [v0.9 precision campaign](../2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md)
+records separately pinned Q4 XL, Q3 XL and distilled NVFP4 candidates, a reviewed
+b11838 initial-prefetch opt-out, and native expert-cache controls. Q4 now passes
+its full hash. The CPU44/GPU-KV router hits1200.031seconds with seven valid
+reads but no final answer, after the original VRAM gate rejected. The separate
+CPU48/1536MiB GPU-cache trial also misses1200seconds; partial text begins only
+at1137seconds and remains unfinished. No higher-precision quality score exists
+yet. This follow-up does not replace the IQ3_XXS outcomes above.

@@ -1,6 +1,15 @@
 # Prompt log — Local Coding Lab
 
-Current phase,24October: Recursive Flint evaluation and Claude reconciliation
+Current phase,24October: higher Flint precision, tuning research and incomplete
+Qwen/other-model coverage explicitly reopened by the owner. See the new task
+report. IQ3_S has native public52/60 and private29/36; two native coding
+questions exhaust output without code. A separate4096-reasoning-ceiling control
+passes its two completed coding cases. The cached capped suite completes12
+answers with6passes; IQ4 now retries with bounded resident memory after a RAM stop.
+Verified Flint Q4 reaches the router deadline in both tested placements; no
+Q4 quality score is assigned. Production is stopped during the active campaign.
+
+Previous phase,24October: Recursive Flint evaluation and Claude reconciliation
 are complete with explicit limitations. Standalone/comparison reports record
 private29/36, router39/40, coding11 completed passes/12 and separate history8/8.
 No full composite or promotion. Tested Flint weights are retired, Qwen Q4 is
@@ -28,6 +37,7 @@ private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
+|18|2026-10-24|13:23 first trial|Higher precision, tuning research and unfinished candidates|Research / Experiment|Active|[Report](tasks/2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md)|
 |17|2026-10-23/24|21:55 start|Claude review and Recursive Flint|Research / Experiment|Done with measured limitations|[Entry](#recursive-flint-and-claude-review)|
 |16|2026-10-19|22:14|Continue after the interrupted experiment|Recovery / Report|Evidence preserved; further inference withheld|[Entry](#azllm-and-turboquant-on-10-gb)|
 |15|2026-10-19|18:40|azllm article and TurboQuant on10GB|Research / Experiment|Six probes complete; coding coverage partial|[Entry](#azllm-and-turboquant-on-10-gb)|
@@ -1542,3 +1552,24 @@ Suggested next steps
 - Complete its missing coding comparison before declaring an overall winner.
 - Revisit Flint's precision and file-handling behavior through separate controlled trials, with independent checks on generated code.
 ```
+
+## Higher precision and incomplete candidate coverage
+
+Owner request,24October2026, verbatim:
+
+> yes we should try higher quantization and we should deep research on how people are even makign it better.
+>
+> For qwen or any other model incompete stuff, please dcomplet.e
+
+Active execution record: [precision and coverage](tasks/2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md).
+The previous phase's completed closeout remains historical. This new request
+is still in progress; its final A–G summary will be recorded after the new
+measurements, reports, checks and production-restoration outcome are known.
+
+17:38IST progress checkpoint: IQ3 native public52/private29, separate capped
+expert-cache coding6/12; bounded IQ4 public55/private29, coding now collecting.
+Higher Flint Q4's two router deadlines remain unscored. Research and exact
+artifact-label corrections are recorded. Public audit275files/zero findings,
+four PowerShell parses and whitespace check pass; latest offline suite42passes
+19.108s. No promotion or completed-campaign claim; remaining candidates and
+production restoration are still active work.

@@ -1,5 +1,10 @@
 # Local Coding Lab
 
+**24 October, v0.9.0 in progress:** higher Flint precision and missing Qwen /
+other-model suite coverage are reopened. See the [active experiment record](docs/tasks/2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md)
+for research, capacity estimates and measured progress. Previous results below
+remain unchanged; no new overall winner is declared.
+
 **24 October, v0.8.0:** Claude's newer candidate results are
 reconciled in the [current comparison](docs/model-comparison.md). Recursive
 Flint was installed and tested: GPU KV delivers 39/40 on the public router,
@@ -43,7 +48,7 @@ guarded launch profiles, public benchmark questions, and honest experiment
 reports. It grew out of testing on an RTX 3080 10 GB / Ryzen 7 5800X / 64 GB RAM
 PC with everyday applications left open. Other hardware needs its own profile.
 
-**Current release: v0.8.0, Flint evaluation.** The TurboQuant restart and
+**Last completed release: v0.8.0, Flint evaluation.** The TurboQuant restart and
 its withheld follow-ups above describe the 19 October experiment. Flint's new
 guarded trials have separate hardware and resource receipts.
 The desktop control has since become a separate public project:

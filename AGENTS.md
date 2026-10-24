@@ -6,6 +6,14 @@ instructions to the maintainer. CLAUDE.md and the Copilot adapter point here.
 
 ## Current campaign and reporting
 
+24 October: owner explicitly reopens higher Flint precision, deep tuning
+research and incomplete Qwen/other-model coverage. Recover current progress
+from [precision and coverage](docs/tasks/2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md).
+This supersedes the completed-campaign disposition below, not its evidence.
+Do not repeat old unsafe loads or turn capacity rejections into quality tests.
+Newer experimental mmap runtimes must be catalog-pinned and independently
+validated; production b11562 and selected Qwen weights remain preserved.
+
 23 October: the owner requested a review of Claude's 20-21 October campaign
 and a Recursive Flint evaluation. Recover progress from
 [the Flint record](docs/tasks/2026-10-23-flint/2026-10-23-recursive-flint-v0.8.0.md)

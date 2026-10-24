@@ -8,8 +8,9 @@ not independently human-reviewed. It is not a controlled universal ranking.
 | Candidate | Private /36 | Public /60 | Coding /12 | Practical result |
 |---|---:|---:|---:|---|
 | Qwen3.6 35B-A3B UD-Q4_K_M, mapped64 | 31 | 52 | Not collected | Retained leader on available components; private 699.7 s; SQL failure and aliasing diagnostics remain |
+| Qwen3.6 Q4, historical2GiB expert cache |27 |Separate historical cases |Not collected |Private402.703s; strict TypeScript and SQL defects; different placement/non-mapped profile, not evidence that expert caching intrinsically lowers intelligence |
 | Qwen3.6 Q5 | 28 | Separate historical cases | Not comparable | Lower private score; retired |
-| Qwen3.6 Q6 | 28 | Historical completed cases | Not comparable | Private 2099.7 s, exceeds current gate; retired |
+| Qwen3.6 UD-Q6_K_XL | 28 | Historical completed cases | Not comparable | Private 2099.7 s, exceeds current gate; retired. Plain UD-Q6_K is a different, untested artifact |
 | GLM-4.7-Flash UD-Q4_K_XL, f16 KV | 27 | Separate historical cases | Not comparable | Private 942 s, below Qwen on this audit; retired |
 | Gemma 4 26B-A4B QAT Q4_0 | 19 | Separate historical cases | Not comparable | Retained lower-memory fallback; private 400 s |
 | Gemma 4 31B dense QAT Q4_0 | 26 | Historical completed cases | Not comparable | Private 7234 s; fails current latency gate; retired |
@@ -22,14 +23,30 @@ not independently human-reviewed. It is not a controlled universal ranking.
 | Bonsai 2 27B PTQ1_0 | Not run | Deadline | Not run | Full GPU, router exceeds 1200 s after one tool turn; retired |
 | LFM2.5 24B-A2B QAD Q4_0 | Deadline | 48 | 6 completed passes of 12 | Private reasoning loop; coding includes deadline/truncation, so 6/12 is task completion, not twelve completed correctness grades; retired 23 October |
 | Qwen3.6 UD-IQ4_XS | Not run | Router 39/40 only | Not run | TS/SQL interrupted by RAM guard; not a complete public score |
-| Qwen3.6 UD-IQ3_S | Not run | No complete router answer | Not run | First attempt capacity-rejected; second stopped below 400 MiB free VRAM; stale running manifest corrected in this summary |
+| Qwen3.6 UD-IQ4_XS,CPU35 bounded64K,24October |29 |55 |Pending |Private725.4s,code6/6 plus extra4/4. Instruction omissions/path contradiction/control-flow misexplanation remain. Public SQL uniqueness/FK and TS object validation fail; prior RAM stop preserved |
+| Qwen3.6 UD-IQ3_S,38 CPU expert blocks |29 |52 |Two reasoning-only16K output limits; later cases interrupted/unrun |24October: private638.6s, all public workflows complete; alias, TS validation and SQL migration bugs; exact smoke punctuation fails. Separate capped controls appear below |
+| Qwen3.6 UD-IQ3_S,4096 reasoning ceiling |Not collected on this variant |Not collected on this variant |Two completed passes; deliberately stopped before full suite |Intervals105/105 and TTL34/34; native scores above cannot be transferred. Redundant interval work and extra NaN TTL finding remain |
+| Qwen3.6 UD-IQ3_S,4096 ceiling plus1536MiB GPU expert cache |Not collected on this variant |Not collected on this variant |6/12; all twelve complete |Median134s,31–37tok/s. Interval,CSV,money,strictTS,worker-pool and deep-merge defects. Worker-pool lexical false alarm corrected by hash-scoped unchanged-source recheck; six task passes unchanged. Extra NaN TTL fails |
 | K2 Horizon MoVA 36B-A4B Q4 | Not run | Not run | Not run | Downloaded, queued; no demonstrated apps-open fit |
-| Nemotron 3.5 Bolt 74B-A9B 24GB | Not run | Not run | Not run | Downloaded, queued; no demonstrated apps-open fit |
+| Nemotron 3.5 Bolt 74B-A9B 24GB | Not run | Not run | Not run |Verified file rotated off disk24October for Flint Q4; quality still queued |
 | Recursive Flint UD-IQ3_XXS, uncapped reasoning | Not run after gate failure | Router deadline | Not run after gate failure | 1200.031 s, seven reads, zero final text; clean shutdown, unscored |
 | Recursive Flint UD-IQ3_XXS, CPU KV, 2048 cap | Not run after gate failure | Router deadline | Not run after gate failure | 1200.016 s; visible planning after cap, no finished answer |
 | Recursive Flint UD-IQ3_XXS, GPU KV | 29 | Router 39/40; TS/SQL tool limit; history output limit | **11 completed passes of 12** | All 374 frozen checks on eleven complete answers pass; CSV produces no code before output limit. Private 692.5 s; separate NaN TTL bug; no full public total or promotion |
+| Recursive Flint UD-Q4_K_XL, CPU44/GPU KV |Not run after gate failure |Router1200.031s deadline |Not run after gate failure |Seven valid reads, no final answer; resource/hardware guards clear |
+| Recursive Flint UD-Q4_K_XL, CPU48/cache1536 |Not run after gate failure |Router1200.031s deadline |Not run after gate failure |Seven valid reads, partial visible answer starts1137s but remains unfinished; memory guards clear |
 
 ## What changed in Claude's work
+
+The active [precision and coverage campaign](tasks/2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md)
+reopens the unfinished candidates. IQ3_S's earlier capacity/VRAM failures remain
+valid historical trials; its new38-CPU-expert profile completes public/private
+collection with conservative guards. Higher Flint Q4 is verified; its uncached
+CPU44 profile and CPU48/1536MiB expert-cache variant both miss the router
+deadline. No higher-Flint-precision quality score exists yet. IQ3 capped/cached
+coding completes6/12 passes; its native settings remain a separate experiment.
+IQ4's new bounded-memory router completes536seconds and awaits isolated
+grading while the other public cases collect. Missing compatible components
+still prevent a composite.
 
 - Added the twelve-task executable suite and a consistent 50/30/20 scorecard;
   regraded the public baseline as 52/60 and LFM as 48/60.
@@ -97,6 +114,8 @@ runtime and evidence remain. Qwen Q4 stays selected for the owner's workflow.
 
 ## Reports and provenance
 
+- [Qwen3.6 model record and active coverage](tasks/2026-10-24-qwen-coverage/2026-10-24-qwen36-v0.9.0.md)
+- [Higher precision and offload research](../research/reviews/2026-10-24-precision-and-offload.md)
 - [Flint standalone record](tasks/2026-10-23-flint/2026-10-23-recursive-flint-v0.8.0.md)
 - [All-model inventory through 17 October](tasks/2026-10-17-complete-model-inventory/2026-10-17-all-models-gemini-and-availability-v0.4.1.md)
 - [Matched Q4/Q6 and expanded candidates](tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md)

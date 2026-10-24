@@ -1,0 +1,576 @@
+{
+  "date": "2026-10-24",
+  "model": {
+    "name": "Qwen3.6-35B-A3B UD-IQ4_XS",
+    "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+    "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+    "filename": "Qwen3.6-35B-A3B-UD-IQ4_XS.gguf",
+    "bytes": 17730509792,
+    "sha256": "649d7508507b84638732c4f52c24c8b15843c6dca2f3ff793ae07c14a67ebbb3",
+    "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+    "status": "candidate-20-oct: same revision as the 31/36 Q4_K_M leader, 4 GiB smaller so it fits with the owner's apps open",
+    "thinking": "enable_thinking and preserve_thinking; no native xhigh",
+    "url": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/a483e9e6cbd595906af30beda3187c2663a1118c/Qwen3.6-35B-A3B-UD-IQ4_XS.gguf"
+  },
+  "profile_name": "qwen36-iq4xs-cpu35-paging64",
+  "profile": {
+    "model": "qwen36-iq4xs",
+    "alias": "qwen36-lab",
+    "locally_tested": false,
+    "evidence": "Separate retry after uncapped CPU35 reaches2.436GiB freeRAM and guard stops. Same weights, expert placement,64K GPUq8KV,native reasoning,.6 sampling and all memory floors/load gates. Adds only process working-set maximum derived from initial freeRAM minus5GiB. Paging and slower inference expected. No quality result inherited.",
+    "load_min_ram_free_gib": 18,
+    "load_min_vram_free_mib": 6000,
+    "template_kwargs": {
+      "enable_thinking": true,
+      "preserve_thinking": true
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--ctx-size",
+      "65536",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--batch-size",
+      "512",
+      "--ubatch-size",
+      "128",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--timeout",
+      "1200",
+      "--reasoning-budget",
+      "-1",
+      "--reasoning-preserve",
+      "--predict",
+      "16384",
+      "--temp",
+      "0.6",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "20",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--n-cpu-moe",
+      "35",
+      "--verbosity",
+      "4",
+      "--ctx-checkpoints",
+      "4",
+      "--metrics",
+      "--host",
+      "127.0.0.1,::1",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC"
+    ],
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_gpu_c": 84,
+    "validation_status": "planned-bounded-retry-after-ram-stop",
+    "stop_min_commit_available_gib": 1.0,
+    "load_min_commit_available_gib": 8,
+    "runtime_variant": {
+      "id": "b11562-noprefetch-v1",
+      "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+    },
+    "working_set_limit_gib": 48,
+    "working_set_reserve_gib": 5
+  },
+  "preflight": {
+    "time": 1792840983.9482775,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 18.774246215820312,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 14.547504425048828,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6029.0,
+    "gpu_c": 47.44,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "postflight": {
+    "time": 1792842155.0580034,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 19.275501251220703,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 15.905380249023438,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6210.0,
+    "gpu_c": 49.38,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "public": {
+    "reviewer": "Codex; agent-assessed, not independently human-reviewed",
+    "public_total": 55,
+    "public_maximum": 60,
+    "completed_workflows": 3,
+    "router": {
+      "score": 39,
+      "maximum": 40,
+      "source_review_points": 27,
+      "behavior_points": 12,
+      "behavior_groups_passed": 6,
+      "self_tests_passed": 7
+    },
+    "ts_sql": {
+      "typescript_score": 5,
+      "typescript_maximum": 6,
+      "strict_compile": "pass",
+      "sqlite_score": 3,
+      "sqlite_maximum": 6,
+      "defects": [
+        "Missing plain-object validation",
+        "Missing tenant uniqueness",
+        "Foreign keys remain disabled; invalid references accepted"
+      ]
+    },
+    "history": {
+      "score": 8,
+      "maximum": 8,
+      "facts": 6,
+      "ready_count": 120,
+      "current_phase_inventory_exact": true
+    },
+    "exact_smoke": {
+      "expected": "READY",
+      "observed": "READY.",
+      "passed": false
+    },
+    "promotion": "No: private/coding/repeat coverage pending; no editor test; exact smoke punctuation fails"
+  },
+  "private": "pending",
+  "coding": "pending",
+  "cleanup": {
+    "status": "requested_stop"
+  },
+  "new_hardware_event": false,
+  "resolved_working_set_limit": {
+    "pid": 80140,
+    "requested_maximum_gib": 13.355842590332031,
+    "maximum_bytes": 14340726784,
+    "minimum_bytes": 204800,
+    "flags": 6,
+    "note": "Resident working-set cap, not total commit or GPU allocation cap."
+  },
+  "memory": {
+    "minimum_ram_free_gib": 3.86224365234375,
+    "minimum_commit_available_gib": 7.300327301025391,
+    "minimum_vram_free_mib": 794.0,
+    "maximum_gpu_c": 54.84,
+    "maximum_process_working_set_gib": 13.355842590332031,
+    "maximum_process_private_gib": 6.522792816162109
+  },
+  "tasks": {
+    "core-seed73": {
+      "completion": {
+        "status": "completed",
+        "scored": false,
+        "note": "Source review and isolated behavioral tests still required",
+        "wall_seconds": 536.0,
+        "turn_count": 2
+      },
+      "settings": {
+        "name": "core-seed73",
+        "seed": 73,
+        "max_tokens": 16384,
+        "deadline": 1200,
+        "temperature": 0.6
+      },
+      "manifest_sha256": "8214a8e2a98aaa759ca3faf66261bfccebc7c25485461f04fc4961e71816a37b",
+      "review_sha256": "27a2601f1453c517aae2a6569f038f4dd95481a019d49951da797154500e308b",
+      "grading_sha256": "ed51159bf3c2d13862801cb694e786feebf12e75766d28c65943091c068c42f9",
+      "turns": [
+        {
+          "phase": null,
+          "first_event_seconds": 12.546999999991385,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 1175,
+            "prompt_tokens": 654,
+            "total_tokens": 1829,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 654,
+            "prompt_ms": 12498.533,
+            "prompt_per_token_ms": 19.110906727828745,
+            "prompt_per_second": 52.32614099590729,
+            "predicted_n": 1175,
+            "predicted_ms": 96490.16,
+            "predicted_per_token_ms": 82.18923339011926,
+            "predicted_per_second": 12.167043769022664
+          }
+        },
+        {
+          "phase": null,
+          "first_event_seconds": 117.56200000000536,
+          "first_final_seconds": 417.3280000000086,
+          "finish_reason": "stop",
+          "usage": {
+            "completion_tokens": 5478,
+            "prompt_tokens": 2688,
+            "total_tokens": 8166,
+            "prompt_tokens_details": {
+              "cached_tokens": 1828
+            }
+          },
+          "timings": {
+            "cache_n": 1828,
+            "prompt_n": 860,
+            "prompt_ms": 8443.297,
+            "prompt_per_token_ms": 9.817787209302326,
+            "prompt_per_second": 101.85594560987253,
+            "predicted_n": 5478,
+            "predicted_ms": 418423.804,
+            "predicted_per_token_ms": 76.39653167792588,
+            "predicted_per_second": 13.089599462653897
+          }
+        }
+      ]
+    },
+    "ts-sql-v1": {
+      "completion": {
+        "status": "completed",
+        "scored": false,
+        "wall_seconds": 406.8429999999935,
+        "turn_count": 4,
+        "phase_count": 1
+      },
+      "settings": {
+        "name": "ts-sql-v1",
+        "scenario": "ts-sql-v1",
+        "max_tokens": 16384,
+        "deadline": 1200,
+        "temperature": 0.6
+      },
+      "manifest_sha256": "3589d4b65c10b68a325d6c2b16467c04c764e4ea76fed2113b38d18ee2525532",
+      "review_sha256": "8208c477b79d454376fe5ae810755a8dfde3226e11e2ed69aea7b897b4f0bf13",
+      "grading_sha256": "4fefe331ad2666d3d0fce3ae9a5d3051041dcf88e7af657222a6ba96f69124ea",
+      "turns": [
+        {
+          "phase": 0,
+          "first_event_seconds": 4.1710000000020955,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 235,
+            "prompt_tokens": 400,
+            "total_tokens": 635,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 400,
+            "prompt_ms": 4118.229,
+            "prompt_per_token_ms": 10.2955725,
+            "prompt_per_second": 97.12913002166708,
+            "predicted_n": 235,
+            "predicted_ms": 14960.429,
+            "predicted_per_token_ms": 63.93345726495726,
+            "predicted_per_second": 15.641262693736923
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 20.312000000005355,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 61,
+            "prompt_tokens": 704,
+            "total_tokens": 765,
+            "prompt_tokens_details": {
+              "cached_tokens": 634
+            }
+          },
+          "timings": {
+            "cache_n": 634,
+            "prompt_n": 70,
+            "prompt_ms": 1136.748,
+            "prompt_per_token_ms": 16.239257142857145,
+            "prompt_per_second": 61.579171461045014,
+            "predicted_n": 61,
+            "predicted_ms": 3293.847,
+            "predicted_per_token_ms": 54.897450000000006,
+            "predicted_per_second": 18.21578233597371
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 24.703000000008615,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 194,
+            "prompt_tokens": 827,
+            "total_tokens": 1021,
+            "prompt_tokens_details": {
+              "cached_tokens": 764
+            }
+          },
+          "timings": {
+            "cache_n": 764,
+            "prompt_n": 63,
+            "prompt_ms": 1027.657,
+            "prompt_per_token_ms": 16.312015873015874,
+            "prompt_per_second": 61.30450140465156,
+            "predicted_n": 194,
+            "predicted_ms": 11548.55,
+            "predicted_per_token_ms": 59.83704663212435,
+            "predicted_per_second": 16.7120547601214
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 41.35899999999674,
+          "first_final_seconds": 260.6559999999881,
+          "finish_reason": "stop",
+          "usage": {
+            "completion_tokens": 4989,
+            "prompt_tokens": 1471,
+            "total_tokens": 6460,
+            "prompt_tokens_details": {
+              "cached_tokens": 1020
+            }
+          },
+          "timings": {
+            "cache_n": 1020,
+            "prompt_n": 451,
+            "prompt_ms": 5010.172,
+            "prompt_per_token_ms": 11.109028824833702,
+            "prompt_per_second": 90.01686968032236,
+            "predicted_n": 4989,
+            "predicted_ms": 365485.342,
+            "predicted_per_token_ms": 73.27292341619888,
+            "predicted_per_second": 13.647606146678243
+          }
+        }
+      ]
+    },
+    "context-v1": {
+      "completion": {
+        "status": "completed",
+        "scored": false,
+        "wall_seconds": 195.375,
+        "turn_count": 6,
+        "phase_count": 2
+      },
+      "settings": {
+        "name": "context-v1",
+        "scenario": "context-v1",
+        "max_tokens": 4096,
+        "deadline": 1200,
+        "temperature": 0.6
+      },
+      "manifest_sha256": "e71bf398bb61b864f45ff3f158223cb5e9560e291f4f1f16e20a0da1645c0f9c",
+      "review_sha256": "a16c5a885b2a006bbe9b5341aa934aa0315d799b00c925c82acf9aa8883dac88",
+      "grading_sha256": "79919328e0c05eea63007de2c6e7ab725abcb9fdb833c725170c01256f2280e8",
+      "turns": [
+        {
+          "phase": 0,
+          "first_event_seconds": 1.5320000000065193,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 202,
+            "prompt_tokens": 349,
+            "total_tokens": 551,
+            "prompt_tokens_details": {
+              "cached_tokens": 268
+            }
+          },
+          "timings": {
+            "cache_n": 268,
+            "prompt_n": 81,
+            "prompt_ms": 1471.176,
+            "prompt_per_token_ms": 18.162666666666667,
+            "prompt_per_second": 55.0579944207899,
+            "predicted_n": 202,
+            "predicted_ms": 16148.898,
+            "predicted_per_token_ms": 80.34277611940298,
+            "predicted_per_second": 12.446669735606728
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 18.828000000008615,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 88,
+            "prompt_tokens": 620,
+            "total_tokens": 708,
+            "prompt_tokens_details": {
+              "cached_tokens": 550
+            }
+          },
+          "timings": {
+            "cache_n": 550,
+            "prompt_n": 70,
+            "prompt_ms": 1103.958,
+            "prompt_per_token_ms": 15.770828571428572,
+            "prompt_per_second": 63.40820937028401,
+            "predicted_n": 88,
+            "predicted_ms": 5901.502,
+            "predicted_per_token_ms": 67.83335632183909,
+            "predicted_per_second": 14.742009745993476
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 25.875,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 280,
+            "prompt_tokens": 779,
+            "total_tokens": 1059,
+            "prompt_tokens_details": {
+              "cached_tokens": 707
+            }
+          },
+          "timings": {
+            "cache_n": 707,
+            "prompt_n": 72,
+            "prompt_ms": 1090.657,
+            "prompt_per_token_ms": 15.148013888888888,
+            "prompt_per_second": 66.01525502518207,
+            "predicted_n": 280,
+            "predicted_ms": 18778.256,
+            "predicted_per_token_ms": 67.30557706093191,
+            "predicted_per_second": 14.857609780162758
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 127.79700000002049,
+          "first_final_seconds": 142.96900000001187,
+          "finish_reason": "stop",
+          "usage": {
+            "completion_tokens": 237,
+            "prompt_tokens": 10331,
+            "total_tokens": 10568,
+            "prompt_tokens_details": {
+              "cached_tokens": 1058
+            }
+          },
+          "timings": {
+            "cache_n": 1058,
+            "prompt_n": 9273,
+            "prompt_ms": 83050.077,
+            "prompt_per_token_ms": 8.95611743772242,
+            "prompt_per_second": 111.65552561739347,
+            "predicted_n": 237,
+            "predicted_ms": 15712.422,
+            "predicted_per_token_ms": 66.5780593220339,
+            "predicted_per_second": 15.019963185815655
+          }
+        },
+        {
+          "phase": 1,
+          "first_event_seconds": 144.70300000000861,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 414,
+            "prompt_tokens": 10662,
+            "total_tokens": 11076,
+            "prompt_tokens_details": {
+              "cached_tokens": 10567
+            }
+          },
+          "timings": {
+            "cache_n": 10567,
+            "prompt_n": 95,
+            "prompt_ms": 1118.288,
+            "prompt_per_token_ms": 11.771452631578947,
+            "prompt_per_second": 84.95128267494599,
+            "predicted_n": 414,
+            "predicted_ms": 26607.597,
+            "predicted_per_token_ms": 64.42517433414044,
+            "predicted_per_second": 15.521882716428694
+          }
+        },
+        {
+          "phase": 1,
+          "first_event_seconds": 172.46900000001187,
+          "first_final_seconds": 189.6720000000205,
+          "finish_reason": "stop",
+          "usage": {
+            "completion_tokens": 352,
+            "prompt_tokens": 11128,
+            "total_tokens": 11480,
+            "prompt_tokens_details": {
+              "cached_tokens": 11075
+            }
+          },
+          "timings": {
+            "cache_n": 11075,
+            "prompt_n": 53,
+            "prompt_ms": 1101.95,
+            "prompt_per_token_ms": 20.791509433962265,
+            "prompt_per_second": 48.096556105086435,
+            "predicted_n": 352,
+            "predicted_ms": 22895.182,
+            "predicted_per_token_ms": 65.22843874643875,
+            "predicted_per_second": 15.33073639685415
+          }
+        }
+      ]
+    }
+  },
+  "allocations_mib": {
+    "gpu_weights": 3849.34,
+    "gpu_kv": 680,
+    "recurrent_state": 62.81,
+    "gpu_compute": 368,
+    "host_compute": 20.27,
+    "cpu_mapped_span_not_resident_memory": 14377.41
+  },
+  "limits": [
+    "Same CPU35/native sampling as the RAM-stopped attempt, plus a bounded resident working set.",
+    "One seed and changed desktop/cache conditions; not a universal precision ranking.",
+    "No composite with historical or differently configured private/coding results.",
+    "Context arena allocation, occupied tokens, resident pages and process private commit differ.",
+    "No code repairs before isolated checks; actual migration runs and three groups fail."
+  ],
+  "raw_evidence": "local-data/2026-10-24-precision/qwen-iq4xs-cpu35-paging-a-public/",
+  "followup_reports": [
+    "2026-10-24-qwen-iq4xs-private.json"
+  ]
+}

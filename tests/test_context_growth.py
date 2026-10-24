@@ -76,6 +76,44 @@ class GrowthTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 lab.runtime_environment(root, profile)
 
+    def test_new_runtime_variant_requires_catalog_pin(self) -> None:
+        """An internally consistent profile and DLL still need explicit review."""
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / 'llama.dll').write_bytes(b'new isolated DLL')
+            identity = {'id': 'new-reviewed-variant',
+                        'llama_sha256': lab.digest(root / 'llama.dll')}
+            manifest = dict(identity, base_commit='reviewed-base')
+            lab.save_json(root / 'lab-runtime-variant.json', manifest)
+            profile = {'template_kwargs': {}, 'runtime_variant': identity}
+            with self.assertRaisesRegex(ValueError, 'not catalog-pinned'):
+                lab.runtime_environment(root, profile)
+            original_read = lab.read_json
+            catalog = original_read(lab.ROOT / 'catalog/runtime.json')
+            catalog['reviewed_runtime_variants'] = {
+                identity['id']: dict(manifest)}
+
+            def read_with_catalog(path: Path) -> dict:
+                """Substitute only the reviewed catalog; retain actual DLL I/O."""
+                if path == lab.ROOT / 'catalog/runtime.json':
+                    return catalog
+                return original_read(path)
+
+            with mock.patch.object(lab, 'read_json', side_effect=read_with_catalog):
+                env, observed = lab.runtime_environment(root, profile)
+                self.assertEqual(env['LLAMA_LAB_NO_MMAP_PREFETCH'], '1')
+                self.assertEqual(observed, manifest)
+                catalog['reviewed_runtime_variants'][identity['id']][
+                    'base_commit'] = 'different-base'
+                with self.assertRaisesRegex(ValueError, 'hash differs'):
+                    lab.runtime_environment(root, profile)
+                catalog['reviewed_runtime_variants'][identity['id']][
+                    'base_commit'] = 'reviewed-base'
+                catalog['reviewed_runtime_variants'][identity['id']][
+                    'llama_sha256'] = 'not-the-built-dll'
+                with self.assertRaisesRegex(ValueError, 'not catalog-pinned'):
+                    lab.runtime_environment(root, profile)
+
     @unittest.skipUnless(sys.platform == 'win32', 'Windows working-set API')
     def test_working_set_bound_on_owned_child(self) -> None:
         """Read back the hard maximum on a disposable idle Python process."""

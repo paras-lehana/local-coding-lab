@@ -382,9 +382,21 @@ def runtime_environment(runtime: Path, profile: dict) -> tuple[dict, dict | None
             raise ValueError('Modified runtime requires an explicit runtime_variant profile')
         return env, None
     manifest = read_json(manifest_path)
-    if (requested.get('id') != 'b11562-noprefetch-v1'
+    catalog = read_json(ROOT / 'catalog/runtime.json')
+    # Preserve the historical control; newer experiments also require a
+    # catalog-pinned DLL, rather than trusting a profile/manifest pair alone.
+    if requested.get('id') == 'b11562-noprefetch-v1':
+        expected_commit = catalog['commit']
+    else:
+        reviewed = catalog.get('reviewed_runtime_variants', {}).get(
+            requested.get('id'), {})
+        expected_commit = reviewed.get('base_commit')
+        if (not expected_commit or reviewed.get('llama_sha256')
+                != requested.get('llama_sha256')):
+            raise ValueError('Modified runtime variant is not catalog-pinned')
+    if (not expected_commit
             or manifest.get('id') != requested['id']
-            or manifest.get('base_commit') != read_json(ROOT / 'catalog/runtime.json')['commit']
+            or manifest.get('base_commit') != expected_commit
             or manifest.get('llama_sha256') != requested.get('llama_sha256')
             or digest(runtime / 'llama.dll') != requested['llama_sha256']):
         raise ValueError('Modified runtime identity or llama.dll hash differs from profile')

@@ -1,0 +1,373 @@
+{
+  "date": "2026-10-24",
+  "model": {
+    "name": "Qwen3.6-35B-A3B UD-IQ4_XS",
+    "repo": "unsloth/Qwen3.6-35B-A3B-GGUF",
+    "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+    "filename": "Qwen3.6-35B-A3B-UD-IQ4_XS.gguf",
+    "bytes": 17730509792,
+    "sha256": "649d7508507b84638732c4f52c24c8b15843c6dca2f3ff793ae07c14a67ebbb3",
+    "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+    "status": "bounded64-public55-private-active-coding-pending-20261024",
+    "thinking": "enable_thinking and preserve_thinking; no native xhigh",
+    "url": "https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/a483e9e6cbd595906af30beda3187c2663a1118c/Qwen3.6-35B-A3B-UD-IQ4_XS.gguf"
+  },
+  "profile_name": "qwen36-iq4xs-cpu35-paging64",
+  "profile": {
+    "model": "qwen36-iq4xs",
+    "alias": "qwen36-lab",
+    "locally_tested": false,
+    "evidence": "Separate retry after uncapped CPU35 reaches2.436GiB freeRAM and guard stops. Same weights, expert placement,64K GPUq8KV,native reasoning,.6 sampling and all memory floors/load gates. Adds only process working-set maximum derived from initial freeRAM minus5GiB. Paging and slower inference expected. No quality result inherited.",
+    "load_min_ram_free_gib": 18,
+    "load_min_vram_free_mib": 6000,
+    "template_kwargs": {
+      "enable_thinking": true,
+      "preserve_thinking": true
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--ctx-size",
+      "65536",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--batch-size",
+      "512",
+      "--ubatch-size",
+      "128",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--timeout",
+      "1200",
+      "--reasoning-budget",
+      "-1",
+      "--reasoning-preserve",
+      "--predict",
+      "16384",
+      "--temp",
+      "0.6",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "20",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--n-cpu-moe",
+      "35",
+      "--verbosity",
+      "4",
+      "--ctx-checkpoints",
+      "4",
+      "--metrics",
+      "--host",
+      "127.0.0.1,::1",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC"
+    ],
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_gpu_c": 84,
+    "validation_status": "planned-bounded-retry-after-ram-stop",
+    "stop_min_commit_available_gib": 1.0,
+    "load_min_commit_available_gib": 8,
+    "runtime_variant": {
+      "id": "b11562-noprefetch-v1",
+      "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+    },
+    "working_set_limit_gib": 48,
+    "working_set_reserve_gib": 5
+  },
+  "score": {
+    "semantic": 19,
+    "citation": 4,
+    "code": 6,
+    "total": 29,
+    "maximum": 36,
+    "wall_seconds": 725.4,
+    "completed": true
+  },
+  "reviewer": "Codex; not independent human review",
+  "review_sha256": "b6c87a1d047077bdfa77fd8058394ea7a150d13e8a8d05eddfc8ac42c09b671a",
+  "grading_sha256": "d83138b09724fc1555eafa78c9aca60f106925067600265569c96258625a51e7",
+  "request_sha256": "970a36a49e53b749f37de626f975ab73e484ef8125ad39e2a6d9ee7a88c534cd",
+  "question_sha256": "39f849d5de4406cd005a7af791140076fc7196128fabca72890d8c4988314638",
+  "rubric_sha256": "1559c4af232920f406356b8a1a1da2b449e64f066ea9ee6ee60d5c84193796bb",
+  "preflight": {
+    "time": 1792842383.63755,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 19.193275451660156,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 15.814468383789062,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6332.0,
+    "gpu_c": 45.5,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "postflight": {
+    "time": 1792843135.4059894,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 20.532852172851562,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 15.950523376464844,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6399.0,
+    "gpu_c": 49.06,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "conditions": "Apps-open;RAM3000;no-tuning-change;CPU-core0-excluded;resident-cap=freeRAM-minus5GiB;native-thinking;GPUq8KV64K",
+  "new_hardware_event": false,
+  "cleanup": {
+    "status": "requested_stop"
+  },
+  "resolved_working_set_limit": {
+    "pid": 71088,
+    "requested_maximum_gib": 14.048133850097656,
+    "maximum_bytes": 15084068864,
+    "minimum_bytes": 204800,
+    "flags": 6,
+    "note": "Resident working-set cap, not total commit or GPU allocation cap."
+  },
+  "effective_controls": {
+    "max_tokens": 24576,
+    "seed": 73,
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0,
+    "repeat_penalty": 1.0,
+    "chat_template_kwargs": {
+      "preserve_thinking": true
+    }
+  },
+  "memory": {
+    "minimum_ram_free_gib": 4.340034484863281,
+    "minimum_commit_available_gib": 8.687355041503906,
+    "minimum_vram_free_mib": 841.0,
+    "maximum_gpu_c": 58.06,
+    "maximum_process_working_set_gib": 14.048137664794922,
+    "maximum_process_private_gib": 6.5037384033203125
+  },
+  "turns": [
+    {
+      "index": 0,
+      "usage": {
+        "completion_tokens": 200,
+        "prompt_tokens": 2197,
+        "total_tokens": 2397,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 2197,
+        "prompt_ms": 23922.998,
+        "prompt_per_token_ms": 10.88893855257169,
+        "prompt_per_second": 91.8363158329905,
+        "predicted_n": 200,
+        "predicted_ms": 12857.482,
+        "predicted_per_token_ms": 64.61046231155778,
+        "predicted_per_second": 15.477369519164018
+      },
+      "finish_reason": "tool_calls",
+      "visible_characters": 0
+    },
+    {
+      "index": 1,
+      "usage": {
+        "completion_tokens": 235,
+        "prompt_tokens": 13867,
+        "total_tokens": 14102,
+        "prompt_tokens_details": {
+          "cached_tokens": 2396
+        }
+      },
+      "timings": {
+        "cache_n": 2396,
+        "prompt_n": 11471,
+        "prompt_ms": 104124.97,
+        "prompt_per_token_ms": 9.077235637695058,
+        "prompt_per_second": 110.16569800692379,
+        "predicted_n": 235,
+        "predicted_ms": 18431.041,
+        "predicted_per_token_ms": 78.76513247863248,
+        "predicted_per_second": 12.695973059796243
+      },
+      "finish_reason": "tool_calls",
+      "visible_characters": 0
+    },
+    {
+      "index": 2,
+      "usage": {
+        "completion_tokens": 188,
+        "prompt_tokens": 17935,
+        "total_tokens": 18123,
+        "prompt_tokens_details": {
+          "cached_tokens": 14101
+        }
+      },
+      "timings": {
+        "cache_n": 14101,
+        "prompt_n": 3834,
+        "prompt_ms": 35795.791,
+        "prompt_per_token_ms": 9.33640871152843,
+        "prompt_per_second": 107.1075646854682,
+        "predicted_n": 188,
+        "predicted_ms": 12026.516,
+        "predicted_per_token_ms": 64.31291978609626,
+        "predicted_per_second": 15.548975280954187
+      },
+      "finish_reason": "tool_calls",
+      "visible_characters": 0
+    },
+    {
+      "index": 3,
+      "usage": {
+        "completion_tokens": 225,
+        "prompt_tokens": 28863,
+        "total_tokens": 29088,
+        "prompt_tokens_details": {
+          "cached_tokens": 18122
+        }
+      },
+      "timings": {
+        "cache_n": 18122,
+        "prompt_n": 10741,
+        "prompt_ms": 95094.285,
+        "prompt_per_token_ms": 8.853392142258635,
+        "prompt_per_second": 112.95105694311702,
+        "predicted_n": 225,
+        "predicted_ms": 14406.391,
+        "predicted_per_token_ms": 64.31424553571428,
+        "predicted_per_second": 15.548654760238007
+      },
+      "finish_reason": "tool_calls",
+      "visible_characters": 0
+    },
+    {
+      "index": 4,
+      "usage": {
+        "completion_tokens": 93,
+        "prompt_tokens": 38537,
+        "total_tokens": 38630,
+        "prompt_tokens_details": {
+          "cached_tokens": 29087
+        }
+      },
+      "timings": {
+        "cache_n": 29087,
+        "prompt_n": 9450,
+        "prompt_ms": 81365.441,
+        "prompt_per_token_ms": 8.610099576719577,
+        "prompt_per_second": 116.14267536508527,
+        "predicted_n": 93,
+        "predicted_ms": 5466.52,
+        "predicted_per_token_ms": 59.418695652173916,
+        "predicted_per_second": 16.829719821751315
+      },
+      "finish_reason": "tool_calls",
+      "visible_characters": 0
+    },
+    {
+      "index": 5,
+      "usage": {
+        "completion_tokens": 3828,
+        "prompt_tokens": 41892,
+        "total_tokens": 45720,
+        "prompt_tokens_details": {
+          "cached_tokens": 38629
+        }
+      },
+      "timings": {
+        "cache_n": 38629,
+        "prompt_n": 3263,
+        "prompt_ms": 27726.225,
+        "prompt_per_token_ms": 8.497157523751149,
+        "prompt_per_second": 117.68641421614375,
+        "predicted_n": 3828,
+        "predicted_ms": 293310.761,
+        "predicted_per_token_ms": 76.64247739743925,
+        "predicted_per_second": 13.047594936348075
+      },
+      "finish_reason": "stop",
+      "visible_characters": 13343
+    }
+  ],
+  "actual_files_read": 15,
+  "recovered_oversized_reads": 2,
+  "findings": [
+    "Correct physical host and absent-port refusal, but an unreconciled policy-path mapping contradiction.",
+    "Missing nested/shared pre-edit reading steps and relevant Windows-adapter review.",
+    "Correct final check-mode conclusion, with an incorrect explanation of the installer mode branch.",
+    "Omits explicitly saving the original prompt in its closeout description.",
+    "Correct final merge and all six frozen behavior checks; initial contradictory duplicate-key JSON explicitly corrected in the same answer."
+  ],
+  "extra_diagnostics": [
+    {
+      "name": "nested_alias",
+      "cases": [
+        {
+          "name": "retained_local_nested_list",
+          "passed": true
+        },
+        {
+          "name": "inserted_base_nested_dict",
+          "passed": true
+        }
+      ],
+      "result_sha256": "4698bbb0a7b233e1c82c3779f735d9ed3dadbbf97832eaef97665624cd59f7a4",
+      "outside_frozen_score": true
+    },
+    {
+      "name": "extra_key",
+      "cases": [
+        {
+          "name": "local_only_nested_keys",
+          "passed": true
+        },
+        {
+          "name": "empty_base_independent_copy",
+          "passed": true
+        }
+      ],
+      "result_sha256": "9cb5d40b6e89b57742552039ce791e97b3f575d2410a9a5d25d6b4c08165c590",
+      "outside_frozen_score": true
+    }
+  ],
+  "limitations": [
+    "Six-turn725.4second single case, not a general reasoning benchmark.",
+    "Different resolved resident cap from public run reflects changed desktop headroom under the same profile policy.",
+    "Contextual short/combined citations manually resolved; parser23/40 is not a semantic citation score.",
+    "No editor validation or complete coding/composite score yet."
+  ],
+  "raw_evidence": "local-data/2026-10-24-precision/; original private audit remains outside Git"
+}

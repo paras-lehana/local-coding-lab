@@ -1,0 +1,12 @@
+﻿{
+    "date":  "2026-10-24T13:51:40.7704543+05:30",
+    "action":  "exact-file-disk-rotation",
+    "candidate":  "nemotron-bolt-74b-24gb",
+    "filename":  "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB.gguf",
+    "bytes":  22018326528,
+    "sha256":  "91d63363e782c8a3d5f4be42816eba8e0d42dd2530bd07a7d0d2dc440599af75",
+    "revision":  "e0fecb69cb3e5e4c5e8a056fa2aec98c78e91246",
+    "reason":  "Make room for requested Flint Q4 experiment; quality evaluation remains queued, no quality rejection",
+    "production_qwen_and_gemma_preserved":  true,
+    "deletion_verified":  true
+}
