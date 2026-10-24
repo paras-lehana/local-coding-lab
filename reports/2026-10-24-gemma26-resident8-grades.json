@@ -1,0 +1,56 @@
+{
+  "model": "Gemma4-26B-A4B official QAT Q4_0",
+  "profile": "gemma4-26b-cpu28-resident8-calibration",
+  "public_total": null,
+  "public_maximum": 60,
+  "reason": "History incomplete; never combine completed components into a full score",
+  "router": {
+    "score": 38,
+    "maximum": 40,
+    "non_code": 26,
+    "behavior": 12,
+    "frozen_behavior_groups": "6/6",
+    "model_self_tests": "8/8",
+    "wall_seconds": 1031.86,
+    "first_visible_seconds": 814.953
+  },
+  "typescript": {
+    "score": 5,
+    "maximum": 6,
+    "strict_compile": true,
+    "observed_failure": "nonplain objects accepted"
+  },
+  "sqlite": {
+    "score": 0,
+    "maximum": 6,
+    "observed_failure": "Migration aborts with FOREIGN KEY constraint failed; not six independent assertion failures"
+  },
+  "ts_sql_wall_seconds": 1142.469,
+  "ts_sql_first_visible_seconds": 957.282,
+  "history": {
+    "score": null,
+    "status": "incomplete",
+    "reason": "4096 output tokens, reasoning only in first phase",
+    "wall_seconds": 789.282,
+    "second_phase": "not sent"
+  },
+  "reviewer": "Codex source review then existing WSL bubblewrap graders, engine stopped",
+  "evidence_hashes": {
+    "core-seed73/answer.txt": "3c255d325af1839328f7ceed0c97f60f219ba0d5bc9b86ea91d0b3cbe9aa67ee",
+    "core-seed73/review.json": "9bf40b8efafc0fade8dbaac39c61a17bb3b181af268454c5333b4c8705efe5fe",
+    "core-seed73/grading-result.json": "68cf642bc34bae64341c32baf936b49a8f89c06e017d16ec5300145f8698858a",
+    "core-seed73/result.json": "0e666dfe7d7c24572e4457839a653d5752ed7c066198d444d3a77c51fb1f063b",
+    "ts-sql-v1/answer.txt": "fb67dae8af7990008e4ad112773a12575e8c0d6093e0bbb4bbb50ae4f0a88f48",
+    "ts-sql-v1/review.json": "a6183bef178852cf6afac8a0d3d8adc05cb91904a37d69dae48875bc70312b31",
+    "ts-sql-v1/grading-result.json": "2abecdf60051468a740dd2f6a00fe72b687c41df808e89d8243e5d1366635843",
+    "ts-sql-v1/result.json": "79c4810085ad23a1a783f24db3f536dbd29b3376e607dd846b22094d43fe7dc6",
+    "context-v1/review.json": "95b5309892468926c98464985312f0665b85beaa049e28087708e3226511d383",
+    "context-v1/result.json": "95fa596e1d2e5cb3187f6d1adfd017a0360a25000b9a87911c90520b0076f8ee",
+    "scripts/run_isolated.py": "f40bb8e86e7fe4006afaeb51615bb07cb64ae8f9e3c2e2438ed5ce4db6913cd9",
+    "scripts/grade_ts_sql.py": "3b91788ab3223ac1695769ad86ee81a4ec7bae6f9f7bc8560574aa2057fa568e",
+    "benchmarks/checks/router_v1.py": "4069c09261ea41a19cae32e65aaaa239fddd697c2dd3255d1850575e3af48c98",
+    "benchmarks/checks/ts_sql_v1.cjs": "75185d070f19840b29238e5eea520586ef6c59a698c59ce3dfbd0525afde2115",
+    "benchmarks/checks/ts_sql_v1.py": "31aa4764a47655d9e45bd25d062bed177be278ad583c019d5580d4d425537078"
+  },
+  "raw_evidence": "local-data/2026-10-24-precision/gemma26-coverage-public-a"
+}

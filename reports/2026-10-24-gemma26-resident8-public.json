@@ -1,0 +1,972 @@
+{
+  "campaign_date": "2026-10-24",
+  "exported_at": "2026-10-24T18:10:10.205577+00:00",
+  "profile_name": "gemma4-26b-cpu28-resident8-calibration",
+  "profile": {
+    "model": "gemma4-26b-qat",
+    "alias": "gemma4-lab",
+    "locally_tested": false,
+    "validation_status": "planned-smaller-resident-calibration-not-promoted",
+    "evidence": "Separate24October apps-open calibration; original18GiB admission profiles remain unchanged. Pinned Gemma26 QAT file is13.448GiB; CPU28 expert tensor spans11.167GiB and other weights2.266GiB. Fixed8GiB resident maximum with6.5GiB host reserve deliberately reduces residency and may page. This is not a total allocation cap or measured fit. Require short smoke before quality work; unchanged stop floors. Same64K GPUq8,CPU28,.6/topK20 and preserved native thinking as the frozen coverage profile, NOT publisher1.0/topK64 sampling; historical scores do not transfer.",
+    "load_min_ram_free_gib": 14.5,
+    "load_min_vram_free_mib": 6000,
+    "load_min_commit_available_gib": 8,
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_min_commit_available_gib": 1,
+    "stop_gpu_c": 84,
+    "working_set_limit_gib": 8,
+    "working_set_reserve_gib": 6.5,
+    "template_kwargs": {
+      "enable_thinking": true,
+      "preserve_thinking": true
+    },
+    "runtime_variant": {
+      "id": "b11562-noprefetch-v1",
+      "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--n-cpu-moe",
+      "28",
+      "--ctx-size",
+      "65536",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC",
+      "--batch-size",
+      "128",
+      "--ubatch-size",
+      "32",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--reasoning-budget",
+      "-1",
+      "--reasoning-preserve",
+      "--predict",
+      "16384",
+      "--temp",
+      "0.6",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "20",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--timeout",
+      "1200",
+      "--metrics",
+      "--verbosity",
+      "4"
+    ]
+  },
+  "artifact": {
+    "name": "Gemma 4 26B-A4B IT official QAT Q4_0",
+    "repo": "google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+    "revision": "d1c082be9cf3c8a514acf63b8761f4b41935842e",
+    "filename": "gemma-4-26B_q4_0-it.gguf",
+    "bytes": 14439363584,
+    "sha256": "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d",
+    "upstream": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+    "status": "retained-lower-memory-fallback-32k-64k-public-and-private-complete",
+    "thinking": "Native tool continuation preservation and runtime 2048 reasoning ceiling observed; no native xhigh label",
+    "url": "https://huggingface.co/google/gemma-4-26B-A4B-it-qat-q4_0-gguf/resolve/d1c082be9cf3c8a514acf63b8761f4b41935842e/gemma-4-26B_q4_0-it.gguf"
+  },
+  "status": "collected",
+  "reason": null,
+  "server_outcome": {
+    "status": "requested_stop"
+  },
+  "hardware": {
+    "new_event": false
+  },
+  "preflight": {
+    "time": 1792862296.511976,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 15.092658996582031,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 12.553359985351562,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6522.0,
+    "gpu_c": 51.19,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "postflight": {
+    "time": 1792865290.587248,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 16.97720718383789,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 12.08456802368164,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6526.0,
+    "gpu_c": 53.12,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "quality_score": null,
+  "grading": "Not performed by this exporter",
+  "memory": {
+    "minimum_ram_free_gib": 6.393562316894531,
+    "minimum_commit_available_gib": 4.836570739746094,
+    "minimum_vram_free_mib": 2143.0,
+    "maximum_gpu_c": 58.5,
+    "maximum_process_working_set_gib": 8.000015258789062,
+    "maximum_process_private_gib": 5.839405059814453
+  },
+  "tasks": [
+    {
+      "settings": {
+        "name": "core-seed73",
+        "seed": 73,
+        "max_tokens": 16384,
+        "deadline": 1200,
+        "temperature": 0.6
+      },
+      "completion": {
+        "status": "completed",
+        "scored": false,
+        "note": "Source review and isolated behavioral tests still required",
+        "wall_seconds": 1031.8600000000151,
+        "turn_count": 7
+      },
+      "returncode": 0,
+      "streams": [
+        {
+          "filename": "stream-00.jsonl",
+          "sha256": "57026222a9db5a4ea2dd9f879ef8aec6d52d5dc23703f101f470d22e00289abc",
+          "reasoning_chars": 1186,
+          "content_chars": 0,
+          "last_seconds": 77.26600000000326,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-01.jsonl",
+          "sha256": "54cc1391d9f60a70706403c11bcefec1ef694683a6f9aef31cb9afb7f98f1cf4",
+          "reasoning_chars": 268,
+          "content_chars": 0,
+          "last_seconds": 116.53200000000652,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-02.jsonl",
+          "sha256": "a23c622e480d5043992eab23680851fb208830432989aa083c1a67ced8bedd8a",
+          "reasoning_chars": 615,
+          "content_chars": 0,
+          "last_seconds": 159.46900000001187,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-03.jsonl",
+          "sha256": "6094272383b2bed882ef9ee14e719406e33311f036ffae797572758c9130c5d7",
+          "reasoning_chars": 346,
+          "content_chars": 0,
+          "last_seconds": 182.78200000000652,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-04.jsonl",
+          "sha256": "8a1abfada9a09d85fb38c7dc148f4aac8e4a90572bc75b8f7eab75a70b14f32a",
+          "reasoning_chars": 284,
+          "content_chars": 0,
+          "last_seconds": 209.61000000001513,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-05.jsonl",
+          "sha256": "5e20596f4d340fdd85ed4cbeafc25c35f894b04baadc52bd43f236214652377c",
+          "reasoning_chars": 475,
+          "content_chars": 0,
+          "last_seconds": 235.61000000001513,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-06.jsonl",
+          "sha256": "13e6d136c6654ab2037ff43fc9368d7e8321e22cdd83080cd4b29b4aa11ddfb1",
+          "reasoning_chars": 15265,
+          "content_chars": 6682,
+          "last_seconds": 1031.8600000000151,
+          "malformed_lines": 0
+        }
+      ],
+      "manifest.json_sha256": "5b3cad0e43ee30cf07a8283d714f611525a31614139a8d363821a3f4c03edf7d",
+      "result.json_sha256": "0e666dfe7d7c24572e4457839a653d5752ed7c066198d444d3a77c51fb1f063b",
+      "turns.json_sha256": "075a5f90641f357571ea716800046e9776541ec8d23ad6ef4884fe025e18a66e",
+      "tools.json_sha256": "08c49aaf8a99568d3047299bce31407aec3c5446ffc48c1e9a6e6cb571ad1ff0",
+      "tool_calls": 6,
+      "successful_reads": 6,
+      "completed_turns": [
+        {
+          "phase": null,
+          "first_event_seconds": 22.328000000008615,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 409,
+            "prompt_tokens": 472,
+            "total_tokens": 881,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 472,
+            "prompt_ms": 22259.416,
+            "prompt_per_token_ms": 47.15977966101695,
+            "prompt_per_second": 21.204509588212016,
+            "predicted_n": 409,
+            "predicted_ms": 54936.202,
+            "predicted_per_token_ms": 134.64755392156863,
+            "predicted_per_second": 7.42679663220985
+          }
+        },
+        {
+          "phase": null,
+          "first_event_seconds": 103.20300000000861,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 118,
+            "prompt_tokens": 1035,
+            "total_tokens": 1153,
+            "prompt_tokens_details": {
+              "cached_tokens": 467
+            }
+          },
+          "timings": {
+            "cache_n": 467,
+            "prompt_n": 568,
+            "prompt_ms": 25842.679,
+            "prompt_per_token_ms": 45.49767429577465,
+            "prompt_per_second": 21.979145428382253,
+            "predicted_n": 118,
+            "predicted_ms": 13334.749,
+            "predicted_per_token_ms": 113.97221367521368,
+            "predicted_per_second": 8.77406841328622
+          }
+        },
+        {
+          "phase": null,
+          "first_event_seconds": 125.32800000000861,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 231,
+            "prompt_tokens": 1331,
+            "total_tokens": 1562,
+            "prompt_tokens_details": {
+              "cached_tokens": 1129
+            }
+          },
+          "timings": {
+            "cache_n": 1129,
+            "prompt_n": 202,
+            "prompt_ms": 8650.244,
+            "prompt_per_token_ms": 42.82299009900991,
+            "prompt_per_second": 23.35194244231723,
+            "predicted_n": 231,
+            "predicted_ms": 34140.514,
+            "predicted_per_token_ms": 148.43701739130435,
+            "predicted_per_second": 6.736864008550076
+          }
+        },
+        {
+          "phase": null,
+          "first_event_seconds": 167.56299999999464,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 114,
+            "prompt_tokens": 1676,
+            "total_tokens": 1790,
+            "prompt_tokens_details": {
+              "cached_tokens": 1535
+            }
+          },
+          "timings": {
+            "cache_n": 1535,
+            "prompt_n": 141,
+            "prompt_ms": 7961.099,
+            "prompt_per_token_ms": 56.46169503546099,
+            "prompt_per_second": 17.71112254727645,
+            "predicted_n": 114,
+            "predicted_ms": 15219.875,
+            "predicted_per_token_ms": 134.68915929203538,
+            "predicted_per_second": 7.424502500841827
+          }
+        },
+        {
+          "phase": null,
+          "first_event_seconds": 192.26600000000326,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 121,
+            "prompt_tokens": 1925,
+            "total_tokens": 2046,
+            "prompt_tokens_details": {
+              "cached_tokens": 1769
+            }
+          },
+          "timings": {
+            "cache_n": 1769,
+            "prompt_n": 156,
+            "prompt_ms": 9405.871,
+            "prompt_per_token_ms": 60.29404487179487,
+            "prompt_per_second": 16.58538587229189,
+            "predicted_n": 121,
+            "predicted_ms": 17344.331,
+            "predicted_per_token_ms": 144.53609166666666,
+            "predicted_per_second": 6.9186871491324755
+          }
+        },
+        {
+          "phase": null,
+          "first_event_seconds": 218.81299999999464,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 153,
+            "prompt_tokens": 2214,
+            "total_tokens": 2367,
+            "prompt_tokens_details": {
+              "cached_tokens": 2023
+            }
+          },
+          "timings": {
+            "cache_n": 2023,
+            "prompt_n": 191,
+            "prompt_ms": 9062.28,
+            "prompt_per_token_ms": 47.44649214659686,
+            "prompt_per_second": 21.07637371610676,
+            "predicted_n": 153,
+            "predicted_ms": 16786.831,
+            "predicted_per_token_ms": 110.43967763157893,
+            "predicted_per_second": 9.05471675982203
+          }
+        },
+        {
+          "phase": null,
+          "first_event_seconds": 244.5470000000205,
+          "first_final_seconds": 814.9530000000086,
+          "finish_reason": "stop",
+          "usage": {
+            "completion_tokens": 6276,
+            "prompt_tokens": 2525,
+            "total_tokens": 8801,
+            "prompt_tokens_details": {
+              "cached_tokens": 2344
+            }
+          },
+          "timings": {
+            "cache_n": 2344,
+            "prompt_n": 181,
+            "prompt_ms": 8773.368,
+            "prompt_per_token_ms": 48.47164640883978,
+            "prompt_per_second": 20.630617568988328,
+            "predicted_n": 6276,
+            "predicted_ms": 787308.956,
+            "predicted_per_token_ms": 125.46756270916335,
+            "predicted_per_second": 7.97018750031849
+          }
+        }
+      ]
+    },
+    {
+      "settings": {
+        "name": "ts-sql-v1",
+        "scenario": "ts-sql-v1",
+        "max_tokens": 16384,
+        "deadline": 1200,
+        "temperature": 0.6
+      },
+      "completion": {
+        "status": "completed",
+        "scored": false,
+        "wall_seconds": 1142.4690000000119,
+        "turn_count": 7,
+        "phase_count": 1
+      },
+      "returncode": 0,
+      "streams": [
+        {
+          "filename": "stream-00.jsonl",
+          "sha256": "f4e2db6761ea83880126a4c10f2ad7570caf1665b0e553182d89d97718f14e62",
+          "reasoning_chars": 565,
+          "content_chars": 0,
+          "last_seconds": 29.219000000011874,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-01.jsonl",
+          "sha256": "1954187b07fb5f365000399a97b7e4748273fcafe9b1f78d3247b874cabe73fa",
+          "reasoning_chars": 69,
+          "content_chars": 0,
+          "last_seconds": 41.90700000000652,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-02.jsonl",
+          "sha256": "1474fd0824606b342a2d8194393f7804ae1e0adeefed5123294f22cb0f3cbcab",
+          "reasoning_chars": 266,
+          "content_chars": 0,
+          "last_seconds": 57.51600000000326,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-03.jsonl",
+          "sha256": "86535e60f715c87c1955db12b8d3816fdad182176d4ea5a624e01239bd015be7",
+          "reasoning_chars": 1127,
+          "content_chars": 0,
+          "last_seconds": 108.23500000001513,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-04.jsonl",
+          "sha256": "affc2d9fa98123df383760caa86d083f68330202722e44f02daa644c2adb29e5",
+          "reasoning_chars": 844,
+          "content_chars": 0,
+          "last_seconds": 143.71900000001187,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-05.jsonl",
+          "sha256": "94f340439de6bd8387b212103a685ab71a2f1df66d2a146a65bcf4ff68b950cc",
+          "reasoning_chars": 1615,
+          "content_chars": 0,
+          "last_seconds": 202.07800000000861,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-06.jsonl",
+          "sha256": "6caff7b061e1c312b521c0a93d58c04488754464000e4f9e80bc76d4e0daf72d",
+          "reasoning_chars": 23378,
+          "content_chars": 6763,
+          "last_seconds": 1142.4690000000119,
+          "malformed_lines": 0
+        }
+      ],
+      "manifest.json_sha256": "84bb9c6a9aa40c6f4a515d575814bc4a0ddf0f9f1c51a9bc1ce135fe84f4d123",
+      "result.json_sha256": "79c4810085ad23a1a783f24db3f536dbd29b3376e607dd846b22094d43fe7dc6",
+      "turns.json_sha256": "64c04d8df38dc8d7af0d5946e39f979c73dcc9837094a407bc8ee20ec8e3a2c2",
+      "tools.json_sha256": "82aa6f2e444a53abc33fb9115ec78fde0c99e2b3da7ff71bb7c1bfea79f1e81c",
+      "tool_calls": 6,
+      "successful_reads": 6,
+      "completed_turns": [
+        {
+          "phase": 0,
+          "first_event_seconds": 7.437999999994645,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 161,
+            "prompt_tokens": 190,
+            "total_tokens": 351,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 190,
+            "prompt_ms": 7363.683,
+            "prompt_per_token_ms": 38.756226315789476,
+            "prompt_per_second": 25.802305721199566,
+            "predicted_n": 161,
+            "predicted_ms": 21778.347,
+            "predicted_per_token_ms": 136.11466875000002,
+            "predicted_per_second": 7.346746748042906
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 36.40700000000652,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 50,
+            "prompt_tokens": 424,
+            "total_tokens": 474,
+            "prompt_tokens_details": {
+              "cached_tokens": 185
+            }
+          },
+          "timings": {
+            "cache_n": 185,
+            "prompt_n": 239,
+            "prompt_ms": 7106.721,
+            "prompt_per_token_ms": 29.73523430962343,
+            "prompt_per_second": 33.63013688028558,
+            "predicted_n": 50,
+            "predicted_ms": 5495.917,
+            "predicted_per_token_ms": 112.16157142857143,
+            "predicted_per_second": 8.91570960769604
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 45.735000000015134,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 118,
+            "prompt_tokens": 542,
+            "total_tokens": 660,
+            "prompt_tokens_details": {
+              "cached_tokens": 419
+            }
+          },
+          "timings": {
+            "cache_n": 419,
+            "prompt_n": 123,
+            "prompt_ms": 3768.211,
+            "prompt_per_token_ms": 30.635861788617884,
+            "prompt_per_second": 32.64148424809545,
+            "predicted_n": 118,
+            "predicted_ms": 11773.754,
+            "predicted_per_token_ms": 100.63037606837608,
+            "predicted_per_second": 9.937357277891147
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 68.40700000000652,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 343,
+            "prompt_tokens": 905,
+            "total_tokens": 1248,
+            "prompt_tokens_details": {
+              "cached_tokens": 537
+            }
+          },
+          "timings": {
+            "cache_n": 537,
+            "prompt_n": 368,
+            "prompt_ms": 10816.018,
+            "prompt_per_token_ms": 29.391353260869565,
+            "prompt_per_second": 34.02361201691787,
+            "predicted_n": 343,
+            "predicted_ms": 39821.242,
+            "predicted_per_token_ms": 116.43638011695906,
+            "predicted_per_second": 8.588381045473168
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 112.06299999999464,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 292,
+            "prompt_tokens": 1345,
+            "total_tokens": 1637,
+            "prompt_tokens_details": {
+              "cached_tokens": 1227
+            }
+          },
+          "timings": {
+            "cache_n": 1227,
+            "prompt_n": 118,
+            "prompt_ms": 3708.083,
+            "prompt_per_token_ms": 31.42443220338983,
+            "prompt_per_second": 31.82237290804979,
+            "predicted_n": 292,
+            "predicted_ms": 31656.212,
+            "predicted_per_token_ms": 108.78423367697594,
+            "predicted_per_second": 9.192508566723017
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 147.84400000001187,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 511,
+            "prompt_tokens": 1741,
+            "total_tokens": 2252,
+            "prompt_tokens_details": {
+              "cached_tokens": 1618
+            }
+          },
+          "timings": {
+            "cache_n": 1618,
+            "prompt_n": 123,
+            "prompt_ms": 4038.854,
+            "prompt_per_token_ms": 32.83621138211382,
+            "prompt_per_second": 30.454183290606693,
+            "predicted_n": 511,
+            "predicted_ms": 54242.708,
+            "predicted_per_token_ms": 106.35825098039216,
+            "predicted_per_second": 9.402185451360578
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 205.21900000001187,
+          "first_final_seconds": 957.2820000000065,
+          "finish_reason": "stop",
+          "usage": {
+            "completion_tokens": 8703,
+            "prompt_tokens": 2318,
+            "total_tokens": 11021,
+            "prompt_tokens_details": {
+              "cached_tokens": 2226
+            }
+          },
+          "timings": {
+            "cache_n": 2226,
+            "prompt_n": 92,
+            "prompt_ms": 2995.763,
+            "prompt_per_token_ms": 32.56264130434783,
+            "prompt_per_second": 30.71003947909097,
+            "predicted_n": 8703,
+            "predicted_ms": 937244.123,
+            "predicted_per_token_ms": 107.7044498965755,
+            "predicted_per_second": 9.2846674483762
+          }
+        }
+      ]
+    },
+    {
+      "settings": {
+        "name": "context-v1",
+        "scenario": "context-v1",
+        "max_tokens": 4096,
+        "deadline": 1200,
+        "temperature": 0.6
+      },
+      "completion": {
+        "status": "incomplete",
+        "scored": false,
+        "reason": "length",
+        "wall_seconds": 789.2820000000065
+      },
+      "returncode": 2,
+      "streams": [
+        {
+          "filename": "stream-00.jsonl",
+          "sha256": "bd071ccc26da4a6fdc9671059b22325e47cf31fb9d99f25dd3c639a93aab00a8",
+          "reasoning_chars": 291,
+          "content_chars": 0,
+          "last_seconds": 12.671999999991385,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-01.jsonl",
+          "sha256": "1d34188ce42e5c52f844136bd80b923e2c84aeaee6ff71209e68797067589554",
+          "reasoning_chars": 541,
+          "content_chars": 0,
+          "last_seconds": 34.937999999994645,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-02.jsonl",
+          "sha256": "cfb76e7b2f448b91e6d1284bacb5b6ad90f1f4e20ceeab427b6302580ca4a599",
+          "reasoning_chars": 567,
+          "content_chars": 0,
+          "last_seconds": 61.625,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-03.jsonl",
+          "sha256": "46ea502270a1ddc02dfeb33b19dfeef8cc840b65de00e9f680197fc6dec591c1",
+          "reasoning_chars": 40,
+          "content_chars": 0,
+          "last_seconds": 74.54699999999139,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-04.jsonl",
+          "sha256": "03d1fb62af3a06d67fa4318e0e604614efda5a76cb5563ba43a05e1ec1a75c3e",
+          "reasoning_chars": 397,
+          "content_chars": 0,
+          "last_seconds": 367.4219999999914,
+          "malformed_lines": 0
+        },
+        {
+          "filename": "stream-05.jsonl",
+          "sha256": "3a6340174541b4830b7b203efb7b796568402af82789e3cfef87739eb50227b5",
+          "reasoning_chars": 8154,
+          "content_chars": 0,
+          "last_seconds": 789.2820000000065,
+          "malformed_lines": 0
+        }
+      ],
+      "manifest.json_sha256": "81f630331a103caa0ceae1dd19cf5b9b67707c97baa848bb66628b5dfd5c1b9c",
+      "result.json_sha256": "95fa596e1d2e5cb3187f6d1adfd017a0360a25000b9a87911c90520b0076f8ee",
+      "turns.json_sha256": "691687858c3e32ce185dc608c104ccd0237d3a6325beecc0bf0383e14a562144",
+      "tools.json_sha256": "f8bd276ddfde637d6e40b627405bfeabcbc1dac9f4c5c625347e44257a793825",
+      "tool_calls": 5,
+      "successful_reads": 5,
+      "completed_turns": [
+        {
+          "phase": 0,
+          "first_event_seconds": 2.48499999998603,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 102,
+            "prompt_tokens": 138,
+            "total_tokens": 240,
+            "prompt_tokens_details": {
+              "cached_tokens": 79
+            }
+          },
+          "timings": {
+            "cache_n": 79,
+            "prompt_n": 59,
+            "prompt_ms": 2403.273,
+            "prompt_per_token_ms": 40.7334406779661,
+            "prompt_per_second": 24.549853470662715,
+            "predicted_n": 102,
+            "predicted_ms": 10189.883,
+            "predicted_per_token_ms": 100.8899306930693,
+            "predicted_per_second": 9.911791921457784
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 17.844000000011874,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 171,
+            "prompt_tokens": 313,
+            "total_tokens": 484,
+            "prompt_tokens_details": {
+              "cached_tokens": 133
+            }
+          },
+          "timings": {
+            "cache_n": 133,
+            "prompt_n": 180,
+            "prompt_ms": 5108.021,
+            "prompt_per_token_ms": 28.377894444444443,
+            "prompt_per_second": 35.238696160411244,
+            "predicted_n": 171,
+            "predicted_ms": 17094.932,
+            "predicted_per_token_ms": 100.55842352941177,
+            "predicted_per_second": 9.944467752196966
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 43.26600000000326,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 193,
+            "prompt_tokens": 567,
+            "total_tokens": 760,
+            "prompt_tokens_details": {
+              "cached_tokens": 308
+            }
+          },
+          "timings": {
+            "cache_n": 308,
+            "prompt_n": 259,
+            "prompt_ms": 8260.32,
+            "prompt_per_token_ms": 31.893127413127413,
+            "prompt_per_second": 31.354717492784783,
+            "predicted_n": 193,
+            "predicted_ms": 18362.244,
+            "predicted_per_token_ms": 95.6366875,
+            "predicted_per_second": 10.456238355181426
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 71.21900000001187,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 37,
+            "prompt_tokens": 822,
+            "total_tokens": 859,
+            "prompt_tokens_details": {
+              "cached_tokens": 562
+            }
+          },
+          "timings": {
+            "cache_n": 562,
+            "prompt_n": 260,
+            "prompt_ms": 9484.236,
+            "prompt_per_token_ms": 36.47783076923077,
+            "prompt_per_second": 27.413910830561363,
+            "predicted_n": 37,
+            "predicted_ms": 3329.193,
+            "predicted_per_token_ms": 92.47758333333334,
+            "predicted_per_second": 10.813431363096102
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 348.06299999999464,
+          "first_final_seconds": null,
+          "finish_reason": "tool_calls",
+          "usage": {
+            "completion_tokens": 162,
+            "prompt_tokens": 10042,
+            "total_tokens": 10204,
+            "prompt_tokens_details": {
+              "cached_tokens": 817
+            }
+          },
+          "timings": {
+            "cache_n": 817,
+            "prompt_n": 9225,
+            "prompt_ms": 273380.996,
+            "prompt_per_token_ms": 29.634796314363143,
+            "prompt_per_second": 33.744115849223114,
+            "predicted_n": 162,
+            "predicted_ms": 19346.652,
+            "predicted_per_token_ms": 120.16554037267079,
+            "predicted_per_second": 8.321853310846757
+          }
+        },
+        {
+          "phase": 0,
+          "first_event_seconds": 371.26600000000326,
+          "first_final_seconds": null,
+          "finish_reason": "length",
+          "usage": {
+            "completion_tokens": 4096,
+            "prompt_tokens": 10260,
+            "total_tokens": 14356,
+            "prompt_tokens_details": {
+              "cached_tokens": 10183
+            }
+          },
+          "timings": {
+            "cache_n": 10183,
+            "prompt_n": 77,
+            "prompt_ms": 3593.437,
+            "prompt_per_token_ms": 46.668012987012986,
+            "prompt_per_second": 21.427953238083763,
+            "predicted_n": 4096,
+            "predicted_ms": 418011.813,
+            "predicted_per_token_ms": 102.07858681318682,
+            "predicted_per_second": 9.796373864678317
+          }
+        }
+      ]
+    }
+  ],
+  "notes": {
+    "assessment": "Two completed workflows graded only after source review and normal engine stop. Router38/40 (12/12 frozen code behavior; all8 self-tests pass). TypeScript5/6 after strict compile; nonplain object validation fails. SQLite0/6 because migration aborts with foreign-key constraint failure, not six independent assertion failures. History initial phase4096-token reasoning-only output limit at789.282s, no second phase and no score. No complete public total or composite.",
+    "coverage": "Private and twelve direct-coding cases remain unrun on this new profile; historical19/36 is not transferred. API results are not editor validation.",
+    "scope": "Gemma26 official QAT MoE, CPU28/resident8, .6/topK20,64K GPUq8/native preserved thinking. Apps open, existing hardware unchanged, core0 excluded, no concurrent downloads/builds/grading during inference. Planned CPU24/publisher sampler is a separate unrun profile.",
+    "collector_status_caveat": "trial.status=collected means collection ended; nested context-v1 status=incomplete prevents treating the suite as all-complete."
+  },
+  "trial_sha256": "8a6e70eadacefb226b348251b52ce0dd0316740e77c73befe9f8bf34b1c83f47",
+  "exporter_sha256": "42b5da5776589eca73eaa2c3a90fb6252841b3f886b6a5035500e39b0ef9d931",
+  "raw_evidence": "local-data/2026-10-24-precision/gemma26-coverage-public-a",
+  "runtime_variant": {
+    "id": "b11562-noprefetch-v1",
+    "base_commit": "b2f036c0f138414dedc987446f1d9d802f920275",
+    "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009",
+    "stock_llama_sha256": "bbb5b3b15e0515905f401d729aa674ca27fbcaf9c1fcba5eff94d35cb2020467",
+    "patch_sha256": "26d8b3109cbcdb416ed8cd6f2b529c48e093ec9267a710c8546b18d49627ed32",
+    "compiler": "MSVC 14.50.35717, CMake 4.1.2-msvc8, Ninja, Release x64",
+    "unchanged_stock_binaries": {
+      "cublas64_12.dll": "e40202fe4223c1cd2d2dce7beec59e1ed61c7801bd827309183be9b50e358f4c",
+      "cublasLt64_12.dll": "2a896460bef60ed57ef32b0875812f355a6984e671d638bb632f5e8c1d7a831f",
+      "cudart64_12.dll": "d28e42265da7462162a54da6b7a99ea4fa2caf8139d862bb500db875d0b32dfc",
+      "ggml-base.dll": "e0af09585367c835030092722d974a65aaba54e62b4749a7e358a02f8e1aa5bf",
+      "ggml-cpu-alderlake.dll": "dbb2b0a1662c6a9df08f568babcc02b8c0f5be25165dbd3876ec80fb707a732e",
+      "ggml-cpu-cannonlake.dll": "539675328dcc137726c423623b158893e340cd55532a3cd954f62fa45f9fa378",
+      "ggml-cpu-cascadelake.dll": "740e1faa538d475572e11e5e0a7835441ce030ad1806ba015d67dcc2749e52da",
+      "ggml-cpu-cooperlake.dll": "cd091ecfa3023ee8167d9622e2389f4bd658cf6e649afa8302afa391a5df2b21",
+      "ggml-cpu-haswell.dll": "0018cfeb982f2a74a3e6636c59a94b6b97d003c23e18489a713bef2d6057bb13",
+      "ggml-cpu-icelake.dll": "d5487329de823ab2f960ef247ef7a38c600502fe1ba7578ecf5fa023c92de975",
+      "ggml-cpu-ivybridge.dll": "1ad7db6e46162df04084d2de06b515bba244eceaaddc9dea166d8978534f1234",
+      "ggml-cpu-piledriver.dll": "45bbd8bfb29e83f66fb2229fd18c514fa62974ecead4a7cfbcf646c85eda7ffa",
+      "ggml-cpu-sandybridge.dll": "139e96213e6a7f5e04ee3c9bf4a1e5c5d52105ab4bb3aa46aaae08a2feaeb31e",
+      "ggml-cpu-sapphirerapids.dll": "0c68e1d1140b4a6cba997d81722c9715a432251db1642bc4028805daa79eef3a",
+      "ggml-cpu-skylakex.dll": "ff2d08593f21c44bbfee2e6aec312b5a1bc56a5f651f0ea8e2db79feb103241b",
+      "ggml-cpu-sse42.dll": "5918f986ba8b650e74f3e49e1ddf5f882e9be21af6c4c814d18f19edc3854377",
+      "ggml-cpu-x64.dll": "b1a7d5b6656e57bed7f053d1aca63c9a69fb43de688a67aa352297858c929b63",
+      "ggml-cpu-zen4.dll": "2e5d63b61c7da0f393a66b289c0ecbed6a29988167cc852e1c33addac2c67ee6",
+      "ggml-cuda.dll": "b4b6ca3820bad0f08eb67eb308e86b4f40acaf8e240c75e4336ade6ff57dd01e",
+      "ggml-rpc-server.exe": "6ce316609ce309e654ea972e042d2e9bd827dce4176d53fd4d1eb464102644e9",
+      "ggml-rpc.dll": "fd91bca5f412919246c1ceccb86a7c06a4ae362f749b386034b0499de2b857db",
+      "ggml.dll": "7ea2828b78084ed8837b231b2a20cdd3bdda0d08de585c25a806951bf2a7ca0f",
+      "libomp.dll": "a12116ba72d1d6820407cf30be23da04ce79d6bb8a71a5ee71759c5a1faa6f1c",
+      "llama-batched-bench-impl.dll": "73b43f0d1ee3690ae3fcf9d197e31a48dbdbe5c56c45d8fa3751ab232ef00076",
+      "llama-batched-bench.exe": "47ddfeef8e8582a4e326501daeed5b437914260541a8c281a63fd7b11ba4d441",
+      "llama-bench-impl.dll": "72d65fb7ec8a79842cca08f3b563b2d353d8f8380c43048161158f878d64fdca",
+      "llama-bench.exe": "656fe4bb44563e57cb1b1603cd5f020c2d3162a01525b49d8e6adc748c9906ef",
+      "llama-cli-impl.dll": "f5fa264c0c2390d991790151492fdf646368da475015b0873cf820558d4c07d2",
+      "llama-cli.exe": "1203aa885df3c18518d90a2b1ee6563922442b72f5327cdf62dd796c46d69323",
+      "llama-common.dll": "089e484f47f08e825b115bcfd54055503233a45cf229e364dba3fee16a217fe6",
+      "llama-completion-impl.dll": "5b1af53fe8fe8a708720bd3f9276e1ba35249c4c1e256379a8182187116ad987",
+      "llama-completion.exe": "f9059e3433a4b80415da5c3ecb8050cd101886a7f97c6cc7cc58b6bbcfa1563a",
+      "llama-fit-params-impl.dll": "ac0c5915d3245c15169beb0df96713a8c5796f9d54e6225cc5ed51a7140596c1",
+      "llama-fit-params.exe": "ae2202568ee532b6922705f6839993a2b512884b891fa2e6a65b4f1ffc7fc630",
+      "llama-gemma3-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-gguf-split.exe": "573a9fb80d379f0cf43688899c077df00ce138646c5679a1680ec85abdaa894c",
+      "llama-imatrix.exe": "1bc53b83e1638f253039abc3a4ace5758de1d0c06240eae8de44e58a0e469cc0",
+      "llama-llava-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-minicpmv-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-mtmd-cli.exe": "f981773bbb19df265c05c8142a2b75cf4d6c4217f2867f11a88d9dd3e2973c11",
+      "llama-mtmd-debug.exe": "dd68b5e21e5cb4240d65f0bb9a0759c12bf4200236d8b4d1e77176c7f42fe947",
+      "llama-perplexity-impl.dll": "7dfcb2d29374d3fad7543e03a6bd4c8e8eeeb0113c3dfcf1ed92655530b36804",
+      "llama-perplexity.exe": "247b4b9cd4a7bbbf078ec3225bd832618179636d7dd843b3493dcc512cf31120",
+      "llama-quantize-impl.dll": "4791484e3d36f04b799e69bf93faa838fb7f9ba4a1fdf56e50da4b6b0125aa19",
+      "llama-quantize.exe": "b0908bd1adedae40afb78b0b5f344663a66ff6246fe79092b8ff3693af588338",
+      "llama-qwen2vl-cli.exe": "88f6856018951f7887a483b53e29abe9567784cd792c333403a1c35a10724a95",
+      "llama-results.exe": "a5d3d1f32b4759fba908fb362d9fc2b0e0bec31704ff6f668d0abf05dbda023c",
+      "llama-server-impl.dll": "17e98b38dd5ee5290af398d87c346cb9d49cca313ba919409ab32e6128b87ed7",
+      "llama-server.exe": "2f5639beed7f301ab9cbceb81b1023cdfad764688143454dd66ab2db2eef6145",
+      "llama-tokenize.exe": "9596bc9f144dab9cd60cc94f4fee5ae2459f780d3165b2ae3c35884bd895e4a8",
+      "llama-tts.exe": "0b8848937e3081dfcd092fc1dd5c83efa9748b3ef527481230fc5c021f87ffc5",
+      "llama.exe": "1a9b627bca3b26c68a27f3d161df6e73b9fe59d8fcf0d986cd99932a89739fe9",
+      "mtmd.dll": "004fc656ff4af52b69d12e1ab7f68e1ea9d8c7a4abfa3647c0d72f18804420dc"
+    },
+    "scope": "Only llama.dll rebuilt; all original ggml/CUDA/CPU backends retained",
+    "opt_in_environment": {
+      "LLAMA_LAB_NO_MMAP_PREFETCH": "1"
+    }
+  },
+  "resident_limit": {
+    "pid": 44196,
+    "requested_maximum_gib": 8.0,
+    "maximum_bytes": 8589934592,
+    "minimum_bytes": 204800,
+    "flags": 6,
+    "note": "Resident working-set cap, not total commit or GPU allocation cap."
+  }
+}

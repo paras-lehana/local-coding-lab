@@ -1111,3 +1111,40 @@ earlier18.211GiB snapshot. The new fixed10GiB profile admits with16.5GiB load
 gate and unchanged6.5GiB reserve; controller77704 collects the same public
 workflow. No download, grading or build overlaps inference. Gemma/K2 resident8
 profiles remain unrun. This checkpoint is progress, not campaign completion.
+
+22:43-22:56IST: second plainQ6 resident10 router1200.031s deadline, seven
+successful reads, first visible824.609s/6989partial characters. Normal stop,
+hardware clear. Original18GiB profile still rejects fresh16.673GiB RAM.
+Fresh fullSHA then exact model/checkpoint retirement22:46, archived evidence;
+later suites explicitly unrun after primary workflow failure. Q4/Gemma retained.
+Gemma26 resident8 public starts22:48 with15.093GiB RAM/12.553GiB commit;
+smoke2.141s, six required file reads delivered, router still collecting.
+Checkpoint1664022 CI40113657913 passes both platforms; prior timeout retained.
+Recovered project/shared instructions and logging/source policies before edits.
+
+23:19IST: Gemma26 CPU28/resident8 public router completes1031.860s after six
+correct required reads. All visible turns/source reviewed; preliminary non-code
+rubric26/28 (misplaced root-TypeError citation and missing nested-list/empty-dict
+self-test coverage). Code score awaits isolated execution AFTER engine exit.
+TS/SQL has delivered all six source files and is collecting; history not started.
+A separate CPU24/publisher1/.95/64 follow-up is frozen if qualification fails;
+estimated1.595GiB additional GPUweights, existing2.7GiB device headroom, unchanged
+resident/stop limits. Native baseline remains untouched. K2 standalone plan is
+indexed; no K2 load yet. Flint's original trace confirms six correct reads then
+26unavailable optional/guessed paths; recovery diagnostic remains unrun.
+
+23:42IST: Gemma26 public collection ends normally, no hardware event. Router
+38/40 after isolated6/6 behavior+8/8 self-tests; TS strict compile succeeds but
+nonplain-object group fails5/6; SQLite aborts withFKerror,0/6. History4096-token
+reasoning-only limit789.282s before first acknowledgement, no second phase or
+full public score. MinRAM6.394GiB/commit4.837GiB/VRAM2143MiB, GPU58.5C.
+42offline tests pass20.583s, fourPSparses, audit301/0. CPU24 publisher follow-up
+rejects6313MiB VRAM before load; separateCPU26 saves0.798GiB GPUweights versus
+that plan and preserves stop floors. Reports/grades and external leaderboard
+updated. No promotion; private/directcoding on this profile remain unrun.
+
+23:44IST: CPU26/publisher Gemma public controller63408 starts after fresh
+16.104GiB RAM/11.275GiB commit/6263MiB VRAM admission; full hash/load/smoke
+remain launch gates. Raw gemma26-cpu26-publisher-public-c. CPU24 rejection
+preserved.42offline checks pass18.770s (19.141s command),4PSparses,audit302/0.
+No download, grading or build overlaps the new inference. Not a promotion.

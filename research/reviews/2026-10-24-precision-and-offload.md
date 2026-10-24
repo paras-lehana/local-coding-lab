@@ -515,3 +515,46 @@ scalars. These are stored spans including alignment, not resident allocations.
 The b11838 enum and exact header hashes are saved in the local
 flint-weight-precision-named receipt. NVFP4 is also a differently trained
 quantized checkpoint, so it is not just another point on a single-bit ladder.
+
+## KV advice must match the runtime revision
+
+An upstream [mixed-KV fallback report](https://github.com/ggml-org/llama.cpp/issues/28455)
+describes older CUDA builds sending unsupported quantized attention to CPU.
+This is a useful diagnostic lead, not evidence that our current latency has
+that cause. Direct inspection of both pinned local b11562/b11838 `fattn.cu`
+files finds their type filter already accepts q4_0,q4_1,q5_0,q5_1 andq8_0;
+the reported old type-equality/ALL_QUANTS filter is absent there. The
+[pinned b11838 source](https://github.com/ggml-org/llama.cpp/blob/4231b23dc2c46661d01157aac5245bdcf03ce4b1/ggml/src/ggml-cuda/fattn.cu)
+still checks head dimensions, layout and other conditions. Accepted types
+alone therefore do not prove every attention operation executes onGPU.
+Current experiments keep matching q8/q8, or matching q4/q4 forK2, and verify
+loader allocations. No kernel profile, build change or speed improvement is
+claimed from this source review.
+
+The [K2 author's integration explanation](https://github.com/ggml-org/llama.cpp/issues/29424)
+confirms value experts mix into ordinary attention values; it does not multiply
+the stored KV cache by the number of experts. Its extra value-projection
+weights do need explicit placement. Local K2 metadata has48blocks,8KV heads
+and128-dimensional keys/values. This explains why its64K cache budget differs
+greatly from hybrid Qwen; reuse the architecture-specific estimate and then
+measure the actual buffers. The Windows tokenizer also needs the integrated
+splitter, another reason to pin the supported runtime rather than copy an
+old generic command.
+
+## Tool recovery is another independent lever
+
+Re-reading the original Flint GPU-KV TS/SQL trace shows all six required files
+were delivered successfully before its26unavailable-path requests. The latter
+include package.json, README.md, tsconfig.json, guessed tests/source paths and
+even backups. Some repeat. This is not evidence that the tool parser could not
+read the supplied paths or that required files never reached the model. Its
+recovery/exploration behavior still prevents a final response.
+
+After the new quant's unchanged native workflow, a useful separate diagnostic
+would make an unavailable-file response explicitly advise finishing from the
+already delivered contract and reporting missing optional material. Keep the
+read allowlist, source bytes, question, deadline and original failure unchanged;
+identify the changed tool feedback and never transfer its score to the native
+workflow. Returning invented file contents or handing it the private rubric is
+not an acceptable repair. This is a predeclared unrun recovery experiment,
+not a discovered template fix or proof that more weight precision is required.

@@ -1620,3 +1620,35 @@ Previous CI40110363216 Windows has a20s mocked subprocess timeout, Ubuntu
 passes; automatic approval review rejects an unchanged failed-job rerun.
 No CI success claimed for that checkpoint. Campaign and production restoration
 remain active work; no final A–G or model promotion yet.
+
+22:56IST progress: plainQ6 resident10 also misses1200seconds after seven
+successful source reads; first visible824.609seconds, incomplete atcancel.
+No quality grade. Original18GiB profile capacity-rejected at actual snapshots.
+Fresh completeSHA and exact retirement22:46 preserve all evidence/Q4/Gemma.
+Gemma26 resident8 public trial begins22:48; smoke2.141seconds, collecting.
+CI40113657913 for1664022 passes Windows/Ubuntu; earlier Windows timeout stays
+recorded. No inference overlaps downloads/grading; campaign still active.
+
+23:19IST: Gemma26 first public workflow completes1031.860s. Six source reads
+and all visible turns reviewed; code not executed while inference continues.
+TS/SQL collecting with six valid reads, history pending. Saved model-specific
+report and a separately frozen GPU24/publisher-sampling follow-up if needed;
+its future private/coding requests would override topK64 with20 unless explicitly
+changed, so no publisher64 claim is inherited. Added K2 report/placement plan.
+Research checked current CUDA source against historical mixed-KV warnings and
+re-read Flint's actual failed-tool trace. No model promotion or final closeout.
+
+23:42IST: Gemma26 CPU28/resident8 public router38/40; TS5/6 plus SQLiteFK
+abort0/6. History initial-phase4096-token reasoning-only limit789.282s is
+unscored, so no complete public total. All code reviewed before WSL isolation,
+after engine exit. Normal stop, no new hardware event. MinRAM6.394GiB,
+commit4.837GiB/VRAM2143MiB;42offline tests pass,4PSparses,audit301/0.
+CPU24/publisher load gate rejects6313MiB freeVRAM, no request. A separately
+frozenCPU26 plan reducesGPUallocation by0.798GiB and keeps stop floors; it is
+not yet tested. Campaign continues; original Q4 production remains preserved.
+
+23:44IST: CPU26/publisher Gemma public collection launched, controller63408,
+fresh16.104GiB RAM/11.275GiB commit/6263MiB VRAM. Smaller two-block GPU move
+and public1/.95/64 sampler are explicit joint changes; original38/40 router,
+5/12 TS/SQL and incomplete history remain.42offline checks pass18.770s,
+fourPowerShell parses and public audit302/0. No new score or campaign closeout.

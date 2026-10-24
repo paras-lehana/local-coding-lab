@@ -545,3 +545,12 @@ limits, plus retained preview metadata; no external score enters our table.
 A CPU49/cache2048/resident7 Q3XL calibration is frozen separately to reduce
 the predicted GPU footprint and host residency. It still requires a measured
 smoke and fresh admission; current Q3XL download is checkpointed, not complete.
+
+24October23:14IST trace review: original native TS/SQL had all six required
+sources before26failed optional/guessed paths (package.json, tests, README,
+tsconfig, alternative source paths and backups). The parser/read tool delivered
+the initial files correctly. This refines the diagnosis to failure to finish
+after sufficient evidence and poor unavailable-file recovery, not absent initial
+context. The new quant must first run the unchanged workflow. A later explicitly
+labeled tool-feedback recovery diagnostic is planned if that failure repeats;
+no repaired transcript, synthesized file or retroactive pass is permitted.

@@ -13,9 +13,12 @@ not independently human-reviewed. It is not a controlled universal ranking.
 | Qwen3.6 Q4, historical2GiB expert cache |27 |Separate historical cases |Not collected |Private402.703s; strict TypeScript and SQL defects; different placement/non-mapped profile, not evidence that expert caching intrinsically lowers intelligence |
 | Qwen3.6 Q5 | 28 | Separate historical cases | Not comparable | Lower private score; retired |
 | Qwen3.6 UD-Q6_K_XL | 28 | Historical completed cases | Not comparable | Private 2099.7 s, exceeds current gate; retired. Plain UD-Q6_K below is a different artifact |
-| Qwen3.6 plain UD-Q6_K, CPU40/cache2GiB/resident7 |Unrun after gate failure |Router1200.016s deadline |Unrun after gate failure |Seven successful reads; first visible answer1080.828s, incomplete at deadline. Resource/hardware checks clear; no correctness grade. Larger-residency follow-up pending |
+| Qwen3.6 plain UD-Q6_K, CPU40/cache2GiB/resident7 |Unrun after gate failure |Router1200.016s deadline |Unrun after gate failure |Seven successful reads; first visible answer1080.828s, incomplete at deadline. Resource/hardware checks clear; no correctness grade. Exact artifact retired after the follow-up below |
+| Qwen3.6 plain UD-Q6_K, CPU40/cache2GiB/resident10 |Unrun after gate failure |Router1200.031s deadline |Unrun after gate failure |Seven successful reads; first visible824.609s and6989partial characters. Earlier visible output is not completion or a pure residency speed comparison. Original18GiB profile capacity-rejected; exact file retired22:46IST |
 | GLM-4.7-Flash UD-Q4_K_XL, f16 KV | 27 | Separate historical cases | Not comparable | Private 942 s, below Qwen on this audit; retired |
 | Gemma 4 26B-A4B QAT Q4_0 | 19 | Separate historical cases | Not comparable | Retained lower-memory fallback; private 400 s |
+| Gemma 4 26B-A4B QAT, CPU28/resident8,24October |Unrun on new profile |Router38/40; TS5/6; SQL0/6; history incomplete |Unrun on new profile |Router1031.860s,TS/SQL1142.469s. Python groups6/6 andself-tests8/8 pass; TS prototype validation and SQLite FK error remain. History4096-token reasoning-only limit789.282s; no full total |
+| Gemma 4 26B-A4B QAT, CPU26/resident8/publisher sampler |Unrun |Collecting |Unrun |CPU24 plan capacity-rejected beforeload; CPU26 moves two expert blocks toGPU, public1/.95/64, unchanged64K GPUq8 and stopfloors. Started23:44; no score inherited |
 | Gemma 4 31B dense QAT Q4_0 | 26 | Historical completed cases | Not comparable | Private 7234 s; fails current latency gate; retired |
 | Qwen3-Coder-Next 80B Q4 | Unscored | Separate historical cases | Not comparable | Private tool-loop limit after 4075 s; retired |
 | Qwen3-Coder-30B UD-Q4_K_XL | Deadline | Separate historical cases | Not comparable | Public cases complete, private 1200 s deadline |
@@ -30,7 +33,7 @@ not independently human-reviewed. It is not a controlled universal ranking.
 | Qwen3.6 UD-IQ3_S,38 CPU expert blocks |29 |52 |Two reasoning-only16K output limits; later cases interrupted/unrun |24October: private638.6s, all public workflows complete; alias, TS validation and SQL migration bugs; exact smoke punctuation fails. Separate capped controls appear below |
 | Qwen3.6 UD-IQ3_S,4096 reasoning ceiling |Not collected on this variant |Not collected on this variant |Two completed passes; deliberately stopped before full suite |Intervals105/105 and TTL34/34; native scores above cannot be transferred. Redundant interval work and extra NaN TTL finding remain |
 | Qwen3.6 UD-IQ3_S,4096 ceiling plus1536MiB GPU expert cache |Not collected on this variant |Not collected on this variant |6/12; all twelve complete |Median134s,31–37tok/s. Interval,CSV,money,strictTS,worker-pool and deep-merge defects. Worker-pool lexical false alarm corrected by hash-scoped unchanged-source recheck; six task passes unchanged. Extra NaN TTL fails |
-| K2 Horizon MoVA 36B-A4B Q4 | Not run | Not run | Not run | Downloaded, queued; no demonstrated apps-open fit |
+| K2 Horizon MoVA 36B-A4B Q4 | Not run | Not run | Not run | Downloaded, queued; no demonstrated apps-open fit. [Qualification report](tasks/2026-10-24-k2-mova/2026-10-24-k2-mova-v0.9.0.md) |
 | Nemotron 3.5 Bolt 74B-A9B 24GB | Not run | Not run | Not run |Verified file rotated off disk24October for Flint Q4; quality still queued |
 | Recursive Flint UD-IQ3_XXS, uncapped reasoning | Not run after gate failure | Router deadline | Not run after gate failure | 1200.031 s, seven reads, zero final text; clean shutdown, unscored |
 | Recursive Flint UD-IQ3_XXS, CPU KV, 2048 cap | Not run after gate failure | Router deadline | Not run after gate failure | 1200.016 s; visible planning after cap, no finished answer |
@@ -62,6 +65,13 @@ larger profiles: the7GiB Q4 coding calibration hits its deadline without code,
 while the7GiB Q6 smoke succeeds. The earlier13.213GiB capacity rejection remains
 historical; Q6's fresh launch has16.98GiB available RAM. All runtime stop floors
 remain unchanged.
+
+At22:46IST the exact plainQ6 file and its completed download checkpoint are
+retired after a fresh full SHA check. The second10GiB-resident router attempt
+also misses1200seconds. Neither attempt has a correctness score; remaining
+suites are explicitly unrun after the principal workflow fails qualification.
+Gemma26's separate smaller-residency public trial starts22:48IST. Full details
+and limitations are in its [report](tasks/2026-10-24-gemma26-coverage/2026-10-24-gemma26-v0.9.0.md).
 
 - Added the twelve-task executable suite and a consistent 50/30/20 scorecard;
   regraded the public baseline as 52/60 and LFM as 48/60.

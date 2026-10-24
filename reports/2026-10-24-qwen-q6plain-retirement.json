@@ -1,0 +1,20 @@
+{
+  "retired_at": "2026-10-24T17:16:30.721560+00:00",
+  "model": "Qwen3.6-35B-A3B plain UD-Q6_K",
+  "filename": "Qwen3.6-35B-A3B-UD-Q6_K.gguf",
+  "bytes": 29308320736,
+  "sha256": "4fe53b148b46f9b88830e2a3055c5b15c3a4d1e3ddc9a1384a108d8b9d59f043",
+  "revision": "a483e9e6cbd595906af30beda3187c2663a1118c",
+  "reason": "Two native router controls exceed1200seconds; original18GiB profile still capacity-rejected. Preserve incomplete evidence; no quality-score inference.",
+  "preserved_reports": [
+    "reports/2026-10-24-qwen-q6plain-install.json",
+    "reports/2026-10-24-qwen-q6plain-resident7-public.json",
+    "reports/2026-10-24-qwen-q6plain-resident10-public.json"
+  ],
+  "checkpoint_cleanup": "Exact completed .ranges.json archived under ignored evidence, then removed with the exact model file so a future range download cannot reuse stale completed-range metadata. Partial Flint download untouched.",
+  "preserved_baselines": [
+    "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+    "gemma-4-26B_q4_0-it.gguf"
+  ],
+  "scope": "Two public router attempts fail completion. Later suites and original larger18GiB profile remain unrun for documented reasons, not inferred quality failures."
+}

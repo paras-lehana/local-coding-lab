@@ -264,7 +264,7 @@
       "bytes": 29308320736,
       "sha256": "4fe53b148b46f9b88830e2a3055c5b15c3a4d1e3ddc9a1384a108d8b9d59f043",
       "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
-      "status": "full-sha-verified-resident7-public-deadline-resident10-public-collecting-20261024",
+      "status": "resident7-and-resident10-public-deadlines-exact-file-retired-20261024",
       "thinking": "enable_thinking and preserve_thinking; no native xhigh. Do not transfer the larger XL artifact result."
     }
   }
