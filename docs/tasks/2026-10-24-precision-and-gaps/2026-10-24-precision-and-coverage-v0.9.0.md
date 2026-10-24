@@ -20,13 +20,13 @@ isolated grading. No cloud inference or exposed historical key is used.
 
 | Candidate / gap | Next action | State |
 |---|---|---|
-| Qwen Q4 twelve coding tasks | Original native64K/.6/seed73, then separately declared cache/general32K control |All12 attempted across original+resume:9frozen passes,2failures,TTL output limit. OriginalRAM interruption preserved; two extraJS checks fail. Cached/general32K next |
-| Plain Qwen Q6_K higher precision |Distinct artifact pinned/header inspected; full download then cache/general32K quality and long-file work under gates |Download pending; old Q6_K_XL result does not transfer |
+| Qwen Q4 twelve coding tasks | Original native64K/.6/seed73, then separately declared cache/general32K control |All12 attempted across original+resume:9frozen passes,2failures,TTL output limit. OriginalRAM interruption and two extraJS defects retained. Separate resident7/cache/general32K interval deadline; original larger-resident profile unrun |
+| Plain Qwen Q6_K higher precision |Distinct artifact pinned/header inspected; full download then cache/general32K quality and long-file work under gates |Downloading; full hash/load pending. Old Q6_K_XL result does not transfer |
 | Qwen IQ3_S interrupted public / missing private and coding |38 CPU expert blocks; conservative stop floors | Native public52/60, private29/36; separate cap4096/cache1536 coding6/12, all twelve complete; no mixed composite |
-| Qwen IQ4_XS interrupted public / missing private and coding |CPU35 with bounded resident memory after fresh RAM stop |Public55/60; private29/36 in725.4s; native interval1200s deadline and presence1.5 control16K output limit; subsequent unchanged coding cases interrupted/unrun |
+| Qwen IQ4_XS interrupted public / missing private and coding |CPU35 with bounded resident memory after fresh RAM stop |Public55/60; private29/36 in725.4s; native interval1200s deadline and presence1.5 control16K output limit; subsequent unchanged coding cases interrupted/unrun. Exact weights retired21:07 after fresh full hash |
 | Gemma26 fallback missing latest public/coding | Collect missing suites under its recorded template and sampling | Pending |
 | K2 MoVA / Nemotron Bolt downloaded but untested | Verify identity; calculate placement and gates; trial if capacity permits | Pending |
-| Flint higher precision | Pinned Unsloth Q4 first, Q3_K_XL fallback; isolated opt-in mmap build | Both Q4 CPU44 and CPU48/cache1536 router trials deadline; exact Q4 file retired after fresh full hash. Q3XL/NVFP4 still queued |
+| Flint higher precision | Pinned Unsloth Q4 first, Q3_K_XL fallback; isolated opt-in mmap build | Both Q4 CPU44 and CPU48/cache1536 router trials deadline; exact Q4 retired after fresh full hash. Q3XL partial download checkpointed, NVFP4 still queued |
 | Flint CSV / history output limits | Separate 32768-output diagnostic with unchanged 1200-second deadline | Original8K history diagnostic already passes8/8 separately; original CSV32K diagnostic pending. Q4 router deadlines prevent full-workflow qualification |
 | Flint file-driven TS/SQL | Check template/parser provenance, rerun native tool workflow before trying a separately labeled scaffold change | Pending |
 | Old dense,80B,Bonsai,LFM gate failures | Reopen only where a specific runtime/template/budget change addresses the measured failure; otherwise record unresolved quality coverage and exact gate | Audit recorded below; unchanged configurations remain excluded, missing newer scores explicitly identified |
@@ -542,3 +542,52 @@ audit283files/zero findings and whitespace check pass. An initial parse command
 named a nonexistent install.ps1; corrected enumeration checks install-widget.ps1.
 This is an in-progress checkpoint, with cached Qwen, higher Q6, other candidates
 and production restoration still pending. No completed-campaign claim.
+
+21:02IST recovery: Q6 range downloader57548 remains active after a bounded
+DNS-failure restart (4 to8 workers); completed ranges are flushed, with full
+SHA256 still required before publishing the final file. Prior checkpoint
+1a2ba5d passes Windows/Ubuntu CI40105882029. No inference engine is running.
+Desktop availableRAM falls to13.213GiB, commit12.621GiB, VRAM6243MiB.
+Original cache profiles reject16/18GiB admission. Separate resident7 calibration
+profiles preserve those originals, cap resident pages at7GiB, increase reserve
+to6.5GiB and retain every runtime stop floor;13.5GiB admission also rejects
+this snapshot. No load is attempted. This is a reduced-residency hypothesis,
+not a fit claim; fresh checks follow download/hash. Source inspection also
+confirms the native cache's32-token small-batch boundary, so ubatch32 is a
+possible distinct prefill experiment, not a measured speedup. No apps closed,
+clock changes, system-cache flush or concurrent grading.
+
+21:07–21:17IST: IQ4 exact-file retirement follows fresh full hash; no baseline
+weights removed. FlintQ3XL download starts. At21:11 RAM recovers13.7GiB;
+both bounded downloaders are explicitly stopped through verified child PIDs
+76200/80032, preserving252/437 Q6 ranges and10/276 Flint ranges. Their wrappers
+57548/81572 are not inference engines. Resume from checkpoints only after
+inference stops; final file length is not completed-download evidence.
+
+Q4 resident7 smoke completes6.187s with READY. (exact-format miss), normal
+owned stop and no hardware event. MinRAM6.870GiB/commit6.404GiB/VRAM1193MiB;
+maxresident7GiB/private6.455GiB, GPU52.22C. Actual weights1921.34MiB GPU,
+expertcache2046.59MiB, attentionKV680MiB, recurrent62.81MiB, compute408MiB.
+The CPU_Mapped20699.72MiB value is a mapped span, not resident RAM.
+Receipt reports/2026-10-24-qwen-resident7-smoke.json. A fresh same-profile
+interval/TTL coding diagnostic starts21:12 (controller44780), native reasoning,
+temperature1, presence1.5,32K output and1200s each. Early generation4–7tok/s
+is slower than unconstrained cached runs; memory remains above stop floors.
+No answer/quality score yet. Downloads, hashing and isolated grading stay off.
+
+Research additionally inspects five pinned ik_llama.cpp source files' memory
+paths: Windows device buffers disable bulk prefetch, and a separate pinned
+allocator cap exists. No engine installation or local speed claim. New community
+Flint recipe reviews distinguish creator-reported coding/perplexity tradeoffs,
+two-GPU fork-specific KV settings and preview metadata from our measurements.
+
+21:33–21:37IST: fixed7GiB Q4 cache/general32K interval reaches1200.016s,
+26016 reasoning characters and no visible code. Last intermediate7929tokens,
+6.69tok/s; TTL unrun after abort. Normal stop/no hardware event, minRAM5.700,
+commit5.234GiB, VRAM504MiB, peak53.88C. Report and hash-linked incomplete
+review saved; no grader execution or score. Both downloads resume after
+engine exit: Q6 wrapper21792, FlintQ3XL18004. Postflight RAM15.578GiB.
+42offline tests pass19.594s with captured subprocess exit0, four PowerShell
+scripts parse, public audit289files/zero findings. Original PowerShell stderr
+pipeline returned1 despite42/OK; preserved log and direct capture retry resolve
+the wrapper ambiguity. No inference overlap. This remains in progress.

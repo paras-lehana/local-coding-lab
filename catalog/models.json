@@ -206,7 +206,7 @@
       "bytes": 17730509792,
       "sha256": "649d7508507b84638732c4f52c24c8b15843c6dca2f3ff793ae07c14a67ebbb3",
       "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
-      "status": "bounded64-public55-private29-native-coding-deadline-and-presence-output-limit-20261024",
+      "status": "bounded64-public55-private29-native-coding-deadline-presence-output-limit-exact-file-retired-20261024",
       "thinking": "enable_thinking and preserve_thinking; no native xhigh"
     },
     "qwen36-iq3s": {

@@ -1060,3 +1060,27 @@ audit283files/zero findings and whitespace check pass. An initial parse command
 named a nonexistent install.ps1; corrected enumeration checks install-widget.ps1.
 This is an in-progress checkpoint, with cached Qwen, higher Q6, other candidates
 and production restoration still pending. No completed-campaign claim.
+
+21:02IST: Q6 download resumed after DNS failure with8 bounded workers;
+full hash pending. CI40105882029 passes both platforms. Fresh RAM13.213GiB
+rejects original Q4/Q6 cache admission16/18GiB and the separately frozen
+resident7 calibration13.5GiB. New profiles use stronger6.5GiB reserve and
+unchanged stop floors; no load or quality result. No apps closed. Cache source
+confirms small-batch32 threshold; a smaller physical batch remains untested.
+
+21:07–21:17IST: exact testedIQ4 retired after full hash for higherFlintQ3XL
+download. At21:11 both bounded downloaders stop through verified child PIDs;
+252/437 Q6 and10/276 Flint ranges remain resumable, full hashes pending.
+RAM recovers13.7GiB. Q4 fixed7GiB-resident smoke answers6.187s with READY.
+(format miss), minRAM6.870/commit6.404GiB/VRAM1193MiB, normal stop/no hardware
+event. Native32K-output interval/TTL diagnostic starts fresh21:12, controller44780;
+early4–7tok/s, no quality score yet. Source-level ik Windows prefetch/cap
+findings and community Flint bit-allocation evidence added to the research review.
+
+21:33–21:37IST: resident7 interval1200.016s deadline/no visible code; TTL
+unrun after abort. Memory guards clear/no hardware error. New report preserves
+last intermediate6.69tok/s,7GiB resident,6.432GiB private, minVRAM504MiB.
+Downloads resume (Q6 wrapper21792; FlintQ3XL18004) only after engine exit.
+42tests pass19.594s/direct subprocess exit0,4PowerShell parses, audit289/0.
+First PowerShell stderr-pipeline exit1 despite42/OK is retained; direct capture
+retry resolves test status. No campaign closeout or promotion.

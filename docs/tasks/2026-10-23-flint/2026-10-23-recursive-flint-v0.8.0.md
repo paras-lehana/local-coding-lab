@@ -528,3 +528,20 @@ router outcomes, runtime, original profiles and raw evidence are retained.
 No code/private quality score is claimed for this rejected configuration.
 Q3 XL and the publisher's distinct distilled NVFP4 remain separately queued.
 [Retirement receipt](../../../reports/2026-10-24-flint-q4xl-retirement.json).
+
+21:07IST: pinnedQ3XL range download starts after exact tested QwenIQ4
+retirement. It runs alongside the still-active QwenQ6 download, with no
+inference engine; both require final full hashes. The intermediate precision
+is a new test of usable quality between smallerIQ3XXS and the slowQ4XL,
+not an assumed improvement. No liveQ3XL result yet.
+
+Header review confirms theQ3XL label describes a mixed recipe dominated by
+IQ3_S6.123GiB,IQ3XXS4.594GiB,IQ4XS4.395GiB andQ8_01.555GiB; it contains
+noQ3_K tensor. Q4XL instead mostly stores Q5_K11.305GiB andIQ4XS8.769GiB.
+The official NVFP4 artifact stores20.668GiB NVFP4 plus0.619GiB BF16 and small
+F32 tensors, with its separate training recipe. These spans are not resident
+RAM. The research review records community precision comparisons and their
+limits, plus retained preview metadata; no external score enters our table.
+A CPU49/cache2048/resident7 Q3XL calibration is frozen separately to reduce
+the predicted GPU footprint and host residency. It still requires a measured
+smoke and fresh admission; current Q3XL download is checkpointed, not complete.

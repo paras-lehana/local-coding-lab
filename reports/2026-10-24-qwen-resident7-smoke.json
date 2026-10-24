@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-24",
+  "status": "loaded-and-short-response-only",
+  "profile": "qwen36-q4-cache2048-resident7-calibration",
+  "profile_sha256": "af33568defc00c445d23122f8956d543542307e1e52592634628771865e4af0e",
+  "runtime": "b11562-noprefetch-v1",
+  "runtime_llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009",
+  "preflight": {
+    "time": 1792856489.6546867,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 13.729393005371094,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 13.070152282714844,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6583.0,
+    "gpu_c": 50.62,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "postflight": {
+    "time": 1792856524.0644073,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 13.843441009521484,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 12.903942108154297,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6658.0,
+    "gpu_c": 50.84,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "resident_cap": {
+    "pid": 79228,
+    "requested_maximum_gib": 7.0,
+    "maximum_bytes": 7516192768,
+    "minimum_bytes": 204800,
+    "flags": 6,
+    "note": "Resident working-set cap, not total commit or GPU allocation cap."
+  },
+  "smoke_seconds": 6.187000000005355,
+  "smoke_exact_ready": false,
+  "smoke_visible_text": "READY.",
+  "smoke_controls": {
+    "reasoning_budget_tokens": 0,
+    "temperature": 0,
+    "seed": 73,
+    "max_tokens": 64
+  },
+  "native_coding_controls_are_separate": true,
+  "server_outcome": {
+    "status": "requested_stop"
+  },
+  "hardware_check": "No new event since2026-10-24T15:41:20Z checked after normal stop",
+  "allocations_mib": {
+    "cpu_mapped_model_span_not_rss": 20699.72,
+    "gpu_model": 1921.34,
+    "gpu_expert_cache": 2046.59,
+    "gpu_attention_kv": 680,
+    "gpu_recurrent_state": 62.81,
+    "gpu_compute": 408,
+    "host_compute": 20.27
+  },
+  "resource_minima": {
+    "ram_free_gib": 6.870204925537109,
+    "commit_available_gib": 6.4041748046875,
+    "vram_free_mib": 1193.0
+  },
+  "resource_maxima": {
+    "gpu_c": 52.22,
+    "process_working_set_gib": 6.999996185302734,
+    "process_private_gib": 6.455451965332031
+  },
+  "raw_root": "local-data/2026-10-24-precision/qwen-q4-resident7-smoke-a",
+  "evidence_sha256": {
+    "trial.json": "09144f12880f72c1288ff2cb59c962bf7bcf3de0d4d8a1db54cbade0cb524b48",
+    "smoke.json": "9ec8ea8a104954da2b73b1d6d79534a72093878a0caa7b101261162fd290f03f",
+    "launch.json": "8f0ce45356c6edd7e56cef90e9580b4c99fc78734d3a066787f9ea5c7d77ed6e",
+    "memory.jsonl": "1ec5fc67583922457bc6776fad484dc71a5f847fcd7ca2046af6f3fc9796c242",
+    "server.log": "0b164b246e23cdd655b367d80193ac07382380ba0fc85079d91d28396fa463f7"
+  },
+  "limitations": [
+    "Short transport/load calibration, not code quality, native reasoning throughput or editor proof.",
+    "Downloads were stopped using verified owned child PIDs and remain resumable; no inference/download overlap.",
+    "Lower admission threshold belongs only to the distinct fixed7GiB-resident calibration. Original profiles and runtime stop floors preserved."
+  ]
+}

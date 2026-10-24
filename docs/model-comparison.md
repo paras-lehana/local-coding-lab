@@ -9,6 +9,7 @@ not independently human-reviewed. It is not a controlled universal ranking.
 |---|---:|---:|---:|---|
 | Qwen3.6 35B-A3B UD-Q4_K_M, mapped64 | 31 | 52 | Not collected | Retained leader on available components; private 699.7 s; SQL failure and aliasing diagnostics remain |
 | Qwen3.6 Q4 CPU37/native64K,24October |Unrun |Unrun |9 frozen task passes;2 failures;1 output limit |All12 attempted across original+JSresume. Original RAM stop preserved. Interval/CSV failures; separate checks expose JS scheduling/replacement bugs despite frozen passes. No historical scores transferred |
+| Qwen3.6 Q4 CPU40/cache2GiB/resident7/general32K |Unrun |Unrun |Interval1200.016s deadline; TTL unrun |Separate smaller-memory calibration loads, but no visible code by deadline. RAM/VRAM/hardware guards clear; last intermediate decode6.69tok/s. No quality score |
 | Qwen3.6 Q4, historical2GiB expert cache |27 |Separate historical cases |Not collected |Private402.703s; strict TypeScript and SQL defects; different placement/non-mapped profile, not evidence that expert caching intrinsically lowers intelligence |
 | Qwen3.6 Q5 | 28 | Separate historical cases | Not comparable | Lower private score; retired |
 | Qwen3.6 UD-Q6_K_XL | 28 | Historical completed cases | Not comparable | Private 2099.7 s, exceeds current gate; retired. Plain UD-Q6_K is a different, untested artifact |
@@ -51,6 +52,12 @@ review and isolated checks. Its native direct-coding interval task then reaches
 presence1.5 control also exhausts16K reasoning tokens without code; later
 cases are interrupted/unrun. Native thinking is retained in both controls. Missing
 compatible components still prevent a composite.
+
+At21:07IST the exact tested IQ4_XS file is hash-verified and retired; its scores
+remain above. Higher Qwen plainQ6 and FlintQ3XL are downloading, not loaded.
+Reduced-residency Q4/Q6 calibration profiles are separately frozen; their
+13.5GiB admission also rejects the latest13.213GiB freeRAM snapshot. The
+original profile gates and all runtime stop floors remain unchanged.
 
 - Added the twelve-task executable suite and a consistent 50/30/20 scorecard;
   regraded the public baseline as 52/60 and LFM as 48/60.

@@ -370,3 +370,101 @@ Q4 already keeps many non-expert tensors at higher precision. Therefore a
 higher filename bit count changes a specific recipe, not every tensor equally;
 a claim that Q6 guarantees correct syntax or instructions is unsupported.
 The source headers, byte counts and enum hash are retained locally.
+
+## Smaller resident calibration and prompt batches
+
+At20:59IST the desktop has13.640GiB availableRAM,12.977GiB availablecommit
+and6364MiB freeVRAM, with no inference engine. This is below the original
+Q4/cache16GiB and plainQ6/cache18GiB admission requirements. Those profiles
+remain unchanged. Two separately named resident7 calibration profiles use
+a fixed7GiB resident maximum and a larger6.5GiB host reserve, with13.5GiB
+admission and the unchanged2.5GiB RAM/400MiB VRAM/1GiB commit stop floors.
+The lower admission threshold is explicit, justified by reduced permitted
+residency rather than a claim that the original profiles now fit. It requires
+a short smoke before longer work. Windows resident limits do not limit total
+commit, GPU staging or the owner's other applications. Stronger paging may
+make even short tasks impractical; record that as a measured outcome.
+
+The native Q4 run's5.934GiB peak private allocation and13.861GiB resident
+maximum motivate reducing resident pages. They do not predict the cached
+profile's allocation or prove the7GiB trial safe. CPU40 placement leaves only
+about0.115GiB more non-expert GPUweights in plainQ6 thanQ4, while mapped
+CPU experts grow from18.225 to24.791GiB. Same cache capacity therefore stores
+fewer higher-precision experts, and disk access may dominate both profiles.
+
+Local b11562 `llama-moe-cache.cpp` explicitly selects its cache lookup only
+for token batches at most32 and when the bank can hold the worst-case selected
+experts. Large batches can copy existing cached experts but do not refill the
+cache. A smaller physical prompt batch is consequently a distinct experiment
+worth considering after the128-token baseline, not a guaranteed prefill gain:
+it trades batched CPU throughput against GPU transfers, expert churn and paging.
+No batch-size result or new profile quality score is claimed here.
+
+Measured follow-up: the Q4 resident7 profile loads and answers its short
+smoke in6.187seconds, but the native interval question reaches1200.016seconds
+without code. Last intermediate decode6.69tok/s and a7GiB resident ceiling
+are not the fast cached IQ3 configuration. Memory floors remain clear; minimum
+freeRAM5.700GiB andVRAM504MiB. This calibrates a loadable smaller-memory
+profile, not a usable coding solution. No disk-read attribution follows from
+its page-fault counter, and changed placement/sampling/residency prevent a
+claim that the expert cache itself reduces intelligence or always slows Q4.
+
+### Source follow-up: ik_llama.cpp Windows memory handling
+
+The pinned [loader caller](https://github.com/ikawrakow/ik_llama.cpp/blob/804ee29c28a5e892df6e84941cb78628ed4c266c/src/llama.cpp)
+contains a Windows-specific bulk-prefetch exclusion when device buffers are
+present. Thus this fork has a relevant source-level mitigation; the earlier
+documentation-only review did not establish it. The same source still ignores
+expert-deferral on Windows, so its Linux deferred-expert claims remain separate.
+The [CUDA implementation](https://github.com/ikawrakow/ik_llama.cpp/blob/804ee29c28a5e892df6e84941cb78628ed4c266c/ggml/src/ggml-cuda.cu)
+also exposes a Windows pinned-allocation cap with pageable fallback. That
+limits one allocator, not total process RAM or commit. These findings make a
+pinned, separately validated Windows build a better future experiment than
+assuming it must reproduce stock llama.cpp's initial-prefetch behavior. They
+do not establish local speed, full-model numerical compatibility or fit.
+Five source files were downloaded and hashed under ignored research evidence;
+selected memory paths were inspected, not the entire engine. No build/install
+or inference was performed. A guessed llama-impl.cpp path returned404 and is
+not source evidence.
+
+## Community precision recipes: useful leads, not local scores
+
+The creator of [minicx's Flint IQ3_S mix](https://huggingface.co/minicx/flint-IQ3_S-mix-GGUF)
+reports a16.5GiB file that gives selected non-expert tensors more precision
+while retaining3-bit experts. Their60-generation Python evaluation reports
+parity with UnslothQ3XL in less space, but worse prose perplexity than the
+smaller UnslothIQ3XXS. This is evidence that bit allocation and workload matter,
+not independent proof of an instruction-following upgrade. Their context
+numbers use two10GiB cards and a separate beellama KV implementation; they
+cannot predict this single3080's capacity or be copied as upstream flags.
+Their proposed further recipe is unbuilt, so it is not an available candidate.
+
+[Tere Labs' Flint quantizations](https://huggingface.co/terelabs/flint-GGUF)
+preserve attention, embeddings and shared/dense computations at higher
+precision, compressing routed experts. Their reported tool benchmark has
+wide uncertainty and does not establish a small Q5 advantage over Q4. They
+also correctly distinguish similarity to BF16 from quality of a separately
+trained quantized checkpoint. Their smallest-file claim is not general:
+the already pinned UnslothIQ3XXS andQ3XL are smaller. These files remain
+research leads, not newly measured candidates or additions to our scores.
+
+The pinned Unsloth headers retain the name Flint Preview, a preview license
+metadata field and262144 context, while the
+[repository card](https://huggingface.co/unsloth/flint-GGUF/blob/main/README.md)
+identifies RecursiveSI/flint andApache2.0. Preserve this metadata discrepancy;
+it does not itself prove different weights. Tere Labs reports equal BF16
+tensors in its sampled comparison, not a full local verification. Our report
+therefore identifies exact artifacts instead of silently treating a filename
+or the512K marketing claim as validated context.64K trials are within the
+GGUF's declared limit. Old community template workarounds also predate our
+b11838 parser fix; no template filter is removed on their advice.
+
+Local Flint header analysis confirms why these names need care. Q3XL has
+6.123GiB IQ3_S,4.594GiB IQ3_XXS,4.395GiB IQ4_XS and1.555GiB Q8_0 spans,
+plus smaller types; no tensor in this recipe is Q3_K. Q4XL is dominated by
+11.305GiB Q5_K and8.769GiB IQ4_XS, with1.945GiB Q8_0 and smaller types.
+The official NVFP4 artifact has20.668GiB NVFP4 and0.619GiB BF16, plus F32
+scalars. These are stored spans including alignment, not resident allocations.
+The b11838 enum and exact header hashes are saved in the local
+flint-weight-precision-named receipt. NVFP4 is also a differently trained
+quantized checkpoint, so it is not just another point on a single-bit ladder.

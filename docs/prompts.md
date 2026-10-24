@@ -5,9 +5,13 @@ Qwen/other-model coverage explicitly reopened by the owner. See the new task
 report. IQ3_S has native public52/60 and private29/36; two native coding
 questions exhaust output without code. A separate4096-reasoning-ceiling control
 passes its two completed coding cases. The cached capped suite completes12
-answers with6passes; IQ4 now retries with bounded resident memory after a RAM stop.
-Verified Flint Q4 reaches the router deadline in both tested placements; no
-Q4 quality score is assigned. Production is stopped during the active campaign.
+answers with6passes; bounded IQ4 finishes public55/private29 but its coding
+controls fail completion, and its exact file is retired. Native Q4 attempts
+all12 questions with9 frozen passes,2 failures and1 output limit, plus two
+extra JavaScript defects. A separate resident7/cache/general32K interval
+times out without code. Higher Qwen plainQ6 is downloading; FlintQ3XL ranges
+are checkpointed. Verified FlintQ4 misses both router deadlines and is retired.
+Production is stopped during the active campaign; no new promotion.
 
 Previous phase,24October: Recursive Flint evaluation and Claude reconciliation
 are complete with explicit limitations. Standalone/comparison reports record
@@ -1585,3 +1589,14 @@ audit283files/zero findings and whitespace check pass. An initial parse command
 named a nonexistent install.ps1; corrected enumeration checks install-widget.ps1.
 This is an in-progress checkpoint, with cached Qwen, higher Q6, other candidates
 and production restoration still pending. No completed-campaign claim.
+
+21:41IST progress checkpoint: smaller-resident Q4 calibration loads/smokes,
+then its native32K-output interval request times out1200.016s without code.
+TTL unrun after collector abort; no quality score. Memory/hardware guards
+clear. ExactIQ4 retirement after fresh SHA funds higherFlintQ3XL. Q6 download
+is active; Flint's ranges are paused to prioritize Q6 completion.42offline
+tests pass19.199s (19.594s command wall),4PowerShell parses,audit289/0.
+An initial PowerShell stderr pipeline exits1 despite42/OK; preserved original
+and direct subprocess exit0 establish the test outcome. Primary-source review
+adds ik Windows memory paths and community mixed-precision limitations. Work
+continues on higher quants/remaining candidates; final A–G remains pending.

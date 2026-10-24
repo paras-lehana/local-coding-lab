@@ -1,0 +1,18 @@
+﻿{
+    "date":  "2026-10-24T21:07:51.3336747+05:30",
+    "action":  "exact-file-retirement",
+    "candidate":  "qwen36-iq4xs",
+    "filename":  "Qwen3.6-35B-A3B-UD-IQ4_XS.gguf",
+    "bytes":  17730509792,
+    "sha256":  "649d7508507b84638732c4f52c24c8b15843c6dca2f3ff793ae07c14a67ebbb3",
+    "revision":  "a483e9e6cbd595906af30beda3187c2663a1118c",
+    "reason":  "Public55/private29 preserved; native coding deadline and separate presence-control output limit. Retire exact tested weights to fund higher Flint Q3 XL while Q6 downloads. No claim that every IQ4 setting was tested.",
+    "reports":  [
+                    "reports/2026-10-24-qwen-iq4xs-public.json",
+                    "reports/2026-10-24-qwen-iq4xs-private.json",
+                    "reports/2026-10-24-qwen-iq4xs-native-coding.json",
+                    "reports/2026-10-24-qwen-iq4xs-presence-control.json"
+                ],
+    "production_qwen_and_gemma_preserved":  true,
+    "deletion_verified":  true
+}
