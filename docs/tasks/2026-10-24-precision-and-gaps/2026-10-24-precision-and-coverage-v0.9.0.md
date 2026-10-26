@@ -621,3 +621,61 @@ withheld. No new hardware event/boot. Apps and production settings untouched.
 Research rechecks open hybrid-cache PR30594 head9177f03 and its unchanged
 prefill/multi-token limitation; newer Strata terminal notes do not update Qwen
 engine packages. Remaining collection/production restoration stay pending.
+
+
+### 26 October capacity-constrained checkpoint
+
+**A. Business summary.** Completed Gemma's saved instruction audit: **23/36**, alongside its earlier **57/60 public score**. Its merge code passes, but instruction handling and citations remain unreliable. Higher-precision Qwen Q6 exceeded 20 minutes in both tested profiles. Neither earns promotion.
+
+Further inference is capacity constrained: about **2.3 GiB RAM is free**, while queued profiles need13.5–18GiB. Your apps remain open. Production Qwen is offline because its load checks also fail; its weights and settings are preserved. No background inference/retry is running.
+
+**B. Technical summary.** Reports are published in [Local Coding Lab](https://github.com/paras-lehana/local-coding-lab/tree/experiment/flint-precision-20261024), report commit `e959c3b`, branch `experiment/flint-precision-20261024`.
+
+- `docs/model-comparison.md`: updated Gemma score and current capacity limits.
+- Gemma's standalone report: source review, selected corrected code fence, timing and memory evidence.
+- Precision/coverage campaign report: remaining trials and their current dispositions.
+- `docs/tasks/README.md`, `docs/tasks.md`, `docs/prompts.md`: index, progress and closeout.
+- `research/reviews/2026-10-24-precision-and-offload.md`: optimization review and prefill/decode distinction.
+- `reports/2026-10-25-gemma26-cpu26-private.json`: sanitized private score/settings/hashes.
+- `reports/2026-10-26-resume-capacity.json`: load rejections and unrun checks.
+
+Validation: Gemma code 6/6 in isolation; 42 offline tests, 4 PowerShell parses, 306-file public audit with zero findings, whitespace check and Windows/Ubuntu CI pass. Read project/shared guides, logging/router/host sources, local-LLM skill, frozen audit sources/rubric and actual answer/read trace. No new inference, editor test, dependency, runtime change or deletion this resume.
+
+**C. Requested work status.**
+
+| Request | Status | Result |
+|---|---|---|
+| “deep research on how people are even making it better” |DONE for current review |Published source-backed analysis; experimental gains kept separate from local measurements |
+| “try higher quantization” |PARTIALLY DONE |Qwen Q6 and Flint Q4 attempts recorded; remaining Flint variants await capacity/download |
+| “qwen or any other model incomplete stuff…complete” |PARTIALLY DONE |Gemma private audit finished; remaining collection blocked by current RAM availability |
+
+**D. Additional findings.** Gemma spends about 6m22s processing input during its 13m18s private audit. Generation speed alone is an incomplete measure for your many-file workload. No new hardware error or reboot was found since the preceding trial.
+
+**E. Pending work.**
+
+| Work | Reason still pending |
+|---|---|
+| Gemma 12 coding tasks; Qwen remaining setting trial; K2 qualification |Current load checks reject available memory |
+| Flint Q3XL/NVFP4 and Bolt |Capacity constrained; downloads incomplete or not started |
+| Production Qwen and remote streaming verification |Requires 18 GiB free RAM, 12 GiB available commit and 6000 MiB free VRAM |
+
+**F. Recommendation.** Keep Qwen selected. Complete Gemma's coding coverage, then K2 and the remaining Flint precision trials when load checks permit. Judge upgrades by correct completed tasks and actual file use; increasing quantization alone has not demonstrated a better everyday setup here.
+
+**G. Manager copy block.**
+
+```text
+Local Coding Lab — comparison checkpoint published, 26 October 2026
+
+What's done
+- Completed the saved Gemma instruction audit. It scored 23 out of 36, alongside its earlier 57 out of 60 public workflow score.
+- Its merge implementation passed all six checks, but it missed important instructions and supplied unsupported citations. It has not replaced the selected Qwen model.
+- Recorded both higher-precision Qwen attempts that exceeded the twenty-minute limit. Incomplete answers remain unscored.
+- Updated the comparison, individual model report and optimization research. Repository checks passed on Windows and Linux.
+
+Current limitation
+- Only about 2.3 GiB of system memory is available with applications open. The remaining candidates cannot currently load within the established limits. The selected model is also offline; its files and configuration remain intact.
+
+Suggested next steps
+- Finish Gemma's coding tests, then K2 and the remaining Flint variants once sufficient memory is available.
+- Prefer evidence from completed coding tasks, reliable file references and whole-task response time over precision labels or generation-speed headlines.
+```

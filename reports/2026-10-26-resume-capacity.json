@@ -68,10 +68,13 @@
     "offline_test_seconds": 21.516,
     "offline_command_seconds": 22.11,
     "powershell_parse_files": 4,
-    "public_audit_files": 305,
+    "public_audit_files": 306,
     "public_audit_findings": 0,
     "git_diff_check": "pass",
-    "new_editor_test": "unrun; no editor typing"
+    "new_editor_test": "unrun; no editor typing",
+    "ci_run": 40260746660,
+    "ci_conclusion": "success",
+    "ci_commit": "e959c3b8f998eeb247acbd351f4cea8457090372"
   },
   "unrun": [
     "Gemma CPU26 direct12 coding",

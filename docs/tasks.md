@@ -8,8 +8,8 @@ Last updated: 2026-10-26 (Asia/Kolkata); higher precision and missing coverage r
 |---|---|---|
 | Finish saved Gemma private review |Done |23/36; final corrected merge passes6/6 isolated checks; inference occurred25October |
 | Complete remaining coding/model trials |Capacity constrained |All six queued profiles reject current2.169GiB freeRAM; apps stay open |
-| Research optimization claims |In progress |Rechecked hybrid-cache PR head and Strata release; prefill costs remain |
-| Publish reports and restore production |In progress |Production off; restore only when18GiB RAM/12GiB commit/6000MiB VRAM gates pass |
+| Research optimization claims |Done for current review |Rechecked hybrid-cache PR head and Strata release; prefill costs remain |
+| Publish reports and restore production |Partial |Reports published e959c3b/CI40260746660 pass; production rejected18GiB RAM/12GiB commit/6000MiB VRAM gates |
 
 08:04–08:10IST: recovered project/shared guides, logs, model reporting/grading
 policy and local-LLM skill. No engine/downloader running; last boot23October,
@@ -1205,3 +1205,5 @@ actual private topK20/24576output/native thinking/1200s deadline. Engine80708
 is live; no score yet. Earlier admission failures remain historical evidence.
 
 26October08:16IST: Gemma private23/36 export/review complete;42offline tests pass21.516s (22.110s command),4PowerShell parses pass. Public audit305/0 before capacity receipt, git whitespace check pass. Production admission also rejects1.916GiB freeRAM (needs18),8.423GiB commit (needs12),5385MiB VRAM (needs6000). No launch/remote-SSE test; settings/baseline preserved. No new hardware event. Current capacity report lists each unrun queue item; no campaign completion.
+
+26October08:18IST: report checkpointe959c3b pushed; CI40260746660 passes. Latest freeRAM2.264GiB; no model admission. Canonical A?G saved to prompts/campaign before final. Remaining inference is capacity constrained; no background retry or completion claim.
