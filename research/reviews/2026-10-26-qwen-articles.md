@@ -31,6 +31,18 @@ already includes reclaimable standby pages. Emptying standby would mostly
 change its label, not add a second12GiB pool. No apps were closed or cache purged.
 [Microsoft's memory definitions](https://learn.microsoft.com/en-us/windows-hardware/test/assessments/results-for-the-memory-footprint-assessment).
 
+A second observation during Gemma's history run, at 22:43-22:44 IST, makes the
+physical/commit distinction concrete. VS Code has about 11.50 GiB summed working
+set and 18.45 GiB private commit; Edge 8.11/16.38 GiB; the QEMU emulator
+1.47/6.81 GiB; the single Gemma engine 5.00/4.97 GiB. Working sets overlap shared
+pages, and private commit can reside in RAM or the pagefile. System commit is
+about 102.04 GiB against a 106.33 GiB limit while about 8.57 GiB physical RAM is
+available. Thus available RAM alone does not authorize another allocation.
+These snapshots do not establish a leak or attribute all remaining system
+commit to a driver. No applications were stopped. The
+[sanitized counters](../../reports/2026-10-26-memory-during-gemma.json) preserve
+the different sampling times and omit process IDs and host paths.
+
 The owner clarified latency: a plain greeting taking ten minutes fails the
 practical check; useful instruction-heavy coding may take longer. Preserve
 the old1200second scores, and label extended trials separately. Prefill cost,

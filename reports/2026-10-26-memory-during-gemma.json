@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "experiment": "Gemma 26B 128K history G; concurrent observation only",
+  "process_observed_local": "2026-10-26T22:43:27.802886",
+  "system_observed_local": "2026-10-26T22:44:22.6478233+05:30",
+  "model_process_count": 1,
+  "settings_changed": false,
+  "application_cleanup": false,
+  "system": {
+    "pool nonpaged bytes": 2272530432,
+    "pool paged bytes": 1900404736,
+    "committed bytes": 109569310720,
+    "commit limit": 114166919168,
+    "available bytes": 9197740032
+  },
+  "process_groups": [
+    {
+      "name": "Code",
+      "count": 42,
+      "working_set_bytes": 12342910976,
+      "private_commit_bytes": 19808956416
+    },
+    {
+      "name": "msedge",
+      "count": 65,
+      "working_set_bytes": 8712781824,
+      "private_commit_bytes": 17583951872
+    },
+    {
+      "name": "qemu-system-x86_64",
+      "count": 1,
+      "working_set_bytes": 1577549824,
+      "private_commit_bytes": 7310061568
+    },
+    {
+      "name": "llama-server",
+      "count": 1,
+      "working_set_bytes": 5368713216,
+      "private_commit_bytes": 5338079232
+    },
+    {
+      "name": "msedgewebview2",
+      "count": 27,
+      "working_set_bytes": 2518753280,
+      "private_commit_bytes": 3079450624
+    },
+    {
+      "name": "explorer",
+      "count": 2,
+      "working_set_bytes": 582070272,
+      "private_commit_bytes": 2953601024
+    },
+    {
+      "name": "Service",
+      "count": 19,
+      "working_set_bytes": 20697088,
+      "private_commit_bytes": 2571493376
+    },
+    {
+      "name": "claude",
+      "count": 4,
+      "working_set_bytes": 1553575936,
+      "private_commit_bytes": 2364719104
+    }
+  ],
+  "all_process_private_commit_gib": 75.41871643066406,
+  "caveats": [
+    "Process working sets include shared pages and are not additive exclusive physical usage.",
+    "Private committed bytes can be resident or paged out; they are not reserved virtual address space.",
+    "Process private bytes do not account for all system commit.",
+    "This is a snapshot, not proof of an application memory leak.",
+    "Process and system observations are about 55 seconds apart.",
+    "No model performance or accuracy score is assigned by this observation.",
+    "This does not attribute all unaccounted system commit to any driver or process."
+  ],
+  "evidence_sha256": {
+    "process-memory-observation.json": "1c25a41070265eb51d06f5a2c43c92fa491cc1eedfb2c176be98ad8770f4ac12",
+    "process-memory-summary.json": "689a2e5938d728e1fc85a123a7521f24ac9805c8f1de86d69eb969d60390f043",
+    "commit-observation.json": "95734ee26c0326af1664e473f0568af0d8d26c50a3fe31390434294d2b41d2c7"
+  }
+}

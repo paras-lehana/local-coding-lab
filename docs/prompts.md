@@ -1845,3 +1845,29 @@ gate after an earlier12.282GiB rejection. New full-suite collection starts
 18:52:56, plain greetings10.891/6.656seconds. Parent skill timing policy was
 already updated; global Codex/Claude adapters remain correctly routed.
 This is a progress checkpoint; final A-G and production restoration remain.
+
+26 October, 22:30 IST continuation: the Gemma 6 GiB coding suite completes
+10/12 frozen task passes, with additional TTL and worker-pool defects preserved
+outside that score. Its fixed 128K history run is still collecting after two
+explicitly interrupted calibrations. No history score, promotion or new editor
+pass is claimed. Higher Flint Q3XL is verified and has a planned 64K profile;
+K2 and refreshed Flash/Strata remain in the queue. The article review and each
+model report keep precision, placement, sampling and completion separate.
+The workflow timestamp interpretation is now explicit in methodology. Latest
+committed checkpoint 4623f7f passes Windows/Ubuntu CI; later edits are pending
+the next quiet validation window. This remains an active task, not closeout.
+
+23:28 IST checkpoint: Gemma history hits its commit guard, no phase answer or
+new hardware event; the 3637.469-second interruption is exported unscored.
+Process snapshots distinguish working set from private/system commit. After
+the engine exits, one newly idle Gradle daemon is verified by identity and log
+state, then stopped through its matching normal shutdown command; Kotlin also
+exits. The legacy preflight switch does not prove idleness, so its skill
+guidance now warns against blind use. The evaluation reference also clarifies
+cumulative workflow timestamps. Shared Codex/Claude routing remains unchanged.
+Flint Q3XL smaller-buffer smoke loads21s, answers48.375/31.141s, peak private
+3.440GiB, no resource/hardware stop. Its measured-memory64K follow-up is ready
+for full file workflows. Gemma/QwenIQ3 exact files are full-hash verified and
+retired; QwenQ4/Flint/K2 and all evidence remain. No history/composite score or
+editor validation is invented.44offline tests pass20.602s before the next load;
+final audit/PowerShell parsing and checkpoint commit follow.

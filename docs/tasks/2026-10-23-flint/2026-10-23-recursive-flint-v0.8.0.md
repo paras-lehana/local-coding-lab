@@ -579,3 +579,74 @@ the6.5GiB reserve and all inference/commit/VRAM settings. Choose it before the
 first load if fresh headroom permits, otherwise retain the4GiB capacity fallback.
 Gemma's two matched-output pairs motivate this choice; they do not establish
 a Flint speedup or quality gain. Both Q3XL profiles remain unrun here.
+
+At22:12IST a third, explicitly experimental64K option is prepared:
+`flint-q3xl-cpu49-cache1024-resident5-extended64`. Doubling q8KV from32K to64K
+adds an estimated490MiB; reducing the expert cache1536to1024MiB roughly offsets
+that device allocation. Microbatch32to16 keeps the context-times-microbatch
+attention workspace estimate similar. Actual buffers must be measured after
+loading; these estimates do not establish either fit or quality.
+
+This option caps resident host pages at5GiB with a4.5GiB startup reserve,
+requiring9.5GiB free RAM,10GiB commit and5000MiB device memory before loading.
+The smaller startup reserve is an explicit experiment, not a general default;
+runtime floors remain2.5GiB RAM,1GiB commit,400MiB VRAM and84C. CPU49,
+four context checkpoints, native preserved reasoning and publisher sampling
+remain. The server ceiling is32768output tokens, while each frozen collector
+request retains its own explicit limit. This better matches the owner's
+instruction/history priority than the32K capacity fallback. It is not yet
+loaded or scored, and neither nominal64K capacity nor extra reasoning room
+demonstrates that the final answer uses the supplied files correctly.
+
+At 22:59 IST a conditional 7 GiB resident option is also prepared, with all
+64K/cache1024 inference arguments unchanged. It restores the original 6.5 GiB
+startup reserve and requires 13.5 GiB free RAM, 10 GiB available commit and
+5,000 MiB free VRAM. Choose this option before loading only if fresh gates
+permit; otherwise retain the smaller prepared option. Both remain unrun.
+This uses additional available RAM without changing a started comparison or
+claiming that the earlier Gemma residency improvement transfers to Flint.
+
+### Smaller-buffer qualification after the commit stop
+
+Gemma's long-input run stops at its commit floor. After its owned engine exits,
+the next-load checks reject the prepared Flint/K2 profiles. A newly started
+Gradle build is verified finished and its sole daemon idle; normal Gradle
+shutdown stops it, and the Kotlin daemon subsequently exits too. Editors,
+browser and emulator stay open. Available commit rises to about 7.8 GiB, still
+below the prepared profiles' 10 GiB requirement. No unchanged gate is bypassed.
+
+The new `flint-q3xl-cpu49-cache512-resident4-extended32` reduces 64K/cache1024
+to 32K/cache512 and batch128 to64, keeping microbatch16. Estimated KV/cache
+savings alone are about 1002 MiB. The earlier measured Q4XL/cache1536/CPU48
+profile peaked at 5.823 GiB private commit; this configuration also removes
+another GPU expert block and uses smaller weights/workspace. These allocation
+changes support a provisional 7.5 GiB commit admission for greeting-only
+qualification, with measured usage required before file workloads. The
+4 GiB resident cap plus original 6.5 GiB RAM reserve, 10.5 GiB physical gate,
+5,000 MiB device gate and every runtime stop floor remain explicit.
+
+At 23:16 IST it admits 12.131 GiB RAM, 8.237 GiB commit and 5,318 MiB VRAM,
+then loads. An initial live sample is about 3.42 GiB private commit, 4 GiB
+working set, 5.05 GiB available commit and 2,449 MiB free VRAM. This agrees
+with a materially smaller allocation, but no greeting or quality result is
+claimed yet. Native preserved reasoning and q8 KV are retained. The 32K
+experiment is a capacity qualification, not the owner's eventual long-context
+configuration or a higher-precision quality win.
+
+The qualification then completes normally: load 21.0 seconds; plain greetings
+48.375/31.141 seconds, both 168 generated tokens and byte-identical visible
+answers. Generation rates are 3.52/5.50 tokens/s. Both requests process all
+three input tokens, so the second is a warm-engine request, **not** an observed
+prefix-cache hit. Minimum free RAM/commit/VRAM is 8.165 GiB / 4.846 GiB /
+2,432 MiB; peak private commit 3.440 GiB, working set 4.000 GiB, GPU 52.03 C.
+Normal requested stop and no new hardware event.
+[Greeting and allocation receipt](../../../reports/2026-10-26-flint-q3xl-greeting.json).
+
+Measured GPU buffers are 1551.39 MiB weights, 476 MiB global KV, 27.89 MiB
+sliding-window KV, 508.53 MiB expert cache and 67.56 MiB compute. This measured
+headroom supports a separate `flint-q3xl-cpu49-cache512-resident5-extended64`
+follow-up: keep cache512/b64/u16, increase global KV by 476 MiB for 64K, and use
+5 GiB resident host memory with the original 6.5 GiB reserve. Its admission is
+11.5 GiB RAM, 8 GiB commit and 5,000 MiB VRAM; runtime floors are unchanged.
+Collect greetings again before the frozen public workflows, then hold this
+configuration fixed. No file/coding quality result is transferred from smoke.

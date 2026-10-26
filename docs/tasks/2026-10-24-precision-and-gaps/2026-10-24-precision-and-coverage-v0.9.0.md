@@ -624,6 +624,65 @@ pipeline returned1 despite42/OK; preserved log and direct capture retry resolve
 the wrapper ambiguity. No inference overlap. This remains in progress.
 
 
+## 26 October evening: article-driven continuation
+
+The owner now distinguishes a plain greeting's600second practical ceiling
+from longer, useful instruction-heavy coding. Frozen1200second scores remain
+unchanged. Seven supplied Qwen/Strata articles have an original, source-backed
+[review](../../../research/reviews/2026-10-26-qwen-articles.md), with separate
+Flash-Next and dense27B learning records. Installed74GB is not available pooled
+model memory; no leftover inference engine explained the owner's RAM usage.
+Apps stay open and no cache purge, clock/driver change or editor input occurs.
+
+Gemma26's6GiB-resident native-reasoning coding collection finishes all12answers
+and passes10frozen tasks. CSV state handling and malformed TypeScript fail;
+extra TTL/worker-pool diagnostics expose defects beyond the passing frozen
+checks. Median completion710.843seconds, plain greetings10.891/6.656seconds.
+Two exact-output4/6GiB pairs improve about28-29%, with desktop/cache confounds.
+[Full evidence](../../../reports/2026-10-26-gemma-resident6-coding.json).
+Earlier public/private results use different settings and are not combined
+into a complete score for this run.
+
+At22:17IST a separate128K/640-record history workflow remains in progress.
+Several admission rejections and two intentional prefill calibrations are
+preserved unscored. Current CPU30/cache448/resident5/b64u16 profile loaded in
+19.938seconds and delivered greetings24.406/11.172seconds. It is fixed through
+completion or the existing resource/hardware/deadline stop. Roughly8input
+tokens per second is an observed early rate, not a completed workflow result.
+The1492.81MiB GPU KV allocation is distinct from occupied tokens and the5GiB
+process working-set maximum. No new hardware error has been reported.
+
+Next is verified Flint UD-Q3_K_XL, with an explicitly planned64K GPUq8KV /
+1024MiB expert-cache /5GiB-resident option that exchanges expert cache for
+context capacity. K2 Horizon MoVA Q4 is also verified but untried; its native
+high-effort template is inspected, not yet proven through the client/runtime.
+Strata engine0.1.50 is staged separately. Flash-Next GSQ-RCO Q2_0 requires two
+shards totaling61.86GiB and native-pack headroom; current freeE: space cannot
+hold them. Finish/review installed candidates before exact-file retirement,
+keep the QwenQ4 baseline, then download and measure bounded RAM/SSD placement.
+No new candidate is promoted and production remains off during experiments.
+
+Checkpoint4623f7f passes Windows/Ubuntu CI40360526015.44offline tests pass before
+the active history load, four tracked PowerShell scripts parse and the public
+audit has zero findings. New profile/document edits await the next quiet
+validation window; no grading, builds or model downloads overlap inference.
+
+23:28 IST update: Gemma history G stops at its 1 GiB commit floor, with no
+hardware event, after 3,637.469 seconds and 56% input progress. It delivers no
+phase answer and remains unscored. Extra background Java commit is documented;
+the model's private commit stays near 4.97 GiB. Only after the run stops, a
+verified idle Gradle daemon is shut down normally; the Kotlin daemon also exits.
+
+Flint Q3 XL's new smaller-buffer 32K qualification then completes greetings in
+48.375/31.141 seconds, with peak private commit 3.440 GiB and no resource or
+hardware stop. Measured allocations support the next 64K/cache512/resident5
+profile, retaining q8 KV and native reasoning. File quality remains untested.
+Gemma and Qwen IQ3 exact weight files are rehashed and retired at 23:25,
+recovering 26.19 GiB. Available E: space is 60.58 GiB; Flash Q2 still needs
+61.86 GiB of shards plus packing/headroom, so its download waits for the next
+reviewed retirement. Qwen Q4, Flint and K2 remain. Public receipts and each
+model's report preserve all missing and completed components separately.
+
 ## Resume 26 October
 
 Original prompt: ?continue? ? continues higher quantization, deep optimization

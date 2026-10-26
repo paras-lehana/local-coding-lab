@@ -89,6 +89,14 @@ actual final tool-free turn separately, and use total wall time for the owner's
 20-minute requirement. Likewise, review visible content across tool turns when
 locating delivered code; an implementation can precede the final message.
 
+In `benchmark.py` and `scenarios.py`, `first_event_seconds` and
+`first_final_seconds` use the start of the **whole workflow** as their time
+origin. Later turns therefore contain cumulative offsets, not that turn's
+individual time to first token. Use the saved event timestamps and request
+boundaries, or the server's per-request input/generation timings, when reporting
+turn latency. The separate plain-greeting and direct-coding workers start a new
+timer for each request; do not mix these two interpretations in one table.
+
 ## Fair comparisons
 
 1. Freeze model SHA, runtime commit, template, profile, question and rubric.

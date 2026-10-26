@@ -4,6 +4,33 @@ Last updated: 2026-10-26 (Asia/Kolkata); higher precision and missing coverage r
 
 ## 2026-10-26 evening - Seven articles and RAM investigation
 
+23:25 IST checkpoint: Gemma history G is commit-stopped at23:05, 3637.469 s,
+56% of long input, no phase answer and no new hardware event. Its history score
+is absent; completed coding10/12 and extra defects remain. A newly started
+Gradle build had finished; verified idle identity/state before its ordinary
+version-specific shutdown, after inference stopped. Kotlin daemon also exits.
+No editor/browser/emulator closed. Larger Flint/K2 profiles reject fresh gates.
+New Flint32K/cache512/resident4 smaller-buffer qualification loads21s and
+completes greetings48.375/31.141s; peak private3.440GiB, normal stop/no hardware
+event. A64K/cache512/resident5 follow-up is prepared from those measurements.
+Gemma and QwenIQ3 exact weights are full-hash rechecked then retired; E: now
+60.58GiB free, still below Flash's shards plus packing/headroom. QwenQ4,
+FlintQ3XL and K2 remain.44offline tests pass20.711s after Gemma stopped;
+4PowerShell parses and public audit332/0 pass before the later smoke exports.
+New reports/profile/catalog edits await final quiet checks and commit.
+
+22:30 IST: Gemma history G remains active on the fixed 5 GiB profile, about
+22% through its first long input at 7.87 tokens/s. Current physical/commit
+headroom is 4.406/3.787 GiB; VRAM headroom 1555 MiB, GPU 51.28 C. No stop
+receipt or scored result. Record the input-stage cost without treating it as
+a greeting failure. The 128K allocation is 1360 MiB global KV plus 132.81 MiB
+sliding-window KV; occupied tokens and process residency are different counters.
+A short system paging observation is saved privately, not a disk benchmark.
+Methodology now clarifies cumulative workflow event timestamps versus per-turn
+latency. Prepared Flint Q3XL 64K/cache1024/resident5 option remains unrun.
+Checkpoint 4623f7f CI40360526015 completes successfully on Windows and Ubuntu.
+Current documentation/profile edits await the next inference-free check window.
+
 22:03IST current run: gemma-large-history-g, profileCPU30/cache448/resident5/
 128K/b64u16, controller119388. Native640-record history; complete fixed profile
 unless deadline/resource/hardware stop. Startup reserve is explicitly4.5GiB

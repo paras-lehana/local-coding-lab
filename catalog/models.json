@@ -33,7 +33,7 @@
       "bytes": 14439363584,
       "sha256": "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d",
       "upstream": "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "status": "retained-lower-memory-fallback-32k-64k-public-and-private-complete",
+      "status": "tested-retired-20261026-coding10of12-large-history-commit-stop-see-gemma-report",
       "thinking": "Native tool continuation preservation and runtime 2048 reasoning ceiling observed; no native xhigh label"
     },
     "glm47-udq4": {
@@ -217,7 +217,7 @@
       "bytes": 13676723168,
       "sha256": "66a3ca888ce13482b40c333db2432c0ebde3a7b13754fc29f0c6f5e89703ec66",
       "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
-      "status": "public52-private29-native-coding-output-failures-separate-capped-cached-coding6of12-20261024",
+      "status": "tested-retired-20261026-public52-private29-native-limits-separate-capped-coding6of12",
       "thinking": "enable_thinking and preserve_thinking; no native xhigh"
     },
     "flint-q4xl": {
@@ -241,7 +241,7 @@
       "url": "https://huggingface.co/unsloth/flint-GGUF/resolve/20468edfc38ab43d6914cc88b08cbecb05d0fc62/flint-UD-Q3_K_XL.gguf",
       "name": "Recursive Flint 40B-A2.5B UD-Q3_K_XL",
       "upstream": "https://huggingface.co/RecursiveSI/flint",
-      "status": "pinned-not-yet-quality-tested-20261024",
+      "status": "verified-greeting-qualified-20261026-file-and-coding-quality-pending",
       "thinking": "Native reasoning; no validated low/high effort switch. Preserve reasoning history."
     },
     "flint-nvfp4": {

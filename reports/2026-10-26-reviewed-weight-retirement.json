@@ -1,0 +1,44 @@
+﻿{
+    "status":  "retired",
+    "time":  "2026-10-26T23:24:58.3295855+05:30",
+    "authorization":  "Owner authorized autonomous tested-model retirement after preserving reports and a working baseline",
+    "disk_free_gib_before":  34.394554138183594,
+    "records":  [
+                    {
+                        "id":  "gemma4-26b-qat",
+                        "path":  "E:\\llm\\models\\gemma-4-26B_q4_0-it.gguf",
+                        "repo":  "google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+                        "revision":  "d1c082be9cf3c8a514acf63b8761f4b41935842e",
+                        "bytes":  14439363584,
+                        "sha256":  "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d",
+                        "mtime_utc":  "2026-10-15T01:33:10.8334240Z",
+                        "reason":  "Reports retain earlier private23/36 and public57/60 on distinct settings; new extended coding10/12 plus TTL/concurrency defects.128K history was commit-stopped before any answer and stays unscored. No promotion; retire for the requested Flash-Next experiment.",
+                        "deleted":  true
+                    },
+                    {
+                        "id":  "qwen36-iq3s",
+                        "path":  "E:\\llm\\models\\Qwen3.6-35B-A3B-UD-IQ3_S.gguf",
+                        "repo":  "unsloth/Qwen3.6-35B-A3B-GGUF",
+                        "revision":  "a483e9e6cbd595906af30beda3187c2663a1118c",
+                        "bytes":  13676723168,
+                        "sha256":  "66a3ca888ce13482b40c333db2432c0ebde3a7b13754fc29f0c6f5e89703ec66",
+                        "mtime_utc":  "2026-10-21T06:28:47.8201771Z",
+                        "reason":  "Reports retain private29/36, public52/60, native output-limit cases and separate capped coding6/12. It does not displace retained Qwen Q4. No full native coding composite is claimed.",
+                        "deleted":  true
+                    }
+                ],
+    "preserved":  [
+                      "Qwen Q4 baseline weights and settings",
+                      "Flint Q3XL verified weights",
+                      "K2 verified untested weights",
+                      "all reports and raw private evidence",
+                      "runtime and artifact pins",
+                      "range journals"
+                  ],
+    "limitations":  [
+                        "Gemma large history remains incomplete because of commit guard",
+                        "Qwen IQ3 native output-limited coverage remains incomplete; capped results are a separate cohort"
+                    ],
+    "finished":  "2026-10-26T23:24:59.7583497+05:30",
+    "disk_free_gib_after":  60.579696655273438
+}
