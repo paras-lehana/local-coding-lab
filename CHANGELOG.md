@@ -1,8 +1,9 @@
 # Changelog
 
 26October checkpoint: verified FlintQ3XL and the separate Strata0.1.50 archive;
-Gemma's4GiB-resident calibration passes plain API greetings and is collecting
-extended coding answers. Add explicit Q2 shard selection to the bounded
+Gemma's4GiB-resident calibration has two completed passes; the6GiB full trial
+completes12answers with10frozen task passes. CSV and strict TypeScript fail;
+extra TTL/worker-pool defects remain. Add explicit Q2 shard selection to the bounded
 downloader, leaving the historical IQ3 default intact. Source review identifies
 optional empty-final recovery and separate conversation-cache memory controls;
 neither is claimed locally validated yet.

@@ -1,0 +1,848 @@
+{
+  "date": "2026-10-26",
+  "cohort": "extended-diagnostic",
+  "scope": "Twelve frozen direct-coding questions; no public/private workflow score transfer",
+  "assessor": "Codex source review and existing isolated checks; no independent human review",
+  "profile": "gemma4-26b-cpu28-resident6-extended64",
+  "profile_snapshot": {
+    "model": "gemma4-26b-qat",
+    "alias": "gemma4-lab",
+    "locally_tested": false,
+    "validation_status": "planned-residency-control-extended-diagnostic-not-promoted",
+    "evidence": "26 October separately frozen6GiB working-set calibration after two completed resident4 cases. Inference args/model/template are identical to resident4. Higher12.5GiB admission equals6GiB resident cap plus unchanged6.5GiB reserve. Test whether page-management overhead falls; no promised speedup or quality transfer. Private commit and physical residency are distinct. Full twelve-case recollection, native thinking,32K output,64Kq8 context. All runtime stop floors unchanged.",
+    "load_min_ram_free_gib": 12.5,
+    "load_min_vram_free_mib": 5000,
+    "load_min_commit_available_gib": 10,
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_min_commit_available_gib": 1,
+    "stop_gpu_c": 84,
+    "working_set_limit_gib": 6,
+    "working_set_reserve_gib": 6.5,
+    "template_kwargs": {
+      "enable_thinking": true,
+      "preserve_thinking": true
+    },
+    "runtime_variant": {
+      "id": "b11562-noprefetch-v1",
+      "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--n-cpu-moe",
+      "28",
+      "--ctx-size",
+      "65536",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC",
+      "--batch-size",
+      "128",
+      "--ubatch-size",
+      "32",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--reasoning-budget",
+      "-1",
+      "--reasoning-preserve",
+      "--predict",
+      "32768",
+      "--temp",
+      "1.0",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "64",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--timeout",
+      "21600",
+      "--metrics",
+      "--verbosity",
+      "4"
+    ]
+  },
+  "model_sha256": "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d",
+  "started": "2026-10-26T13:22:56.452319+00:00",
+  "finished": "2026-10-26T15:55:01.909727+00:00",
+  "preflight": {
+    "time": 1793020976.4523191,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 12.881275177001953,
+    "commit_limit_gib": 106.32622909545898,
+    "commit_available_gib": 12.756324768066406,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 5797.0,
+    "gpu_c": 51.25,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "postflight": {
+    "time": 1793030101.9097276,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 10.975383758544922,
+    "commit_limit_gib": 106.32622909545898,
+    "commit_available_gib": 11.395511627197266,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 5466.0,
+    "gpu_c": 48.06,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "load_seconds": 18.46899999998277,
+  "greetings": {
+    "hi-cold": {
+      "wall_seconds": 10.89100000000326,
+      "finish_reason": "stop",
+      "first_event_seconds": 1.8119999999762513,
+      "first_content_seconds": 9.96899999998277,
+      "error": null
+    },
+    "hi-warm": {
+      "wall_seconds": 6.6560000000172295,
+      "finish_reason": "stop",
+      "first_event_seconds": 0.46799999999348074,
+      "first_content_seconds": 5.7810000000172295,
+      "error": null
+    }
+  },
+  "effective_request_controls": {
+    "model": "gemma4-lab",
+    "stream": true,
+    "stream_options": {
+      "include_usage": true
+    },
+    "max_tokens": 32768,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0,
+    "seed": 73,
+    "cache_prompt": false
+  },
+  "whole_case_deadline_seconds": 21600.0,
+  "suite_sha256": "d69a90527dc9939d32c7a7751bb080064fcc24acfeeef97ab8c1fada84bceea5",
+  "collector_sha256": "b4c459a9f50b11e0ada9bd59397efdae1a8cfb2ec6d4403a5bff6eb934099247",
+  "controller_sha256": "4c07eecfbf91dd3b2adcaeb09f8c6ebc70ae2b96b6d881faf4f6f1ae066ea984",
+  "grades_sha256": "e276b0358d668e5e46787fcc3990afb306da0c69abb0a6c90bebd868d4058157",
+  "tasks": [
+    {
+      "task": "intervals",
+      "language": "python",
+      "wall_seconds": 783.25,
+      "finish_reason": "stop",
+      "first_event_seconds": 9.203000000037719,
+      "first_content_seconds": 695.0630000000237,
+      "error": null,
+      "decode_tok_s": 7.631201160312574,
+      "response_sha256": "eff9be2f96d7b2ec06ae0e792a21a4a78be33a7a0a9060f2ca2b97f87f580fd4",
+      "usage": {
+        "completion_tokens": 5908,
+        "prompt_tokens": 105,
+        "total_tokens": 6013,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 105,
+        "prompt_ms": 9157.289,
+        "prompt_per_token_ms": 87.2122761904762,
+        "prompt_per_second": 11.466275663026469,
+        "predicted_n": 5908,
+        "predicted_ms": 774059.008,
+        "predicted_per_token_ms": 131.0409696969697,
+        "predicted_per_second": 7.631201160312574
+      },
+      "visible_characters": 2742,
+      "reasoning_characters": 15327,
+      "starts_with_markdown_fence": true,
+      "elapsed_after_first_visible_fragment_seconds": 88.18699999997625,
+      "completed_answer": true,
+      "source_review": "Reviewed complete delivered subtract_intervals and nested merge_intervals. Pure sorted-list operations; no imports, filesystem, network or dynamic execution. Normalizes invalid/overlapping/touching inputs into new lists, scans cuts for each base interval and normalizes final output. Inputs are referenced while sorting but not assigned through. Cut scan restarts per base interval (quadratic worst case, no complexity constraint in this frozen prompt); final normalization appears redundant. Behavioral checks pending; no correctness score assigned. Exact source hash matches prior reviewed answer. Execution on this response pending; no score transfer.",
+      "frozen_grade_status": "graded",
+      "frozen_pass": true,
+      "frozen_checks": {
+        "passed": 105,
+        "total": 105
+      },
+      "failed_check_labels": []
+    },
+    {
+      "task": "ttl_lru",
+      "language": "python",
+      "wall_seconds": 691.0779999999795,
+      "finish_reason": "stop",
+      "first_event_seconds": 9.78100000001723,
+      "first_content_seconds": 636.875,
+      "error": null,
+      "decode_tok_s": 7.936404852547784,
+      "response_sha256": "2a4b47f903b4ef79ecc16db8f7758468c46ad4b5504121273b3e19b7e7f4a230",
+      "usage": {
+        "completion_tokens": 5408,
+        "prompt_tokens": 172,
+        "total_tokens": 5580,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 172,
+        "prompt_ms": 9719.255,
+        "prompt_per_token_ms": 56.5072965116279,
+        "prompt_per_second": 17.69682964383587,
+        "predicted_n": 5408,
+        "predicted_ms": 681290.849,
+        "predicted_per_token_ms": 126.00163658220826,
+        "predicted_per_second": 7.936404852547784
+      },
+      "visible_characters": 1633,
+      "reasoning_characters": 17746,
+      "starts_with_markdown_fence": true,
+      "elapsed_after_first_visible_fragment_seconds": 54.20299999997951,
+      "completed_answer": true,
+      "source_review": "Reviewed complete TTLCache class. Imports only collections.OrderedDict; no filesystem, network, dynamic execution or process access. Scans all expiry values before put eviction; moves hits without resetting expiry; inclusive expiry and false/None storage implemented. Validation concerns: bool capacity passes isinstance(int); ttl is compared to zero without numeric/type guard, so invalid nonnumeric inputs can raise TypeError rather than required ValueError. NaN TTL also passes, the existing extra diagnostic. Source findings only until frozen checks run. get leaves expired records stored until next put, which does not violate the stated maximum-live-entry contract.",
+      "frozen_grade_status": "graded",
+      "frozen_pass": true,
+      "frozen_checks": {
+        "passed": 34,
+        "total": 34
+      },
+      "failed_check_labels": []
+    },
+    {
+      "task": "dag",
+      "language": "python",
+      "wall_seconds": 390.8280000000377,
+      "finish_reason": "stop",
+      "first_event_seconds": 6.23399999999674,
+      "first_content_seconds": 329.35899999999674,
+      "error": null,
+      "decode_tok_s": 7.719640624286115,
+      "response_sha256": "f3e68b4a213a04142e712373acb72d419cbe54b5f4fa513574795dfd1427a573",
+      "usage": {
+        "completion_tokens": 2970,
+        "prompt_tokens": 103,
+        "total_tokens": 3073,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 103,
+        "prompt_ms": 6167.874,
+        "prompt_per_token_ms": 59.882271844660195,
+        "prompt_per_second": 16.69943322447897,
+        "predicted_n": 2970,
+        "predicted_ms": 384603.396,
+        "predicted_per_token_ms": 129.5397089929269,
+        "predicted_per_second": 7.719640624286115
+      },
+      "visible_characters": 1746,
+      "reasoning_characters": 7386,
+      "starts_with_markdown_fence": true,
+      "elapsed_after_first_visible_fragment_seconds": 61.46900000004098,
+      "completed_answer": true,
+      "source_review": "Reviewed full build_order. Imports only heapq; new sets/maps include prerequisite-only tasks, deduplicate edges and keep inputs unchanged. Kahn traversal uses a min heap for the smallest currently available name. Final count detects self/disconnected cycles. No filesystem, network, dynamic execution or process access. No score before isolated behavior checks.",
+      "frozen_grade_status": "graded",
+      "frozen_pass": true,
+      "frozen_checks": {
+        "passed": 64,
+        "total": 64
+      },
+      "failed_check_labels": []
+    },
+    {
+      "task": "csv_stream",
+      "language": "python",
+      "wall_seconds": 2135.1720000000205,
+      "finish_reason": "stop",
+      "first_event_seconds": 9.110000000044238,
+      "first_content_seconds": 2023.579000000027,
+      "error": null,
+      "decode_tok_s": 8.572708178916836,
+      "response_sha256": "dd76d5e354f2bece32376d17533b799d930a7cba1146e3f0a45bc8829dbd93d6",
+      "usage": {
+        "completion_tokens": 18227,
+        "prompt_tokens": 179,
+        "total_tokens": 18406,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 179,
+        "prompt_ms": 9052.897,
+        "prompt_per_token_ms": 50.574843575419,
+        "prompt_per_second": 19.77267608368901,
+        "predicted_n": 18227,
+        "predicted_ms": 2126049.274,
+        "predicted_per_token_ms": 116.64925238670033,
+        "predicted_per_second": 8.572708178916836
+      },
+      "visible_characters": 4461,
+      "reasoning_characters": 69358,
+      "starts_with_markdown_fence": true,
+      "elapsed_after_first_visible_fragment_seconds": 111.59299999999348,
+      "completed_answer": true,
+      "source_review": "Read the complete parse_csv_chunks, Peekable and nested generators. No imports, filesystem/network/process access or dynamic execution. Processes chunks without joining the whole input. Source-level contract defect: LF in UNQUOTED appends the row but fails to clear field or return state to START, so a later record can inherit previous field contents and a new quoted field is treated as unquoted. CRLF branch does reset both. has_data is unused. Malformed-input handling is outside the frozen contract, so do not score it as a defect. Execution and final frozen score pending.",
+      "frozen_grade_status": "graded",
+      "frozen_pass": false,
+      "frozen_checks": {
+        "passed": 104,
+        "total": 120
+      },
+      "failed_check_labels": [
+        "CSV 11 split 0",
+        "CSV 11 split 1",
+        "CSV 11 split 2",
+        "CSV 11 split 3",
+        "CSV 11 split 4",
+        "CSV 11 split 5",
+        "CSV 11 split 6",
+        "CSV 11 split 7",
+        "CSV 11 split 8",
+        "CSV 11 split 9",
+        "CSV 11 split 10",
+        "CSV 11 split 11",
+        "CSV 11 split 12",
+        "CSV 11 split 13",
+        "CSV 11 split 14",
+        "CSV 11 split 15"
+      ]
+    },
+    {
+      "task": "schedule",
+      "language": "python",
+      "wall_seconds": 255.10999999998603,
+      "finish_reason": "stop",
+      "first_event_seconds": 8.35999999998603,
+      "first_content_seconds": 194.03200000000652,
+      "error": null,
+      "decode_tok_s": 8.00007683964381,
+      "response_sha256": "740435a2fc6c650e8a143446665796c53603e3674a9b24dfd906c80ec43187a5",
+      "usage": {
+        "completion_tokens": 1975,
+        "prompt_tokens": 116,
+        "total_tokens": 2091,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 116,
+        "prompt_ms": 8290.363,
+        "prompt_per_token_ms": 71.46864655172413,
+        "prompt_per_second": 13.992149680297475,
+        "predicted_n": 1975,
+        "predicted_ms": 246747.63,
+        "predicted_per_token_ms": 124.99879939209727,
+        "predicted_per_second": 8.00007683964381
+      },
+      "visible_characters": 1705,
+      "reasoning_characters": 3856,
+      "starts_with_markdown_fence": true,
+      "elapsed_after_first_visible_fragment_seconds": 61.07799999997951,
+      "completed_answer": true,
+      "source_review": "Reviewed full max_profit. Imports bisect_right only, sorts into a new list, uses end-time dynamic programming and binary search in O(n log n). Searching the full end_times list remains safe because every valid job start is strictly below its own end, and later sorted end values cannot be compatible. Does not mutate inputs or access external state. One comment incorrectly calls bisect_right a leftmost insertion point; the implementation calls the correct right-biased function. Behavior score awaits isolated checks.",
+      "frozen_grade_status": "graded",
+      "frozen_pass": true,
+      "frozen_checks": {
+        "passed": 61,
+        "total": 61
+      },
+      "failed_check_labels": []
+    },
+    {
+      "task": "inventory_fix",
+      "language": "python",
+      "wall_seconds": 380.46899999998277,
+      "finish_reason": "stop",
+      "first_event_seconds": 9.702999999979511,
+      "first_content_seconds": 345.06199999997625,
+      "error": null,
+      "decode_tok_s": 8.094044740907107,
+      "response_sha256": "c0dcf3dd1f4b25f2021baab8efc5379951e63940156554f4aa4932371ca0787e",
+      "usage": {
+        "completion_tokens": 3002,
+        "prompt_tokens": 172,
+        "total_tokens": 3174,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 172,
+        "prompt_ms": 9630.592,
+        "prompt_per_token_ms": 55.991813953488375,
+        "prompt_per_second": 17.859753585241695,
+        "predicted_n": 3002,
+        "predicted_ms": 370766.421,
+        "predicted_per_token_ms": 123.54762445851382,
+        "predicted_per_second": 8.094044740907107
+      },
+      "visible_characters": 1103,
+      "reasoning_characters": 9527,
+      "starts_with_markdown_fence": true,
+      "elapsed_after_first_visible_fragment_seconds": 35.40700000000652,
+      "completed_answer": true,
+      "source_review": "Reviewed entire reserve function. No imports or external state access. Validates every request quantity with exact int type and nonnegative test while aggregating into a fresh dict, checks every SKU and aggregate availability before any stock update, and never writes to requests. bool quantities and unknown zero requests are rejected according to their required paths. Successful update is transactional relative to validation failures, not a claim of thread synchronization. Stock values are assumed valid as stated by the fixture. Frozen behavior checks pending.",
+      "frozen_grade_status": "graded",
+      "frozen_pass": true,
+      "frozen_checks": {
+        "passed": 10,
+        "total": 10
+      },
+      "failed_check_labels": []
+    },
+    {
+      "task": "multi_file",
+      "language": "multifile",
+      "wall_seconds": 723.125,
+      "finish_reason": "stop",
+      "first_event_seconds": 15.297000000020489,
+      "first_content_seconds": 697.875,
+      "error": null,
+      "decode_tok_s": 8.093703859733663,
+      "response_sha256": "7811fc1f9000caa8cee5fe6d4ad3a4580ee29a68db755304656b725e7732643e",
+      "usage": {
+        "completion_tokens": 5730,
+        "prompt_tokens": 266,
+        "total_tokens": 5996,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 266,
+        "prompt_ms": 15218.77,
+        "prompt_per_token_ms": 57.21342105263158,
+        "prompt_per_second": 17.478416455469134,
+        "predicted_n": 5730,
+        "predicted_ms": 707834.151,
+        "predicted_per_token_ms": 123.55282789317506,
+        "predicted_per_second": 8.093703859733663
+      },
+      "visible_characters": 690,
+      "reasoning_characters": 17498,
+      "starts_with_markdown_fence": true,
+      "elapsed_after_first_visible_fragment_seconds": 25.25,
+      "completed_answer": true,
+      "source_review": "Read both complete module strings. Imports only decimal and the supplied local money helper. Validates qty before use, rejects bool/non-int/negative, totals unrounded Decimal products, applies Decimal tax once, and calls ROUND_HALF_UP helper only at the end. No binary float or input mutation. No external/dynamic execution access. Default Decimal context remains a limitation for arbitrary-precision/extreme inputs beyond the pending finite checks. Formatting violation: Markdown fences despite JSON-only request; preserve separately from behavior grade. No implementation changes.",
+      "frozen_grade_status": "graded",
+      "frozen_pass": true,
+      "frozen_checks": {
+        "passed": 15,
+        "total": 15
+      },
+      "failed_check_labels": []
+    },
+    {
+      "task": "sql_report",
+      "language": "sql",
+      "wall_seconds": 715.7179999999935,
+      "finish_reason": "stop",
+      "first_event_seconds": 12.14000000001397,
+      "first_content_seconds": 674.015000000014,
+      "error": null,
+      "decode_tok_s": 8.468137203937017,
+      "response_sha256": "5f6df1978390f827953002ba320acd754b647d5bbfebe68465dc357bdb9b6f16",
+      "usage": {
+        "completion_tokens": 5959,
+        "prompt_tokens": 222,
+        "total_tokens": 6181,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 222,
+        "prompt_ms": 12070.845,
+        "prompt_per_token_ms": 54.373175675675675,
+        "prompt_per_second": 18.391421644466483,
+        "predicted_n": 5959,
+        "predicted_ms": 703578.586,
+        "predicted_per_token_ms": 118.08972574689493,
+        "predicted_per_second": 8.468137203937017
+      },
+      "visible_characters": 1064,
+      "reasoning_characters": 18626,
+      "starts_with_markdown_fence": true,
+      "elapsed_after_first_visible_fragment_seconds": 41.70299999997951,
+      "completed_answer": true,
+      "source_review": "Read the complete WITH/SELECT query. Separate per-order correlated sums prevent item/refund join multiplication; paid-order aggregation counts empty orders, permits negative net, and joins all customers. ROW_NUMBER orders by created_at then id descending for deterministic latest-paid selection. No writes, extensions, ATTACH, filesystem helpers or dynamic SQL. Correlated aggregate efficiency depends on indexes; the frozen prompt does not specify a runtime complexity bound. Isolated SQLite correctness checks remain pending.",
+      "frozen_grade_status": "graded",
+      "frozen_pass": true,
+      "frozen_checks": {
+        "passed": 20,
+        "total": 20
+      },
+      "failed_check_labels": []
+    },
+    {
+      "task": "sql_islands",
+      "language": "sql",
+      "wall_seconds": 941.0469999999623,
+      "finish_reason": "stop",
+      "first_event_seconds": 7.51600000000326,
+      "first_content_seconds": 912.984999999986,
+      "error": null,
+      "decode_tok_s": 7.28956638824708,
+      "response_sha256": "82074164ea95475a7609ad40e6e5750283d325998ce564181ac1d54750f9f153",
+      "usage": {
+        "completion_tokens": 6806,
+        "prompt_tokens": 121,
+        "total_tokens": 6927,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 121,
+        "prompt_ms": 7447.605,
+        "prompt_per_token_ms": 61.55045454545454,
+        "prompt_per_second": 16.246833713656944,
+        "predicted_n": 6806,
+        "predicted_ms": 933526.034,
+        "predicted_per_token_ms": 137.18237090374726,
+        "predicted_per_second": 7.28956638824708
+      },
+      "visible_characters": 782,
+      "reasoning_characters": 19046,
+      "starts_with_markdown_fence": true,
+      "elapsed_after_first_visible_fragment_seconds": 28.06199999997625,
+      "completed_answer": true,
+      "source_review": "Reviewed complete SELECT/CTE query. Filters invalid intervals, uses MAX(end) over all prior rows rather than LAG(end), marks a new island only for a strict gap, then groups running sums by resource. Peer rows share the second SUM default RANGE result, consistent with duplicate handling. No recursion over endpoints, writes, external functions or dynamic execution. Output expressions MIN(start)/MAX(end) lack explicit start/end aliases; note this separately for consumers using column names, without altering row-based frozen checks. Behavior execution pending.",
+      "frozen_grade_status": "graded",
+      "frozen_pass": true,
+      "frozen_checks": {
+        "passed": 20,
+        "total": 20
+      },
+      "failed_check_labels": []
+    },
+    {
+      "task": "ts_validation",
+      "language": "typescript",
+      "wall_seconds": 718.859999999986,
+      "finish_reason": "stop",
+      "first_event_seconds": 13.062999999965541,
+      "first_content_seconds": 652.484999999986,
+      "error": null,
+      "decode_tok_s": 6.789678150482038,
+      "response_sha256": "fede16cc1e720a78985f886e3a1df885964bcf77477ab7151ffa126e88cdf640",
+      "usage": {
+        "completion_tokens": 4793,
+        "prompt_tokens": 198,
+        "total_tokens": 4991,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 198,
+        "prompt_ms": 12847.647,
+        "prompt_per_token_ms": 64.88710606060606,
+        "prompt_per_second": 15.411382333278613,
+        "predicted_n": 4793,
+        "predicted_ms": 705777.195,
+        "predicted_per_token_ms": 147.2823862687813,
+        "predicted_per_second": 6.789678150482038
+      },
+      "visible_characters": 1384,
+      "reasoning_characters": 14648,
+      "starts_with_markdown_fence": true,
+      "elapsed_after_first_visible_fragment_seconds": 66.375,
+      "completed_answer": true,
+      "source_review": "Complete visible source reviewed. Pure synchronous pagination validator, no imports, dynamic execution, IO or global changes. Correct-looking type/range checks and ordered errors, but let page and let pageSize can remain unassigned on invalid branches; checking errors.length does not establish assignment in TypeScript strict control flow. Likely TS2454 compile failure; execution pending. Markdown fence is separately recorded despite source-only request. No mutation of input.",
+      "frozen_grade_status": "graded",
+      "frozen_pass": false,
+      "frozen_checks": {
+        "passed": 0,
+        "total": 2
+      },
+      "failed_check_labels": [
+        "TypeScript strict compilation",
+        "compile/load"
+      ]
+    },
+    {
+      "task": "js_pool",
+      "language": "javascript",
+      "wall_seconds": 635.515000000014,
+      "finish_reason": "stop",
+      "first_event_seconds": 10.28100000001723,
+      "first_content_seconds": 596.25,
+      "error": null,
+      "decode_tok_s": 8.345818379602358,
+      "response_sha256": "0dd3121523505a852ed76834d68bdfb89273d884a8c044a35538ecb9679a56e9",
+      "usage": {
+        "completion_tokens": 5219,
+        "prompt_tokens": 144,
+        "total_tokens": 5363,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 144,
+        "prompt_ms": 10046.313,
+        "prompt_per_token_ms": 69.7660625,
+        "prompt_per_second": 14.333616720880585,
+        "predicted_n": 5219,
+        "predicted_ms": 625223.287,
+        "predicted_per_token_ms": 119.82048428516673,
+        "predicted_per_second": 8.345818379602358
+      },
+      "visible_characters": 1212,
+      "reasoning_characters": 18603,
+      "starts_with_markdown_fence": true,
+      "elapsed_after_first_visible_fragment_seconds": 39.26500000001397,
+      "completed_answer": true,
+      "source_review": "Complete visible function reviewed. Uses local arrays, promises and the supplied callback; no module imports, IO, dynamic evaluation or host capabilities. Bounded loop and asynchronous rejection set a failed flag. However fn is invoked synchronously inside Promise.resolve before the chain exists: a second initial callback throwing rejects the outer executor without setting failed, so an earlier pending callback can later schedule more tasks. The separately frozen post-review diagnostic from Qwen targets this exact edge. Preserve original frozen grade and extra result separately; execution pending.",
+      "frozen_grade_status": "graded",
+      "frozen_pass": true,
+      "frozen_checks": {
+        "passed": 11,
+        "total": 11
+      },
+      "failed_check_labels": []
+    },
+    {
+      "task": "js_merge",
+      "language": "javascript",
+      "wall_seconds": 705.9679999999935,
+      "finish_reason": "stop",
+      "first_event_seconds": 8.90600000001723,
+      "first_content_seconds": 643.2029999999795,
+      "error": null,
+      "decode_tok_s": 8.203348257851143,
+      "response_sha256": "4ab09c96cddb0e19775a92327ea4011dbda230670be25dee85bc7a0695eebd58",
+      "usage": {
+        "completion_tokens": 5719,
+        "prompt_tokens": 143,
+        "total_tokens": 5862,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 143,
+        "prompt_ms": 8706.96,
+        "prompt_per_token_ms": 60.88783216783216,
+        "prompt_per_second": 16.423642695039373,
+        "predicted_n": 5719,
+        "predicted_ms": 697032.458,
+        "predicted_per_token_ms": 121.90144421126267,
+        "predicted_per_second": 8.203348257851143
+      },
+      "visible_characters": 1724,
+      "reasoning_characters": 17417,
+      "starts_with_markdown_fence": true,
+      "elapsed_after_first_visible_fragment_seconds": 62.76500000001397,
+      "completed_answer": true,
+      "source_review": "Complete visible source reviewed. Recursively clones arrays and object values, rejects __proto__/constructor/prototype keys at every copied level, and merges only non-null non-array object pairs. Array-to-object replacement appears correct, unlike the earlier Qwen defect. No imports, IO, dynamic execution or global changes. isPlainObject accepts nonplain instances, but the frozen contract is JSON-like input, so do not invent a Date/class requirement. Deep nesting/cycles are not certified by these finite fixtures. Execution pending.",
+      "frozen_grade_status": "graded",
+      "frozen_pass": true,
+      "frozen_checks": {
+        "passed": 8,
+        "total": 8
+      },
+      "failed_check_labels": []
+    }
+  ],
+  "attempted_tasks": 12,
+  "completed_answers": 12,
+  "frozen_task_passes": 10,
+  "memory_extrema": {
+    "ram_free_gib": 3.860485076904297,
+    "commit_available_gib": 5.428600311279297,
+    "vram_free_mib": 973.0,
+    "gpu_c": 53.25,
+    "process_working_set_gib": 6.0000152587890625,
+    "process_private_gib": 4.559047698974609
+  },
+  "startup_buffers_mib": {
+    "gpu_model": 2320.89,
+    "cpu_mapped_span_not_residency": 12868.41,
+    "gpu_kv_full_attention": 680.0,
+    "gpu_kv_sliding_window": 132.81,
+    "gpu_compute": 415.78
+  },
+  "paging_snapshot": {
+    "timestamp": "2026-10-26T20:34:40.9200315+05:30",
+    "process": {
+      "IDProcess": 116140,
+      "PercentProcessorTime": 332,
+      "PageFaultsPersec": 69539,
+      "IOReadBytesPersec": 0,
+      "WorkingSet": 6442360832,
+      "WorkingSetPrivate": 15073280
+    },
+    "system_memory": {
+      "AvailableMBytes": 7416,
+      "PageReadsPersec": 0,
+      "PagesInputPersec": 0,
+      "CacheBytes": 697671680
+    },
+    "scope": "Single snapshot during resident6 SQL decoding; total process faults include soft faults; system hard reads cannot be attributed to this model"
+  },
+  "gpu_utilization_snapshot": {
+    "source": "nvidia-smi CSV query during SQL collection",
+    "gpu_util_percent": 21,
+    "memory_util_percent": 4,
+    "device_used_mib": 7925,
+    "device_free_mib": 2129,
+    "power_w": 100.81,
+    "sm_clock_mhz": 225,
+    "memory_clock_mhz": 9501,
+    "scope": "One whole-device snapshot, not model-only utilization, average power, sustained clocks or proof of a fixed clock limit. Reserved device memory can make used+free differ from physical total.",
+    "observed_local_minute": "2026-10-26T20:34+05:30"
+  },
+  "resource_availability_change": {
+    "scope": "Resource availability changed during SQL-islands collection; no profile intervention and no attribution to a specific application or GPU allocation",
+    "before": {
+      "time": 1793026891.802996,
+      "platform": "win32",
+      "ram_total_gib": 63.909725189208984,
+      "ram_free_gib": 7.189079284667969,
+      "commit_limit_gib": 106.32622909545898,
+      "commit_available_gib": 8.20703125,
+      "vram_total_mib": 10240.0,
+      "vram_free_mib": 2126.0,
+      "gpu_c": 53.22,
+      "gpu": "NVIDIA GeForce RTX 3080",
+      "driver": "621.01",
+      "process_working_set_gib": 5.999713897705078,
+      "process_private_gib": 4.550106048583984,
+      "process_page_fault_count": 695848390,
+      "process_peak_working_set_gib": 6.000053405761719
+    },
+    "after": {
+      "time": 1793028048.8903308,
+      "platform": "win32",
+      "ram_total_gib": 63.909725189208984,
+      "ram_free_gib": 4.438751220703125,
+      "commit_limit_gib": 106.32622909545898,
+      "commit_available_gib": 6.7404022216796875,
+      "vram_total_mib": 10240.0,
+      "vram_free_mib": 1734.0,
+      "gpu_c": 48.31,
+      "gpu": "NVIDIA GeForce RTX 3080",
+      "driver": "621.01",
+      "process_working_set_gib": 5.999900817871094,
+      "process_private_gib": 4.554561614990234,
+      "process_page_fault_count": 837676054,
+      "process_peak_working_set_gib": 6.000053405761719
+    }
+  },
+  "stop": {
+    "status": "requested_stop"
+  },
+  "new_hardware_event": false,
+  "limitations": [
+    "Extended allowance is separate from the frozen1200second scorecard",
+    "Changing desktop load/file cache limit causal timing attribution",
+    "API evidence does not establish editor performance",
+    "Passing finite checks does not prove all edge cases correct",
+    "Earlier CPU26 public/private and resident4 results remain separate"
+  ],
+  "post_review_diagnostics": {
+    "scope": "Previously authored post-review diagnostics; not frozen scores",
+    "prepared": "2026-10-26T15:56:15.358533+00:00",
+    "identities": {
+      "ttl_lru": {
+        "response_sha256": "2a4b47f903b4ef79ecc16db8f7758468c46ad4b5504121273b3e19b7e7f4a230",
+        "candidate_sha256": "7087924439775c00436ccf7f821d8ee0dfd77174dde55f46378c08b38bba265d",
+        "checks_sha256": "4f0002d8f96aff2c910fd3fa75884a41a5a89d2d7c310d99e53ec480e95d5394"
+      },
+      "js_pool": {
+        "response_sha256": "0dd3121523505a852ed76834d68bdfb89273d884a8c044a35538ecb9679a56e9",
+        "grader_sha256": "0f5ba77220b4b7379ffa12d3aab573dc974a1ac575a05b74a205711e7bcdd367"
+      },
+      "js_merge": {
+        "response_sha256": "4ab09c96cddb0e19775a92327ea4011dbda230670be25dee85bc7a0695eebd58",
+        "grader_sha256": "f7dd9d3d215940eb46c2c5959a763eaf52219242ba2eb16f176dca71551116bf"
+      }
+    },
+    "results": {
+      "js_pool": {
+        "result_sha256": "078e0aaa2f554dbc488e8852a4da28861e108528ffca1e21a4de92c4e40deaa8",
+        "passed_including_frozen": 11,
+        "total_including_frozen": 12,
+        "additional_checks": [
+          {
+            "label": "post-review sync second initial worker stops later launches",
+            "passed": false,
+            "error": "Error: Expected [0,1], got [0,1,2,3]"
+          }
+        ]
+      },
+      "js_merge": {
+        "result_sha256": "31a460a976f130c0b4ed09d5b1c3d9997cd5a8c56d0fa6a8152dabb102b4bffe",
+        "passed_including_frozen": 9,
+        "total_including_frozen": 9,
+        "additional_checks": [
+          {
+            "label": "post-review array to object replaces rather than merging array elements",
+            "passed": true
+          }
+        ]
+      },
+      "ttl_lru": {
+        "result_sha256": "a1e6e253c0e04ce41ca5800080ff57ad66f572876f664a281eddb265b884d721",
+        "additional_checks_passed": 0,
+        "additional_checks_total": 1,
+        "observed_failure": "NaN accepted as positive TTL; ValueError not raised",
+        "behavior_returncode": 1
+      }
+    }
+  },
+  "compiler_failure": {
+    "task": "ts_validation",
+    "observed": "TS1005: '=>' expected; TS1134: Variable declaration expected",
+    "detail": "Malformed function type annotation prevents parsing. Emitted code also fails to load.",
+    "review_correction": "Initial source review suspected definite assignment; actual compiler stops at the earlier syntax error. No repair or TS2454 result is claimed."
+  }
+}

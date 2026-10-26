@@ -1,5 +1,27 @@
 # Precision, tuning research and missing benchmark coverage
 
+26 October evening continuation: available memory has recovered from the
+morning rejection. No previous inference model remained loaded; apps stay
+open. Flint Q3XL and a separate Strata0.1.50 engine are fully downloaded and
+hash-verified. Gemma CPU28/resident6 completes all twelve direct-coding
+questions with10frozen passes under the extended allowance. CSV and TypeScript
+fail; extra NaN TTL/pool defects remain. Its two matched4/6GiB answers are
+identical and28-29% quicker at6GiB. Median case11m51s; CSV finishes after35m35s
+but is incorrect. No new hardware event. The6GiB128K history profile rejects
+fresh capacity; a separate CPU30/resident4/128K option is prepared. Smaller
+Flint/K2 qualification and Flash-Next Q2 remain queued.
+See the [article review](../../../research/reviews/2026-10-26-qwen-articles.md)
+and [live task log](../../tasks.md). Earlier dated capacity statements below
+remain historical; they do not describe the active evening run.
+
+The revised timing policy also removes the old1200second cutoff as the sole
+reason to exclude an extended retry of plain QwenQ6 and FlintQ4. Their earlier
+partial answers remain unscored, and their retired artifacts must be downloaded
+and verified again before any retry. Revisit after the already installed
+Gemma/FlintQ3/K2 work and article-priority Flash qualification; record a fixed
+memory profile, larger allowance and completion/quality evidence separately.
+This is queued coverage, not a new result or an assertion that higher bits win.
+
 Started 24 October 2026 (Asia/Kolkata). Status: active; Qwen IQ3_S public/private
 graded; higher Flint Q4 controls deadline; IQ3 cached/capped coding6/12;
 IQ4 bounded-resident public55/60 and private29/36 after a separate RAM stop;

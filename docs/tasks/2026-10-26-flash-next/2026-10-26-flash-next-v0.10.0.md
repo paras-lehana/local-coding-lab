@@ -49,6 +49,27 @@ SHA256`5745022e7c8f743cfee83544da7d3672cd86103c854f23600e2c69ddd6593bef`.
 No new engine load or quality measurement yet. The old checkout/build is
 preserved. App0.2.6's DeepSeek changes
 do not imply a new Qwen engine versus app0.2.5.
+The packaged BUILD record identifies native commit`1aff6d14117b`, CUDA13.0
+and sm86 among its targets; this differs from the frontend source revision
+`4b9e05a2a806a3fe24f7b2560d98626c37dade35`. Keep both identities. The component
+manifest's minimum NVIDIA driver is580.65, below this PC's measured621.01;
+no driver installation is needed for this qualification.
+
+Current upstream QWEN36 documentation resolves the engine-name ambiguity:
+the unified`strata`binary dispatches to`src/qwen35`from GGUF architecture;
+it does not require the old standalone`strata-q36`filename. Its documented
+Qwen3.6 files include MTP metadata. This does not establish that our retained
+non-MTP GGUF loads, or that Flash-specific low-RAM/KV flags work on that path.
+Do not silently reuse the older fork's compatibility assumptions.
+[Pinned Qwen3.6 engine documentation](https://github.com/Niko1221/Strata/blob/4b9e05a2a806a3fe24f7b2560d98626c37dade35/docs/QWEN36.md).
+
+Packing plan: current`tools/iq_pack.py`reads both verified shards and can use
+native expert views without`--experts-bin`, avoiding a second expert-weight
+copy. It still writes float-tensor/tokenizer metadata and a conversion record;
+those outputs need disk allowance and inspection. The lookup table remains
+in its original shard. Do not use`--compat-bf16`silently: that option can round
+small projections and is a separate numerical change.
+[Pinned packer](https://github.com/Niko1221/Strata/blob/4b9e05a2a806a3fe24f7b2560d98626c37dade35/tools/iq_pack.py).
 
 ## Profile and evaluation plan
 
@@ -59,6 +80,13 @@ do not imply a new Qwen engine versus app0.2.5.
   it is distinct from the live KV cache. Later prefix-reuse experiments get
   their own explicit budget. The container memory-limit flag governs parking,
   not a universal cap on model allocations or Windows commit.
+- After fit qualification, a separately budgeted alternating-conversation
+  control should compare cache0 against a small explicit host cache. Two
+  editor workspaces or a helper request can replace the active prefix; a
+  successful uninterrupted history test does not establish fast switching.
+  Keep each conversation's markers and changed-file facts distinct, record
+  cached versus newly processed tokens, and include the host cache in admission.
+  This is a planned diagnostic, not an observed editor/cache failure here.
 - No route-tail skipping or refusal projection in the accuracy baseline.
 - Plain greeting/no files first, cold and warm;600second practical ceiling.
 - Freeze native effort/output limits and compare public instruction routing,
@@ -67,6 +95,12 @@ do not imply a new Qwen engine versus app0.2.5.
   default effort, and `answer_room` normally reserves a quarter of a finite
   output cap by closing thinking early. Keep this behavior explicit; budget0
   does not mean an unconstrained answer when answer_room remains enabled.
+- Use the model's supported high effort explicitly. Strata documents low,
+  medium and high; its Responses-compatible`xhigh`name maps to the high choice,
+  not an additional trained ultra level. Verify the rendered template/request,
+  not just a client label. Preserve historical thinking for the baseline and
+  record the resulting context cost. A lower-effort control must include all
+  extra tool turns/retries in total latency, not only its first response.
 - Long diagnostics may exceed1200seconds; report exact duration and do not
   import those scores into the old leaderboard.
 - Only then compare MTP and64K/128K KV placement, recording allocated capacity,
@@ -91,3 +125,11 @@ Current recommendation: **retest, not promote**. Existing Qwen3.6 Q4 remains the
 preserved baseline. New Q2 weights/load/quality are unrun at this checkpoint;
 available disk is below the full two-shard download plus headroom, so finish
 and record current candidates before exact-file retirement creates room.
+
+The architecture paper strengthens the reason to test quality, while limiting
+the long-context claim: its eight-needle MRCR score declines substantially at
+512K/1M despite high RULER scores. Both retrieval difficulty and context length
+matter. Its favorable comparison with dense27B concerns base models, so it
+cannot decide the ranking of our quantized instruction-following deployments.
+Keep source selection, changed-file recovery and conflicting instructions in
+the local evaluation instead of replacing them with one successful needle.

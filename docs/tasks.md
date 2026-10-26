@@ -4,6 +4,35 @@ Last updated: 2026-10-26 (Asia/Kolkata); higher precision and missing coverage r
 
 ## 2026-10-26 evening - Seven articles and RAM investigation
 
+21:25-21:31IST: all12Gemma6GiB answers complete; normal shutdown/no newhardware.
+Source-reviewed then isolated:10tasks pass,452/470uneven checks. CSV104/120,
+TypeScript malformed function-type syntax prevents compilation/load(0/2).
+Earlier source suspicion of definite assignment is not the observed compiler
+failure. Extra NaNTTL fails, synchronous-worker failure fails, array-to-object
+merge passes. Median710.843s; total9076.140s. Public receipt exported with
+settings/hashes/memory; minimumRAM3.860GiB,commit5.429GiB,VRAM973MiB.
+Fresh9.543RAM/9.932commit/5383MiBVRAM rejects larger history and queued4/6GiB
+profiles before loading. Prepared distinct GemmaCPU30/resident4/128K option:
+two more expert blocks on CPU,4context checkpoints,10.5RAM/10commit/5000VRAM
+admission, same stop floors. Unrun. Private extended audit collector is derived
+without changing frozen sources/questions, requires opt-in, no model call yet.
+
+21:32IST: fresh10.782GiB RAM/11.452GiB commit/5461MiB freeVRAM permits the
+smaller4GiB history profile; launcher will recheck.44offline tests pass20.134s,
+four tracked PowerShell scripts parse, public audit321files/zero findings.
+Derived private collector's source helper ASTs match, frozen assets verify,
+missing opt-in and21601second limits reject before creating a run. No inference
+called by those checks. Original private collector remains unchanged.
+
+21:03-21:11IST checkpoint: Gemma6GiB collection has ten complete answers;
+worker-pool and merge remain. Sources are reviewed without executing them.
+The TypeScript answer likely violates strict definite assignment, and the
+completed CSV has an LF state-reset defect on source review. Final scores
+await isolated execution after engine exit. Desktop availability falls while
+engine residency stays6GiB; preserve this timing confound. No new hardware
+event or app cleanup. Prepared128K history, FlintQ3XL and K2 profiles remain
+unrun; fresh gates, not previously observed headroom, decide subsequent loads.
+
 Active: read all seven supplied articles, preserve originals privately, verify
 primary sources, update model-wise learning reports, and reopen Flash-Next
 where a specific new quant/runtime addresses the previous failures. Owner
@@ -49,6 +78,31 @@ post-grading RAM rejects its12.5GiB gate. Fresh13.056GiB passes; start full-suit
 recollection18:52:56, wrapper62428, private run gemma-resident6-b under the same
 article evidence directory.44offline tests pass20.031s, four PowerShell parses,
 315file public audit/zero findings. No grader overlaps the new load.
+
+19:06IST:6GiB interval completes783.250s versus4GiB1105.766s; exact same
+visible code/reasoning and5908output tokens,29.17% less whole-request time,
+decode7.631 versus5.405tok/s. Single-pair limits retained; no quality transfer.
+TTL/LRU now collecting; keep this6GiB profile fixed through the remaining suite.
+Checkpoint7b7ef3f is pushed and CI40330592285 passes. Native Strata BUILD metadata
+identifies engine1aff6d14117b/CUDA13.0/sm86, distinct from frontend4b9e05a2.
+
+19:42IST checkpoint:6GiB TTL finishes691.078s versus964.140 at4GiB; identical
+code/reasoning,28.32% shorter, known NaN defect unchanged. DAG completes390.828s
+and is source-reviewed. CSV remains active, about8.4tok/s; no grading/download
+overlaps inference. The full6GiB suite remains fixed. A separate provided-source
+router control is prepared to distinguish retrieval from comprehension; unrun
+and not interchangeable with the tools benchmark.
+
+20:17IST: six coding answers complete, including CSV2135.172s, schedule255.110s
+and inventory380.469s; visible sources reviewed, no execution during inference.
+CSV likely mishandles subsequent LF-terminated rows. Extended output allows a
+final answer after18227tokens, not a correctness pass. Money is collecting.
+Prepared separate Gemma128K/q8GPU-KV profile with5700MiB VRAM admission for the
+frozen640-record changed-file/history follow-up after coding/grading. Other
+settings/floors stay fixed. New report exporter requires stopped collection,
+unchanged-source reviews and isolated grades; it has only been syntax-checked.
+Primary-paper retrieval/base-model sections reviewed; long context still does
+not imply reliable multi-instruction recall. Flint/K2/Flash remain next.
 
 ## 2026-10-26 - Resume comparison and grade saved Gemma audit
 

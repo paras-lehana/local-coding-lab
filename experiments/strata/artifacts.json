@@ -51,7 +51,10 @@
     "scope": "New capacity diagnostic; lower precision than the prior IQ3_XXS. Not locally qualified."
   },
   "article_runtime_20261026": {
-    "source_commit": "4b9e05a2a806a3fe24f7b2560d98626c37dade35",
+    "frontend_source_commit": "4b9e05a2a806a3fe24f7b2560d98626c37dade35",
+    "engine_source_commit_short": "1aff6d14117b",
+    "engine_cuda": "13.0",
+    "engine_archs": ["sm_75", "sm_86", "sm_89", "sm_120", "compute_120"],
     "app_release": "v0.2.6",
     "qwen_engine": "0.1.50",
     "archive": {

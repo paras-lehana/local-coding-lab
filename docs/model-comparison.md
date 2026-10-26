@@ -13,7 +13,9 @@ a plain greeting taking600seconds remains a practical failure. New
 article reviews reopen concrete engine/quant work, without new scores yet.
 Gemma's new CPU28/resident4/64K calibration passes plain native-thinking API
 greetings in12.77/8.20seconds and two completed coding cases. A separate NaN TTL
-diagnostic fails. Its6GiB residency control is collecting the full suite.
+diagnostic fails. Its6GiB residency control completes all12answers with10frozen
+task passes, median710.843seconds. CSV and TypeScript fail; extra TTL/pool checks
+also fail. The additional array-replacement merge check passes.
 Neither profile inherits earlier public/private scores or proves editor use.
 [Qualification evidence](../reports/2026-10-26-article-qualification.json).
 
@@ -32,13 +34,14 @@ Neither profile inherits earlier public/private scores or proves editor use.
 | Gemma 4 26B-A4B QAT, CPU28/resident8,24October |Unrun on new profile |Router38/40; TS5/6; SQL0/6; history incomplete |Unrun on new profile |Router1031.860s,TS/SQL1142.469s. Python groups6/6 andself-tests8/8 pass; TS prototype validation and SQLite FK error remain. History4096-token reasoning-only limit789.282s; no full total |
 | Gemma 4 26B-A4B QAT, CPU26/resident8 |23 |57 |Unrun; current capacity rejection |Private798.6s: semantics15/citations2/code6. Public uses topK64; private explicitly20. Conflicting fact ownership, unread citations and missed closeout remain despite correct merge. Public skips linked TS/SQL rule; prototype-validation/self-test defects. No full composite or promotion |
 | Gemma 4 26B-A4B QAT, CPU28/resident4, extended64K |Unrun |Unrun |Two completed frozen passes; partial suite |Intervals105/105 in1105.766s; TTL34/34 in964.140s. Separate NaN TTL fails. Intentional stop interrupts DAG; nine later cases unrun. No hardware event |
-| Gemma 4 26B-A4B QAT, CPU28/resident6, extended64K |Unrun |Unrun |Collecting |Only residency/admission changed versus4GiB; inference args unchanged. Greetings10.891/6.656s. No transferred quality score |
+| Gemma 4 26B-A4B QAT, CPU28/resident6, extended64K |Unrun |Unrun |10/12 frozen passes; all12 complete |CSV104/120, TS syntax/compile failure; separate NaN TTL and synchronous worker-failure defects. Merge extra passes. Median710.843s; CSV2135.172s. Greetings10.891/6.656s; no hardware event or transferred workflow scores |
 | Gemma 4 31B dense QAT Q4_0 | 26 | Historical completed cases | Not comparable | Private 7234 s; fails current latency gate; retired |
 | Qwen3-Coder-Next 80B Q4 | Unscored | Separate historical cases | Not comparable | Private tool-loop limit after 4075 s; retired |
 | Qwen3-Coder-30B UD-Q4_K_XL | Deadline | Separate historical cases | Not comparable | Public cases complete, private 1200 s deadline |
 | Kimi-Linear 48B Q4 | Capacity rejection | Separate historical cases | Not comparable | Not evidence of poor answer quality; retired |
 | Qwen3.8 27B dense Q6 / TQ3 | Unscored | Interrupted | Not collected | Roughly 1.4-2.1 decode tok/s; long requests/restart, not promoted |
 | Qwen3.8-Flash-Next 125B, Strata IQ3_XXS | Not completed | Coding deadlines; empty history final | Not collected | Separate replays recover facts; not a retroactive workflow pass; retired |
+| Qwen3.8-Flash-Next GSQ-RCO Q2_0, Strata0.1.50 |Not run |Not run |Not run |New engine staged and verified; Q2 shards not yet downloaded. Requires61.86GiB plus packing/headroom; current volume has about34.4GiB free. Complete current candidates before exact-file retirement. Smaller quant is a capacity control, not an assumed quality upgrade |
 | Bonsai 2 27B PQ2_0 | Not run | Stopped | Not run | Partial CPU placement only 2.3 tok/s; retired |
 | Bonsai 2 27B PTQ1_0 | Not run | Deadline | Not run | Full GPU, router exceeds 1200 s after one tool turn; retired |
 | LFM2.5 24B-A2B QAD Q4_0 | Deadline | 48 | 6 completed passes of 12 | Private reasoning loop; coding includes deadline/truncation, so 6/12 is task completion, not twelve completed correctness grades; retired 23 October |
@@ -54,6 +57,7 @@ Neither profile inherits earlier public/private scores or proves editor use.
 | Recursive Flint UD-IQ3_XXS, GPU KV | 29 | Router 39/40; TS/SQL tool limit; history output limit | **11 completed passes of 12** | All 374 frozen checks on eleven complete answers pass; CSV produces no code before output limit. Private 692.5 s; separate NaN TTL bug; no full public total or promotion |
 | Recursive Flint UD-Q4_K_XL, CPU44/GPU KV |Not run after gate failure |Router1200.031s deadline |Not run after gate failure |Seven valid reads, no final answer; resource/hardware guards clear |
 | Recursive Flint UD-Q4_K_XL, CPU48/cache1536 |Not run after gate failure |Router1200.031s deadline |Not run after gate failure |Seven valid reads, partial visible answer starts1137s but remains unfinished; memory guards clear |
+| Recursive Flint UD-Q3_K_XL, CPU49/cache1536/resident4/32K |Not run |Not run |Not run |Full download/hash verified26October. Smaller allocation profile and extended collection prepared; queued after the current Gemma run. Plain greeting must complete first;32K qualification is not long-context validation |
 
 ## What changed in Claude's work
 

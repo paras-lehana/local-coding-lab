@@ -572,3 +572,10 @@ floors remain unchanged. This deliberately permits file paging and qualifies
 Native preserved reasoning remains; plain no-file greeting precedes public
 file-driven collection. Extended diagnostics use their own cohort under the
 owner's clarified policy; earlier1200second deadlines remain unchanged.
+
+A separately frozen`flint-q3xl-cpu49-cache1536-resident6-extended32` option
+raises the working-set maximum to6GiB and RAM admission to12.5GiB, preserving
+the6.5GiB reserve and all inference/commit/VRAM settings. Choose it before the
+first load if fresh headroom permits, otherwise retain the4GiB capacity fallback.
+Gemma's two matched-output pairs motivate this choice; they do not establish
+a Flint speedup or quality gain. Both Q3XL profiles remain unrun here.

@@ -16,6 +16,13 @@ Keep units explicit too: model repositories often show decimalGB, while these
 Windows measurements useGiB. The decisive question is each allocation and the
 current free capacity, not a rounded74-versus75 headline.
 
+Read-only storage inventory confirms E: is a463,316,447,232-byte volume on a
+WD_BLACK SN7701TB NVMe SSD. This is suitable for investigating SSD-backed
+lookup/weight reads, but no fresh storage benchmark was run during inference.
+The physical disk's1TB capacity does not give this volume1TB of free space.
+Actual available volume space, native packing overhead and measured read
+behavior still determine the download/serving plan.
+
 No llama/Strata engine remained loaded. Ollama was running but its `/api/ps`
 returned no models. VS Code and Edge were the largest resident process groups,
 about10.35/8.70GiB respectively; these working sets include shared pages and
@@ -69,6 +76,16 @@ attention-module prefill/decode speedups at1Mcontext, not whole-agent speed.
 The vocabulary ablations also show that better loss need not improve downstream
 tasks. That supports measuring real file routing and code behavior here.
 [Technical report](https://github.com/QwenLM/Qwen3.8-Flash-Next/blob/69885871a64393807d988b27b1b5e380e8f28526/tech_report.pdf).
+
+Further inspection covers the retrieval evaluation on page8 and the base-model
+comparison/conclusion on pages22-23. The paper reports strong RULER results,
+but eight-needle MRCR falls from95.98 at128K to40.53 at512K and26.44 at1M
+for QSA. That is direct evidence against interpreting a large context setting
+as reliable recall of every instruction. Table11 favors Flash-Next over dense27B
+on the reported base-model tasks; it does not compare our post-trained low-bit
+artifacts, editor scaffolds or linked-file workflows. The training-stability
+experiments also do not establish Windows hardware stability. This remains a
+targeted reading of relevant sections, not a claim to have reviewed all28pages.
 
 We must distinguish the n-gram weights, expert-weight cache, KV/recurrent state,
 prompt-prefix reuse and the editor's retained transcript. The n-gram table is
@@ -201,7 +218,7 @@ Strata requirement for all experts to fit RAM rules out assuming its dynamic
 mode works with our bounded partial expert cache. A static host-KV allocation
 can still serve increasing occupied context; measure both quantities.
 
-1. Finish the already-downloading higher Flint quant and missing Gemma/K2
+1. Test the now-verified higher Flint quant and finish missing Gemma/K2
    qualification where a genuinely smaller allocation fits current headroom.
 2. Separate plain greeting from the frozen file-driven cases. Keep completed
    answers, exact requests, timings and hardware telemetry. Extended native
@@ -221,8 +238,29 @@ Gemma26's smaller4GiB resident calibration loads in20.56seconds and answers
 plain native-thinking greetings in12.77 and8.20seconds. Its two completed coding
 cases pass105/105 and34/34 frozen checks, but the separate NaN TTL diagnostic
 fails. The calibration was intentionally stopped; its partial DAG is unscored.
-A6GiB resident control now recollects all twelve cases with unchanged inference
-arguments. This is API evidence, not an editor test or complete score. Do not
+A6GiB resident control recollects all twelve cases with unchanged inference
+arguments and completes21:25IST. This is API evidence, not an editor test. Do not
 promote any candidate from these articles alone. Every missing experiment must
 retain its concrete capacity, compatibility or evidence reason in the model
 report rather than silently disappear from the queue.
+
+At20:06IST five answers from the6GiB control are complete. Intervals and TTL
+match their4GiB outputs exactly and take about28-29% less time. CSV needs35m35s
+and18227generated tokens to deliver code, while scheduling takes4m15s. CSV's
+visible source has a likely newline-state defect awaiting isolated checks.
+Thus allowing more time can recover a final answer without guaranteeing better
+code. The64K Gemma context allocates812.81MiB of GPUq8KV at startup; occupied
+tokens change without an equivalent new allocation for every token. Neither
+the article's generic memory formula nor nominal bit width predicts all of
+these outcomes. Final grading waited until the unchanged full suite stopped.
+
+The completed isolated result is10/12 frozen task passes. CSV fails16chunk
+variants of one quoted/newline case; TypeScript has an actual function-type
+syntax error. Additional, separately reported checks expose NaN TTL acceptance
+and worker scheduling after a synchronous failure; deep merge passes the
+array-replacement edge. Median task11m51s, plain greetings10.9/6.7seconds,
+and no new hardware event. This supports reporting completion, speed, syntax,
+behavior and instruction grounding separately; it does not promote Gemma above
+Qwen for the owner's linked-file workflow. Earlier public/private scores use
+a different profile and cannot fill missing components here.
+[Complete coding evidence](../../reports/2026-10-26-gemma-resident6-coding.json).

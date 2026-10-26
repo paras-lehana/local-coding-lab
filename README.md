@@ -8,6 +8,13 @@ coding now have separate timing criteria; the frozen20minute scorecard remains.
 The coding collector requires`--extended-diagnostic` to use a larger deadline
 (up to21600seconds) and records that distinct cohort. No new winner is implied.
 
+Gemma26's apps-open6GiB-resident trial completes all12 coding answers with
+**10 frozen task passes**. CSV and TypeScript fail; additional checks expose
+TTL and worker-pool defects. Median completion is11m51s, with10.9/6.7second
+plain greetings. This extended cohort is separate from earlier public/private
+settings. [Measured coding report](reports/2026-10-26-gemma-resident6-coding.json)
+and [model analysis](docs/tasks/2026-10-24-gemma26-coverage/2026-10-24-gemma26-v0.9.0.md).
+
 **24 October, v0.9.0 in progress:** higher Flint precision and missing Qwen /
 other-model suite coverage are reopened. See the [active experiment record](docs/tasks/2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md)
 for research, capacity estimates and measured progress. Previous results below

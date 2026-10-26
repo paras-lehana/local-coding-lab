@@ -1,5 +1,31 @@
 # RAM, VRAM, quantization and context
 
+## 26 October apps-open observations
+
+Before the new article-driven trials, no llama/Strata engine was loaded and
+Ollama listed no models. Windows still had only about12GiB available RAM.
+Available memory already includes reclaimable standby pages; the separately
+reported standby total is not another pool to add. A stopped engine can leave
+reclaimable weight pages cached, without retaining a live model process.
+Installed64GiB RAM plus10GiB VRAM cannot be treated as74GiB available for one
+allocation while the desktop is using both. See the
+[article and memory investigation](../research/reviews/2026-10-26-qwen-articles.md).
+
+Gemma26's CPU28/64K GPUq8 profile again measures680.00MiB global plus132.81MiB
+sliding-window KV. Its mapped model span is12868.41MiB, while process physical
+residency is separately limited to4or6GiB. The unchanged first two coding
+answers finish28-29% sooner at6GiB, with identical delivered text; desktop
+load and file-cache state remain confounds. A larger resident allowance can
+help paging overhead, but does not improve the precision of the model or
+remove bugs in an identical answer. A short sample has many process faults
+and zero hard page reads; faults alone do not prove SSD bottlenecks.
+[Matched output/timing pairs](../reports/2026-10-26-gemma-residency-pair.json).
+
+These new short coding requests do not establish additional long-context
+recall. A separately frozen128K larger-history trial is prepared; it must
+pass fresh capacity gates, complete both phases and recover changed-file facts
+before its context setting can be credited as useful retention.
+
 ## Measured capacity versus occupied tokens
 
 The [16 October growth experiment](../reports/2026-10-16-context-growth.json)

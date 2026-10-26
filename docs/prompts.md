@@ -18,8 +18,13 @@ times out without code. Higher Qwen plainQ6 is verified and its resident7
 public router reaches1200seconds with seven reads and an incomplete answer;
 a larger-residency follow-up also deadlines; exact Q6 is retired with evidence.
 Gemma CPU26 public57/60 and private23/36 are reviewed; coding remains unrun.
-All next-load profiles reject26October's2.169GiB availableRAM. FlintQ3XL
-remains paused at68/276 checkpointed ranges; no inference is active.
+The26October morning profiles rejected2.169GiB availableRAM. By evening,
+FlintQ3XL finishes download/hash verification and separately frozen smaller
+Gemma profiles load. CPU28/resident6 completes all twelve coding questions
+with10frozen passes; CSV/TypeScript fail and extra NaN TTL/pool defects remain.
+Median710.843seconds, no new hardware event. A larger-history follow-up rejects
+current headroom; a separate CPU30/resident4/128K profile is prepared, unrun.
+The earlier CPU26 scores do not transfer to these new profiles.
 Verified FlintQ4 misses both router deadlines and is retired.
 Production is stopped during the active campaign; no new promotion.
 
