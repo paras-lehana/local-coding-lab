@@ -2,6 +2,54 @@
 
 Last updated: 2026-10-26 (Asia/Kolkata); higher precision and missing coverage remain active.
 
+## 2026-10-26 evening - Seven articles and RAM investigation
+
+Active: read all seven supplied articles, preserve originals privately, verify
+primary sources, update model-wise learning reports, and reopen Flash-Next
+where a specific new quant/runtime addresses the previous failures. Owner
+clarifies that a plain greeting taking ten minutes fails the practical check;
+accurate instruction-heavy coding may take longer. Frozen1200second results
+stay comparable; extended diagnostics will be labelled separately.
+
+17:33-17:44IST: no llama/Strata process, Ollama API reports no loaded models.
+About12.3-12.7GiB available physical RAM and11.1-11.4GiB available commit.
+Standby pages are included in available RAM, not another pool to reclaim.
+Largest process groups are VS Code and Edge; shared pages prevent additive
+working-set accounting. No application killed and no cache purge performed.
+Raw memory/process and attachment-hash evidence is ignored under
+local-data/2026-10-26-articles/. Bounded FlintQ3XL download resumed with four
+workers after engine/Ollama/hardware checks; stop/finish it before inference.
+New article research and model-specific updates are in progress.
+
+18:09-18:17IST: FlintQ3XL finishes its bounded download and full published hash;
+StrataQwen engine0.1.50 archive also verified/extracted into a separate runtime.
+Both workers exit before inference. GemmaCPU28/resident4/64K calibration loads
+in20.563seconds and plain native-thinking greetings complete12.766/8.203seconds.
+Extended twelve-case coding collection is active, native reasoning,32768output,
+21600second deadline. No scores transfer from CPU26. New frontend source review
+identifies the existing opt-in reasoning_close_retry as a separately controlled
+Flash empty-final diagnostic, not a proven fix.43 offline tests passed before
+inference; no hardware event or app cleanup, no editor typing. Private run root:
+local-data/2026-10-26-articles/gemma-extended-a. All downloads/builds/graders remain
+stopped during measured inference.
+
+18:28-18:40IST: Gemma intervals completes1105.766seconds with5908generated
+tokens at5.405tok/s; full visible source reviewed, behavioral execution pending.
+TTL/LRU is active. Smaller K2 resident4/32K/q4KV profile prepared for remaining
+qualification; no load implied. Q2 Flash artifact selector/regression added;
+full offline checks must run after inference, as the earlier43tests predate
+these edits. Runtime memory remains above floors. No production change.
+
+18:46-18:53IST: resident4 calibration intentionally stopped after two complete
+answers. Isolated checks: intervals105/105,TTL34/34; separate NaN TTL fails.
+DAG103.5s intervention remains unscored, nine later cases unrun. Normal stop,
+no hardware event; minRAM6.556GiB/commit6.806GiB/VRAM1770MiB. A6GiB resident
+control preserves every inference argument and6.5GiB reserve; initial12.282GiB
+post-grading RAM rejects its12.5GiB gate. Fresh13.056GiB passes; start full-suite
+recollection18:52:56, wrapper62428, private run gemma-resident6-b under the same
+article evidence directory.44offline tests pass20.031s, four PowerShell parses,
+315file public audit/zero findings. No grader overlaps the new load.
+
 ## 2026-10-26 - Resume comparison and grade saved Gemma audit
 
 | Task | Status | Evidence / next step |

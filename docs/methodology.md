@@ -4,14 +4,22 @@
 
 The owner wants correct code grounded in `.github`, `.claude`, project files and
 documentation; honest handling of absent facts; and usable long chat history.
-The current limit is **1200 seconds for one whole prompt**, including input
-processing, reasoning, tool turns and final text. Apps stay open. Quality is
-more important than raw tokens/sec, but multi-hour prompts are disqualified.
+The frozen comparison cohort uses **1200 seconds for one whole prompt**,
+including input processing, reasoning, tool turns and final text. Apps stay open.
+On26October the owner explicitly permits longer accurate instruction-heavy
+coding, while rejecting a plain greeting that takes ten minutes. New extended
+diagnostics keep their own stated allowance and are not inserted into the old
+deadline cohort. A greeting has no tool schemas or instruction files: measure
+it separately from an editor greeting that may send a large hidden prefix.
+Record load time, cold/warm request time, prefill, reasoning, final text and
+completion. A high decode rate or a fast cached answer does not prove a cold
+instruction-heavy workflow is fast or correct.
 
 **Historical 16 October expansion:** the owner temporarily relaxed that latency
 preference, and explicit collector deadlines could be up to21600seconds. The
-20 October scorecard and current campaign restore1200seconds. Longer historical
-runs retain their recorded allowance but cannot rank under the current gate.
+20 October scorecard restored1200seconds;26October adds extended diagnostics.
+Longer historical runs retain their recorded allowance but cannot rank in the
+1200second cohort.
 Do not retroactively pass earlier timeouts. Resource stops and a completed
 answer before grading remain required.
 

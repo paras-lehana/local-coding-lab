@@ -7,6 +7,7 @@ from pathlib import Path
 import tempfile
 import threading
 import unittest
+from unittest.mock import patch
 
 SOURCE = Path(__file__).resolve().parents[1] / 'experiments/strata/range_download.py'
 SPEC = importlib.util.spec_from_file_location('strata_ranges', SOURCE)
@@ -15,6 +16,29 @@ SPEC.loader.exec_module(ranges)
 
 
 class RangeDownloadTests(unittest.TestCase):
+    def test_explicit_q2_selection_preserves_original_default(self):
+        """A Q2 request must not silently fetch the historical IQ3 shards."""
+        manifest = json.loads(SOURCE.with_name('artifacts.json').read_text())
+        for key in ('flash_next_candidate', 'flash_next_q2_candidate'):
+            with self.subTest(key=key), tempfile.TemporaryDirectory() as folder:
+                argv = ['range_download.py', '--data-dir', folder,
+                        '--connections', '4']
+                if key != 'flash_next_candidate':
+                    argv += ['--artifact-key', key]
+                with patch.object(ranges.sys, 'argv', argv), \
+                        patch.object(ranges, 'fetch') as fetch:
+                    self.assertEqual(ranges.main(), 0)
+                artifact = manifest[key]
+                self.assertEqual(fetch.call_count, 2)
+                for call, expected in zip(fetch.call_args_list, artifact['files']):
+                    spec, destination, connections = call.args
+                    self.assertEqual(spec['sha256'], expected['sha256'])
+                    self.assertIn(artifact['revision'], spec['url'])
+                    self.assertTrue(destination.is_relative_to(Path(folder).resolve()))
+                    self.assertEqual(connections, 4)
+                receipt = json.loads((Path(folder) / 'verified-download.json').read_text())
+                self.assertEqual(receipt['artifact_key'], key)
+
     def test_resume_and_integrity(self):
         data = bytes(range(256)) * 32
         mode = {'wrong_range': False}

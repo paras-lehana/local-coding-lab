@@ -33,6 +33,36 @@
     ],
     "scope": "Full Flash-Next, distinct from the previously tested dense Qwen3.8"
   },
+  "flash_next_q2_candidate": {
+    "repo": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+    "revision": "ed59f92082b1e93c0e96d60a8b11aab089b52f09",
+    "files": [
+      {
+        "file": "Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00001-of-00002.gguf",
+        "bytes": 37623740192,
+        "sha256": "69820c02ec7d0b45ef2ebb19d6620299db749fe2aded7f39f93c6b88b199b720"
+      },
+      {
+        "file": "Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00002-of-00002.gguf",
+        "bytes": 28800138432,
+        "sha256": "316b46f3a2dbd68c900f43136ab9449f9dcc3725dfd8c794847c204bc161e113"
+      }
+    ],
+    "scope": "New capacity diagnostic; lower precision than the prior IQ3_XXS. Not locally qualified."
+  },
+  "article_runtime_20261026": {
+    "source_commit": "4b9e05a2a806a3fe24f7b2560d98626c37dade35",
+    "app_release": "v0.2.6",
+    "qwen_engine": "0.1.50",
+    "archive": {
+      "url": "https://github.com/Niko1221/Strata/releases/download/v0.2.6/strata-engine-0.1.50-windows-x86_64-cuda-cuda13.tar.gz",
+      "bytes": 581368579,
+      "sha256": "a9643e2f5dd5c62e734d2980484c320d41da0160fc4932bf638b7f34e38e74f5"
+    },
+    "exe_sha256": "5745022e7c8f743cfee83544da7d3672cd86103c854f23600e2c69ddd6593bef",
+    "kernel_dll_sha256": "36b8a053ffaacb68fb5d045de759d13d7522999204d1726df557c30be4cdceeb",
+    "status": "Archive verified and extracted separately; no load or performance claim"
+  },
   "experimental_fork": {
     "url": "https://github.com/paras-lehana/Strata",
     "branch": "experiment/qwen36-no-mtp",

@@ -1,0 +1,261 @@
+{
+  "date": "2026-10-26",
+  "cohort": "extended-diagnostic",
+  "scope": "Two completed calibration cases, not a complete twelve-case suite",
+  "assessor": "Codex source review plus existing WSL/bubblewrap checks; no independent human review",
+  "profile": "gemma4-26b-cpu28-resident4-extended64",
+  "profile_snapshot": {
+    "model": "gemma4-26b-qat",
+    "alias": "gemma4-lab",
+    "locally_tested": false,
+    "validation_status": "planned-smaller-residency-extended-diagnostic-not-promoted",
+    "evidence": "26October separately frozen apps-open calibration: move two routed expert blocks from GPU to CPU versus CPU26, reducing GPU weight span by estimated0.798GiB (GPUweights about2.266GiB,64Kq8KV0.794GiB,compute about0.406GiB before overhead). Fixed4GiB resident maximum plus6.5GiB reserve gives10.5GiB RAM admission; working-set cap does not cap virtual allocations or eliminate paging.10GiB commit/5000MiB device free admission; unchanged runtime stop floors. Native thinking preserved, larger32768 output/extended diagnostics separate from prior CPU26 scores. Plain greeting must complete first. No quality score inherited.",
+    "load_min_ram_free_gib": 10.5,
+    "load_min_vram_free_mib": 5000,
+    "load_min_commit_available_gib": 10,
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_min_commit_available_gib": 1,
+    "stop_gpu_c": 84,
+    "working_set_limit_gib": 4,
+    "working_set_reserve_gib": 6.5,
+    "template_kwargs": {
+      "enable_thinking": true,
+      "preserve_thinking": true
+    },
+    "runtime_variant": {
+      "id": "b11562-noprefetch-v1",
+      "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--n-cpu-moe",
+      "28",
+      "--ctx-size",
+      "65536",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC",
+      "--batch-size",
+      "128",
+      "--ubatch-size",
+      "32",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--reasoning-budget",
+      "-1",
+      "--reasoning-preserve",
+      "--predict",
+      "32768",
+      "--temp",
+      "1.0",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "64",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--timeout",
+      "21600",
+      "--metrics",
+      "--verbosity",
+      "4"
+    ]
+  },
+  "model_sha256": "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d",
+  "started": "2026-10-26T12:39:15.271556+00:00",
+  "finished": "2026-10-26T13:16:15.313897+00:00",
+  "preflight": {
+    "time": 1793018355.2715569,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 11.502937316894531,
+    "commit_limit_gib": 106.32622909545898,
+    "commit_available_gib": 11.379776000976562,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 5656.0,
+    "gpu_c": 51.31,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "postflight": {
+    "time": 1793020575.3143938,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 13.072364807128906,
+    "commit_limit_gib": 106.32622909545898,
+    "commit_available_gib": 11.99627685546875,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 5746.0,
+    "gpu_c": 52.09,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "load_seconds": 20.56300000002375,
+  "tasks": [
+    {
+      "task": "intervals",
+      "language": "python",
+      "wall_seconds": 1105.7660000000033,
+      "finish_reason": "stop",
+      "first_event_seconds": 12.969000000040978,
+      "first_content_seconds": 974.9380000000237,
+      "error": null,
+      "decode_tok_s": 5.405399662636626,
+      "response_sha256": "d2573187ba256cc0ca4f764c9aab7af03a73e6ee7574c2acaa6c2177054a6064",
+      "usage": {
+        "completion_tokens": 5908,
+        "prompt_tokens": 105,
+        "total_tokens": 6013,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 105,
+        "prompt_ms": 12901.955,
+        "prompt_per_token_ms": 122.8757619047619,
+        "prompt_per_second": 8.138301520971048,
+        "predicted_n": 5908,
+        "predicted_ms": 1092796.161,
+        "predicted_per_token_ms": 185.0001965464703,
+        "predicted_per_second": 5.405399662636626
+      },
+      "source_review": "Reviewed complete delivered subtract_intervals and nested merge_intervals. Pure sorted-list operations; no imports, filesystem, network or dynamic execution. Normalizes invalid/overlapping/touching inputs into new lists, scans cuts for each base interval and normalizes final output. Inputs are referenced while sorting but not assigned through. Cut scan restarts per base interval (quadratic worst case, no complexity constraint in this frozen prompt); final normalization appears redundant. Behavioral checks pending; no correctness score assigned.",
+      "frozen_checks": {
+        "passed": 105,
+        "total": 105
+      },
+      "frozen_pass": true
+    },
+    {
+      "task": "ttl_lru",
+      "language": "python",
+      "wall_seconds": 964.140000000014,
+      "finish_reason": "stop",
+      "first_event_seconds": 18.81200000003446,
+      "first_content_seconds": 890.0929999999935,
+      "error": null,
+      "decode_tok_s": 5.719739119599286,
+      "response_sha256": "04b420c5c3579584566459fbca6c98dacfacf505796a86cde958195d9746c4d7",
+      "usage": {
+        "completion_tokens": 5408,
+        "prompt_tokens": 172,
+        "total_tokens": 5580,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 172,
+        "prompt_ms": 18739.569,
+        "prompt_per_token_ms": 108.95098255813953,
+        "prompt_per_second": 9.178439482786397,
+        "predicted_n": 5408,
+        "predicted_ms": 945322.835,
+        "predicted_per_token_ms": 174.83314869613463,
+        "predicted_per_second": 5.719739119599286
+      },
+      "source_review": "Reviewed complete TTLCache class. Imports only collections.OrderedDict; no filesystem, network, dynamic execution or process access. Scans all expiry values before put eviction; moves hits without resetting expiry; inclusive expiry and false/None storage implemented. Validation concerns: bool capacity passes isinstance(int); ttl is compared to zero without numeric/type guard, so invalid nonnumeric inputs can raise TypeError rather than required ValueError. NaN TTL also passes, the existing extra diagnostic. Source findings only until frozen checks run. get leaves expired records stored until next put, which does not violate the stated maximum-live-entry contract.",
+      "frozen_checks": {
+        "passed": 34,
+        "total": 34
+      },
+      "frozen_pass": true
+    }
+  ],
+  "completed_tasks": 2,
+  "completed_frozen_passes": 2,
+  "interrupted_task": {
+    "task": "dag",
+    "seconds": 103.5,
+    "cause": "Intentional calibration stop after two completed cases",
+    "quality_scored": false
+  },
+  "unrun_tasks": [
+    "csv_stream",
+    "schedule",
+    "inventory_fix",
+    "multi_file",
+    "sql_report",
+    "sql_islands",
+    "ts_validation",
+    "js_pool",
+    "js_merge"
+  ],
+  "memory_extrema": {
+    "ram_free_gib": 6.555545806884766,
+    "commit_available_gib": 6.806068420410156,
+    "vram_free_mib": 1770.0,
+    "gpu_c": 52.84,
+    "process_working_set_gib": 4.000030517578125,
+    "process_private_gib": 4.509799957275391
+  },
+  "paging_snapshot": {
+    "timestamp": "2026-10-26T18:44:14.5821593+05:30",
+    "process": {
+      "IDProcess": 65236,
+      "PercentProcessorTime": 385,
+      "PageFaultsPersec": 197684,
+      "IOReadBytesPersec": 0,
+      "WorkingSet": 4294656000,
+      "WorkingSetPrivate": 14344192
+    },
+    "system_memory": {
+      "AvailableMBytes": 9232,
+      "PageReadsPersec": 0,
+      "PagesInputPersec": 0,
+      "CacheBytes": 904650752
+    },
+    "scope": "Snapshot during TTL decoding; all-process hard paging is not attributable to this model; total process faults include soft faults"
+  },
+  "stop": {
+    "status": "requested_stop"
+  },
+  "new_hardware_event": false,
+  "separate_diagnostic": {
+    "name": "Positive TTL excludes NaN",
+    "passed": 0,
+    "total": 1,
+    "existing_check_reused_unchanged": true,
+    "frozen_score_unchanged": true,
+    "result_sha256": "32c92b80351ad8d098d1384209dce17296fce3f60cdce42dc29aa9a2abc88113",
+    "observation": "Expected ValueError is not raised for NaN TTL"
+  },
+  "next_control": "Same inference args with6GiB resident cap and12.5GiB RAM admission; full suite recollection",
+  "limitations": [
+    "No CPU26 public/private score transfer",
+    "No full current quality composite or editor test",
+    "Paging snapshot includes system-wide hard reads and is not causal attribution",
+    "Source type-validation concerns beyond the NaN diagnostic remain unexecuted"
+  ]
+}

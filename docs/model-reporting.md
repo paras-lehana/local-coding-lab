@@ -46,8 +46,10 @@ Report the full composite only when all components are complete and compatible.
 Historical partial composites are explicitly partial; do not compare their
 renormalized percentages with a complete score as if coverage were identical.
 
-The whole-prompt deadline is 1200 seconds including prefill, reasoning and all
-tool turns. Preserve incomplete cases separately from graded failures. A useful
+The frozen whole-prompt deadline is1200seconds including prefill, reasoning and
+all tool turns. The owner's26October extended coding diagnostics are a separate
+cohort; plain greetings retain a600second practical ceiling. Preserve incomplete
+cases separately from graded failures. A useful
 completion fraction may count unfinished tasks as not completed, but must not
 be called a semantic correctness score or a quantization syntax defect.
 

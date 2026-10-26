@@ -1,0 +1,223 @@
+{
+  "date": "2026-10-26",
+  "scope": "Article research and initial qualification; coding collecting, no new quality score",
+  "latency_policy": {
+    "plain_greeting_deadline_seconds": 600,
+    "frozen_scorecard_seconds": 1200,
+    "extended_coding_deadline_seconds": 21600,
+    "cohorts_must_not_be_merged": true
+  },
+  "memory_investigation": {
+    "old_llama_or_strata_process_found": false,
+    "ollama_loaded_models": [],
+    "apps_closed": false,
+    "standby_purged": false,
+    "standby_is_included_in_available_memory": true,
+    "limitation": "Process working sets share pages; no additive exclusive attribution"
+  },
+  "flint_download": {
+    "file": "flint-UD-Q3_K_XL.gguf",
+    "bytes": 18494977472,
+    "sha256": "91b8d85ab6ff7fb095d9a972f9afa6f3fa2b9acb642867a079f3e013ea3c350c",
+    "verification": "full-hash-verified",
+    "resume_seconds": 1407.7660000000033,
+    "model_loaded": false
+  },
+  "strata_runtime": {
+    "status": "staged-not-loaded",
+    "release": "v0.2.6",
+    "archive": "strata-engine-0.1.50-windows-x86_64-cuda-cuda13.tar.gz",
+    "url": "https://github.com/Niko1221/Strata/releases/download/v0.2.6/strata-engine-0.1.50-windows-x86_64-cuda-cuda13.tar.gz",
+    "bytes": 581368579,
+    "sha256": "a9643e2f5dd5c62e734d2980484c320d41da0160fc4932bf638b7f34e38e74f5",
+    "files": [
+      {
+        "file": "cublas64_13.dll",
+        "bytes": 51776624,
+        "sha256": "b5846446f2a151ca24b74b8113d4ca32c52105ad89d4c2f1bc56a4ccffa9ea61"
+      },
+      {
+        "file": "cublasLt64_13.dll",
+        "bytes": 478140016,
+        "sha256": "680561bdc5d8a8c921e9ae974e6b60a6608c9d9fca8c0fd125e9da08c5c33ff1"
+      },
+      {
+        "file": "strata-vision.exe",
+        "bytes": 108209152,
+        "sha256": "24f099dd569ea39c1263761f35da319f2253b0d1279105da6130e0e00bdbf8a6"
+      },
+      {
+        "file": "strata.exe",
+        "bytes": 206539776,
+        "sha256": "5745022e7c8f743cfee83544da7d3672cd86103c854f23600e2c69ddd6593bef"
+      },
+      {
+        "file": "strata_kq.dll",
+        "bytes": 34449920,
+        "sha256": "36b8a053ffaacb68fb5d045de759d13d7522999204d1726df557c30be4cdceeb"
+      }
+    ]
+  },
+  "gemma": {
+    "profile": "gemma4-26b-cpu28-resident4-extended64",
+    "profile_sha256": "3e3cdff0c145679cb4a64cca566637c7ffa2e22941d6711657cff6e52364fa52",
+    "load_seconds": 20.56300000002375,
+    "preflight": {
+      "time": 1793018355.2715569,
+      "platform": "win32",
+      "ram_total_gib": 63.909725189208984,
+      "ram_free_gib": 11.502937316894531,
+      "commit_limit_gib": 106.32622909545898,
+      "commit_available_gib": 11.379776000976562,
+      "vram_total_mib": 10240.0,
+      "vram_free_mib": 5656.0,
+      "gpu_c": 51.31,
+      "gpu": "NVIDIA GeForce RTX 3080",
+      "driver": "621.01"
+    },
+    "greetings": [
+      {
+        "label": "hi-cold",
+        "request_sha256": "fcd07b9c49fb4ae375ca2f85e7ffe97709164d67e9b3617cc3de4e623f99f2c7",
+        "response_sha256": "9297b52a301358363189c6e74836127921e5f19e13d9b7481546d3cf32297ee9",
+        "request": {
+          "model": "gemma4-lab",
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "max_tokens": 4096,
+          "temperature": 1.0,
+          "top_p": 0.95,
+          "top_k": 20,
+          "min_p": 0,
+          "seed": 73,
+          "cache_prompt": false,
+          "messages": [
+            {
+              "role": "user",
+              "content": "hi"
+            }
+          ]
+        },
+        "final_text": "Hello! How can I help you today?",
+        "reasoning_present": true,
+        "measurements": {
+          "wall_seconds": 12.76600000000326,
+          "finish_reason": "stop",
+          "first_event_seconds": 2.60999999998603,
+          "first_content_seconds": 11.60999999998603,
+          "error": null
+        },
+        "usage": {
+          "completion_tokens": 60,
+          "prompt_tokens": 17,
+          "total_tokens": 77,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 17,
+          "prompt_ms": 2564.966,
+          "prompt_per_token_ms": 150.88035294117645,
+          "prompt_per_second": 6.627768165348002,
+          "predicted_n": 60,
+          "predicted_ms": 10146.972,
+          "predicted_per_token_ms": 171.98257627118645,
+          "predicted_per_second": 5.814542505882543
+        },
+        "memory_after": {
+          "time": 1793018390.938389,
+          "platform": "win32",
+          "ram_total_gib": 63.909725189208984,
+          "ram_free_gib": 7.4922637939453125,
+          "commit_limit_gib": 106.32622909545898,
+          "commit_available_gib": 7.153362274169922,
+          "vram_total_mib": 10240.0,
+          "vram_free_mib": 1880.0,
+          "gpu_c": 51.75,
+          "gpu": "NVIDIA GeForce RTX 3080",
+          "driver": "621.01"
+        }
+      },
+      {
+        "label": "hi-warm",
+        "request_sha256": "63fa456d0c1cbd299721f8c2fdeb52039bcab4fc342824ecc09bd44c27accd15",
+        "response_sha256": "b67033ed42e59ee0b2643fd50bc2cd0b0660b8dee0a1e9ec82dba013cfae98ca",
+        "request": {
+          "model": "gemma4-lab",
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "max_tokens": 4096,
+          "temperature": 1.0,
+          "top_p": 0.95,
+          "top_k": 20,
+          "min_p": 0,
+          "seed": 73,
+          "cache_prompt": true,
+          "messages": [
+            {
+              "role": "user",
+              "content": "hi"
+            }
+          ]
+        },
+        "final_text": "Hello! How can I help you today?",
+        "reasoning_present": true,
+        "measurements": {
+          "wall_seconds": 8.202999999979511,
+          "finish_reason": "stop",
+          "first_event_seconds": 0.6559999999590218,
+          "first_content_seconds": 7.23499999998603,
+          "error": null
+        },
+        "usage": {
+          "completion_tokens": 60,
+          "prompt_tokens": 17,
+          "total_tokens": 77,
+          "prompt_tokens_details": {
+            "cached_tokens": 12
+          }
+        },
+        "timings": {
+          "cache_n": 12,
+          "prompt_n": 5,
+          "prompt_ms": 622.768,
+          "prompt_per_token_ms": 124.5536,
+          "prompt_per_second": 8.028671993422911,
+          "predicted_n": 60,
+          "predicted_ms": 7543.111,
+          "predicted_per_token_ms": 127.84933898305084,
+          "predicted_per_second": 7.821706455068738
+        },
+        "memory_after": {
+          "time": 1793018399.5060196,
+          "platform": "win32",
+          "ram_total_gib": 63.909725189208984,
+          "ram_free_gib": 7.4982757568359375,
+          "commit_limit_gib": 106.32622909545898,
+          "commit_available_gib": 7.159614562988281,
+          "vram_total_mib": 10240.0,
+          "vram_free_mib": 1879.0,
+          "gpu_c": 51.72,
+          "gpu": "NVIDIA GeForce RTX 3080",
+          "driver": "621.01"
+        }
+      }
+    ],
+    "coding_status_at_checkpoint": "collecting-coding",
+    "quality_scored": false,
+    "editor_tested": false
+  },
+  "limitations": [
+    "Greeting is no-file API traffic, not an editor prefix or tool workflow",
+    "Warm greeting reused 12 of 17 input tokens; not a fully cold pair",
+    "Model working-set cap does not bound commit or eliminate paging",
+    "Whole-device VRAM includes the desktop; not exclusive model usage",
+    "Historical scores belong to their original profiles and allowances"
+  ]
+}

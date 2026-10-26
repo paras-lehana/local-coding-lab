@@ -6,6 +6,18 @@ instructions to the maintainer. CLAUDE.md and the Copilot adapter point here.
 
 ## Current campaign and reporting
 
+26 October: owner supplied seven new Qwen/Strata articles, explicitly reopened
+Flash-Next and clarified latency: a plain greeting taking ten minutes is a
+practical failure, while accurate instruction-heavy coding can take longer.
+Keep the frozen1200second benchmark results; label extended diagnostics
+separately and record prefill, reasoning, final output and whole-case time.
+Do not transfer their scores into the old deadline cohort. Recover progress
+from docs/tasks.md and research/reviews/2026-10-26-qwen-articles.md.
+Available RAM already includes reclaimable standby pages; neither file size
+nor summed process working sets measures uniquely occupied physical memory.
+Check Ollama's loaded-model inventory as well as llama/Strata processes before
+loading another engine. Do not terminate the owner's applications to fit.
+
 24 October: owner explicitly reopens higher Flint precision, deep tuning
 research and incomplete Qwen/other-model coverage. Recover current progress
 from [precision and coverage](docs/tasks/2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md).

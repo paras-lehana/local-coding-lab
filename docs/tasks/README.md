@@ -6,6 +6,8 @@ Detailed reusable experiment evidence remains in the repository's `reports/`.
 
 | Date | Task | Status | Report |
 |---|---|---|---|
+|2026-10-26|Flash-Next article-driven quant/engine review|Active; newQ2 pins, separate engine staging, no new quality score|[Flash-Next model record](2026-10-26-flash-next/2026-10-26-flash-next-v0.10.0.md)|
+|2026-10-26|Dense Qwen3.8 article-driven learning|Research complete for supplied articles; new engine/model trials pending|[Dense27B model record](2026-10-26-qwen38-dense/2026-10-26-qwen38-dense-v0.10.0.md)|
 |2026-10-24|Higher Flint precision, tuning research and missing coverage|Active; frozen old failures retained, capacity checks and new trials underway|[Precision and coverage](2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md)|
 |2026-10-24|Qwen3.6 precision and missing suites|NativeQ4 all12 attempted; IQ3/IQ4 components recorded; plainQ6 two router deadlines and retired; remaining controls active|[Qwen model record](2026-10-24-qwen-coverage/2026-10-24-qwen36-v0.9.0.md)|
 |2026-10-24|Gemma26 QAT missing coverage|CPU26 public57/60, private23/36; instruction/citation and code/test defects; coding capacity constrained26October|[Gemma model record](2026-10-24-gemma26-coverage/2026-10-24-gemma26-v0.9.0.md)|

@@ -130,8 +130,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--data-dir', type=Path, required=True)
     parser.add_argument('--connections', type=int, default=8, choices=range(1, 65))
+    parser.add_argument('--artifact-key', default='flash_next_candidate',
+                        choices=('flash_next_candidate', 'flash_next_q2_candidate'),
+                        help='Explicit quant selection; the original IQ3 default is unchanged')
     args = parser.parse_args()
-    artifact = json.loads(Path(__file__).with_name('artifacts.json').read_text())['flash_next_candidate']
+    artifact = json.loads(Path(__file__).with_name('artifacts.json').read_text())[args.artifact_key]
     destination = args.data_dir.resolve()
     destination.mkdir(parents=True, exist_ok=True)
     started = time.time()
@@ -144,6 +147,7 @@ def main() -> int:
         fetch(spec, target, args.connections)
     lab.save_json(destination / 'verified-download.json', {
         'repo': artifact['repo'], 'revision': artifact['revision'], 'files': artifact['files'],
+        'artifact_key': args.artifact_key,
         'started': started, 'verified': time.time(), 'method': 'bounded HTTP ranges and full SHA256'})
     return 0
 

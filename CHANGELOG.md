@@ -1,5 +1,21 @@
 # Changelog
 
+26October checkpoint: verified FlintQ3XL and the separate Strata0.1.50 archive;
+Gemma's4GiB-resident calibration passes plain API greetings and is collecting
+extended coding answers. Add explicit Q2 shard selection to the bounded
+downloader, leaving the historical IQ3 default intact. Source review identifies
+optional empty-final recovery and separate conversation-cache memory controls;
+neither is claimed locally validated yet.
+
+## 0.10.0 - 2026-10-26 (in progress)
+
+- Review seven Qwen/Strata articles against primary sources and actual RAM use;
+  maintain separate Flash-Next and dense27B learning records.
+- Preserve the1200second scorecard while allowing explicitly labelled extended
+  coding diagnostics and separate plain-greeting qualification.
+- Add smaller resident-memory calibration profiles with unchanged stop floors;
+  fit and quality remain subject to fresh measured trials.
+
 ## 0.9.0 - 2026-10-24 (in progress)
 
 - Reopen higher Flint precision and missing model-suite coverage with a

@@ -55,7 +55,8 @@ def endpoint(delay: float, completed: bool = True):
 
 
 class FlintCollectorTests(unittest.TestCase):
-    def run_case(self, temporary: Path, url: str, deadline: str):
+    def run_case(self, temporary: Path, url: str, deadline: str,
+                 extra: tuple[str, ...] = ()):
         """Launch the real collector against an explicitly trusted tiny fixture."""
         suite = temporary / "suite.py"
         suite.write_text("TASKS = [{'id':'one', 'language':'python', 'prompt':'unchanged question'}]\n")
@@ -63,7 +64,8 @@ class FlintCollectorTests(unittest.TestCase):
         process = subprocess.run(
             [sys.executable, str(ROOT / "experiments/flint/collect_coding.py"),
              "--suite-file", str(suite), "--output", str(output),
-             "--model", "fake", "--endpoint", url, "--deadline", deadline],
+             "--model", "fake", "--endpoint", url, "--deadline", deadline,
+             *extra],
             capture_output=True, text=True, timeout=10)
         return process, output
 
@@ -77,6 +79,23 @@ class FlintCollectorTests(unittest.TestCase):
             response = json.loads((output / "responses/one.json").read_text())
             self.assertEqual(response["choices"][0]["message"]["content"], "answer")
             self.assertEqual(response["choices"][0]["message"]["reasoning_content"], "reason")
+            self.assertFalse((output / "grades.json").exists())
+
+    def test_extended_allowance_requires_opt_in_and_records_cohort(self):
+        """Prevent an unnoticed deadline change from contaminating old scores."""
+        with tempfile.TemporaryDirectory() as tmp, endpoint(0) as url:
+            process, output = self.run_case(Path(tmp), url, "21600")
+            self.assertNotEqual(process.returncode, 0)
+            self.assertFalse(output.exists())
+            process, output = self.run_case(
+                Path(tmp), url, "21600", ("--extended-diagnostic",))
+            self.assertEqual(process.returncode, 0, process.stderr)
+            record = json.loads((output / "collect.json").read_text())
+            self.assertEqual(record["cohort"], "extended-diagnostic")
+            self.assertEqual(record["deadline"], 21600)
+            request = json.loads((output / "requests/one.json").read_text())
+            self.assertEqual(request["payload"]["messages"][0]["content"],
+                             "unchanged question")
             self.assertFalse((output / "grades.json").exists())
 
     def test_silent_response_hard_deadline(self):

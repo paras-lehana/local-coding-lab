@@ -1,0 +1,36 @@
+{
+  "model": "k2-mova-36b-q4",
+  "alias": "k2-lab",
+  "locally_tested": false,
+  "validation_status": "planned-smaller-residency-extended-diagnostic-not-promoted",
+  "evidence": "26 October separate apps-open calibration: halve the resident8 profile's context to32K and GPUq4KV estimate to1.6875GiB; GPUweights about1.634GiB before scratch/runtime. All48FFN expert blocks and attention-value experts remain CPU-backed. Batch128/ubatch32, fixed4GiB resident cap plus6.5GiB reserve. Native high reasoning and16K output. This is a32K fit experiment, not512K context or quality validation. Runtime stop floors unchanged; no inherited score.",
+  "load_min_ram_free_gib": 10.5,
+  "load_min_vram_free_mib": 5000,
+  "load_min_commit_available_gib": 10,
+  "stop_min_ram_free_gib": 2.5,
+  "stop_min_vram_free_mib": 400,
+  "stop_min_commit_available_gib": 1,
+  "stop_gpu_c": 84,
+  "working_set_limit_gib": 4,
+  "working_set_reserve_gib": 6.5,
+  "template_kwargs": {"reasoning_effort": "high"},
+  "runtime_variant": {
+    "id": "b11838-noprefetch-v1",
+    "llama_sha256": "10331e86ab5bd3f8c08c486f42d900f1dd09dbab218ce54a8684b7ec7b65c35f"
+  },
+  "args": [
+    "--gpu-layers", "all", "--n-cpu-moe", "48",
+    "--override-tensor", "\\.attn_v_exps\\.weight=CPU",
+    "--ctx-size", "32768", "--threads", "4", "--threads-batch", "8",
+    "--cpu-mask", "0x5554", "--cpu-strict", "1", "--cpu-mask-batch", "0xFFFC",
+    "--batch-size", "128", "--ubatch-size", "32", "--flash-attn", "on",
+    "--cache-type-k", "q4_0", "--cache-type-v", "q4_0",
+    "--jinja", "--reasoning", "on", "--reasoning-format", "deepseek",
+    "--reasoning-budget", "-1", "--predict", "16384",
+    "--temp", "1.0", "--top-p", "0.95", "--top-k", "20", "--min-p", "0",
+    "--repeat-penalty", "1", "--cache-ram", "0", "--fit", "off",
+    "--perf", "--load-mode", "mmap", "--no-repack",
+    "--timeout", "21600", "--metrics", "--verbosity", "4",
+    "--host", "127.0.0.1,::1"
+  ]
+}

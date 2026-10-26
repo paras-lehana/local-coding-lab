@@ -53,8 +53,12 @@ def worker(request_file: Path) -> int:
 def collect(args: argparse.Namespace) -> int:
     """Freeze trusted tasks and stop collection after a timeout/transport error."""
     endpoint = benchmark.validate_endpoint(args.endpoint)
-    if not 0 < args.deadline <= 1200:
-        raise ValueError("Whole-task deadline must be 1..1200 seconds")
+    # Longer owner-authorized diagnostics must not silently enter the scorecard.
+    extended = args.extended_diagnostic
+    maximum = 21600 if extended else 1200
+    if not 0 < args.deadline <= maximum:
+        raise ValueError(f"Whole-task deadline must be 1..{maximum} seconds; "
+                         "longer runs require --extended-diagnostic")
     module_spec = importlib.util.spec_from_file_location("frozen_suite", args.suite_file)
     module = importlib.util.module_from_spec(module_spec)
     module_spec.loader.exec_module(module)
@@ -69,6 +73,7 @@ def collect(args: argparse.Namespace) -> int:
     (run / "responses").mkdir()
     (run / "requests").mkdir()
     summary = {"model": args.model, "endpoint": endpoint.removesuffix("/v1"),
+               "cohort": "extended-diagnostic" if extended else "frozen-1200s",
                "max_tokens": args.max_tokens, "deadline": args.deadline,
                "temperature": args.temperature, "seed": args.seed,
                "collector_sha256": lab.digest(Path(__file__)),
@@ -141,6 +146,8 @@ def main() -> int:
     parser.add_argument("--temperature", type=float, default=1.0)
     parser.add_argument("--max-tokens", type=int, default=16384)
     parser.add_argument("--deadline", type=float, default=1200)
+    parser.add_argument("--extended-diagnostic", action="store_true",
+                        help="Allow up to six hours, outside the frozen scorecard")
     parser.add_argument("--seed", type=int, default=73)
     parser.add_argument("--tasks", help="Explicit comma-separated subset; recorded in the manifest")
     args = parser.parse_args()

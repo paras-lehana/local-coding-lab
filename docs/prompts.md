@@ -1,5 +1,10 @@
 # Prompt log — Local Coding Lab
 
+26October evening: seven article review and memory investigation reopened;
+owner permits longer accurate coding diagnostics but rejects a ten-minute
+plain greeting. See latest entry and tasks.md; the older morning capacity
+snapshot below is historical.
+
 Current phase,26October: higher Flint precision, tuning research and incomplete
 Qwen/other-model coverage explicitly reopened by the owner. See the new task
 report. IQ3_S has native public52/60 and private29/36; two native coding
@@ -47,6 +52,7 @@ private instruction contents and raw editor chats.
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
 |19|2026-10-26|08:04|Resume comparison and grade saved Gemma audit|Research / Experiment|Partial; reports published, inference capacity constrained|[Entry](#resume-26-october)|
+|20|2026-10-26|17:32|Seven Qwen articles, RAM investigation and extended diagnostics|Research / Experiment|Active|[Entry](#seven-articles-and-extended-diagnostics)|
 |18|2026-10-24|13:23 first trial|Higher precision, tuning research and unfinished candidates|Research / Experiment|Active|[Report](tasks/2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md)|
 |17|2026-10-23/24|21:55 start|Claude review and Recursive Flint|Research / Experiment|Done with measured limitations|[Entry](#recursive-flint-and-claude-review)|
 |16|2026-10-19|22:14|Continue after the interrupted experiment|Recovery / Report|Evidence preserved; further inference withheld|[Entry](#azllm-and-turboquant-on-10-gb)|
@@ -1764,3 +1770,66 @@ Suggested next steps
 - Finish Gemma's coding tests, then K2 and the remaining Flint variants once sufficient memory is available.
 - Prefer evidence from completed coding tasks, reliable file references and whole-task response time over precision labels or generation-speed headlines.
 ```
+
+## Seven articles and extended diagnostics
+
+26October2026,17:32IST. Branch`experiment/flint-precision-20261024`.
+
+### Original prompt
+
+> I dont much things in RAM, this is normal. see maybe last model stuff is in memory. We need to complete what we started. Once done, heree is some more learnings (you can read them first also and see if you want to change things, i will also later send you updated gemini report). You always keep the summary, learnings in another documents for each model (you already should have model wise report). in end you give summary of what the article said and what you think matters to us and we should try: so i start artciles now, pasting them. remember we do write model wise stuff and finall summary and learning for our setup (3080 etc) and our objective (more context and instruction heavy, speed not a constraint. precision and intelligence is) but also in general sense too as we might need it for articles and other computers.
+>
+> the article on qwen 28 page report is good - it talks about 75 GB combined ram (we have 74 GB!, so worth trying, maybe with some modification) and strata which we already setup, so must try.
+
+Seven pasted articles are privately archived and hashed; public original summaries
+are in[the review](../research/reviews/2026-10-26-qwen-articles.md).
+
+### Owner clarification during work
+
+> yes even 10 minutes is late if it cant answer anything like a simple hi without instruction file. With instruction file and main coding, time is not constraint. I am assuming that the 10 min scenario will push the other coding scneario to hours or even days but if thats not the case and we get good accuracy, its still considerable.
+
+### Pre-flight and current work
+
+Recovered project/parentAGENTS, shared Codex/platform/router/logging guidance,
+model reporting/methodology, prior Strata/precision reports and local-LLM skill.
+Used agent-context-maintenance for the changed timing policy; both maintained
+Codex/Claude entry points were reviewed and their routing needs no change.
+Project policy and the local-LLM skill carry the owner clarification.
+
+No leftover llama/Strata process; idle Ollama has no models. Available memory
+is12.3-12.7GiB initially, about11GiB later; standby is already included. No apps
+closed, broad kills, BIOS/driver/clock changes or editor typing. Bounded FlintQ3
+download resumed; separately pinned Strata engine0.1.50 is staging. Original
+research sources and hardware/process captures remain ignored. Model reports
+are separate from article summaries, and neither is a new quality result.
+
+Coding collection now requires explicit extended-diagnostic opt-in above1200s
+and freezes its cohort.43offline tests pass in21.341s, including preserved
+silent-stream cancellation and the new cohort/opt-in regression. Initial
+public audit311files/0findings;2script PowerShell files parse, diff check passes.
+Actual load/greeting/coding results and final A-G closeout will be appended
+after measurement; this entry records an active task, not completion.
+
+18:09-18:40IST checkpoint: FlintQ3XL finishes and verifies its full published
+hash; Strata0.1.50 archive verifies/extracts separately. Both workers exit before
+GemmaCPU28/resident4 starts. Greetings12.766/8.203seconds, interval answer
+1105.766seconds at5.405tok/s. Full delivered interval source reviewed; isolated
+grading waits for engine exit. TTL/LRU remains active. Current RAM stays about
+7.5-7.8GiB free with4GiB process residency, deviceVRAM about1.9GiB free.
+New public receipt contains only reviewed greetings/metadata, no raw reasoning.
+New article review explains the75GB claim, distinct quant/checkpoint changes,
+and existing optional Strata empty-final retry. Additive Q2 artifact selection,
+its regression check and a smaller K2 qualification profile are prepared; the
+new test has not run while inference is active. Previous43test result predates
+these later edits. No new model promoted, deletion or editor test.
+
+18:46-18:54IST: stopped the4GiB calibration intentionally to test higher
+residency after available memory rose; DAG103.5seconds interrupted/unscored,
+nine further tasks unrun. Both completed cases pass existing isolated checks
+(105/105 and34/34); separate unchanged NaN TTL diagnostic fails. Normal stop,
+no hardware event.44offline tests pass20.031s, four PowerShell parses and315file
+public audit/zero findings. Fresh13.056GiB RAM passes the6GiB profile's12.5GiB
+gate after an earlier12.282GiB rejection. New full-suite collection starts
+18:52:56, plain greetings10.891/6.656seconds. Parent skill timing policy was
+already updated; global Codex/Claude adapters remain correctly routed.
+This is a progress checkpoint; final A-G and production restoration remain.

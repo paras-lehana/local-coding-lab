@@ -1,5 +1,13 @@
 # Local Coding Lab
 
+**26October article review:** seven supplied articles are reconciled with
+primary sources and this PC's actual memory use in the
+[new review](research/reviews/2026-10-26-qwen-articles.md). Flash-Next and dense27B
+have separate updated model records. Plain greetings and extended accurate
+coding now have separate timing criteria; the frozen20minute scorecard remains.
+The coding collector requires`--extended-diagnostic` to use a larger deadline
+(up to21600seconds) and records that distinct cohort. No new winner is implied.
+
 **24 October, v0.9.0 in progress:** higher Flint precision and missing Qwen /
 other-model suite coverage are reopened. See the [active experiment record](docs/tasks/2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md)
 for research, capacity estimates and measured progress. Previous results below

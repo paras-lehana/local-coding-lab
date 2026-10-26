@@ -554,3 +554,21 @@ after sufficient evidence and poor unavailable-file recovery, not absent initial
 context. The new quant must first run the unchanged workflow. A later explicitly
 labeled tool-feedback recovery diagnostic is planned if that failure repeats;
 no repaired transcript, synthesized file or retroactive pass is permitted.
+
+## 26 October: Q3XL ready for smaller-residency qualification
+
+UD-Q3_K_XL now completes its bounded download and published whole-file SHA256
+check:18,494,977,472bytes,
+`91b8d85ab6ff7fb095d9a972f9afa6f3fa2b9acb642867a079f3e013ea3c350c`,
+revision`20468edfc38ab43d6914cc88b08cbecb05d0fc62`. The last resume takes
+1407.766seconds. No Q3XL inference/quality measurement exists yet.
+
+The additional CPU49/cache1536/resident4/32K profile is frozen for current
+apps-open headroom. Its estimated weights1.515GiB+expertcache1.5GiB+q8KV0.480GiB
+exclude scratch/runtime costs. Resident cap4GiB and6.5GiB reserve require
+10.5GiB available RAM,10GiB commit and5000MiB deviceVRAM at admission; runtime
+floors remain unchanged. This deliberately permits file paging and qualifies
+32K only. It does not demonstrate the preferred long-context configuration.
+Native preserved reasoning remains; plain no-file greeting precedes public
+file-driven collection. Extended diagnostics use their own cohort under the
+owner's clarified policy; earlier1200second deadlines remain unchanged.

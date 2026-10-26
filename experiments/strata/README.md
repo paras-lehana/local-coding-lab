@@ -3,6 +3,11 @@
 Experiment started 18 October 2026. No production model selection has changed.
 The requested article is a research lead, not a benchmark on this machine.
 
+26October: the [article review](../../research/reviews/2026-10-26-qwen-articles.md)
+reopens Flash-Next with GSQ-RCO Q2_0 and a separately staged0.1.50 engine.
+The original IQ3_XXS/0.1.45 identities below remain historical evidence.
+New hashes are additive entries in`artifacts.json`; no model score is inherited.
+
 Pinned upstream: `Niko1221/Strata` v0.1.45, source
 `477ac13cbe8e582c20484871ce459d20d82df09d`.
 Windows CUDA archive: 165243142 bytes, SHA256
@@ -86,6 +91,8 @@ helpers do not run an installer or start inference:
 python experiments/strata/download.py --data-dir E:/llm/Strata-data/models/flash-next
 # Alternative: bounded parallel HTTP ranges, resumable completion journals.
 python experiments/strata/range_download.py --data-dir E:/llm/Strata-data/models/flash-next --connections 8
+# New Q2 capacity experiment; requires space for both shards plus headroom.
+python experiments/strata/range_download.py --artifact-key flash_next_q2_candidate --data-dir E:/llm/Strata-data/models/flash-next --connections 4
 ```
 
 Run only one downloader against a destination. Stop the first before switching.
