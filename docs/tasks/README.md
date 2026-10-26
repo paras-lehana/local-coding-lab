@@ -8,7 +8,7 @@ Detailed reusable experiment evidence remains in the repository's `reports/`.
 |---|---|---|---|
 |2026-10-24|Higher Flint precision, tuning research and missing coverage|Active; frozen old failures retained, capacity checks and new trials underway|[Precision and coverage](2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md)|
 |2026-10-24|Qwen3.6 precision and missing suites|NativeQ4 all12 attempted; IQ3/IQ4 components recorded; plainQ6 two router deadlines and retired; remaining controls active|[Qwen model record](2026-10-24-qwen-coverage/2026-10-24-qwen36-v0.9.0.md)|
-|2026-10-24|Gemma26 QAT missing coverage|CPU26 public57/60; skipped linked rule and code/test defects; private/coding capacity pending|[Gemma model record](2026-10-24-gemma26-coverage/2026-10-24-gemma26-v0.9.0.md)|
+|2026-10-24|Gemma26 QAT missing coverage|CPU26 public57/60, private23/36; instruction/citation and code/test defects; coding capacity constrained26October|[Gemma model record](2026-10-24-gemma26-coverage/2026-10-24-gemma26-v0.9.0.md)|
 |2026-10-24|IFM K2 Horizon MoVA qualification|Installed; guarded load and quality checks pending|[K2 model record](2026-10-24-k2-mova/2026-10-24-k2-mova-v0.9.0.md)|
 |2026-10-23/24|Recursive Flint and Claude campaign reconciliation|Complete with limits: private29/36, router39/40, coding11 completed passes/12, separate history8/8; keep Qwen|[Flint evidence](2026-10-23-flint/2026-10-23-recursive-flint-v0.8.0.md)|
 |2026-10-19|azllm/TurboQuant article and10GB adaptation|Six probes measured; coding interrupted by restart; further inference withheld after hardware event|[Analysis and measurements](2026-10-19-azllm/2026-10-19-azllm-and-turboquant-v0.7.0.md)|

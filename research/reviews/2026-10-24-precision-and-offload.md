@@ -603,3 +603,38 @@ been downloaded, pinned or locally tested here. This is a future candidate
 specifically motivated by our reasoning-only limits. It does not replace the
 remaining campaign's frozen model trials, and its advertised savings are not
 credited to the original Gemma26 results.
+
+## Gemma reasoning-control names need literal inspection
+
+The loaded Gemma template reports `supports_preserve_reasoning=false`, yet
+explicitly implements a different keyword, `preserve_thinking`. Its gate keeps
+reasoning after the most recent user turn, and optionally older tool-call
+reasoning when that keyword is true. It does not preserve every old final
+answer's reasoning indefinitely. Thus the generic capability field alone is
+not proof that this model ignores its actual control. The saved private request
+contains `preserve_thinking=true` and carries the prior assistant's reasoning
+field and tool call. The loaded template separately supports `enable_thinking`
+but not effort levels. These observations come from the exact saved template
+and request, not a new rendered-prompt or inference-equivalence test. They also
+do not imply persistent memory after unloading or automatic file discovery.
+
+## Recheck26October: generation gains do not erase file-processing time
+
+[Hybrid-cache PR30594](https://github.com/ggml-org/llama.cpp/pull/30594) remains
+open at head `9177f038969a1e272e6187d26d12223b62cb852e`. The author reports
+roughly1.7x generation on an8GB laptop with88GB RAM, but unchanged prompt
+processing. Its hybrid path handles single-token batches; speculative
+verification does not benefit and can be slower. Numerical checks are useful
+but do not establish this lab's code quality or bit-identical answers.
+The API body/revision/hash are preserved locally. This branch is not installed.
+
+Our Gemma private run spends381.5s on fresh prefill and416.4s on generation.
+Even a hypothetical1.7x decode gain with unchanged prefill would reduce the
+798.6s workflow to roughly626s, not470s. This arithmetic is an illustrative
+bound, not a Gemma-compatible measured speedup. Prioritize measured prefill,
+source-read correctness and retained-prefix reuse alongside decode throughput.
+
+The rechecked [Strata0.2.4 release notes](https://github.com/Niko1221/Strata/releases/tag/v0.2.4)
+describe later DeepSeek launch/install updates while explicitly leaving Qwen
+engine packages unchanged. Do not assume the terminal version alone repairs
+our earlier Qwen engine limitations. No new Strata runtime trial is claimed.

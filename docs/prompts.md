@@ -1,6 +1,6 @@
 # Prompt log — Local Coding Lab
 
-Current phase,24October: higher Flint precision, tuning research and incomplete
+Current phase,26October: higher Flint precision, tuning research and incomplete
 Qwen/other-model coverage explicitly reopened by the owner. See the new task
 report. IQ3_S has native public52/60 and private29/36; two native coding
 questions exhaust output without code. A separate4096-reasoning-ceiling control
@@ -11,7 +11,10 @@ all12 questions with9 frozen passes,2 failures and1 output limit, plus two
 extra JavaScript defects. A separate resident7/cache/general32K interval
 times out without code. Higher Qwen plainQ6 is verified and its resident7
 public router reaches1200seconds with seven reads and an incomplete answer;
-a larger-residency follow-up is pending. FlintQ3XL ranges are checkpointed.
+a larger-residency follow-up also deadlines; exact Q6 is retired with evidence.
+Gemma CPU26 public57/60 and private23/36 are reviewed; coding remains unrun.
+All next-load profiles reject26October's2.169GiB availableRAM. FlintQ3XL
+remains paused at68/276 checkpointed ranges; no inference is active.
 Verified FlintQ4 misses both router deadlines and is retired.
 Production is stopped during the active campaign; no new promotion.
 
@@ -38,11 +41,12 @@ open; clocks/drivers and editor settings are unchanged. No editor typing or
 automatic experimental queue. Evidence466d2f1 is published on main and the
 experiment branch; matching closeout is recorded below.
 
-Last updated: 2026-10-24. Public project history excludes earlier credentials,
+Last updated: 2026-10-26. Public project history excludes earlier credentials,
 private instruction contents and raw editor chats.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
+|19|2026-10-26|08:04|Resume comparison and grade saved Gemma audit|Research / Experiment|Active; inference capacity constrained|[Entry](#resume-26-october)|
 |18|2026-10-24|13:23 first trial|Higher precision, tuning research and unfinished candidates|Research / Experiment|Active|[Report](tasks/2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md)|
 |17|2026-10-23/24|21:55 start|Claude review and Recursive Flint|Research / Experiment|Done with measured limitations|[Entry](#recursive-flint-and-claude-review)|
 |16|2026-10-19|22:14|Continue after the interrupted experiment|Recovery / Report|Evidence preserved; further inference withheld|[Entry](#azllm-and-turboquant-on-10-gb)|
@@ -1674,3 +1678,31 @@ are hash-linked; original grader artifacts remain. Follow-up load gates reject
 fourPSparses, audit304files/zero findings and whitespace check pass. New reports
 do not promote Gemma or fill missing private/coding values. Remaining candidate
 work and eventual production restoration continue autonomously.
+
+25October00:33IST: public checkpoint8961410 is pushed and CI40123433820 passes.
+Recovered15.559GiB RAM permits the missing Gemma private audit; controller82276,
+native thinking, actualtopK20. Flint download pauses at68/276 ranges before
+inference. No new private score, promotion or completed-campaign claim.
+
+
+## Resume 26 October
+
+Original prompt: ?continue? ? continues higher quantization, deep optimization
+research and unfinished Qwen/other-model tests; no cancellation or new scope.
+
+Preflight: project local-coding-lab; branch experiment/flint-precision-20261024;
+apps remain open, one engine,1200second whole-prompt deadlines and no editor
+input. Current dated resume follows a completed25October private collection.
+
+08:04?08:10IST: source-reviewed Gemma audit23/36 (15semantic,2citation,6code),
+798.6seconds. Final corrected code fence selected unchanged and all six frozen
+checks pass in existing WSL isolation after engine exit. Raw private sources
+remain outside Git. Public57/60 and private23 use topK64 versus20 respectively;
+no direct-coding/composite result or promotion. Actual next-load RAM falls from
+3.722 to2.169 then1.379GiB; all six queued profiles reject and download is
+withheld. No new hardware event/boot. Apps and production settings untouched.
+Research rechecks open hybrid-cache PR30594 head9177f03 and its unchanged
+prefill/multi-token limitation; newer Strata terminal notes do not update Qwen
+engine packages. Remaining collection/production restoration stay pending.
+
+26October08:16IST: Gemma private23/36 export/review complete;42offline tests pass21.516s (22.110s command),4PowerShell parses pass. Public audit305/0 before capacity receipt, git whitespace check pass. Production admission also rejects1.916GiB freeRAM (needs18),8.423GiB commit (needs12),5385MiB VRAM (needs6000). No launch/remote-SSE test; settings/baseline preserved. No new hardware event. Current capacity report lists each unrun queue item; no campaign completion.

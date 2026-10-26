@@ -1,0 +1,89 @@
+{
+  "checked_at": "2026-10-26T02:45:29.699722+00:00",
+  "status": "capacity-constrained",
+  "engine_running": false,
+  "new_hardware_event_since_last_trial": false,
+  "admission_snapshot": {
+    "time": 1792982217.467011,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 2.168903350830078,
+    "commit_limit_gib": 106.32622909545898,
+    "commit_available_gib": 7.747165679931641,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 5347.0,
+    "gpu_c": 43.41,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "queued_profile_rejections": {
+    "gemma4-26b-cpu26-publisher-resident8": "ram_free_gib below 14.5 or unavailable",
+    "qwen36-q4-cpu40-cache2048-general32k": "ram_free_gib below 16 or unavailable",
+    "k2-mova-q4-resident8-calibration": "ram_free_gib below 14.5 or unavailable",
+    "flint-q3xl-cpu49-cache2048-resident7": "ram_free_gib below 13.5 or unavailable",
+    "flint-nvfp4-paging64": "ram_free_gib below 14 or unavailable",
+    "nemotron-bolt-cpu88-coverage64": "ram_free_gib below 18 or unavailable"
+  },
+  "latest_snapshot": {
+    "time": 1792982729.614607,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 1.9162673950195312,
+    "commit_limit_gib": 106.32622909545898,
+    "commit_available_gib": 8.42330551147461,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 5385.0,
+    "gpu_c": 45.69,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "production": {
+    "profile": "qwen36-mapped-editor128-cpukv",
+    "load_rejection": "ram_free_gib below 18 or unavailable",
+    "actual_load_attempted": false,
+    "minimum_free_ram_gib": 18,
+    "minimum_commit_available_gib": 12,
+    "minimum_free_vram_mib": 6000,
+    "endpoint_test": "unrun because no admitted server",
+    "remote_streaming_test": "unrun because no admitted server",
+    "settings_changed": false
+  },
+  "flint_q3xl_download": {
+    "completed_ranges": 68,
+    "total_ranges": 276,
+    "full_sha256_passed": false,
+    "resumed_this_session": false,
+    "reason": "Desktop reserve unavailable"
+  },
+  "private_audit": {
+    "inference_date": "2026-10-25",
+    "review_date": "2026-10-26",
+    "score": 23,
+    "maximum": 36,
+    "wall_seconds": 798.6,
+    "report": "reports/2026-10-25-gemma26-cpu26-private.json"
+  },
+  "validation": {
+    "offline_tests": 42,
+    "offline_test_seconds": 21.516,
+    "offline_command_seconds": 22.11,
+    "powershell_parse_files": 4,
+    "public_audit_files": 305,
+    "public_audit_findings": 0,
+    "git_diff_check": "pass",
+    "new_editor_test": "unrun; no editor typing"
+  },
+  "unrun": [
+    "Gemma CPU26 direct12 coding",
+    "Qwen Q4 original larger-residency cache/general32K control",
+    "K2 qualification and quality",
+    "Flint Q3XL complete download/qualification/quality",
+    "Flint NVFP4 download/qualification/quality",
+    "Bolt download/qualification/quality"
+  ],
+  "limitations": [
+    "Capacity rejection is not model-answer failure.",
+    "No new inference on26October; completed saved audit graded after engine exit.",
+    "No app closure, memory flush, clock/driver/BIOS change or background auto-retry."
+  ]
+}

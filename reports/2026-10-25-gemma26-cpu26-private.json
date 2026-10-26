@@ -1,0 +1,251 @@
+{
+  "inference_date": "2026-10-25",
+  "reviewed_at": "2026-10-26T02:36:33.943498+00:00",
+  "model": {
+    "name": "Gemma 4 26B-A4B IT official QAT Q4_0",
+    "repo": "google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+    "revision": "d1c082be9cf3c8a514acf63b8761f4b41935842e",
+    "filename": "gemma-4-26B_q4_0-it.gguf",
+    "bytes": 14439363584,
+    "sha256": "3eca3b8f6d7baf218a7dd6bba5fb59a56ee25fe2d567b6f5f589b4f697eca51d",
+    "upstream": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+    "status": "retained-lower-memory-fallback-32k-64k-public-and-private-complete",
+    "thinking": "Native tool continuation preservation and runtime 2048 reasoning ceiling observed; no native xhigh label",
+    "url": "https://huggingface.co/google/gemma-4-26B-A4B-it-qat-q4_0-gguf/resolve/d1c082be9cf3c8a514acf63b8761f4b41935842e/gemma-4-26B_q4_0-it.gguf"
+  },
+  "profile_name": "gemma4-26b-cpu26-publisher-resident8",
+  "profile": {
+    "model": "gemma4-26b-qat",
+    "alias": "gemma4-lab",
+    "locally_tested": false,
+    "validation_status": "planned-measured-headroom-followup-not-promoted",
+    "evidence": "Separate24October smaller GPU-placement step after CPU24 profile rejects6313MiB freeVRAM below6400MiB admission. CPU26 instead moves two expert blocks versus measuredCPU28 (header delta0.798GiB, hostexperts10.369GiB). Estimated GPUweights3.064GiB plus812.81MiB64K KV and415.78MiB compute; measuredCPU28 minimum2143MiB freeVRAM suggests more reserve than CPU24. Require6000MiB freshVRAM,14.5GiB RAM/10GiBcommit; retain fixed8GiB residency/6.5GiB reserve and all stop floors. Same publisher1/.95/64, native preserved thinking; not a placement-only comparison with original .6/topK20. Short smoke and actual telemetry required; no inherited score.",
+    "load_min_ram_free_gib": 14.5,
+    "load_min_vram_free_mib": 6000,
+    "load_min_commit_available_gib": 10,
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_min_commit_available_gib": 1,
+    "stop_gpu_c": 84,
+    "working_set_limit_gib": 8,
+    "working_set_reserve_gib": 6.5,
+    "template_kwargs": {
+      "enable_thinking": true,
+      "preserve_thinking": true
+    },
+    "runtime_variant": {
+      "id": "b11562-noprefetch-v1",
+      "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--n-cpu-moe",
+      "26",
+      "--ctx-size",
+      "65536",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC",
+      "--batch-size",
+      "128",
+      "--ubatch-size",
+      "32",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--reasoning-budget",
+      "-1",
+      "--reasoning-preserve",
+      "--predict",
+      "16384",
+      "--temp",
+      "1.0",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "64",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--timeout",
+      "1200",
+      "--metrics",
+      "--verbosity",
+      "4"
+    ]
+  },
+  "score": {
+    "semantic": 15,
+    "citation": 2,
+    "code": 6,
+    "total": 23,
+    "maximum": 36,
+    "wall_seconds": 798.6,
+    "completed": true
+  },
+  "reviewer": "Codex; not independent human review",
+  "review_sha256": "16adcb5b96e6beaec5f43fdef2206a48a060794243b261badc7edd6c06df4804",
+  "grading_sha256": "d83138b09724fc1555eafa78c9aca60f106925067600265569c96258625a51e7",
+  "selection_sha256": "804143ec650d9ffcebe6f6b02f1947c481dde39e1cb94f9f6636dc65d94e6c12",
+  "candidate_sha256": "ba57f70f1bbb29da38bab5297c4c95bcdc61f1e4019b7a66edfe4541b6db7648",
+  "grader_sha256": "f40bb8e86e7fe4006afaeb51615bb07cb64ae8f9e3c2e2438ed5ce4db6913cd9",
+  "checks_sha256": "af0dbdc6e84e647b62d9d67a29718838d69fe5e5ede370c0cc0a8ee530cebae8",
+  "request_sha256": "a9ce6f10ae072adbac8effc3e2c9218bf2631a122c1659a9d24319f7e0b4823d",
+  "question_sha256": "39f849d5de4406cd005a7af791140076fc7196128fabca72890d8c4988314638",
+  "rubric_sha256": "1559c4af232920f406356b8a1a1da2b449e64f066ea9ee6ee60d5c84193796bb",
+  "preflight": {
+    "time": 1792868558.5469213,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 15.62436294555664,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 12.051044464111328,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6306.0,
+    "gpu_c": 35.62,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "postflight": {
+    "time": 1792869382.1187396,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 15.60198974609375,
+    "commit_limit_gib": 91.90972518920898,
+    "commit_available_gib": 12.067413330078125,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6338.0,
+    "gpu_c": 45.0,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "conditions": "Apps open; unchanged reported mixedRAM3000/PBO; no clock changes; core0 excluded; fixed8GiB resident; private request topK20 overrides public64; native preserved thinking;1200second whole-prompt",
+  "new_hardware_event": false,
+  "cleanup": {
+    "status": "requested_stop"
+  },
+  "resolved_working_set_limit": {
+    "pid": 80708,
+    "requested_maximum_gib": 8.0,
+    "maximum_bytes": 8589934592,
+    "minimum_bytes": 204800,
+    "flags": 6,
+    "note": "Resident working-set cap, not total commit or GPU allocation cap."
+  },
+  "effective_controls": {
+    "max_tokens": 24576,
+    "seed": 73,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0,
+    "repeat_penalty": 1.0,
+    "chat_template_kwargs": {
+      "preserve_thinking": true
+    }
+  },
+  "memory": {
+    "minimum_ram_free_gib": 6.762844085693359,
+    "minimum_commit_available_gib": 6.014820098876953,
+    "minimum_vram_free_mib": 1625.0,
+    "maximum_gpu_c": 53.0,
+    "maximum_process_working_set_gib": 8.00002670288086,
+    "maximum_process_private_gib": 5.716606140136719
+  },
+  "turns": [
+    {
+      "index": 0,
+      "usage": {
+        "completion_tokens": 2936,
+        "prompt_tokens": 2050,
+        "total_tokens": 4986,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 2050,
+        "prompt_ms": 51919.674,
+        "prompt_per_token_ms": 25.326670243902438,
+        "prompt_per_second": 39.48406917963314,
+        "predicted_n": 2936,
+        "predicted_ms": 235743.395,
+        "predicted_per_token_ms": 80.32142930153321,
+        "predicted_per_second": 12.449977654729205
+      },
+      "finish_reason": "tool_calls",
+      "visible_characters": 0,
+      "reasoning_characters": 8380
+    },
+    {
+      "index": 1,
+      "usage": {
+        "completion_tokens": 2179,
+        "prompt_tokens": 17735,
+        "total_tokens": 19914,
+        "prompt_tokens_details": {
+          "cached_tokens": 4749
+        }
+      },
+      "timings": {
+        "cache_n": 4749,
+        "prompt_n": 12986,
+        "prompt_ms": 329580.122,
+        "prompt_per_token_ms": 25.379649006622515,
+        "prompt_per_second": 39.40164813701963,
+        "predicted_n": 2179,
+        "predicted_ms": 180636.749,
+        "predicted_per_token_ms": 82.93698301193756,
+        "predicted_per_second": 12.0573472012608
+      },
+      "finish_reason": "stop",
+      "visible_characters": 7082,
+      "reasoning_characters": 0
+    }
+  ],
+  "actual_files_read": 7,
+  "unrecovered_oversized_reads": 1,
+  "findings": [
+    "Correct physical-host distinction, path mapping, absent-port refusal and final merge behavior.",
+    "Conflicting machine-fact ownership; missing nested/shared source chain and relevant adapter review.",
+    "Failed oversized logging read is not recovered; completion protocol and log locations are wrong or incomplete.",
+    "Cites undelivered line ranges and incorrectly claims local agent-guide destination is untouched by installer.",
+    "Incorrectly applies a public-mobile validation requirement to this local installer.",
+    "Read inventory omits a successfully delivered host-facts document.",
+    "Explicit final Correction code fence passes all six frozen isolated merge checks; first draft preserved."
+  ],
+  "limitations": [
+    "One two-turn private case, not a universal intelligence ranking.",
+    "Public requests inherit top-k64; private request explicitly overrides top-k20. No matched-sampler claim.",
+    "Native thinking enabled; preserve_thinking template support is distinct from generic preserve_reasoning capability.",
+    "No direct-coding or editor result on this profile yet; no full composite or promotion.",
+    "Review date is later than inference date; no claim of new inference on26October."
+  ],
+  "raw_evidence": "local-data/2026-10-24-precision/; original private audit remains outside Git"
+}

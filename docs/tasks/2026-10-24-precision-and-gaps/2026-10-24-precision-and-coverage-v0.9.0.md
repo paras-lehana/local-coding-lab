@@ -24,7 +24,7 @@ isolated grading. No cloud inference or exposed historical key is used.
 | Plain Qwen Q6_K higher precision |Distinct artifact pinned/header inspected; full download then guarded quality and long-file work |Resident7 and resident10 router deadlines1200.016/1200.031s, seven successful reads each; incomplete/unscored. Fresh original18GiB gates reject at actual launch/decision snapshots. Exact file rehashed/retired22:46; later suites unrun after qualification failure. Old XL scores do not transfer |
 | Qwen IQ3_S interrupted public / missing private and coding |38 CPU expert blocks; conservative stop floors | Native public52/60, private29/36; separate cap4096/cache1536 coding6/12, all twelve complete; no mixed composite |
 | Qwen IQ4_XS interrupted public / missing private and coding |CPU35 with bounded resident memory after fresh RAM stop |Public55/60; private29/36 in725.4s; native interval1200s deadline and presence1.5 control16K output limit; subsequent unchanged coding cases interrupted/unrun. Exact weights retired21:07 after fresh full hash |
-| Gemma26 fallback missing latest public/coding | Collect missing suites under its recorded template and sampling |CPU28 partial results retained. CPU26/publisher public57/60: router38,TS5,SQL6,history8; skipped required linked rule and self-test defect remain. Private/coding fresh admission rejects13.115GiB RAM; no historical19/36 transfer. [Report](../2026-10-24-gemma26-coverage/2026-10-24-gemma26-v0.9.0.md) |
+| Gemma26 fallback missing latest public/coding | Collect missing suites under its recorded template and sampling |CPU28 partial retained. CPU26 public57/60 and private23/36 complete; private798.6s,15/2/6. Instruction/citation and public code/test defects remain. Direct coding rejects26October2.169GiB freeRAM; no historical score transfer. [Report](../2026-10-24-gemma26-coverage/2026-10-24-gemma26-v0.9.0.md) |
 | K2 MoVA / Nemotron Bolt downloaded but untested | Verify identity; calculate placement and gates; trial if capacity permits | Pending |
 | Flint higher precision | Pinned Unsloth Q4 first, Q3_K_XL fallback; isolated opt-in mmap build | Both Q4 CPU44 and CPU48/cache1536 router trials deadline; exact Q4 retired after fresh full hash. Q3XL partial download checkpointed, NVFP4 still queued |
 | Flint CSV / history output limits | Separate 32768-output diagnostic with unchanged 1200-second deadline | Original8K history diagnostic already passes8/8 separately; original CSV32K diagnostic pending. Q4 router deadlines prevent full-workflow qualification |
@@ -600,3 +600,24 @@ engine exit: Q6 wrapper21792, FlintQ3XL18004. Postflight RAM15.578GiB.
 scripts parse, public audit289files/zero findings. Original PowerShell stderr
 pipeline returned1 despite42/OK; preserved log and direct capture retry resolve
 the wrapper ambiguity. No inference overlap. This remains in progress.
+
+
+## Resume 26 October
+
+Original prompt: ?continue? ? continues higher quantization, deep optimization
+research and unfinished Qwen/other-model tests; no cancellation or new scope.
+
+Preflight: project local-coding-lab; branch experiment/flint-precision-20261024;
+apps remain open, one engine,1200second whole-prompt deadlines and no editor
+input. Current dated resume follows a completed25October private collection.
+
+08:04?08:10IST: source-reviewed Gemma audit23/36 (15semantic,2citation,6code),
+798.6seconds. Final corrected code fence selected unchanged and all six frozen
+checks pass in existing WSL isolation after engine exit. Raw private sources
+remain outside Git. Public57/60 and private23 use topK64 versus20 respectively;
+no direct-coding/composite result or promotion. Actual next-load RAM falls from
+3.722 to2.169 then1.379GiB; all six queued profiles reject and download is
+withheld. No new hardware event/boot. Apps and production settings untouched.
+Research rechecks open hybrid-cache PR30594 head9177f03 and its unchanged
+prefill/multi-token limitation; newer Strata terminal notes do not update Qwen
+engine packages. Remaining collection/production restoration stay pending.

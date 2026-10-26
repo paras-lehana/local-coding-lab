@@ -1,6 +1,6 @@
 # Current model comparison
 
-Updated 25 October 2026. Components and completion gates matter more than a
+Updated 26 October 2026. Components and completion gates matter more than a
 single leaderboard number. Claude's newer campaign was private; this table
 brings its reviewed summary into the public lab. Results are agent-assessed,
 not independently human-reviewed. It is not a controlled universal ranking.
@@ -18,7 +18,7 @@ not independently human-reviewed. It is not a controlled universal ranking.
 | GLM-4.7-Flash UD-Q4_K_XL, f16 KV | 27 | Separate historical cases | Not comparable | Private 942 s, below Qwen on this audit; retired |
 | Gemma 4 26B-A4B QAT Q4_0 | 19 | Separate historical cases | Not comparable | Retained lower-memory fallback; private 400 s |
 | Gemma 4 26B-A4B QAT, CPU28/resident8,24October |Unrun on new profile |Router38/40; TS5/6; SQL0/6; history incomplete |Unrun on new profile |Router1031.860s,TS/SQL1142.469s. Python groups6/6 andself-tests8/8 pass; TS prototype validation and SQLite FK error remain. History4096-token reasoning-only limit789.282s; no full total |
-| Gemma 4 26B-A4B QAT, CPU26/resident8/publisher sampler |Unrun; fresh capacity rejection |57 |Unrun; fresh capacity rejection |Router38/40 in889.985s; TS5/6 andSQL6/6 in946.406s; history8/8 in531.344s. Required TS/SQL v2 file skipped, prototype validation and generated-test defect remain. No composite or promotion; joint placement/sampling change |
+| Gemma 4 26B-A4B QAT, CPU26/resident8 |23 |57 |Unrun; current capacity rejection |Private798.6s: semantics15/citations2/code6. Public uses topK64; private explicitly20. Conflicting fact ownership, unread citations and missed closeout remain despite correct merge. Public skips linked TS/SQL rule; prototype-validation/self-test defects. No full composite or promotion |
 | Gemma 4 31B dense QAT Q4_0 | 26 | Historical completed cases | Not comparable | Private 7234 s; fails current latency gate; retired |
 | Qwen3-Coder-Next 80B Q4 | Unscored | Separate historical cases | Not comparable | Private tool-loop limit after 4075 s; retired |
 | Qwen3-Coder-30B UD-Q4_K_XL | Deadline | Separate historical cases | Not comparable | Public cases complete, private 1200 s deadline |
@@ -86,6 +86,23 @@ Minimum freeRAM3.916GiB, commit1.253GiB, VRAM1320MiB; no hardware event.
 Fresh13.115GiB RAM subsequently rejects the next Gemma/Qwen/K2/Bolt/NVFP4
 profiles. These remain capacity dispositions, not quality scores. The paused
 FlintQ3XL download resumes only with inference stopped.
+
+The subsequent Gemma private audit completes25October00:46IST in798.6seconds;
+source review and isolated grading finish26October:23/36 (15/24 semantic,
+2/6 citations,6/6 code). Seven documents delivered; one oversized logging read
+fails and is not recovered. The final inventory omits one actual source, and
+the answer includes unsupported citations, wrong machine-fact ownership and
+local-validation/closeout advice. The final explicitly corrected Python fence
+passes all six checks unchanged. This is a weaker result than historical Qwen
+Q4's31/36 on this audit, but not a matched-sampler causal model ranking.
+Record: [private evidence](../reports/2026-10-25-gemma26-cpu26-private.json).
+
+On26October08:07IST, no engine is running and only2.169GiB RAM is available
+(7.747GiB commit/5347MiB VRAM). All six queued profiles reject before loading;
+even the bounded download is deferred below its desktop reserve. No new boot
+or hardware event is observed since the last run. This is changed application
+pressure, not a new failed model test; apps stay open and production is not
+silently restarted below its admission checks.
 
 - Added the twelve-task executable suite and a consistent 50/30/20 scorecard;
   regraded the public baseline as 52/60 and LFM as 48/60.

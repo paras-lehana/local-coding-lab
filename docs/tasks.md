@@ -1,6 +1,26 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-10-24 (Asia/Kolkata); higher precision and missing coverage reopened.
+Last updated: 2026-10-26 (Asia/Kolkata); higher precision and missing coverage remain active.
+
+## 2026-10-26 - Resume comparison and grade saved Gemma audit
+
+| Task | Status | Evidence / next step |
+|---|---|---|
+| Finish saved Gemma private review |Done |23/36; final corrected merge passes6/6 isolated checks; inference occurred25October |
+| Complete remaining coding/model trials |Capacity constrained |All six queued profiles reject current2.169GiB freeRAM; apps stay open |
+| Research optimization claims |In progress |Rechecked hybrid-cache PR head and Strata release; prefill costs remain |
+| Publish reports and restore production |In progress |Production off; restore only when18GiB RAM/12GiB commit/6000MiB VRAM gates pass |
+
+08:04–08:10IST: recovered project/shared guides, logs, model reporting/grading
+policy and local-LLM skill. No engine/downloader running; last boot23October,
+no new hardware event since the previous private trial. Fresh RAM falls from
+3.722GiB to2.169GiB, then1.379GiB, without inference. Full six-profile
+admission receipt saved; bounded download is also deferred. No apps closed.
+Private source/answer/read-trace review precedes isolated execution:15/24
+semantic,2/6 citations,6/6 code. Selected final explicit Correction fence;
+no implementation repair. Sanitized result/standalone/comparison updated.
+Public57/private23 use different explicit topK controls and have no coding
+composite. No model promotion, new inference or completed-campaign claim.
 
 ## 2026-10-24 - Higher precision and coverage gaps
 
@@ -1176,3 +1196,12 @@ FlintQ3XL bounded downloader resumes from28/276 ranges, PID84648; stop verified
 children before inference.42offline tests pass19.267s, fourPSparses, audit304/0,
 whitespace check pass. Candidate report/comparison/leaderboard updated; campaign
 and production restoration remain active. No code or runtime changes here.
+
+25October00:33IST: checkpoint8961410 pushed; CI40123433820 succeeds. FreshRAM
+recovers15.559GiB/commit11.944GiB/VRAM6302MiB. Verified Flint download child
+79000 stopped (wrapper84648 exits);68/276 ranges saved. Gemma private-only
+controller82276 starts with the sameCPU26/resident8 profile, temperature1 and
+actual private topK20/24576output/native thinking/1200s deadline. Engine80708
+is live; no score yet. Earlier admission failures remain historical evidence.
+
+26October08:16IST: Gemma private23/36 export/review complete;42offline tests pass21.516s (22.110s command),4PowerShell parses pass. Public audit305/0 before capacity receipt, git whitespace check pass. Production admission also rejects1.916GiB freeRAM (needs18),8.423GiB commit (needs12),5385MiB VRAM (needs6000). No launch/remote-SSE test; settings/baseline preserved. No new hardware event. Current capacity report lists each unrun queue item; no campaign completion.
