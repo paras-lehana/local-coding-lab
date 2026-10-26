@@ -1,0 +1,48 @@
+{
+  "status": "environment-installed-and-help-verified-no-model-loaded",
+  "source_revision": "4b9e05a2a806a3fe24f7b2560d98626c37dade35",
+  "gguf_source_revision": "3cf03257f219afbe7334045ff7c6a06ac68c627d",
+  "requirements_sha256": "074edcc013f7b58e854d19c89243705da95c0a4c2f015643af9b6f69ad32a0cf",
+  "installed_packages": [
+    "certifi==2026.10.19",
+    "charset-normalizer==3.5.1",
+    "colorama==0.4.6",
+    "idna==3.20",
+    "Jinja2==3.1.6",
+    "MarkupSafe==3.0.3",
+    "numpy==2.5.3",
+    "pillow==12.3.0",
+    "psutil==7.2.2",
+    "PyYAML==6.0.3",
+    "regex==2026.9.10",
+    "requests==2.34.2",
+    "tqdm==4.70.1",
+    "truststore==0.10.5",
+    "urllib3==2.8.0"
+  ],
+  "native_engine": "0.1.50-cuda13",
+  "native_build_commit": "1aff6d14117b",
+  "native_help_exit": 0,
+  "python_server_help_exit": 0,
+  "native_exe_sha256": "5745022e7c8f743cfee83544da7d3672cd86103c854f23600e2c69ddd6593bef",
+  "native_library_sha256": "36b8a053ffaacb68fb5d045de759d13d7522999204d1726df557c30be4cdceeb",
+  "affinity_helper": {
+    "harmless_child_inherits": "0xfffc",
+    "relative_executable_rejected": true
+  },
+  "model_downloaded": false,
+  "model_loaded": false,
+  "limitations": [
+    "Help success is not pack/model compatibility or inference proof.",
+    "Actual packed template and fresh resource admission remain pending."
+  ],
+  "evidence_sha256": {
+    "strata-environment/receipt.json": "2c04aa8b3fd8da2f243d50a5546cd134e0430209684c969e0ba8c7e44f7dab53",
+    "strata-environment/freeze.txt": "010ded5b683acff52a319d1f40643cf9e6a521faf1eb7d1b67df277849eb5f31",
+    "strata-environment/pip-report.json": "7a45455f7aa2f4125247d8b0a40829ae62b302754e7c6f0ac37d1e9bf2acea57",
+    "strata-native-help.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "strata-native-help.stderr.txt": "d8f27f2361b26ab60da0da28d359bbf3154b0e20b73b519b28189d6534984400",
+    "strata-python-help.stdout.txt": "7a2fa7fd4464f104c00e5cac6d9b7645fd28abe63efa8e82130d69891ea305d6",
+    "strata-python-help.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

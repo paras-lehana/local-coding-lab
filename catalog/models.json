@@ -241,7 +241,7 @@
       "url": "https://huggingface.co/unsloth/flint-GGUF/resolve/20468edfc38ab43d6914cc88b08cbecb05d0fc62/flint-UD-Q3_K_XL.gguf",
       "name": "Recursive Flint 40B-A2.5B UD-Q3_K_XL",
       "upstream": "https://huggingface.co/RecursiveSI/flint",
-      "status": "verified-greeting-qualified-20261026-file-and-coding-quality-pending",
+      "status": "greetings-qualified-router-and-ts-output-limits-20261027-history-and-controls-pending",
       "thinking": "Native reasoning; no validated low/high effort switch. Preserve reasoning history."
     },
     "flint-nvfp4": {
@@ -266,6 +266,39 @@
       "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
       "status": "resident7-and-resident10-public-deadlines-exact-file-retired-20261024",
       "thinking": "enable_thinking and preserve_thinking; no native xhigh. Do not transfer the larger XL artifact result."
+    },
+    "qwen38-27b-q4": {
+      "name": "Qwen3.8-27B dense UD-Q4_K_M",
+      "repo": "unsloth/Qwen3.8-27B-GGUF",
+      "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+      "filename": "Qwen3.8-27B-UD-Q4_K_M.gguf",
+      "bytes": 16464440224,
+      "sha256": "322e194ff79741c7baa497c240f677f54b201b0efab44ca8e50f122b39123482",
+      "upstream": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "status": "metadata-pinned-20261027-not-downloaded-new-dense-qualification-candidate",
+      "thinking": "Publisher supports xhigh, medium, low and preserve_thinking. Actual GGUF template and enforcement require validation; no high label assumed."
+    },
+    "qwen38-27b-q6": {
+      "name": "Qwen3.8-27B dense UD-Q6_K (plain)",
+      "repo": "unsloth/Qwen3.8-27B-GGUF",
+      "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+      "filename": "Qwen3.8-27B-UD-Q6_K.gguf",
+      "bytes": 21983677344,
+      "sha256": "c9c206812fbe4ac7b76a729e25928b63f2ae89d37f69da7a71c20aec763cd436",
+      "upstream": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "status": "metadata-pinned-20261027-not-downloaded-conditional-precision-followup",
+      "thinking": "Publisher xhigh/medium/low; verify exact GGUF template. Do not transfer retired Q6 results without matching artifact and full configuration."
+    },
+    "qwen38-27b-iq4xs": {
+      "name": "Qwen3.8-27B dense UD-IQ4_XS",
+      "repo": "unsloth/Qwen3.8-27B-GGUF",
+      "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+      "filename": "Qwen3.8-27B-UD-IQ4_XS.gguf",
+      "bytes": 14252845984,
+      "sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+      "upstream": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "status": "metadata-pinned-20261027-not-downloaded-memory-fallback-not-quality-equivalent",
+      "thinking": "Publisher xhigh/medium/low; verify exact GGUF template. Mixed quantization is a separate quality variable."
     }
   }
 }

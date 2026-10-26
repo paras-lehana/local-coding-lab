@@ -1,8 +1,131 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-10-26 (Asia/Kolkata); higher precision and missing coverage remain active.
+Last updated: 2026-10-27 (Asia/Kolkata); higher precision and missing coverage remain active.
 
 ## 2026-10-26 evening - Seven articles and RAM investigation
+
+## 2026-10-27 03:26 IST - Flint B closed; quiet validation and next profile
+
+Flint Q3XL B completes collection and owned shutdown without a new hardware
+event. Router4095.422s and TS/SQL5039.500s exhaust16K output with no visible
+answer, unscored. History is source-reviewed and fact-graded8/8 in3380.750s;
+120records, not50K/128K recall. All visible turns reviewed; no generated code
+executed. Full sanitized receipt preserves telemetry and evidence hashes.
+No stale engine or loaded Ollama model remains. Poststop desktop availability
+falls to7.7-7.8GiB; no apps closed. New separate resident1/40K/output32K
+profile retains6.5GiB startup reserve,7.5GiB commit/5500MiB VRAM admission
+and all runtime stop floors;600second greetings precede1024/8192/native
+router controls. It is prepared, not measured yet; B is not a matched control.
+Strata pinned environment installs underE: with15frozen packages, pip check,
+native+Python help exit0. Actual model load/pack/template qualification unrun.
+Private32K audit refusal actually exercised before any launcher creation;
+affinity helper passes harmless childFFFC and rejects relative executable.
+44offline tests pass;4PowerShell files parse; diff check passes. Public audit,
+commit/push/CI follow this checkpoint. One shell-quoting AST probe failed;
+the corrected stdin probe validates all4prepared helpers. No validation
+failure is presented as a model defect. Production remains off during campaign.
+
+
+27October03:08IST: Flint B history phase0 finally delivers `READY`/120 at
+2639.093s first visible text. The44,165-character ledger required8273new
+input tokens in1728.395s (4.787t/s), then an additional historical-rule read;
+phase1 is now collecting, not scored. Live slot snapshot10841retained/32768
+capacity and startup503.89MiB GPUKV are exported separately; this is not a
+RAM-KV growth or128K recall test. An8.75s prefill observation averages2.79
+logical cores busy,25-43% whole-device GPU utilization,7148-7165MiB usedVRAM.
+Archived private Flint requests reached41305input/51041total tokens. New
+metadata receipt preserves that sizing; unrun private controller now refuses
+<64K or missing no-context-shift. Its SHA is20d3aec2b3e490cfa4cba1d3a119d09675c39ab1e254f7e7cf891118bca61065.
+New unrun private72K/cache512/resident4 profile requires10.5GiB RAM/8.5GiB
+commit/6000MiB VRAM. Router tools mode's advertised path list is clarified in
+methodology and the local evaluation reference; frozen scores unchanged.
+Strata requires actual packed-template/sidecar checks, not fallback-template
+assumptions. No offline validation/installation/grading has run during B.
+
+27October02:37IST: actual engine114288 and its owned controllers remain live.
+TS/SQL has now finished incomplete/length at5039.500s, with all6required
+sources delivered but no visible answer in any turn. Exported its sanitized
+receipt; this is neither a code-execution failure nor a context-capacity stop.
+The history case is processing its120-record input, about50% through the
+current prefill at4.91tokens/s; no recall score yet. Read-only review of the
+two completed reasoning traces finds repeated solution revision and drafting,
+but not a delivered answer. Preserve both failures; native32K output and
+8192/1024 sampler-cap controls remain separately frozen and unrun.
+Dense27B Q4/plainQ6/IQ4XS metadata is now pinned in the catalog from the
+publisher's revision4ca7207; no weights downloaded. Architecture-derived
+q8 full-attention KV is1088MiB at32K or4352MiB at128K, plus recurrent state,
+checkpoints/workspaces. Strata environment, native help and further downloads
+still await the inference-free interval. No new offline checks, grading,
+app closure, clock changes or production replacement occurred.
+
+27October02:10IST: B remains active, TS/SQL request6 about14.3K generated
+tokens without visible text; all6required files delivered. Router's16K length
+failure remains unscored; history has not started. A read-only WSL inventory
+finds no running distributions, so an earlier grader VM is not established as
+the missing RAM. Sanitized memory receipt now includes that observation.
+Current launcher uses Windows terminate at cleanup; native cache destructor
+statistics are not guaranteed and absent from the completed smoke. Corrected
+the report rather than assuming occupancy is a hit-rate measurement.
+Recursive's own rec engine is Mac-specific; generation guidance confirms
+always-on reasoning and larger output after length stops. The native32K and
+8192/1024 sampler-budget controls remain unrun. New Strata source-reviewed
+pure-mapping plan precedes a bounded RAM-pool comparison; no environment
+install, binary help, new model download or launch yet. B metadata exporter
+is prepared, not run until collection closes. Required checks remain deferred
+until inference exits; no apps, hardware settings or production selection changed.
+
+27October01:31IST: B remains active on TS/SQL, engine114288; about6066tokens
+in request6, no visible final yet. Router is definitively length-limited,
+not a pending answer. Saved-input comparison confirms identical first request,
+question/source hashes and template text to the old IQ3XXS router; changed
+placement/residency and weights prevent a quant-only claim. CPU observation
+averages0.69logicalcores over10.073s, not a causal I/O or thread-count test.
+Public memory receipt includes this measurement. Separate8192reasoning-budget
+router plan is frozen, unrun, alongside the native32K-output control. Source
+shows the budget can re-arm per reasoning block; verify actual enforcement.
+Pinned Strata environment installer is prepared, not run; existing GGUF helper
+checkout matches its3cf03257 source pin. No installs/downloads/grading overlap.
+
+27October01:00IST: B router finishes incomplete/length at4095.422s,16384tokens
+in its last turn,0visible answer characters. All7files delivered, no score.
+TS/SQL now reads all6required files including v2 rule; still collecting.
+914-sample telemetry minimumRAM4.540GiB,commit1.719GiB,VRAM803MiB changes the
+unrun control estimates before launch: resident6 now requires12.5GiB physical/
+6.5GiB reserve; both prepared controls require5500MiB freeVRAM. Current B is
+unchanged. Short host-wide I/O counters are saved with attribution limits.
+
+27October00:49IST: actual engine114288 remains the only inference engine;
+Ollama's loaded inventory is empty. Flint router has all7files but no visible
+answer after roughly1hour. Preserve the fixed16K output/21600s allowance.
+Separate unrun controls prepared: resident6GiB with4.5GiB startup reserve
+(same10.5GiB admission and all stop floors), and40K context/32K output at the
+original4GiB cap if the16K answer truncates. The latter budgets119MiB more
+globalKV from the measured32K allocation; no unchanged-run gate bypass.
+Flint report banner now distinguishes retired older IQ3XXS from active Q3XL.
+Strata's actual-versus-requested expert budget and commit clamp are documented.
+Private affinity wrapper prepared, untested; environment/help/load and required
+repo checks still wait until inference ends. No apps or hardware settings changed.
+
+27October00:18IST: same Flint32K workflow is still generating its first
+file-based answer beyond the historical1200second deadline, within the
+21600second extended allowance. Seven source files delivered, no quality
+score yet. Private commit remains3.53GiB/working set4GiB while desktop-wide
+headroom changes. A separate GPU-process-counter observation is excluded as
+physically implausible; methodology and local skill reference now document
+the Microsoft caveat. Shared/project Claude and Codex adapters reviewed,
+unchanged. Strata frontend environment/help/load still await a quiet interval.
+No new inference-overlapping downloads, builds, dependency installs or grading.
+
+23:49 IST continuation: checkpoint8cdc980/CI40373750241 passes Windows and
+Ubuntu. Flint64K rejects RAM/commit before load; original32K attempt rejects
+the launcher's freshVRAM check. Both are exported unscored. A separate
+measured4500MiB VRAM admission retains1614MiB above the smoke's observed
+2886MiB device decline, without changing inference or runtime floors.
+This32K file-workflow run loads18.469s, greetings50.328/38.000s complete,
+and public routing is collecting. No current quality score yet. Strata's
+new source frontend is pinned separately; setup/reference/source guides read.
+No environment install or native execution while Flint is running. Required
+checks for these later edits wait until inference exits.
 
 23:25 IST checkpoint: Gemma history G is commit-stopped at23:05, 3637.469 s,
 56% of long input, no phase answer and no new hardware event. Its history score

@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "candidate": "Recursive Flint UD-Q3_K_XL",
+  "status": "pre-readiness-rejections-unscored",
+  "attempts": [
+    {
+      "status": "failed",
+      "started": "2026-10-26T17:59:53.139267+00:00",
+      "finished": "2026-10-26T17:59:56.401215+00:00",
+      "reason": "ValueError: ram_free_gib below 11.5 or unavailable",
+      "preflight": {
+        "time": 1793037593.1392677,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 8.995967864990234,
+        "commit_limit_gib": 106.32622909545898,
+        "commit_available_gib": 5.9383544921875,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 5382.0,
+        "gpu_c": 51.09,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "postflight": {
+        "time": 1793037596.401215,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 8.971992492675781,
+        "commit_limit_gib": 106.32622909545898,
+        "commit_available_gib": 6.103599548339844,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 5398.0,
+        "gpu_c": 51.12,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "new_hardware_event": false,
+      "profile_name": "flint-q3xl-cpu49-cache512-resident5-extended64",
+      "run": "flint-q3xl-file64-a",
+      "quality_score": null,
+      "launcher_reason": [],
+      "evidence_sha256": "3d24623257bfad3bac4c70a61975c673ba5fceaf0e07ee9ada60d4fe78263ef5"
+    },
+    {
+      "status": "failed",
+      "started": "2026-10-26T18:09:49.129007+00:00",
+      "finished": "2026-10-26T18:10:08.324994+00:00",
+      "reason": "RuntimeError: Guarded launcher stopped before readiness",
+      "preflight": {
+        "time": 1793038189.1290073,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 10.662715911865234,
+        "commit_limit_gib": 106.32622909545898,
+        "commit_available_gib": 7.889339447021484,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 5163.0,
+        "gpu_c": 41.69,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "postflight": {
+        "time": 1793038208.3249943,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 10.80472183227539,
+        "commit_limit_gib": 106.32622909545898,
+        "commit_available_gib": 7.625186920166016,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 4956.0,
+        "gpu_c": 41.44,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "new_hardware_event": false,
+      "profile_name": "flint-q3xl-cpu49-cache512-resident4-extended32",
+      "run": "flint-q3xl-file32-a",
+      "quality_score": null,
+      "launcher_reason": [
+        "Stopped: vram_free_mib below 5000 or unavailable"
+      ],
+      "evidence_sha256": "4ae5c72935df5a72f889110eb9283c95e432e423a0b66a7a278bf6f2b5de6460"
+    }
+  ],
+  "limitations": [
+    "The 32K controller snapshot passed; the later launcher check rejected free VRAM.",
+    "No quality score or hardware failure is inferred.",
+    "Measured4500MiB admission is a separate profile; original evidence and runtime floors remain."
+  ]
+}

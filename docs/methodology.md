@@ -62,6 +62,15 @@ The parent kills its network worker at the deadline, even for a silent stream.
 Check the server's logs after disconnect: client cancellation alone does not
 guarantee every server backend has stopped inference.
 
+Validate the meaning and plausibility of memory counters before attributing a
+leak. On27October, Windows GPU Process Memory reported more than25,000MiB for
+one process on this10GiB GPU. Exclude those per-process readings from physical
+VRAM totals; preserve the failed measurement and use whole-device telemetry
+alongside engine allocation logs. Microsoft documents this counter class's
+[known reporting problem](https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/gpu-process-memory-counters-report-wrong-value);
+that does not establish the exact cause on a particular host. Likewise,
+process page-fault counts include soft faults and do not measure SSD reads.
+
 The harness **does not execute generated code** and **does not invent a score**.
 Review the [rubric](../benchmarks/rubrics/router-v1.md). Behavioral code points
 require testing in a disposable restricted environment with no secrets, network
@@ -98,6 +107,21 @@ turn latency. The separate plain-greeting and direct-coding workers start a new
 timer for each request; do not mix these two interpretations in one table.
 
 ## Fair comparisons
+
+The frozen router-v1 tools prompt lists every available fixture path before
+the first request (`benchmark.py`). Its rubric tests actual source inspection,
+precedence, grounding and code behavior; a high score is not proof of finding
+unlisted instruction files. The TypeScript/SQL and history scenarios expose
+the entry instructions and require following links without that full path
+list. Keep this scaffold difference visible when describing file discovery.
+Do not change the frozen prompt or old scores to remove the limitation; any
+future no-list router control needs a separately identified request/cohort.
+
+Qualify the workload's input as well as its maximum output. The old Flint
+private audit reached41305input/51041total tokens, so a32K greeting or small-
+router pass cannot qualify it. Private extended controls must use explicit
+no-context-shift and sufficient context; a rejection is preferable to silently
+discarding earlier instructions. Retain any rejected trial without a score.
 
 1. Freeze model SHA, runtime commit, template, profile, question and rubric.
 2. Keep context, placement, sampling, budget and source delivery fixed when

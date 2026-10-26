@@ -7,9 +7,22 @@ hash-verified. Gemma CPU28/resident6 completes all twelve direct-coding
 questions with10frozen passes under the extended allowance. CSV and TypeScript
 fail; extra NaN TTL/pool defects remain. Its two matched4/6GiB answers are
 identical and28-29% quicker at6GiB. Median case11m51s; CSV finishes after35m35s
-but is incorrect. No new hardware event. The6GiB128K history profile rejects
-fresh capacity; a separate CPU30/resident4/128K option is prepared. Smaller
-Flint/K2 qualification and Flash-Next Q2 remain queued.
+but is incorrect. No new hardware event. The subsequent fixed5GiB128K
+history run stops at the commit floor after3637.469seconds, with no answer
+or recall score. Gemma/QwenIQ3 weights are then identity-checked and retired.
+FlintQ3XL's measured32K profile completes greetings50.328/38.000seconds and
+is collecting the public file workflows as27October begins. Its router has
+now ended at4095.422seconds with a16384-token output limit and no visible
+answer, despite all7source files being delivered. TS/SQL also ends at5039.500s,
+16384last-turn output tokens and zero visible text after all6required reads
+plus8unavailable extra reads. Both are unscored; history completes8/8 in
+3380.750seconds under the extended allowance. The120-record test is not128K
+recall validation. Owned cleanup succeeds with no new hardware event.
+Separate native32K-output and8192/1024 reasoning
+budget controls are prepared, not run. They will not replace the failed case.
+The64K admission rejection and original32K freshVRAM rejection remain
+unscored. K2 and Flash-NextQ2 qualification remain queued; Strata's separate
+engine is verified and the new source frontend is pinned, not yet served.
 See the [article review](../../../research/reviews/2026-10-26-qwen-articles.md)
 and [live task log](../../tasks.md). Earlier dated capacity statements below
 remain historical; they do not describe the active evening run.
@@ -48,7 +61,7 @@ isolated grading. No cloud inference or exposed historical key is used.
 | Qwen IQ4_XS interrupted public / missing private and coding |CPU35 with bounded resident memory after fresh RAM stop |Public55/60; private29/36 in725.4s; native interval1200s deadline and presence1.5 control16K output limit; subsequent unchanged coding cases interrupted/unrun. Exact weights retired21:07 after fresh full hash |
 | Gemma26 fallback missing latest public/coding | Collect missing suites under its recorded template and sampling |CPU28 partial retained. CPU26 public57/60 and private23/36 complete; private798.6s,15/2/6. Instruction/citation and public code/test defects remain. Direct coding rejects26October2.169GiB freeRAM; no historical score transfer. [Report](../2026-10-24-gemma26-coverage/2026-10-24-gemma26-v0.9.0.md) |
 | K2 MoVA / Nemotron Bolt downloaded but untested | Verify identity; calculate placement and gates; trial if capacity permits | Pending |
-| Flint higher precision | Pinned Unsloth Q4 first, Q3_K_XL fallback; isolated opt-in mmap build | Both Q4 CPU44 and CPU48/cache1536 router trials deadline; exact Q4 retired after fresh full hash. Q3XL partial download checkpointed, NVFP4 still queued |
+| Flint higher precision | Pinned Unsloth Q4 first, Q3_K_XL fallback; isolated opt-in mmap build | Both Q4 CPU44 and CPU48/cache1536 router trials deadline; exact Q4 retired after fresh full hash. Q3XL fully verified and actively tested26–27October;32K router output-limited/unscored. Native32K-output/budget controls prepared; NVFP4 still queued |
 | Flint CSV / history output limits | Separate 32768-output diagnostic with unchanged 1200-second deadline | Original8K history diagnostic already passes8/8 separately; original CSV32K diagnostic pending. Q4 router deadlines prevent full-workflow qualification |
 | Flint file-driven TS/SQL | Check template/parser provenance, rerun native tool workflow before trying a separately labeled scaffold change | Pending |
 | Old dense,80B,Bonsai,LFM gate failures | Reopen only where a specific runtime/template/budget change addresses the measured failure; otherwise record unresolved quality coverage and exact gate | Audit recorded below; unchanged configurations remain excluded, missing newer scores explicitly identified |

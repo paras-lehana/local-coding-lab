@@ -1,5 +1,231 @@
 # Recursive Flint on RTX 3080 10 GB
 
+Current evidence at27October03:22IST:
+
+Next fallback is a separate resident1/40K/output32K profile because available
+RAM after shutdown falls to7.7-7.8GiB. It reduces the owned working-set ceiling
+from4to1GiB while retaining the6.5GiB startup reserve; physical admission is
+7.5GiB. Commit7.5GiB,VRAM5500MiB and runtime floors are unchanged. A hard
+working-set limit does not cap private allocations or standby pages. Expect
+more paging; a600second plain-greeting qualification must pass before the
+1024/8192/native reasoning controls. These are planned diagnostic conditions,
+not a measured improvement or a budget-only comparison with B.
+
+| Artifact / trial | Measured result | Disposition |
+|---|---|---|
+| UD-IQ3_XXS,23–24October | Router39/40; private29/36;11completed coding passes of12; separate8K-output history8/8 | Historical partial components, no full composite; exact weights retired |
+| UD-Q4_K_XL,24October | Two router attempts hit1200seconds; seven source reads each | Incomplete/unscored; exact weights retired; extended retry remains queued |
+| UD-Q3_K_XL,26–27October,32K/resident4/cache512 | Greetings50.328/38.000s; router4095.422s and TS/SQL5039.500s both exhaust16384 last-turn output tokens with no visible answer; history8/8 in3380.750s | Router/TS incomplete/unscored; all required files delivered; history is extended-only, no full public total |
+| Official distilled NVFP4 | Identity pinned; no local model load or quality test | Queued, a distinct artifact; not a demonstrated precision upgrade |
+
+The [capped-router receipt](../../../reports/2026-10-27-flint-q3xl-router-limit.json)
+preserves all turn timings and evidence hashes. The collection has now closed
+with an owned requested stop and no new hardware event. Its
+[complete receipt](../../../reports/2026-10-27-flint-q3xl-file-workflows.json)
+includes the separately reviewed history grading; no model code was executed.
+
+The [TS/SQL receipt](../../../reports/2026-10-27-flint-q3xl-ts-limit.json)
+records six turns, all six required sources including the nested v2 rule,
+and eight unavailable extra reads. Every turn has zero visible characters.
+The last turn reports1508prompt plus16384generated tokens,17892total, below
+the32768context capacity. Its generation takes4640.045seconds at3.531tokens/s.
+The83m59.5s whole-case failure is an output limit, not an observed TypeScript
+syntax or SQLite execution failure. No generated code exists to execute.
+History completes afterward under the unchanged profile. It passes all six
+facts, READY120 and the exact last-phase source inventory:8/8 in3380.750s.
+Phase0 first displays READY at2639.093s; the8273new-token ledger prefill alone
+takes1728.395s. Phase1 rereads the revised runtime file, retains earlier markers
+and correctly returns null for the absent port. It never attempts the now
+unavailable ledger, so this establishes retained-history use, not recovery
+from an actually observed tool error. The120-record case is not50K/128K recall.
+No partial full-suite score is synthesized from this one completed component.
+
+Across2516telemetry samples, minimum available RAM/commit/VRAM is
+3.760GiB/1.719GiB/803MiB; peak owned working set4.000GiB/private3.593GiB
+and GPU50.66C. Working set and private commit overlap and cannot be added.
+Poststop available capacity is8.705GiB RAM/10.380GiB commit/5725MiB VRAM,
+then changes with desktop activity. Engine/controller liveness checks confirm
+cleanup; no Ollama model is loaded. No native cache destructor counters were
+printed, so cache hit rates remain unmeasured.
+
+Read-only source inspection of both saved last-turn reasoning traces at02:36
+finds repeated revision of the solution and proposed final structure. They do
+not look like a network stream that stopped without generation: the server
+delivered16384tokens and reported length in both cases. This is a qualitative
+completion diagnosis, not an automatic repetition score or proof of its cause.
+Code discussed inside reasoning is not a user-delivered implementation and is
+not extracted as a replacement answer for grading. A larger output control can
+test whether more room completes it; sampler caps test a different intervention.
+Neither control has run yet, and neither can erase these native failures.
+
+The [saved-input comparison](../../../reports/2026-10-27-flint-router-input-comparison.json)
+confirms identical first serialized requests, question/source hashes and
+served chat-template text between the older successful IQ3XXS router and the
+new Q3XL attempt. The changed result is not explained by a changed opening
+question or template text. It is still not a controlled quant-only comparison:
+placement, context, batch sizes, residency, later tool turns and the allowance
+also differ. Tokenizer-array equivalence has not been established.
+
+The output-limited router used17902reported total tokens in a32768-token
+context. Its missing answer is not evidence of a full context window or lost
+input files. Current measured GPUq8 KV is476MiB global plus27.89MiB sliding
+window. Global-cache sizing follows14full-attention layers,4KV heads,
+128dimensions, separate K/V and34bytes per32values inq8_0:15232bytes/token.
+At40960tokens that global component is595MiB; at131072 it would be1904MiB.
+Those latter two figures are calculations, not measured Q3XL long-context
+loads. Sliding-window rounding, workspaces and driver allocations are separate.
+Allocated KV capacity, occupied tokens and resident process pages must not
+be equated with each other or with persistent knowledge of omitted files.
+
+A live history snapshot records10841retained tokens in the32768slot, while
+the startup KV buffers are476+27.89MiB onGPU. The `/slots` field named
+`n_prompt_tokens` is the current sequence length in this runtime, including
+appended generation; it is not just the original request's input. The metrics
+endpoint's16346cached-token counter is cumulative reuse across requests,
+not live cache occupancy. These source-checked distinctions prevent double
+counting. The run also creates bounded context checkpoints separately. This
+snapshot does not establish recall accuracy, RAM-KV growth or128K operation.
+[Sanitized occupancy receipt](../../../reports/2026-10-27-flint-context-occupancy.json).
+
+The CPU49 label describes host placement of routed-expert weights, not an
+assertion that every expert operation runs on the CPU. b11838's MoE cache
+uploads selected missing experts into GPU banks and routes supported small
+batches through those banks. Its source bypasses that cache when a batch's
+worst-case selection exceeds a group's slots or the32-token cache threshold.
+This profile allocates383slots across five layout groups (7/73/173/7/123);
+each decoding token selects6experts per MoE layer, whereas a16-token prefill
+can require96distinct experts in a layer. Cache use can therefore differ
+between prefill and decoding. Slot counts alone are not a hit-rate measurement.
+The source prints hit/upload counters during cache destruction, but this lab's
+Windows launcher calls `terminate()` on its owned engine at cleanup. That does
+not guarantee native destructor output; the completed short smoke contains no
+such counters. Record their absence if B also lacks them rather than inferring
+a hit rate from occupancy or claiming a successful measurement. This limits any claim
+that the short low-CPU-use observation proves a particular bottleneck.
+[Pinned cache implementation](https://github.com/ggml-org/llama.cpp/blob/4231b23dc2c46661d01157aac5245bdcf03ce4b1/src/llama-moe-cache.cpp).
+
+**27 October continuation:** the first UD-Q3_K_XL file collection is closed.
+Its smaller-buffer32K profile loads and answers plain greetings; router and
+TS/SQL are length-limited, while history passes8/8 only with an extended
+allowance. Native32K output and capped-reasoning controls remain pending. The completed
+23–24 October scores below belong to UD-IQ3_XXS; they are not scores for the
+new artifact. Only those older weights were retired. See the later dated
+sections for capacity rejections, the measured admission profile and results.
+
+A separate `flint-q3xl-cpu49-cache512-resident6-measured32` control is prepared,
+not run: resident cap4 to6GiB, original6.5GiB reserve,12.5GiB physical admission
+and5500MiB VRAM admission. The preliminary unrun10.5GiB/4.5GiB-reserve proposal
+was superseded before launch after914 B samples showed minimum RAM4.540GiB,
+commit1.719GiB andVRAM803MiB. This explicitly accounts for desktop variation;
+all inference arguments,7.5GiB commit admission and runtime stop floors stay
+fixed. Additional mapped-page residency may help, but page-fault counts alone
+cannot prove disk traffic. Qualify plain greetings before sustained use.
+Do not relabel the active4GiB run as this new profile.
+
+The publisher's32768-token hard-task output recommendation was rechecked on
+27October. A separate `flint-q3xl-cpu49-cache512-output32k-ctx40k` control is
+prepared before the current router finishes:40960 context/32768 output,
+otherwise the measured32K inference profile unchanged. Scaling measured476MiB
+globalKV predicts119MiB additional allocation. Its initial unrun4500MiB gate
+is revised to5500MiB using B's4351MiB maximum observed device decline, including
+desktop variation:1030MiB remains after that decline plus119MiB moreKV,
+630MiB above the unchanged400MiB runtime floor. This is a conditional follow-up
+if the frozen16K-output answer is truncated, not a changed live request or a
+new long-history claim. Verify actual allocation and input/output room before
+collection. Native private24K and coding budgets retain their own identities.
+
+The27October private-audit preflight review finds a concrete context constraint:
+the earlier IQ3XXS audit's last request had41305input and9736output tokens,
+51041total. Its third request already had35086input tokens. Therefore the
+current32K file-workflow profile and the40K small-router output control cannot
+establish that same full instruction audit. The unrun private controller now
+refuses contexts below64K and requires explicit no-context-shift. A72K profile
+would leave room for that observed41K input plus the full24K output allowance;
+this is sizing, not a new allocation or a universal bound on future tool turns.
+The actual request must still fit. Do not silently prune source history or
+borrow the older private29/36 score. The larger private profile is not yet
+qualified against the apps-open memory budget.
+[Historical token-count evidence](../../../reports/2026-10-27-private-context-sizing.json).
+
+`flint-q3xl-cpu49-cache512-private72k` is now a concrete unrun profile:
+73728context,24576output, explicit no-context-shift, otherwise CPU49/cache512/
+b64/u16/q8/resident4. Estimated globalKV1071MiB adds595MiB over measured32K.
+Admission requires10.5GiB physicalRAM,8.5GiB commit and6000MiB freeVRAM;
+all runtime floors remain unchanged. The device estimate retains1054MiB after
+the prior4351MiB whole-device decline plus595MiB extraKV,654MiB above the
+400MiB floor. Fresh admission and measured loader/greeting evidence are still
+required. The prepared private controller's new context gate is untested until
+the current inference ends; no private load has occurred.
+
+At00:50:30–00:50:42IST, three read-only Windows counter samples show about
+107–166MiB/s reads and87–91MiB/s writes on physical disk1, which serves both
+D: and E:. System transition faults are89–136thousand/s, with25–46thousand
+pages/s input. These are host-wide, non-simultaneous counter observations,
+not an SSD benchmark or unique Flint I/O attribution. A later per-process
+logical-I/O snapshot cannot identify which process caused those earlier
+physical writes. Keep the private receipt and this concurrent-load caveat;
+do not infer either a pure CPU bottleneck or exclusively hard-page-fault
+traffic from the model's page-fault count. No cache flush or app stop occurred.
+
+The01:18IST CPU observation spans10.073seconds and6.953CPU-seconds, or about
+0.69logical cores busy on average for the owned engine. It does not isolate
+storage, faults, GPU waits or thread scheduling. Normal process priority and
+theFFFF process mask are observed; worker masks are configured separately.
+Do not infer that raising the thread count will accelerate this profile.
+The sanitized memory receipt includes this observation and its scope limits.
+
+A later8.75second observation during history input processing finds the owned
+engine using24.406CPU-seconds, about2.79logical cores busy on average. Whole-
+device GPU utilization samples range25-43%, with7148-7165MiB occupied VRAM.
+These are concurrent desktop readings, not model-exclusive GPU counters or a
+causal bottleneck test. They show why occupied VRAM, GPU utilization and CPU
+work need separate measurements; they do not justify filling the remaining
+VRAM without budgeting the transient allocation already observed in B.
+The read-only sampler used the existing Strata Python environment after the
+lab Python lacked psutil; no dependency was installed during inference.
+
+A separate8192-token reasoning-budget router control is prepared, unrun,
+for the same40K-context/32768-output profile as the native larger-output
+follow-up. Only the request's reasoning budget changes. Source inspection
+of installed b11838 confirms a budget sampler that forces the reasoning end
+sequence and can re-arm for another reasoning block. Therefore8192 is not
+necessarily a whole-workflow or whole-answer ceiling. Verify actual request
+fields, parser behavior, final delivery and correctness before crediting it.
+This is runtime-imposed closure, not Flint's native high/xhigh effort; the
+saved template reports no native effort support. The active native B run is
+unchanged. Frozen16K failure and any later32K/budget results stay separate.
+
+27October primary community reports supply two distinct leads. A b11838/Q4
+Windows4060-laptop user reports empty finals when thinking consumes the
+output budget, and improvement with a1024-token reasoning cap. Their experts
+occupy about21.4GB host RAM; our4GiB residency and desktop load differ. Their
+20-27tok/s and short tool checks are not our coding/long-history results.
+An additional1024-budget control is prepared, unrun, with the same32768
+output allowance. It tests the completion/accuracy tradeoff, not maximum
+native reasoning. [Original firsthand report](https://github.com/ggml-org/llama.cpp/discussions/31093).
+
+Separately, issue31000 describes literal tool XML trapped in reasoning with
+`finish_reason=stop` on NVFP4/b11823/OpenCode. The author explicitly lacks the
+original raw SSE and a deterministic reproduction. Our router ends`length`,
+so this is a parser-integrity lead, not a diagnosis or confirmed duplicate.
+Do not promote hidden reasoning into a final answer or execute embedded XML.
+[Original issue](https://github.com/ggml-org/llama.cpp/issues/31000).
+
+The publisher's own `rec` engine was also checked on 27 October. Its published
+requirements are Apple Silicon M4/M5 Pro or Max and at least 48 GB unified
+memory. Its reported speedup excludes prefill and comes from an M4 Pro, so it
+is not an available Windows/RTX 3080 replacement or evidence for our throughput.
+No `rec` installation was attempted. [Official repository](https://github.com/recursive-oss/rec).
+
+Recursive's current generation guide says Flint always reasons and advises
+against unsupported effort/disable-thinking controls. It recommends inspecting
+`finish_reason` and raising the output allowance after a length stop. That
+supports the separate native 32K-output control. The 8192/1024 controls instead
+use an explicitly supported llama.cpp sampler intervention; neither is a
+publisher-trained effort level or guaranteed improvement. All keep the supplied
+template and parser, with no custom stop strings. [Generation guide](https://docs.recursive.com/guides/generation-settings),
+[troubleshooting](https://docs.recursive.com/resources/troubleshooting).
+
 23–24 October 2026. Installation and all three scorecard collections are
 complete: GPU-KV router 39/40, private audit 29/36, and 11 completed coding
 passes of 12. Public tool/history failures prevent an overall score or
@@ -542,6 +768,18 @@ The official NVFP4 artifact stores20.668GiB NVFP4 plus0.619GiB BF16 and small
 F32 tensors, with its separate training recipe. These spans are not resident
 RAM. The research review records community precision comparisons and their
 limits, plus retained preview metadata; no external score enters our table.
+
+27October compatibility review: b11838 source contains an AVX2 NVFP4 CPU dot
+kernel and a CUDA integer-dot-product path for NVFP4, so the format name does
+not establish a hard Blackwell-only requirement. This is source evidence,
+not a local NVFP4 model-load or numerical-quality pass. The publisher's tested
+hardware and48GB recommendation refer to its full-GPU recipe; our partial
+offload would be a distinct trial. Keep the publisher's distilled artifact
+separate from a generic four-bit conversion of BF16 and from its specialized
+Blackwell performance results. [Publisher recipe](https://huggingface.co/RecursiveSI/flint-nvfp4-gguf),
+[pinned CPU source](https://github.com/ggml-org/llama.cpp/blob/4231b23dc2c46661d01157aac5245bdcf03ce4b1/ggml/src/ggml-cpu/arch/x86/quants.c),
+[pinned CUDA source](https://github.com/ggml-org/llama.cpp/blob/4231b23dc2c46661d01157aac5245bdcf03ce4b1/ggml/src/ggml-cuda/vecdotq.cuh).
+
 A CPU49/cache2048/resident7 Q3XL calibration is frozen separately to reduce
 the predicted GPU footprint and host residency. It still requires a measured
 smoke and fresh admission; current Q3XL download is checkpointed, not complete.
@@ -650,3 +888,43 @@ follow-up: keep cache512/b64/u16, increase global KV by 476 MiB for 64K, and use
 11.5 GiB RAM, 8 GiB commit and 5,000 MiB VRAM; runtime floors are unchanged.
 Collect greetings again before the frozen public workflows, then hold this
 configuration fixed. No file/coding quality result is transferred from smoke.
+
+The 64K follow-up is rejected before loading at 23:29 IST: available RAM
+8.996 GiB and commit5.938 GiB fail its11.5/8GiB admission. The subsequent
+original32K file attempt passes the controller snapshot but the launcher's
+fresh check finds less than5000MiB VRAM. It stops before readiness; neither
+attempt receives a quality score or indicates a hardware error.
+
+A separate measured-admission32K profile keeps every inference argument and
+runtime floor unchanged. The completed smoke's named GPU buffers total
+2631.37MiB and the observed whole-device decline is2886MiB. A4500MiB launch
+gate therefore retains1614MiB above that decline,1214MiB above the400MiB
+stop floor. This calibration replaces the provisional5000MiB estimate only
+in `flint-q3xl-cpu49-cache512-measured32`; original profiles/receipts remain.
+RAM10.5GiB/commit7.5GiB admission and4GiB residency are unchanged. The
+23:46IST launch loads in18.469seconds and its first plain greeting completes
+in50.328seconds. Remaining greeting/public workflows are collecting; no
+quality, private-audit or long-context result is claimed at this checkpoint.
+
+During the27October continuation, the first router request reads all seven
+fixture files and continues beyond1200seconds without visible answer text.
+It remains within the21600second extended allowance; no provisional code
+score is assigned to reasoning-channel drafts. Owned resident memory stays
+near4GiB and private commit near3.53GiB while whole-system headroom varies.
+The current operating-condition snapshot records four16GiB DIMMs configured
+at3000MT/s. A GPU sample reports8121MiB whole-device use,42% utilization and
+345MHz graphics clock; a later performance query reports555MHz, P2 and idle
+clock reason active, with thermal/power slowdown reasons inactive. These are
+snapshots, not evidence of stock tuning or a proven clock-related bottleneck.
+No clocks/settings are changed. Windows per-process GPU counters are excluded
+from resident-memory attribution because some exceed the entire card capacity.
+The fixed inference profile continues unchanged; later tuning must be separate.
+
+At00:25IST the process counters distinguish private residency from commit:
+working set3.99996GiB, private working set0.01313GiB, private committed bytes
+3.52916GiB. These are not additive physical-memory categories. The remaining
+working set contains shared/mapped pages and cannot be attributed exclusively
+to expert weights from this counter alone. The same sample reports156,960
+page faults/s, which includes soft faults and does not establish SSD saturation.
+This motivates a later resident-cap comparison without changing the active
+run. No larger-cap Flint performance or quality benefit is claimed yet.

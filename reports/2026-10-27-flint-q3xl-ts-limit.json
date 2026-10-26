@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "candidate": "Recursive Flint UD-Q3_K_XL",
+  "status": "completed-case-output-limit-history-still-collecting",
+  "artifact": {
+    "repo": "unsloth/flint-GGUF",
+    "revision": "20468edfc38ab43d6914cc88b08cbecb05d0fc62",
+    "filename": "flint-UD-Q3_K_XL.gguf",
+    "bytes": 18494977472,
+    "sha256": "91b8d85ab6ff7fb095d9a972f9afa6f3fa2b9acb642867a079f3e013ea3c350c"
+  },
+  "profile_name": "flint-q3xl-cpu49-cache512-measured32",
+  "cohort": "extended-diagnostic",
+  "whole_case_deadline_seconds": 21600,
+  "case": {
+    "name": "ts-sql-native-extended",
+    "result": {
+      "status": "incomplete",
+      "scored": false,
+      "reason": "length",
+      "wall_seconds": 5039.5
+    },
+    "quality_score": null,
+    "review_status": "no-visible-answer-in-any-turn-unscored",
+    "code_executed": false,
+    "controls": {
+      "max_tokens": 16384,
+      "temperature": 1.0,
+      "top_p": null,
+      "top_k": null,
+      "min_p": null,
+      "seed": 73,
+      "chat_template_kwargs": null,
+      "reasoning_budget_tokens": null,
+      "thinking_budget_tokens": null,
+      "reasoning_effort": null
+    },
+    "sources": [
+      {
+        "requested_path": "AGENTS.md",
+        "delivered_path": "AGENTS.md",
+        "error": null,
+        "characters": 174
+      },
+      {
+        "requested_path": ".claude/CLAUDE.md",
+        "delivered_path": ".claude/CLAUDE.md",
+        "error": null,
+        "characters": 120
+      },
+      {
+        "requested_path": "docs/contract.md",
+        "delivered_path": "docs/contract.md",
+        "error": null,
+        "characters": 1019
+      },
+      {
+        "requested_path": "rules/v2/typescript-sql.md",
+        "delivered_path": "rules/v2/typescript-sql.md",
+        "error": null,
+        "characters": 162
+      },
+      {
+        "requested_path": "schema.sql",
+        "delivered_path": "schema.sql",
+        "error": null,
+        "characters": 292
+      },
+      {
+        "requested_path": "src/normalize.ts",
+        "delivered_path": "src/normalize.ts",
+        "error": null,
+        "characters": 178
+      },
+      {
+        "requested_path": "README.md",
+        "delivered_path": null,
+        "error": "Path unavailable in the frozen fixture",
+        "characters": 0
+      },
+      {
+        "requested_path": "package.json",
+        "delivered_path": null,
+        "error": "Path unavailable in the frozen fixture",
+        "characters": 0
+      },
+      {
+        "requested_path": "src/index.ts",
+        "delivered_path": null,
+        "error": "Path unavailable in the frozen fixture",
+        "characters": 0
+      },
+      {
+        "requested_path": "tests/normalize.test.ts",
+        "delivered_path": null,
+        "error": "Path unavailable in the frozen fixture",
+        "characters": 0
+      },
+      {
+        "requested_path": "src/db.ts",
+        "delivered_path": null,
+        "error": "Path unavailable in the frozen fixture",
+        "characters": 0
+      },
+      {
+        "requested_path": "src/server.ts",
+        "delivered_path": null,
+        "error": "Path unavailable in the frozen fixture",
+        "characters": 0
+      },
+      {
+        "requested_path": "tests/normalize.ts",
+        "delivered_path": null,
+        "error": "Path unavailable in the frozen fixture",
+        "characters": 0
+      },
+      {
+        "requested_path": "db/migrations/001_jobs.sql",
+        "delivered_path": null,
+        "error": "Path unavailable in the frozen fixture",
+        "characters": 0
+      }
+    ],
+    "request_count": 6,
+    "turns": [
+      {
+        "finish_reason": "tool_calls",
+        "first_event_seconds": 65.71900000004098,
+        "first_final_seconds": null,
+        "usage": {
+          "completion_tokens": 54,
+          "prompt_tokens": 255,
+          "total_tokens": 309,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 255,
+          "prompt_ms": 65514.064,
+          "prompt_per_token_ms": 256.9178980392157,
+          "prompt_per_second": 3.8922940271267557,
+          "predicted_n": 54,
+          "predicted_ms": 17714.89,
+          "predicted_per_token_ms": 334.2432075471698,
+          "predicted_per_second": 2.991833423746916
+        },
+        "visible_characters": 0,
+        "reasoning_characters": 180,
+        "tool_call_count": 1
+      },
+      {
+        "finish_reason": "tool_calls",
+        "first_event_seconds": 106.625,
+        "first_final_seconds": null,
+        "usage": {
+          "completion_tokens": 30,
+          "prompt_tokens": 365,
+          "total_tokens": 395,
+          "prompt_tokens_details": {
+            "cached_tokens": 250
+          }
+        },
+        "timings": {
+          "cache_n": 250,
+          "prompt_n": 115,
+          "prompt_ms": 23080.998,
+          "prompt_per_token_ms": 200.7043304347826,
+          "prompt_per_second": 4.982453531688708,
+          "predicted_n": 30,
+          "predicted_ms": 10341.721,
+          "predicted_per_token_ms": 356.61106896551723,
+          "predicted_per_second": 2.804175436564185
+        },
+        "visible_characters": 0,
+        "reasoning_characters": 38,
+        "tool_call_count": 1
+      },
+      {
+        "finish_reason": "tool_calls",
+        "first_event_seconds": 133.0470000000205,
+        "first_final_seconds": null,
+        "usage": {
+          "completion_tokens": 90,
+          "prompt_tokens": 443,
+          "total_tokens": 533,
+          "prompt_tokens_details": {
+            "cached_tokens": 360
+          }
+        },
+        "timings": {
+          "cache_n": 360,
+          "prompt_n": 83,
+          "prompt_ms": 15910.389,
+          "prompt_per_token_ms": 191.69143373493975,
+          "prompt_per_second": 5.216717202828919,
+          "predicted_n": 90,
+          "predicted_ms": 22596.812,
+          "predicted_per_token_ms": 253.89676404494384,
+          "predicted_per_second": 3.938608685154348
+        },
+        "visible_characters": 0,
+        "reasoning_characters": 137,
+        "tool_call_count": 4
+      },
+      {
+        "finish_reason": "tool_calls",
+        "first_event_seconds": 261.0470000000205,
+        "first_final_seconds": null,
+        "usage": {
+          "completion_tokens": 169,
+          "prompt_tokens": 966,
+          "total_tokens": 1135,
+          "prompt_tokens_details": {
+            "cached_tokens": 532
+          }
+        },
+        "timings": {
+          "cache_n": 532,
+          "prompt_n": 434,
+          "prompt_ms": 105232.658,
+          "prompt_per_token_ms": 242.47156221198156,
+          "prompt_per_second": 4.124194981371658,
+          "predicted_n": 169,
+          "predicted_ms": 45161.623,
+          "predicted_per_token_ms": 268.8191845238095,
+          "predicted_per_second": 3.719972597087576
+        },
+        "visible_characters": 0,
+        "reasoning_characters": 559,
+        "tool_call_count": 4
+      },
+      {
+        "finish_reason": "tool_calls",
+        "first_event_seconds": 318.7030000000377,
+        "first_final_seconds": null,
+        "usage": {
+          "completion_tokens": 261,
+          "prompt_tokens": 1191,
+          "total_tokens": 1452,
+          "prompt_tokens_details": {
+            "cached_tokens": 1134
+          }
+        },
+        "timings": {
+          "cache_n": 1134,
+          "prompt_n": 57,
+          "prompt_ms": 12345.313,
+          "prompt_per_token_ms": 216.58443859649122,
+          "prompt_per_second": 4.617136884257207,
+          "predicted_n": 261,
+          "predicted_ms": 68303.242,
+          "predicted_per_token_ms": 262.7047769230769,
+          "predicted_per_second": 3.806554306748719
+        },
+        "visible_characters": 0,
+        "reasoning_characters": 1016,
+        "tool_call_count": 4
+      },
+      {
+        "finish_reason": "length",
+        "first_event_seconds": 399.40600000001723,
+        "first_final_seconds": null,
+        "usage": {
+          "completion_tokens": 16384,
+          "prompt_tokens": 1508,
+          "total_tokens": 17892,
+          "prompt_tokens_details": {
+            "cached_tokens": 1451
+          }
+        },
+        "timings": {
+          "cache_n": 1451,
+          "prompt_n": 57,
+          "prompt_ms": 12272.841,
+          "prompt_per_token_ms": 215.31300000000002,
+          "prompt_per_second": 4.644401406324746,
+          "predicted_n": 16384,
+          "predicted_ms": 4640045.216,
+          "predicted_per_token_ms": 283.22317133614115,
+          "predicted_per_second": 3.530784558630473
+        },
+        "visible_characters": 0,
+        "reasoning_characters": 73651,
+        "tool_call_count": 0
+      }
+    ],
+    "evidence_sha256": {
+      "case.json": "5f42d966ff804008881cf3dfa7da9e3d1804fdaea0fac946bd6c9e8fd4c58dfc",
+      "manifest.json": "3636d26eb6cfb8d3fee8fb03cb56823e24d31af09c1c84d463726f35a0502f9c",
+      "request-00.json": "ece69f56e83eec3678d728b51c98b9bb5d26d19c1a57c398d9f28034113fb514",
+      "request-01.json": "ceda0cf8dd19e7dff0987a7c984037f3d24e4a40a76b3212736ba8d71803f41e",
+      "request-02.json": "9da282e8f41a11c12354237c232dda82c2b1099e0773b784b1d00ff23efc718d",
+      "request-03.json": "f60708f2e61533571869fd47f8cc1f07429c926a242a3ad09864e45e9b1bea45",
+      "request-04.json": "af8a5f9cfb22a0657158f09e13870e13a558052ed3b236af3d527b860031dc2c",
+      "request-05.json": "8a322a11dd56a287a2e04f6bc7e6a51279e9794336f5918d1d515c2f0ae496f7",
+      "result.json": "077925361e2ac8a53dc68ea4d8a31d0aa3799c316b1931ed604ef0f79c385c88",
+      "stream-00.jsonl": "eb27cdde25120bbc0a995ef8e98badfd73cb6627f56631046ac35a84b6f4d6e7",
+      "stream-01.jsonl": "1c4967d8996c0ee4f5b28a2146aa3667b8b11fbb2ba14a1548f5b4d56970a667",
+      "stream-02.jsonl": "c4d3ba14de4544da33dc252a418d74d054cce21afa9888efdf6c4df9308a83f5",
+      "stream-03.jsonl": "f877aae91bb3f59c098bd6719b536a8cedbe4b2e67c4d0e6fbd7d8dc56b653ba",
+      "stream-04.jsonl": "bb2866efd6a55179683954ee1bcb87d09f6967c59ba38923319244cd463cc831",
+      "stream-05.jsonl": "12d77ecb7055974b0cf389b2a9013011ddf746d14eb10082412966e210cae543",
+      "tools.json": "8893dce2986288b4b8025e343376070f09cb195741f268a37d86e71423efa335",
+      "turns.json": "ded31affc9f9cb0b41bb6823f5bc0cb3b4ddd0b12ccd6aa15f251d9cb3df6b16"
+    }
+  },
+  "limitations": [
+    "All six required files delivered; eight unavailable extra reads.",
+    "Zero visible text in all six turns; no code execution or quality score.",
+    "This16K per-turn output limit is below publisher32K hard-task advice.",
+    "Final runtime and hardware closeout still pending during history.",
+    "Workflow event offsets are cumulative, not per-turn latency."
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "source_run": "campaign-flint-iq3xxs-gpukv64-private-a",
+  "candidate": "Historical Recursive Flint UD-IQ3_XXS",
+  "observed_context_capacity": 65536,
+  "turns": [
+    {
+      "turn": "turn-00",
+      "usage": {
+        "completion_tokens": 696,
+        "prompt_tokens": 1946,
+        "total_tokens": 2642,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "response_sha256": "d013c1d1c86e22711568fde6bc510f15f1546babbdb98d35e605a6b76534f631"
+    },
+    {
+      "turn": "turn-01",
+      "usage": {
+        "completion_tokens": 347,
+        "prompt_tokens": 23437,
+        "total_tokens": 23784,
+        "prompt_tokens_details": {
+          "cached_tokens": 2641
+        }
+      },
+      "response_sha256": "daf839707dc0598ded62ccc027608c7a8d3caf0f7b50719c052691013d359343"
+    },
+    {
+      "turn": "turn-02",
+      "usage": {
+        "completion_tokens": 1353,
+        "prompt_tokens": 35086,
+        "total_tokens": 36439,
+        "prompt_tokens_details": {
+          "cached_tokens": 23783
+        }
+      },
+      "response_sha256": "189b51025a80d5e278ee45e4b62c87fabe2dc8e6e977538a0df5c37f6ddd9837"
+    },
+    {
+      "turn": "turn-03",
+      "usage": {
+        "completion_tokens": 9736,
+        "prompt_tokens": 41305,
+        "total_tokens": 51041,
+        "prompt_tokens_details": {
+          "cached_tokens": 36438
+        }
+      },
+      "response_sha256": "13292ae79164467579c9a986361f64ce5d3274d4dd219fa9687b0f004d9c4c2b"
+    }
+  ],
+  "largest_observed_input": 41305,
+  "largest_observed_total": 51041,
+  "planned_private_output_allowance": 24576,
+  "proposed_context_for_that_input_and_full_output": 73728,
+  "limitations": [
+    "Historical token counts; no new private audit or quality score.",
+    "Future tool choices and tokenizer/template changes can alter input length.",
+    "A32K or40K small-router trial cannot qualify this observed41K-input workload.",
+    "Explicit no-context-shift is required for new private extended controls.",
+    "72K is a sizing proposal, not a verified new RAM/VRAM allocation."
+  ]
+}

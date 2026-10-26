@@ -1871,3 +1871,118 @@ for full file workflows. Gemma/QwenIQ3 exact files are full-hash verified and
 retired; QwenQ4/Flint/K2 and all evidence remain. No history/composite score or
 editor validation is invented.44offline tests pass20.602s before the next load;
 final audit/PowerShell parsing and checkpoint commit follow.
+
+23:46 IST recovery: original64K Flint public launch is admission-rejected,
+and the original32K launch loses its5000MiB VRAM gate before readiness. Both
+are retained unscored with no hardware event. A separate4500MiB measured
+admission uses the completed smoke's2886MiB maximum observed device decline;
+every inference argument and runtime floor remains fixed. It loads18.469s
+and first plain greeting completes50.328s. File-workflow collection continues,
+not yet graded. Refreshed Strata source is checked out at the pinned revision;
+source-route documentation read, environment/native execution pending a quiet
+interval. No download/build/grader overlaps the running model.
+
+27October00:18IST: Flint public router continues beyond1200seconds under its
+explicit21600second extended allowance. All7fixture files were successfully
+delivered; no visible answer or correctness score yet. Owned memory remains
+about4GiB resident/3.53GiB private while whole-system commit/VRAM headroom
+changes with desktop activity. Save the process observations without leak
+attribution. Per-process GPU counters report impossible physical totals and
+are excluded; methodology/local evaluation reference now carry the limitation
+and Microsoft source. Agent-context-maintenance applied; shared Codex/Claude
+and project adapters read and already route to these sources, so unchanged.
+Strata source confirms native spec2 requirement, separate MTP enablement,
+explicit worker/host placement and direct-versus-mapped lookup control. These
+remain planned settings until the packaged binary help/load is tested. No
+dependency install, model download, build or grading overlaps inference.
+
+27October00:49IST continuation: actual engine114288 remains the only engine,
+Ollama inventory empty. The first router task still has no visible answer
+after about1hour despite7successful source reads. Current16K output ceiling
+is unchanged. Prepared separate6GiB-residency and40K-context/32K-output controls;
+the latter follows the publisher's hard-task allowance if a capped response
+needs a larger-budget diagnostic. Both are unrun and retain runtime floors.
+Strata source shows requested resident RAM may be clamped by Windows commit;
+report actual resolved bytes/experts. Private inherited-affinity launcher is
+prepared, not validated or used. No overlapping install/build/download/grading.
+
+27October01:00IST: the first Q3XL router finishes incomplete at4095.422s:
+16384last-turn output tokens, no visible answer, seven successful reads.
+TS/SQL continues with all six required files delivered including v2 rules.
+The full running telemetry contains803MiB minimum freeVRAM,4.540GiB RAM and
+1.719GiB commit. Before launch, tighten both unrun controls to5500MiB VRAM;
+resident6 restores6.5GiB reserve/12.5GiB physical admission. Preserve the
+initial planned estimates in the chronology, not as settings actually tested.
+Read-only I/O snapshots are host-wide observations, not exclusive model traffic.
+
+27October01:31IST checkpoint: Flint B TS/SQL continues under its fixed native
+allowance, all6required sources delivered; extra8failed reads preserved.
+Router ends at16384output tokens/4095.422s with no visible answer. Saved
+opening request, question/source hashes and template text equal the older
+successful IQ3XXS trial, but other inference settings differ. No quant-only
+conclusion. CPU observation and memory accounting are exported with attribution
+limits. An8192reasoning-budget plan is prepared beside the native32K-output
+follow-up; both unrun. Source shows per-block rearming, not a global ceiling.
+Pinned Strata environment setup is prepared, still unrun while inference is
+active. Existing GGUF source matches upstream's pin. No apps, BIOS/clocks,
+production selection or editor input changed. Parent task/campaign records
+are synchronized; final checks/commit wait until the engine exits.
+
+27October02:10IST continuation: current B TS/SQL remains active near14.3K
+generated tokens, with no visible answer; no new score. No running WSL
+distribution is found, and the read-only observation is added to public memory
+evidence. Native cache counters may be absent because Windows cleanup uses
+process termination; occupancy cannot substitute for measured hits. The Flint
+report now also records the Mac-only rec engine and publisher always-thinking
+guidance. The dense27B planned native effort is corrected to xhigh, not high.
+Strata pure-mapping32K qualification is prepared before a resident-pool control,
+with explicit frontend output/recovery settings; still unrun. No dependency
+install, weight download/hash, build or grader overlaps the live experiment.
+The completed-collection metadata exporter is prepared; validation and commit
+still await the next inference-free interval. No new production promotion.
+
+27October02:37IST continuation: both FlintQ3XL router and TS/SQL exhaust16384
+last-turn output tokens without any visible answer,4095.422/5039.500seconds.
+All required sources delivered; no generated code is executed or scored.
+History120-record prefill is active near4.91tokens/s. Saved native reasoning
+shows repeated solution revision, not proof of its underlying cause. Separate
+native32K-output and8192/1024 sampler controls remain unrun. Dense27B Q4/plainQ6/
+IQ4XS artifacts are publisher-pinned, not downloaded. KV calculations are
+labelled estimates; targeted paper reading distinguishes training/base-model
+claims from local instruction-agent evidence. No offline tests, dependency
+installs, model hashing/downloads or graders overlap inference. Production
+remains off and publicHEAD8cdc980 unchanged pending the next quiet interval.
+
+27October03:08IST: Flint B history phase0 delivers READY/120 at2639.093s;
+phase1 is still collecting. Router/TS16K output-limit cases remain unscored.
+New sanitized GPUKV occupancy and prefill-utilization observations do not
+establish RAM-KV growth, recall or a causal bottleneck. Earlier private-audit
+requests reached41305input/51041total tokens, so the prepared private helper
+now rejects<64K or missing no-context-shift; separate72K profile remains unrun.
+The helper changed after its earlier AST check and requires quiet validation.
+Router-v1 lists available paths; methodology/local evaluation now distinguish
+inspection from unassisted discovery. Shared Codex/Claude entry points and
+Windows adapter reviewed, no routing change needed. Strata must verify the
+actual packed template and fresh shared-settings sidecar, not only its bundled
+fallback. No new tests, installs, weight download/hash or grading overlap B.
+
+## 2026-10-27 03:26 IST - Flint B closed; quiet validation and next profile
+
+Flint Q3XL B completes collection and owned shutdown without a new hardware
+event. Router4095.422s and TS/SQL5039.500s exhaust16K output with no visible
+answer, unscored. History is source-reviewed and fact-graded8/8 in3380.750s;
+120records, not50K/128K recall. All visible turns reviewed; no generated code
+executed. Full sanitized receipt preserves telemetry and evidence hashes.
+No stale engine or loaded Ollama model remains. Poststop desktop availability
+falls to7.7-7.8GiB; no apps closed. New separate resident1/40K/output32K
+profile retains6.5GiB startup reserve,7.5GiB commit/5500MiB VRAM admission
+and all runtime stop floors;600second greetings precede1024/8192/native
+router controls. It is prepared, not measured yet; B is not a matched control.
+Strata pinned environment installs underE: with15frozen packages, pip check,
+native+Python help exit0. Actual model load/pack/template qualification unrun.
+Private32K audit refusal actually exercised before any launcher creation;
+affinity helper passes harmless childFFFC and rejects relative executable.
+44offline tests pass;4PowerShell files parse; diff check passes. Public audit,
+commit/push/CI follow this checkpoint. One shell-quoting AST probe failed;
+the corrected stdin probe validates all4prepared helpers. No validation
+failure is presented as a model defect. Production remains off during campaign.

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "candidate": "Recursive Flint UD-Q3_K_XL",
+  "profile_name": "flint-q3xl-cpu49-cache512-measured32",
+  "observed_at": "2026-10-26T21:32:34.305448+00:00",
+  "slots": [
+    {
+      "id": 0,
+      "n_ctx": 32768,
+      "is_processing": true,
+      "n_prompt_tokens": 10841,
+      "n_prompt_tokens_processed": 33,
+      "n_prompt_tokens_cache": 10611,
+      "next_token": [
+        {
+          "has_next_token": true,
+          "has_new_line": true,
+          "n_remain": 7995,
+          "n_decoded": 197
+        }
+      ]
+    }
+  ],
+  "startup_gpu_kv_mib": {
+    "global": 476,
+    "sliding_window": 27.89
+  },
+  "source_revision": "4231b23dc2c46661d01157aac5245bdcf03ce4b1",
+  "counter_definition": "server-context.cpp n_prompt_tokens in /slots is prompt.tokens.size(), the current retained sequence, including appended generation; not only the original input length.",
+  "raw_evidence_sha256": "67fdaaa5d87a84ffdd6aeb27340c0e6962faf1abccc1492a73419d506089ef97",
+  "limitations": [
+    "One live observation, not a completed recall score.",
+    "GPU KV in this profile; not a host-KV growth test.",
+    "Startup buffer allocation differs from live token occupancy and physical residency.",
+    "Prometheus cached-token total is cumulative reuse, not current occupied KV cells.",
+    "Checkpoints, workspaces and other processes have separate memory costs."
+  ]
+}

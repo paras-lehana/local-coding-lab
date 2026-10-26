@@ -31,6 +31,25 @@ already includes reclaimable standby pages. Emptying standby would mostly
 change its label, not add a second12GiB pool. No apps were closed or cache purged.
 [Microsoft's memory definitions](https://learn.microsoft.com/en-us/windows-hardware/test/assessments/results-for-the-memory-footprint-assessment).
 
+The01:08IST27October accounting snapshot makes the standby issue concrete:
+about5.80GiB is available, almost entirely5.80GiB of standby cache, with only
+about6.5MiB on the free/zero list. Standby is already included in available
+memory; flushing it would not add another5.80GiB of capacity. The modified
+page list is only about83MiB in this snapshot. Paged-pool resident memory is
+about1.42GiB and nonpaged pool2.09GiB, separate categories that should not be
+added to overlapping process/cache counters. The current model's4GiB working
+set does not count any additional file pages on standby, and those standby
+pages are not all attributable to the model. Process inventory again finds
+only the owned Flint engine and Ollama lists no loaded model. This does not
+establish a leak or justify killing applications.
+[Sanitized accounting and I/O observations](../../reports/2026-10-27-memory-accounting.json).
+
+At02:08IST a read-only WSL inventory reports no running distributions. This
+also fails to support the idea that an earlier isolated grader is retaining a
+large Linux VM. No distribution, model or user application was stopped by this
+check. The sanitized memory receipt preserves the observation; it is a point
+in time, not proof that every possible source of memory pressure is understood.
+
 A second observation during Gemma's history run, at 22:43-22:44 IST, makes the
 physical/commit distinction concrete. VS Code has about 11.50 GiB summed working
 set and 18.45 GiB private commit; Edge 8.11/16.38 GiB; the QEMU emulator
@@ -42,6 +61,15 @@ These snapshots do not establish a leak or attribute all remaining system
 commit to a driver. No applications were stopped. The
 [sanitized counters](../../reports/2026-10-26-memory-during-gemma.json) preserve
 the different sampling times and omit process IDs and host paths.
+
+A27October per-process GPU-counter probe is excluded from physical-memory
+accounting: it reports about25,072MiB for the desktop compositor on this10GiB
+card. Those counters cannot establish unique resident VRAM or a real memory
+leak. Microsoft documents erroneous GPU Process Memory counters; that is a
+relevant known limitation, not proof of this host's exact cause. Retain the
+raw observation privately, and use whole-device telemetry plus engine buffer
+allocations for this experiment.
+[Microsoft counter caveat](https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/gpu-process-memory-counters-report-wrong-value).
 
 The owner clarified latency: a plain greeting taking ten minutes fails the
 practical check; useful instruction-heavy coding may take longer. Preserve
@@ -98,6 +126,25 @@ on the reported base-model tasks; it does not compare our post-trained low-bit
 artifacts, editor scaffolds or linked-file workflows. The training-stability
 experiments also do not establish Windows hardware stability. This remains a
 targeted reading of relevant sections, not a claim to have reviewed all28pages.
+
+Further architecture reading adds two useful cautions. The GDN layers compress
+history into recurrent state; interleaved global attention supplies direct
+token retrieval. A generic full-attention KV formula therefore misstates this
+hybrid model's memory. Separately, the authors rejected sparse residual-branch
+updates after post-training quality deteriorated despite reassuring pretraining
+metrics. That supports testing final coding/instruction behavior when a runtime
+changes computations. Further targeted reading of sections3.1/3.2 on27October
+confirms that optimizer and batch-size experiments concern training. They do
+not justify increasing this PC's inference batch or changing hardware clocks.
+There is no serving flag here that makes an existing checkpoint more intelligent.
+
+Section2.1.1 also reports that removing positional encoding increased endless
+generation after post-training despite similar pretraining behavior. This is
+a caution about transferring apparent efficiency wins, not a diagnosis of
+our Flint or Flash runs: we have not established that either used that ablated
+architecture. Likewise, the n-gram placement/vocabulary ablations do not
+justify changing table placement in a trained checkpoint; the useful serving
+control is where unchanged weights reside, not retraining its architecture.
 
 We must distinguish the n-gram weights, expert-weight cache, KV/recurrent state,
 prompt-prefix reuse and the editor's retained transcript. The n-gram table is

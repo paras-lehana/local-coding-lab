@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "status": "saved-input-comparison-no-new-inference",
+  "old_profile": "flint-iq3xxs-moe38-gpukv64",
+  "new_profile": "flint-q3xl-cpu49-cache512-measured32",
+  "first_serialized_request_equal": true,
+  "different_request_fields": [],
+  "question_sha256_equal": true,
+  "source_sha256_equal": true,
+  "template_equal": true,
+  "template_sha256": {
+    "old": "be867446158d546501ed204ea40d581ced1c93a52367bd79e1a86440d57f2931",
+    "new": "be867446158d546501ed204ea40d581ced1c93a52367bd79e1a86440d57f2931"
+  },
+  "deadlines_seconds": {
+    "old": 1200.0,
+    "new": 21600.0
+  },
+  "limitations": [
+    "Equality of saved template text does not compare all tokenizer arrays.",
+    "Later prompts differ because the models choose different tool turns.",
+    "Weights, placement, context, batch sizes and residency differ.",
+    "This is not an isolated bit-width or CPU/GPU placement comparison.",
+    "The extended allowance does not retroactively change frozen scores."
+  ]
+}

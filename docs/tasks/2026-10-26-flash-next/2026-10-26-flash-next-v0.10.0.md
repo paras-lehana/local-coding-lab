@@ -6,6 +6,15 @@ This is the model-specific continuation of the
 The [seven-article review](../../../research/reviews/2026-10-26-qwen-articles.md)
 holds article summaries, source revisions and distinctions relevant to other PCs.
 
+27October03:26IST: the separate pinned frontend environment is installed
+under the experiment's E: directory. All15packages are frozen; pip check and
+both native/Python server help return0. The executable and native library are
+rehashed before the help probe. The CPU-affinity helper's harmless child really
+inherits0xFFFC, and a relative executable is rejected. No Flash model, packed
+template or inference has been loaded by these checks. The source checkout and
+old working environment remain separate.
+[Preparation receipt](../../../reports/2026-10-27-strata-environment.json).
+
 ## Why reopen it
 
 The owner prioritizes precision, reasoning, linked instructions and long context,
@@ -73,7 +82,27 @@ small projections and is a separate numerical change.
 
 ## Profile and evaluation plan
 
-- Start with a bounded expert-RAM pool sized from fresh physical and commit
+- Source check27October: the server prefers the tokenizer pack's chat template
+  over its bundled fallback. Hash and test the actual packed template before
+  claiming a reasoning-history setting works. OpenAI normalization forwards
+  `reasoning_content`, but arbitrary `preserve_thinking` template kwargs are
+  not forwarded on that path. The bundled fallback preserves it by default;
+  this alone does not establish the new GGUF's template behavior. The shared
+  settings sidecar beside a config can also override its default effort. Use
+  a fresh config path, verify no inherited sidecar, and save `/props` plus
+  actual requests and rendered marker checks. These are pending validation
+  steps, not a new observed live failure.
+- 27October preparation adds a pure-mapping qualification before the resident
+  pool: unchanged native expert values read from GGUF, no full RAM copy,
+  proposed4GiB owned working-set ceiling,32K int8KV and3072MiB device reserve.
+  This is an unrun plan; native help and fresh admission still have to pass.
+  Source distinguishes OS-cached mapping from a budgeted expert copy, which
+  can change the file tier to unbuffered reads. Compare those modes explicitly
+  rather than assuming a larger resident budget is always faster. The planned
+  request controls disable automatic output shortening, early thinking wrap,
+  recovery, drafts and the repeated-token stop; the collector still enforces
+  its fixed deadline. No inference measurement or fit is claimed here.
+- After mapping qualifies, compare a bounded expert-RAM pool sized from fresh physical and commit
   headroom, n-gram table on SSD, int8KV, one slot, and explicit device reserve.
 - Disable the engine's additional parked-conversation cache for initial fit
   (`--conversation-cache-mib 0`). Its default can use up to8GiB more host memory;
@@ -133,3 +162,58 @@ matter. Its favorable comparison with dense27B concerns base models, so it
 cannot decide the ranking of our quantized instruction-following deployments.
 Keep source selection, changed-file recovery and conflicting instructions in
 the local evaluation instead of replacing them with one successful needle.
+
+### Refreshed source frontend prepared
+
+The separate source checkout is now pinned to
+`4b9e05a2a806a3fe24f7b2560d98626c37dade35`, preserving the old patched fork.
+Its AGENTS, AI_SETUP, AI_REFERENCE and SOURCE_INSTALL guides were read.
+This experiment deliberately uses the documented source route with the
+separately verified native engine; it is not the default Terminal installer,
+which chooses locations and versions outside this lab's pinned E-drive plan.
+No new environment install, native help invocation or model load is claimed
+yet. Source preparation remains separate from inference qualification.
+
+The current low-RAM documentation distinguishes Linux-only file prefetch and
+zero-copy from Windows' opt-in file-page trimming. The latter does not reduce
+committed memory. The bounded expert pool, parked-conversation cache and live
+KV need independent budgets. Engine stats can report file-read bytes/time and
+RAM/GPU expert hits; capture those before crediting a cache strategy.
+Pool-core placement also needs explicit inspection: its default host thread
+uses logical processor0, whereas this PC's campaign excludes physical core0.
+Record actual allowed processors and worker placement before load.
+
+Source inspection finds an additional storage control worth measuring:
+`--ple-io direct` performs sparse unbuffered reads of the lookup table. The
+current code warns about slow reads; automatic fallback to mapped reads is
+opt-in because some Windows/SATA reports became slower with mapping. Keep
+direct reads explicit in the baseline and compare mapped reads separately,
+recording lookup latency and whole-task time. Do not turn the broad advice
+"put it on SSD" into a claim that every I/O mode is equivalent.
+Native help must confirm these flags in the packaged engine before serving;
+source inspection alone does not prove binary support.
+
+The source still requires native packs to use `--spec` of at least2. This
+does not by itself enable MTP: the draft checkpoint and suffix drafting are
+separate. For the no-draft control, retain spec2, omit MTP and use suffix0.
+The planned host placement is `--host-core last` with workers on logical
+processors2,4,6,8,10,12, plus an inherited process affinity excluding0/1.
+Confirm the packaged flags and logged placement before treating this as
+implemented. The current source offers this without modifying a CUDA kernel.
+
+Further source review of `src/core/expert_source.cpp` identifies how to report
+the bounded pool: after the GPU cache loads, the native allocator uses the
+smaller of available physical RAM and Windows commit, subtracts its headroom,
+and reduces an oversized request with another256MiB margin. Thus a requested
+4GiB pool can resolve smaller; record both values and the actual number of
+resident experts. The frontend's later2GiB checkpoint/staging allowance is
+also distinct from the parked-conversation budget. These are source findings,
+not measurements of the staged binary.
+
+A possible later optimization is an expert ranking learned from separate
+development prompts using the supplied routing-trace/profile tools. With our
+small GPU/host caches, changing which complete experts stay resident may be
+more useful than assuming all installed RAM is available. Keep every routed
+expert contribution enabled and use a disjoint development corpus; tuning on
+the scored questions would contaminate that comparison. This remains an
+optional follow-up after baseline fit and complete answers, not a claimed gain.

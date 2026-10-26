@@ -1,6 +1,6 @@
 # Current model comparison
 
-Updated 26 October 2026. Components and completion gates matter more than a
+Updated 27 October 2026. Components and completion gates matter more than a
 single leaderboard number. Claude's newer campaign was private; this table
 brings its reviewed summary into the public lab. Results are agent-assessed,
 not independently human-reviewed. It is not a controlled universal ranking.
@@ -25,7 +25,19 @@ event. It reaches 28,464 cached tokens but no history answer, so it has no recal
 score. [Interruption record](../reports/2026-10-26-gemma128-history-resource-stop.json).
 Flint Q3 XL's smaller 32K/cache512/resident4 profile completes greetings in
 48.375/31.141 seconds with peak private commit 3.440 GiB. A measured-memory
-64K follow-up is prepared; file and code quality remain untested on that quant.
+64K follow-up rejects current RAM/commit before loading. A separate measured
+32K admission profile loads18.469seconds, completes greetings50.328/38.000s
+and the router exhausts16384output tokens after4095.422seconds with no visible
+answer despite all7source reads. TS/SQL also ends at5039.500seconds with a
+16384-token final-turn output limit, zero visible text in all six turns,
+six required files read and eight unavailable extra reads. Both are unscored;
+history completes8/8 in3380.750seconds, extended-only and120records, with no
+new hardware error. The owned engine is stopped; no complete public total.
+[Collection and history review](../reports/2026-10-27-flint-q3xl-file-workflows.json).
+[Router receipt](../reports/2026-10-27-flint-q3xl-router-limit.json),
+[TS/SQL receipt](../reports/2026-10-27-flint-q3xl-ts-limit.json).
+The admission
+[rejections](../reports/2026-10-26-flint-admission-rejections.json) are retained.
 Gemma and Qwen IQ3 weights are exact-file retired at 23:25 IST after full hashes,
 recovering 26.19 GiB. All evidence remains; selected Qwen Q4 and Flint/K2 weights
 are preserved. [Retirement receipt](../reports/2026-10-26-reviewed-weight-retirement.json).
@@ -53,7 +65,7 @@ are preserved. [Retirement receipt](../reports/2026-10-26-reviewed-weight-retire
 | Kimi-Linear 48B Q4 | Capacity rejection | Separate historical cases | Not comparable | Not evidence of poor answer quality; retired |
 | Qwen3.8 27B dense Q6 / TQ3 | Unscored | Interrupted | Not collected | Roughly 1.4-2.1 decode tok/s; long requests/restart, not promoted |
 | Qwen3.8-Flash-Next 125B, Strata IQ3_XXS | Not completed | Coding deadlines; empty history final | Not collected | Separate replays recover facts; not a retroactive workflow pass; retired |
-| Qwen3.8-Flash-Next GSQ-RCO Q2_0, Strata0.1.50 |Not run |Not run |Not run |New engine staged and verified; Q2 shards not yet downloaded. Requires61.86GiB plus packing/headroom; current volume has about34.4GiB free. Complete current candidates before exact-file retirement. Smaller quant is a capacity control, not an assumed quality upgrade |
+| Qwen3.8-Flash-Next GSQ-RCO Q2_0, Strata0.1.50 |Not run |Not run |Not run |New engine staged and verified, source frontend pinned; Q2 shards not yet downloaded. Requires61.86GiB plus packing/headroom; volume has about60.58GiB free after reviewed retirement. Complete current candidates before more exact-file retirement. Smaller quant is a capacity control, not an assumed quality upgrade |
 | Bonsai 2 27B PQ2_0 | Not run | Stopped | Not run | Partial CPU placement only 2.3 tok/s; retired |
 | Bonsai 2 27B PTQ1_0 | Not run | Deadline | Not run | Full GPU, router exceeds 1200 s after one tool turn; retired |
 | LFM2.5 24B-A2B QAD Q4_0 | Deadline | 48 | 6 completed passes of 12 | Private reasoning loop; coding includes deadline/truncation, so 6/12 is task completion, not twelve completed correctness grades; retired 23 October |
@@ -70,6 +82,7 @@ are preserved. [Retirement receipt](../reports/2026-10-26-reviewed-weight-retire
 | Recursive Flint UD-Q4_K_XL, CPU44/GPU KV |Not run after gate failure |Router1200.031s deadline |Not run after gate failure |Seven valid reads, no final answer; resource/hardware guards clear |
 | Recursive Flint UD-Q4_K_XL, CPU48/cache1536 |Not run after gate failure |Router1200.031s deadline |Not run after gate failure |Seven valid reads, partial visible answer starts1137s but remains unfinished; memory guards clear |
 | Recursive Flint UD-Q3_K_XL, CPU49/cache512/resident4/32K |Not run |Not run |Not run |Load21s; plain greetings48.375/31.141s, both complete. Peak private3.440GiB; no hardware/resource stop.64K follow-up prepared;32K greetings are not file-quality or long-context validation |
+| Recursive Flint UD-Q3_K_XL, measured32K file-workflow B |Not run |Router/TS output limits; history8/8 extended-only |Not run |History3380.750s,120records; router4095.422s and TS/SQL5039.500s exhaust16384 output tokens with zero visible answer. Required sources delivered;8extra unavailable TS/SQL reads. No full public score; greetings50.328/38.000s. Clean stop/no hardware event. Settings differ from IQ3XXS |
 
 ## What changed in Claude's work
 

@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "status": "read-only-observations-not-causal-attribution",
+  "active_profile": "flint-q3xl-cpu49-cache512-measured32",
+  "memory_snapshot": {
+    "time": "2026-10-27T01:08:18.3175398+05:30",
+    "note": "Counter categories can overlap; do not sum them as exclusive physical RAM. Null means unavailable.",
+    "counters_bytes": {
+      "AvailableBytes": 6232612864,
+      "CommittedBytes": 107080699904,
+      "CommitLimit": 114166919168,
+      "CacheBytes": 714211328,
+      "PoolPagedBytes": 1836670976,
+      "PoolPagedResidentBytes": 1521782784,
+      "PoolNonpagedBytes": 2245763072,
+      "SystemCodeResidentBytes": 12316672,
+      "SystemDriverResidentBytes": 57237504,
+      "ModifiedPageListBytes": 86827008,
+      "StandbyCacheCoreBytes": 216567808,
+      "StandbyCacheNormalPriorityBytes": 5996167168,
+      "StandbyCacheReserveBytes": 13099008,
+      "FreeAndZeroPageListBytes": 6778880
+    }
+  },
+  "io_samples": [
+    {
+      "time": "2026-10-27T00:50:30.8839637+05:30",
+      "host_memory_counters": {
+        "AvailableMBytes": 6499,
+        "PagesInputPersec": 32691,
+        "PagesOutputPersec": 0,
+        "PageReadsPersec": 2546,
+        "PageWritesPersec": 0,
+        "TransitionFaultsPersec": 136132,
+        "PageFaultsPersec": 142518,
+        "CacheFaultsPersec": 427
+      },
+      "installation_disk_counters": [
+        {
+          "DiskReadBytesPersec": 115550892,
+          "DiskWriteBytesPersec": 95048423,
+          "DiskReadsPersec": 1884,
+          "DiskWritesPersec": 170,
+          "CurrentDiskQueueLength": 0
+        }
+      ]
+    },
+    {
+      "time": "2026-10-27T00:50:36.4843233+05:30",
+      "host_memory_counters": {
+        "AvailableMBytes": 6569,
+        "PagesInputPersec": 24889,
+        "PagesOutputPersec": 0,
+        "PageReadsPersec": 1969,
+        "PageWritesPersec": 0,
+        "TransitionFaultsPersec": 136413,
+        "PageFaultsPersec": 149130,
+        "CacheFaultsPersec": 604
+      },
+      "installation_disk_counters": [
+        {
+          "DiskReadBytesPersec": 111875106,
+          "DiskWriteBytesPersec": 91678714,
+          "DiskReadsPersec": 1833,
+          "DiskWritesPersec": 119,
+          "CurrentDiskQueueLength": 0
+        }
+      ]
+    },
+    {
+      "time": "2026-10-27T00:50:42.0701123+05:30",
+      "host_memory_counters": {
+        "AvailableMBytes": 6501,
+        "PagesInputPersec": 46027,
+        "PagesOutputPersec": 0,
+        "PageReadsPersec": 3407,
+        "PageWritesPersec": 0,
+        "TransitionFaultsPersec": 89271,
+        "PageFaultsPersec": 100570,
+        "CacheFaultsPersec": 345
+      },
+      "installation_disk_counters": [
+        {
+          "DiskReadBytesPersec": 173961956,
+          "DiskWriteBytesPersec": 91446345,
+          "DiskReadsPersec": 2813,
+          "DiskWritesPersec": 114,
+          "CurrentDiskQueueLength": 0
+        }
+      ]
+    }
+  ],
+  "raw_evidence_sha256": {
+    "system-memory-accounting.json": "5da52c5ee7af8062dda6b848c13e8156e4220ae7b2ed4405449373c02b84c99e",
+    "io-observation.json": "8a66d9bda7b2d53c4badc84c12dbbb3afc1e54c3dbfd50c034404e92ef5f10a5",
+    "cpu-observation.json": "0ad18d35da7d581483eaa6470cf399a1eb22f7cb6bb2eaf9f14d946f569345af",
+    "wsl-observation.json": "ad01d4377f7b000bfa6ca89a262efb9ce4f453ce2ce5e2312491775fafefdd8b",
+    "prefill-utilization.json": "eb05e5eeb4bd5330674ce03b7e8e191a8edc382c51fca4660096e6cb5a30fa26"
+  },
+  "limitations": [
+    "Available RAM already includes reclaimable standby cache.",
+    "Memory categories overlap; this is not an exclusive RAM pie chart.",
+    "Disk counters cover the physical SSD shared by two volumes and other apps.",
+    "Paging counters are host-wide and not simultaneous with every disk read.",
+    "No cache flush, synthetic storage load or application stop occurred.",
+    "No exclusive Flint disk-traffic, leak or causal speed claim is made.",
+    "The short CPU sample does not isolate page faults, storage, GPU waits or thread scheduling; it is not evidence that more CPU threads help."
+  ],
+  "cpu_observation": {
+    "wall_seconds": 10.0731755,
+    "cpu_seconds": 6.953125,
+    "average_logical_cores_busy": 0.6902614771280418,
+    "limitation": "A short observational sample, not a CPU/IO causal profile or thread-count comparison.",
+    "samples": [
+      {
+        "time": "2026-10-27T01:18:19.9376021+05:30",
+        "cpu_seconds": 5476.65625,
+        "priority": "Normal",
+        "process_affinity_mask": "FFFF",
+        "note": "Worker thread affinity is configured separately; this mask alone does not describe it."
+      },
+      {
+        "time": "2026-10-27T01:18:24.9811768+05:30",
+        "cpu_seconds": 5480.125,
+        "priority": "Normal",
+        "process_affinity_mask": "FFFF",
+        "note": "Worker thread affinity is configured separately; this mask alone does not describe it."
+      },
+      {
+        "time": "2026-10-27T01:18:30.0107776+05:30",
+        "cpu_seconds": 5483.609375,
+        "priority": "Normal",
+        "process_affinity_mask": "FFFF",
+        "note": "Worker thread affinity is configured separately; this mask alone does not describe it."
+      }
+    ]
+  },
+  "wsl_observation": {
+    "time": "2026-10-27T02:08:00.2598189+05:30",
+    "running_distributions": "There are no running distributions.",
+    "process_counters": [
+      {
+        "ProcessName": "vmmem",
+        "WorkingSet64": 0,
+        "PrivateMemorySize64": 40960
+      },
+      {
+        "ProcessName": "wslservice",
+        "WorkingSet64": 28524544,
+        "PrivateMemorySize64": 8245248
+      }
+    ],
+    "action": "Read-only; no distribution or application stopped",
+    "interpretation": "No running WSL distribution is holding an earlier grading session at this snapshot."
+  },
+  "prefill_utilization": {
+    "sampled_at": "2026-10-26T21:14:17.390474+00:00",
+    "phase": "history-request4-prefill",
+    "seconds": 8.75,
+    "process_cpu_seconds": 24.40625000000091,
+    "rows": [
+      {
+        "offset_seconds": 0.09299999999348074,
+        "used_mib": 7165.0,
+        "total_mib": 10240.0,
+        "gpu_utilization_percent": 35.0,
+        "memory_controller_utilization_percent": 9.0,
+        "power_w": 34.85,
+        "temperature_c": 37.81
+      },
+      {
+        "offset_seconds": 1.2030000000377186,
+        "used_mib": 7163.0,
+        "total_mib": 10240.0,
+        "gpu_utilization_percent": 38.0,
+        "memory_controller_utilization_percent": 9.0,
+        "power_w": 35.86,
+        "temperature_c": 37.78
+      },
+      {
+        "offset_seconds": 2.297000000020489,
+        "used_mib": 7163.0,
+        "total_mib": 10240.0,
+        "gpu_utilization_percent": 43.0,
+        "memory_controller_utilization_percent": 13.0,
+        "power_w": 34.46,
+        "temperature_c": 37.81
+      },
+      {
+        "offset_seconds": 3.375,
+        "used_mib": 7150.0,
+        "total_mib": 10240.0,
+        "gpu_utilization_percent": 29.0,
+        "memory_controller_utilization_percent": 9.0,
+        "power_w": 35.02,
+        "temperature_c": 37.84
+      },
+      {
+        "offset_seconds": 4.467999999993481,
+        "used_mib": 7162.0,
+        "total_mib": 10240.0,
+        "gpu_utilization_percent": 25.0,
+        "memory_controller_utilization_percent": 7.0,
+        "power_w": 33.61,
+        "temperature_c": 37.75
+      },
+      {
+        "offset_seconds": 5.578000000037719,
+        "used_mib": 7160.0,
+        "total_mib": 10240.0,
+        "gpu_utilization_percent": 26.0,
+        "memory_controller_utilization_percent": 5.0,
+        "power_w": 35.11,
+        "temperature_c": 37.75
+      },
+      {
+        "offset_seconds": 6.6560000000172295,
+        "used_mib": 7152.0,
+        "total_mib": 10240.0,
+        "gpu_utilization_percent": 25.0,
+        "memory_controller_utilization_percent": 5.0,
+        "power_w": 32.45,
+        "temperature_c": 37.78
+      },
+      {
+        "offset_seconds": 7.75,
+        "used_mib": 7148.0,
+        "total_mib": 10240.0,
+        "gpu_utilization_percent": 39.0,
+        "memory_controller_utilization_percent": 11.0,
+        "power_w": 34.08,
+        "temperature_c": 37.81
+      }
+    ],
+    "limitations": [
+      "Observed concurrent desktop load; not a causal throughput comparison.",
+      "GPU utilization and memory-controller utilization are distinct from occupied VRAM.",
+      "One short interval cannot establish the limiting component."
+    ]
+  }
+}
