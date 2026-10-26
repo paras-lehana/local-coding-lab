@@ -5,6 +5,13 @@ owner permits longer accurate coding diagnostics but rejects a ten-minute
 plain greeting. See latest entry and tasks.md; the older morning capacity
 snapshot below is historical.
 
+22:03IST: Gemma12-case coding is fully reviewed10/12; larger-history calibration
+records128K GPUq8 allocation and responsive greetings but no recall score yet.
+Small resident limits slow prefill; cache448/resident2.5 is also slower. The
+separate resident5/cache448/128K fixed history run has started, with a4.5GiB
+startup reserve and unchanged runtime stop floors. Follow live tasks.md and
+the Gemma report; no grader/download runs alongside it.
+
 Current phase,26October: higher Flint precision, tuning research and incomplete
 Qwen/other-model coverage explicitly reopened by the owner. See the new task
 report. IQ3_S has native public52/60 and private29/36; two native coding

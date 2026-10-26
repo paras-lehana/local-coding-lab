@@ -4,6 +4,28 @@ Last updated: 2026-10-26 (Asia/Kolkata); higher precision and missing coverage r
 
 ## 2026-10-26 evening - Seven articles and RAM investigation
 
+22:03IST current run: gemma-large-history-g, profileCPU30/cache448/resident5/
+128K/b64u16, controller119388. Native640-record history; complete fixed profile
+unless deadline/resource/hardware stop. Startup reserve is explicitly4.5GiB
+versus6.5, resident cap5versus2.5; physical admission rises9to9.5GiB, all runtime
+floors unchanged. Prior cache2.5 calibration stops at1216new input tokens,
+5.03tok/s, no recall score/no hardware event. Separate public receipts preserve
+both deliberate stops and admission failures.44offline tests pass21.240s before
+this launch. Private extended collector/controller prepared and AST/freeze/
+invalid-control verified, no private model run yet. Checkpointe335295/CI40355550722
+pass; later calibration reports/profiles are not committed at this moment.
+
+21:35-21:53IST: CPU30/resident4/128K rejects9.326GiB RAM. Separate2.5GiB
+resident/128K profile qualifies load17.906s and hi20.875/12.891s. Actual KV
+1360+132.81MiB GPU,compute660.53MiB. Intentional stop after partial50613token
+ledger prefill(~7.15tok/s); no recall score, no hardware event. Source-reviewed
+448MiB GPUexpert-cache control first rejects5415<5450MiB. Smaller b64/u16
+workspace profile passes5300gate, loads19.469s, cache446.66MiB/139slots and
+compute519.29MiB. Hi34.922/18.250s, not a speedup; cold output differs.
+Full640-record history now collecting in gemma-large-history-f, controller
+118588. Verify real engine/stop receipt before touching. No grading/download
+overlap. Checkpointe335295 pushed; CI40355550722 passes Windows/Ubuntu.
+
 21:25-21:31IST: all12Gemma6GiB answers complete; normal shutdown/no newhardware.
 Source-reviewed then isolated:10tasks pass,452/470uneven checks. CSV104/120,
 TypeScript malformed function-type syntax prevents compilation/load(0/2).

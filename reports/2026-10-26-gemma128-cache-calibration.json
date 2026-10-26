@@ -1,0 +1,324 @@
+{
+  "profile_name": "gemma4-26b-cpu30-cache448-resident2p5-128-b64u16",
+  "profile": {
+    "model": "gemma4-26b-qat",
+    "alias": "gemma4-lab",
+    "locally_tested": false,
+    "validation_status": "planned-gpu-expert-cache-history-control-not-promoted",
+    "evidence": "26October cache448/b128/u32 profile rejects5415MiB freeVRAM below5450MiB before load. Separate smaller-workspace profile retains128K GPUq8KV,448MiB expert cache,CPU30,resident2.5GiB/6.5GiB reserve,4checkpoints,native thinking and all stop floors; reduce batch128to64 and ubatch32to16. Expected compute-workspace reduction makes5300MiB VRAM admission reasonable versus measured uncached660.53MiB workspace, but actual buffers/slots must verify at load. RAM9GiB/commit10GiB gates unchanged. This changes batching and expert-cache execution versus the interrupted uncached control; no pure-cache speed or quality claim. Plain600s hi first, then same640-record history at21600s.",
+    "load_min_ram_free_gib": 9.0,
+    "load_min_vram_free_mib": 5300,
+    "load_min_commit_available_gib": 10,
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_min_commit_available_gib": 1,
+    "stop_gpu_c": 84,
+    "working_set_limit_gib": 2.5,
+    "working_set_reserve_gib": 6.5,
+    "template_kwargs": {
+      "enable_thinking": true,
+      "preserve_thinking": true
+    },
+    "runtime_variant": {
+      "id": "b11562-noprefetch-v1",
+      "llama_sha256": "7bf9b3b0549e64c06e2b55bf47235f056838eba7f5b70de62bc48457996d2009"
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--n-cpu-moe",
+      "30",
+      "--ctx-size",
+      "131072",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC",
+      "--batch-size",
+      "64",
+      "--ubatch-size",
+      "16",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--reasoning-budget",
+      "-1",
+      "--reasoning-preserve",
+      "--predict",
+      "32768",
+      "--temp",
+      "1.0",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "64",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--timeout",
+      "21600",
+      "--metrics",
+      "--verbosity",
+      "4",
+      "--ctx-checkpoints",
+      "4",
+      "--moe-cache-mib",
+      "448"
+    ]
+  },
+  "started": "2026-10-26T16:20:37.043827+00:00",
+  "finished": "2026-10-26T16:31:37.327186+00:00",
+  "status": "collection-stopped",
+  "reason": null,
+  "preflight": {
+    "time": 1793031637.043828,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 9.790454864501953,
+    "commit_limit_gib": 106.32622909545898,
+    "commit_available_gib": 10.736763000488281,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 5443.0,
+    "gpu_c": 49.44,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "postflight": {
+    "time": 1793032297.3271866,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 10.666229248046875,
+    "commit_limit_gib": 106.32622909545898,
+    "commit_available_gib": 11.018543243408203,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 5545.0,
+    "gpu_c": 50.19,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "load_seconds": 19.469000000040978,
+  "hi-cold": {
+    "wall_seconds": 34.92200000002049,
+    "finish_reason": "stop",
+    "first_event_seconds": 5.422000000020489,
+    "first_content_seconds": 32.71899999998277,
+    "error": null
+  },
+  "hi-warm": {
+    "wall_seconds": 18.25,
+    "finish_reason": "stop",
+    "first_event_seconds": 1.4679999999934807,
+    "first_content_seconds": 15.76500000001397,
+    "error": null
+  },
+  "server_outcome": {
+    "status": "requested_stop"
+  },
+  "new_hardware_event": false,
+  "controller_sha256": "df6ad8cc80a222f61bb215ace228d50748563a7463d5dcac273725586fb2aeb9",
+  "scope": "Stopped cache448/b64/u16/resident2.5 calibration, no history quality score",
+  "history_quality_score": null,
+  "intervention": {
+    "time": "2026-10-26T16:31:33.230110+00:00",
+    "kind": "intentional-residency-calibration-stop",
+    "reason": "Cache448/b64/u16/resident2.5 prefill ~5tok/s, worse than uncached2.5 sample~7tok/s; test larger resident allowance. No completed recall score.",
+    "replacement_profile": "gemma4-26b-cpu30-cache448-resident5-128-b64u16",
+    "grade": null
+  },
+  "greeting_comparison": {
+    "pairs": [
+      {
+        "request": "hi-cold",
+        "arms": {
+          "gemma-large-history-d": {
+            "response_sha256": "e00059f4fa1474222b253e1f0a47e9bfd0594d7c2a659033d6344b61e9bc3344",
+            "benchmark": {
+              "wall_seconds": 20.875,
+              "finish_reason": "stop",
+              "first_event_seconds": 4.10899999999674,
+              "first_content_seconds": 19.34399999998277,
+              "error": null
+            },
+            "usage": {
+              "completion_tokens": 60,
+              "prompt_tokens": 17,
+              "total_tokens": 77,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              }
+            },
+            "timings": {
+              "cache_n": 0,
+              "prompt_n": 17,
+              "prompt_ms": 4069.566,
+              "prompt_per_token_ms": 239.38623529411763,
+              "prompt_per_second": 4.177349624013961,
+              "predicted_n": 60,
+              "predicted_ms": 16774.882,
+              "predicted_per_token_ms": 284.3200338983051,
+              "predicted_per_second": 3.5171633398076954
+            },
+            "visible_sha256": "fda564ba3f7a0f028106d468420f674898ed99ac5bf2765ac9586206e39d73c5",
+            "reasoning_sha256": "cc9d8f11792384764e7d64aa77ba985d033ac055a44a88ae4c604d97e12aa8b4"
+          },
+          "gemma-large-history-f": {
+            "response_sha256": "f005662b02fe47b59f545cb8b7918f113d3e951aca80ff7911385b3e3bf172fc",
+            "benchmark": {
+              "wall_seconds": 34.92200000002049,
+              "finish_reason": "stop",
+              "first_event_seconds": 5.422000000020489,
+              "first_content_seconds": 32.71899999998277,
+              "error": null
+            },
+            "usage": {
+              "completion_tokens": 98,
+              "prompt_tokens": 17,
+              "total_tokens": 115,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              }
+            },
+            "timings": {
+              "cache_n": 0,
+              "prompt_n": 17,
+              "prompt_ms": 5370.53,
+              "prompt_per_token_ms": 315.91352941176467,
+              "prompt_per_second": 3.165423151904933,
+              "predicted_n": 98,
+              "predicted_ms": 29501.098,
+              "predicted_per_token_ms": 304.1350309278351,
+              "predicted_per_second": 3.2880132122539982
+            },
+            "visible_sha256": "e819d819f50fa09b910dda40e24c1c98303a0bb343f6da495d56ceae3e80d71b",
+            "reasoning_sha256": "bebb46077358ed7aefa0b2f1d7e2ec8317f67535e244cd987f80c6c060f3a8f4"
+          }
+        }
+      },
+      {
+        "request": "hi-warm",
+        "arms": {
+          "gemma-large-history-d": {
+            "response_sha256": "db2f7a90644f42894151d6e5c216e7d4fbdfe4496e30c75d7fbf889f660e3696",
+            "benchmark": {
+              "wall_seconds": 12.89100000000326,
+              "finish_reason": "stop",
+              "first_event_seconds": 1.202999999979511,
+              "first_content_seconds": 11.35899999999674,
+              "error": null
+            },
+            "usage": {
+              "completion_tokens": 60,
+              "prompt_tokens": 17,
+              "total_tokens": 77,
+              "prompt_tokens_details": {
+                "cached_tokens": 12
+              }
+            },
+            "timings": {
+              "cache_n": 12,
+              "prompt_n": 5,
+              "prompt_ms": 1166.141,
+              "prompt_per_token_ms": 233.22820000000002,
+              "prompt_per_second": 4.287646176577274,
+              "predicted_n": 60,
+              "predicted_ms": 11687.193,
+              "predicted_per_token_ms": 198.08801694915252,
+              "predicted_per_second": 5.0482609468329995
+            },
+            "visible_sha256": "fda564ba3f7a0f028106d468420f674898ed99ac5bf2765ac9586206e39d73c5",
+            "reasoning_sha256": "cc9d8f11792384764e7d64aa77ba985d033ac055a44a88ae4c604d97e12aa8b4"
+          },
+          "gemma-large-history-f": {
+            "response_sha256": "c271ebf433c5cbc4dc0c95af23ca74ab5b1aa6b75c0f7959b9a2593b953777e8",
+            "benchmark": {
+              "wall_seconds": 18.25,
+              "finish_reason": "stop",
+              "first_event_seconds": 1.4679999999934807,
+              "first_content_seconds": 15.76500000001397,
+              "error": null
+            },
+            "usage": {
+              "completion_tokens": 60,
+              "prompt_tokens": 17,
+              "total_tokens": 77,
+              "prompt_tokens_details": {
+                "cached_tokens": 12
+              }
+            },
+            "timings": {
+              "cache_n": 12,
+              "prompt_n": 5,
+              "prompt_ms": 1423.167,
+              "prompt_per_token_ms": 284.6334,
+              "prompt_per_second": 3.5132911316802593,
+              "predicted_n": 60,
+              "predicted_ms": 16777.642,
+              "predicted_per_token_ms": 284.36681355932205,
+              "predicted_per_second": 3.5165847501096996
+            },
+            "visible_sha256": "fda564ba3f7a0f028106d468420f674898ed99ac5bf2765ac9586206e39d73c5",
+            "reasoning_sha256": "cc9d8f11792384764e7d64aa77ba985d033ac055a44a88ae4c604d97e12aa8b4"
+          }
+        }
+      }
+    ],
+    "limitations": [
+      "Cache and batching both changed",
+      "Cold responses differ; compare token counts too",
+      "Warm answers byte-identical but desktop/file cache state not controlled",
+      "Plain API greeting is not editor or long-document timing"
+    ]
+  },
+  "measured_buffers_mib": {
+    "gpu_model": 1504.14,
+    "cpu_mapped_span_not_residency": 13752.09,
+    "gpu_kv_global": 1360,
+    "gpu_kv_sliding_window": 132.81,
+    "gpu_expert_cache": 446.66,
+    "gpu_compute": 519.29,
+    "host_compute": 6.01
+  },
+  "cache_slots": 139,
+  "cache_layer_count": 30,
+  "cache_expert_slots_fraction_percent": 3.6,
+  "partial_prompt_processing": {
+    "last_uncached_tokens": 1216,
+    "last_cached_tokens": 2032,
+    "elapsed_seconds": 241.81,
+    "tokens_per_second": 5.03,
+    "full_prompt_not_completed": true
+  },
+  "memory_extrema": {
+    "ram_free_gib": 6.698616027832031,
+    "commit_available_gib": 5.573123931884766,
+    "vram_free_mib": 1224.0,
+    "process_working_set_gib": 2.5000038146972656,
+    "process_private_gib": 4.969844818115234,
+    "gpu_c": 50.38
+  },
+  "state_sha256": "5e0b68edd7932198c8d656859c3f631b7b858795ffae6430dc3abd39e7e79d5e",
+  "cohort": "extended-diagnostic"
+}
