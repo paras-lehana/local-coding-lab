@@ -41,7 +41,9 @@ and coding /12, weighted 50/30/20 percent only when all components exist. Its
 20-minute whole-prompt gate supersedes historical six-hour ranking allowances.
 The retained Qwen Q4 has 31/36 private and 52/60 public; no complete new
 three-component baseline exists. A stale running JSON is not a live process:
-the 21 October IQ3_S run has a VRAM stop receipt and no completed router answer.
+the 21 October IQ3_S run has a VRAM stop receipt and no completed router answer
+(3 November correction: that stop was a fail-closed nvidia-smi read failure; VRAM
+stayed at or above 1,152 MiB free; see docs/model-comparison.md audit section).
 Keep these limitations in any model comparison or publication.
 
 Qwen Q4's24October native coding attempts all12 questions across two loads:

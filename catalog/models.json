@@ -299,6 +299,28 @@
       "upstream": "https://huggingface.co/Qwen/Qwen3.8-27B",
       "status": "metadata-pinned-20261027-not-downloaded-memory-fallback-not-quality-equivalent",
       "thinking": "Publisher xhigh/medium/low; verify exact GGUF template. Mixed quantization is a separate quality variable."
+    },
+    "groot-19b-a3b-q4": {
+      "name": "Groot-19B-A3B-261023 Q4_K_M (bartowski)",
+      "repo": "bartowski/GrootTeam_Groot-19B-A3B-261023-GGUF",
+      "revision": "0025df0d03fb385344394f4e5afd73ce47da0680",
+      "filename": "GrootTeam_Groot-19B-A3B-261023-Q4_K_M.gguf",
+      "bytes": 12484339584,
+      "sha256": "c941e12a231b40b8fb9f6ad7f6601878d72db39c2c62aefb185fbe5c7d0c2e29",
+      "upstream": "https://huggingface.co/GrootTeam/Groot-19B-A3B-261023 (rev d089dadfe280289b2f3cd2ae9ef9796c2495529a, Apache-2.0)",
+      "status": "candidate-3-nov: expert-pruned Qwen3.6-35B-A3B (19B total, 3B active, 128 experts); fits with apps open; vendor claims only",
+      "thinking": "inherits the qwen35moe template (enable_thinking/preserve_thinking); verify the GGUF template before scoring"
+    },
+    "qwen35-0p8b-q8-draft": {
+      "name": "Qwen3.5-0.8B Q8_0 (unsloth) - speculative draft for Qwen3.6-35B-A3B",
+      "repo": "unsloth/Qwen3.5-0.8B-GGUF",
+      "revision": "6ab461498e2023f6e3c1baea90a8f0fe38ab64d0",
+      "filename": "Qwen3.5-0.8B-Q8_0.gguf",
+      "bytes": 811843840,
+      "sha256": "0ad885ffd4bb022fc4f0d33a3308fa108ef8613159d3b3a67e23abca056b7a6c",
+      "upstream": "https://huggingface.co/Qwen/Qwen3.5-0.8B",
+      "status": "candidate-3-nov: draft model for quality-neutral speculative decoding; tokenizer reported byte-identical to Qwen3.6-35B-A3B (verify vocab at load)",
+      "thinking": "draft only; not scored as a standalone model"
     }
   }
 }
