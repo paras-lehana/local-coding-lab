@@ -1,5 +1,21 @@
 # Prompt log — Local Coding Lab
 
+3 November 2026, 19:45 IST checkpoint: Claude resumed the campaign after
+Codex's 27 October stop. Flint Q3_K_XL run C is graded in the extended cohort
+(router 38/40 with a 1024 reasoning cap, 37/40 with 8192; native 32K output
+unscored after a RAM-guard stop). Claude's 20-21 October runs now have
+standalone records with dated corrections, and the memory guide records that
+CUDA buffers consume Windows commit on this WDDM host. No new inference ran;
+the Strata, Flash-Next and Flint experiments wait for admission headroom. See
+the latest entry and tasks.md; no model promotion.
+
+27October05:29IST continuation: retained the owner's separate600second plain
+greeting and extended accurate-coding policy. C8192 still streams its final
+answer, native32K queued. Prepared an opt-in native identity latch for the new
+Strata run to reject frontend-triggered replacement; code/tests remain unrun
+until current inference ends. Updated experiment guide, README and changelog;
+no score or model promotion claimed. See tasks.md for process and evidence.
+
 26October evening: seven article review and memory investigation reopened;
 owner permits longer accurate coding diagnostics but rejects a ten-minute
 plain greeting. See latest entry and tasks.md; the older morning capacity
@@ -1986,3 +2002,202 @@ affinity helper passes harmless childFFFC and rejects relative executable.
 commit/push/CI follow this checkpoint. One shell-quoting AST probe failed;
 the corrected stdin probe validates all4prepared helpers. No validation
 failure is presented as a model defect. Production remains off during campaign.
+
+## 2026-10-27 04:03 IST - C controls active; source and grading qualifications
+
+B evidence/Strata environment checkpoint committed/pushed asdd07002;
+GitHub CI40408588820 passes. C owned controller121692, actual engine121696,
+launcher115480 (venv actual parent122332) uses resident1/40K/output32K.
+Load23.109s; greetings74.906/66.719s, same visible/reasoning bytes as B,
+both cache_n0.1024cap is actually exhausted and forces the end sequence;
+all7required sources are delivered and visible answer is in progress.
+Observe with observe-owned-workflow.py and the C run folder. No grading,
+build, dependency install or model hashing/download during this interval.
+The answer quotes the original buggy function before its replacement;
+legacy first-fence extraction would choose the wrong artifact. Grading docs
+and local evaluation reference now require explicit semantic turn/fence/hash
+selection before unchanged isolated checks. Agent-context-maintenance skill
+read; shared Codex/router and Windows Claude adapter reviewed, routing already
+covers the maintained sources, so adapters unchanged. No helper/existing score
+changed. One attempted patch had a wrong anchor and made no changes.
+Native Strata1aff6d gate inspection corrects a blanket KV-growth exclusion:
+bounded expert-copy mode is excluded, plain mapping is not explicitly excluded
+or checked for physical page residency. Unrun pure-mapping128K-growth plan
+saved, conditioned on static qualification and actual enable/grow/trim evidence.
+Private72K/cache256/resident1 fallback prepared, not loaded. All runtime floors
+remain; source, capacity and actual model success stay separate.
+Current changes await inference-free validation/commit. Do not finalize or
+start another engine while C is active.
+
+## 2026-10-27 04:20 IST - C1024 completes;8192 control active
+
+The first C router completes2268.531s, first visible926.219s,2turns.
+Final turn1518prompt/3835generated/cached699; all7sources delivered.
+All visible output read. It quotes original buggy fence0, proposes recursive
+copy fence1 and explicit deepcopy alternative fence2, tests in fence3.
+Source-review and separate unchanged primary/alternative grading inputs saved;
+no model-generated code executed. Empty-dict self-test expectation contradicts
+the contract/both implementations; zero/empty-string and dict-inside-list alias
+coverage is missing, and first claimed v2/v1 read order is reversed. Final
+inventory is correct and execution honesty explicit. No correctness score yet.
+Sanitized completed-case receipt exported.8192control now active; native32K
+follows. Continue observing C; do not start another model or grade during it.
+New guide/report/source-qualification changes await inference-free checks.
+
+## 2026-10-27 04:30 IST - C observation and Strata configuration controls
+
+C remains live (owned native121696, verified executable/model/ancestry),
+8192-capped router decoding;1024 review remains execution-pending. Three
+passive04:28counter windows show80-149MiB/s on the shared SSD and substantial
+system-wide hard/transition page activity. No exclusive model IO or causal
+bottleneck claim. Sanitized lowresident-io receipt and Flint report updated.
+Strata source inspection finds saved-preset overlay despite an explicit config.
+Both unrun plans now set STRATA_NO_PRESET=1, STRATA_START_RETRIES=0 and explicit
+projectionfalse. Startup retries and request-triggered restart are distinct;
+future collection must abort on native exit/identity change. No source fork
+or model started. Native help prerequisite corrected to passed; shards/pack
+remain absent. Read-only CUDA VMM attribute probe prepared, NOT RUN; requires
+no live engine and does not create a context/allocate device memory. All new
+changes await quiet validation; no model code grading/build/download/hash
+overlap. Continue C8192 then native32K, do not finalize.
+
+## 2026-10-27 04:52 IST - Article-derived controls and current-memory distinction
+
+Exact native1aff6d generate.cpp/vmm.cpp archived privately withSHA manifests;
+no model download. Source confirms resident-headroom environment and separate
+direct/mapped dictionary IO. Four plans remain explicitly unlaunchable:
+static pure mapping;128K KV growth;2GiB expert copy;PLE-mapped dictionary.
+All freeze adapt-async0 and PLE auto-mmap0; neither read mode is claimed faster.
+Source documents both slow direct reads and cold mapped-read stalls. Pinned
+frontend presets/start retries are disabled; request-triggered restart remains
+a distinct failure path to guard. No new inference/source fork.
+04:49snapshot: Code42processes13.48GiB summedWS, Edge67processes11.11GiB,
+only one llama engine1GiBWS/3.66GiBprivate; Ollama has zero loaded models.
+Counters overlap and do not establish exclusive RAM use or a leak. New public
+lowresidentIO receipt includes sanitized desktop snapshot. Precision matrix
+updated: latest Gemma coding/history outcomes, activeFlintC, K2verifiedonDisk,
+Boltmetadataonly/currentmodels-directoryabsence. Memory guide diagram clarifies
+file delivery, weights/dictionary and chat state; no automatic file-memory claim.
+C8192stilldecoding; nativefollows. No offlinechecks/grading sinceCstarted.
+
+## 2026-10-27 05:10 IST - Maintained runtime guidance corrected
+
+Applied agent-context-maintenance to the regular local runtime.md reference
+(no symlink; owns this PC campaign). Re-read skill and runtime reference;
+shared Codex/router and Windows Claude adapter already reviewed. Adapters
+unchanged because routing already reaches these sources. Removed the blanket
+apps+full-model-size RAM fit rule: bounded mmap, standby and private commit
+are distinct, supported by currentFlint7.879GiB admission/1GiBWS. Marked dated
+app/bandwidth/throughput observations, current106.33GiB commit limit, exact
+Qwen680/1360MiB attentionKV plus62.81MiB recurrent state, and extended dense
+policy. Added a pointer to the new pinned Strata preparation/overlay/control
+requirements; no model compatibility or KV-growth result claimed.
+C8192 remains active with actual budget activation logged. Interim1224sample
+minima RAM5.675/commit5.137GiB/VRAM2688MiB are not final measurements. No model
+grade, validation run or new engine occurred; quiet checks still pending.
+
+## 2026-10-27 05:17 IST - C8192 reaches visible answer
+
+Native log confirms budget8192 activation in both requests; final-turn
+activation47:43.893737 and forced close109:16.262203 in engine elapsed time.
+First visible output4137.312seconds from whole-workflow start. Answer still
+streaming, no completion or quality grade. Initial API payloads compare equal
+except reasoning_budget_tokens; first-turn cached tokens0vs146. Private
+first-request-control-comparison.json and first-visible-observation.json save
+this evidence. Native32K-outputcontrol remains queued on the same engine.
+C1024 unchanged source selections remain unexecuted until engine exit.
+
+## 2026-11-03 18:40 IST - Claude: recovery, research and Strata/Flash-Next/Flint combinations
+
+3 November 2026, 18:40 IST. Branch `experiment/flint-precision-20261024`.
+Agent: Claude Code (Opus 5.5) orchestrating workflow agents. The integrator
+subagent wrote this entry at the 19:45 IST checkpoint.
+
+### Original prompt
+
+> So yeah, a lot was done again, get the context, complete the pending steps if any and give summary. I remember codex stopped somewhere.
+>
+> continue work, summarize what was done, what you recommend but summarize in two parts in the end thats not an issue, you can start working what you think is best, improvise, follow, think as things run or download, what you can do. read, analyzie. /deep-research using multiple agents (i will also give some articles in some time).
+>
+> review, evaluate with our metrics etc. i look forward to strata, qwen flash next, flint and various combinations of them. do that in multiple agent and directly if possible so that we can do things parallly, turning on ultracode
+>
+> dont forget to keep documening everything, in various docs and very detailed in model specific doc
+
+### Owner follow-up (18:45 IST)
+
+> man you /loop and keep checking things, please dont wait like this. i have full money from my startup to burn here, so please be /fast and also highest thinking and coding
+
+The session then scheduled a self-paced `/loop` that keeps checking the
+background workflows, downloads and memory headroom.
+
+### Pre-flight
+
+- Log every prompt and outcome here and in docs/tasks.md (Context: lab
+  AGENTS.md requires both; the parent installation's logs stay private).
+- Before any commit, run the offline unittest suite, PowerShell parsing,
+  `scripts/audit_public.py` and `git diff --check` (Context: lab AGENTS.md and
+  `.github/workflows/offline-checks.yml`).
+- Commit on `experiment/flint-precision-20261024` and push to its origin
+  upstream (Context: Codex's last pushed checkpoint is dd07002).
+- Start inference only after fresh admission gates pass, one engine at a time
+  (Context: the 19:19 IST memory monitor reported admission blocked at 6.0 GiB
+  RAM and 3.6 GiB commit available, with VRAM 6189 MiB free).
+- Keep frozen 1200-second scores separate from extended diagnostics (Context:
+  the 26 October owner clarification in AGENTS.md).
+
+### Interim status (19:45 IST)
+
+Done offline, with no engine started:
+
+1. **Flint Q3_K_XL run C grading (Codex's pending step).** Reviews were written
+   before any execution; gradings ran only in WSL bubblewrap, one at a time.
+   - C1024: 38/40. The scored recursive-copy primary and the deepcopy
+     alternative both pass 6/6 frozen groups. Self-tests 6/7: one false
+     `d == {}` assertion.
+   - C8192: 37/40. One grounding point off for a wrong update() example; tests
+     1/3 for a wrong `[2]` expectation plus incomplete isolation coverage;
+     frozen 6/6.
+   - Native 32K: unscored. RAM-guard stop at 6136.2 s with 11,221 reasoning
+     tokens and no visible text, caused by desktop memory growth (the model
+     process stayed flat); no hardware events.
+   - The gap between the caps is within reviewer judgment; the 8192 cap took
+     2.4 times as long. A cold WSL boot cost about 2.2 GiB of commit; after one
+     gate refusal and a documented recalibration, the last two gradings ran in
+     one boot without warnings.
+   - Evidence: the Flint report sections "27 October run C" and "3 November:
+     run C grading addendum"; `reports/2026-11-03-flint-runC-grades.json`.
+2. **Audit of Claude's 20-21 October runs.** Every candidate now has its own
+   record: new LFM2.5 and Bonsai 2 reports, plus dated sections in the Qwen
+   and Strata reports. No score changed. Corrections from the raw evidence:
+   - LFM's private sampler was overridden to top_k 20, min_p 0 and repeat
+     penalty 1.0.
+   - LFM coding was graded automatically before review, and the LFM intervals
+     deadline happened under paging.
+   - The IQ3_S run b stop was a telemetry read failure.
+   - The Strata file arena trades commit charge for physical residency.
+   - Derivations: ignored `local-data/2026-11-03-campaign-audit/` (F1-F13).
+3. **WDDM commit accounting.** On this host a CUDA allocation is charged to
+   Windows commit at about its own size (median 1.038 over 67 saved loads);
+   mmap'd weights are not. Both commit-floor stops examined came from desktop
+   growth after loading. Microsoft's WDDM backing-store page explains why a
+   GPU allocation needs commit; the CUDA-specific 1:1 charge is labelled
+   empirical. See
+   [VRAM allocations also consume Windows commit](memory-and-context.md#vram-allocations-also-consume-windows-commit).
+4. **Integration.** The three subtask results are applied to the comparison,
+   memory guide, task index and both logs as dated addenda. Codex's
+   uncommitted 27 October work is kept and committed. Validation: 49 offline
+   tests pass, four PowerShell files parse, public audit 361 files with 0
+   findings, diff check clean.
+
+Still open:
+- The context-recovery brief and the five-topic deep research are
+  orchestrator-owned and not yet integrated here.
+- Strata, Flash-Next, Flint and combination experiments have not run: the
+  desktop's memory headroom is below the admission gates. Other agents are
+  downloading Flash-Next Q2 and Groot and building a Strata trial; the Groot
+  and draft-model catalog pins and two speculative-decoding profiles are
+  proposed, unmeasured and left uncommitted for those agents.
+- The harmless-process Strata guard check is unrun.
+
+This entry records an active task, not completion. The final A-G closeout
+will be appended when the requested work finishes.

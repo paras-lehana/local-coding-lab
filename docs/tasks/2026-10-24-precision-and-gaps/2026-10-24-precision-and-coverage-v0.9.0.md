@@ -18,8 +18,12 @@ answer, despite all7source files being delivered. TS/SQL also ends at5039.500s,
 plus8unavailable extra reads. Both are unscored; history completes8/8 in
 3380.750seconds under the extended allowance. The120-record test is not128K
 recall validation. Owned cleanup succeeds with no new hardware event.
-Separate native32K-output and8192/1024 reasoning
-budget controls are prepared, not run. They will not replace the failed case.
+Separate resident1/40K/output32K controls are now running. Greetings complete
+in74.906/66.719seconds. The1024-capped router completes2268.531seconds and
+reads all7sources; source review finds an incorrect self-test and a read-order
+claim mismatch. Its isolated behavior checks are pending until engine exit.
+The8192control is active; native reasoning follows. None replaces the failed
+B cases or earns an untested quality/composite score.
 The64K admission rejection and original32K freshVRAM rejection remain
 unscored. K2 and Flash-NextQ2 qualification remain queued; Strata's separate
 engine is verified and the new source frontend is pinned, not yet served.
@@ -47,7 +51,9 @@ This continues the completed [Flint trial](../2026-10-23-flint/2026-10-23-recurs
 
 Test higher Flint precision, research practical improvements, and complete
 missing Qwen/other-model work. Apps remain open, one engine at a time, 1200
-seconds per whole prompt, no editor typing or clock/driver changes. Preserve
+seconds per whole prompt in the frozen cohort;26October permits separately
+labeled extended coding diagnostics up to21600seconds. Plain greetings have
+a600second practical ceiling. No editor typing or clock/driver changes. Preserve
 incomplete answers, capacity failures and old trials. Review code before
 isolated grading. No cloud inference or exposed historical key is used.
 
@@ -59,11 +65,11 @@ isolated grading. No cloud inference or exposed historical key is used.
 | Plain Qwen Q6_K higher precision |Distinct artifact pinned/header inspected; full download then guarded quality and long-file work |Resident7 and resident10 router deadlines1200.016/1200.031s, seven successful reads each; incomplete/unscored. Fresh original18GiB gates reject at actual launch/decision snapshots. Exact file rehashed/retired22:46; later suites unrun after qualification failure. Old XL scores do not transfer |
 | Qwen IQ3_S interrupted public / missing private and coding |38 CPU expert blocks; conservative stop floors | Native public52/60, private29/36; separate cap4096/cache1536 coding6/12, all twelve complete; no mixed composite |
 | Qwen IQ4_XS interrupted public / missing private and coding |CPU35 with bounded resident memory after fresh RAM stop |Public55/60; private29/36 in725.4s; native interval1200s deadline and presence1.5 control16K output limit; subsequent unchanged coding cases interrupted/unrun. Exact weights retired21:07 after fresh full hash |
-| Gemma26 fallback missing latest public/coding | Collect missing suites under its recorded template and sampling |CPU28 partial retained. CPU26 public57/60 and private23/36 complete; private798.6s,15/2/6. Instruction/citation and public code/test defects remain. Direct coding rejects26October2.169GiB freeRAM; no historical score transfer. [Report](../2026-10-24-gemma26-coverage/2026-10-24-gemma26-v0.9.0.md) |
-| K2 MoVA / Nemotron Bolt downloaded but untested | Verify identity; calculate placement and gates; trial if capacity permits | Pending |
-| Flint higher precision | Pinned Unsloth Q4 first, Q3_K_XL fallback; isolated opt-in mmap build | Both Q4 CPU44 and CPU48/cache1536 router trials deadline; exact Q4 retired after fresh full hash. Q3XL fully verified and actively tested26–27October;32K router output-limited/unscored. Native32K-output/budget controls prepared; NVFP4 still queued |
-| Flint CSV / history output limits | Separate 32768-output diagnostic with unchanged 1200-second deadline | Original8K history diagnostic already passes8/8 separately; original CSV32K diagnostic pending. Q4 router deadlines prevent full-workflow qualification |
-| Flint file-driven TS/SQL | Check template/parser provenance, rerun native tool workflow before trying a separately labeled scaffold change | Pending |
+| Gemma26 fallback missing latest public/coding | Collect missing suites under its recorded template and sampling |CPU26 public57/60/private23/36; separate CPU28/resident6 extended coding completes12answers with10task passes. CSV/TS failures and extra TTL/pool bugs remain. Separate128K history commit-stops without an answer. Exact weights retired26October after review/full hash; no mixed composite. [Report](../2026-10-24-gemma26-coverage/2026-10-24-gemma26-v0.9.0.md) |
+| K2 MoVA / Nemotron Bolt untested | Verify identity; calculate placement and gates; trial if capacity permits | K2 verified on disk, profiles prepared; no inference. Bolt metadata pinned but absent from the current model directory27October; no tested load. Do not describe both as installed |
+| Flint higher precision | Pinned Unsloth Q4 first, Q3_K_XL fallback; isolated opt-in mmap build | Both Q4 router trials deadline; weights retired. Q3XL B router/TS output-limit, history8/8. Separate C1024router completes/source-reviewed, execution pending;8192active/native queued. NVFP4 still queued |
+| Flint CSV / history output limits | Preserve frozen results; qualify larger-output/capped extended controls separately | Older IQ3XXS8K history8/8; new Q3XL B8K history8/8 in3380.750s. Neither is a128K history pass. Q3XL direct coding/CSV remains unrun pending current controls |
+| Flint file-driven TS/SQL | Check template/parser provenance, rerun native tool workflow before trying a separately labeled scaffold change | Q3XL B ran5039.500s, delivered all6required sources plus8unavailable reads, then exhausted16K output without visible code. Unscored; later capped control remains pending |
 | Old dense,80B,Bonsai,LFM gate failures | Reopen only where a specific runtime/template/budget change addresses the measured failure; otherwise record unresolved quality coverage and exact gate | Audit recorded below; unchanged configurations remain excluded, missing newer scores explicitly identified |
 | Qwen full scorecard / finalists | Do not invent missing values or merge incompatible profiles; repeat eligible finalists on seeds74/75 | Pending earlier components |
 

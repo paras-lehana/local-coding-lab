@@ -100,6 +100,33 @@ measure actual free-memory floors; do not force a75GB resident allocation.
 
 ## Primary-source checks
 
+Further27October serving-source review finds saved tuning can overlay an
+explicit Strata config. The unrun baseline/growth plans now disable that layer
+with`STRATA_NO_PRESET=1`, disable transient startup retries, and explicitly set
+projectionfalse. Request-triggered engine restart is a different code path;
+native exit/identity change must end that collection. These controls preserve
+experiment attribution; they are not evidence of a live failure. A read-only
+CUDA device-capability probe is prepared but not yet run, and cannot substitute
+for observing actual KV growth, memory use and retained facts.
+[Pinned frontend](https://github.com/Niko1221/Strata/blob/4b9e05a2a806a3fe24f7b2560d98626c37dade35/serve/server.py#L7869).
+
+Two additional27October leads sharpen the RAM investigation. The author of
+[moe-cache](https://github.com/IbrahimSiddiqui007/moe-cache) describes bounded
+CPU expert caching with direct SSD reads and overlap, rather than relying on
+the OS mapping alone. It is currently a Linux x86-64 plugin tied to specific
+shared-ggml ABIs, not a Windows DLL we can insert into this runtime. Its own
+results also show overhead when weights already fit RAM. This is an untested
+fallback for memory-constrained MoE serving; approximate fast/hybrid modes
+must stay separate from an accuracy baseline. No plugin was installed.
+
+A [firsthand Vulkan report](https://github.com/ggml-org/llama.cpp/discussions/30913)
+describes Flash-Next on a16GiB RadeonVII/64GiB DDR4, about26.5tokens/s with
+an expert-upload fork versus11upstream. That supports investigating transfer
+and synchronization costs, not expecting the same gain on CUDA/10GiB. It is
+decode evidence on different hardware, not linked-instruction correctness.
+No fork was built or benchmarked here; our existing cache-hit counters remain
+unavailable rather than inferred from these external results.
+
 ### Flash-Next architecture versus the75GB claim
 
 The official model card describes125B backbone parameters,6B active, plus51B
@@ -273,8 +300,10 @@ can retain stale or incomplete information just as efficiently as useful input.
 For this3080, prioritize usable expert residency and q8/int8 context before
 optional drafting or more aggressive KV compression. Dynamic KV growth is
 interesting only where the runtime supports the chosen RAM/SSD mode. The new
-Strata requirement for all experts to fit RAM rules out assuming its dynamic
-mode works with our bounded partial expert cache. A static host-KV allocation
+native gate excludes bounded expert-copy mode, but not plain mapping explicitly;
+the earlier blanket physical-residency conclusion was too broad. See the
+[source-qualified follow-up](../../docs/tasks/2026-10-26-flash-next/2026-10-26-flash-next-v0.10.0.md#native-kv-growth-qualification).
+A static host-KV allocation
 can still serve increasing occupied context; measure both quantities.
 
 1. Test the now-verified higher Flint quant and finish missing Gemma/K2
@@ -323,3 +352,15 @@ behavior and instruction grounding separately; it does not promote Gemma above
 Qwen for the owner's linked-file workflow. Earlier public/private scores use
 a different profile and cannot fill missing components here.
 [Complete coding evidence](../../reports/2026-10-26-gemma-resident6-coding.json).
+
+27October's completed FlintQ3XL file collection gives another concrete
+latency/quality distinction. Plain greetings finish50/38seconds, while the
+120-record history workflow needs3380.750seconds and passes8/8. About28m48s
+is input processing for the large ledger; a later reread correctly incorporates
+the changed runtime value. Router and TS/SQL instead consume their16K output
+allowances after68m15s/83m59s without any visible answer, despite obtaining
+the required files. This is not evidence of syntax errors or a full context
+window. A higher-bit artifact and more elapsed time do not guarantee useful
+completion. Separate reasoning/output controls are now being collected, with
+their smaller residency setting explicitly distinguished from this baseline.
+[Completed collection and reviewed history](../../reports/2026-10-27-flint-q3xl-file-workflows.json).

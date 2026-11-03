@@ -15,8 +15,6 @@ import subprocess
 import sys
 import time
 
-import psutil
-
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 import lab
@@ -27,8 +25,38 @@ def save(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, indent=2), encoding="utf-8")
 
 
+def track_native_identity(
+    owned: list[dict], executable: str, previous: dict | None
+) -> dict | None:
+    """Latch one owned engine and reject exits, replacements or duplicates.
+
+    An absent engine is permitted only before its first observation. Process
+    creation time distinguishes PID reuse. The caller enforces startup time
+    and supplies descendants of its owned job, never a global name match.
+    """
+    expected = os.path.normcase(os.path.abspath(executable))
+    matches = [
+        item for item in owned
+        if os.path.normcase(os.path.abspath(item["exe"])) == expected
+    ]
+    if len(matches) > 1:
+        raise RuntimeError("Multiple owned native engines observed")
+    if not matches:
+        if previous is not None:
+            raise RuntimeError("Owned native engine exited; no retry allowed")
+        return None
+    current = {key: matches[0][key] for key in ("pid", "created", "exe")}
+    if previous is not None:
+        identity = (current["pid"], current["created"])
+        if identity != (previous["pid"], previous["created"]):
+            raise RuntimeError("Owned native engine changed; no retry allowed")
+    return current
+
+
 def run(config_path: Path, output: Path) -> int:
     """Own only the new process tree and terminate it on a guard or stop file."""
+    import psutil
+
     config = json.loads(config_path.read_text(encoding="utf-8"))
     output.mkdir(parents=True, exist_ok=False)
     save(output / "config.json", config)
@@ -36,7 +64,11 @@ def run(config_path: Path, output: Path) -> int:
     if not command or not Path(command[0]).is_absolute():
         raise ValueError("Use an explicit executable path")
     policy = config["guard"]
+    native_executable = config.get("stable_native_executable")
+    native_identity = None
     try:
+        if native_executable and not Path(native_executable).is_absolute():
+            raise ValueError("Use an absolute stable_native_executable")
         lab.check_single_server()
         for process in psutil.process_iter(["pid", "name"]):
             if (process.info["name"] or "").lower() in {"strata.exe", "strata-q36.exe"}:
@@ -87,6 +119,26 @@ def run(config_path: Path, output: Path) -> int:
                     break
                 processes = [psutil.Process(child.pid)]
                 processes.extend(processes[0].children(recursive=True))
+                if native_executable:
+                    native_rows = []
+                    for proc in processes:
+                        try:
+                            native_rows.append({
+                                "pid": proc.pid,
+                                "created": proc.create_time(),
+                                "exe": proc.exe(),
+                            })
+                        except psutil.NoSuchProcess:
+                            continue
+                    observed = track_native_identity(
+                        native_rows, native_executable, native_identity
+                    )
+                    if native_identity is None and observed is not None:
+                        save(output / "native-process.json", observed)
+                    native_identity = observed
+                    if (native_identity is None and time.monotonic() - started
+                            > config.get("native_start_timeout_seconds", 300)):
+                        raise RuntimeError("Owned native engine did not start")
                 for proc in processes:
                     try:
                         identity = (proc.pid, proc.create_time())
@@ -100,6 +152,8 @@ def run(config_path: Path, output: Path) -> int:
                             log.write(json.dumps(receipt) + "\n")
                         limited.add(identity)
                 sample = lab.memory_snapshot()
+                if native_executable:
+                    sample["native_identity"] = native_identity
                 sample["owned"] = []
                 for proc in processes:
                     try:

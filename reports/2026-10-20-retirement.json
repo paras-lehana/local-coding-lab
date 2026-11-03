@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-20",
+  "reason": "E: had 3 GiB free; new candidate downloads need space. Flash-Next completed its Strata trials on 18 Oct (all coding cases hit the 1200 s deadline, history 6/6); provenance and hashes preserved in reports/2026-10-18-strata-flash.json.",
+  "retired": [
+    {"path": "E:/llm/Strata-data/models/flash-next/IQ3_XXS/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00001-of-00002.gguf", "bytes": 47039860096, "sha256_recorded_in": "reports/2026-10-18-strata-flash.json"},
+    {"path": "E:/llm/Strata-data/models/flash-next/IQ3_XXS/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00002-of-00002.gguf", "bytes": 28800138432, "sha256_recorded_in": "reports/2026-10-18-strata-flash.json"},
+    {"path": "E:/llm/models/.cache/huggingface/download/T9Jjd9r15nyDjFVZA12qM9v2eIg=.ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61.5df83fa5.incomplete", "bytes": 4875878400, "note": "stale incomplete Hugging Face partial download of the already-installed Qwen3.6 Q4 file"},
+    {"path": "E:/llm/diagnostics/windbg/windbg-1.2610.1001.0.msixbundle", "bytes": 1203512387, "note": "WinDbg installer bundle; portable extracted debugger retained"},
+    {"path": "E:/llm/diagnostics/windbg/windbg_win-x64.msix", "bytes": 404832537, "note": "WinDbg installer; portable extracted debugger retained"}
+  ],
+  "kept": ["Qwen3.6-35B-A3B-UD-Q4_K_M.gguf (baseline)", "gemma-4-26B_q4_0-it.gguf (fallback)", "Qwen3.8-27B-TQ3_4S-v2.gguf + DFlash2 (interrupted 19 Oct experiment)", "Strata packs/MTP derived files"]
+}

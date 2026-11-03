@@ -56,6 +56,14 @@ as missing. Reasoning-only drafts are not delivered implementations. In the
 GLM Q5 held-out case, the TypeScript implementation appears in visible turn 4,
 before a final schema read, while the last message contains SQL and examples.
 
+Also distinguish quoted original code from the proposed replacement. The
+27October Flint capped router answer quotes the buggy `merge_config` before
+writing its fix. The legacy helper selects the first matching fence and would
+therefore grade the original. Explicitly record the reviewed implementation's
+turn/fence index and hash, extract it unchanged with its intended tests, then
+use the same isolated checks. Do not repair either block or choose one because
+it passes. Selection follows the answer's meaning and stated replacement.
+
 This is a restricted environment for reviewed simple Python answers, not a
 guarantee against actively hostile native code or a kernel exploit. Use a
 disposable VM for that threat model. Do not mount credentials or run unknown

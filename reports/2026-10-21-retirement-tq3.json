@@ -1,0 +1,23 @@
+{
+ "date": "2026-10-21",
+ "authority": "owner: \"you can always delete that and try another\" (21 Oct); production Qwen3.6 Q4 kept",
+ "reason": "Free E: for the Qwen3.6 UD-IQ3_S test (about 13.7 GB) with apps open; both files have no scored result.",
+ "retired": [
+  {
+   "path": "E:/llm/models/Qwen3.8-27B-TQ3_4S-v2.gguf",
+   "label": "Qwen3.8-27B TQ3_4S (llama-tq3)",
+   "bytes": 14495191008,
+   "sha256_from_download_manifest": "52ef4a8b947aeb9b4df1d0478b03999380e963aa1151f4bd079973f2fdb64074",
+   "reason": "interrupted by the 19 Oct core-0 machine check; 1.5-2.1 tok/s; never completed a scored audit; dense model over the 20-minute limit",
+   "note": "full size matches download manifest; hash as recorded at download"
+  },
+  {
+   "path": "E:/llm/models/Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
+   "label": "Qwen3.8 DFlash draft Q4_K_M",
+   "bytes": 1143006816,
+   "sha256_from_download_manifest": "1a25c56858e1ebe93f2718ac1d49d1151f9323325c1bbfd6209370f4db131ebd",
+   "reason": "draft model for the retired TQ3 dense trial; drafts were a net loss on MoE and the target is retired",
+   "note": "full size matches download manifest; hash as recorded at download"
+  }
+ ]
+}

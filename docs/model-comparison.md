@@ -1,9 +1,18 @@
 # Current model comparison
 
-Updated 27 October 2026. Components and completion gates matter more than a
+Updated 3 November 2026. Components and completion gates matter more than a
 single leaderboard number. Claude's newer campaign was private; this table
 brings its reviewed summary into the public lab. Results are agent-assessed,
 not independently human-reviewed. It is not a controlled universal ranking.
+
+3 November: Flint Q3_K_XL run C is graded (see the dated note just above the
+table), and Claude's 20-21 October runs now have standalone records
+([audit addendum](#audit-of-claudes-20-21-october-runs-3-november)). Capacity
+note: on this WDDM host, GPU buffers are charged to Windows commit at about
+their own size; see
+[VRAM allocations also consume Windows commit](memory-and-context.md#vram-allocations-also-consume-windows-commit).
+Commit-floor stops and capacity rejections are host-capacity events, not
+model-quality results. No score changes.
 
 26October clarification: the table retains its frozen1200second cohort.
 The owner now permits separately labelled longer accurate coding diagnostics;
@@ -36,11 +45,27 @@ new hardware error. The owned engine is stopped; no complete public total.
 [Collection and history review](../reports/2026-10-27-flint-q3xl-file-workflows.json).
 [Router receipt](../reports/2026-10-27-flint-q3xl-router-limit.json),
 [TS/SQL receipt](../reports/2026-10-27-flint-q3xl-ts-limit.json).
+The separate resident1/40K/output32K control passes greetings75/67seconds and
+completes the1024-capped router in2268.531seconds. Source review finds an
+incorrect empty-dictionary self-test and a claimed read-order mismatch;
+isolated execution is pending while8192/native controls continue. No completed
+quality score is implied. [Capped-case evidence](../reports/2026-10-27-flint-router-budget1024.json).
 The admission
 [rejections](../reports/2026-10-26-flint-admission-rejections.json) are retained.
 Gemma and Qwen IQ3 weights are exact-file retired at 23:25 IST after full hashes,
 recovering 26.19 GiB. All evidence remains; selected Qwen Q4 and Flint/K2 weights
 are preserved. [Retirement receipt](../reports/2026-10-26-reviewed-weight-retirement.json).
+
+3 November: run C grading is complete. In the extended cohort, the 1024-capped
+router scores 38/40 (26 non-code + 12 behavior; 2268.531 s) and the 8192-capped
+router 37/40 (25 + 12; 5438.078 s). Both pass all six frozen behavior groups in
+WSL bubblewrap, and each answer's own tests contain one wrong assertion (6/7).
+The one-point gap lies within reviewer judgment, so the 8192 cap adds 2.4 times
+the time for no measured gain. Native 32K-output reasoning is unscored: the RAM
+guard stopped the server at 6136.2 s after outside desktop memory growth, with
+no visible text and no hardware event. These are extended-diagnostic router
+scores only, not frozen-cohort or full-public results; Flint stays unpromoted.
+[Run C grades](../reports/2026-11-03-flint-runC-grades.json).
 
 | Candidate | Private /36 | Public /60 | Coding /12 | Practical result |
 |---|---:|---:|---:|---|
@@ -70,6 +95,10 @@ are preserved. [Retirement receipt](../reports/2026-10-26-reviewed-weight-retire
 | Bonsai 2 27B PTQ1_0 | Not run | Deadline | Not run | Full GPU, router exceeds 1200 s after one tool turn; retired |
 | LFM2.5 24B-A2B QAD Q4_0 | Deadline | 48 | 6 completed passes of 12 | Private reasoning loop; coding includes deadline/truncation, so 6/12 is task completion, not twelve completed correctness grades; retired 23 October |
 | Qwen3.6 UD-IQ4_XS | Not run | Router 39/40 only | Not run | TS/SQL interrupted by RAM guard; not a complete public score |
+| Qwen3.6 UD-IQ4_XS, CPU34 placement, 21 October | Not run | Not run | Not run | Loaded in 5.72 s; about 1.25 GiB of weights moved from CPU to GPU. Commit floor stop at 23.7 s during the first smoke; no answer. Placement evidence only |
+| Qwen3.6 UD-IQ3_S, CPU34, 21 October | Not run | Router interrupted | Not run | Load test decoded at 12.01 tok/s with 1.9 GiB VRAM free. Run a was capacity-rejected. Run b read all 7 files, produced reasoning only, and stopped at 382.7 s on an nvidia-smi read failure (fail-closed; lowest VRAM 1,152 MiB). Unscored |
+| Qwen3.6 Q4 core-0 baseline, 20 October | Not run | RAM floor stop | Not run | Owner-approved 5 GiB gates. Working set 19.07 GiB, decode 0.3-0.6 chunks/s, RAM floor at 193.0 s. Paging evidence, not a quality result |
+| Strata Qwen Q4, file-backed expert arena (fork c451fbe8), 21 October | Not run | Not run | Not run | 18.23 GiB arena with no commit charge, but engine memory reached 15.98 GiB and the RAM floor (0.364 GiB) tripped at 35.6 s before readiness. Expert pack (b5211998) built, never loaded. [Strata section](tasks/2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md#windows-expert-arena-experiments-21-october-audited-3-november-2026) |
 | Qwen3.6 UD-IQ4_XS,CPU35 bounded64K,24October |29 |55 |First task1200s deadline; eleven unrun |Private725.4s,code6/6 plus extra4/4. Instruction omissions/path contradiction/control-flow misexplanation remain. Native interval problem delivers no code; public SQL/TS bugs and prior RAM stop preserved |
 | Qwen3.6 UD-IQ3_S,38 CPU expert blocks |29 |52 |Two reasoning-only16K output limits; later cases interrupted/unrun |24October: private638.6s, all public workflows complete; alias, TS validation and SQL migration bugs; exact smoke punctuation fails. Separate capped controls appear below |
 | Qwen3.6 UD-IQ3_S,4096 reasoning ceiling |Not collected on this variant |Not collected on this variant |Two completed passes; deliberately stopped before full suite |Intervals105/105 and TTL34/34; native scores above cannot be transferred. Redundant interval work and extra NaN TTL finding remain |
@@ -83,6 +112,7 @@ are preserved. [Retirement receipt](../reports/2026-10-26-reviewed-weight-retire
 | Recursive Flint UD-Q4_K_XL, CPU48/cache1536 |Not run after gate failure |Router1200.031s deadline |Not run after gate failure |Seven valid reads, partial visible answer starts1137s but remains unfinished; memory guards clear |
 | Recursive Flint UD-Q3_K_XL, CPU49/cache512/resident4/32K |Not run |Not run |Not run |Load21s; plain greetings48.375/31.141s, both complete. Peak private3.440GiB; no hardware/resource stop.64K follow-up prepared;32K greetings are not file-quality or long-context validation |
 | Recursive Flint UD-Q3_K_XL, measured32K file-workflow B |Not run |Router/TS output limits; history8/8 extended-only |Not run |History3380.750s,120records; router4095.422s and TS/SQL5039.500s exhaust16384 output tokens with zero visible answer. Required sources delivered;8extra unavailable TS/SQL reads. No full public score; greetings50.328/38.000s. Clean stop/no hardware event. Settings differ from IQ3XXS |
+| Recursive Flint UD-Q3_K_XL, resident1/40K/output32K run C (extended cohort) | Not run | Router 38/40 with 1024 cap, 37/40 with 8192 cap (extended-only); native 32K unscored; no TS/SQL/history in C | Not run | 1024 cap 2268.531 s, 8192 cap 5438.078 s; both pass 6/6 frozen behavior groups, one wrong self-test each (6/7). Native RAM-guard stop at 6136.2 s, 11,221 reasoning tokens, no visible text, no hardware event. Not the 1200 s cohort; no full public total |
 
 ## What changed in Claude's work
 
@@ -158,6 +188,45 @@ silently restarted below its admission checks.
 - Added candidate/runtime pins and exact-file retirement receipts. These
   unpublished changes are preserved; report coverage is still incomplete.
 
+### Audit of Claude's 20-21 October runs (3 November)
+
+Every 20-21 October candidate now has a standalone record:
+- LFM2.5 and Bonsai 2 have new task folders:
+  [LFM2.5 record](tasks/2026-10-20-lfm25/2026-10-20-lfm25-24b-a2b-qad-q4-v0.10.0.md)
+  and [Bonsai 2 record](tasks/2026-10-20-bonsai2/2026-10-20-ternary-bonsai2-27b-pq2-ptq1-v0.10.0.md).
+- The Qwen attempts are appended to the
+  [Qwen record](tasks/2026-10-24-qwen-coverage/2026-10-24-qwen36-v0.9.0.md#2021-october-claude-campaign-runs-audited-3-november-2026).
+- The Strata Windows arena work is appended to the
+  [Strata report](tasks/2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md#windows-expert-arena-experiments-21-october-audited-3-november-2026).
+
+The table rows for Bonsai 2 PQ2_0/PTQ1_0, LFM2.5 and Qwen3.6 UD-IQ4_XS keep
+their 23 October wording. The new 20-21 October rows (IQ4_XS CPU34 placement,
+IQ3_S CPU34, Q4 core-0 baseline and the Strata file arena) sit below the IQ4_XS
+row. No score changed. The saved evidence corrects five earlier statements:
+1. LFM's private loop ran with request overrides top_k 20, min_p 0 and repeat
+   penalty 1.0, not the publisher sampling stated in the private review. Each
+   of the three LFM suites used a different sampler.
+2. LFM coding was graded automatically in WSL bubblewrap before any source
+   review. On review, js_pool's 0/1 comes from a promise that never settles
+   and sql_report's 0/20 from one wrong column.
+3. LFM's intervals deadline happened while the desktop was paging: about
+   4-5 tok/s, against about 23 tok/s on later tasks.
+4. The 21 October IQ3_S run b stopped on a telemetry read failure, not on VRAM
+   below 400 MiB.
+5. Strata's file-backed arena trades commit charge for physical residency. The
+   read-only pack is unmeasured.
+
+Bonsai 2 details from the new record: PQ2_0 cannot load on mainline b11669
+(ggml type 142). On the Prism fork (b10787, 52/65 GPU layers) it decoded at
+2.3-2.7 tok/s and was stopped by hand at about 82 s. PTQ1_0 ran fully on the
+GPU with CPU KV at xhigh effort and delivered all 7 router reads in turn 0 at
+13.1 tok/s; its visible answer starts at 998 s and is unfinished at 1200.016 s.
+Both are unscored and were retired on 21 October. Medium effort and the
+stock-llama.cpp Q2_0 file added upstream on 30 October are untested.
+
+Derivations with source hashes are in the ignored
+`local-data/2026-11-03-campaign-audit/`.
+
 ## Our assessment
 
 Qwen Q4 remains the retained quality reference, not a guarantee of fit under
@@ -216,6 +285,9 @@ runtime and evidence remain. Qwen Q4 stays selected for the owner's workflow.
 - [Qwen3.6 model record and active coverage](tasks/2026-10-24-qwen-coverage/2026-10-24-qwen36-v0.9.0.md)
 - [Higher precision and offload research](../research/reviews/2026-10-24-precision-and-offload.md)
 - [Flint standalone record](tasks/2026-10-23-flint/2026-10-23-recursive-flint-v0.8.0.md)
+  and its [run C grades](../reports/2026-11-03-flint-runC-grades.json) (3 November)
+- [LFM2.5 24B-A2B QAD Q4_0 record](tasks/2026-10-20-lfm25/2026-10-20-lfm25-24b-a2b-qad-q4-v0.10.0.md) (Claude campaign, audited 3 November)
+- [Ternary Bonsai 2 27B record](tasks/2026-10-20-bonsai2/2026-10-20-ternary-bonsai2-27b-pq2-ptq1-v0.10.0.md) (Claude campaign, audited 3 November)
 - [All-model inventory through 17 October](tasks/2026-10-17-complete-model-inventory/2026-10-17-all-models-gemini-and-availability-v0.4.1.md)
 - [Matched Q4/Q6 and expanded candidates](tasks/2026-10-16-memory-and-candidate-expansion/2026-10-16-memory-context-and-expanded-model-tests-v0.4.0.md)
 - [Strata](tasks/2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md)

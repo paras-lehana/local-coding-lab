@@ -37,6 +37,16 @@ It requires Strata's installed Python environment and reviewed upstream
 It refuses a concurrent llama-server. It is experimental, not a generic launcher
 or a replacement for production lifecycle controls.
 
+The optional `stable_native_executable` guard setting names the exact absolute
+native executable. After its first observation, an exit, replacement (including
+PID reuse) or overlapping second engine ends the owned experiment. Startup is
+limited by `native_start_timeout_seconds` (default300). The receipt is
+`native-process.json`; frontend HTTP health alone is not proof of model readiness.
+This prevents a request-triggered frontend retry from silently becoming part
+of one benchmark. Configurations without the setting retain their old behavior.
+The27October addition is prepared; offline and harmless-process checks must
+pass after current inference stops before the new Strata trial uses it.
+
 ## Source fork and actual progress
 
 [Experimental fork](https://github.com/paras-lehana/Strata/tree/experiment/qwen36-no-mtp),
@@ -112,10 +122,13 @@ Its float conversion helpers and the optional MTP tools need llama.cpp's
 set `STRATA_GGUF_PY` in the preparation process to that checkout's `gguf-py`
 directory. This host reuses the already verified GGML/llama source checkout;
 the Python import and Q2_0 enum check pass. No global Python package is replaced.
-The experimental Flash-Next configuration must use a bounded resident expert
-budget with apps open. Its `--kv-resident` and `--kv-grow` are different modes;
-elastic growth requires every expert in RAM and cannot be assumed compatible
-with the bounded resident tier. These controls do not apply to the Qwen3.6 path.
+The historical Flash-Next configuration used a bounded expert-copy budget.
+The new0.1.50 plan starts with plain mapped experts to avoid a full RAM copy.
+Its `--kv-resident` and `--kv-grow` are different modes; native source excludes
+bounded expert-copy mode from growth but does not explicitly exclude plain
+mapping. Source eligibility is not proof of actual growth or acceptable paging:
+observe enable/grow/trim events, expert slots and retained facts before claiming
+success. These controls do not apply to the old Qwen3.6 path.
 
 The native Flash pack requires `--spec 2` or greater even without MTP. To
 measure no-draft inference, omit `--mtp`, use `--suffix-draft 0` and confirm

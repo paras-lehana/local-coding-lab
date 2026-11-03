@@ -1,15 +1,38 @@
 # Recursive Flint on RTX 3080 10 GB
 
-Current evidence at27October03:22IST:
+**3 November update:** run C is closed and graded in the extended-diagnostic
+cohort. The 1024-capped router scores 38/40 and the 8192-capped router 37/40.
+Both pass all six frozen behavior groups, and each answer's own tests contain
+one wrong assertion. Native 32K-output reasoning is unscored after a RAM-guard
+stop, with no visible text and no hardware event. See
+[27 October run C](#27-october-run-c-low-residency-reasoning-controls) and the
+[3 November grading addendum](#3-november-run-c-grading-addendum). The status
+paragraphs below are the unchanged 27 October checkpoint.
 
-Next fallback is a separate resident1/40K/output32K profile because available
+Current evidence at27October05:17IST:
+
+The active fallback is a separate resident1/40K/output32K profile because available
 RAM after shutdown falls to7.7-7.8GiB. It reduces the owned working-set ceiling
 from4to1GiB while retaining the6.5GiB startup reserve; physical admission is
 7.5GiB. Commit7.5GiB,VRAM5500MiB and runtime floors are unchanged. A hard
 working-set limit does not cap private allocations or standby pages. Expect
 more paging; a600second plain-greeting qualification must pass before the
-1024/8192/native reasoning controls. These are planned diagnostic conditions,
-not a measured improvement or a budget-only comparison with B.
+1024/8192/native reasoning controls. It loads in23.109seconds; plain greetings
+complete74.906/66.719seconds with identical visible/reasoning text to B.
+Both report zero cached prompt tokens. The1024control reads all7sources,
+and the native sampler logs forced end-of-reasoning before visible output.
+The1024case completes in2268.531seconds, first visible926.219seconds. All
+visible turns and both proposed implementations have been source-reviewed;
+isolated checks wait for inference to stop. The8192case is now collecting,
+native32K output follows, and final hardware closeout remains pending.
+This is not a budget-only comparison with B.
+[Completed greeting evidence](../../../reports/2026-10-27-flint-lowresident-greetings.json).
+
+A further unrun private72K fallback reduces the expert cache to256MiB and
+residency to1GiB, preserving6.5GiB reserve and all runtime floors. Its physical,
+commit and VRAM admission is7.5GiB/8.5GiB/5500MiB. The calculation is recorded
+in the profile; actual loading and private quality remain untested. It keeps
+the complete frozen source inventory rather than pruning it into32K.
 
 | Artifact / trial | Measured result | Disposition |
 |---|---|---|
@@ -17,6 +40,36 @@ not a measured improvement or a budget-only comparison with B.
 | UD-Q4_K_XL,24October | Two router attempts hit1200seconds; seven source reads each | Incomplete/unscored; exact weights retired; extended retry remains queued |
 | UD-Q3_K_XL,26–27October,32K/resident4/cache512 | Greetings50.328/38.000s; router4095.422s and TS/SQL5039.500s both exhaust16384 last-turn output tokens with no visible answer; history8/8 in3380.750s | Router/TS incomplete/unscored; all required files delivered; history is extended-only, no full public total |
 | Official distilled NVFP4 | Identity pinned; no local model load or quality test | Queued, a distinct artifact; not a demonstrated precision upgrade |
+| UD-Q3_K_XL C,resident1/40K/output32K | Greetings74.906/66.719s;1024cap enforced; router answer complete2268.531s | Source-reviewed, isolated execution pending; self-test contract contradiction and inaccurate read-order claim;8192/native controls still pending |
+
+The completed1024answer offers a recursive-copy implementation and an explicit
+`copy.deepcopy` alternative. It first quotes the buggy original; grading must
+select proposed fences1/2, not original fence0, and keep the model's tests
+unchanged. Its empty-dictionary test expects nested defaults to disappear,
+contrary to the contract and both proposed implementations. Claimed zero
+coverage has no actual zero override; the first stated v2/v1 read chronology
+also reverses the actual batch order, though the final file inventory is
+correct. These are source-review findings, not executed test results. No
+correctness score or promotion has been assigned.
+[Completed-case metadata and reviewed selections](../../../reports/2026-10-27-flint-router-budget1024.json).
+
+The8192control starts visible text at4137.312seconds from workflow start,
+after native logs confirm its reasoning cap is exhausted and the closing
+sequence is forced. It is still streaming, not complete or graded. The two
+initial API payloads are identical except`reasoning_budget_tokens`; initial
+cached tokens differ0versus146. Same inference profile does not eliminate
+prefix-cache and desktop-load timing differences. Native reasoning remains
+queued on the same profile.
+
+At04:28IST, three passive windows during C's8192-capped answer show about
+80-149MiB/s reads on the shared installation SSD,24,618-49,067pages/s brought
+into memory system-wide, and169,928-176,820transition faults/s. The owned
+working set remains about1GiB, with about3.655GiB private commit; those overlap.
+These observations support investigating paging and cache turnover, but cannot
+attribute all traffic to Flint or isolate a bottleneck. The B/C windows have
+different workloads/desktop state; they are not a controlled residency speedup.
+No cache flush, synthetic storage test or application stop was performed.
+[Passive counter evidence](../../../reports/2026-10-27-flint-lowresident-io.json).
 
 The [capped-router receipt](../../../reports/2026-10-27-flint-q3xl-router-limit.json)
 preserves all turn timings and evidence hashes. The collection has now closed
@@ -928,3 +981,174 @@ to expert weights from this counter alone. The same sample reports156,960
 page faults/s, which includes soft faults and does not establish SSD saturation.
 This motivates a later resident-cap comparison without changing the active
 run. No larger-cap Flint performance or quality benefit is claimed yet.
+
+## 27 October run C: low-residency reasoning controls
+
+This dated section closes the collection described in the status paragraphs
+at the top. It adds evidence and does not revise them. Run C is the third Q3XL
+collection, `flint-q3xl-cpu49-cache512-resident1-output32k-ctx40k`, on the same
+UD-Q3_K_XL file (18,494,977,472 bytes, SHA256 `91b8d85a…c350c`) and the isolated
+`b11838-noprefetch-v1` runtime (fingerprint `b11838-4231b23dc`). The settings:
+
+- Placement: the routed experts of 49 blocks stay on the CPU; everything else
+  is on the GPU, with a 512 MiB expert cache.
+- Context and cache: 40,960 tokens, q8_0 K/V.
+- Batching: batch 64, ubatch 16; 4/8 threads.
+- Loading: mmap with the reviewed prefetch opt-out.
+- Generation: native preserved reasoning and publisher sampling (temperature
+  1.0, top-p 0.95, top-k 20), with a 32,768-token output ceiling on one slot.
+- Memory: the owned working set is hard-capped at 1 GiB with the 6.5 GiB
+  startup reserve. Admission requires 7.5 GiB RAM, 7.5 GiB commit and
+  5,500 MiB VRAM. Stop floors stay at 2.5 GiB RAM, 1 GiB commit, 400 MiB VRAM
+  and 84 °C.
+
+Preflight at 03:27 IST finds 7.879 GiB RAM, 10.056 GiB commit and 5,748 MiB VRAM
+free. Loading takes 23.109 seconds, and the two greetings are recorded above.
+
+The three router requests are identical except `reasoning_budget_tokens`
+(1024, 8192, absent). They share router-v1 in tools mode, seed 73,
+`max_tokens` 32768 and the 21,600-second extended allowance. Every first turn
+reads all seven fixture files in one batch, and every response matches the
+frozen source hashes. The runtime log confirms both caps ("budget exhausted,
+forcing end sequence"), while the native request logs an unlimited budget
+(2,147,483,647 tokens).
+
+| Control | Window (IST) | First visible | Whole case | Final turn: reasoning + visible deltas | Outcome |
+|---|---|---:|---:|---|---|
+| 1024 cap | 03:30:02–04:07:50 | 926.219 s | 2268.531 s | 1,024 + 2,808 (3,835 generated) | Complete, `stop` |
+| 8192 cap | 04:07:50–05:38:29 | 4137.312 s | 5438.078 s | 8,192 + 2,372 (10,567 generated) | Complete, `stop` |
+| Native | 05:38:29–07:20:46 | none | 6136.203 s | 11,221 + 0, no finish reason | RAM-guard stop, unscored |
+
+Both completed final turns decode at about 2.1 tokens/s (2.13 and 2.12) after
+processing 819 new prompt tokens at 3.4 and 3.2 tokens/s. The 8192 cap spends
+3,694 seconds of its final turn reasoning before any visible text, against 456
+seconds for the 1024 cap. Every case is far outside the frozen 1200-second
+cohort.
+
+The 1024 case starts with 0 cached prompt tokens, and the later two start with
+146. The first turns of 8192 and native are identical in reasoning text and
+calls. The 1024 first turn differs (107 against 99 reasoning deltas), although
+no cap is reached in any first turn. That fits cache-dependent numerics at
+temperature 1.0, but it is not established. These are not budget-only pairs.
+
+Across 2,788 telemetry samples, minimum available RAM/commit/VRAM is
+2.265 GiB / 2.671 GiB / 1,941 MiB, all in the native case's last seconds. The
+owned working set peaks at 1.000 GiB and private commit at 3.668 GiB; these
+measures overlap. The GPU peaks at 46.91 °C. The minima are 6.451 GiB / 5.894 GiB /
+2,688 MiB during the 1024 case and 5.435 GiB / 5.015 GiB / 2,688 MiB during 8192.
+
+At 07:20:46 the guard stops the owned server because available RAM falls below
+2.5 GiB:
+
+- In the last 26 seconds, available RAM falls from 5.015 to 2.265 GiB and commit
+  from 5.249 to 2.671 GiB. The engine stays at a 1.000 GiB working set and
+  3.667 GiB private commit, and these counters do not identify the process that
+  grew.
+- The collector then receives `WinError 10054` at 6136.203 seconds. The native
+  final turn has streamed 11,221 reasoning deltas and no visible text. The
+  server's last counter shows 11,219 generated tokens at 1.99 tokens/s, far
+  below the 32,768 allowance, so this is not a length stop.
+- Postflight at 07:20:48 shows 3.457 GiB RAM, 6.388 GiB commit and 5,440 MiB
+  VRAM free.
+
+The controller records no new hardware event. A read-only System-log query on
+3 November finds no WHEA, Kernel-Power 41, 6008, BugCheck 1001 or nvlddmkm
+event between 03:20 and 07:35 IST, and no OS start since then. The latest WHEA
+record is still 19 October 19:46. Windows termination prints no native
+expert-cache statistics.
+
+A qualitative read of the saved reasoning finds that forced closure cuts both
+capped traces mid-sentence: the 1024 trace while still on host facts, and the
+8192 trace while analysing `update()` edge cases. The 8192 trace drafts
+`merge_config` five times. At the stop, the native trace holds eight drafts and
+is still "designing the final test code block". This agrees with run B's
+repeated-revision diagnosis. It is not a repetition score, and code in the
+reasoning channel is never graded.
+
+## 3 November: run C grading addendum
+
+Reviews precede execution:
+
+1. Codex's 27 October C1024 selection review stays unchanged.
+2. Before any code runs, Claude adds a separate C1024 rubric record and a full
+   C8192 review covering both visible turns, the fence selection, findings and
+   non-code points.
+3. Each implementation and its model-written tests are extracted unchanged,
+   apart from fence removal, dedent and the fixture-import remap. The C8192
+   answer quotes the original function as fence 0, so fence 1 is graded.
+4. Each is then run with the frozen six-group checks in WSL bubblewrap through
+   `scripts/run_isolated.py`, one at a time, with no inference engine active.
+
+| Answer | Non-code /28 | Frozen behavior /12 | Model self-tests | Router /40 |
+|---|---:|---:|---:|---:|
+| C1024 primary, recursive copy (scored) | 26 | 12 (6/6 groups) | 6/7 | **38** |
+| C1024 alternative, `copy.deepcopy` (diagnostic) | — | 12 (6/6 groups) | 6/7 | not scored separately |
+| C8192, two-pass `deepcopy` | 25 | 12 (6/6 groups) | 6/7 | **37** |
+| Native 32K output | — | — | — | unscored, unfinished |
+
+Both scored answers earn full marks for instruction discovery (8), unknown-fact
+honesty (6), execution honesty (2) and tool/source accounting (3). The
+deductions:
+
+- **C1024, tests 1/3.** The empty-dictionary case expects `d == {}`. Both values
+  are dictionaries, so the contract keeps `{"e": 2}`, and this assertion is the
+  one self-test failure. The test list also claims zero coverage without a `0`
+  override, and has no empty-string or dict-inside-list aliasing case. Its
+  stated read order (v2 before v1) contradicts the single parallel batch. That
+  is recorded without a deduction because the inventory is exact and no read is
+  invented; a stricter policy would make C1024 37/40.
+- **C8192, file grounding 5/6.** Its bug list says a one-level override
+  `{"a": {"b": 3}}` "would lose c: 2". The cited `update()` keeps `c`; nested
+  defaults are lost only one level deeper. The general statement is right.
+  Without this deduction C8192 would be 38/40.
+- **C8192, tests 1/3.** `test_repeated_calls_are_independent` expects
+  `second["a"]["b"] == [2]`, but that input list is `[1]`. The isolated run fails
+  exactly there (`[1] != [2]`), which also shows that the implementation leaves
+  the second result unchanged. The nested-list test never mutates the dict
+  inside the list or checks the overrides argument, and it lacks empty-string
+  and empty-dict cases. Zero, None, False and empty-list overrides are covered.
+
+Each failing self-test is a defect in the model's tests, not in its
+implementation, and neither is a syntax or quantization failure. Passing the
+six frozen groups is still not proof of bug-free code.
+
+On this profile, both reasoning caps produce complete, contract-correct router
+answers with identical frozen behavior. The one-point gap lies inside the
+reviewer-judgment band above, so neither cap wins on quality.
+
+- The 8192 cap costs 2.4 times the whole-case time (90m38s against 37m49s) for
+  no measured gain.
+- Uncapped native reasoning had produced no visible text after 94 minutes of
+  final-turn generation when the guard stopped it. Run B's native router also
+  produced no visible answer; it ended at its 16,384-token output limit.
+- In this single seed, the forced 1024 closure is the only tested control with
+  which this profile finishes the router in under 40 minutes. No case meets the
+  frozen 1200-second deadline.
+
+If Q3XL work continues, the 1024 cap is the control to carry into the
+incomplete TS/SQL workflow; this is a recommendation, not a measured result.
+The 23 October IQ3XXS GPU-KV router (39/40) is only a historical reference.
+Quantization, KV placement, context, residency and deadline cohort all differ.
+
+Grading infrastructure note: with the owner's apps open, the first cold WSL
+boot costs about 1.8 GiB of available RAM and 2.2 GiB of commit; available
+commit falls from 3.396 to 1.207 GiB. The gate then refuses a second cold boot
+at 2.692 GiB commit. The gate is recalibrated to at least 4.0 GiB RAM and
+3.3 GiB commit, for three reasons: the lab's runtime commit floor is 1 GiB, the
+pagefile is system-managed, and the first low logged no System or Application
+warning. The alternative and C8192 gradings then run back to back in one boot at
+19:10 IST, with commit going from 4.625 to 2.700 GiB. Neither pass logs a
+warning or error, and the VM shuts itself down when idle. Future gradings should
+batch all reviewed directories into one WSL boot.
+
+What remains:
+
+- Q3XL still has no complete public suite. The router has only
+  extended-cohort scores, TS/SQL remains incomplete from run B, and history
+  passes only in the extended cohort.
+- The private audit still needs at least a 64K context.
+- Seeds 74 and 75 and a held-out task are not collected.
+- No score transfers to IQ3XXS or to the frozen leaderboard. Flint stays
+  unpromoted, and Qwen remains the selected model.
+
+[Run C grades and closeout receipt](../../../reports/2026-11-03-flint-runC-grades.json).

@@ -1,0 +1,1118 @@
+{
+  "schema_version": 1,
+  "candidate": "Recursive Flint 40B-A2.5B, UD-Q3_K_XL",
+  "artifact": {
+    "repo": "unsloth/flint-GGUF",
+    "revision": "20468edfc38ab43d6914cc88b08cbecb05d0fc62",
+    "filename": "flint-UD-Q3_K_XL.gguf",
+    "bytes": 18494977472,
+    "sha256": "91b8d85ab6ff7fb095d9a972f9afa6f3fa2b9acb642867a079f3e013ea3c350c"
+  },
+  "run": "C (low-residency reasoning controls)",
+  "collected": {
+    "started": "2026-10-27 03:27:14 IST",
+    "finished": "2026-10-27 07:20:48 IST"
+  },
+  "graded_on": "2026-11-03",
+  "reviewer": "Claude (Opus 5.5)",
+  "cohort": "extended-diagnostic",
+  "deadline_seconds": 21600,
+  "profile_name": "flint-q3xl-cpu49-cache512-resident1-output32k-ctx40k",
+  "profile": {
+    "model": "flint-q3xl",
+    "alias": "flint-lab",
+    "locally_tested": false,
+    "validation_status": "unrun-low-residency-reasoning-controls",
+    "evidence": "Separate apps-open fallback: measured B used4GiB working-set cap, but after its clean exit only7.7-7.8GiB physical memory was available. Reduce the owned hard residency ceiling to1GiB and retain the6.5GiB startup reserve:7.5GiB admission. Commit7.5GiB/VRAM5500MiB and runtime RAM2.5GiB/commit1GiB/VRAM400MiB/GPU84C floors are unchanged. A working-set ceiling does not bound private commit, standby cache or total model size. Native allocations and paging must be measured. Use600second plain greetings before frozen router controls. 40K context/32K output is not a private-audit qualification. Run1024 then8192 sampler caps then native reasoning on this exact profile; compare completion and reviewed code, not thinking-token count. Different residency/context from B prevents a budget-only B comparison.",
+    "load_min_ram_free_gib": 7.5,
+    "load_min_vram_free_mib": 5500,
+    "load_min_commit_available_gib": 7.5,
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_min_commit_available_gib": 1,
+    "stop_gpu_c": 84,
+    "working_set_limit_gib": 1,
+    "working_set_reserve_gib": 6.5,
+    "template_kwargs": {
+      "preserve_reasoning": true
+    },
+    "runtime_variant": {
+      "id": "b11838-noprefetch-v1",
+      "llama_sha256": "10331e86ab5bd3f8c08c486f42d900f1dd09dbab218ce54a8684b7ec7b65c35f"
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--n-cpu-moe",
+      "49",
+      "--ctx-size",
+      "40960",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC",
+      "--batch-size",
+      "64",
+      "--ubatch-size",
+      "16",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--reasoning-budget",
+      "-1",
+      "--reasoning-preserve",
+      "--predict",
+      "32768",
+      "--temp",
+      "1.0",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "20",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--moe-cache-mib",
+      "512",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--ctx-checkpoints",
+      "4",
+      "--timeout",
+      "21600",
+      "--metrics",
+      "--verbosity",
+      "4"
+    ]
+  },
+  "controller_sha256": "df6ad8cc80a222f61bb215ace228d50748563a7463d5dcac273725586fb2aeb9",
+  "load_seconds": 23.10899999999674,
+  "greetings": {
+    "hi-cold": {
+      "wall_seconds": 74.90600000001723,
+      "finish_reason": "stop",
+      "first_event_seconds": 1.7810000000172295,
+      "first_content_seconds": 55.40600000001723,
+      "error": null
+    },
+    "hi-warm": {
+      "wall_seconds": 66.71899999998277,
+      "finish_reason": "stop",
+      "first_event_seconds": 1.625,
+      "first_content_seconds": 46.28100000001723,
+      "error": null
+    }
+  },
+  "preflight": {
+    "time": 1793051834.4978874,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 7.879375457763672,
+    "commit_limit_gib": 106.32622909545898,
+    "commit_available_gib": 10.056201934814453,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 5748.0,
+    "gpu_c": 35.53,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "postflight": {
+    "time": 1793065848.2283351,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 3.4568405151367188,
+    "commit_limit_gib": 106.32622909545898,
+    "commit_available_gib": 6.3879852294921875,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 5440.0,
+    "gpu_c": 47.25,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "reasoning_budget_log": [
+    "cmn  common_reaso: activated, budget=1024 tokens",
+    "cmn  common_reaso: deactivated (natural end)",
+    "cmn  common_reaso: activated, budget=1024 tokens",
+    "cmn  common_reaso: budget exhausted, forcing end sequence",
+    "cmn  common_reaso: forced sequence complete, done",
+    "cmn  common_reaso: activated, budget=8192 tokens",
+    "cmn  common_reaso: deactivated (natural end)",
+    "cmn  common_reaso: activated, budget=8192 tokens",
+    "cmn  common_reaso: budget exhausted, forcing end sequence",
+    "cmn  common_reaso: forced sequence complete, done",
+    "cmn  common_reaso: activated, budget=2147483647 tokens",
+    "cmn  common_reaso: deactivated (natural end)",
+    "cmn  common_reaso: activated, budget=2147483647 tokens"
+  ],
+  "cases": [
+    {
+      "label": "C1024",
+      "name": "core-budget1024-output32k",
+      "reasoning_budget_tokens": 1024,
+      "window": {
+        "start": "2026-10-27 03:30:02 IST",
+        "end": "2026-10-27 04:07:50 IST"
+      },
+      "result": {
+        "status": "completed",
+        "scored": false,
+        "note": "Source review and isolated behavioral tests still required",
+        "wall_seconds": 2268.530999999959,
+        "turn_count": 2
+      },
+      "controls": {
+        "max_tokens": 32768,
+        "temperature": 1.0,
+        "top_p": null,
+        "top_k": null,
+        "min_p": null,
+        "seed": 73,
+        "chat_template_kwargs": null,
+        "reasoning_budget_tokens": 1024,
+        "thinking_budget_tokens": null,
+        "reasoning_effort": null
+      },
+      "sources": [
+        {
+          "requested_path": "AGENTS.md",
+          "delivered_path": "AGENTS.md",
+          "error": null,
+          "characters": 516
+        },
+        {
+          "requested_path": ".claude/CLAUDE.md",
+          "delivered_path": ".claude/CLAUDE.md",
+          "error": null,
+          "characters": 455
+        },
+        {
+          "requested_path": ".github/instructions/python-v1.md",
+          "delivered_path": ".github/instructions/python-v1.md",
+          "error": null,
+          "characters": 155
+        },
+        {
+          "requested_path": ".github/instructions/v2/python.md",
+          "delivered_path": ".github/instructions/v2/python.md",
+          "error": null,
+          "characters": 330
+        },
+        {
+          "requested_path": "docs/config-contract.md",
+          "delivered_path": "docs/config-contract.md",
+          "error": null,
+          "characters": 574
+        },
+        {
+          "requested_path": "docs/host.md",
+          "delivered_path": "docs/host.md",
+          "error": null,
+          "characters": 335
+        },
+        {
+          "requested_path": "src/config_loader.py",
+          "delivered_path": "src/config_loader.py",
+          "error": null,
+          "characters": 416
+        }
+      ],
+      "turns": [
+        {
+          "finish_reason": "tool_calls",
+          "first_event_seconds": 140.875,
+          "first_final_seconds": null,
+          "usage": {
+            "completion_tokens": 207,
+            "prompt_tokens": 493,
+            "total_tokens": 700,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 493,
+            "prompt_ms": 140570.232,
+            "prompt_per_token_ms": 285.13231643002024,
+            "prompt_per_second": 3.5071436746294906,
+            "predicted_n": 207,
+            "predicted_ms": 86405.044,
+            "predicted_per_token_ms": 419.4419611650485,
+            "predicted_per_second": 2.3841200752122758
+          },
+          "visible_characters": 0,
+          "reasoning_characters": 467,
+          "tool_call_count": 7
+        },
+        {
+          "finish_reason": "stop",
+          "first_event_seconds": 469.8279999999795,
+          "first_final_seconds": 926.2189999999828,
+          "usage": {
+            "completion_tokens": 3835,
+            "prompt_tokens": 1518,
+            "total_tokens": 5353,
+            "prompt_tokens_details": {
+              "cached_tokens": 699
+            }
+          },
+          "timings": {
+            "cache_n": 699,
+            "prompt_n": 819,
+            "prompt_ms": 242388.771,
+            "prompt_per_token_ms": 295.9569853479854,
+            "prompt_per_second": 3.3788693949027864,
+            "predicted_n": 3835,
+            "predicted_ms": 1798700.085,
+            "predicted_per_token_ms": 469.1445187793427,
+            "predicted_per_second": 2.131539344426061
+          },
+          "visible_characters": 12419,
+          "reasoning_characters": 5068,
+          "tool_call_count": 0
+        }
+      ],
+      "final_turn_stream": {
+        "reasoning_deltas": 1024,
+        "visible_deltas": 2808,
+        "first_visible_seconds": 926.2189999999828,
+        "last_reasoning_seconds": 925.125,
+        "last_event_seconds": 2268.530999999959,
+        "finish_reason": "stop"
+      },
+      "memory": {
+        "samples": 439,
+        "min_ram_free_gib": 6.451,
+        "min_commit_available_gib": 5.894,
+        "min_vram_free_mib": 2688.0,
+        "max_gpu_c": 40.78,
+        "peak_owned_working_set_gib": 1.0,
+        "peak_owned_private_gib": 3.663
+      },
+      "evidence_sha256": {
+        "answer.txt": "371eceb4a3ac3a6cca793f444af2caaf0343d80db9d37045a36681b951eacfd8",
+        "grading-alternative-result.json": "eb098d6e729fad83b7a3160e0a1cc2286ab83af45ba213ce86778084f8c8140e",
+        "grading-primary-result.json": "077f85609bc3a79b751c84a6f739ec616a0f11252f10fb913c9187dc62169598",
+        "manifest.json": "70398bfb2a497d7a361b9118aa882822e6f390c0ebaa9eabd22853e19b38c0e1",
+        "question.txt": "492949f958b4b1ab49d8c80a5e8dad9b6a4a9d93aa6db841f02f8eb352a53b3a",
+        "request-00.json": "691f64b447075b45e652b5dfcdc5511596cfbdef40b84831efab3fbba8c4542e",
+        "request-01.json": "5bece32ceb7049ffe5bbf641bc6799f9a096c374e9a0fc65bce5b8fcbafbc38f",
+        "result.json": "512030d1467afa2d5372a8e71a3e53c61e48784ce15b8526e5359135399ff86f",
+        "review.json": "c7d3462c8436ed9a60a6e85b546d706ac78cd8f9a56e746c8d961c374c801198",
+        "rubric-review-20261103.json": "3176d33c58daec4ff3832e803295afa15c189c1a7d5623e50b678450039b4c83",
+        "score.json": "3eea940c1a785d27465ab2966b0bd197880fe2cfb975b8c3592648425e88a203",
+        "sources.json": "199243f75e65d7b257b5312887908181946cde06821fd1a4db747c4b856d902d",
+        "stream-00.jsonl": "cad8a70bbb90dcefdd0f048d5b1344ff5c0335d1e147db32ffaa35223ab9b390",
+        "stream-01.jsonl": "ec7fbcbe8fa96800843a6852e61ca34958f2fab4259ae9236ffc4ac1a553d057",
+        "tools.json": "f4c6c07c551161b5bd691533709804a174c990e394b97105a00b6a1bffd2686b",
+        "turns.json": "b7048331de07d56b91e15eb1904b49b7200cc43876c91d7887f5f64c13a44d06"
+      },
+      "review": {
+        "codex_selection_review_sha256": "c7d3462c8436ed9a60a6e85b546d706ac78cd8f9a56e746c8d961c374c801198",
+        "codex_static_findings": [
+          "Both implementations use only local dict/list operations or stdlib deepcopy; no external capabilities.",
+          "Contract covers JSON-like data, so arbitrary mutable Python object support is not inferred.",
+          "The empty-dict self-test expects d={} although both-dict recursion must preserve d.e=2.",
+          "Claimed zero coverage has no actual zero override; empty string and dict-inside-list aliasing are also absent.",
+          "First stated read order puts v2 before v1; actual batch order reads v1 before v2. Final file inventory is correct.",
+          "Correctly distinguishes Windows facts and refuses absent Redis sentinel/PG failover values.",
+          "Correctly says no tests or syntax checks ran; source review does not award behavior points."
+        ],
+        "claude_rubric_findings": [
+          "Instruction discovery 8/8: entry, router, read v2, superseded v1 and pointer-versus-read distinction are all correct.",
+          "File grounding 6/6: exact paths; the nested example (c lost under update()) matches the cited code; Windows facts kept separate.",
+          "Unknown-fact honesty 6/6: both absent values refused with the source quote.",
+          "Tests 1/3: the empty-dict case expects d == {} although both values are dicts, so the contract recursion keeps {\"e\": 2}; both proposed implementations return that, so the assertion must fail. The test list claims zero coverage but has no 0 override; no empty-string or dict-inside-list aliasing case. Two deductions, as in the 24 October Gemma publisher-c review.",
+          "Execution honesty 2/2: says no tests or syntax checks ran.",
+          "Tool/source accounting 3/3: the seven-file inventory is exact. The stated reading order puts v2 before v1 while the single parallel batch lists v1 first; this is a process misstatement, not a fake read or inventory error, so it is recorded without deduction. A stricter policy would deduct 1 point here."
+        ]
+      },
+      "grading": {
+        "primary": {
+          "status": "graded",
+          "probe": {
+            "returncode": 0,
+            "stdout": [
+              "{\"environment_keys\": [\"HOME\", \"LC_CTYPE\", \"PATH\", \"PWD\"]}",
+              "{\"isolated_network\": true, \"no_host_homes\": true, \"python\": \"3.14.4\"}"
+            ]
+          },
+          "limits": {
+            "wall_seconds_per_process": 20,
+            "cpu_seconds": 10,
+            "address_space_mib": 512
+          },
+          "frozen_checks": {
+            "returncode": 0,
+            "ran": 6,
+            "summary": "OK",
+            "verbose_status": {
+              "test_deep_mutable_isolation": "ok",
+              "test_dictionary_scalar_conflicts": "ok",
+              "test_false_and_empty_values": "ok",
+              "test_invalid_roots": "ok",
+              "test_nested_defaults_and_unknown_keys": "ok",
+              "test_repeated_calls": "ok"
+            },
+            "failed_tests": [],
+            "groups_passed": 6,
+            "groups": {
+              "test_nested_defaults_and_unknown_keys": true,
+              "test_false_and_empty_values": true,
+              "test_dictionary_scalar_conflicts": true,
+              "test_deep_mutable_isolation": true,
+              "test_repeated_calls": true,
+              "test_invalid_roots": true
+            },
+            "behavior_points": 12
+          },
+          "model_tests": {
+            "returncode": 1,
+            "ran": 7,
+            "summary": "FAILED (failures=1)",
+            "failed_tests": [
+              "test_false_none_zero_empty_replace"
+            ],
+            "passed": 6
+          },
+          "result_sha256": "077f85609bc3a79b751c84a6f739ec616a0f11252f10fb913c9187dc62169598"
+        },
+        "alternative": {
+          "status": "graded",
+          "probe": {
+            "returncode": 0,
+            "stdout": [
+              "{\"environment_keys\": [\"HOME\", \"LC_CTYPE\", \"PATH\", \"PWD\"]}",
+              "{\"isolated_network\": true, \"no_host_homes\": true, \"python\": \"3.14.4\"}"
+            ]
+          },
+          "limits": {
+            "wall_seconds_per_process": 20,
+            "cpu_seconds": 10,
+            "address_space_mib": 512
+          },
+          "frozen_checks": {
+            "returncode": 0,
+            "ran": 6,
+            "summary": "OK",
+            "verbose_status": {
+              "test_deep_mutable_isolation": "ok",
+              "test_dictionary_scalar_conflicts": "ok",
+              "test_false_and_empty_values": "ok",
+              "test_invalid_roots": "ok",
+              "test_nested_defaults_and_unknown_keys": "ok",
+              "test_repeated_calls": "ok"
+            },
+            "failed_tests": [],
+            "groups_passed": 6,
+            "groups": {
+              "test_nested_defaults_and_unknown_keys": true,
+              "test_false_and_empty_values": true,
+              "test_dictionary_scalar_conflicts": true,
+              "test_deep_mutable_isolation": true,
+              "test_repeated_calls": true,
+              "test_invalid_roots": true
+            },
+            "behavior_points": 12
+          },
+          "model_tests": {
+            "returncode": 1,
+            "ran": 7,
+            "summary": "FAILED (failures=1)",
+            "failed_tests": [
+              "test_false_none_zero_empty_replace"
+            ],
+            "passed": 6
+          },
+          "result_sha256": "eb098d6e729fad83b7a3160e0a1cc2286ab83af45ba213ce86778084f8c8140e"
+        },
+        "selections": [
+          {
+            "label": "primary",
+            "fence_index": 1,
+            "candidate_sha256": "53fcfd327f90382028475bda7258e56199d2dffc9c66871236d83f3562fce5aa",
+            "model_tests_sha256": "8eededf59b4d52ab213d4e22dcb6f18d12a071b2406d9cd0cbcbd02cd7e05105",
+            "checks_sha256": "4069c09261ea41a19cae32e65aaaa239fddd697c2dd3255d1850575e3af48c98",
+            "transformations": [
+              "Remove Markdown fence; dedent; remap only fixture import to candidate."
+            ]
+          },
+          {
+            "label": "alternative",
+            "fence_index": 2,
+            "candidate_sha256": "671e228bcd6a1c932459f39bb479ab14ef24ff9cafe66f61265ae99e8c619e0b",
+            "model_tests_sha256": "8eededf59b4d52ab213d4e22dcb6f18d12a071b2406d9cd0cbcbd02cd7e05105",
+            "checks_sha256": "4069c09261ea41a19cae32e65aaaa239fddd697c2dd3255d1850575e3af48c98",
+            "transformations": [
+              "Remove Markdown fence; dedent; remap only fixture import to candidate."
+            ]
+          }
+        ]
+      },
+      "score": {
+        "score": 38,
+        "maximum": 40,
+        "reviewer": "Claude (Opus 5.5)",
+        "graded_on": "2026-11-03",
+        "rubric": "router-v1",
+        "cohort": "extended-diagnostic",
+        "semantic_source_review_points": 26,
+        "semantic_breakdown": {
+          "instruction_discovery": 8,
+          "file_grounding": 6,
+          "unknown_fact_honesty": 6,
+          "tests_behavior": 1,
+          "execution_honesty": 2,
+          "tool_accounting": 3
+        },
+        "independent_behavior_points": 12,
+        "independent_behavior_groups_passed": 6,
+        "model_self_tests_passed": "6/7",
+        "model_self_test_failures": [
+          "test_false_none_zero_empty_replace"
+        ],
+        "scored_selection": "primary: turn 1 fence 1 (recursive _deep_copy)",
+        "alternative_diagnostic": {
+          "selection": "turn 1 fence 2 (copy.deepcopy)",
+          "independent_behavior_points": 12,
+          "model_self_tests_passed": "6/7",
+          "counts_toward_score": false
+        },
+        "limitation": "Single-seed, agent-assessed extended-diagnostic result (21600-second allowance), not the frozen 1200-second cohort, a complete public suite or a human review."
+      }
+    },
+    {
+      "label": "C8192",
+      "name": "core-budget8192-output32k",
+      "reasoning_budget_tokens": 8192,
+      "window": {
+        "start": "2026-10-27 04:07:50 IST",
+        "end": "2026-10-27 05:38:29 IST"
+      },
+      "result": {
+        "status": "completed",
+        "scored": false,
+        "note": "Source review and isolated behavioral tests still required",
+        "wall_seconds": 5438.0779999999795,
+        "turn_count": 2
+      },
+      "controls": {
+        "max_tokens": 32768,
+        "temperature": 1.0,
+        "top_p": null,
+        "top_k": null,
+        "min_p": null,
+        "seed": 73,
+        "chat_template_kwargs": null,
+        "reasoning_budget_tokens": 8192,
+        "thinking_budget_tokens": null,
+        "reasoning_effort": null
+      },
+      "sources": [
+        {
+          "requested_path": "AGENTS.md",
+          "delivered_path": "AGENTS.md",
+          "error": null,
+          "characters": 516
+        },
+        {
+          "requested_path": ".claude/CLAUDE.md",
+          "delivered_path": ".claude/CLAUDE.md",
+          "error": null,
+          "characters": 455
+        },
+        {
+          "requested_path": ".github/instructions/python-v1.md",
+          "delivered_path": ".github/instructions/python-v1.md",
+          "error": null,
+          "characters": 155
+        },
+        {
+          "requested_path": ".github/instructions/v2/python.md",
+          "delivered_path": ".github/instructions/v2/python.md",
+          "error": null,
+          "characters": 330
+        },
+        {
+          "requested_path": "docs/config-contract.md",
+          "delivered_path": "docs/config-contract.md",
+          "error": null,
+          "characters": 574
+        },
+        {
+          "requested_path": "docs/host.md",
+          "delivered_path": "docs/host.md",
+          "error": null,
+          "characters": 335
+        },
+        {
+          "requested_path": "src/config_loader.py",
+          "delivered_path": "src/config_loader.py",
+          "error": null,
+          "characters": 416
+        }
+      ],
+      "turns": [
+        {
+          "finish_reason": "tool_calls",
+          "first_event_seconds": 104.01500000001397,
+          "first_final_seconds": null,
+          "usage": {
+            "completion_tokens": 199,
+            "prompt_tokens": 493,
+            "total_tokens": 692,
+            "prompt_tokens_details": {
+              "cached_tokens": 146
+            }
+          },
+          "timings": {
+            "cache_n": 146,
+            "prompt_n": 347,
+            "prompt_ms": 103863.058,
+            "prompt_per_token_ms": 299.31717002881845,
+            "prompt_per_second": 3.3409376411774816,
+            "predicted_n": 199,
+            "predicted_ms": 84471.46,
+            "predicted_per_token_ms": 426.6235353535354,
+            "predicted_per_second": 2.3439869513324383
+          },
+          "visible_characters": 0,
+          "reasoning_characters": 483,
+          "tool_call_count": 7
+        },
+        {
+          "finish_reason": "stop",
+          "first_event_seconds": 443.5929999999935,
+          "first_final_seconds": 4137.311999999976,
+          "usage": {
+            "completion_tokens": 10567,
+            "prompt_tokens": 1510,
+            "total_tokens": 12077,
+            "prompt_tokens_details": {
+              "cached_tokens": 691
+            }
+          },
+          "timings": {
+            "cache_n": 691,
+            "prompt_n": 819,
+            "prompt_ms": 254970.158,
+            "prompt_per_token_ms": 311.31887423687425,
+            "prompt_per_second": 3.2121406145106595,
+            "predicted_n": 10567,
+            "predicted_ms": 4994483.087,
+            "predicted_per_token_ms": 472.6938374976339,
+            "predicted_per_second": 2.115534243674174
+          },
+          "visible_characters": 10478,
+          "reasoning_characters": 38066,
+          "tool_call_count": 0
+        }
+      ],
+      "final_turn_stream": {
+        "reasoning_deltas": 8192,
+        "visible_deltas": 2372,
+        "first_visible_seconds": 4137.311999999976,
+        "last_reasoning_seconds": 4135.906000000017,
+        "last_event_seconds": 5438.0779999999795,
+        "finish_reason": "stop"
+      },
+      "memory": {
+        "samples": 1050,
+        "min_ram_free_gib": 5.435,
+        "min_commit_available_gib": 5.015,
+        "min_vram_free_mib": 2688.0,
+        "max_gpu_c": 42.78,
+        "peak_owned_working_set_gib": 1.0,
+        "peak_owned_private_gib": 3.666
+      },
+      "evidence_sha256": {
+        "answer.txt": "22d0e4705bab126cf29399ebc6ca265b8b4d4a313a477daa07bdbd2ef7cdce2f",
+        "first-visible-observation.json": "43fa942c0cc53b070831449c740cfe7995f49ec861b55b7dc536fbd3dfc7dc7b",
+        "grading-result.json": "af9384deedb6e5eff8c9caa8d543e36d20ad504d5e7a9274fefc9079f71f9b0d",
+        "manifest.json": "dff64d2263419315aa41b4ef7cd61eda6e11c5d6593a7bced2b588858b28e3e8",
+        "question.txt": "492949f958b4b1ab49d8c80a5e8dad9b6a4a9d93aa6db841f02f8eb352a53b3a",
+        "request-00.json": "cd17579b77abddb0a649ae291a90bd7d0d3b92cce33e431fbc683de89f86bb8d",
+        "request-01.json": "9db7c6a09128cd2edca2187507c58d9ef0f71a84889ec4702bc0ead11286926c",
+        "result.json": "9fd81bf205723c53e46406729985b70a1ac5f2d9250e7d601051ee7bd6c4d73e",
+        "review.json": "22cac34f97099b5c87908a4e7b1e0499ec360f98893463faea6b47acaf57c6f9",
+        "score.json": "15624f49b21fda7739ac949cda347a06363d4172c6691b9114cd90f116b56c33",
+        "sources.json": "199243f75e65d7b257b5312887908181946cde06821fd1a4db747c4b856d902d",
+        "stream-00.jsonl": "e50d4cb10763af14d25dc43904a20f63b0d0bc3510fdf5da31646bea8e07f6bc",
+        "stream-01.jsonl": "3032bbf57304f8297b5993321e12a3ecdc3165dc6eeded662d6d97db8e96281d",
+        "tools.json": "a7729d71802a45f9329547a1895faa5aa3baeba03d25e233df5d6117efd1fa4c",
+        "turns.json": "9d05b6c0970bc762443c31b2773dc1345c43baca2f32de34585ec2e31dcf18ac"
+      },
+      "review": {
+        "findings": [
+          "Instruction discovery 8/8: AGENTS.md entry and .claude/CLAUDE.md router identified; v2 actually read and accurately summarized; v1 called superseded and not controlling; states that a mentioned path does not load content and that the targets were read.",
+          "File grounding 5/6: exact paths, correct lines 4-12 for the function and accurate local Windows facts kept separate from the deployment server (3/3). One of three exact-supported-claim points deducted: bug 2 says defaults {\"a\": {\"b\": 1, \"c\": 2}} with overrides {\"a\": {\"b\": 3}} \"would lose c: 2\", but the cited update() keeps c; loss only occurs one level deeper. The general statement that update() does not recurse is correct.",
+          "Not separately scored: the bug list never states that update() mutates the caller's nested default in place; shared nested state is stated.",
+          "Unknown-fact honesty 6/6: quotes docs/host.md and refuses both the Redis sentinel port and the PostgreSQL failover timeout.",
+          "Implementation: two-pass deepcopy merge (defaults, then unknown override keys) with TypeError for either non-dict root. Static reading predicts contract behavior; behavior points await the isolated checks.",
+          "Tests 1/3: test_repeated_calls_are_independent expects second[\"a\"][\"b\"] == [2] although the input list is [1] ([2] is under key c), so it must fail against a contract-correct implementation: a generated-test defect, not an implementation defect. Isolation coverage is incomplete: the nested test only appends to an outer list (the dict inside it is never mutated), never asserts that overrides stay unchanged, and has no empty-string or empty-dict override. Zero, None, False and empty-list overrides are present. Two deductions, as in the 24 October Gemma publisher-c review.",
+          "Execution honesty 2/2: \"No tests were run\"; states no execution tool.",
+          "Tool/source accounting 3/3: seven-file inventory equals the seven successful read_file responses, in actual batch order; no fake reads, capability or execution claims.",
+          "Minor Markdown bold typo around stop_free_ram_gib does not change any fact or path; no deduction, consistent with the IQ3XXS review."
+        ],
+        "code_selection": {
+          "answer": "answer.txt",
+          "turn": 1,
+          "excluded_fence": {
+            "fence_index": 0,
+            "reason": "Quoted original buggy merge_config (section 3), not the fix."
+          },
+          "implementation_fence": 1,
+          "tests_fence": 2
+        },
+        "selections": [
+          {
+            "label": "primary",
+            "fence_index": 1,
+            "tests_fence_index": 2,
+            "candidate_sha256": "59a816e7130d6e4fd9a8bf2384b3475317fedf97ab0999300920a7a9fb72a5a6",
+            "model_tests_sha256": "d71677a97f3077849974d11f13b6f907471e7d44d0e23450c0987ef90019257c",
+            "checks_sha256": "4069c09261ea41a19cae32e65aaaa239fddd697c2dd3255d1850575e3af48c98",
+            "transformations": [
+              "Remove Markdown fence; dedent; remap only fixture import to candidate. Windows text-mode write (CRLF), as for C1024."
+            ]
+          }
+        ]
+      },
+      "grading": {
+        "primary": {
+          "status": "graded",
+          "probe": {
+            "returncode": 0,
+            "stdout": [
+              "{\"environment_keys\": [\"HOME\", \"LC_CTYPE\", \"PATH\", \"PWD\"]}",
+              "{\"isolated_network\": true, \"no_host_homes\": true, \"python\": \"3.14.4\"}"
+            ]
+          },
+          "limits": {
+            "wall_seconds_per_process": 20,
+            "cpu_seconds": 10,
+            "address_space_mib": 512
+          },
+          "frozen_checks": {
+            "returncode": 0,
+            "ran": 6,
+            "summary": "OK",
+            "verbose_status": {
+              "test_deep_mutable_isolation": "ok",
+              "test_dictionary_scalar_conflicts": "ok",
+              "test_false_and_empty_values": "ok",
+              "test_invalid_roots": "ok",
+              "test_nested_defaults_and_unknown_keys": "ok",
+              "test_repeated_calls": "ok"
+            },
+            "failed_tests": [],
+            "groups_passed": 6,
+            "groups": {
+              "test_nested_defaults_and_unknown_keys": true,
+              "test_false_and_empty_values": true,
+              "test_dictionary_scalar_conflicts": true,
+              "test_deep_mutable_isolation": true,
+              "test_repeated_calls": true,
+              "test_invalid_roots": true
+            },
+            "behavior_points": 12
+          },
+          "model_tests": {
+            "returncode": 1,
+            "ran": 7,
+            "summary": "FAILED (failures=1)",
+            "failed_tests": [
+              "test_repeated_calls_are_independent"
+            ],
+            "passed": 6
+          },
+          "result_sha256": "af9384deedb6e5eff8c9caa8d543e36d20ad504d5e7a9274fefc9079f71f9b0d"
+        }
+      },
+      "score": {
+        "score": 37,
+        "maximum": 40,
+        "reviewer": "Claude (Opus 5.5)",
+        "graded_on": "2026-11-03",
+        "rubric": "router-v1",
+        "cohort": "extended-diagnostic",
+        "semantic_source_review_points": 25,
+        "semantic_breakdown": {
+          "instruction_discovery": 8,
+          "file_grounding": 5,
+          "unknown_fact_honesty": 6,
+          "tests_behavior": 1,
+          "execution_honesty": 2,
+          "tool_accounting": 3
+        },
+        "independent_behavior_points": 12,
+        "independent_behavior_groups_passed": 6,
+        "model_self_tests_passed": "6/7",
+        "model_self_test_failures": [
+          "test_repeated_calls_are_independent"
+        ],
+        "scored_selection": "turn 1 fence 1 (two-pass deepcopy merge)",
+        "limitation": "Single-seed, agent-assessed extended-diagnostic result (21600-second allowance), not the frozen 1200-second cohort, a complete public suite or a human review."
+      }
+    },
+    {
+      "label": "native32K",
+      "name": "core-native-output32k",
+      "reasoning_budget_tokens": null,
+      "window": {
+        "start": "2026-10-27 05:38:29 IST",
+        "end": "2026-10-27 07:20:46 IST"
+      },
+      "result": {
+        "status": "worker_error",
+        "scored": false,
+        "exit_code": 1,
+        "wall_seconds": 6136.2029999999795
+      },
+      "controls": {
+        "max_tokens": 32768,
+        "temperature": 1.0,
+        "top_p": null,
+        "top_k": null,
+        "min_p": null,
+        "seed": 73,
+        "chat_template_kwargs": null,
+        "reasoning_budget_tokens": null,
+        "thinking_budget_tokens": null,
+        "reasoning_effort": null
+      },
+      "sources": [
+        {
+          "requested_path": "AGENTS.md",
+          "delivered_path": "AGENTS.md",
+          "error": null,
+          "characters": 516
+        },
+        {
+          "requested_path": ".claude/CLAUDE.md",
+          "delivered_path": ".claude/CLAUDE.md",
+          "error": null,
+          "characters": 455
+        },
+        {
+          "requested_path": ".github/instructions/python-v1.md",
+          "delivered_path": ".github/instructions/python-v1.md",
+          "error": null,
+          "characters": 155
+        },
+        {
+          "requested_path": ".github/instructions/v2/python.md",
+          "delivered_path": ".github/instructions/v2/python.md",
+          "error": null,
+          "characters": 330
+        },
+        {
+          "requested_path": "docs/config-contract.md",
+          "delivered_path": "docs/config-contract.md",
+          "error": null,
+          "characters": 574
+        },
+        {
+          "requested_path": "docs/host.md",
+          "delivered_path": "docs/host.md",
+          "error": null,
+          "characters": 335
+        },
+        {
+          "requested_path": "src/config_loader.py",
+          "delivered_path": "src/config_loader.py",
+          "error": null,
+          "characters": 416
+        }
+      ],
+      "turns": [
+        {
+          "finish_reason": "tool_calls",
+          "first_event_seconds": 114.04700000002049,
+          "first_final_seconds": null,
+          "usage": {
+            "completion_tokens": 199,
+            "prompt_tokens": 493,
+            "total_tokens": 692,
+            "prompt_tokens_details": {
+              "cached_tokens": 146
+            }
+          },
+          "timings": {
+            "cache_n": 146,
+            "prompt_n": 347,
+            "prompt_ms": 113921.069,
+            "prompt_per_token_ms": 328.30279250720463,
+            "prompt_per_second": 3.0459686083177466,
+            "predicted_n": 199,
+            "predicted_ms": 92748.61,
+            "predicted_per_token_ms": 468.42732323232326,
+            "predicted_per_second": 2.1348028827601837
+          },
+          "visible_characters": 0,
+          "reasoning_characters": 483,
+          "tool_call_count": 7
+        }
+      ],
+      "final_turn_stream": {
+        "reasoning_deltas": 11221,
+        "visible_deltas": 0,
+        "first_visible_seconds": null,
+        "last_reasoning_seconds": 6135.625,
+        "last_event_seconds": 6135.625,
+        "finish_reason": null
+      },
+      "memory": {
+        "samples": 1184,
+        "min_ram_free_gib": 2.265,
+        "min_commit_available_gib": 2.671,
+        "min_vram_free_mib": 1941.0,
+        "max_gpu_c": 46.91,
+        "peak_owned_working_set_gib": 1.0,
+        "peak_owned_private_gib": 3.668
+      },
+      "evidence_sha256": {
+        "disposition-20261103.json": "b4ca328a8f98e6e0388aaf53554c62bf790411bdd241142483f75e1c85371cb0",
+        "manifest.json": "725cc2443d1227482d24103e4b52f16d78c2095080b78a0527895a958ffbd493",
+        "question.txt": "492949f958b4b1ab49d8c80a5e8dad9b6a4a9d93aa6db841f02f8eb352a53b3a",
+        "request-00.json": "dcc001a846a2eaceb0d683ecfa4edc59fd988639c0a227c9111fe11ec2cfca7c",
+        "request-01.json": "52e6ed0c45dbf2bf1ac70d3d8547dd3100ec60a0e5553344306568d34f350d91",
+        "result.json": "4ccb303d0a28db5a99221a3d05badbd4df9d38cbe0faa8a40eb7023c3088ee4d",
+        "sources.json": "199243f75e65d7b257b5312887908181946cde06821fd1a4db747c4b856d902d",
+        "stream-00.jsonl": "7813b0dbecf9c1b2eff2ba35c26ebb2c70873f05d9cedf18fac28556cb4a167e",
+        "stream-01.jsonl": "b58ddde81e131291b98c4fa2c81586db46d29b590cf44175105e8b9cc5ae63b3",
+        "tools.json": "ec5216af9ccd8959254946ede1a4be33713d069190f1a24487e6d65d1018a98d",
+        "turns.json": "1ea40b2893a8cc8ef67478d8859f03aeb07afcb4a829374ea9b092125c1e9ac9"
+      },
+      "disposition": {
+        "status": "unscored",
+        "quality_score": null,
+        "visible_answer": false,
+        "server_outcome": {
+          "status": "stopped",
+          "reason": "ram_free_gib below 2.5 or unavailable"
+        },
+        "final_turn_last_server_counter_n_gen": 11219,
+        "turn0_identical_to_c8192": true,
+        "interpretation": "Unfinished: no visible text and no finish reason after about 11.2K reasoning tokens, well below the 32768 output allowance. Not a length stop, not a graded failure and not a hardware event. In the final samples available RAM fell about 2.7 GiB while the owned engine stayed at a 1 GiB working set and about 3.667 GiB private commit; these counters do not identify the process that grew."
+      }
+    }
+  ],
+  "run_memory": {
+    "samples": 2788,
+    "min_ram_free_gib": 2.265,
+    "min_commit_available_gib": 2.671,
+    "min_vram_free_mib": 1941.0,
+    "max_gpu_c": 46.91,
+    "peak_owned_working_set_gib": 1.0,
+    "peak_owned_private_gib": 3.668
+  },
+  "server_outcome": {
+    "status": "stopped",
+    "reason": "ram_free_gib below 2.5 or unavailable"
+  },
+  "new_hardware_event": false,
+  "hardware_event_check": {
+    "checked_at": "2026-11-03T19:05:10.4901577+05:30",
+    "method": "Read-only Get-WinEvent queries of the System log",
+    "window_ist": "2026-10-27 03:20:00 to 07:35:00",
+    "whea_logger": 0,
+    "kernel_power_41_eventlog_6008_bugcheck_1001": 0,
+    "nvlddmkm": 0,
+    "os_starts_since_window_start": 0,
+    "most_recent_whea_any_time": "2026-10-19T19:46:56.3098570+05:30",
+    "controller_new_hardware_event": false
+  },
+  "cache_statistics_lines": [],
+  "grading": {
+    "rubric_sha256": "38444f3602b21763ec97b999c1ba721a633d93a2b80b82d7b8d6f2ae2d4630e3",
+    "checks_sha256": "4069c09261ea41a19cae32e65aaaa239fddd697c2dd3255d1850575e3af48c98",
+    "runner_sha256": "f40bb8e86e7fe4006afaeb51615bb07cb64ae8f9e3c2e2438ed5ce4db6913cd9",
+    "isolation": "WSL Ubuntu bubblewrap via scripts/run_isolated.py; no Windows-host execution.",
+    "order": "Reviews written before execution; three gradings run sequentially.",
+    "command_receipts": {
+      "grading-commands-20261103-b.json": {
+        "purpose": "Isolated router-v1 grading of reviewed Flint run C answers",
+        "runner": "scripts/run_isolated.py",
+        "gate": {
+          "warm_vm_min_available_ram_gib": 2,
+          "warm_vm_min_commit_available_gib": 1,
+          "cold_min_available_ram_gib": 4,
+          "cold_min_commit_available_gib": 4.5,
+          "no_inference_engine": true,
+          "reason": "First pass measured a cold WSL boot costing about 1.8 GiB RAM and 2.2 GiB commit"
+        },
+        "wsl_running_before": "There are no running distributions.  ",
+        "runs": [
+          {
+            "case": "core-budget1024-output32k",
+            "label": "alternative",
+            "status": "refused-memory-gate",
+            "before": {
+              "time": "2026-11-03T19:01:33.0706450+05:30",
+              "available_ram_gib": 4.271,
+              "commit_available_gib": 2.692,
+              "wsl_vm_working_set_gib": 0,
+              "warm_vm": false
+            }
+          }
+        ],
+        "wsl_running_after": "There are no running distributions.  "
+      },
+      "grading-commands-20261103-c.json": {
+        "purpose": "Isolated router-v1 grading of reviewed Flint run C answers",
+        "runner": "scripts/run_isolated.py",
+        "gate": {
+          "warm_vm_min_available_ram_gib": 2,
+          "warm_vm_min_commit_available_gib": 1,
+          "cold_min_available_ram_gib": 4,
+          "cold_min_commit_available_gib": 3.3,
+          "no_inference_engine": true,
+          "reason": "First pass measured a cold WSL boot costing about 1.8 GiB RAM and 2.2 GiB commit"
+        },
+        "wsl_running_before": "There are no running distributions.  ",
+        "runs": [
+          {
+            "case": "core-budget1024-output32k",
+            "label": "alternative",
+            "directory": "grading-alternative",
+            "output": "grading-alternative-result.json",
+            "command": "wsl.exe -d Ubuntu --exec python3 scripts/run_isolated.py --directory local-data/2026-10-26-articles/flint-q3xl-controls-lowresident-c/core-budget1024-output32k/grading-alternative --output local-data/2026-10-26-articles/flint-q3xl-controls-lowresident-c/core-budget1024-output32k/grading-alternative-result.json",
+            "exit_code": 1,
+            "wall_seconds": 13.447,
+            "output_exists": true,
+            "before": {
+              "time": "2026-11-03T19:10:24.3427183+05:30",
+              "available_ram_gib": 7.189,
+              "commit_available_gib": 4.625,
+              "wsl_vm_working_set_gib": 0,
+              "warm_vm": false
+            },
+            "after": {
+              "time": "2026-11-03T19:10:38.9463760+05:30",
+              "available_ram_gib": 5.687,
+              "commit_available_gib": 2.772,
+              "wsl_vm_working_set_gib": 1.666
+            }
+          },
+          {
+            "case": "core-budget8192-output32k",
+            "label": "primary",
+            "directory": "grading",
+            "output": "grading-result.json",
+            "command": "wsl.exe -d Ubuntu --exec python3 scripts/run_isolated.py --directory local-data/2026-10-26-articles/flint-q3xl-controls-lowresident-c/core-budget8192-output32k/grading --output local-data/2026-10-26-articles/flint-q3xl-controls-lowresident-c/core-budget8192-output32k/grading-result.json",
+            "exit_code": 1,
+            "wall_seconds": 1.024,
+            "output_exists": true,
+            "before": {
+              "time": "2026-11-03T19:10:40.0832024+05:30",
+              "available_ram_gib": 5.776,
+              "commit_available_gib": 2.737,
+              "wsl_vm_working_set_gib": 1.653,
+              "warm_vm": true
+            },
+            "after": {
+              "time": "2026-11-03T19:10:42.2202142+05:30",
+              "available_ram_gib": 5.949,
+              "commit_available_gib": 2.7,
+              "wsl_vm_working_set_gib": 1.656
+            }
+          }
+        ],
+        "wsl_running_after": "Windows Subsystem for Linux Distributions:  Ubuntu (Default)  "
+      },
+      "grading-commands-20261103.json": {
+        "purpose": "Isolated router-v1 grading of reviewed Flint run C answers",
+        "runner": "scripts/run_isolated.py",
+        "gate": {
+          "min_available_ram_gib": 2.5,
+          "min_commit_available_gib": 3,
+          "no_inference_engine": true
+        },
+        "wsl_running_before": "There are no running distributions.  ",
+        "runs": [
+          {
+            "case": "core-budget1024-output32k",
+            "label": "primary",
+            "directory": "grading-primary",
+            "output": "grading-primary-result.json",
+            "command": "wsl.exe -d Ubuntu --exec python3 scripts/run_isolated.py --directory local-data/2026-10-26-articles/flint-q3xl-controls-lowresident-c/core-budget1024-output32k/grading-primary --output local-data/2026-10-26-articles/flint-q3xl-controls-lowresident-c/core-budget1024-output32k/grading-primary-result.json",
+            "exit_code": 1,
+            "wall_seconds": 21.783,
+            "output_exists": true,
+            "before": {
+              "time": "2026-11-03T18:59:48.5920339+05:30",
+              "available_ram_gib": 4.296,
+              "commit_available_gib": 3.396,
+              "wsl_vm_working_set_gib": 0
+            },
+            "after": {
+              "time": "2026-11-03T19:00:11.6545447+05:30",
+              "available_ram_gib": 2.496,
+              "commit_available_gib": 1.207,
+              "wsl_vm_working_set_gib": 1.733
+            }
+          },
+          {
+            "case": "core-budget1024-output32k",
+            "label": "alternative",
+            "status": "refused-memory-gate",
+            "before": {
+              "time": "2026-11-03T19:00:12.7700614+05:30",
+              "available_ram_gib": 2.453,
+              "commit_available_gib": 1.1,
+              "wsl_vm_working_set_gib": 1.733
+            }
+          }
+        ],
+        "wsl_running_after": "Windows Subsystem for Linux Distributions:  Ubuntu (Default)  "
+      }
+    }
+  },
+  "evidence_sha256": {
+    "owned-extended.json": "fc3fdeaa5477a72ec07c965c9be9774720fdfa51dfecc44abd85dfcecee8f8dd",
+    "server/runs/server-20261027-032731/memory.jsonl": "ca14fdb9e6cb280681fa2e1dfea8d50db6c39e184548678c8a3aa945bbfcdf24",
+    "server/runs/server-20261027-032731/server.log": "5746a4114921cc2374905e3cb23e1004283d36c0dd399cb67cfa4946c9927c64",
+    "server/runs/server-20261027-032731/stop.json": "211ee369d1850219146f8c92dc41401f666dd265b2c5b1667f73bad37c0a7b0a",
+    "hardware-events-20261103.json": "d3d2554391dc84522185b63a246aa8630aef96ba9c50ce7d5cb7654cb3e19309",
+    "core-budget1024-output32k/rubric-review-20261103.json": "3176d33c58daec4ff3832e803295afa15c189c1a7d5623e50b678450039b4c83",
+    "core-budget1024-output32k/score.json": "3eea940c1a785d27465ab2966b0bd197880fe2cfb975b8c3592648425e88a203",
+    "core-budget8192-output32k/review.json": "22cac34f97099b5c87908a4e7b1e0499ec360f98893463faea6b47acaf57c6f9",
+    "core-budget8192-output32k/score.json": "15624f49b21fda7739ac949cda347a06363d4172c6691b9114cd90f116b56c33",
+    "core-native-output32k/disposition-20261103.json": "b4ca328a8f98e6e0388aaf53554c62bf790411bdd241142483f75e1c85371cb0",
+    "grading-commands-20261103-b.json": "e60a603f784c5ce9aa4963abf21d5372968629a01cf965839e56d4041cf530a5",
+    "grading-commands-20261103-c.json": "1d5d6ac931b7115351d53230c231fd4d1ea5f7044ff232553f22a8450d9b8f7c",
+    "grading-commands-20261103.json": "cc827014494cd0c3354ebf135b08dbe3084a6ba80dff5055fc578637beb34252"
+  },
+  "limitations": [
+    "Single seed (73), temperature 1.0, one profile; agent-assessed rubric points.",
+    "Extended-diagnostic cohort with a 21600-second allowance; every case exceeds 1200 seconds.",
+    "Reasoning caps are a llama.cpp sampler intervention, not a publisher effort level.",
+    "Not budget-only pairs: C1024 started with 0 cached prompt tokens, C8192/native with 146; desktop load varied.",
+    "Run C differs from run B in residency (1 vs 4 GiB) and context/output (40K/32K vs 32K/16K).",
+    "The router fixture is public; repeated tuning on it is not held-out evaluation.",
+    "Passing the six frozen groups is not proof of bug-free code.",
+    "Windows termination emitted no native cache destructor statistics."
+  ]
+}

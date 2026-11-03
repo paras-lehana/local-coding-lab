@@ -10,6 +10,9 @@ neither is claimed locally validated yet.
 
 ## 0.10.0 - 2026-10-26 (in progress)
 
+- Prepare an optional Strata native-process identity latch so frontend retries
+  cannot silently replace the measured engine. Offline and harmless-process
+  checks remain pending while Flint inference is active.
 - Review seven Qwen/Strata articles against primary sources and actual RAM use;
   maintain separate Flash-Next and dense27B learning records.
 - Preserve the1200second scorecard while allowing explicitly labelled extended

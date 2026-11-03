@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 
@@ -58,11 +59,46 @@ def main() -> int:
         result = json.loads((root / "deadline/result.json").read_text())
         assert code == 124 and result["reason"] == "experiment wall deadline", result
         assert peer.poll() is None, "Deadline cleanup stopped an unrelated child"
+        # Keep a harmless frontend alive after its mock native process exits.
+        # The guard must close its owned tree instead of waiting for a retry.
+        native = shutil.which("powershell.exe")
+        if not native or not Path(native).is_absolute():
+            raise RuntimeError("Absolute Windows PowerShell path unavailable")
+        config["stable_native_executable"] = native
+        config["native_start_timeout_seconds"] = 0.05
+        config["max_seconds"] = 30
+        guard.save(path, config)
+        code = guard.run(path, root / "native-missing")
+        result = json.loads((root / "native-missing/result.json").read_text())
+        assert code == 1 and "native engine did not start" in result["reason"], result
+        assert not (root / "native-missing/native-process.json").exists()
+        assert peer.poll() is None, "Missing-native cleanup stopped a peer"
+        native_command = [native, "-NoProfile", "-NonInteractive", "-Command",
+                          "Start-Sleep -Seconds 4"]
+        frontend = (
+            "import subprocess,time; "
+            f"subprocess.Popen({native_command!r}, "
+            "creationflags=subprocess.CREATE_NO_WINDOW).wait(); "
+            "time.sleep(60)"
+        )
+        config["command"] = [sys.executable, "-c", frontend]
+        config["stable_native_executable"] = native
+        config["native_start_timeout_seconds"] = 15
+        config["max_seconds"] = 30
+        guard.save(path, config)
+        code = guard.run(path, root / "native-exit")
+        result = json.loads((root / "native-exit/result.json").read_text())
+        assert code == 1 and "native engine exited" in result["reason"], result
+        assert (root / "native-exit/native-process.json").exists()
+        assert "did not exit" not in result["reason"], result
+        assert peer.poll() is None, "Native-exit cleanup stopped a peer"
         guard.save(root / "checks.json", {"preflight_receipt": "pass",
                                           "owned_job_stop": "pass",
                                           "deadline_nonzero": "pass",
+                                          "native_missing_is_bounded": "pass",
+                                          "native_exit_stops_frontend": "pass",
                                           "unrelated_child_survives": "pass"})
-        print("PASS: preflight recorded; owned job stopped; deadline nonzero; unrelated child survived")
+        print("PASS: preflight, owned stop, deadline, native exit, peer survives")
         return 0
     finally:
         if peer.poll() is None:

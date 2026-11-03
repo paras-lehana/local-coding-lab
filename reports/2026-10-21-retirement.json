@@ -1,0 +1,23 @@
+{
+ "date": "2026-10-21",
+ "authority": "owner: \"you can always delete that and try another\"; Qwen3.6 Q4 production file kept",
+ "reason": "Free E: for Qwen3.6 UD-IQ4_XS (17.7 GB) publish after both Bonsai trials failed the owner limits.",
+ "retired": [
+  {
+   "path": "E:/llm/models/Ternary-Bonsai-2-27B-PQ2_0.gguf",
+   "bytes": 7206168928,
+   "sha256_pinned": "3907dc1658db1f78a9826bf8d5bcb8dc65db0d466388937af57f2294fae62ec1",
+   "revision": "b072e1d3b35a0a630cece372c2127528e0994386",
+   "reason": "PQ2_0 on Prism 52 GPU layers: decode 2.3 tok/s with CPU layers; stopped; not scored.",
+   "redownload": "fetch_model.py bonsai2-27b-pq2 (catalog key bonsai2-27b-pq2)"
+  },
+  {
+   "path": "E:/llm/models/Ternary-Bonsai-2-27B-PTQ1_0.gguf",
+   "bytes": 5946648928,
+   "sha256_pinned": "53107f530aa52eb00912263ab1ee29bd199261c87cd7b4ad4ca1318c1fe33ee3",
+   "revision": "b072e1d3b35a0a630cece372c2127528e0994386",
+   "reason": "PTQ1_0 full GPU: core-seed73 public task hit the 1200 s deadline (run bonsai2-ptq1-prism-20261020); not scored.",
+   "redownload": "fetch_model.py bonsai2-27b-ptq1 (catalog key bonsai2-27b-ptq1)"
+  }
+ ]
+}

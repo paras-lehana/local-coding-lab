@@ -8,6 +8,11 @@ coding now have separate timing criteria; the frozen20minute scorecard remains.
 The coding collector requires`--extended-diagnostic` to use a larger deadline
 (up to21600seconds) and records that distinct cohort. No new winner is implied.
 
+27October preparation also adds an opt-in Strata process-identity check:
+an engine exit/restart ends the experiment instead of silently continuing.
+Its offline and harmless-process validation is pending the current Flint run.
+See the [Strata experiment guide](experiments/strata/README.md).
+
 Gemma26's apps-open6GiB-resident trial completes all12 coding answers with
 **10 frozen task passes**. CSV and TypeScript fail; additional checks expose
 TTL and worker-pool defects. Median completion is11m51s, with10.9/6.7second

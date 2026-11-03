@@ -1,5 +1,51 @@
 # RAM, VRAM, quantization and context
 
+## 3 November: GPU placement also spends commit
+
+Saved telemetry shows that on this WDDM host each CUDA buffer is charged to
+Windows commit at about its own size, on top of using VRAM. mmap'd weights are
+not charged. The two commit-floor stops examined were triggered by desktop
+growth after loading. The auto-managed page file, now 46.4 GiB, grows late and
+in small steps. Admission gates must count GPU buffers as commit; see
+[VRAM allocations also consume Windows commit](#vram-allocations-also-consume-windows-commit).
+Isolated grading in WSL also costs commit, and the audited 20-21 October runs
+add file-arena, placement, guard-branch and paging observations; see
+[3 November: grading and audit observations](#3-november-grading-and-audit-observations).
+
+## 27 October: what the current experiments establish
+
+The retained production choice is still QwenQ4/128K CPUq8, but it is stopped
+during this campaign; older64K recommendations below are dated evidence,
+not the current production configuration. No new editor validation is implied.
+
+FlintQ3XL B reserves503.89MiB GPUq8 KV at32K (476global+27.89sliding-window).
+A live snapshot reaches10841retained tokens without resizing those buffers.
+The runtime's slot field includes generated tokens; its cumulative cached-token
+metric is not occupancy. Four bounded context checkpoints are separate.
+The120-record workflow later passes8/8 in3380.750seconds, but that does not
+establish50K/128K recall. Router/TS exhaust16K output while total tokens remain
+under18K; those failures are not a full context window or observed code bugs.
+[Occupancy](../reports/2026-10-27-flint-context-occupancy.json),
+[completed collection](../reports/2026-10-27-flint-q3xl-file-workflows.json).
+
+The actual older private Flint audit reached41305input tokens and51041total.
+A32K public calibration therefore cannot qualify the complete private audit.
+The prepared72K profile reserves room for its24K answer allowance and disables
+context shifting. It has not loaded yet; subsequent tool growth can still
+exhaust even that capacity. [Sizing evidence](../reports/2026-10-27-private-context-sizing.json).
+
+Gemma's new128K history trial did run: it stopped at0.928GiB available commit
+during input processing, with no final answer or new hardware event. Physical
+RAM and GPU headroom remained above their floors. Increasing only the context
+setting did not produce a completed recall test.
+[Interruption](../reports/2026-10-26-gemma128-history-resource-stop.json).
+
+Strata's dynamic KV-growth eligibility differs between bounded expert copies
+and plain mapping; see the [native-source qualification](tasks/2026-10-26-flash-next/2026-10-26-flash-next-v0.10.0.md#native-kv-growth-qualification).
+Neither has a new local growth measurement. Static host KV can retain increasing occupied context even when allocated
+bytes stay constant. Neither placement nor allocation automatically delivers
+instruction files, prevents client pruning, or persists state after unloading.
+
 ## 26 October apps-open observations
 
 Before the new article-driven trials, no llama/Strata engine was loaded and
@@ -22,11 +68,35 @@ and zero hard page reads; faults alone do not prove SSD bottlenecks.
 [Matched output/timing pairs](../reports/2026-10-26-gemma-residency-pair.json).
 
 These new short coding requests do not establish additional long-context
-recall. A separately frozen128K larger-history trial is prepared; it must
-pass fresh capacity gates, complete both phases and recover changed-file facts
-before its context setting can be credited as useful retention.
+recall. The separately frozen128K larger-history trial later resource-stops,
+as recorded above. Both phases and changed-file recovery must complete before
+its context setting can be credited as useful retention.
 
 ## Measured capacity versus occupied tokens
+
+The client and its tools decide which file contents reach the model. The
+model's weights, including Flash-Next's n-gram dictionary, are a separate
+resource from the state computed for that prompt:
+
+```mermaid
+flowchart LR
+    F[Instruction and source files] --> C[Client selection and file tools]
+    H[Saved chat history] --> C
+    C --> P[Prompt tokens]
+    P --> I[Inference]
+    W[Model weights and optional n-gram dictionary] --> I
+    I --> K[Attention KV and recurrent state]
+    K --> I
+    I --> A[Answer and tool requests]
+    A --> C
+```
+
+CPU/GPU placement controls where weights and state are stored or computed.
+It does not select the right files for the client. A changed file must reach
+the next prompt through a new read or updated attachment. After unloading,
+the client must send the necessary history again; a large context setting
+alone does not supply it. Persistent session features require separate
+verification of what was saved, restored and refreshed.
 
 The [16 October growth experiment](../reports/2026-10-16-context-growth.json)
 distinguishes **configured capacity**, **occupied token cells** and **process
@@ -88,6 +158,8 @@ The later unexpected-shutdown heartbeat reported 92.1% commit, but did not
 establish that commit exhaustion caused the failure. The new telemetry improves
 future diagnosis; it is not evidence that the restart was fixed. WDDM shared
 GPU memory overlaps system RAM and must not be added as independent capacity.
+3 November: dedicated VRAM allocations draw on the same commit; see
+[VRAM allocations also consume Windows commit](#vram-allocations-also-consume-windows-commit).
 
 The actual Qwen3.6 32K diagnostic allocated **340 MiB attention KV** plus
 **62.81 MiB recurrent state**. KV split was 68 MiB CPU / 272 MiB GPU. A simple
@@ -283,6 +355,13 @@ second time. The owned server's resident cap was reduced during the private
 audit; the intervention and unchanged commit counter are recorded separately in
 [the dense result](../reports/2026-10-16-gemma31.json).
 
+3 November addendum: the Gemma private committed bytes row is a commitment
+counter, not extra RAM. About 5.41 GiB of its 10.02 GiB is charged for CUDA0
+buffers (4745.60 MiB model + 797.63 MiB compute) and 3.18 GiB for CPU KV (log
+of `gemma31-publisher64-private`, `server-20261016-181848`; `PrivateUsage`
+10.020 GiB at 19:51:50). See
+[VRAM allocations also consume Windows commit](#vram-allocations-also-consume-windows-commit).
+
 ## Dense placement follow-up
 
 At 32K capacity, Gemma31 reserves 1,360 MiB global plus 531.25 MiB sliding-window
@@ -319,6 +398,296 @@ contemporaneous device-used total, so this cannot establish exclusive ownership
 of every byte. No monitoring floor is changed, and no retrospective cause is
 assigned to the dense GPU-cache stop.
 
+## VRAM allocations also consume Windows commit
+
+Recomputed on 3 November 2026 from saved 16–27 October telemetry, plus
+read-only system queries that day. No engine or allocation probe was started
+for this section. Receipts and scripts are in the ignored
+`local-data/2026-11-03-wddm-commit/` folder.
+
+On this Windows 11 host the RTX 3080 runs under the WDDM driver model (NVIDIA
+drivers 617.42 and 621.01). A CUDA device allocation raises the allocating
+process's commit charge, and therefore system commit, by about its own size,
+while the process working set rises far less. Dedicated VRAM is not a budget
+separate from commit: a byte placed on the GPU costs a byte of VRAM and about a
+byte of commit. The server's own commit charge therefore includes its VRAM
+buffers and is not a measure of host RAM. Microsoft documents the general
+mechanism, but no Microsoft or NVIDIA page found says when, to which process or
+at what ratio a CUDA allocation is charged. The 1:1 charge is an **empirical
+observation** on this host, consistent with independent third-party reports.
+
+Counters used below:
+
+- System commit used is `commit_limit_gib − commit_available_gib`, from the
+  launcher's `GlobalMemoryStatusEx` call.
+- Device VRAM used is nvidia-smi total minus free, across all processes.
+- Server commit is `process_private_gib`, the `PrivateUsage` that Microsoft
+  defines as the process commit charge.
+
+Samples are about 1.08 s apart, and nvidia-smi and the process counters are
+not read at the same instant.
+
+**Allocation step.** Run `server-20261021-113320` (21 October): Qwen3.6 IQ4_XS,
+`--n-cpu-moe 34`, 64K q8 GPU KV, mmap.
+
+- The 1.08 s sample containing the `CUDA0 model buffer = 4279.34 MiB`
+  allocation shows device VRAM +4.220 GiB (4321 MiB), server commit
+  +4.295 GiB (4398 MiB), system commit +4.378 GiB and working set +0.314 GiB.
+- In the next 2.15 s the loader reads the mapped tensors to upload them:
+  working set +3.695 GiB, server commit +0.000 GiB, system commit +0.023 GiB.
+- KV (680 MiB), recurrent state (62.81 MiB) and compute (294 MiB) then add
+  0.980 GiB of VRAM and 1.676 GiB of server commit. That step also contains
+  warmup and runtime host allocations, so it is not a clean 1:1 test.
+- After loading, server commit is 6.426 GiB: 5316.15 MiB of logged CUDA0
+  buffers, 21.22 MiB of CUDA_Host buffers, and 1.214 GiB not attributed to any
+  logged buffer.
+
+**Replication.** The same first-step test was repeated over 67 saved mmap
+`llama-server` loads from 16–27 October. They use four llama.cpp builds
+(b11562-noprefetch-v1 ×58, b11838-noprefetch-v1 ×5, b11669 ×2,
+prism-b10787 ×2) and 13 GGUF files of Qwen3.6, Qwen3-Coder-Next, Gemma 4,
+Flint, LFM2.5 and Ternary Bonsai.
+
+- In the first sample with at least 1 GiB of VRAM growth, server commit
+  divided by VRAM growth has a median of 1.038 (IQR 1.029–1.072; 59 of 67
+  within 0.95–1.15). That is the allocation plus a median 130 MiB, with a
+  median working-set rise of 0.57 GiB.
+- The eight outliers are sampling artifacts. Two recorded the commit one
+  sample before nvidia-smi showed the VRAM, five caught only part of the VRAM
+  growth, and one step began at process start.
+- These are repeated loads, 24 of them the same Qwen3.6 Q4_K_M file, not 67
+  independent conditions.
+- After loading, server commit exceeds the logged CUDA0 and host buffers by a
+  median of 1.31 GiB (IQR 1.23–1.38 GiB, 43 loads).
+
+**Relocation control.** 16 October, Qwen3.6 Q4_K_M, 128K, `--load-mode none`.
+The CPU-KV and GPU-KV runs hold identical non-mapped buffer totals of
+23,067.77 MiB. The GPU run moves 1088 MiB of KV and 43.97 MiB of recurrent
+state from CPU buffers to CUDA0. Median server commit is 24.023 GiB versus
+24.012 GiB (maximum 24.278 versus 24.270). Moving 1.1 GiB between RAM and VRAM
+left commit unchanged. That is why the two 128K runs above show nearly
+identical private commit (about 24.15 GiB).
+
+**Placement control.** 21 October, IQ4_XS `--n-cpu-moe` 37 → 34. Putting three
+more expert blocks on the GPU grows the CUDA0 buffers from 4248.15 to
+5316.15 MiB (+1.04 GiB) and shrinks `CPU_Mapped` from 15,162.08 to
+13,907.57 MiB. Post-load server commit rises from 5.38–5.47 GiB to 6.43 GiB.
+The device growth is charged; the mapped bytes moved off the CPU had never been
+charged.
+
+**Strata.** 21 October: Q4_K_M, 32K, an 18.23 GiB file-backed expert arena,
+CUDA 13.3 libraries.
+
+- Three allocation steps show VRAM +1.165, +1.340 and +1.948 GiB against system
+  commit +1.552, +1.417 and +1.843 GiB (ratios 1.33, 1.06 and 0.95).
+- From process start to the end of allocation, VRAM grows 5.154 GiB and commit
+  7.126 GiB. About 72% of the startup commit (engine plus Python wrapper)
+  therefore tracks VRAM.
+- One step adds 1.057 GiB of commit for 0.117 GiB of VRAM, which is a host
+  allocation.
+
+This telemetry has no per-process commit counter, and engine RSS also rose
+about 1 GiB in each of the first two steps. Strata therefore supports the
+finding, in a different engine and CUDA version, but does not isolate it.
+
+**File-backed control.** A 2 GiB read-write view of a data file, written in
+full, moved system commit from 82.05 to 81.97 GiB (`commit_probe.py`,
+21 October 12:05:52 IST; its output survives only in the session transcript).
+Filling Strata's file-backed arena raised engine RSS by 13.66 GiB while system
+commit fell 1.23 GiB. That run stopped on the 0.5 GiB free-RAM floor, not on
+commit.
+
+### Documentation and outside reports
+
+- **Microsoft, WDDM backing stores.** "Every graphics allocation in the WDDM
+  model has a backing store". A backing store is "a committed memory buffer
+  that holds the contents of a graphics allocation when it's not resident in
+  video memory"
+  ([Sharing the Backing Store with KMD](https://learn.microsoft.com/en-us/windows-hardware/drivers/display/sharing-backing-store-with-kmd)).
+  Video memory segments are shared across applications and over-committed, and
+  the video memory manager manages GPU page tables
+  ([GPU virtual memory in WDDM 2.0](https://learn.microsoft.com/en-us/windows-hardware/drivers/display/gpu-virtual-memory-in-wddm-2-0)).
+  This explains why a GPU allocation needs commit. It does not say when the
+  charge is taken, to which process, or that a CUDA buffer becomes a WDDM
+  allocation of equal size.
+- **Microsoft, commit accounting.** The commit limit is physical memory plus
+  all page files. At the limit, "the system and processes might not get
+  committed memory"
+  ([Introduction to the page file](https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/introduction-to-the-page-file)).
+  Private and pagefile-backed memory count. A file mapping view does not count
+  "unless the application asks for copy-on-write semantics"
+  ([Russinovich, 2008](https://learn.microsoft.com/en-us/archive/blogs/markrussinovich/pushing-the-limits-of-windows-virtual-memory)),
+  and `SEC_COMMIT` has no effect for data-file mappings
+  ([CreateFileMapping](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createfilemappinga)).
+  `PrivateUsage` is "The Commit Charge value in bytes for this process"
+  ([PROCESS_MEMORY_COUNTERS_EX](https://learn.microsoft.com/en-us/windows/win32/api/psapi/ns-psapi-process_memory_counters_ex)).
+- **NVIDIA.** Pinned host memory "reduces the amount of memory available to the
+  system for paging"
+  ([CUDA Runtime API 13.4](https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html)).
+  No NVIDIA page found says that `cudaMalloc` under WDDM is charged to commit
+  or needs page-file backing.
+- **Third-party reports** (not vendor statements) describe the same effect:
+  - In 2020 an NVIDIA forum user saw a 600 MB `cudaMalloc` raise Task Manager
+    commit by "600MB or more" with no increase in physical memory
+    ([thread](https://forums.developer.nvidia.com/t/cudamalloc-increase-the-commit-memory-in-win10/118351)).
+  - An October 2026 report on RTX Spark (ARM64) measured a 64 MiB
+    `cuMemAlloc` adding 64.125 MiB of `PrivateUsage` with a 16 KiB working
+    set, and a ~1 GiB D3D12 heap using ~1 GiB of commit. NVIDIA had not
+    replied
+    ([thread](https://forums.developer.nvidia.com/t/rtx-spark-on-windows-cuda-allocations-consume-system-commit-even-with-96-gib-dedicated-gpu-memory/386453)).
+  - A merged Unsloth change measured 5139 MiB of GPU buffers adding
+    5467–6180 MiB of system commit under ROCm and Vulkan on an AMD APU
+    ([PR 16046](https://github.com/unslothai/unsloth/pull/16046)).
+  - A TyloQuant change budgets CUDA device memory against commit for the same
+    reason ([PR 169](https://github.com/Tylogi/MFQ/pull/169)).
+
+  The D3D12 and AMD results point to WDDM rather than to CUDA alone.
+
+### What it means for placement
+
+| Bytes | Commit | Resident RAM | Evidence |
+|---|---|---|---|
+| CUDA0 buffers: weights, KV, recurrent state, compute | About their size | ~0 | 67-load first steps; relocation control |
+| mmap'd CPU weights (`CPU_Mapped`, read-only view) | 0 | Touched pages only; discardable and re-read from the GGUF | IQ4 upload: working set +3.70 GiB, commit +0.02 GiB |
+| Read-write file-backed arena (Strata `FILE_ARENA`) | 0 | Dirty pages until written back to the file | RSS +13.66 GiB, commit −1.23 GiB; RAM-floor stop |
+| Pinned host buffers (`CUDA_Host`; Strata's default arena) | Their size | Their size, page-locked | 16,715.52 MiB `CUDA_Host` weights (16 Oct) |
+| Pageable private memory (CPU KV, `malloc` arena) | Their size | Touched pages; pageable | Relocation control |
+| llama.cpp CUDA runtime outside logged buffers | 1.2–1.5 GiB | Not separated | 43 loads; 16 Oct pair about 1.5 GiB |
+
+GPU expert placement is paid twice, in VRAM and in commit.
+
+- Moving expert blocks from `CPU_Mapped` to the GPU returns no commit. The RAM
+  it frees is reclaimable file cache.
+- A GPU expert cache is also a CUDA allocation, so it should be charged the
+  same way. This was not measured in isolation.
+- KV costs the same commit in VRAM as in RAM, so where to put it is a decision
+  about VRAM, RAM and speed.
+- Long-lived host copies are the expensive case. The old non-mapped Q4
+  launcher held about 24 GiB: 16.32 GiB of pinned host weights, 4.78–5.88 GiB
+  of CUDA0 buffers, host KV and runtime. Mapped Q4 and IQ4 profiles hold
+  5.4–6.5 GiB, mostly charged for VRAM.
+- Strata's default pinned arena would add the whole 18.23 GiB expert set to
+  commit. Its file arena avoids that charge, and the untested read-only expert
+  pack should avoid it by design.
+- If VRAM were oversubscribed, the video memory manager could evict an
+  allocation into its backing store. That would turn the commit into real RAM
+  or page-file use. This is inferred from Microsoft's definition and was not
+  observed; the lab's VRAM stop floors keep the server away from it.
+
+### Admission gates and the 1.0 GiB floor
+
+- **Predict server commit from the load plan.** After loading, server commit ≈
+  ΣCUDA0 buffers + Σnon-mapped `CUDA_Host`/`CPU` buffers + about 1.3 GiB;
+  `CPU_Mapped` adds nothing.
+  - IQ4_XS moe34 needs 5.19 + 0.02 + 1.21 = 6.43 GiB, yet its profile's
+    admission threshold was 4 GiB of available commit. The actual preflight
+    had 11.95 GiB.
+  - The Strata file-arena guard also used 4 GiB. Its load took 7.13 GiB of
+    the 8.61 GiB available, and available commit bottomed at 1.476 GiB.
+  - A sound gate is at least the predicted server commit, plus the 1.0 GiB
+    floor, plus a desktop margin.
+- **Bursts outrun the monitor.** The model-buffer allocation took 4.378 GiB of
+  system commit within one 1.08 s sample. The running guard cannot take back a
+  grant already made; only admission can prevent it.
+- **Both commit-floor stops examined here came from other processes after
+  loading.**
+  - 21 October: system commit grew 5.119 GiB in the 17.2 s after loading;
+    server commit grew 0.149 GiB.
+  - 26 October, Gemma 128K: system commit grew 5.270 GiB versus 0.241 GiB for
+    the server over 61 minutes. Server commit there was 4.731 GiB against
+    3516.24 MiB of CUDA0 buffers.
+  - The floor protects the owner's applications. The engine's GPU-charged
+    commit stays until its buffers are freed or the process exits.
+  - Desktop growth of about 5 GiB was seen both over 17 seconds and over an
+    hour, so the margin should cover it.
+- **The system-managed page file is a lagging safety valve, not capacity.**
+  - Microsoft documents growth once commit reaches 90% of the limit. Yet the
+    limit stayed at 89.910 GiB while commit reached 99.0% (21 October, 24 s).
+    It also stayed at 106.326 GiB for 61 minutes while 793 of 794 samples were
+    at or above 90% (26 October).
+  - Growth was observed in steps of about 1–2 GiB when commit was close to the
+    limit, and was later truncated, as Russinovich describes. On 24 October the
+    limit gained 1.006 GiB at 01:02:39 with 1.282 GiB available, and was back
+    to 91.910 GiB by 01:06:07.
+  - Gates must keep using fresh `commit_available_gib`, never a peak or a
+    historical limit.
+- **Page-file history.**
+  - 26.0 GiB in every 21 October run (commit limit minus RAM).
+  - 28.0 GiB in 23–25 October records.
+  - A persistent 42.4 GiB from 26 October 08:05. The growth happened after
+    25 October 00:46; no lab telemetry covers that window, and the cause is
+    not identified.
+  - 46,499 MiB (45.4 GiB, limit 109.32 GiB) at about 18:55 IST on 3 November,
+    then 47,530 MiB (46.4 GiB, limit 110.33 GiB) by 19:16.
+  - Peak commit since the 23 October boot is 113.18 GiB, so the limit has
+    briefly been at least that high.
+  - Most of the page file is reservation: 9.65 GiB was in use at 19:16, and
+    at most 12.0 GiB had been used since boot.
+  - Microsoft caps growth at 3× RAM and at one eighth of the volume, about
+    119 GiB on this 952 GiB C:. Growth also needs free disk space; C: had
+    59.5 GiB free at 19:17.
+- **3 November, 19:16 IST.** No `llama-server` or Strata process was running
+  and Ollama had no model loaded. Commit was 105.10 of 110.33 GiB (5.23 GiB
+  available), RAM available was 7.75 GiB and VRAM free was 6198 MiB. A mapped
+  Qwen profile needs about 5.5–6.5 GiB of server commit, which would use all
+  of the available commit before the floor or any margin is counted.
+
+### Not established
+
+A controlled `cudaMalloc`/`cudaFree` probe has not been run. Low commit
+headroom and the owner's open applications ruled it out on 3 November. The
+probe would record `PrivateUsage`, inspect new regions with `VirtualQuery`, and
+check whether the charge is released on free or only at process exit. One
+third-party report saw part of it persist after `cuMemFree`.
+
+Also untested on this host:
+
+- commit accounting for desktop D3D and browser GPU allocations
+- the TCC compute-only driver model
+- what triggered the persistent page-file growth of 25–26 October
+
+## 3 November: grading and audit observations
+
+### WSL isolated grading and the run C native stop
+
+Grading in WSL is not free on this host. With apps open on 3 November, one cold
+WSL2 boot for `scripts/run_isolated.py` cost about 1.8 GiB of available RAM and
+2.2 GiB of commit: commit fell from 3.396 to 1.207 GiB, and the VM held
+1.2-1.7 GiB until its idle shutdown about a minute later. Batch every reviewed
+grading directory into one boot, gate on available commit as well as RAM, and
+never overlap grading with an inference run.
+
+Run C's native 32K stop (27 October 07:20:46 IST) came from outside the engine.
+In the final 26 seconds available RAM fell from 5.015 to 2.265 GiB and commit
+from 5.249 to 2.671 GiB, while the model process's 1 GiB working set and
+3.667 GiB private commit stayed flat. The guard is doing its job; the trigger
+was desktop growth these counters cannot attribute to a process.
+[Receipt](../reports/2026-11-03-flint-runC-grades.json).
+
+### 20-21 October memory observations (audited 3 November)
+
+- **File-backed sections on Windows.** A file-backed expert arena on Windows
+  (Strata `STRATA_Q36_FILE_ARENA`, 18.23 GiB) left available commit at
+  1.48-2.72 GiB while it filled. However, engine memory rose to 15.98 GiB and
+  free RAM fell from 12.93 to 0.364 GiB in 35.6 s, so the RAM floor stopped it
+  before readiness. Avoiding commit charge does not avoid physical residency
+  when a copy loop touches every page. A read-only mapped pack is built but
+  unmeasured.
+- **Moving expert blocks to the GPU.** For Qwen IQ4_XS, going from 37 to 34 CPU
+  expert blocks moved 1,254.51 MiB of CPU-mapped weights and added
+  1,142.00 MiB of CUDA weights. On that desktop the load still exhausted commit
+  (0.903 GiB) within 24 s.
+- **Guard stops can be telemetry failures.** A resource guard that treats a
+  missing reading as a floor breach can stop a run on a telemetry failure. The
+  21 October IQ3_S stop came from an nvidia-smi read error while 1,152 MiB or
+  more VRAM remained free. Record which branch of the guard fired.
+- **Paging cuts decode speed.** Paging alone reduced LFM2.5 decode from about
+  23 to 4-5 tok/s: 72,783 page faults, median free RAM 2.67 GiB. Treat a
+  deadline under paging as an unscored throughput failure, not as evidence
+  about answer length.
+- **Prism fork host memory.** The Prism fork held 9.6-9.8 GiB of private host
+  memory throughout, even with every Bonsai PTQ1_0 layer on the GPU; CPU K/V
+  accounts for only 2.1 GiB of that.
 
 ## Completed apps-open precision comparison
 

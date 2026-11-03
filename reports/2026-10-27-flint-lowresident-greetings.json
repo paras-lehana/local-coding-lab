@@ -1,0 +1,205 @@
+{
+  "status": "greetings-complete-file-workflows-in-progress",
+  "profile_name": "flint-q3xl-cpu49-cache512-resident1-output32k-ctx40k",
+  "profile": {
+    "model": "flint-q3xl",
+    "alias": "flint-lab",
+    "locally_tested": false,
+    "validation_status": "unrun-low-residency-reasoning-controls",
+    "evidence": "Separate apps-open fallback: measured B used4GiB working-set cap, but after its clean exit only7.7-7.8GiB physical memory was available. Reduce the owned hard residency ceiling to1GiB and retain the6.5GiB startup reserve:7.5GiB admission. Commit7.5GiB/VRAM5500MiB and runtime RAM2.5GiB/commit1GiB/VRAM400MiB/GPU84C floors are unchanged. A working-set ceiling does not bound private commit, standby cache or total model size. Native allocations and paging must be measured. Use600second plain greetings before frozen router controls. 40K context/32K output is not a private-audit qualification. Run1024 then8192 sampler caps then native reasoning on this exact profile; compare completion and reviewed code, not thinking-token count. Different residency/context from B prevents a budget-only B comparison.",
+    "load_min_ram_free_gib": 7.5,
+    "load_min_vram_free_mib": 5500,
+    "load_min_commit_available_gib": 7.5,
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_min_commit_available_gib": 1,
+    "stop_gpu_c": 84,
+    "working_set_limit_gib": 1,
+    "working_set_reserve_gib": 6.5,
+    "template_kwargs": {
+      "preserve_reasoning": true
+    },
+    "runtime_variant": {
+      "id": "b11838-noprefetch-v1",
+      "llama_sha256": "10331e86ab5bd3f8c08c486f42d900f1dd09dbab218ce54a8684b7ec7b65c35f"
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--n-cpu-moe",
+      "49",
+      "--ctx-size",
+      "40960",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC",
+      "--batch-size",
+      "64",
+      "--ubatch-size",
+      "16",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--reasoning-budget",
+      "-1",
+      "--reasoning-preserve",
+      "--predict",
+      "32768",
+      "--temp",
+      "1.0",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "20",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--moe-cache-mib",
+      "512",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--ctx-checkpoints",
+      "4",
+      "--timeout",
+      "21600",
+      "--metrics",
+      "--verbosity",
+      "4"
+    ]
+  },
+  "load_seconds": 23.10899999999674,
+  "preflight": {
+    "time": 1793051834.4978874,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 7.879375457763672,
+    "commit_limit_gib": 106.32622909545898,
+    "commit_available_gib": 10.056201934814453,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 5748.0,
+    "gpu_c": 35.53,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "greetings": [
+    {
+      "name": "hi-cold",
+      "benchmark": {
+        "wall_seconds": 74.90600000001723,
+        "finish_reason": "stop",
+        "first_event_seconds": 1.7810000000172295,
+        "first_content_seconds": 55.40600000001723,
+        "error": null
+      },
+      "usage": {
+        "completion_tokens": 168,
+        "prompt_tokens": 3,
+        "total_tokens": 171,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 3,
+        "prompt_ms": 1747.47,
+        "prompt_per_token_ms": 582.49,
+        "prompt_per_second": 1.7167676698312415,
+        "predicted_n": 168,
+        "predicted_ms": 73118.246,
+        "predicted_per_token_ms": 437.83380838323353,
+        "predicted_per_second": 2.283971636846978
+      },
+      "post_request_memory": {
+        "time": 1793051934.8418958,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 7.909648895263672,
+        "commit_limit_gib": 106.32622909545898,
+        "commit_available_gib": 6.567619323730469,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 2725.0,
+        "gpu_c": 37.34,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "same_visible_text_as_B": true,
+      "same_reasoning_as_B": true,
+      "response_sha256": "03af1de0e77ed504c27653113b1dc9a7781e076c35eb9c181902aac4fa9887ad"
+    },
+    {
+      "name": "hi-warm",
+      "benchmark": {
+        "wall_seconds": 66.71899999998277,
+        "finish_reason": "stop",
+        "first_event_seconds": 1.625,
+        "first_content_seconds": 46.28100000001723,
+        "error": null
+      },
+      "usage": {
+        "completion_tokens": 168,
+        "prompt_tokens": 3,
+        "total_tokens": 171,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 3,
+        "prompt_ms": 1550.199,
+        "prompt_per_token_ms": 516.7330000000001,
+        "prompt_per_second": 1.9352354117116577,
+        "predicted_n": 168,
+        "predicted_ms": 65080.419,
+        "predicted_per_token_ms": 389.70310778443115,
+        "predicted_per_second": 2.566056005263273
+      },
+      "post_request_memory": {
+        "time": 1793052001.945286,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 7.856781005859375,
+        "commit_limit_gib": 106.32622909545898,
+        "commit_available_gib": 6.540065765380859,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 2751.0,
+        "gpu_c": 38.03,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "same_visible_text_as_B": true,
+      "same_reasoning_as_B": true,
+      "response_sha256": "acbcc8bbbba9c066d627f0ed818f1f9daf7729641341a4fa56dec794b58060f8"
+    }
+  ],
+  "quality_score": null,
+  "limitations": [
+    "No completed coding score or final hardware closeout yet.",
+    "Both greetings report zero reused prompt tokens.",
+    "Compared with B, context and residency and desktop headroom differ.",
+    "Working set overlaps private committed bytes; do not add them."
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "status": "passive-observation",
+  "profile": "flint-q3xl-cpu49-cache512-resident1-output32k-ctx40k",
+  "case": "core-budget8192-output32k",
+  "samples": [
+    {
+      "time": "2026-10-27T04:28:14.5471548+05:30",
+      "memory": {
+        "AvailableMBytes": 6368,
+        "PagesInputPersec": 49067,
+        "PagesOutputPersec": 0,
+        "PageReadsPersec": 3762,
+        "PageWritesPersec": 0,
+        "TransitionFaultsPersec": 176238,
+        "PageFaultsPersec": 380541,
+        "CacheFaultsPersec": 1864
+      },
+      "disk": [
+        {
+          "DiskReadBytesPersec": 155880068,
+          "DiskWriteBytesPersec": 16312,
+          "DiskReadsPersec": 2512,
+          "DiskWritesPersec": 3,
+          "CurrentDiskQueueLength": 1
+        }
+      ],
+      "engine_cpu_seconds": 4176.328125,
+      "engine_working_set_bytes": 1073733632,
+      "engine_private_bytes": 3924324352
+    },
+    {
+      "time": "2026-10-27T04:28:20.9460368+05:30",
+      "memory": {
+        "AvailableMBytes": 6491,
+        "PagesInputPersec": 29821,
+        "PagesOutputPersec": 0,
+        "PageReadsPersec": 2878,
+        "PageWritesPersec": 0,
+        "TransitionFaultsPersec": 176820,
+        "PageFaultsPersec": 186634,
+        "CacheFaultsPersec": 1864
+      },
+      "disk": [
+        {
+          "DiskReadBytesPersec": 83844625,
+          "DiskWriteBytesPersec": 91398618,
+          "DiskReadsPersec": 1317,
+          "DiskWritesPersec": 168,
+          "CurrentDiskQueueLength": 0
+        }
+      ],
+      "engine_cpu_seconds": 4181.328125,
+      "engine_working_set_bytes": 1073745920,
+      "engine_private_bytes": 3924373504
+    },
+    {
+      "time": "2026-10-27T04:28:27.3828095+05:30",
+      "memory": {
+        "AvailableMBytes": 6965,
+        "PagesInputPersec": 24618,
+        "PagesOutputPersec": 0,
+        "PageReadsPersec": 5626,
+        "PageWritesPersec": 0,
+        "TransitionFaultsPersec": 169928,
+        "PageFaultsPersec": 216644,
+        "CacheFaultsPersec": 4468
+      },
+      "disk": [
+        {
+          "DiskReadBytesPersec": 99828956,
+          "DiskWriteBytesPersec": 0,
+          "DiskReadsPersec": 1567,
+          "DiskWritesPersec": 0,
+          "CurrentDiskQueueLength": 0
+        }
+      ],
+      "engine_cpu_seconds": 4186.21875,
+      "engine_working_set_bytes": 1073696768,
+      "engine_private_bytes": 3924373504
+    }
+  ],
+  "limitations": [
+    "Paging counters are system-wide; disk counters include other applications and both volumes.",
+    "Formatted counter windows and process observations are not perfectly simultaneous.",
+    "Process working set and private bytes overlap; do not add them as physical RAM.",
+    "No cache flush, storage load, model request or application stop was performed.",
+    "This does not isolate a bottleneck or prove that all page faults read the SSD."
+  ],
+  "schema_version": 1,
+  "raw_sha256": "5717425b8c6b2a9b8a9da4a6b4d1eb004efbfacb50d7221d9459cf1d54246da8",
+  "note": "Three passive counter windows, not a controlled comparison against resident4.",
+  "desktop_memory_snapshot": {
+    "time": "2026-10-27T04:49:14.0186373+05:30",
+    "note": "Overlapping process working sets and private commit; not additive exclusive physical RAM or leak proof.",
+    "groups": [
+      {
+        "name": "Code",
+        "count": 42,
+        "working_set_bytes": 14471446528,
+        "private_commit_bytes": 19634675712
+      },
+      {
+        "name": "msedge",
+        "count": 67,
+        "working_set_bytes": 11933945856,
+        "private_commit_bytes": 17767505920
+      },
+      {
+        "name": "qemu-system-x86_64",
+        "count": 1,
+        "working_set_bytes": 1884504064,
+        "private_commit_bytes": 7425597440
+      },
+      {
+        "name": "llama-server",
+        "count": 1,
+        "working_set_bytes": 1073713152,
+        "private_commit_bytes": 3927990272
+      },
+      {
+        "name": "explorer",
+        "count": 2,
+        "working_set_bytes": 684331008,
+        "private_commit_bytes": 3008520192
+      },
+      {
+        "name": "Service",
+        "count": 20,
+        "working_set_bytes": 80998400,
+        "private_commit_bytes": 2709880832
+      },
+      {
+        "name": "msedgewebview2",
+        "count": 25,
+        "working_set_bytes": 2080739328,
+        "private_commit_bytes": 2470744064
+      },
+      {
+        "name": "claude",
+        "count": 4,
+        "working_set_bytes": 1710006272,
+        "private_commit_bytes": 2357075968
+      }
+    ],
+    "ollama_loaded_model_count": 0
+  }
+}

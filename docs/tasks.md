@@ -1,8 +1,255 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-10-27 (Asia/Kolkata); higher precision and missing coverage remain active.
+Last updated: 2026-11-03 (Asia/Kolkata); Claude's recovery and offline completion checkpoint; experiments remain capacity-gated.
+
+## 2026-11-03 Claude: recovery and offline completion
+
+Owner request at 18:40 IST: recover the context, finish what Codex left
+pending and summarize; run deep research with multiple agents; evaluate
+Strata, Qwen Flash-Next, Flint and their combinations with the lab's metrics;
+keep every document updated, with detail in the model-specific records. At
+18:45 IST the owner asked for continuous checking instead of waiting, speed,
+and the highest-quality reasoning and coding. This block records the offline
+work integrated at this checkpoint. It is interim, not a campaign closeout.
+
+| # | Task | Status | Notes |
+|---|---|---|---|
+| 1 | Recover Codex's 22-27 October context | 🔄 In Progress | Seven read-only recovery agents and a merged brief started 18:45 IST (orchestrator-owned). Last pushed commit dd07002 |
+| 2 | Finish Codex's pending Flint Q3_K_XL run C grading | ✅ Done | C1024 38/40, C8192 37/40 (extended cohort only); native 32K unscored after a RAM-guard stop |
+| 3 | Standalone records for Claude's 20-21 October runs | ✅ Done | New LFM2.5 and Bonsai 2 task folders; dated Qwen and Strata sections; audit findings F1-F13; no score changed |
+| 4 | WDDM commit accounting in the memory guide | ✅ Done | New memory-and-context section recomputed from saved telemetry; no engine or allocation probe run |
+| 5 | Integrate snippets, validate, commit and push | ✅ Done | 49 offline tests, 4 PowerShell parses, audit 361 files/0 findings, diff check clean; commit and push follow this checkpoint |
+| 6 | Deep research with multiple agents | 🔄 In Progress | Five topics, primary-source checked (orchestrator-owned); findings not integrated in this checkpoint |
+| 7 | Strata, Flash-Next, Flint and combination experiments | ⬜ Not Started | No inference yet: admission blocked at 19:19 IST (6.0 GiB RAM, 3.6 GiB commit available). Other agents are downloading Flash-Next Q2 and Groot and building a Strata trial |
+| 8 | Keep documenting everything | 🔄 In Progress | Model records, comparison, memory guide, task index and both logs updated at this checkpoint |
+
+### Flint Q3_K_XL run C grading (workflow subtask, 18:57-19:15 IST)
+
+| # | Task | Status | Notes |
+|---|---|---|---|
+| 1 | C1024 isolated grading (primary + alternative) | ✅ Done | Both 6/6 frozen groups; self-tests 6/7 (false d == {} assertion); primary scored 38/40 |
+| 2 | C8192 review and isolated grading | ✅ Done | review.json written before execution; 6/6 frozen; self-tests 6/7 (wrong [2] expectation); 37/40 |
+| 3 | Native 32K disposition | ✅ Done | Unscored: RAM-guard stop 07:20:46 IST on 27 October, 11,221 reasoning tokens, no visible text, no hardware event |
+| 4 | Flint report and sanitized receipt | ✅ Done | Dated 27 October run C section, 3 November addendum, top pointer; reports/2026-11-03-flint-runC-grades.json |
+
+Log:
+- 18:57 C8192 review.json and grading inputs extracted (no execution); 18:58
+  C1024 rubric record written; Codex's review.json unchanged.
+- 18:59-19:00 C1024 primary graded in WSL bubblewrap. The cold boot cost about
+  1.8 GiB RAM and 2.2 GiB commit (commit fell to 1.207 GiB), and the gate
+  refused the next boots (1.1 and 2.692 GiB commit).
+- 19:08 Cold gate recalibrated to RAM ≥ 4.0 / commit ≥ 3.3 GiB (lab commit
+  floor 1 GiB, system-managed pagefile, zero System/Application warnings).
+  19:10 alternative and C8192 graded in one boot; no warnings; VM shut down
+  afterwards.
+- 19:11 Exporter wrote score/disposition receipts and the public JSON; audit 0
+  findings; git diff --check clean.
+- Scores are agent-assessed, single-seed reviewer judgments: C1024 could be
+  37-38 and C8192 37-38 under stricter or looser read-order and grounding
+  calls. The 8192 cap took 2.4 times as long for no measured gain. Flint stays
+  unpromoted; Qwen remains selected.
+
+### Audit of Claude's 20-21 October documentation (workflow subtask, about 19:20 IST)
+
+| Task | Status | Evidence |
+|---|---|---|
+| Check existing Codex coverage before writing | ✅ Done | Comparison rows existed. The Flint record had an aggregate review only. The Strata 21 October work and the Qwen 20-21 October attempts were undocumented |
+| LFM2.5 standalone record | ✅ Done | docs/tasks/2026-10-20-lfm25/ |
+| Bonsai 2 PQ2_0/PTQ1_0 standalone record | ✅ Done | docs/tasks/2026-10-20-bonsai2/ |
+| Qwen 20-21 October attempts | ✅ Done | New dated section in the 24 October Qwen record |
+| Strata Windows file arena and expert pack | ✅ Done | New dated section in the 18 October Strata report |
+| Reproducible derivations and corrections | ✅ Done | local-data/2026-11-03-campaign-audit/ (derive.py, derived-measurements.json, frozen-inputs.json, lfm25-coding-source-review.json, audit-findings.json F1-F13) |
+| Integrator updates (comparison, task index, prompts, memory guide) | ✅ Done | Applied at 19:30-19:45 IST as dated addenda; existing comparison rows kept verbatim |
+
+Log:
+- Read-only audit: no engine start or stop, download, deletion, model-code
+  execution or commit.
+- Saved requests and server sampler lines show three different LFM samplers.
+  The private audit used top_k 20, min_p 0 and repeat penalty 1.0, which
+  corrects the private review.
+- LFM coding was graded automatically before review. A post-hoc source review
+  is recorded separately and the frozen grades are unchanged.
+- The IQ3_S 20261021b stop was an nvidia-smi read failure (lowest VRAM
+  1,152 MiB).
+- The Strata file arena avoids commit charge, but engine memory reached
+  15.98 GiB and the RAM floor tripped at 35.6 s. The expert pack was built and
+  never loaded.
+- Public-content audit: 361 files, 0 findings. git diff --check clean.
+- Observed changes by another session: the Prism runtime folder was removed at
+  about 19:11 IST (its pinned release zip remains), and the Strata checkout
+  moved to experiment/win-vram-budget at 19:09:25.
+
+### WDDM commit accounting (workflow subtask, 19:20 IST)
+
+Drafted the memory-guide section; the integrator owns the doc edit. Findings,
+recomputed from saved telemetry:
+- IQ4_XS moe34 allocation step: VRAM +4.220 GiB against server PrivateUsage
+  +4.295 GiB and system commit +4.378 GiB, with working set +0.314 GiB.
+- 67 mmap loads: median commit/VRAM 1.038 (IQR 1.029–1.072).
+- Relocation pair: 24.023 vs 24.012 GiB with identical buffer totals
+  (23,067.77 MiB).
+- Strata: VRAM +1.165/+1.340/+1.948 GiB against commit +1.552/+1.417/+1.843 GiB.
+- 2 GiB file-backed probe: 82.05 → 81.97 GiB.
+- Both commit-floor stops examined (21 and 26 October) were driven by about
+  5 GiB of desktop commit growth after loading.
+- Page file: 26.0 GiB → 46.4 GiB (limit 89.91 → 110.33 GiB); peak commit since
+  boot 113.18 GiB.
+
+No engine was run, no allocation probe, no downloads, no git. Receipt:
+local-data/2026-11-03-wddm-commit/.
+
+### Integration and validation (19:25-19:45 IST)
+
+- 19:25 Read the uncommitted tree. Codex's 27 October changes (Strata native
+  identity latch in experiments/strata/guard.py and check_guard.py, five
+  identity tests, guide/report/README/changelog edits, Flint receipts and the
+  private72K fallback profile) are kept and committed here. Their earlier
+  "validation pending" wording is retained as written.
+- Left uncommitted for the sessions that own them: catalog/models.json (Groot
+  19B-A3B and Qwen3.5-0.8B draft pins, 19:03 IST) and the two speculative
+  decoding profiles (19:08 IST), all proposed and unmeasured, plus Claude's
+  20-21 October candidate profiles, which the new reports describe as
+  untracked local files. Claude's three 20-21 October retirement receipts are
+  committed because the Bonsai record links one of them.
+- Applied the three subtask snippets to model-comparison.md (dated notes, five
+  new rows, an audit addendum and report links), memory-and-context.md (top
+  pointer, WDDM section, grading/audit observations and two dated addenda) and
+  the task index. No measured entry was rewritten.
+- 19:35 Offline suite: 49 tests pass in 40.794 s (43.116 s command, Python
+  3.12.10), including the five new Strata identity tests; no skips. Four
+  PowerShell files parse with zero errors (Windows PowerShell 5.1). Public
+  audit 361 files, 0 findings; git diff --check clean.
+- The harmless-process Strata check (experiments/strata/check_guard.py, Strata
+  Python environment) remains unrun: another agent is building in the Strata
+  checkout. No engine was started, no model downloaded, no application closed.
+
+## 2026-10-27 05:29 IST - Native identity guard prepared while C continues
+
+Verified live Flint native121696 under122332, exact b11838 mapped runtime and
+Q3XL arguments; C8192 is streaming visible text after its budget close, not yet
+complete. Native32K follows unchanged. No generated code or offline validation
+has run during C. Prepared an opt-in stable_native_executable guard that latches
+the owned engine's full path/PID/creation time and rejects exit, replacement or
+duplicates. This closes the source-identified frontend-restart attribution gap
+for future Strata experiments, without changing the active Flint collector.
+Added five portable identity tests and a harmless Windows frontend/child-exit
+check; all are pending the inference-free interval. README/changelog updated
+with that limitation. Corrected the Strata guide's old blanket all-experts-RAM
+growth claim to the inspected0.1.50 gate and required runtime observations.
+One combined patch failed on a README anchor and applied no files; corrected
+patch succeeded. No install, model download/hash, test or additional engine.
+
+
+## 2026-10-27 04:30 IST - C observation and Strata configuration controls
+
+C remains live (owned native121696, verified executable/model/ancestry),
+8192-capped router decoding;1024 review remains execution-pending. Three
+passive04:28counter windows show80-149MiB/s on the shared SSD and substantial
+system-wide hard/transition page activity. No exclusive model IO or causal
+bottleneck claim. Sanitized lowresident-io receipt and Flint report updated.
+Strata source inspection finds saved-preset overlay despite an explicit config.
+Both unrun plans now set STRATA_NO_PRESET=1, STRATA_START_RETRIES=0 and explicit
+projectionfalse. Startup retries and request-triggered restart are distinct;
+future collection must abort on native exit/identity change. No source fork
+or model started. Native help prerequisite corrected to passed; shards/pack
+remain absent. Read-only CUDA VMM attribute probe prepared, NOT RUN; requires
+no live engine and does not create a context/allocate device memory. All new
+changes await quiet validation; no model code grading/build/download/hash
+overlap. Continue C8192 then native32K, do not finalize.
+
+
+## 2026-10-27 04:52 IST - Article-derived controls and current-memory distinction
+
+Exact native1aff6d generate.cpp/vmm.cpp archived privately withSHA manifests;
+no model download. Source confirms resident-headroom environment and separate
+direct/mapped dictionary IO. Four plans remain explicitly unlaunchable:
+static pure mapping;128K KV growth;2GiB expert copy;PLE-mapped dictionary.
+All freeze adapt-async0 and PLE auto-mmap0; neither read mode is claimed faster.
+Source documents both slow direct reads and cold mapped-read stalls. Pinned
+frontend presets/start retries are disabled; request-triggered restart remains
+a distinct failure path to guard. No new inference/source fork.
+04:49snapshot: Code42processes13.48GiB summedWS, Edge67processes11.11GiB,
+only one llama engine1GiBWS/3.66GiBprivate; Ollama has zero loaded models.
+Counters overlap and do not establish exclusive RAM use or a leak. New public
+lowresidentIO receipt includes sanitized desktop snapshot. Precision matrix
+updated: latest Gemma coding/history outcomes, activeFlintC, K2verifiedonDisk,
+Boltmetadataonly/currentmodels-directoryabsence. Memory guide diagram clarifies
+file delivery, weights/dictionary and chat state; no automatic file-memory claim.
+C8192stilldecoding; nativefollows. No offlinechecks/grading sinceCstarted.
+
+
+## 2026-10-27 05:10 IST - Maintained runtime guidance corrected
+
+Applied agent-context-maintenance to the regular local runtime.md reference
+(no symlink; owns this PC campaign). Re-read skill and runtime reference;
+shared Codex/router and Windows Claude adapter already reviewed. Adapters
+unchanged because routing already reaches these sources. Removed the blanket
+apps+full-model-size RAM fit rule: bounded mmap, standby and private commit
+are distinct, supported by currentFlint7.879GiB admission/1GiBWS. Marked dated
+app/bandwidth/throughput observations, current106.33GiB commit limit, exact
+Qwen680/1360MiB attentionKV plus62.81MiB recurrent state, and extended dense
+policy. Added a pointer to the new pinned Strata preparation/overlay/control
+requirements; no model compatibility or KV-growth result claimed.
+C8192 remains active with actual budget activation logged. Interim1224sample
+minima RAM5.675/commit5.137GiB/VRAM2688MiB are not final measurements. No model
+grade, validation run or new engine occurred; quiet checks still pending.
+
+
+## 2026-10-27 05:17 IST - C8192 reaches visible answer
+
+Native log confirms budget8192 activation in both requests; final-turn
+activation47:43.893737 and forced close109:16.262203 in engine elapsed time.
+First visible output4137.312seconds from whole-workflow start. Answer still
+streaming, no completion or quality grade. Initial API payloads compare equal
+except reasoning_budget_tokens; first-turn cached tokens0vs146. Private
+first-request-control-comparison.json and first-visible-observation.json save
+this evidence. Native32K-outputcontrol remains queued on the same engine.
+C1024 unchanged source selections remain unexecuted until engine exit.
 
 ## 2026-10-26 evening - Seven articles and RAM investigation
+
+## 2026-10-27 04:20 IST - C1024 completes;8192 control active
+
+The first C router completes2268.531s, first visible926.219s,2turns.
+Final turn1518prompt/3835generated/cached699; all7sources delivered.
+All visible output read. It quotes original buggy fence0, proposes recursive
+copy fence1 and explicit deepcopy alternative fence2, tests in fence3.
+Source-review and separate unchanged primary/alternative grading inputs saved;
+no model-generated code executed. Empty-dict self-test expectation contradicts
+the contract/both implementations; zero/empty-string and dict-inside-list alias
+coverage is missing, and first claimed v2/v1 read order is reversed. Final
+inventory is correct and execution honesty explicit. No correctness score yet.
+Sanitized completed-case receipt exported.8192control now active; native32K
+follows. Continue observing C; do not start another model or grade during it.
+New guide/report/source-qualification changes await inference-free checks.
+
+
+## 2026-10-27 04:03 IST - C controls active; source and grading qualifications
+
+B evidence/Strata environment checkpoint committed/pushed asdd07002;
+GitHub CI40408588820 passes. C owned controller121692, actual engine121696,
+launcher115480 (venv actual parent122332) uses resident1/40K/output32K.
+Load23.109s; greetings74.906/66.719s, same visible/reasoning bytes as B,
+both cache_n0.1024cap is actually exhausted and forces the end sequence;
+all7required sources are delivered and visible answer is in progress.
+Observe with observe-owned-workflow.py and the C run folder. No grading,
+build, dependency install or model hashing/download during this interval.
+The answer quotes the original buggy function before its replacement;
+legacy first-fence extraction would choose the wrong artifact. Grading docs
+and local evaluation reference now require explicit semantic turn/fence/hash
+selection before unchanged isolated checks. Agent-context-maintenance skill
+read; shared Codex/router and Windows Claude adapter reviewed, routing already
+covers the maintained sources, so adapters unchanged. No helper/existing score
+changed. One attempted patch had a wrong anchor and made no changes.
+Native Strata1aff6d gate inspection corrects a blanket KV-growth exclusion:
+bounded expert-copy mode is excluded, plain mapping is not explicitly excluded
+or checked for physical page residency. Unrun pure-mapping128K-growth plan
+saved, conditioned on static qualification and actual enable/grow/trim evidence.
+Private72K/cache256/resident1 fallback prepared, not loaded. All runtime floors
+remain; source, capacity and actual model success stay separate.
+Current changes await inference-free validation/commit. Do not finalize or
+start another engine while C is active.
+
 
 ## 2026-10-27 03:26 IST - Flint B closed; quiet validation and next profile
 
@@ -1236,6 +1483,12 @@ shared adapters reviewed and unchanged. No further automatic inference queued.
 |---|---|---|---|
 |TQ router completion, history, TS/SQL, smaller-reasoning diagnostic and131K capacity|2026-10-19|Unexpected restart and new corrected processor-cache record; preserve the interrupted result and hardware-stop rule|Pending; no automatic retry|
 |Production endpoint restoration after this restart|2026-10-19|Selected profile is preserved; new hardware evidence prevents a fresh inference load in this campaign|Pending stability review|
+|Flint Q3_K_XL complete public suite (TS/SQL incomplete, history extended-only), private audit (needs at least 64K) and seeds 74/75 plus a held-out task|2026-11-03|Run C covered only the router; capacity-gated|Pending|
+|Harmless-process Strata check (experiments/strata/check_guard.py) for the native identity latch|2026-11-03|Needs the Strata Python environment while no Strata build or engine is active|Pending|
+|Correct the IQ3_S "VRAM stop" wording in the private leaderboard and lab AGENTS.md (audit F7: nvidia-smi read failure)|2026-11-03|Private skill file and project guidance are outside this integration|Pending|
+|Controlled cudaMalloc/cudaFree commit probe (PrivateUsage, VirtualQuery, release on free vs exit)|2026-11-03|Needs at least 8 GiB available commit and no owner build|Pending|
+|Sanitized public WDDM commit receipt from local-data/2026-11-03-wddm-commit/analysis.json|2026-11-03|Subtask could not write reports/; not published without its own review|Pending|
+|Groot/draft catalog pins and speculative-decoding profiles|2026-11-03|Owned by another active session; proposed, not measured|Pending (owning session)|
 
 -17October Copilot no-response: fresh-session Autopilot/Allow all, greeting and
   cited-file UI checks pending; owner explicitly requested no editor typing.
@@ -1276,6 +1529,14 @@ Current dispositions:
 |---|---|---|---|
 |Correlate recurrent restarts with CPU/cache, firmware/power and CPU-temperature evidence before sustained model testing; do not infer a defective part or RAM-speed cause from this record|2026-10-19|High|Open|
 |Retain selected Qwen MoE Q4; resume pending frozen cases in fresh directories only after stability review and label changed profiles|2026-10-19|High|Open|
+|Batch all reviewed grading directories into one WSL boot and gate on available commit as well as RAM|2026-11-03|High|Open|
+|Compute commit admission from the load plan: planned CUDA0 + non-mapped host buffers + about 1.3 GiB runtime + 1.0 GiB floor + about 5 GiB desktop margin|2026-11-03|High|Open|
+|Make legacy run_candidate refuse coding grading before source review|2026-11-03|Med|Open|
+|Make resource guards record which branch fired: a real reading below the floor or missing telemetry|2026-11-03|Med|Open|
+|Carry the 1024 reasoning cap into any further Flint Q3_K_XL TS/SQL work|2026-11-03|Med|Open|
+|Measure STRATA_Q36_EXPERT_PACK residency against llama.cpp mmap under fresh admission|2026-11-03|Med|Open|
+|Owner decision: a fixed page-file minimum of about peak commit minus RAM (about 49 GiB on C:)|2026-11-03|Low|Open; needs explicit owner approval|
+|If Bonsai is revisited, test medium effort or the stock-llama.cpp Q2_0 file fully on the GPU|2026-11-03|Low|Open|
 
 -17October: use a new Copilot chat for changed session-construction settings;
   verify actual delivery and tool inventory before changing model context or

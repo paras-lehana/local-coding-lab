@@ -23,6 +23,26 @@ prove the model cannot finish with a larger allowance. They remain failures in
 their original cohort. A newer separately installed engine and a smaller
 GSQ-RCO Q2_0 quant are explicit new variables. They need their own evidence.
 
+### Native KV-growth qualification
+
+27October correction: native build`1aff6d14117b` excludes
+`resident_cpu_experts` from KV growth, but does not explicitly exclude plain
+`mmap_experts` or check that mapped pages are physically resident. The earlier
+blanket RAM-residency conclusion was too broad. GPU VMM, one GPU, a profile,
+GPU-only KV and adequate cache slots are additional conditions. Plain-mapping
+growth remains untested; verify actual enable/grow/trim logs, memory and recall
+after static qualification. Keep bounded-copy and host-streamed KV separate.
+[Exact native source](https://github.com/Niko1221/Strata/blob/1aff6d14117b/src/program/generate.cpp#L5123).
+
+The frontend's single-sequence `/slots` reports `n_prompt_tokens` from its
+request status, not physically mapped KV cells or prompt-plus-output occupancy.
+Use actual tokenizer/usage counts for input and native `K/V grown`/`K/V trimmed`
+events for allocated cells, bytes and transferred expert slots. The existing
+llama.cpp growth collector's `/tokenize` assumption must also be checked before
+reuse with Strata. A context meter rising is insufficient evidence of dynamic
+allocation. These are27October source findings; the new growth run is unrun.
+[Frontend slot semantics](https://github.com/Niko1221/Strata/blob/4b9e05a2a806a3fe24f7b2560d98626c37dade35/serve/server.py#L6689).
+
 ## Historical result and limits
 
 The previous artifact was **ISTA-DASLab GSQ-RCO IQ3_XXS**, two shards totalling
@@ -92,10 +112,21 @@ small projections and is a separate numerical change.
   a fresh config path, verify no inherited sidecar, and save `/props` plus
   actual requests and rendered marker checks. These are pending validation
   steps, not a new observed live failure.
+- Further source inspection finds a second settings layer: the server applies
+  saved tuning presets even when given an explicit config. The new experiment
+  will set `STRATA_NO_PRESET=1` and compare effective arguments with its frozen
+  config. `STRATA_START_RETRIES=0` disables transient startup retries, but does
+  not disable the distinct request-triggered restart path. The collector must
+  stop on native-process exit/identity change before sending further tasks.
+  No retry failure or settings contamination has been observed in a new live
+  trial; these are source-derived controls. Explicitly disable the experimental
+  projection in sampling as well as omitting its vector from engine arguments.
+  [Pinned frontend source](https://github.com/Niko1221/Strata/blob/4b9e05a2a806a3fe24f7b2560d98626c37dade35/serve/server.py#L7869).
 - 27October preparation adds a pure-mapping qualification before the resident
   pool: unchanged native expert values read from GGUF, no full RAM copy,
   proposed4GiB owned working-set ceiling,32K int8KV and3072MiB device reserve.
-  This is an unrun plan; native help and fresh admission still have to pass.
+  This is an unrun plan; native help has passed, while shards, packing and fresh
+  admission remain pending.
   Source distinguishes OS-cached mapping from a budgeted expert copy, which
   can change the file tier to unbuffered reads. Compare those modes explicitly
   rather than assuming a larger resident budget is always faster. The planned
@@ -104,6 +135,23 @@ small projections and is a separate numerical change.
   its fixed deadline. No inference measurement or fit is claimed here.
 - After mapping qualifies, compare a bounded expert-RAM pool sized from fresh physical and commit
   headroom, n-gram table on SSD, int8KV, one slot, and explicit device reserve.
+- Concrete unrun controls now include a2GiB expert-copy pool with6.5GiB
+  headroom and a separate PLE-dictionary mapping arm. They are not combined:
+  the former changes hot-expert residency/cold reads; the latter changes only
+  `--ple-io direct` to `mmap` from the static baseline. Neither requests the
+  whole dictionary locked in RAM. Native source documents slow direct lookup
+  reads on some Windows/NVMe systems; this is a reason to measure our drive,
+  not proof of our bottleneck. The same source records Windows mapped reads
+  stalling on serial cold page faults; mapping is not inherently faster.
+  Compare whole cold/warm requests without purging the owner's cache.
+  All four plans remain unlaunchable pending
+  model/pack verification and fresh allocation-specific admission. A1GiB
+  working-set ceiling must not be reused as a2GiB pinned-pool allowance.
+- Keep `--adapt-async 0` explicit for the baseline and these controls. Native
+  source says asynchronous adaptive swapping is not bit-exact across runs;
+  its possible speed benefit needs a separate quality comparison. Explicit
+  `STRATA_PLE_AUTO_MMAP=0` also keeps lookup mode from changing automatically.
+  [Native placement and lookup source](https://github.com/Niko1221/Strata/blob/1aff6d14117b/src/program/generate.cpp).
 - Disable the engine's additional parked-conversation cache for initial fit
   (`--conversation-cache-mib 0`). Its default can use up to8GiB more host memory;
   it is distinct from the live KV cache. Later prefix-reuse experiments get
@@ -171,8 +219,10 @@ Its AGENTS, AI_SETUP, AI_REFERENCE and SOURCE_INSTALL guides were read.
 This experiment deliberately uses the documented source route with the
 separately verified native engine; it is not the default Terminal installer,
 which chooses locations and versions outside this lab's pinned E-drive plan.
-No new environment install, native help invocation or model load is claimed
-yet. Source preparation remains separate from inference qualification.
+At that source-preparation checkpoint, no environment installation or help
+invocation had run. The27October03:26 update above supersedes those two items:
+environment/help checks now pass. Model loading and inference qualification
+remain unrun.
 
 The current low-RAM documentation distinguishes Linux-only file prefetch and
 zero-copy from Windows' opt-in file-page trimming. The latter does not reduce

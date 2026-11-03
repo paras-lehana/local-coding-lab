@@ -1,0 +1,183 @@
+{
+  "name": "core-budget1024-output32k",
+  "result": {
+    "status": "completed",
+    "scored": false,
+    "note": "Source review and isolated behavioral tests still required",
+    "wall_seconds": 2268.530999999959,
+    "turn_count": 2
+  },
+  "quality_score": null,
+  "review_status": "all-visible-turns-source-reviewed-execution-pending",
+  "code_executed": false,
+  "controls": {
+    "max_tokens": 32768,
+    "temperature": 1.0,
+    "top_p": null,
+    "top_k": null,
+    "min_p": null,
+    "seed": 73,
+    "chat_template_kwargs": null,
+    "reasoning_budget_tokens": 1024,
+    "thinking_budget_tokens": null,
+    "reasoning_effort": null
+  },
+  "sources": [
+    {
+      "requested_path": "AGENTS.md",
+      "delivered_path": "AGENTS.md",
+      "error": null,
+      "characters": 516
+    },
+    {
+      "requested_path": ".claude/CLAUDE.md",
+      "delivered_path": ".claude/CLAUDE.md",
+      "error": null,
+      "characters": 455
+    },
+    {
+      "requested_path": ".github/instructions/python-v1.md",
+      "delivered_path": ".github/instructions/python-v1.md",
+      "error": null,
+      "characters": 155
+    },
+    {
+      "requested_path": ".github/instructions/v2/python.md",
+      "delivered_path": ".github/instructions/v2/python.md",
+      "error": null,
+      "characters": 330
+    },
+    {
+      "requested_path": "docs/config-contract.md",
+      "delivered_path": "docs/config-contract.md",
+      "error": null,
+      "characters": 574
+    },
+    {
+      "requested_path": "docs/host.md",
+      "delivered_path": "docs/host.md",
+      "error": null,
+      "characters": 335
+    },
+    {
+      "requested_path": "src/config_loader.py",
+      "delivered_path": "src/config_loader.py",
+      "error": null,
+      "characters": 416
+    }
+  ],
+  "request_count": 2,
+  "turns": [
+    {
+      "finish_reason": "tool_calls",
+      "first_event_seconds": 140.875,
+      "first_final_seconds": null,
+      "usage": {
+        "completion_tokens": 207,
+        "prompt_tokens": 493,
+        "total_tokens": 700,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 493,
+        "prompt_ms": 140570.232,
+        "prompt_per_token_ms": 285.13231643002024,
+        "prompt_per_second": 3.5071436746294906,
+        "predicted_n": 207,
+        "predicted_ms": 86405.044,
+        "predicted_per_token_ms": 419.4419611650485,
+        "predicted_per_second": 2.3841200752122758
+      },
+      "visible_characters": 0,
+      "reasoning_characters": 467,
+      "tool_call_count": 7
+    },
+    {
+      "finish_reason": "stop",
+      "first_event_seconds": 469.8279999999795,
+      "first_final_seconds": 926.2189999999828,
+      "usage": {
+        "completion_tokens": 3835,
+        "prompt_tokens": 1518,
+        "total_tokens": 5353,
+        "prompt_tokens_details": {
+          "cached_tokens": 699
+        }
+      },
+      "timings": {
+        "cache_n": 699,
+        "prompt_n": 819,
+        "prompt_ms": 242388.771,
+        "prompt_per_token_ms": 295.9569853479854,
+        "prompt_per_second": 3.3788693949027864,
+        "predicted_n": 3835,
+        "predicted_ms": 1798700.085,
+        "predicted_per_token_ms": 469.1445187793427,
+        "predicted_per_second": 2.131539344426061
+      },
+      "visible_characters": 12419,
+      "reasoning_characters": 5068,
+      "tool_call_count": 0
+    }
+  ],
+  "evidence_sha256": {
+    "answer.txt": "371eceb4a3ac3a6cca793f444af2caaf0343d80db9d37045a36681b951eacfd8",
+    "manifest.json": "70398bfb2a497d7a361b9118aa882822e6f390c0ebaa9eabd22853e19b38c0e1",
+    "question.txt": "492949f958b4b1ab49d8c80a5e8dad9b6a4a9d93aa6db841f02f8eb352a53b3a",
+    "request-00.json": "691f64b447075b45e652b5dfcdc5511596cfbdef40b84831efab3fbba8c4542e",
+    "request-01.json": "5bece32ceb7049ffe5bbf641bc6799f9a096c374e9a0fc65bce5b8fcbafbc38f",
+    "result.json": "512030d1467afa2d5372a8e71a3e53c61e48784ce15b8526e5359135399ff86f",
+    "review.json": "c7d3462c8436ed9a60a6e85b546d706ac78cd8f9a56e746c8d961c374c801198",
+    "sources.json": "199243f75e65d7b257b5312887908181946cde06821fd1a4db747c4b856d902d",
+    "stream-00.jsonl": "cad8a70bbb90dcefdd0f048d5b1344ff5c0335d1e147db32ffaa35223ab9b390",
+    "stream-01.jsonl": "ec7fbcbe8fa96800843a6852e61ca34958f2fab4259ae9236ffc4ac1a553d057",
+    "tools.json": "f4c6c07c551161b5bd691533709804a174c990e394b97105a00b6a1bffd2686b",
+    "turns.json": "b7048331de07d56b91e15eb1904b49b7200cc43876c91d7887f5f64c13a44d06"
+  },
+  "profile_name": "flint-q3xl-cpu49-cache512-resident1-output32k-ctx40k",
+  "cohort": "extended-diagnostic",
+  "source_findings": [
+    "Both implementations use only local dict/list operations or stdlib deepcopy; no external capabilities.",
+    "Contract covers JSON-like data, so arbitrary mutable Python object support is not inferred.",
+    "The empty-dict self-test expects d={} although both-dict recursion must preserve d.e=2.",
+    "Claimed zero coverage has no actual zero override; empty string and dict-inside-list aliasing are also absent.",
+    "First stated read order puts v2 before v1; actual batch order reads v1 before v2. Final file inventory is correct.",
+    "Correctly distinguishes Windows facts and refuses absent Redis sentinel/PG failover values.",
+    "Correctly says no tests or syntax checks ran; source review does not award behavior points."
+  ],
+  "implementation_selections": [
+    {
+      "label": "primary",
+      "fence_index": 1,
+      "candidate_sha256": "53fcfd327f90382028475bda7258e56199d2dffc9c66871236d83f3562fce5aa",
+      "model_tests_sha256": "8eededf59b4d52ab213d4e22dcb6f18d12a071b2406d9cd0cbcbd02cd7e05105",
+      "checks_sha256": "4069c09261ea41a19cae32e65aaaa239fddd697c2dd3255d1850575e3af48c98",
+      "transformations": [
+        "Remove Markdown fence; dedent; remap only fixture import to candidate."
+      ]
+    },
+    {
+      "label": "alternative",
+      "fence_index": 2,
+      "candidate_sha256": "671e228bcd6a1c932459f39bb479ab14ef24ff9cafe66f61265ae99e8c619e0b",
+      "model_tests_sha256": "8eededf59b4d52ab213d4e22dcb6f18d12a071b2406d9cd0cbcbd02cd7e05105",
+      "checks_sha256": "4069c09261ea41a19cae32e65aaaa239fddd697c2dd3255d1850575e3af48c98",
+      "transformations": [
+        "Remove Markdown fence; dedent; remap only fixture import to candidate."
+      ]
+    }
+  ],
+  "primary_fence_index": 1,
+  "alternative_fence_index": 2,
+  "quoted_original_fence_index": 0,
+  "limitations": [
+    "No implementation/self-test execution or correctness score yet.",
+    "Other reasoning controls are still collecting; no final run closeout.",
+    "37m48.531s is outside the frozen1200second cohort.",
+    "First case on this profile; later controls may reuse prompt cache.",
+    "Compared with B, residency and context also change; not a budget-only pair."
+  ]
+}
