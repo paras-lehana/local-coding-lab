@@ -2509,3 +2509,80 @@ campaign. Groot exact-file retired; new runtime and Gemma hash-verified on E:.
 63 offline tests pass;11 qualification controls,3 collector ownership controls,
 3 merge-fixture controls and2 PowerShell parses pass. Final publication checks
 and canonical closeout follow; no production/editor availability claim.
+
+
+### Canonical measured checkpoint and closeout
+
+**A. Results**
+
+**Done:** installed and tested Gemma4 12B QAT, tested the newer Strata engine, updated the model reports/article table, and reclaimed **12.48 GB** by deleting the verified Groot artifact.
+
+**Partial:** I have **not finished every model and quantization**. Flash triggered a new NVIDIA error during a greeting; the monitoring stopped the queue. **No new reboot occurred.**
+
+| Model / experiment | What happened | My take |
+|---|---|---|
+| Gemma12, resident-memory limit **2 → 3 → 2 GiB** | Greetings approximately **113 → 19 → 110 seconds** | The restrictive limit was a substantial bottleneck on this PC |
+| Gemma12, thinking **on / off** | Same merge task: **636 / 83 seconds**; both passed **5/5 independent behavior groups** | More thinking gave no correctness gain on this task; both missed an exact instruction about assertion count |
+| Gemma12, KV entirely in RAM | Freed about **337 MiB** of GPU allocation at 32K; adding GPU layers did not clearly improve speed | Useful capacity option, not automatically faster. One answer's implementation passed, but its own test was wrong |
+| Flash Q2, Strata native **0.1.59** | Three short runs completed; exact-prefix reuse helped. The next residency control logged **nvlddmkm event13 / FECS** | No completed new coding or long-context score; interrupted run is unscored |
+
+[Detailed campaign and remaining tests](https://github.com/paras-lehana/local-coding-lab/blob/experiment/flint-precision-20261024/docs/tasks/2026-11-10-tuning/2026-11-10-tuning-v0.12.0.md) · [Gemma report](https://github.com/paras-lehana/local-coding-lab/blob/experiment/flint-precision-20261024/docs/tasks/2026-11-10-gemma12/2026-11-10-gemma12-v0.12.0.md) · [All models, configurations and limitations](https://github.com/paras-lehana/local-coding-lab/blob/experiment/flint-precision-20261024/docs/models.md).
+
+**B. Implementation and validation**
+
+Added a pinned Strata side runtime and official Gemma artifact on E:. The installer now verifies **every shard** and the space required for the complete model. Generated answers were reviewed before execution in isolation.
+
+Validation: **63 offline tests passed**, plus 11 qualification controls, three collector-ownership checks, three merge-fixture controls and two PowerShell parses. Public audit: **439 files, zero findings**. Windows CI exposed a short-path test assumption; that is fixed. [Windows and Ubuntu CI now pass](https://github.com/paras-lehana/local-coding-lab/actions/runs/42701642525).
+
+Published lab implementation **5e59ebf**, test correction **2879021**, branch `experiment/flint-precision-20261024`; shared experiment/incident guidance **bcee859** on `main`. [Every changed public file](https://github.com/paras-lehana/local-coding-lab/blob/experiment/flint-precision-20261024/docs/file-inventory.md) is documented.
+
+Read project/shared instructions, local-llm and experiments skills, current model reports and relevant runtime sources. Ran unit tests, isolated grading, event checks, public audit, link checks and Git publication. Claude/Codex routing is unchanged; remote import/discovery probes and editor tests were not rerun. No UI change was made.
+
+**C. Your request, pointer by pointer**
+
+| # | Pointer Task | Original Pointer Text | Status | What Was Done |
+|---|---|---|---|---|
+| 4 | Rotate storage | “keep deleting and downloading” | DONE | Verified retirement; new runtime/model downloaded and hashed |
+| 1 | Tune current/new models | “more hypertuning and other quantisation test” | PARTIALLY DONE | Residency, thinking and KV controls measured; higher quants pinned but unrun this round |
+| 2 | Compare requested families | “qwen 4 and 3.8… flint max, and gemma” | PARTIALLY DONE | Gemma/Flash tested; other trials and unverified releases explicitly listed |
+| 3 | Exhaust Flash tuning | “do all types of tuning” | PARTIALLY DONE | Short controls finished; new GPU event stopped the remaining queue |
+| 5 | Work autonomously | “dont wait for me… test all” | PARTIALLY DONE | Proceeded without approval requests; all-model coverage remains incomplete |
+
+**D. Additional findings**
+
+The new GPU error occurred with **8.6 GiB RAM, 22.5 GiB commit and 1.3 GiB VRAM free**, at about **47°C GPU core temperature**. No configured floor was crossed. The same event text also exists in October logs: this does **not identify a particular quant, setting or component as the cause**. [Incident evidence](https://github.com/paras-lehana/local-coding-lab/blob/experiment/flint-precision-20261024/reports/2026-11-10-flash-fecs-stop.md).
+
+**E. Still untested**
+
+| Item | Status / reason |
+|---|---|
+| Flash higher residency, cache/prefill, CPU KV, alternative KV precision, effort, fused prefill, standard llama.cpp | Prepared; stopped before these controls by the NVIDIA event |
+| Flash IQ3; Gemma12/31 Q6; dense Qwen3.8 Q4/IQ4 | Pinned, not newly tested; hardware interruption and storage rotation remain prerequisites |
+| Full Gemma instruction/file/long-context suites; remaining matched Qwen and Flint coding | Incomplete; the small merge diagnostic does not replace them |
+| Qwen4 / Flint Max | Could not verify the requested official weight releases in the checked [Qwen](https://huggingface.co/Qwen) / [Recursive](https://huggingface.co/RecursiveSI) inventories |
+
+The [local-llm skill](E:/llm/.claude/skills/local-llm/SKILL.md) says “do not reset the event timestamp merely to bypass a stop.” The lab's event-stop rule applies to this recorded NVIDIA error. **No engine is running; no replacement is promoted.**
+
+**F. My recommendation**
+
+Keep Qwen Q4 as the historical instruction-following reference. Gemma12 deserves the full file-based audit before a Q6 comparison; its short-task gains do not establish the intelligence you need. Flash needs a reviewed GPU recovery condition before another trial. Prioritize complete, comparable instruction/code results over maximum reasoning, maximum context or filling VRAM.
+
+**G. Copyable summary**
+
+```text
+Local Coding Lab — new tuning results, comparison still incomplete, 10 November 2026
+
+What's done
+- Tested a new smaller Gemma model and a newer Flash execution engine while keeping desktop applications open.
+- Increasing Gemma's resident-memory allowance substantially improved greeting latency; restoring the smaller allowance reproduced the slowdown.
+- Four generated merge implementations passed independent behavior checks. However, instruction-count mistakes remained, and one model-written test was incorrect.
+- Longer reasoning took over ten minutes on one coding task without improving its tested correctness over the roughly eighty-second answer.
+- Moving context memory to system RAM freed GPU capacity, but using more GPU layers did not demonstrate a speed improvement.
+- Updated individual model reports, the article evidence table and installation checks. Preserved an exact record of a new GPU error; no new restart occurred.
+
+Suggested next steps
+- Review the GPU incident before resuming sustained inference.
+- Complete the file-reference, instruction-following and long-context tests before selecting a replacement.
+- Compare higher precision using matched tasks and settings, rather than assuming it fixes bugs.
+- Retain the existing Qwen reference. The remaining experiments are documented but unfinished, and no model is currently running.
+```
