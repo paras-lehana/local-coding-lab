@@ -1,0 +1,2286 @@
+{
+ "schema_version": 1,
+ "title": "Forced full re-prefill audit of multi-turn tool workflows",
+ "date": "2026-11-03",
+ "reviewer": "Claude (Opus 5.5)",
+ "cohort": "read-only log audit; no engine was started, stopped or loaded",
+ "basis": "docs/tasks/2026-11-03-deep-research/2026-11-03-deep-research-v1.0.md section 1.4 (issue #30357, PR #30557) and ranked experiment 1",
+ "scope": {
+  "client_records": {
+   "conversations": 189,
+   "public_workflow_cases": 152,
+   "private_audit_runs": 26,
+   "strata_cases": 10,
+   "azllm_cases": 1,
+   "coding_single_turn_requests": 62,
+   "turns_with_timings": 805,
+   "turns_without_timings": 7,
+   "turns_matched_to_a_server_task": 762
+  },
+  "server_logs": {
+   "parsed": 120,
+   "lab_logs": "local-data/**/server/runs/*/server.log (plus local-data/2026-10-14-placement/*/runs and 2026-10-18-strata/llama-control/runs)",
+   "editor_logs": "E:/llm/logs/mapped-production-*/runs/*/server.log and E:/llm/logs/*.stderr.log",
+   "runtimes": [
+    "b11562 stock (b2f036c0f)",
+    "b11562-noprefetch-v1",
+    "b11669",
+    "b11838",
+    "b11838-noprefetch-v1",
+    "prism fork b10787"
+   ],
+   "verbosity": "Most logs use -lv 4, which prints the common prefix ('checking sim (lcp/new)'), checkpoint restores, forced re-processing and reused tokens. Verbosity-3 logs (14-15 October, early Flint smokes) contribute client timings only."
+  },
+  "excluded": [
+   "local-data/2026-11-03-campaign (live Groot benchmark on port 8081): not analysed",
+   "Strata and azllm engines: client timings only, no llama.cpp server log",
+   "benchmarks/2026-10-13-instructions/*.stderr.log for 13-14 October private runs: outside the audited log paths; those three runs are classified from client timings"
+  ],
+  "privacy": "Numbers only. No prompt, answer, file or editor text was copied. Whitespace-only features (for example a trailing '\\n\\n\\n') were computed for the boundary analysis."
+ },
+ "method": {
+  "continuation_turn": "A request with index >= 1 inside one benchmark conversation (scenario directory or private run).",
+  "ideal_reuse": "min(previous KV tokens, current prompt tokens - 1). Previous KV = the server's 'stop processing: n_tokens' for the previous task, or prompt_n + cache_n + predicted_n - 1 when unmatched.",
+  "lost_tokens": "ideal_reuse - cache_n, split with the server LCP into history_mismatch_tokens (cached tokens after the point where the re-rendered history first differs) and checkpoint_rollback_tokens (identical prefix tokens re-processed because the recurrent or sliding-window state could not be rolled back to the LCP).",
+  "lost_seconds": "Interpolated from the task's own 'prompt processing, n_tokens, t' progress lines over the first lost tokens; average ms/token when no progress lines exist.",
+  "classes": {
+   "full_reuse": "lost <= 1 token",
+   "partial_reuse": "cache_n > 0 and lost > 1",
+   "full_reprefill": "cache_n == 0 on a continuation turn"
+  },
+  "matching": "Client turns were joined to server tasks by (prompt_n, predicted_n, cache_n) and time; 762 of 805 timed turns matched.",
+  "limits": "LCP is the server's token-level common prefix with its cached slot, not with older states. Mismatch tokens include intended template changes (for example dropped reasoning), so they are an upper bound on what a lossless round trip would save."
+ },
+ "headline": {
+  "continuation_turns": 561,
+  "full_reuse": 407,
+  "partial_reuse": 153,
+  "full_reprefill_cache_n_0": 1,
+  "full_reprefill_rate_percent": 0.18,
+  "lost_tokens": 28470,
+  "lost_seconds": 1096.7,
+  "workflow_prefill_seconds": 30699.7,
+  "workflow_decode_seconds": 78533.5,
+  "lost_share_of_prefill_plus_decode_percent": 1.0,
+  "qwen36": {
+   "continuation_turns": 224,
+   "full_reuse": 222,
+   "partial": 2,
+   "full_reprefill": 0,
+   "lost_tokens": 2318,
+   "lost_seconds": 19.4,
+   "share_of_prefill_plus_decode_percent": 0.057
+  },
+  "verdict": "Forced full re-processing inside a tool loop happened once in 561 continuation turns (Gemma-4-31B, 9,778 tokens, 512.7 s). For Qwen3.6 it never happened: 222 of 224 continuation turns reused the whole previous KV including the generated reasoning, and the two partial turns lost 19.4 s in total. The 700-860 s private-audit times are new tool-result prefill and decode, not re-prefill. Most of the 1,097 s lost across all models is Gemma-4: one turn whose template dropped earlier reasoning (512.7 s) and 65 short-context sliding-window restores that re-processed already cached output (341 s with Flint). The large avoidable re-prefills are in real editor traffic, where shared-prefix requests diverged before every retained checkpoint (578 s in four requests).",
+  "loss_breakdown_seconds": {
+   "gemma4_31b_reasoning_dropped_full_reprefill": 512.7,
+   "iswa_short_context_unnecessary_restores": 341.2,
+   "gemma4_other_tail_mismatch_and_rollback": 144.0,
+   "qwen3_coder_next": 55.8,
+   "qwen36": 19.4,
+   "attention_only_glm_and_qwen3_coder_30b": 17.6,
+   "other_lfm_flint_tail_azllm": 6.0
+  },
+  "prompt_n_near_full": {
+   "continuation_turns_with_prompt_n_at_least_90_percent": 37,
+   "of_which_lost_tokens_gt_1": 9,
+   "note": "All but one are file-read turns whose 8K-50K new tokens are genuinely new; the exception is the Gemma-4-31B full re-prefill."
+  }
+ },
+ "by_model_profile_runtime": [
+  {
+   "model": "GLM-4.7-Flash",
+   "quant": "Q5_K_M",
+   "memory": "attention only (MLA)",
+   "runtime": "b11562",
+   "ctx_checkpoints": 32,
+   "ubatch": 32,
+   "sources": {
+    "public": 31,
+    "private": 6
+   },
+   "conversations": 12,
+   "continuation_turns": 25,
+   "full_reuse": 25,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 886.3,
+   "decode_seconds_all_turns": 2532.5,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 12,
+   "first_turns_with_cross_case_cache": 10
+  },
+  {
+   "model": "GLM-4.7-Flash",
+   "quant": "UD-Q4_K_XL",
+   "memory": "attention only (MLA)",
+   "runtime": "b11562",
+   "ctx_checkpoints": 32,
+   "ubatch": 32,
+   "sources": {
+    "public": 32,
+    "private": 8
+   },
+   "conversations": 12,
+   "continuation_turns": 28,
+   "full_reuse": 27,
+   "partial_reuse": 1,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 490,
+   "lost_seconds": 6.5,
+   "of_which_history_mismatch_tokens": 490,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 1216.7,
+   "decode_seconds_all_turns": 3318.2,
+   "lost_share_of_prefill_plus_decode": 0.0014,
+   "worst_turn": {
+    "conversation": "private-runs/glm47-q4-f16-private-unrestricted",
+    "turn": 1,
+    "lost_tokens": 490,
+    "lost_seconds": 6.5,
+    "kind": "partial_reuse"
+   },
+   "first_turns": 12,
+   "first_turns_with_cross_case_cache": 10
+  },
+  {
+   "model": "GLM-4.7-Flash",
+   "quant": "UD-Q6_K_XL",
+   "memory": "attention only (MLA)",
+   "runtime": "b11562",
+   "ctx_checkpoints": 32,
+   "ubatch": 32,
+   "sources": {
+    "public": 19,
+    "private": 6
+   },
+   "conversations": 7,
+   "continuation_turns": 18,
+   "full_reuse": 18,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 755.7,
+   "decode_seconds_all_turns": 1921.7,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 7,
+   "first_turns_with_cross_case_cache": 6
+  },
+  {
+   "model": "Gemma-4-26B",
+   "quant": "Q4_0",
+   "memory": "iSWA (sliding window 1024 + global)",
+   "runtime": "b11562",
+   "ctx_checkpoints": 32,
+   "ubatch": 32,
+   "sources": {
+    "public": 75,
+    "private": 5
+   },
+   "conversations": 13,
+   "continuation_turns": 67,
+   "full_reuse": 0,
+   "partial_reuse": 67,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 7977,
+   "lost_seconds": 65.2,
+   "of_which_history_mismatch_tokens": 3020,
+   "of_which_checkpoint_rollback_tokens": 4957,
+   "checkpoint_rollback_seconds": 38.4,
+   "prefill_seconds_all_turns": 1004.5,
+   "decode_seconds_all_turns": 4200.7,
+   "lost_share_of_prefill_plus_decode": 0.0125,
+   "worst_turn": {
+    "conversation": "private-runs/gemma26-private-unrestricted",
+    "turn": 1,
+    "lost_tokens": 2766,
+    "lost_seconds": 20.0,
+    "kind": "partial_reuse"
+   },
+   "first_turns": 13,
+   "first_turns_with_cross_case_cache": 6
+  },
+  {
+   "model": "Gemma-4-26B",
+   "quant": "Q4_0",
+   "memory": "iSWA (sliding window 1024 + global)",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 32,
+   "ubatch": 32,
+   "sources": {
+    "public": 41,
+    "private": 2
+   },
+   "conversations": 7,
+   "continuation_turns": 36,
+   "full_reuse": 0,
+   "partial_reuse": 36,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 2867,
+   "lost_seconds": 89.2,
+   "of_which_history_mismatch_tokens": 1049,
+   "of_which_checkpoint_rollback_tokens": 1818,
+   "checkpoint_rollback_seconds": 56.1,
+   "prefill_seconds_all_turns": 1132.5,
+   "decode_seconds_all_turns": 4992.3,
+   "lost_share_of_prefill_plus_decode": 0.0146,
+   "worst_turn": {
+    "conversation": "local-data/2026-10-24-precision/gemma26-coverage-public-a/core-seed73",
+    "turn": 1,
+    "lost_tokens": 413,
+    "lost_seconds": 18.2,
+    "kind": "partial_reuse"
+   },
+   "first_turns": 7,
+   "first_turns_with_cross_case_cache": 2
+  },
+  {
+   "model": "Gemma-4-26B",
+   "quant": "Q4_0",
+   "memory": "iSWA (sliding window 1024 + global)",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "ubatch": 32,
+   "sources": {
+    "public": 4
+   },
+   "conversations": 1,
+   "continuation_turns": 3,
+   "full_reuse": 0,
+   "partial_reuse": 3,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 345,
+   "lost_seconds": 44.8,
+   "of_which_history_mismatch_tokens": 65,
+   "of_which_checkpoint_rollback_tokens": 280,
+   "checkpoint_rollback_seconds": 36.3,
+   "prefill_seconds_all_turns": 98.9,
+   "decode_seconds_all_turns": 113.4,
+   "lost_share_of_prefill_plus_decode": 0.2112,
+   "worst_turn": {
+    "conversation": "local-data/2026-10-26-articles/gemma-large-history-d/context-large-native-extended",
+    "turn": 3,
+    "lost_tokens": 115,
+    "lost_seconds": 15.4,
+    "kind": "partial_reuse"
+   },
+   "first_turns": 1,
+   "first_turns_with_cross_case_cache": 0
+  },
+  {
+   "model": "Gemma-4-26B",
+   "quant": "Q4_0",
+   "memory": "iSWA (sliding window 1024 + global)",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "ubatch": 16,
+   "sources": {
+    "public": 8
+   },
+   "conversations": 2,
+   "continuation_turns": 6,
+   "full_reuse": 0,
+   "partial_reuse": 6,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 954,
+   "lost_seconds": 158.7,
+   "of_which_history_mismatch_tokens": 128,
+   "of_which_checkpoint_rollback_tokens": 826,
+   "checkpoint_rollback_seconds": 137.4,
+   "prefill_seconds_all_turns": 280.5,
+   "decode_seconds_all_turns": 303.7,
+   "lost_share_of_prefill_plus_decode": 0.2716,
+   "worst_turn": {
+    "conversation": "local-data/2026-10-26-articles/gemma-large-history-f/context-large-native-extended",
+    "turn": 2,
+    "lost_tokens": 238,
+    "lost_seconds": 47.7,
+    "kind": "partial_reuse"
+   },
+   "first_turns": 2,
+   "first_turns_with_cross_case_cache": 0
+  },
+  {
+   "model": "Gemma-4-31B",
+   "quant": "Q4_0",
+   "memory": "iSWA (sliding window 1024 + global)",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 1,
+   "ubatch": 32,
+   "sources": {
+    "public": 16,
+    "private": 3
+   },
+   "conversations": 4,
+   "continuation_turns": 15,
+   "full_reuse": 0,
+   "partial_reuse": 14,
+   "full_reprefill_cache_n_0": 1,
+   "lost_tokens": 11233,
+   "lost_seconds": 594.8,
+   "of_which_history_mismatch_tokens": 10304,
+   "of_which_checkpoint_rollback_tokens": 929,
+   "checkpoint_rollback_seconds": 52.0,
+   "prefill_seconds_all_turns": 2282.9,
+   "decode_seconds_all_turns": 15385.9,
+   "lost_share_of_prefill_plus_decode": 0.0337,
+   "worst_turn": {
+    "conversation": "local-data/2026-10-16-expansion/gemma31-publisher64-public/context-v1",
+    "turn": 4,
+    "lost_tokens": 9778,
+    "lost_seconds": 512.7,
+    "kind": "full_reprefill"
+   },
+   "first_turns": 4,
+   "first_turns_with_cross_case_cache": 0
+  },
+  {
+   "model": "Kimi-Linear-48B-A3B",
+   "quant": "Q4_K_M",
+   "memory": "hybrid (linear + attention)",
+   "runtime": "b11562",
+   "ctx_checkpoints": 4,
+   "ubatch": 32,
+   "sources": {
+    "public": 23
+   },
+   "conversations": 5,
+   "continuation_turns": 18,
+   "full_reuse": 18,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 260.9,
+   "decode_seconds_all_turns": 275.0,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 5,
+   "first_turns_with_cross_case_cache": 2
+  },
+  {
+   "model": "LFM2.5-24B-A2B",
+   "quant": "Q4_0",
+   "memory": "hybrid (conv + attention)",
+   "runtime": "b11669",
+   "ctx_checkpoints": 32,
+   "ubatch": 128,
+   "sources": {
+    "public": 18,
+    "private": 4
+   },
+   "conversations": 4,
+   "continuation_turns": 18,
+   "full_reuse": 17,
+   "partial_reuse": 1,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 168,
+   "lost_seconds": 1.3,
+   "of_which_history_mismatch_tokens": 125,
+   "of_which_checkpoint_rollback_tokens": 43,
+   "checkpoint_rollback_seconds": 0.3,
+   "prefill_seconds_all_turns": 286.7,
+   "decode_seconds_all_turns": 1642.1,
+   "lost_share_of_prefill_plus_decode": 0.0007,
+   "worst_turn": {
+    "conversation": "local-data/2026-10-20-campaign/lfm25-qad-q4-20261020-public/context-v1",
+    "turn": 3,
+    "lost_tokens": 168,
+    "lost_seconds": 1.3,
+    "kind": "partial_reuse"
+   },
+   "first_turns": 4,
+   "first_turns_with_cross_case_cache": 1
+  },
+  {
+   "model": "Qwen3-Coder-30B-A3B",
+   "quant": "UD-Q4_K_XL",
+   "memory": "attention only",
+   "runtime": "b11562",
+   "ctx_checkpoints": 32,
+   "ubatch": 32,
+   "sources": {
+    "public": 23,
+    "private": 6
+   },
+   "conversations": 6,
+   "continuation_turns": 23,
+   "full_reuse": 16,
+   "partial_reuse": 7,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 1001,
+   "lost_seconds": 11.1,
+   "of_which_history_mismatch_tokens": 1001,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 536.5,
+   "decode_seconds_all_turns": 934.7,
+   "lost_share_of_prefill_plus_decode": 0.0075,
+   "worst_turn": {
+    "conversation": "private-runs/qwencoder30-private-2048",
+    "turn": 5,
+    "lost_tokens": 230,
+    "lost_seconds": 2.6,
+    "kind": "partial_reuse"
+   },
+   "first_turns": 6,
+   "first_turns_with_cross_case_cache": 5
+  },
+  {
+   "model": "Qwen3-Coder-Next-80B",
+   "quant": "Q4_K_M",
+   "memory": "hybrid (Gated DeltaNet + attention)",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "ubatch": 128,
+   "sources": {
+    "public": 14
+   },
+   "conversations": 3,
+   "continuation_turns": 11,
+   "full_reuse": 9,
+   "partial_reuse": 2,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 62,
+   "lost_seconds": 13.1,
+   "of_which_history_mismatch_tokens": 32,
+   "of_which_checkpoint_rollback_tokens": 30,
+   "checkpoint_rollback_seconds": 6.4,
+   "prefill_seconds_all_turns": 784.6,
+   "decode_seconds_all_turns": 666.5,
+   "lost_share_of_prefill_plus_decode": 0.009,
+   "worst_turn": {
+    "conversation": "local-data/2026-10-16-expansion/coder-next-noprefetch64-public/ts-sql-v1",
+    "turn": 2,
+    "lost_tokens": 31,
+    "lost_seconds": 8.0,
+    "kind": "partial_reuse"
+   },
+   "first_turns": 3,
+   "first_turns_with_cross_case_cache": 1
+  },
+  {
+   "model": "Qwen3-Coder-Next-80B",
+   "quant": "Q4_K_M",
+   "memory": "hybrid (Gated DeltaNet + attention)",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "ubatch": 256,
+   "sources": {
+    "public": 9,
+    "private": 16
+   },
+   "conversations": 2,
+   "continuation_turns": 23,
+   "full_reuse": 21,
+   "partial_reuse": 2,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 324,
+   "lost_seconds": 42.7,
+   "of_which_history_mismatch_tokens": 296,
+   "of_which_checkpoint_rollback_tokens": 28,
+   "checkpoint_rollback_seconds": 5.0,
+   "prefill_seconds_all_turns": 4971.4,
+   "decode_seconds_all_turns": 277.9,
+   "lost_share_of_prefill_plus_decode": 0.0081,
+   "worst_turn": {
+    "conversation": "private-runs/expansion-20261016-coder-next-recovery64",
+    "turn": 1,
+    "lost_tokens": 293,
+    "lost_seconds": 35.7,
+    "kind": "partial_reuse"
+   },
+   "first_turns": 2,
+   "first_turns_with_cross_case_cache": 0
+  },
+  {
+   "model": "Qwen3.6-35B-A3B",
+   "quant": "UD-IQ3_S",
+   "memory": "hybrid (Gated DeltaNet + attention)",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "ubatch": 128,
+   "sources": {
+    "public": 13,
+    "private": 4
+   },
+   "conversations": 5,
+   "continuation_turns": 12,
+   "full_reuse": 12,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 374.4,
+   "decode_seconds_all_turns": 1198.2,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 5,
+   "first_turns_with_cross_case_cache": 1
+  },
+  {
+   "model": "Qwen3.6-35B-A3B",
+   "quant": "UD-IQ4_XS",
+   "memory": "hybrid (Gated DeltaNet + attention)",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "ubatch": 128,
+   "sources": {
+    "public": 18,
+    "private": 6
+   },
+   "conversations": 7,
+   "continuation_turns": 17,
+   "full_reuse": 17,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 567.4,
+   "decode_seconds_all_turns": 2175.9,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 7,
+   "first_turns_with_cross_case_cache": 1
+  },
+  {
+   "model": "Qwen3.6-35B-A3B",
+   "quant": "UD-Q4_K_M",
+   "memory": "hybrid (Gated DeltaNet + attention)",
+   "runtime": "b11562",
+   "ctx_checkpoints": 32,
+   "ubatch": 128,
+   "sources": {
+    "public": 27,
+    "private": 5
+   },
+   "conversations": 9,
+   "continuation_turns": 23,
+   "full_reuse": 23,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 622.6,
+   "decode_seconds_all_turns": 1266.0,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 9,
+   "first_turns_with_cross_case_cache": 3
+  },
+  {
+   "model": "Qwen3.6-35B-A3B",
+   "quant": "UD-Q4_K_M",
+   "memory": "hybrid (Gated DeltaNet + attention)",
+   "runtime": "b11562",
+   "ctx_checkpoints": 32,
+   "ubatch": 64,
+   "sources": {
+    "public": 24
+   },
+   "conversations": 6,
+   "continuation_turns": 18,
+   "full_reuse": 18,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 333.9,
+   "decode_seconds_all_turns": 828.7,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 6,
+   "first_turns_with_cross_case_cache": 0
+  },
+  {
+   "model": "Qwen3.6-35B-A3B",
+   "quant": "UD-Q4_K_M",
+   "memory": "hybrid (Gated DeltaNet + attention)",
+   "runtime": "b11562",
+   "ctx_checkpoints": 32,
+   "ubatch": 32,
+   "sources": {
+    "public": 7,
+    "private": 10
+   },
+   "conversations": 5,
+   "continuation_turns": 12,
+   "full_reuse": 11,
+   "partial_reuse": 1,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 2081,
+   "lost_seconds": 17.0,
+   "of_which_history_mismatch_tokens": 31,
+   "of_which_checkpoint_rollback_tokens": 2050,
+   "checkpoint_rollback_seconds": 16.7,
+   "prefill_seconds_all_turns": 611.0,
+   "decode_seconds_all_turns": 937.9,
+   "lost_share_of_prefill_plus_decode": 0.011,
+   "worst_turn": {
+    "conversation": "local-data/2026-10-15-campaign/qwen-q4-precision-control/core-seed75",
+    "turn": 2,
+    "lost_tokens": 2081,
+    "lost_seconds": 17.0,
+    "kind": "partial_reuse"
+   },
+   "first_turns": 5,
+   "first_turns_with_cross_case_cache": 2
+  },
+  {
+   "model": "Qwen3.6-35B-A3B",
+   "quant": "UD-Q4_K_M",
+   "memory": "hybrid (Gated DeltaNet + attention)",
+   "runtime": "b11562 (log outside audited paths)",
+   "ctx_checkpoints": null,
+   "ubatch": null,
+   "sources": {
+    "private": 10
+   },
+   "conversations": 3,
+   "continuation_turns": 7,
+   "full_reuse": 7,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 929.1,
+   "decode_seconds_all_turns": 1425.5,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 3,
+   "first_turns_with_cross_case_cache": 0
+  },
+  {
+   "model": "Qwen3.6-35B-A3B",
+   "quant": "UD-Q4_K_M",
+   "memory": "hybrid (Gated DeltaNet + attention)",
+   "runtime": "b11562 (stock install, -lv 3 log)",
+   "ctx_checkpoints": null,
+   "ubatch": 64,
+   "sources": {
+    "public": 53
+   },
+   "conversations": 15,
+   "continuation_turns": 38,
+   "full_reuse": 38,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 467.4,
+   "decode_seconds_all_turns": 3302.5,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 15,
+   "first_turns_with_cross_case_cache": 6
+  },
+  {
+   "model": "Qwen3.6-35B-A3B",
+   "quant": "UD-Q4_K_M",
+   "memory": "hybrid (Gated DeltaNet + attention)",
+   "runtime": "b11562 (stock install, -lv 3 log)",
+   "ctx_checkpoints": null,
+   "ubatch": 128,
+   "sources": {
+    "public": 16,
+    "private": 3
+   },
+   "conversations": 6,
+   "continuation_turns": 13,
+   "full_reuse": 13,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 435.3,
+   "decode_seconds_all_turns": 2741.7,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 6,
+   "first_turns_with_cross_case_cache": 3
+  },
+  {
+   "model": "Qwen3.6-35B-A3B",
+   "quant": "UD-Q4_K_M",
+   "memory": "hybrid (Gated DeltaNet + attention)",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "ubatch": 128,
+   "sources": {
+    "public": 36,
+    "strata": 31,
+    "private": 4
+   },
+   "conversations": 20,
+   "continuation_turns": 51,
+   "full_reuse": 51,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 2082.7,
+   "decode_seconds_all_turns": 3511.7,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 20,
+   "first_turns_with_cross_case_cache": 3
+  },
+  {
+   "model": "Qwen3.6-35B-A3B",
+   "quant": "UD-Q5_K_M",
+   "memory": "hybrid (Gated DeltaNet + attention)",
+   "runtime": "b11562",
+   "ctx_checkpoints": 32,
+   "ubatch": 32,
+   "sources": {
+    "public": 18,
+    "private": 4
+   },
+   "conversations": 7,
+   "continuation_turns": 15,
+   "full_reuse": 14,
+   "partial_reuse": 1,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 237,
+   "lost_seconds": 2.4,
+   "of_which_history_mismatch_tokens": 199,
+   "of_which_checkpoint_rollback_tokens": 38,
+   "checkpoint_rollback_seconds": 0.4,
+   "prefill_seconds_all_turns": 460.4,
+   "decode_seconds_all_turns": 1449.5,
+   "lost_share_of_prefill_plus_decode": 0.0013,
+   "worst_turn": {
+    "conversation": "private-runs/qwen36-q5-private-unrestricted",
+    "turn": 2,
+    "lost_tokens": 237,
+    "lost_seconds": 2.4,
+    "kind": "partial_reuse"
+   },
+   "first_turns": 7,
+   "first_turns_with_cross_case_cache": 4
+  },
+  {
+   "model": "Qwen3.6-35B-A3B",
+   "quant": "UD-Q6_K",
+   "memory": "hybrid (Gated DeltaNet + attention)",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "ubatch": 128,
+   "sources": {
+    "public": 2
+   },
+   "conversations": 2,
+   "continuation_turns": 0,
+   "full_reuse": 0,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 142.2,
+   "decode_seconds_all_turns": 274.0,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 2,
+   "first_turns_with_cross_case_cache": 0
+  },
+  {
+   "model": "Qwen3.6-35B-A3B",
+   "quant": "UD-Q6_K_XL",
+   "memory": "hybrid (Gated DeltaNet + attention)",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "ubatch": 128,
+   "sources": {
+    "public": 22,
+    "private": 3
+   },
+   "conversations": 7,
+   "continuation_turns": 18,
+   "full_reuse": 18,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 5384.0,
+   "decode_seconds_all_turns": 2740.7,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 7,
+   "first_turns_with_cross_case_cache": 3
+  },
+  {
+   "model": "Qwen3.8-27B",
+   "quant": "UD-Q6_K",
+   "memory": "hybrid",
+   "runtime": "stock llama.cpp (-lv 3 log, build not printed)",
+   "ctx_checkpoints": null,
+   "ubatch": null,
+   "sources": {
+    "private": 1
+   },
+   "conversations": 1,
+   "continuation_turns": 0,
+   "full_reuse": 0,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 136.5,
+   "decode_seconds_all_turns": 969.8,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 1,
+   "first_turns_with_cross_case_cache": 1
+  },
+  {
+   "model": "Recursive Flint 40B-A2.5B",
+   "quant": "UD-IQ3_XXS",
+   "memory": "iSWA (sliding window 513 + global)",
+   "runtime": "b11838",
+   "ctx_checkpoints": 4,
+   "ubatch": 128,
+   "sources": {
+    "public": 33,
+    "private": 4
+   },
+   "conversations": 8,
+   "continuation_turns": 29,
+   "full_reuse": 22,
+   "partial_reuse": 7,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 382,
+   "lost_seconds": 2.0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 382,
+   "checkpoint_rollback_seconds": 2.0,
+   "prefill_seconds_all_turns": 216.3,
+   "decode_seconds_all_turns": 1648.4,
+   "lost_share_of_prefill_plus_decode": 0.0011,
+   "worst_turn": {
+    "conversation": "local-data/2026-10-23-flint/public-gpukv-native-a/context-v1",
+    "turn": 1,
+    "lost_tokens": 97,
+    "lost_seconds": 0.5,
+    "kind": "partial_reuse"
+   },
+   "first_turns": 8,
+   "first_turns_with_cross_case_cache": 1
+  },
+  {
+   "model": "Recursive Flint 40B-A2.5B",
+   "quant": "UD-Q3_K_XL",
+   "memory": "iSWA (sliding window 513 + global)",
+   "runtime": "b11838-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "ubatch": 16,
+   "sources": {
+    "public": 20
+   },
+   "conversations": 6,
+   "continuation_turns": 14,
+   "full_reuse": 10,
+   "partial_reuse": 4,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 227,
+   "lost_seconds": 43.2,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 227,
+   "checkpoint_rollback_seconds": 43.2,
+   "prefill_seconds_all_turns": 3184.8,
+   "decode_seconds_all_turns": 17240.9,
+   "lost_share_of_prefill_plus_decode": 0.0021,
+   "worst_turn": {
+    "conversation": "local-data/2026-10-26-articles/flint-q3xl-file32-b/context-native-extended",
+    "turn": 1,
+    "lost_tokens": 95,
+    "lost_seconds": 22.9,
+    "kind": "partial_reuse"
+   },
+   "first_turns": 6,
+   "first_turns_with_cross_case_cache": 3
+  },
+  {
+   "model": "Recursive Flint 40B-A2.5B",
+   "quant": "UD-Q4_K_XL",
+   "memory": "iSWA (sliding window 513 + global)",
+   "runtime": "b11838-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "ubatch": 128,
+   "sources": {
+    "public": 4
+   },
+   "conversations": 2,
+   "continuation_turns": 2,
+   "full_reuse": 2,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 226.5,
+   "decode_seconds_all_turns": 56.5,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 2,
+   "first_turns_with_cross_case_cache": 0
+  },
+  {
+   "model": "Ternary-Bonsai-2-27B",
+   "quant": "PTQ1_0",
+   "memory": "hybrid",
+   "runtime": "prism-b10787",
+   "ctx_checkpoints": 32,
+   "ubatch": 64,
+   "sources": {
+    "public": 1
+   },
+   "conversations": 1,
+   "continuation_turns": 0,
+   "full_reuse": 0,
+   "partial_reuse": 0,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 0,
+   "lost_seconds": 0,
+   "of_which_history_mismatch_tokens": 0,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 2.0,
+   "decode_seconds_all_turns": 34.5,
+   "lost_share_of_prefill_plus_decode": 0.0,
+   "worst_turn": null,
+   "first_turns": 1,
+   "first_turns_with_cross_case_cache": 0
+  },
+  {
+   "model": "azllm engine (model not in an audited log)",
+   "quant": null,
+   "memory": "unknown",
+   "runtime": "azllm",
+   "ctx_checkpoints": null,
+   "ubatch": null,
+   "sources": {
+    "azllm": 2
+   },
+   "conversations": 1,
+   "continuation_turns": 1,
+   "full_reuse": 0,
+   "partial_reuse": 1,
+   "full_reprefill_cache_n_0": 0,
+   "lost_tokens": 122,
+   "lost_seconds": 4.6,
+   "of_which_history_mismatch_tokens": 122,
+   "of_which_checkpoint_rollback_tokens": 0,
+   "checkpoint_rollback_seconds": 0,
+   "prefill_seconds_all_turns": 25.1,
+   "decode_seconds_all_turns": 166.5,
+   "lost_share_of_prefill_plus_decode": 0.0242,
+   "worst_turn": {
+    "conversation": "local-data/azllm-20261019/router-28",
+    "turn": 1,
+    "lost_tokens": 122,
+    "lost_seconds": 4.6,
+    "kind": "partial_reuse"
+   },
+   "first_turns": 1,
+   "first_turns_with_cross_case_cache": 0
+  }
+ ],
+ "qwen36": {
+  "losses": [
+   {
+    "conversation": "local-data/2026-10-15-campaign/qwen-q4-precision-control/core-seed75",
+    "turn": 2,
+    "model": "Qwen3.6-35B-A3B",
+    "quant": "UD-Q4_K_M",
+    "runtime": "b11562",
+    "ctx_checkpoints": 32,
+    "kind": "partial_reuse",
+    "prev_prompt_tokens": 2351,
+    "prev_kv_tokens": 4428,
+    "prompt_tokens": 4574,
+    "server_lcp": 4397,
+    "cache_n": 2347,
+    "prompt_n": 2227,
+    "lost_tokens": 2081,
+    "history_mismatch_tokens": 31,
+    "checkpoint_rollback_tokens": 2050,
+    "lost_seconds": 17.0,
+    "turn_prefill_seconds": 18.5,
+    "divergence_tokens_into_previous_output": 2046,
+    "divergence_tokens_before_previous_output": 0,
+    "previous_output_whitespace": {
+     "reasoning_trailing": "\n\n\n",
+     "reasoning_leading": "",
+     "content_chars": 0,
+     "tool_calls": 1
+    },
+    "server_lines": {
+     "forcing_full": false,
+     "restored_checkpoint_n_tokens": 2347,
+     "erased_invalidated": 0
+    }
+   },
+   {
+    "conversation": "private-runs/qwen36-q5-private-unrestricted",
+    "turn": 2,
+    "model": "Qwen3.6-35B-A3B",
+    "quant": "UD-Q5_K_M",
+    "runtime": "b11562",
+    "ctx_checkpoints": 32,
+    "kind": "partial_reuse",
+    "prev_prompt_tokens": 20415,
+    "prev_kv_tokens": 20648,
+    "prompt_tokens": 26344,
+    "server_lcp": 20449,
+    "cache_n": 20411,
+    "prompt_n": 5933,
+    "lost_tokens": 237,
+    "history_mismatch_tokens": 199,
+    "checkpoint_rollback_tokens": 38,
+    "lost_seconds": 2.4,
+    "turn_prefill_seconds": 63.0,
+    "divergence_tokens_into_previous_output": 34,
+    "divergence_tokens_before_previous_output": 0,
+    "previous_output_whitespace": {
+     "reasoning_trailing": "\n",
+     "reasoning_leading": "",
+     "content_chars": 0,
+     "tool_calls": 1
+    },
+    "server_lines": {
+     "forcing_full": false,
+     "restored_checkpoint_n_tokens": 20411,
+     "erased_invalidated": 0
+    }
+   }
+  ],
+  "private_audits": [
+   {
+    "run": "private-runs/campaign-qwen-iq3s-coverage-a",
+    "quant": "UD-IQ3_S",
+    "turns": 4,
+    "prefill_seconds": 254.5,
+    "decode_seconds": 383.2,
+    "prompt_tokens_processed": 35860,
+    "cache_tokens_reused": 53799,
+    "lost_seconds": 0
+   },
+   {
+    "run": "private-runs/campaign-qwen-iq4xs-cpu35-paging-a",
+    "quant": "UD-IQ4_XS",
+    "turns": 6,
+    "prefill_seconds": 368.0,
+    "decode_seconds": 356.5,
+    "prompt_tokens_processed": 40956,
+    "cache_tokens_reused": 102335,
+    "lost_seconds": 0
+   },
+   {
+    "run": "private-runs/expansion-20261016-qwen36-q4-matched64",
+    "quant": "UD-Q4_K_M",
+    "turns": 4,
+    "prefill_seconds": 476.1,
+    "decode_seconds": 222.8,
+    "prompt_tokens_processed": 39996,
+    "cache_tokens_reused": 46297,
+    "lost_seconds": 0
+   },
+   {
+    "run": "private-runs/expansion-20261016-qwen36-q6-matched64",
+    "quant": "UD-Q6_K_XL",
+    "turns": 3,
+    "prefill_seconds": 1485.5,
+    "decode_seconds": 613.4,
+    "prompt_tokens_processed": 32392,
+    "cache_tokens_reused": 17796,
+    "lost_seconds": 0
+   },
+   {
+    "run": "private-runs/qwen36-cache2048-private-unrestricted",
+    "quant": "UD-Q4_K_M",
+    "turns": 5,
+    "prefill_seconds": 217.4,
+    "decode_seconds": 184.7,
+    "prompt_tokens_processed": 39123,
+    "cache_tokens_reused": 88838,
+    "lost_seconds": 0
+   },
+   {
+    "run": "private-runs/qwen36-historical34-private-recheck",
+    "quant": "UD-Q4_K_M",
+    "turns": 3,
+    "prefill_seconds": 169.8,
+    "decode_seconds": 694.0,
+    "prompt_tokens_processed": 39991,
+    "cache_tokens_reused": 31108,
+    "lost_seconds": 0
+   },
+   {
+    "run": "private-runs/qwen36-q4-coding-t06",
+    "quant": "UD-Q4_K_M",
+    "turns": 3,
+    "prefill_seconds": 168.5,
+    "decode_seconds": 695.1,
+    "prompt_tokens_processed": 39991,
+    "cache_tokens_reused": 31108,
+    "lost_seconds": 0
+   },
+   {
+    "run": "private-runs/qwen36-q4-private-2048",
+    "quant": "UD-Q4_K_M",
+    "turns": 5,
+    "prefill_seconds": 283.5,
+    "decode_seconds": 174.7,
+    "prompt_tokens_processed": 31635,
+    "cache_tokens_reused": 69182,
+    "lost_seconds": 0
+   },
+   {
+    "run": "private-runs/qwen36-q4-private-unrestricted",
+    "quant": "UD-Q4_K_M",
+    "turns": 5,
+    "prefill_seconds": 281.3,
+    "decode_seconds": 173.0,
+    "prompt_tokens_processed": 31635,
+    "cache_tokens_reused": 69182,
+    "lost_seconds": 0
+   },
+   {
+    "run": "private-runs/qwen36-q4-thinking-r2",
+    "quant": "UD-Q4_K_M",
+    "turns": 3,
+    "prefill_seconds": 584.3,
+    "decode_seconds": 76.0,
+    "prompt_tokens_processed": 22664,
+    "cache_tokens_reused": 17106,
+    "lost_seconds": 0
+   },
+   {
+    "run": "private-runs/qwen36-q4-tuned",
+    "quant": "UD-Q4_K_M",
+    "turns": 4,
+    "prefill_seconds": 176.2,
+    "decode_seconds": 654.3,
+    "prompt_tokens_processed": 40930,
+    "cache_tokens_reused": 74041,
+    "lost_seconds": 0
+   },
+   {
+    "run": "private-runs/qwen36-q5-private-unrestricted",
+    "quant": "UD-Q5_K_M",
+    "turns": 4,
+    "prefill_seconds": 293.4,
+    "decode_seconds": 243.4,
+    "prompt_tokens_processed": 27898,
+    "cache_tokens_reused": 49555,
+    "lost_seconds": 2.4
+   }
+  ],
+  "note": "Each private audit reuses the whole previous KV on every turn; prompt_tokens_processed are new tool results (32K-41K tokens per audit)."
+ },
+ "full_reprefill_turns": [
+  {
+   "conversation": "local-data/2026-10-16-expansion/gemma31-publisher64-public/context-v1",
+   "turn": 4,
+   "model": "Gemma-4-31B",
+   "quant": "Q4_0",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 1,
+   "kind": "full_reprefill",
+   "prev_prompt_tokens": 10025,
+   "prev_kv_tokens": 10280,
+   "prompt_tokens": 9779,
+   "server_lcp": 138,
+   "cache_n": 0,
+   "prompt_n": 9779,
+   "lost_tokens": 9778,
+   "history_mismatch_tokens": 9640,
+   "checkpoint_rollback_tokens": 138,
+   "lost_seconds": 512.7,
+   "turn_prefill_seconds": 513.1,
+   "divergence_tokens_into_previous_output": null,
+   "divergence_tokens_before_previous_output": 9887,
+   "previous_output_whitespace": {
+    "reasoning_trailing": "\n",
+    "reasoning_leading": "",
+    "content_chars": 9,
+    "tool_calls": 0
+   },
+   "server_lines": {
+    "forcing_full": true,
+    "restored_checkpoint_n_tokens": null,
+    "erased_invalidated": 1
+   }
+  }
+ ],
+ "largest_partial_turns": [
+  {
+   "conversation": "local-data/2026-10-26-articles/gemma-large-history-f/context-large-native-extended",
+   "turn": 2,
+   "model": "Gemma-4-26B",
+   "quant": "Q4_0",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "kind": "partial_reuse",
+   "prev_prompt_tokens": 326,
+   "prev_kv_tokens": 559,
+   "prompt_tokens": 643,
+   "server_lcp": 536,
+   "cache_n": 321,
+   "prompt_n": 322,
+   "lost_tokens": 238,
+   "history_mismatch_tokens": 23,
+   "checkpoint_rollback_tokens": 215,
+   "lost_seconds": 47.7,
+   "turn_prefill_seconds": 64.3,
+   "divergence_tokens_into_previous_output": 210,
+   "divergence_tokens_before_previous_output": 0,
+   "previous_output_whitespace": {
+    "reasoning_trailing": "",
+    "reasoning_leading": "",
+    "content_chars": 0,
+    "tool_calls": 1
+   },
+   "server_lines": {
+    "forcing_full": false,
+    "restored_checkpoint_n_tokens": 321,
+    "erased_invalidated": 0
+   }
+  },
+  {
+   "conversation": "private-runs/expansion-20261016-coder-next-recovery64",
+   "turn": 1,
+   "model": "Qwen3-Coder-Next-80B",
+   "quant": "Q4_K_M",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "kind": "partial_reuse",
+   "prev_prompt_tokens": 2206,
+   "prev_kv_tokens": 2495,
+   "prompt_tokens": 14537,
+   "server_lcp": 2215,
+   "cache_n": 2202,
+   "prompt_n": 12335,
+   "lost_tokens": 293,
+   "history_mismatch_tokens": 280,
+   "checkpoint_rollback_tokens": 13,
+   "lost_seconds": 35.7,
+   "turn_prefill_seconds": 2224.1,
+   "divergence_tokens_into_previous_output": 9,
+   "divergence_tokens_before_previous_output": 0,
+   "previous_output_whitespace": {
+    "reasoning_trailing": "",
+    "reasoning_leading": "",
+    "content_chars": 0,
+    "tool_calls": 1
+   },
+   "server_lines": {
+    "forcing_full": false,
+    "restored_checkpoint_n_tokens": 2202,
+    "erased_invalidated": 0
+   }
+  },
+  {
+   "conversation": "local-data/2026-10-26-articles/gemma-large-history-g/context-large-native-extended",
+   "turn": 2,
+   "model": "Gemma-4-26B",
+   "quant": "Q4_0",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "kind": "partial_reuse",
+   "prev_prompt_tokens": 326,
+   "prev_kv_tokens": 559,
+   "prompt_tokens": 643,
+   "server_lcp": 536,
+   "cache_n": 321,
+   "prompt_n": 322,
+   "lost_tokens": 238,
+   "history_mismatch_tokens": 23,
+   "checkpoint_rollback_tokens": 215,
+   "lost_seconds": 34.2,
+   "turn_prefill_seconds": 45.7,
+   "divergence_tokens_into_previous_output": 210,
+   "divergence_tokens_before_previous_output": 0,
+   "previous_output_whitespace": {
+    "reasoning_trailing": "",
+    "reasoning_leading": "",
+    "content_chars": 0,
+    "tool_calls": 1
+   },
+   "server_lines": {
+    "forcing_full": false,
+    "restored_checkpoint_n_tokens": 321,
+    "erased_invalidated": 0
+   }
+  },
+  {
+   "conversation": "local-data/2026-10-26-articles/gemma-large-history-f/context-large-native-extended",
+   "turn": 3,
+   "model": "Gemma-4-26B",
+   "quant": "Q4_0",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "kind": "partial_reuse",
+   "prev_prompt_tokens": 643,
+   "prev_kv_tokens": 758,
+   "prompt_tokens": 821,
+   "server_lcp": 735,
+   "cache_n": 638,
+   "prompt_n": 183,
+   "lost_tokens": 120,
+   "history_mismatch_tokens": 23,
+   "checkpoint_rollback_tokens": 97,
+   "lost_seconds": 23.9,
+   "turn_prefill_seconds": 37.7,
+   "divergence_tokens_into_previous_output": 92,
+   "divergence_tokens_before_previous_output": 0,
+   "previous_output_whitespace": {
+    "reasoning_trailing": "\n",
+    "reasoning_leading": "",
+    "content_chars": 0,
+    "tool_calls": 1
+   },
+   "server_lines": {
+    "forcing_full": false,
+    "restored_checkpoint_n_tokens": 638,
+    "erased_invalidated": 0
+   }
+  },
+  {
+   "conversation": "local-data/2026-10-26-articles/flint-q3xl-file32-b/context-native-extended",
+   "turn": 1,
+   "model": "Recursive Flint 40B-A2.5B",
+   "quant": "UD-Q3_K_XL",
+   "runtime": "b11838-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "kind": "partial_reuse",
+   "prev_prompt_tokens": 204,
+   "prev_kv_tokens": 294,
+   "prompt_tokens": 351,
+   "server_lcp": 294,
+   "cache_n": 199,
+   "prompt_n": 152,
+   "lost_tokens": 95,
+   "history_mismatch_tokens": 0,
+   "checkpoint_rollback_tokens": 95,
+   "lost_seconds": 22.9,
+   "turn_prefill_seconds": 39.6,
+   "divergence_tokens_into_previous_output": 90,
+   "divergence_tokens_before_previous_output": 0,
+   "previous_output_whitespace": {
+    "reasoning_trailing": "",
+    "reasoning_leading": "",
+    "content_chars": 0,
+    "tool_calls": 1
+   },
+   "server_lines": {
+    "forcing_full": false,
+    "restored_checkpoint_n_tokens": 199,
+    "erased_invalidated": 0
+   }
+  },
+  {
+   "conversation": "local-data/2026-10-26-articles/gemma-large-history-f/context-large-native-extended",
+   "turn": 1,
+   "model": "Gemma-4-26B",
+   "quant": "Q4_0",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "kind": "partial_reuse",
+   "prev_prompt_tokens": 138,
+   "prev_kv_tokens": 252,
+   "prompt_tokens": 326,
+   "server_lcp": 234,
+   "cache_n": 133,
+   "prompt_n": 193,
+   "lost_tokens": 119,
+   "history_mismatch_tokens": 18,
+   "checkpoint_rollback_tokens": 101,
+   "lost_seconds": 20.6,
+   "turn_prefill_seconds": 34.7,
+   "divergence_tokens_into_previous_output": 96,
+   "divergence_tokens_before_previous_output": 0,
+   "previous_output_whitespace": {
+    "reasoning_trailing": "",
+    "reasoning_leading": "",
+    "content_chars": 0,
+    "tool_calls": 1
+   },
+   "server_lines": {
+    "forcing_full": false,
+    "restored_checkpoint_n_tokens": 133,
+    "erased_invalidated": 0
+   }
+  },
+  {
+   "conversation": "private-runs/gemma26-private-unrestricted",
+   "turn": 1,
+   "model": "Gemma-4-26B",
+   "quant": "Q4_0",
+   "runtime": "b11562",
+   "ctx_checkpoints": 32,
+   "kind": "partial_reuse",
+   "prev_prompt_tokens": 2050,
+   "prev_kv_tokens": 4811,
+   "prompt_tokens": 19748,
+   "server_lcp": 4072,
+   "cache_n": 2045,
+   "prompt_n": 17703,
+   "lost_tokens": 2766,
+   "history_mismatch_tokens": 739,
+   "checkpoint_rollback_tokens": 2027,
+   "lost_seconds": 20.0,
+   "turn_prefill_seconds": 126.9,
+   "divergence_tokens_into_previous_output": 2022,
+   "divergence_tokens_before_previous_output": 0,
+   "previous_output_whitespace": {
+    "reasoning_trailing": "",
+    "reasoning_leading": "",
+    "content_chars": 0,
+    "tool_calls": 1
+   },
+   "server_lines": {
+    "forcing_full": false,
+    "restored_checkpoint_n_tokens": 2045,
+    "erased_invalidated": 0
+   }
+  },
+  {
+   "conversation": "local-data/2026-10-24-precision/gemma26-coverage-public-a/core-seed73",
+   "turn": 1,
+   "model": "Gemma-4-26B",
+   "quant": "Q4_0",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 32,
+   "kind": "partial_reuse",
+   "prev_prompt_tokens": 472,
+   "prev_kv_tokens": 880,
+   "prompt_tokens": 1035,
+   "server_lcp": 862,
+   "cache_n": 467,
+   "prompt_n": 568,
+   "lost_tokens": 413,
+   "history_mismatch_tokens": 18,
+   "checkpoint_rollback_tokens": 395,
+   "lost_seconds": 18.2,
+   "turn_prefill_seconds": 25.8,
+   "divergence_tokens_into_previous_output": 390,
+   "divergence_tokens_before_previous_output": 0,
+   "previous_output_whitespace": {
+    "reasoning_trailing": "",
+    "reasoning_leading": "",
+    "content_chars": 0,
+    "tool_calls": 1
+   },
+   "server_lines": {
+    "forcing_full": false,
+    "restored_checkpoint_n_tokens": 467,
+    "erased_invalidated": 0
+   }
+  },
+  {
+   "conversation": "local-data/2026-10-26-articles/gemma-large-history-g/context-large-native-extended",
+   "turn": 3,
+   "model": "Gemma-4-26B",
+   "quant": "Q4_0",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "kind": "partial_reuse",
+   "prev_prompt_tokens": 643,
+   "prev_kv_tokens": 758,
+   "prompt_tokens": 821,
+   "server_lcp": 735,
+   "cache_n": 638,
+   "prompt_n": 183,
+   "lost_tokens": 120,
+   "history_mismatch_tokens": 23,
+   "checkpoint_rollback_tokens": 97,
+   "lost_seconds": 18.0,
+   "turn_prefill_seconds": 29.2,
+   "divergence_tokens_into_previous_output": 92,
+   "divergence_tokens_before_previous_output": 0,
+   "previous_output_whitespace": {
+    "reasoning_trailing": "\n",
+    "reasoning_leading": "",
+    "content_chars": 0,
+    "tool_calls": 1
+   },
+   "server_lines": {
+    "forcing_full": false,
+    "restored_checkpoint_n_tokens": 638,
+    "erased_invalidated": 0
+   }
+  },
+  {
+   "conversation": "local-data/2026-10-15-campaign/qwen-q4-precision-control/core-seed75",
+   "turn": 2,
+   "model": "Qwen3.6-35B-A3B",
+   "quant": "UD-Q4_K_M",
+   "runtime": "b11562",
+   "ctx_checkpoints": 32,
+   "kind": "partial_reuse",
+   "prev_prompt_tokens": 2351,
+   "prev_kv_tokens": 4428,
+   "prompt_tokens": 4574,
+   "server_lcp": 4397,
+   "cache_n": 2347,
+   "prompt_n": 2227,
+   "lost_tokens": 2081,
+   "history_mismatch_tokens": 31,
+   "checkpoint_rollback_tokens": 2050,
+   "lost_seconds": 17.0,
+   "turn_prefill_seconds": 18.5,
+   "divergence_tokens_into_previous_output": 2046,
+   "divergence_tokens_before_previous_output": 0,
+   "previous_output_whitespace": {
+    "reasoning_trailing": "\n\n\n",
+    "reasoning_leading": "",
+    "content_chars": 0,
+    "tool_calls": 1
+   },
+   "server_lines": {
+    "forcing_full": false,
+    "restored_checkpoint_n_tokens": 2347,
+    "erased_invalidated": 0
+   }
+  },
+  {
+   "conversation": "local-data/2026-10-26-articles/gemma-large-history-d/context-large-native-extended",
+   "turn": 3,
+   "model": "Gemma-4-26B",
+   "quant": "Q4_0",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "kind": "partial_reuse",
+   "prev_prompt_tokens": 515,
+   "prev_kv_tokens": 625,
+   "prompt_tokens": 688,
+   "server_lcp": 602,
+   "cache_n": 510,
+   "prompt_n": 178,
+   "lost_tokens": 115,
+   "history_mismatch_tokens": 23,
+   "checkpoint_rollback_tokens": 92,
+   "lost_seconds": 15.4,
+   "turn_prefill_seconds": 25.2,
+   "divergence_tokens_into_previous_output": 87,
+   "divergence_tokens_before_previous_output": 0,
+   "previous_output_whitespace": {
+    "reasoning_trailing": "\n",
+    "reasoning_leading": "",
+    "content_chars": 0,
+    "tool_calls": 1
+   },
+   "server_lines": {
+    "forcing_full": false,
+    "restored_checkpoint_n_tokens": 510,
+    "erased_invalidated": 0
+   }
+  },
+  {
+   "conversation": "local-data/2026-10-26-articles/gemma-large-history-d/context-large-native-extended",
+   "turn": 1,
+   "model": "Gemma-4-26B",
+   "quant": "Q4_0",
+   "runtime": "b11562-noprefetch-v1",
+   "ctx_checkpoints": 4,
+   "kind": "partial_reuse",
+   "prev_prompt_tokens": 138,
+   "prev_kv_tokens": 258,
+   "prompt_tokens": 332,
+   "server_lcp": 240,
+   "cache_n": 133,
+   "prompt_n": 199,
+   "lost_tokens": 125,
+   "history_mismatch_tokens": 18,
+   "checkpoint_rollback_tokens": 107,
+   "lost_seconds": 15.4,
+   "turn_prefill_seconds": 26.2,
+   "divergence_tokens_into_previous_output": 102,
+   "divergence_tokens_before_previous_output": 0,
+   "previous_output_whitespace": {
+    "reasoning_trailing": "",
+    "reasoning_leading": "",
+    "content_chars": 0,
+    "tool_calls": 1
+   },
+   "server_lines": {
+    "forcing_full": false,
+    "restored_checkpoint_n_tokens": 133,
+    "erased_invalidated": 0
+   }
+  }
+ ],
+ "boundary_whitespace_vs_divergence": {
+  "table": [
+   {
+    "model": "GLM-4.7-Flash",
+    "previous_output": "clean",
+    "rerendered_history": "diverged",
+    "turns": 1
+   },
+   {
+    "model": "GLM-4.7-Flash",
+    "previous_output": "clean",
+    "rerendered_history": "identical",
+    "turns": 70
+   },
+   {
+    "model": "Gemma-4-26B",
+    "previous_output": "boundary_whitespace_anomaly",
+    "rerendered_history": "diverged",
+    "turns": 12
+   },
+   {
+    "model": "Gemma-4-26B",
+    "previous_output": "clean",
+    "rerendered_history": "diverged",
+    "turns": 100
+   },
+   {
+    "model": "Gemma-4-31B",
+    "previous_output": "boundary_whitespace_anomaly",
+    "rerendered_history": "diverged",
+    "turns": 1
+   },
+   {
+    "model": "Gemma-4-31B",
+    "previous_output": "clean",
+    "rerendered_history": "diverged",
+    "turns": 14
+   },
+   {
+    "model": "Kimi-Linear-48B-A3B",
+    "previous_output": "clean",
+    "rerendered_history": "identical",
+    "turns": 18
+   },
+   {
+    "model": "LFM2.5-24B-A2B",
+    "previous_output": "boundary_whitespace_anomaly",
+    "rerendered_history": "identical",
+    "turns": 9
+   },
+   {
+    "model": "LFM2.5-24B-A2B",
+    "previous_output": "clean",
+    "rerendered_history": "diverged",
+    "turns": 1
+   },
+   {
+    "model": "LFM2.5-24B-A2B",
+    "previous_output": "clean",
+    "rerendered_history": "identical",
+    "turns": 8
+   },
+   {
+    "model": "Qwen3-Coder-30B-A3B",
+    "previous_output": "boundary_whitespace_anomaly",
+    "rerendered_history": "diverged",
+    "turns": 7
+   },
+   {
+    "model": "Qwen3-Coder-30B-A3B",
+    "previous_output": "boundary_whitespace_anomaly",
+    "rerendered_history": "identical",
+    "turns": 3
+   },
+   {
+    "model": "Qwen3-Coder-30B-A3B",
+    "previous_output": "clean",
+    "rerendered_history": "identical",
+    "turns": 13
+   },
+   {
+    "model": "Qwen3-Coder-Next-80B",
+    "previous_output": "clean",
+    "rerendered_history": "diverged",
+    "turns": 4
+   },
+   {
+    "model": "Qwen3-Coder-Next-80B",
+    "previous_output": "clean",
+    "rerendered_history": "identical",
+    "turns": 30
+   },
+   {
+    "model": "Qwen3.6-35B-A3B",
+    "previous_output": "boundary_whitespace_anomaly",
+    "rerendered_history": "diverged",
+    "turns": 1
+   },
+   {
+    "model": "Qwen3.6-35B-A3B",
+    "previous_output": "clean",
+    "rerendered_history": "diverged",
+    "turns": 1
+   },
+   {
+    "model": "Qwen3.6-35B-A3B",
+    "previous_output": "clean",
+    "rerendered_history": "identical",
+    "turns": 222
+   },
+   {
+    "model": "Recursive Flint 40B-A2.5B",
+    "previous_output": "clean",
+    "rerendered_history": "identical",
+    "turns": 45
+   },
+   {
+    "model": "azllm engine (model not in an audited log)",
+    "previous_output": "clean",
+    "rerendered_history": "diverged",
+    "turns": 1
+   }
+  ],
+  "definition": "Previous output flagged when reasoning_content has leading whitespace or trailing whitespace other than one newline, or content has leading/trailing whitespace.",
+  "qwen36_reading": "Qwen3.6: 222 clean outputs re-rendered identically; the one output whose reasoning ended with three newlines diverged (template trims reasoning before '\\n</think>'); one clean private output diverged 34 tokens into its reasoning (cause not visible at -lv 4; non-canonical tokenization is a plausible, unverified explanation)."
+ },
+ "server_log_lines": {
+  "lab": {
+   "forcing_full_prompt_re_processing": 77,
+   "restored_context_checkpoint": 121,
+   "erased_invalidated_context_checkpoint": 540,
+   "erasing_context_checkpoint_too_close": 366,
+   "erasing_old_context_checkpoint": 76,
+   "created_context_checkpoint": 1393,
+   "need_to_evaluate_at_least_1_token": 13
+  },
+  "editor": {
+   "forcing_full_prompt_re_processing": 19,
+   "restored_context_checkpoint": 16,
+   "erased_invalidated_context_checkpoint": 76,
+   "erasing_context_checkpoint_too_close": 302,
+   "erasing_old_context_checkpoint": 7,
+   "created_context_checkpoint": 448
+  },
+  "lab_context": [
+   {
+    "line": "forced_full",
+    "context": "benchmark continuation turn",
+    "count": 1
+   },
+   {
+    "line": "forced_full",
+    "context": "benchmark first turn of a new case",
+    "count": 57
+   },
+   {
+    "line": "forced_full",
+    "context": "lab request without client turn record",
+    "count": 19
+   },
+   {
+    "line": "restored_checkpoint",
+    "context": "benchmark continuation turn",
+    "count": 77
+   },
+   {
+    "line": "restored_checkpoint",
+    "context": "benchmark first turn of a new case",
+    "count": 33
+   },
+   {
+    "line": "restored_checkpoint",
+    "context": "lab request without client turn record",
+    "count": 11
+   }
+  ],
+  "reading": "Most 'forcing full prompt re-processing' lines are benign: 54 of the 57 lines on a new case's first request share only 1-90 tokens with the previous case; three share 297-349 tokens (identical first prompts with no checkpoint that early). Only one line falls on a continuation turn. 'erased invalidated context checkpoint' is housekeeping after any divergence, not a re-prefill by itself."
+ },
+ "cross_case_first_turns": {
+  "events": 90,
+  "shared_prefix_tokens_reprocessed": 4704,
+  "seconds": 373.5,
+  "largest": [
+   {
+    "case": "local-data/2026-10-26-articles/flint-q3xl-controls-lowresident-c/core-native-output32k",
+    "model": "Recursive Flint 40B-A2.5B",
+    "event": "restored_checkpoint",
+    "lcp": 493,
+    "prompt_tokens": 493,
+    "shared_prefix_reprocessed": 346,
+    "seconds": 113.5
+   },
+   {
+    "case": "local-data/2026-10-26-articles/flint-q3xl-controls-lowresident-c/core-budget8192-output32k",
+    "model": "Recursive Flint 40B-A2.5B",
+    "event": "restored_checkpoint",
+    "lcp": 493,
+    "prompt_tokens": 493,
+    "shared_prefix_reprocessed": 346,
+    "seconds": 103.4
+   },
+   {
+    "case": "local-data/2026-10-16-expansion/qwen36-q6-matched64-public/context-large-v1",
+    "model": "Qwen3.6-35B-A3B",
+    "event": "forced_full",
+    "lcp": 349,
+    "prompt_tokens": 349,
+    "shared_prefix_reprocessed": 348,
+    "seconds": 31.0
+   },
+   {
+    "case": "local-data/2026-10-26-articles/flint-q3xl-file32-b/ts-sql-native-extended",
+    "model": "Recursive Flint 40B-A2.5B",
+    "event": "forced_full",
+    "lcp": 63,
+    "prompt_tokens": 255,
+    "shared_prefix_reprocessed": 63,
+    "seconds": 18.8
+   },
+   {
+    "case": "local-data/2026-10-16-expansion/coder-next-noprefetch64-public/ts-sql-v1",
+    "model": "Qwen3-Coder-Next-80B",
+    "event": "forced_full",
+    "lcp": 49,
+    "prompt_tokens": 392,
+    "shared_prefix_reprocessed": 49,
+    "seconds": 17.0
+   },
+   {
+    "case": "local-data/2026-10-16-expansion/qwen36-q6-matched64-public/core-seed74",
+    "model": "Qwen3.6-35B-A3B",
+    "event": "restored_checkpoint",
+    "lcp": 654,
+    "prompt_tokens": 654,
+    "shared_prefix_reprocessed": 370,
+    "seconds": 13.1
+   }
+  ],
+  "note": "Benchmark artifact: a new case can partly reuse the previous case's checkpoints, so first-turn prefill varies (0-370 tokens). It is small except on the slow Flint low-residency profile (103-114 s). Each case's deadline includes it."
+ },
+ "iswa_short_context_rollbacks": {
+  "turns": 65,
+  "turns_where_whole_cached_sequence_matched": 11,
+  "tokens": 7246,
+  "seconds": 341.2,
+  "by_model": {
+   "Gemma-4-26B": {
+    "turns": 45,
+    "tokens": 5846,
+    "seconds": 253.2
+   },
+   "Gemma-4-31B": {
+    "turns": 9,
+    "tokens": 791,
+    "seconds": 42.8
+   },
+   "Recursive Flint": {
+    "turns": 11,
+    "tokens": 609,
+    "seconds": 45.1
+   }
+  },
+  "criterion": "Previous KV no larger than the SWA cache (Gemma-4 1,280 cells, Flint 768), so the SWA cache provably still held every position, and more than 4 identical tokens were re-processed.",
+  "mechanism": "pos_min_thold = max(0, pos_next - n_swa) clamps to 0 below the window and the SWA cache's pos_min is 0, so the restore test is true even for an exact prefix match; the newest checkpoint (5 tokens before the previous prompt end) is restored and the previous output is re-processed. Example: Flint task with LCP 283 = every cached token restored a checkpoint at 250. This reads as an unnecessary restore in b11562; it was not checked against later builds."
+ },
+ "gemma_tool_call_tail_mismatch": {
+  "turns": 121,
+  "tokens_before_end_min": 17,
+  "tokens_before_end_median": 22,
+  "tokens_before_end_p10": 18,
+  "tokens_before_end_p90": 26,
+  "tokens_before_end_max": 739,
+  "reading": "Every Gemma-4 tool-call turn re-renders its final 17-26 tokens (the thought/tool-call boundary) differently from what was generated. Cost is about 0.2-1.4 s per turn; the exact tokens need LLAMA_SERVER_SLOTS_DEBUG to identify."
+ },
+ "lab_requests_without_client_records": {
+  "events": [
+   {
+    "log": "local-data/2026-10-16-expansion/gemma31-kv32-ffn-control/server/runs/server-20261016-225923/server.log",
+    "task": 89,
+    "event": "forced_full",
+    "lcp": 1065,
+    "prompt_tokens": 8115,
+    "reused": 0,
+    "shared_prefix_reprocessed": 1065,
+    "seconds": 52.8
+   },
+   {
+    "log": "local-data/2026-10-16-expansion/gemma31-kv32-layer15/server/runs/server-20261016-231151/server.log",
+    "task": 89,
+    "event": "forced_full",
+    "lcp": 1065,
+    "prompt_tokens": 8115,
+    "reused": 0,
+    "shared_prefix_reprocessed": 1065,
+    "seconds": 53.7
+   },
+   {
+    "log": "local-data/2026-10-16-expansion/gemma31-kv32-layer15-gpu/server/runs/server-20261016-232821/server.log",
+    "task": 89,
+    "event": "forced_full",
+    "lcp": 1065,
+    "prompt_tokens": 8115,
+    "reused": 0,
+    "shared_prefix_reprocessed": 1065,
+    "seconds": 0
+   },
+   {
+    "log": "local-data/2026-10-16-expansion/qwen36-context-cpu128/server/runs/server-20261016-103519/server.log",
+    "task": 69,
+    "event": "forced_full",
+    "lcp": 1026,
+    "prompt_tokens": 59955,
+    "reused": 0,
+    "shared_prefix_reprocessed": 1026,
+    "seconds": 5.1
+   },
+   {
+    "log": "local-data/2026-10-16-expansion/qwen36-context-cpu128/server/runs/server-20261016-103519/server.log",
+    "task": 250,
+    "event": "forced_full",
+    "lcp": 29870,
+    "prompt_tokens": 119943,
+    "reused": 0,
+    "shared_prefix_reprocessed": 29870,
+    "seconds": 158.1
+   },
+   {
+    "log": "local-data/2026-10-16-expansion/qwen36-context-cpu64/server/runs/server-20261016-102338/server.log",
+    "task": 69,
+    "event": "forced_full",
+    "lcp": 1026,
+    "prompt_tokens": 15928,
+    "reused": 0,
+    "shared_prefix_reprocessed": 1026,
+    "seconds": 5.0
+   },
+   {
+    "log": "local-data/2026-10-16-expansion/qwen36-context-cpu64/server/runs/server-20261016-102338/server.log",
+    "task": 164,
+    "event": "forced_full",
+    "lcp": 8013,
+    "prompt_tokens": 31936,
+    "reused": 0,
+    "shared_prefix_reprocessed": 8013,
+    "seconds": 40.0
+   },
+   {
+    "log": "local-data/2026-10-16-expansion/qwen36-context-cpu64/server/runs/server-20261016-102338/server.log",
+    "task": 291,
+    "event": "forced_full",
+    "lcp": 15937,
+    "prompt_tokens": 59955,
+    "reused": 0,
+    "shared_prefix_reprocessed": 15937,
+    "seconds": 83.6
+   },
+   {
+    "log": "local-data/2026-10-16-expansion/qwen36-context-gpu128/server/runs/server-20261016-105455/server.log",
+    "task": 69,
+    "event": "forced_full",
+    "lcp": 1026,
+    "prompt_tokens": 119943,
+    "reused": 0,
+    "shared_prefix_reprocessed": 1026,
+    "seconds": 4.4
+   },
+   {
+    "log": "local-data/2026-10-26-articles/gemma-large-history-d/server/runs/server-20261026-213913/server.log",
+    "task": 558,
+    "event": "restored_checkpoint",
+    "lcp": 749,
+    "prompt_tokens": 50613,
+    "reused": 683,
+    "shared_prefix_reprocessed": 66,
+    "seconds": 0
+   }
+  ],
+  "note": "Context-growth probes and Gemma-31B calibration requests; they are synthetic prompts, not tool workflows, and are excluded from the workflow totals."
+ },
+ "editor_production_logs": {
+  "requests": 267,
+  "prefill_seconds": 6952.0,
+  "ctx_checkpoints_values": [
+   4,
+   32
+  ],
+  "same_prefix_divergence_before_every_checkpoint": {
+   "events": 4,
+   "shared_tokens_reprocessed": 56155,
+   "seconds": 578.3,
+   "share_of_editor_prefill_percent": 8.3
+  },
+  "events": [
+   {
+    "log": "llm-logs/qwen3-6-35b-a3b-q4-20261015-204219.stderr.log",
+    "task": 691,
+    "pattern": "same-prefix request diverged before every retained checkpoint",
+    "previous_prompt_tokens": 13207,
+    "previous_kv_tokens": 13246,
+    "server_lcp": 12590,
+    "prompt_tokens": 13216,
+    "cache_n": 0,
+    "checkpoints_held_n_tokens": [
+     13075,
+     13158,
+     13203
+    ],
+    "ctx_checkpoints": 32,
+    "shared_prefix_reprocessed": 12590,
+    "seconds": 64.7,
+    "request_prefill_seconds": 68.9,
+    "cancelled": false
+   },
+   {
+    "log": "llm-logs/qwen3-6-35b-a3b-q4-20261015-204219.stderr.log",
+    "task": 757,
+    "pattern": "same-prefix request diverged before every retained checkpoint",
+    "previous_prompt_tokens": 13216,
+    "previous_kv_tokens": 13243,
+    "server_lcp": 12590,
+    "prompt_tokens": 13446,
+    "cache_n": 0,
+    "checkpoints_held_n_tokens": [
+     13084,
+     13153,
+     13212
+    ],
+    "ctx_checkpoints": 32,
+    "shared_prefix_reprocessed": 12590,
+    "seconds": 61.6,
+    "request_prefill_seconds": 66.9,
+    "cancelled": false
+   },
+   {
+    "log": "llm-logs/qwen3-6-35b-a3b-q4-20261015-204219.stderr.log",
+    "task": 3990,
+    "pattern": "probable return to a conversation evicted by an interleaved request",
+    "earlier_task": 2238,
+    "earlier_kv_tokens": 19186,
+    "interleaved_requests": 9,
+    "server_lcp_with_current_slot": 32,
+    "prompt_tokens": 19251,
+    "cache_n": 0,
+    "request_prefill_seconds": 86.2,
+    "note": "Circumstantial: prompt length equals the earlier conversation's KV plus a short new message; the LCP with that earlier state is not logged."
+   },
+   {
+    "log": "llm-logs/mapped-production-20261017-220029670/runs/server-20261017-220047/server.log",
+    "task": 103,
+    "pattern": "same-prefix request diverged before every retained checkpoint",
+    "previous_prompt_tokens": 25200,
+    "previous_kv_tokens": 25250,
+    "server_lcp": 19439,
+    "prompt_tokens": 25633,
+    "cache_n": 0,
+    "checkpoints_held_n_tokens": [
+     24613,
+     25068,
+     25196
+    ],
+    "ctx_checkpoints": 4,
+    "shared_prefix_reprocessed": 19439,
+    "seconds": 281.9,
+    "request_prefill_seconds": 362.8,
+    "cancelled": false
+   },
+   {
+    "log": "llm-logs/mapped-production-20261018-060047335/runs/server-20261018-060103/server.log",
+    "task": 24474,
+    "pattern": "same-prefix request diverged before every retained checkpoint",
+    "previous_prompt_tokens": 79600,
+    "previous_kv_tokens": 79749,
+    "server_lcp": 11536,
+    "prompt_tokens": 14536,
+    "cache_n": 0,
+    "checkpoints_held_n_tokens": [
+     69370,
+     77632,
+     79468,
+     79596
+    ],
+    "ctx_checkpoints": 4,
+    "shared_prefix_reprocessed": 11536,
+    "seconds": 170.1,
+    "request_prefill_seconds": 217.6,
+    "cancelled": false
+   },
+   {
+    "log": "llm-logs/qwen3-6-35b-a3b-q4-20261015-204219.stderr.log",
+    "task": 5554,
+    "pattern": "large request diverged 626 tokens into the previous conversation",
+    "previous_kv_tokens": 20826,
+    "server_lcp": 626,
+    "prompt_tokens": 21921,
+    "cache_n": 0,
+    "request_prefill_seconds": 100.5,
+    "server_recoverable_tokens_at_most": 626,
+    "note": "Prompt length is the previous KV plus about 1.1K tokens but the common prefix is only 626 tokens: probable client-side change near the start of the prompt (unverified). A checkpoint could have saved at most 626 tokens (about 7 s)."
+   },
+   {
+    "pattern": "cold re-send after native idle sleep",
+    "requests": 2,
+    "prompt_tokens": [
+     11500,
+     14285
+    ],
+    "prefill_seconds": [
+     192.7,
+     255.0
+    ],
+    "note": "Sleep frees weights and KV; the editor resends the full history. Not a cache-reuse defect. Two further cold first prompts at server start (11,810 and 25,200 tokens; 80.0 and 377.8 s) are excluded from every waste total."
+   }
+  ],
+  "reading": "Editor clients (Copilot/Continue) share an 11.5K-12.6K-token system and tool prefix. Four requests diverged 600-5,800 tokens before the previous prompt end, or right after that prefix, while the server held only end-of-conversation checkpoints, so 11.5K-19.4K identical tokens were re-processed each time. In the 18 October case the boundary checkpoints (11,478 and 11,533) had existed and were evicted by the 4-checkpoint limit; in the other three no checkpoint was ever created at or before the divergence. One further request probably returned to a conversation displaced by an interleaved chat (single slot, --cache-ram 0)."
+ },
+ "causes": [
+  {
+   "id": "hybrid_rollback_granularity",
+   "applies_to": "Qwen3.5/3.6 (qwen35moe), Qwen3-Coder-Next (qwen3next), Kimi-Linear, LFM2.5",
+   "source": "b11562 tools/server/server-context.cpp:3596 (n_past = common prefix with cached tokens, including generated ones), :3679-3777 (restore the newest checkpoint below the divergence or force n_past = 0), :3981-4067 (checkpoints only while processing a prompt: at user-message starts and 4 + n_ubatch and 4 tokens before the prompt end), :2526-2556 (when full, evict checkpoints within checkpoint_min_step of an earlier one, then the oldest); common/common.h:637-639 (32 checkpoints, 8192 spacing by default; our Qwen profiles pass --ctx-checkpoints 4).",
+   "effect": "The recurrent state exists only at the end of the cached sequence. Any divergence inside the previous assistant output rolls back to 4 tokens before the previous prompt end and re-processes the whole previous output; a divergence earlier than every retained checkpoint forces a full re-prefill."
+  },
+  {
+   "id": "template_whitespace_round_trip",
+   "applies_to": "Qwen3.5+ templates (issue #30357; PR #30557 in b11951 is partial)",
+   "source": "Qwen3.6 template (benchmarks/2026-10-13-instructions/challenger-template.jinja): reasoning_content|trim and content|trim with fixed separators '\\n</think>\\n\\n' and '\\n\\n<tool_call>'.",
+   "effect": "Raw whitespace the model emits before </think> or around <tool_call> is not reproduced, so the next prompt diverges inside the cached output. Observed once in 224 Qwen3.6 continuation turns (reasoning ending '\\n\\n\\n'): 2,050 identical tokens re-processed, 17.0 s."
+  },
+  {
+   "id": "reasoning_dropped_at_new_user_turn",
+   "applies_to": "Templates run without preserved thinking (the Gemma-4-31B profiles used preserve_thinking=false; the Gemma-4-26B profiles used true)",
+   "source": "Gemma-4 template: thinking is rendered for turns after the last user message, or for tool-call turns when preserve_thinking is true. The server logs 'preserve_reasoning kwarg: not supported by template' for Gemma, so --reasoning-preserve does not apply; only the template kwarg does.",
+   "effect": "At a new user message the template drops earlier thoughts, so the prefix diverges right after the first prompt (LCP 138). With --ctx-checkpoints 1 the Gemma-4-31B context-v1 follow-up re-processed 9,778 tokens (512.7 s). The Gemma-4-26B runs with preserve_thinking=true lost only 97-99 mismatched tokens (1.4-3.6 s) on the same phase-2 turn, because only the final answer's thought is dropped. Qwen profiles set preserve_thinking=true and the harness returns reasoning_content, so Qwen multi-phase cases reused fully."
+  },
+  {
+   "id": "iswa_threshold_at_short_context",
+   "applies_to": "Gemma-4 (window 1024), Recursive Flint (window 513)",
+   "source": "server-context.cpp:3679 and :3731 (pos_min >= pos_min_thold with the threshold clamped to 0).",
+   "effect": "Below the window an exact prefix match still restores an older checkpoint and re-processes the previous output."
+  },
+  {
+   "id": "single_slot_without_ram_cache",
+   "applies_to": "every audited profile (--parallel 1, --cache-ram 0)",
+   "source": "server-task.cpp:1796 (the RAM prompt cache stores tokens, state and checkpoints and restores the best prefix match; disabled by --cache-ram 0).",
+   "effect": "An interleaved request replaces the only slot; returning to the earlier conversation is a full prefill. Not triggered by the sequential benchmark harness; one probable editor case (19,251 tokens, 86.2 s)."
+  },
+  {
+   "id": "editor_side_prompt_changes_and_sleep",
+   "applies_to": "Copilot/Continue traffic",
+   "effect": "Requests that change content inside the shared prefix region, or arrive after native idle sleep (which frees the KV), are re-processed from the start. These are client and lifecycle effects; the server can only bound them with checkpoints near message boundaries."
+  }
+ ],
+ "fixes": [
+  {
+   "id": "keep_reasoning_round_trip",
+   "change": "Keep preserve_thinking=true / --reasoning-preserve and return reasoning_content in the trial harness for Qwen3.6 (already in place).",
+   "expected_saving": "Status quo: Qwen3.6 loses 19.4 s across 224 continuation turns (0.057% of their prefill+decode time).",
+   "risk": "None new. Removing it would expose Qwen multi-phase cases to the Gemma-style first-prompt divergence."
+  },
+  {
+   "id": "gemma_preserve_thinking",
+   "change": "For Gemma-4-31B tool workflows set chat-template kwarg preserve_thinking=true, as the Gemma-4-26B profiles already do, and allow more than one checkpoint.",
+   "expected_saving": "About 9.6K tokens and roughly 490 s on the one Gemma-4-31B phase-2 turn: the 26B runs with true lost 97-99 tokens on that turn, and the 16 October render probe kept 10,021 identical leading tokens instead of 137.",
+   "risk": "Changes the model's input (+341 tokens in that probe) and departs from the vendor default, so results are a new configuration and must be re-scored; final-answer thoughts are still dropped."
+  },
+  {
+   "id": "more_checkpoints_for_editor",
+   "change": "Production/editor profile: --ctx-checkpoints 16 (from 4); optionally --checkpoint-min-step 4096 (from 8192).",
+   "expected_saving": "Upper bound 56,155 tokens / 578 s over the four editor same-prefix events (8.3% of audited editor prefill). Only the 18 October event (170 s) had a boundary checkpoint that a larger limit would likely have kept; the others had none before the divergence. No effect expected on benchmark tool loops, whose rollbacks always target the previous prompt end.",
+   "risk": "62.8 MiB host RAM per Qwen3.6 checkpoint (16 = about 1.0 GiB, versus 0.25 GiB at 4) against a 2.5 GiB free-RAM stop guard; a smaller min-step adds checkpoint copies at more user-message starts."
+  },
+  {
+   "id": "ram_prompt_cache_for_editor",
+   "change": "Production/editor profile: --cache-ram 2048 (MiB) with the default --cache-idle-slots.",
+   "expected_saving": "Restores a conversation displaced by an interleaved request instead of re-prefilling it: about 86 s in the one probable case; protects against title/side requests on the single slot.",
+   "risk": "Up to 2 GiB extra host RAM (a 20K-token Qwen3.6 state with checkpoints is roughly 0.5 GiB); save/restore copies cost seconds; needs a measured test before production. Does not help a same-prefix divergence."
+  },
+  {
+   "id": "newer_build_for_whitespace",
+   "change": "Measure a build with #30557 (b11951+; the planned b12069 side build) and count forced/restored lines per audit.",
+   "expected_saving": "At most the 17.0 s Qwen3.6 turn seen here; whether #30557 covers trailing newlines before </think> is untested.",
+   "risk": "Separate runtime identity; launcher changes after v0.8.0 (#31417); must not replace production b11562."
+  },
+  {
+   "id": "no_client_whitespace_trimming",
+   "change": "Do not add client-side whitespace trimming to the harness.",
+   "expected_saving": "None: the KV holds the model's raw tokens and the template already trims whatever the client sends, so a client cannot restore the cached form.",
+   "risk": "A custom template without |trim could round-trip raw whitespace but changes prompts and frozen comparability."
+  },
+  {
+   "id": "cache_reuse_not_applicable",
+   "change": "Do not enable --cache-reuse.",
+   "expected_saving": "Negligible: hybrid and iSWA losses come from recurrent/SWA state that KV shifting cannot rebuild; the attention-only models (GLM-4.7-Flash, Qwen3-Coder-30B) lost only 6.5 s and 11.1 s in total.",
+   "risk": "Extra code path with no measured benefit."
+  },
+  {
+   "id": "swa_full_not_viable",
+   "change": "Do not use --swa-full for Gemma-4 or Flint at 64K.",
+   "expected_saving": "Would remove the short-context iSWA rollbacks (Gemma-4-26B 45 turns, 253 s; Gemma-4-31B 9 turns, 43 s; Recursive Flint 11 turns, 45 s) but not the Gemma template divergence.",
+   "risk": "Full-size SWA KV: Gemma-4-26B 25 SWA layers grow from 132.8 MiB at 1,280 cells to about 6.6 GiB at 64K; Gemma-4-31B from 531 MiB to about 26.6 GiB; Flint from 27.9 MiB at 768 cells to about 2.3 GiB."
+  },
+  {
+   "id": "first_turn_policy",
+   "change": "Choose and record a first-turn cache policy per case (cold by erasing the slot between cases, or warm).",
+   "expected_saving": "Comparability rather than speed; 373.5 s of first-turn shared-prefix prefill varied across 90 cases, up to 113.5 s on Flint low-residency.",
+   "risk": "Cold starts add up to a few hundred tokens per case."
+  },
+  {
+   "id": "divergence_diagnostics",
+   "change": "On one public run set LLAMA_SERVER_SLOTS_DEBUG=1 and LLAMA_SERVER_SLOTS_N_DIFF=16 to print tokens around each divergence.",
+   "expected_saving": "Diagnostic only: identifies the exact Gemma tool-call tail tokens and any Qwen boundary case.",
+   "risk": "Prints content tokens into the log; use public fixtures only, never private audits or editor sessions."
+  }
+ ],
+ "not_established": [
+  "No configuration change was tested; every saving above is an estimate from logged token counts and per-task prefill rates.",
+  "The token-level cause of the Gemma-4 17-26-token tail mismatch and of the one clean Qwen3.6 divergence (34 tokens into reasoning).",
+  "Whether PR #30557 or later builds remove the trailing-newline-before-</think> divergence.",
+  "Which editor actions caused the four same-prefix divergences; editor logs at -lv 4 carry no text, by design of this audit.",
+  "Whether the editor request after a displaced conversation was a true continuation (circumstantial match of lengths only).",
+  "Behaviour of the running Groot model, which was not examined."
+ ]
+}

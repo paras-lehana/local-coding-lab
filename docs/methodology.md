@@ -108,6 +108,27 @@ timer for each request; do not mix these two interpretations in one table.
 
 ## Fair comparisons
 
+9 November private-client observability addendum: the original private audit
+does not timestamp each streamed event, so its exact first-visible latency
+cannot be reconstructed from occasional progress polls. A derived client is
+prepared for subsequent runs. It keeps raw SSE events unchanged, writes a
+separate event-time file and records first event, reasoning, non-whitespace
+content and tool-call fragment relative to each request's start. Content may
+be a pre-tool plan rather than the eventual final answer. Three offline
+checks passed for unchanged outgoing payload/assembled response, absent
+visible text and incomplete-stream rejection. The instrumented native72K
+Flint audit completes9November08:25IST:31/36 in6386.703s, with first visible
+content5995.230s after audit creation. Its final tool-free turn emits content
+1431.203s into that turn. These different time origins are labelled in the
+receipt; prefill3215.777s and generation3168.581s are separate.
+Older audit results retain their timing limitation. The
+frozen source files, question and rubric remain unchanged.
+
+The extended owner wrapper additionally rejects malformed/unknown Ollama
+inventory and requires a normal owned stop before reporting collected status.
+Five offline timing/ownership checks passed before further inference; these
+are harness checks, not model-quality or editor tests.
+
 The frozen router-v1 tools prompt lists every available fixture path before
 the first request (`benchmark.py`). Its rubric tests actual source inspection,
 precedence, grounding and code behavior; a high score is not proof of finding

@@ -45,6 +45,6 @@ class IdleLaunchTests(unittest.TestCase):
     def test_duplicate_idle_setting_is_rejected(self) -> None:
         """A CLI override must not silently conflict with a frozen profile."""
         with patch.object(lab, "read_json", return_value={
-                "args": ["--sleep-idle-seconds", "60"]}):
+                "args": ["--sleep-idle-seconds", "60"], "stop_min_ram_free_gib": 2.5}):
             with self.assertRaisesRegex(ValueError, "already specifies"):
                 lab.run_server(self.arguments("unused", 1800), Path("unused"))

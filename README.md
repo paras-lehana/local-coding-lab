@@ -1,5 +1,33 @@
 # Local Coding Lab
 
+**9 November restart update:** Flash-Next Q2 / Strata 0.1.50's 64K
+GPU-KV growth trial ended in a confirmed 0x116 NVIDIA timeout-recovery crash
+at 10:10:57 IST. Its 8K/17K fact answers and allocation growth are observations;
+the interrupted 33K case and unrun shrink/private audit have no score. The exact
+configuration is quarantined, no engine is running, and production remains off.
+See the [incident and configuration](reports/2026-11-09-flash-q2-gpu-restart.md).
+This records workload association, not a proven parameter-level cause.
+
+**9 November reconciliation:** start with [all models and individual reports](docs/models.md),
+the [article claim/evidence table](articles.md), and the
+[merged experiment record](docs/tasks/2026-11-09-merged-research/2026-11-09-merged-models-articles-and-experiments-v0.11.0.md).
+Claude's higher-quant Flint results and newer preparation are preserved.
+The b12069 side runtime now passes six tiny-model compatibility controls;
+Flint's new extended private audit completes with25/36 in2h53m, despite reading
+all15sources. Fifteen short performance controls now complete safely; tuned
+microbatch/cache settings improve prefill, and a full-SWA control improves
+middle-edit reuse with extra KV allocation and changed outputs. A native72K
+file audit now completes31/36 in1h46m, including6/6isolated merge checks;
+several settings changed together, so this is not a reasoning-only comparison.
+No complete three-suite winner or fresh editor pass is claimed.
+
+Flash-Next Q2 now passes static32K greetings in31.8/9.4seconds after a
+separately recorded [Windows frontend correction](experiments/strata/windows-token-defaults.md).
+The64K KV-growth diagnostic was interrupted by the GPU crash described above. See the
+[static receipt](reports/2026-11-09-flash-q2-static-qualification.json);
+greetings are not coding-quality evidence.
+
+
 **26October article review:** seven supplied articles are reconciled with
 primary sources and this PC's actual memory use in the
 [new review](research/reviews/2026-10-26-qwen-articles.md). Flash-Next and dense27B
@@ -10,7 +38,9 @@ The coding collector requires`--extended-diagnostic` to use a larger deadline
 
 27October preparation also adds an opt-in Strata process-identity check:
 an engine exit/restart ends the experiment instead of silently continuing.
-Its offline and harmless-process validation is pending the current Flint run.
+Its offline and harmless-process validation passed 9 November; the new Q2
+static greeting qualification also passed. Long-context recall and coding
+remain separate experiments.
 See the [Strata experiment guide](experiments/strata/README.md).
 
 Gemma26's apps-open6GiB-resident trial completes all12 coding answers with
@@ -276,3 +306,23 @@ and [SECURITY.md](SECURITY.md). Original lab code/docs are MIT; external researc
 model weights and llama.cpp retain their respective rights/licenses.
 
 17October: [matched Q4/Q6 results](reports/2026-10-17-qwen-precision.json) complete; [verified candidate retirement](reports/2026-10-17-retirement.json) frees91.291GiB while retaining Q4/Gemma26 and all reports.
+
+
+### Historical 9 November pre-serving checkpoint
+
+9November recovery checkpoint: all fifteen Flint performance controls now finish normally.
+The resident3/6/3GiB comparison gives cold wall123.016/117.203/113.735s,
+cached-repeat5.297/3.500/5.391s and changed-input90.719/84.312/83.907s.
+Extra residency helps cached repeat, but cold/changed improvement is smaller
+than baseline drift; retain3GiB for matched quality follow-ups. No quality
+score follows from these short32-token controls. Native private31/36 remains.
+Flash Q2's11artifacts pass fresh full hashes. Direct guarded native loading
+reaches READY32768 and exits normally on stdin EOF in9.390s; no questions.
+Two serving attempts stop fail-closed before requests with WinError5 at
+OpenProcess in the working-set guard. All descendants are cleaned up, no
+new hardware event. A source lead is frontend adopt_user_defaults using file
+access bits in the process token default ACL; harmless reproduction pending.
+Guard now preserves traceback/error.json without changing floors or cleanup.
+52offline tests and6harmless lifecycle checks pass. Four Flash growth inputs
+8178/17356/33788/8178tokens match the real pinned frontend encoder offline;
+no growth inference. Production remains off; no model retired or promotion.

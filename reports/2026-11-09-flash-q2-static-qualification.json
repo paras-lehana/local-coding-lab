@@ -1,0 +1,275 @@
+{
+  "updated": "2026-11-09T03:40:57.164534+00:00",
+  "scope": "Static capacity and greeting qualification only; no coding score or promotion",
+  "model": "Qwen3.8-Flash-Next GSQ-RCO Q2_0",
+  "model_revision": "ed59f92082b1e93c0e96d60a8b11aab089b52f09",
+  "engine_version": "0.1.50",
+  "engine_sha256": "5745022e7c8f743cfee83544da7d3672cd86103c854f23600e2c69ddd6593bef",
+  "frontend_revision": "4b9e05a2a806a3fe24f7b2560d98626c37dade35",
+  "frontend_patch": "experiments/strata/windows-token-defaults.patch",
+  "frontend_patch_sha256": "946cf687a9126d101bce9ffbda8529429798ca96c99abce184f4e85882043166",
+  "artifacts": [
+    {
+      "bytes": 37623740192,
+      "actual_sha256": "69820c02ec7d0b45ef2ebb19d6620299db749fe2aded7f39f93c6b88b199b720",
+      "expected_sha256": "69820c02ec7d0b45ef2ebb19d6620299db749fe2aded7f39f93c6b88b199b720",
+      "file": "Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00001-of-00002.gguf"
+    },
+    {
+      "bytes": 28800138432,
+      "actual_sha256": "316b46f3a2dbd68c900f43136ab9449f9dcc3725dfd8c794847c204bc161e113",
+      "expected_sha256": "316b46f3a2dbd68c900f43136ab9449f9dcc3725dfd8c794847c204bc161e113",
+      "file": "Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00002-of-00002.gguf"
+    },
+    {
+      "bytes": 320,
+      "actual_sha256": "f3845c0566e9b926c4caeea2e1f20f11f5293f143ad08f1b48c91adf3d7ed6fd",
+      "expected_sha256": "f3845c0566e9b926c4caeea2e1f20f11f5293f143ad08f1b48c91adf3d7ed6fd",
+      "file": "conversions.json"
+    },
+    {
+      "bytes": 1485606400,
+      "actual_sha256": "a43d7d0b69525335f4b000d5197a1d3aefcd3c0014fc3e12b3455e0a5d827ba2",
+      "expected_sha256": "a43d7d0b69525335f4b000d5197a1d3aefcd3c0014fc3e12b3455e0a5d827ba2",
+      "file": "dense.bin"
+    },
+    {
+      "bytes": 93561,
+      "actual_sha256": "c758314d495a1261d06a806b1c415596dfabe62e0cbf44ce592dc84c53229ccd",
+      "expected_sha256": "c758314d495a1261d06a806b1c415596dfabe62e0cbf44ce592dc84c53229ccd",
+      "file": "index.txt"
+    },
+    {
+      "bytes": 3286,
+      "actual_sha256": "015e53d3ae36324f172be4942bcf129539b343e2eb4fcd4f25ca5eff180bfa41",
+      "expected_sha256": "015e53d3ae36324f172be4942bcf129539b343e2eb4fcd4f25ca5eff180bfa41",
+      "file": "native_experts.txt"
+    },
+    {
+      "bytes": 9993,
+      "actual_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce",
+      "expected_sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce",
+      "file": "chat_template.jinja"
+    },
+    {
+      "bytes": 3600844,
+      "actual_sha256": "080cf95432173729d160346b7882bd2a644b07f7a3813a3eb73f4e66787bfde9",
+      "expected_sha256": "080cf95432173729d160346b7882bd2a644b07f7a3813a3eb73f4e66787bfde9",
+      "file": "merges.txt"
+    },
+    {
+      "bytes": 554,
+      "actual_sha256": "87be2ac47d8bc7393b7435df6ccd276740019a393941a2585d5edce59f450c54",
+      "expected_sha256": "87be2ac47d8bc7393b7435df6ccd276740019a393941a2585d5edce59f450c54",
+      "file": "tokenizer.json"
+    },
+    {
+      "bytes": 744960,
+      "actual_sha256": "5088c8c298fc06af8382ddb3b76c888703ac2634e82263b97eedcc2ad202738b",
+      "expected_sha256": "5088c8c298fc06af8382ddb3b76c888703ac2634e82263b97eedcc2ad202738b",
+      "file": "token_type.json"
+    },
+    {
+      "bytes": 5737005,
+      "actual_sha256": "4ba64f0332abcfb0b600b7df1537d1e836e68009d5fb7cdb77339738dc6365c4",
+      "expected_sha256": "4ba64f0332abcfb0b600b7df1537d1e836e68009d5fb7cdb77339738dc6365c4",
+      "file": "vocab.json"
+    }
+  ],
+  "settings": {
+    "context": 32768,
+    "kv": "int8 GPU, static",
+    "expert_cache_blobs": 512,
+    "expert_cache_upper_mib": 675,
+    "prefill": 64,
+    "working_set_cap_gib": 4,
+    "experts": "mapped GGUF; CPU/GPU miss work; no RAM expert arena",
+    "ple": "direct SSD reads",
+    "reasoning": "high normalized to xhigh",
+    "reasoning_budget_tokens": 0,
+    "budget_semantics": "no engine ceiling",
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "top_k": 20,
+      "min_p": 0,
+      "presence_penalty": 0,
+      "frequency_penalty": 0,
+      "repetition_penalty": 1,
+      "experimental_speed_projection": false,
+      "seed": 73
+    },
+    "workers": 6,
+    "cpu_affinity": "0xfffc",
+    "cpu_workers": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      12
+    ],
+    "host_core": 14,
+    "parallel": 1,
+    "spec_window": 2,
+    "mtp": false,
+    "suffix_draft": 0,
+    "projection": false,
+    "route_tail_skip": 0
+  },
+  "memory_policy": {
+    "load_min_ram_free_gib": 8.5,
+    "load_min_commit_available_gib": 14,
+    "load_min_vram_free_mib": 6000,
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_commit_available_gib": 1,
+    "stop_min_vram_free_mib": 400,
+    "stop_gpu_c": 84
+  },
+  "load_seconds": 82.95300000000134,
+  "requests": [
+    {
+      "name": "hi-cold",
+      "status": "completed",
+      "ok": true,
+      "wall_seconds": 32.171000000002095,
+      "benchmark": {
+        "wall_seconds": 31.81300000000192,
+        "finish_reason": "stop",
+        "first_event_seconds": 0.031000000002677552,
+        "first_content_seconds": 26.25,
+        "error": null
+      },
+      "usage": {
+        "prompt_tokens": 53,
+        "completion_tokens": 29,
+        "total_tokens": 82,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 53,
+        "prompt_ms": 18885.4,
+        "prompt_per_token_ms": 356.328,
+        "prompt_per_second": 2.8,
+        "predicted_n": 29,
+        "predicted_ms": 12888.4,
+        "predicted_per_token_ms": 444.428,
+        "predicted_per_second": 2.3,
+        "draft_n": 0,
+        "draft_n_accepted": 0
+      },
+      "process_dedicated_gib": 5.242580413818359,
+      "process_shared_gib": 0.58203125
+    },
+    {
+      "name": "hi-warm",
+      "status": "completed",
+      "ok": true,
+      "wall_seconds": 9.93800000000192,
+      "benchmark": {
+        "wall_seconds": 9.43699999999808,
+        "finish_reason": "stop",
+        "first_event_seconds": 0.06199999999807915,
+        "first_content_seconds": 6.905999999995402,
+        "error": null
+      },
+      "usage": {
+        "prompt_tokens": 53,
+        "completion_tokens": 34,
+        "total_tokens": 87,
+        "prompt_tokens_details": {
+          "cached_tokens": 48
+        }
+      },
+      "timings": {
+        "cache_n": 48,
+        "prompt_n": 5,
+        "prompt_ms": 1041.7,
+        "prompt_per_token_ms": 208.34,
+        "prompt_per_second": 4.8,
+        "predicted_n": 34,
+        "predicted_ms": 8320.1,
+        "predicted_per_token_ms": 244.709,
+        "predicted_per_second": 4.1,
+        "draft_n": 0,
+        "draft_n_accepted": 0
+      },
+      "process_dedicated_gib": 5.242580413818359,
+      "process_shared_gib": 0.58203125
+    }
+  ],
+  "telemetry": {
+    "samples": 105,
+    "seconds": 124.69918847084045,
+    "start": {
+      "ram_free_gib": 12.398780822753906,
+      "commit_available_gib": 23.591262817382812,
+      "vram_free_mib": 6888.0
+    },
+    "min_ram_free_gib": 5.988971710205078,
+    "min_commit_available_gib": 13.30514907836914,
+    "min_vram_free_mib": 1294.0,
+    "max_gpu_c": 58.03,
+    "max_rss_gib_by_name": {
+      "python.exe": 0.20094680786132812,
+      "conhost.exe": 0.007415771484375,
+      "strata.exe": 4.000038146972656
+    }
+  },
+  "stop": "explicit owned stop",
+  "hardware": "no new WHEA event",
+  "acl_controls": [
+    {
+      "condition": "ordinary",
+      "outcome": "pass"
+    },
+    {
+      "condition": "file-all",
+      "outcome": "denied"
+    },
+    {
+      "condition": "generic-all",
+      "outcome": "pass"
+    }
+  ],
+  "privacy_tests": {
+    "total": 13,
+    "passed": 12,
+    "skipped": 1,
+    "seconds": 0.27
+  },
+  "failed_serving_attempts": [
+    {
+      "name": "flash-q2-explicit512-static32",
+      "stage": "OpenProcess working-set guard",
+      "error": "WinError5",
+      "questions": 0,
+      "score": null
+    },
+    {
+      "name": "flash-q2-explicit512-static32-observed",
+      "stage": "OpenProcess working-set guard",
+      "error": "WinError5",
+      "questions": 0,
+      "score": null
+    }
+  ],
+  "direct_native_load": {
+    "ready_context": 32768,
+    "seconds": 9.39,
+    "exit_code": 0,
+    "termination": "stdin EOF after readiness",
+    "questions": 0
+  },
+  "limitations": [
+    "Frontend82.953s readiness includes pre-engine setup; direct9.390s is a different load-and-EOF path.",
+    "Two greetings are not a speed distribution, coding evaluation or editor check.",
+    "Per-process WDDM counters overlap host/shared accounting; do not add to RSS or treat as exclusive VRAM.",
+    "Engine3947MiB free differs from device minimum1294MiB; use external device telemetry for guards.",
+    "Native0.1.50 sm86 exact switches/CPU sharing differ from historical engine, and quant changed.",
+    "Growth64K plan is separate and collecting; static result cannot establish growth or long recall."
+  ]
+}

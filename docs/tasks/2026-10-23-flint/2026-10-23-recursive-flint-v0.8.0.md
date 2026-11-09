@@ -1,5 +1,202 @@
 # Recursive Flint on RTX 3080 10 GB
 
+9November recovery checkpoint: all fifteen Flint performance controls now finish normally.
+The resident3/6/3GiB comparison gives cold wall123.016/117.203/113.735s,
+cached-repeat5.297/3.500/5.391s and changed-input90.719/84.312/83.907s.
+Extra residency helps cached repeat, but cold/changed improvement is smaller
+than baseline drift; retain3GiB for matched quality follow-ups. No quality
+score follows from these short32-token controls. Native private31/36 remains.
+Flash Q2's11artifacts pass fresh full hashes. Direct guarded native loading
+reaches READY32768 and exits normally on stdin EOF in9.390s; no questions.
+Two serving attempts stop fail-closed before requests with WinError5 at
+OpenProcess in the working-set guard. All descendants are cleaned up, no
+new hardware event. A source lead is frontend adopt_user_defaults using file
+access bits in the process token default ACL; harmless reproduction pending.
+Guard now preserves traceback/error.json without changing floors or cleanup.
+52offline tests and6harmless lifecycle checks pass. Four Flash growth inputs
+8178/17356/33788/8178tokens match the real pinned frontend encoder offline;
+no growth inference. Production remains off; no model retired or promotion.
+
+
+**9 November08:25IST native result:** the tuned Q3XL72K profile completes
+the same private audit in **6,386.703s (1h46m),31/36 (19/6/6)**. Its exact
+delivered merge passes all six isolated behavior groups, including null and
+aliasing. All15sources were supplied. It still omits nested/full required
+reading, progressive skill use, Windows adapters and locally-ahead clone
+handling. Function type hints/docstring are absent despite its own advice.
+No model-written tests; one seed, agent-assessed citations, no promotion.
+[Complete measurement](../../../reports/2026-11-09-flint-native-private72k.json).
+
+This is Q3XL/b11838, GPUq8 KV72K, GPU attention/CPU49expert flag,
+cache1536MiB, resident cap3GiB/reserve6.5, b128/u128,4/8threads,
+temperature1/.95/20, no engine reasoning ceiling,24576output per turn and
+21600s whole case. Load20.453s; plain greetings57.907/37.672s.
+Audit first visible answer5,995.230s; prefill3,215.777s and generation
+3,168.581s. Minima8.454GiB RAM/19.499GiB commit/1440MiB free VRAM;
+maximum55.97C. Normal owned stop, no new hardware event.
+Five of six continuations reuse the full previous prefix; final turn reuses
+38371of45283previous tokens and processes8017fresh tokens. Saved message
+fields stayed unchanged, but exact token reserialization cause is unresolved.
+
+Relative to the earlier capped profile, accuracy and wall time both improve.
+Cache, batching, residency and reasoning changed together: this is not proof
+that unlimited reasoning or higher precision alone caused the gain. The
+31/36 equals the historical Qwen reference's private score, but takes much
+longer and has a different cohort; no full compatible three-suite ranking.
+Remaining TS/SQL/coding work is still necessary.
+
+**9 November04:18IST result:** the Q3XL72K/cache256/resident1/budget1024
+private audit completed in10,380.106s and scores **25/36 (18/3/4)** after
+source review and isolated behavior checks. All15sources were delivered;
+three failed reads were recovered. Wrong exact merge, missing rule/adapter
+details, an invalid citation, null overwrite and mutable aliasing remain.
+The answer promises a deepcopy correction but never delivers it. All eight
+continuations reused their complete available prefix. Prefill6,140.370s,
+generation4,236.126s; no exact first-visible timestamp in this legacy collector.
+No new hardware event; normal owned stop. Minima6.711GiB RAM/10.839GiB commit/
+2,896MiB freeVRAM, maximum49.38C. This extended single-seed profile does not
+replace the retained reference or prove a quant/cap cause. See the
+[measurement](../../../reports/2026-11-09-flint-q3xl-private72k.json) and
+[merged review](../2026-11-09-merged-research/2026-11-09-merged-models-articles-and-experiments-v0.11.0.md).
+Older "active" checkpoints below are chronological history. Performance
+controls have separate measured rows below and do not inherit this score.
+
+## 9 November: higher-quant private audit and speed controls
+
+**Completed25/36; not promoted.** The retained Q3_K_XL
+SHA91b8d85a… ran the unchanged private instruction fixture on
+b11838-noprefetch-v1. Profile
+[flint-q3xl-private72k-budget1024](../../../profiles/flint-q3xl-private72k-budget1024.json)
+uses72K/no-context-shift, GPUq8 KV, CPU49experts,256MiB expert-cache budget,
+1GiB resident cap with6.5GiB reserve, b64/u16,4/8threads, masks5554/FFFC,
+native thinking capped at1024tokens per reasoning block, temperature1/top-p.95/top-k20,
+and24,576output tokens per turn. Whole-case allowance21600s is extended;
+no score may be moved into the frozen1200s cohort.
+
+Fresh admission8.843GiB RAM/21.236GiB commit/6474MiB VRAM passes7.5/8.5/5500
+gates. Floors remain2.5GiB RAM/1GiB commit/400MiB VRAM/84C. Load20.486s;
+plain greetings95.652/85.138s, visible text78.603/68.034s. Both report zero
+cached prompt tokens: the second is repeated, not a measured cache hit.
+
+Actual allocation:1551.39MiB CUDA weights,1071MiB global-attention KV plus
+27.89MiB sliding-window KV,243.08MiB expert cache,148.81MiB compute. The cache
+has1.6% slot coverage in cached groups and leaves two layers uncached; this
+is capacity, not hit rate. The first three completed continuations fully
+reuse the previous reported KV length. New-file prefill is around6tokens/s,
+with generation around1.8–2tokens/s under the small resident cap.
+
+By03:03IST,14distinct sources have been delivered, some partially. One README
+path was unavailable. Two oversized range requests were rejected and then
+recovered with200-line reads. These observations are not yet a final semantic
+or citation score. Review all visible turns and actual delivered ranges before
+isolated code checks; do not infer that cap1024 caused a tool mistake on a turn
+that naturally generated fewer than1024tokens.
+
+Seven separate performance profiles compare microbatch4/16/32/64,
+resident1/3GiB, expert-cache256/1536MiB and b11838/b12069. They use identical
+synthetic cold/repeated/changed-middle native completions, not a new quality
+score. A uniform60second idle observation after timed requests collects
+native cache-hit counters without modifying the runtime. Production's
+1800second idle policy is unchanged.
+
+### Fixed-prefix performance results, 9 November
+
+Same1895-token synthetic native prompt, greedy32generated tokens, b64,
+72KGPUq8KV except explicitly labelled b128/short2K controls, CPU49experts,
+no context shift. Every row uses a fresh owned
+server. "Cold" refers to prompt cache only; model hash verification can warm
+the operating-system file cache. Repeat reuses1894tokens; the middle edit
+forces a full re-prefill because the sliding-window checkpoints cannot roll
+back far enough. All outputs reach32tokens, so these are timings, not recall
+or coding scores. Default cache budget256MiB; resident cap1GiB.
+
+| Physical microbatch / other change | Cold wall seconds | Repeat seconds | Middle edit seconds | Outcome |
+|---|---:|---:|---:|---|
+|16 baseline|267.437|9.641|259.765|Normal stop, no new hardware event|
+|4|514.454|8.859|524.047|Normal stop; substantially slower fresh input|
+|32|265.391|9.704|286.968|Normal stop; no useful improvement established|
+|64|175.953|11.250|195.281|Normal stop; improvement exceeds observed baseline drift|
+|16 / resident3GiB|245.000|6.828|241.390|Normal stop; modest fresh-input improvement in one run|
+|16 / cache1536MiB|334.500|6.765|307.594|Normal stop; slower fresh prefill, faster decode|
+|16 / b12069 runtime|263.984|9.984|259.203|Normal stop; no material fresh-input gain established|
+|16 baseline repeat|261.641|9.735|263.781|Normal stop; cold/middle timings within about2.2% of initial baseline|
+|64 / cache1536 / resident3|191.937|5.296|149.844|Normal stop, no new hardware event; mixed changes, no quality score|
+|128 / cache1536 / resident3|128.406|5.171|97.157|Normal stop, no new hardware event; best combined timing so far, not scored|
+|64 / cache1536 / resident3 / short2K windowed|191.922|5.359|145.562|Normal stop, no new hardware event; middle edit still fully reprocessed|
+|64 / cache1536 / resident3 / short2K fullSWA|194.547|7.922|95.562|Normal stop, no new hardware event; middle edit reuses962tokens|
+
+The baseline repeat, resident3-only and b12069 controls match the initial
+baseline's corresponding32-token text hashes in all three requests. The
+microbatch4/32/64 and cache1536 controls differ. This limited text check is
+not full-logit equivalence or proof of equal unrestricted-answer quality.
+
+[Aggregate timing and allocation receipt](../../../reports/2026-11-09-flint-prefill-controls.json).
+u4's direct-cache eligibility does not imply useful reuse: its <=8bucket has
+zero hits/908,681misses and reports1,188,939MiB of expert uploads, compared
+with zero hits/29,581misses/38,663MiB at u16. These buckets mix phases at
+different microbatch sizes, and uploads are not measured SSD reads. u32 also
+reports29,667experts copied from cache in its separate large-batch path; that
+counter is not a decode hit rate or an accuracy metric.
+
+Cache1536 allocates1531.97MiB and reports small-batch9580hits/21250misses
+(31.07%) versus large-batch30533hits/597113misses (4.86%). The latter reports
+780314.55MiB uploaded. At microbatch16 the larger slot groups now qualify for
+the direct-cache path; small-cache u16 bypassed it. More GPU cache therefore
+changes dispatch as well as capacity. Prefill slows to325.497/298.401s for
+cold/changed input, while their generation rates rise to3.469/3.396tok/s.
+These are measured tradeoffs, not proof of a universal optimal cache size.
+
+Combined64 reports10,588hits/18,640misses (36.23%) in the small-batch bucket,
+24,347.41MiB uploaded, and97,674experts/42,613.85MiB copied through its
+large-batch cache path. Cold/changed prefill takes183.589/141.403s; their
+generation rates are3.747/3.702tok/s. The repeated-input generation rate is
+6.122tok/s. These phase-specific numbers are not the private workflow's
+end-to-end rate, and neither cache counters nor faster text prove accuracy.
+
+The fixed controls justified the native private follow-up below, which is
+now running on the combined128 profile. The completed 25/36 result uses
+cap1024 and cannot isolate either quantization or unrestricted reasoning.
+The follow-up changes several controls; it is not a promise of a higher
+score or a single-variable ablation. Keep its settings and cohort distinct.
+
+The short2K pair is now complete. Windowed KV allocates29.75+27.89MiB;
+full storage allocates29.75+74.38MiB. Middle-edit cache reuse changes from
+zero to962tokens, leaving933new tokens instead of1895. Its whole request
+falls145.562→95.562s. Cold/repeat generation is slower with full storage,
+and all three corresponding32-token texts differ. This supports the rollback
+mechanism without establishing numerical equivalence or semantic recall.
+Do not extrapolate the46.48MiB extra2K storage cost to72K without rescaling.
+
+### Native private follow-up, started9November06:37IST
+
+The guarded [native72K/u128 profile](../../../profiles/flint-q3xl-private72k-native-u128.json)
+uses the measured combined128 placement:3GiB resident cap,1536MiB expert
+cache, GPUq8 KV, no context shift and the same b11838/weights. The engine
+reasoning ceiling is disabled (`-1`), but24,576output tokens per turn and
+the six-hour whole-case deadline remain finite. The short2K full-SWA flag
+is not used in this long-context run. Many controls differ from the earlier
+25/36 audit, so this is not a cap-only or quant-only comparison.
+
+Fresh admission13.220GiB RAM/27.325GiB commit/6791MiB VRAM passes9.5/11/6200
+gates. Two plain600second greetings must finish before the frozen private
+source workflow. The new timing client preserves outgoing payloads and raw
+events, adds per-event timestamps, and has five passing timing/ownership
+checks. At launch no new answer, score or first-visible timing exists.
+Private evidence: `local-data/2026-11-09-merge/flint-private72k-native-u128-a/`.
+
+08:01 IST checkpoint: all 15 sources have been delivered completely. Turn05
+spends 1,674.579 seconds generating 6,908 tokens before two successful source
+rereads, without a visible answer. Turn06 restores an earlier SWA checkpoint,
+reusing 38,371 of 46,388 input tokens. Earlier continuations reused the entire
+available prefix. The divergence cause and final quality remain pending;
+this is partial replay, not loss of the whole conversation. See the
+[interim rollback receipt](../../../reports/2026-11-09-flint-native-rollback-observation.json).
+
+Current evidence/next decisions: [merged report](../2026-11-09-merged-research/2026-11-09-merged-models-articles-and-experiments-v0.11.0.md),
+[speed/source review](../../../research/reviews/2026-11-09-fusion-and-speed.md),
+private`local-data/2026-11-09-merge/` and
+`benchmarks/2026-10-13-instructions/runs/extended-flint-private72k-budget1024-a-private-budget1024/`.
+
 **3 November update:** run C is closed and graded in the extended-diagnostic
 cohort. The 1024-capped router scores 38/40 and the 8192-capped router 37/40.
 Both pass all six frozen behavior groups, and each answer's own tests contain

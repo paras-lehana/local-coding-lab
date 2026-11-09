@@ -1,6 +1,240 @@
 # Task log — Local Coding Lab
 
-Last updated: 2026-11-03 (Asia/Kolkata); Claude's recovery and offline completion checkpoint; experiments remain capacity-gated.
+## 2026-11-09 13:18:54 IST: GPU-restart recovery
+
+Flash Q2/Strata0.1.50 dynamic GPU KV64K (initial16K/step8K,
+512expert slots,floor128,prefill64,resident4GiB,xhigh) was interrupted by
+0x116 VIDEO_TDR_FAILURE at10:10:57.212IST; boot10:11:56.33K prefill last
+processed16,832tokens. Last freeRAM10.172GiB/commit17.070GiB/VRAM1580MiB,
+GPU54.22C. NoWHEA; WER1001/1019,KernelPower41,EventLog6008 present.
+Same recovery signature seen8Nov; model/parameter causality unresolved.
+8K/17K fact answers and GPUallocation0.23/0.33/0.52GiB preserved as unscored
+observations. No shrink, no normal cleanup, no128Kprivate audit. Exact trial
+quarantined; no engine running, no unchanged retry or old queue armed.
+WHEA-only checker defect reproduced and fixed; real crash interval now rejects.
+58/58offline tests and5/5private-adapter checks pass. No model inference,
+BIOS/clock/driver change, TDR bypass or user-app closure after the restart.
+Incident: local-coding-lab/reports/2026-11-09-flash-q2-gpu-restart.md.
+Continue offline reconciliation/publication. Full suite gaps remain explicit.
+
+
+2026-11-09T10:03:44.186775+05:30: Flash Q2 growth remains active. The 8K and 17K answers
+finish in 723.859 and 1480.453 seconds and both visibly contain all five
+requested facts. The 33K request is still prefilling; the shrinking 8K case
+remains. Native allocation has grown 16,384 -> 24,576 -> 40,960 cells,
+about 0.23 -> 0.33 -> 0.52 GiB, leaving 292 of 512 expert slots. No final
+recall score is assigned before owned cleanup. This is GPU KV, not CPU KV
+or omitted-chat retention. Current source permits fresh VRAM at the cache
+floor; a larger configured maximum is not a fixed-allocation guarantee.
+Prepared the separate private-audit adapter, five offline checks and an
+arming helper requiring complete growth results and fresh admission. These
+new checks have not run beside inference. Proposed private maximum128K keeps
+16K initial allocation and all floors; it is not a qualified128K result.
+Clarified stale preparation labels in the report and shortened current AGENTS
+recovery text; all historical evidence remains in logs and model reports.
+No model retirement, hardware change, production start, commit or push.
+
+
+2026-11-09T09:19:26.632174+05:30: FlashQ2 static32K qualified.
+Original token-default FA ACL reproduces OpenProcess error5 on harmless child;
+isolated4b9e05a2 checkout changes FA to GA for the same trustees. Ordinary/
+original/fixed tests pass/fail/pass,12Windows privacy cases pass/onePOSIXskip.
+Two actual greetings complete31.813/9.437s, first visible26.250/6.906s.
+Native RSS4GiB,dedicatedGPU5.243GiB; minima freeRAM5.989GiB,commit13.305GiB,
+freeVRAM1294MiB. Normal stop/no new hardware event. Both failed original
+attempts and direct9.390s load/EOF probe preserved; no coding score.
+64K native KV growth now active, controller exec session65863/nativePID67004,
+run local-data/2026-11-09-merge/flash-q2-tokenacl512-grow64. Native startup
+confirms16384of65536cells,0.23of0.80GiB,512eligible slots. First8178-token
+independent recall prompt still prefilling; later17356/33788/8178requests
+each have7200s. Same floors/one engine, no concurrent tests/download/hash/
+grading. Check actual driver-result/guard result before another load.
+Public patch/receipt, model record and comparison updated. Local-LLM runtime/
+candidate skill references updated; shared Claude/Codex adapters unchanged.
+Shared copilot-configs incident memo/index/master index added, not committed.
+Production remains off. All15Flint performance controls completed; native
+private31/36 retained; native TS/SQL and12coding are next after Flash cleanup.
+
+
+Last updated: 2026-11-09 (Asia/Kolkata); merged research and article-driven completion in progress.
+
+## 2026-11-09: merge Claude's handoff, article ledger and remaining experiments
+
+08:33IST: native Flint audit completes6386.703s,31/36(19semantic/6citation/6code). All15sources,5/6full-prefix continuations; first visible5995.230s. Normal owned stop/no new hardware event; minRAM8.454/commit19.499GiB/freeVRAM1440MiB. All visible turns reviewed before isolated WSL/bubblewrap grading; one unchanged function passes6/6groups, no model self-tests. Omits nested/full reading chain, progressive skills, Windows adapters and ahead-clone handling; no promotion. Follow-up ownership checks3pass in0.415s. Resident3/6/3plan armed after14.014GiB RAM admission; first3GiB reference starts08:30:32, controller61056, native server083058. Public/model/article records updated; adapters unchanged. No grading/build/hash/download beside inference.
+
+08:01IST: native turn05 completes in1674.579s, with6908generated tokens,
+267.758s prefill and1406.497s generation; no visible content, two successful
+rereads. Turn06 starts07:55:10 with46388input tokens. It restores checkpoint
+[37604,38371], reuses38371 and must process8017tokens. This is the first
+partial-reuse continuation; the prior available sequence was45283. The
+42991checkpoint-test value is a SWA threshold, not the common-prefix length
+(pinned server-context.cpp4077–4180; n_swa513). Prompt divergence cause and
+completed turn06 timing remain pending. Interim public receipt added; no
+claim of whole-history loss or6912fully avoidable tokens. Same guarded engine
+continues; no new heavy work, score or offline validation.
+
+07:53IST: native turn05 has generated about6,432tokens and remains reasoning;
+no visible final or score. All15source files remain fully delivered. Added
+an unarmed capped-quality profile for later TS/SQL/coding, prepared the
+residency-plan arming helper and a Flash exact-token request generator; none
+of those helpers has been validated/run except the profile-writing step.
+Public per-file inventory generated for82files before that final profile.
+Dense Qwen's eight preserved short-result rows were reread and summarized,
+without rerunning code. Dory primary-source review identifies later scale/
+physical-block placement fixes and no published fork binaries; no build.
+No new engine, download, large hash, grader or offline test beside inference.
+
+07:40IST: native turn04 completes281.016s and recovers both remaining logging
+ranges. All15source files now fully delivered (union of successful ranges);
+three oversized reads recovered, absent SERVICES read remains unavailable.
+Turn05 is still reasoning, with no visible answer or grade. Full prefix reuse
+continues. Passive15second disk observation during turn04 prefill records
+142.19–159.88MiB/s E: reads,0.114–0.134ms average latency and queue0–1;
+these are whole-drive counters, not model-exclusive SSD throughput. Public
+receipt and memory/article review updated. Resident6 A-B-A performance plan,
+strict dated follow-up collectors and capped TS/SQL task are prepared, unarmed
+and not yet validated. No new engine, hash, grader, download or offline test.
+
+07:16IST: native turn02 completes679.906s, input27025(cache18739+fresh8286),
+prefill623.728s/generation55.873s/237tokens, first tool643.625s, no visible
+answer. It recovers the oversized coding-doc read in two ranges, then requests
+logging200–487 (288lines), again exceeding200. Turn03 starts07:14:33; all
+fifteen distinct sources have now been supplied at least partly, with remaining
+range coverage to verify. No grade or final answer yet. Prepared two dated
+public/coding controller copies with strict inventory/normal-stop rules and
+profile-based greeting sampling, plus a capped TS/SQL task; validation/run
+pending after current engine. Source review narrows Strata0.2.12 correctness
+fixes; none reproduced here. Full-SWA72K estimate adds2649.609MiB KV, exceeding
+current GPU headroom; unchanged profile not launched. Memory/report updated.
+
+07:04IST native audit checkpoint: turn01 finishes1222.4s after15581fresh/
+2400cached input tokens (prefill1067.783s, generation154.416s/759tokens).
+Full previous prefix reused; first tool fragment1185.5s, no visible answer.
+Eight first-step reads succeed; the next step has four successful reads and
+one243-line request rejected by the documented200-line limit. Turn02 is
+processing new files; recovery/final correctness remain pending. NativePID
+69016 remains under the same guard, about9.1–9.4GiB RAM/2.1GiB VRAM free.
+No new engine or heavy job. Flash growth design now explicitly distinguishes
+GPU VMM allocation from RAM KV, actual rendered tokens and semantic recall.
+
+06:44IST: all12performance controls complete with normal owned stops and no
+new hardware events. Full-SWA2K194.547/7.922/95.562s; middle edit962cached/
+933fresh versus windowed0/1895, extra46.484MiB KV, different output hashes.
+Aggregate/export/profile evidence updated. After engine exit:52offline tests
+pass19.502s,4PowerShell parses pass, public audit406files/0findings, diffcheck
+clean after removing one trailing blank line. Native72K/u128 private audit
+started06:37 under controller42136/launcher71672, output
+`local-data/2026-11-09-merge/flint-private72k-native-u128-a`.
+Greetings57.907/37.672s complete, first visible44.610/27.484s; file audit active.
+No concurrent engine/hash/build/download/grading/tests. Flash remains unarmed.
+
+06:27IST: windowed2K completed191.922/5.359/145.562s, normal stop/no new
+hardware event;11controls exported. Final timing/ownership revision passes
+all5checks in0.227s, including persisted request-start timestamp. FullSWA2K
+now runs under controller70324/launcher64064 in `prefill-short2k-fullswa-a`.
+Actual KV29.75+74.38MiB versus29.75+27.89MiB windowed; middle-edit reuse
+and final timings pending. Native72K/u128 private profile/task/controller are
+prepared and checked, not launched. Flash full hashes remain unrun.
+
+06:19IST: combined128 completed128.406/5.171/97.157s, normal stop/no new
+hardware event. Ten completed controls exported. Five timing/ownership
+checks passed in0.236s after engine exit; derived private collector is ready
+but unrun. Short2K rollback plan armed after checking the matched flags and
+fresh13.304GiB RAM/27.265GiB commit/6791MiB VRAM. Windowed control now runs
+under controller21700 in `prefill-short2k-windowed-a`; fullSWA follows.
+Prepared native72K/u128 private profile and task, no launch yet. No other
+engine, model hash, build, download, grader or offline test beside inference.
+
+06:13IST: combined64 completed191.937/5.296/149.844s with normal stop and
+no new hardware event; nine controls exported. Combined128 is now active
+under controller65796, output `prefill-u128-cache1536-resident3-a`.
+Between engines, three timing-client checks passed (0.080s), confirming
+unchanged requests/results and correct absent-content/interruption handling.
+Additional strict-inventory/normal-stop wrapper checks are prepared but unrun;
+the new derived private controller has not served a model yet. No tests run
+beside inference. Rollback pair and native private audit remain conditional.
+
+06:04IST: original baseline repeat completed261.641/9.735/263.781s, normal
+stop/no new hardware event. Eight original runs now complete. Reviewed and
+armed the two combined profiles using `arm_prefill_adaptive.py`; fresh
+13.330GiB RAM/27.343GiB commit/6790MiB VRAM. Combined64/cache1536/resident3
+now runs under controller67888 in `prefill-u64-cache1536-resident3-a`.
+Next combined128, then the separately prepared2K full/windowed-KV rollback
+pair if admitted. No other engine or heavy job; no quality promotion.
+
+05:52IST: b12069 completed263.984/9.984/259.203s, normal stop/no new hardware
+event. Seven controls exported. Original b11838/u16/cache256/resident1
+baseline repeat runs under controller64816, launcher64652, output
+`local-data/2026-11-09-merge/prefill-u16-resident1-b`. Adaptive combined
+profiles remain unarmed until this repeat finishes and results are reviewed.
+No other engine, model hash, build, download or grader runs beside it.
+
+05:40IST: cache1536 completed334.500/6.765/307.594s with normal stop and no
+new hardware event. Native hits31.07% (<=8bucket),4.86% (>8bucket); slower
+prefill despite faster generation. Six controls exported. b12069/u16/resident1
+started under controller36392, output
+`local-data/2026-11-09-merge/prefill-b12069-u16-resident1-a`. Baseline repeat
+follows. Prepared unarmed adaptive combined64/128 profiles and plan at
+`prefill-adaptive.planned.json`; fresh9.5/11/6200admission, unchanged floors.
+The artifact verifier for Flash Q2 remains unrun; no other engine or heavy job.
+
+05:27IST: resident3 completed245.000/6.828/241.390s, normal stop/hardware
+clean. Five controls exported. Cache1536/resident1/u16 now runs under
+controller65384, output `local-data/2026-11-09-merge/prefill-u16-cache1536-a`.
+Next b12069/u16 and baseline repeat. Conditional further work: directly test
+a combined useful profile and unrestricted private reasoning before quant
+retirement if the measured gains justify it; current25/36 is cap1024 only.
+Prepared Groot guarded64 retry profile, no load yet; fresh gates7.5/9/6000,
+floors2.5/1/400/84, no context shift, original coding sampler.
+
+05:16IST: u64 completed175.953/11.250/195.281s cold/repeat/changed,
+normal stop/no new hardware event. Four controls now exported. Resident3GiB
+at microbatch16 started under controller67432, output
+`local-data/2026-11-09-merge/prefill-u16-resident3-a`. No other engine.
+The smaller resident1GiB/u16 baseline will repeat after the cache/runtime
+controls to check desktop/cache drift. No quality or production promotion.
+
+05:02 IST recovery checkpoint: Flint's private audit is complete at25/36,
+with isolated4/6behavior and full prefix reuse on all8continuations; its owned
+server stopped normally. Fixed-prefix u16 and u4 controls also stopped normally
+without new hardware events. u4 roughly doubled cold/changed-input latency.
+The u32/resident1 control is active under controller51436, launcher38716,
+output `local-data/2026-11-09-merge/prefill-u32-resident1-a`. Cold265.391s,
+repeat9.704s; changed-middle collection is pending. No second engine, download,
+large hash, build or isolated grader runs beside it. The next explicit controls
+are u64, resident3, cache1536, b12069 and a fresh baseline repeat. Flash Q2
+qualification remains unarmed pending fresh artifact verification after these
+engines stop. Production remains off; apps and clocks are unchanged.
+
+| Task | Status | Evidence / scope |
+|---|---|---|
+| Recover Claude's handoff and review uncommitted work | In progress | Existing results retained; review code, artifact pins and stale status separately |
+| All supplied articles in `articles.md` | In progress | Claims, corrections, local evidence and next experiments; no full article republication |
+| Model-wise reports and merged configuration inventory | In progress | Extend the 3 November master inventory; preserve incompatible cohorts |
+| Complete eligible experiments | In progress | One engine; apps stay open; plain greeting 600 s, extended coding separately labelled |
+| Validate, publish and provide merged summary | Not started | Offline checks precede load; fresh hardware and resource gates required |
+
+Recovery: no llama/Strata engine or 8080/8081 listener; Ollama has no loaded
+models. Initial available RAM 7.856 GiB, commit headroom 21.797 GiB and VRAM
+7064 MiB. These are snapshots, not admission receipts. Production remains off.
+Six exact, fully hash-verified, redundant installer archives were removed after
+checking their installed runtimes. Recovered 2,168,377,560 bytes; E: now has
+2,665,594,880 bytes free. No weights, evidence or applications were removed.
+The cleanup's final console total failed after successful deletions because
+PowerShell did not expose Hashtable keys to Measure-Object. The durable
+receipt and all six absent paths were independently checked; only the print
+expression was fixed, and deletion was not repeated.
+Private receipt: `local-data/2026-11-09-merge/archive-retirement.json`.
+
+01:53 IST checkpoint: full historical fusion article recovered and reviewed;
+its log-softmax calibration claim fails algebraically. Added the detailed
+fusion/speed review and corrected the older source-access caveat. Added
+standalone Qwen3.5-9B and Dory preparation records with expected artifact
+identity, exact proposed controls and explicit no-inference status. Flint's
+private audit remains on its second tool turn; no final answer or score yet.
+Strata guard floor enforcement and regression coverage are prepared; execution
+of the offline checks waits until inference ends.
+
 
 ## 2026-11-03 Claude: recovery and offline completion
 
@@ -1477,7 +1711,7 @@ remains running;22:58IST16.70GiB RAM/5.44GiB dedicatedVRAM,free6.39GiB/1126MiB.
 0findings;diff check passes;94 local Markdown links resolve. Project/parent guidance updated via maintenance skill;
 shared adapters reviewed and unchanged. No further automatic inference queued.
 
-## Agent Deferred
+## Historical deferred register (through 3 November)
 
 | Item | Deferred on | Reason | Status |
 |---|---|---|---|
@@ -1523,7 +1757,7 @@ Current dispositions:
 | Clean-machine installation/128K arbitrary sessions | Not tested | Separate future validation |
 | Restart component cause | Unknown | New diagnostic evidence; no RAM-speed assumption |
 
-## Agent Suggestions
+## Historical suggestions (through 3 November)
 
 | Suggestion | Raised on | Priority | Status |
 |---|---|---|---|
@@ -1742,3 +1976,139 @@ is live; no score yet. Earlier admission failures remain historical evidence.
 26October08:16IST: Gemma private23/36 export/review complete;42offline tests pass21.516s (22.110s command),4PowerShell parses pass. Public audit305/0 before capacity receipt, git whitespace check pass. Production admission also rejects1.916GiB freeRAM (needs18),8.423GiB commit (needs12),5385MiB VRAM (needs6000). No launch/remote-SSE test; settings/baseline preserved. No new hardware event. Current capacity report lists each unrun queue item; no campaign completion.
 
 26October08:18IST: report checkpointe959c3b pushed; CI40260746660 passes. Latest freeRAM2.264GiB; no model admission. Canonical A?G saved to prompts/campaign before final. Remaining inference is capacity constrained; no background retry or completion claim.
+
+2026-11-09T01:34:03.146859+05:30 9-Nov merge: reviewed Claude handoff; 51 offline tests pass (29.612s), six b12069 stories CPU/GPU controls pass, 56 binaries verified. Six exact installer archives retired after hashes, 2168377560 bytes reclaimed; models retained. Flint Q3XL72K/cache256/resident1/budget1024 private diagnostic active, greetings95.652/85.138s. No grade yet. Production off; no apps closed. Current report: local-coding-lab/docs/tasks/2026-11-09-merged-research/2026-11-09-merged-models-articles-and-experiments-v0.11.0.md
+
+9November02:34IST: original Next80 identity recovered from install receipts;
+dense Qwen Q6 found byte-identical to the already-tested October artifact.
+Both Bonsai archived templates accept low/medium/xhigh and reject high;
+catalog corrected with template hash. Shared local-LLM references now qualify
+WDDM/cap/fault interpretations and distinguish GPU KV growth from host streaming.
+Codex/Claude global adapters already route these lessons; neither needs an edit.
+Private Flint turn02 has21.6K retained prompt tokens and is generating; no final
+answer. Current RAM8.37GiB and VRAM3233MiB free. New helper/guard tests remain
+queued after inference. No publication, promotion or latest-editor pass claimed.
+
+### 9November04:25IST: completed audit and controlled prefill trial
+
+Flint Q3XL72K/cap1024 completed normally at04:18:20; launcher stopped04:18:22,
+no new hardware event. Private25/36 (18semantic/3citation/4behavior),
+10,380.106s. All15sources delivered; all8continuations fully reused. Isolated
+code fails null preservation and mutable independence; no model-written tests.
+Public receipt:reports/2026-11-09-flint-q3xl-private72k.json. Exact generated
+code and source documents remain private.52offline tests pass19.920s;
+7prefill/9Strata wrapper/9template checks and harmless guard lifecycle pass.
+First plan arming refused because a UTF16test log was read with the default
+encoding; no model launched. Correct decoding confirmed the52pass receipt.
+The reviewed armed copy is separate from the unchanged preparation plan.
+
+Prefill baseline u16/resident1 controller59092, launcher73112, native71996
+starts04:25:27, loaded20.516s. Output local-data/2026-11-09-merge/
+prefill-u16-resident1-a. One engine, no concurrent hashes/builds/grading/tests.
+Run the remaining profiles only after checking each receipt and fresh gates.
+All actual prefill request values match the public1895-token fixture; token
+count is from this engine, not a universal count. No speedup claim yet.
+
+### 9November04:46IST: first prefill result, u4 active
+
+u16/resident1 finishes all three timed requests: cold267.437s, repeat9.641s
+(1894cached/1fresh), changed-middle259.765s (zero cached). All output-limited
+at32tokens; no recall/code score. Native60s idle successfully exposes cache
+destructor counters: <=8bucket zero hits/29581misses/38662.98MiB uploaded.
+Normal requested stop, no new hardware event. Public aggregate:
+reports/2026-11-09-flint-prefill-controls.json; raw under9Nov merge.
+The native changed-prefix failure is caused by unavailable earlier SWA cache
+ranges. Source skips ordinary mid-prompt checkpoint positions, so increasing
+slot count/spacing alone does not create the missing early snapshots here.
+
+The private scorecard now has65runs,0validation errors; new Flint25/36 is
+extended and unranked. Old partial summaries remain labelled.
+Next u4/resident1 starts04:37:07: controller63600, launcher22252, native65572;
+outputprefill-u4-resident1-a. Cold514.454s, repeat8.859s, changed-middle still
+collecting at04:46. No active plan/fixture/model/profile edited. Source-based
+cache eligibility did not imply faster cold prefill. Continue remaining
+u32/u64/resident3/cache1536/b12069, then repeat initial baseline, sequentially.
+No new model hash/build/grading/offline tests overlap these timed requests.
+
+## Agent Deferred
+
+Current register,9November. Older registers above remain historical evidence;
+their dated availability, queue and completion statements are not live state.
+
+| Item | Deferred on | Reason | Status |
+|---|---|---|---|
+| Flint Q3XL private72K/cap1024 | 2026-11-03 | Missing higher-quant instruction result; extended six-hour allowance | Done9Nov:25/36 in10380.106s, normal stop; no promotion |
+| Flint Q3XL TS/SQL and remaining coding | 2026-11-03 | Earlier outputs/deadlines incomplete; source review before isolated checks | Pending qualified profile and current audit outcome |
+| Qwen Q4 exact mapped64 coding /12 | 2026-10-20 | Needed for a compatible reference composite; higher RAM gate than current budget | Pending fresh admission; native-profile scores cannot fill it |
+| Near-finalist seeds74/75 and held-out task | 2026-11-03 | Required before promotion | Pending a complete qualifying candidate |
+| Strata harmless native-identity/floor checks | 2026-11-03 | Minimum floors and owned native lifecycle required | Done9Nov:52offline suite,9wrapper controls, harmless lifecycle all pass |
+| Flash Q2 pack, template and static32K qualification | 2026-11-03 | Full pins and explicit WDDM budget before native0.1.50 load | Prepared, launchable false |
+| Actual Strata KV growth and recall | 2026-10-26 | Static fit first; VMM query alone proves no allocation/recall | Pending qualified static profile |
+| Strata Qwen expert-pack trial | 2026-11-03 | Needs fresh admission, owned native identity and reviewed VRAM budget | Pending; old queue not armed |
+| Groot bounded retry / small Qwen9B / Dory | 2026-11-03 | Groot had two RAM stops; small files staged on C:, E: copy/runtime/hash requirements remain | Proposed; no quality scores |
+| Dense Qwen Q4/new placement, K2, Bolt | 2026-10-24 | Disk, artifact placement and resource gates | Unrun configurations explicitly retained |
+| TQ router/history/TS/SQL, lower effort and131K | 2026-10-19 | Prior restart; resumed policy still stops on new hardware evidence | Historical interruption unscored; no unchanged automatic retry |
+| Production endpoint restoration / editor regression | 2026-10-24 | Requires18GiB RAM/12GiB commit/6000MiB VRAM; no editor typing authorized | Off; settings preserved |
+| IQ3_S telemetry-stop wording | 2026-11-03 | Historical missing telemetry was mislabelled VRAM exhaustion | Done in project guidance and private leaderboard addenda; verified9Nov |
+| Controlled WDDM allocation/release probe | 2026-11-03 | Existing near1:1 observation is not universal proof; no overlapping inference/build | Pending separate diagnostic |
+| Public WDDM receipt / complete re-prefill derivation audit | 2026-11-03 | Historical source review incomplete; do not claim a fresh recomputation | Pending offline verification |
+| Clean-machine install, arbitrary128K sessions, editing tools | 2026-10-17 | Offline/API checks do not validate these flows | Unverified; separate scope/fixtures |
+| Chrome DevTools browser_url substitution | 2026-10-17 | Separate editor tooling issue | Deferred outside current campaign |
+
+## Agent Suggestions
+
+| Suggestion | Raised on | Priority | Status |
+|---|---|---|---|
+| Keep all model/article claims tied to exact artifacts, profiles and cohorts | 2026-11-09 | High | Applied in index, ledger and report; extend with new results |
+| Separate microbatch, resident cap, expert cache and runtime controls | 2026-11-09 | High | Seven profiles prepared, including a source-driven microbatch4/cache eligibility control; repeat initial baseline afterward; active audit unchanged |
+| Measure actual source delivery, changed-file handling and visible answer time | 2026-10-17 | High | Frozen benchmark retained; live current-project follow-up still needed |
+| Complete reference coding before a universal ranking or replacement | 2026-11-03 | High | Pending admission; no promotion |
+| Preserve per-request review before isolated execution; harden legacy auto-grading path | 2026-11-03 | High | Current collectors do not auto-grade; legacy runner follow-up remains |
+| Batch reviewed grading in one WSL boot, sequential checks with RAM/commit gates | 2026-11-03 | High | Required after inference |
+| Report missing telemetry distinctly from an observed resource-floor crossing | 2026-11-03 | Medium | Historical correction applied; broader guard schema follow-up remains |
+| Use Flint cap1024 as a measured candidate, not an assumed universal optimum | 2026-11-03 | Medium | Private25/36 completed9Nov; no promotion; TS/SQL still pending |
+| Compare expert-pack residency and Windows commit under matching conditions | 2026-11-03 | Medium | Proposed; source review does not equal measured fit |
+| Qualify fusion tokenizer/engine compatibility before three large downloads | 2026-11-09 | Medium | Article calibration claim disproved analytically; no ensemble run |
+| If Bonsai revisited, test actual medium effort or separately pinned Q2_0 | 2026-11-03 | Low | Not run; effort catalog corrected |
+| Fixed page-file minimum | 2026-11-03 | Low | Optional system change, not performed or required for current tests |
+| Preserve crash evidence without inferring a defective part from one record | 2026-10-19 | High | Stop on new hardware event; no clocks/BIOS/driver changes |
+
+
+9November recovery checkpoint: all fifteen Flint performance controls now finish normally.
+The resident3/6/3GiB comparison gives cold wall123.016/117.203/113.735s,
+cached-repeat5.297/3.500/5.391s and changed-input90.719/84.312/83.907s.
+Extra residency helps cached repeat, but cold/changed improvement is smaller
+than baseline drift; retain3GiB for matched quality follow-ups. No quality
+score follows from these short32-token controls. Native private31/36 remains.
+Flash Q2's11artifacts pass fresh full hashes. Direct guarded native loading
+reaches READY32768 and exits normally on stdin EOF in9.390s; no questions.
+Two serving attempts stop fail-closed before requests with WinError5 at
+OpenProcess in the working-set guard. All descendants are cleaned up, no
+new hardware event. A source lead is frontend adopt_user_defaults using file
+access bits in the process token default ACL; harmless reproduction pending.
+Guard now preserves traceback/error.json without changing floors or cleanup.
+52offline tests and6harmless lifecycle checks pass. Four Flash growth inputs
+8178/17356/33788/8178tokens match the real pinned frontend encoder offline;
+no growth inference. Production remains off; no model retired or promotion.
+
+
+
+2026-11-09T09:19:26.632174+05:30: FlashQ2 static32K qualified.
+Original token-default FA ACL reproduces OpenProcess error5 on harmless child;
+isolated4b9e05a2 checkout changes FA to GA for the same trustees. Ordinary/
+original/fixed tests pass/fail/pass,12Windows privacy cases pass/onePOSIXskip.
+Two actual greetings complete31.813/9.437s, first visible26.250/6.906s.
+Native RSS4GiB,dedicatedGPU5.243GiB; minima freeRAM5.989GiB,commit13.305GiB,
+freeVRAM1294MiB. Normal stop/no new hardware event. Both failed original
+attempts and direct9.390s load/EOF probe preserved; no coding score.
+64K native KV growth now active, controller exec session65863/nativePID67004,
+run local-data/2026-11-09-merge/flash-q2-tokenacl512-grow64. Native startup
+confirms16384of65536cells,0.23of0.80GiB,512eligible slots. First8178-token
+independent recall prompt still prefilling; later17356/33788/8178requests
+each have7200s. Same floors/one engine, no concurrent tests/download/hash/
+grading. Check actual driver-result/guard result before another load.
+Public patch/receipt, model record and comparison updated. Local-LLM runtime/
+candidate skill references updated; shared Claude/Codex adapters unchanged.
+Shared copilot-configs incident memo/index/master index added, not committed.
+Production remains off. All15Flint performance controls completed; native
+private31/36 retained; native TS/SQL and12coding are next after Flash cleanup.

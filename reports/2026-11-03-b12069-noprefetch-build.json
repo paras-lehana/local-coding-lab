@@ -1,0 +1,135 @@
+{
+  "date": "2026-11-03",
+  "id": "b12069-noprefetch-v1",
+  "purpose": "Speed-only side runtime for same-weights A/B and for models b11562 cannot load; not production",
+  "upstream": {
+    "repo": "https://github.com/ggml-org/llama.cpp",
+    "tag": "b12069",
+    "commit": "e6192de0a62b73f566f825ecb531f7e4fe699eae",
+    "commit_date": "2026-11-02T21:58:19-08:00",
+    "commit_subject": "opencl: add initial iq4_xs support (#31339)",
+    "fetch": "git clone --depth 1 --branch b12069 (lightweight tag; git ls-remote refs/tags/b12069 = e6192de0a...)"
+  },
+  "recipe_source": {
+    "followed": "experiments/llama-mmap-prefetch/README.md (b11838 port) and E:/llm/build/llama-b11838-noprefetch/build-host/CMakeCache.txt",
+    "finding": "b11838-noprefetch-v1 was not a CUDA build: Codex rebuilt only llama.dll host-side (GGML_CUDA=OFF, GGML_BACKEND_DL=ON) and dropped it into the stock CUDA 12.4 release, keeping stock ggml/CUDA/CPU backends. The same was done here, so 'same CUDA settings' means the stock b12069 cuda-12.4 release binaries plus the identical cudart 12.4 package. No nvcc is installed on this PC."
+  },
+  "patch": {
+    "source_file": "experiments/llama-mmap-prefetch/loader-b11838.patch",
+    "source_file_sha256": "5c8957074ff24d20f258e370003dd6d9a46629a26f7692f07cddf95d0f0f2cac",
+    "adaptation": "none; git apply succeeded unchanged, hunk 2 at offset +5 lines",
+    "applied_diff_sha256": "d09bf5389379b4b97fe259cdfa94d401dfe5bbbc96c2aff0d970c17f36e69d5e",
+    "applied_diff_basis": "sha256 of git diff output in the patched checkout (same basis as b11838's recorded patch_sha256 8d8b8a61...)",
+    "applied_diff_copy": "C:/llm-staging/build/loader-b12069.applied.diff",
+    "behaviour_review": "init_mappings() in b12069 is identical to patched b11838 after applying; src/llama-mmap.cpp is identical between b11838 and b12069. With LLAMA_LAB_NO_MMAP_PREFETCH=1 and mmap in use, the initial whole-file PrefetchVirtualMemory is skipped and an INFO line is logged; demand paging, weights and the separate per-layer-embedding row prefetch (llama_prefetch_rows, present in both b11838 and b12069) are unchanged. Unset or any other value gives stock behaviour. llama-quant still calls init_mappings(false).",
+    "dll_contains_log_string": true,
+    "stock_dll_contains_string": false
+  },
+  "build": {
+    "source_dir": "C:/llm-staging/build/llama-b12069-src",
+    "build_dir": "C:/llm-staging/build/llama-b12069-noprefetch",
+    "script": "C:/llm-staging/build/build-b12069-noprefetch.ps1",
+    "temp": "C:/llm-staging/tmp/b12069",
+    "compiler": "MSVC 14.50.35717 (cl 19.50.35725.0), VS 18 BuildTools, CMake 4.1.2-msvc8, Ninja 1.12.1, Release x64",
+    "cmake_flags": "-G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DGGML_BACKEND_DL=ON -DGGML_CUDA=OFF -DGGML_OPENMP=OFF -DGGML_NATIVE=OFF -DGGML_CPU_ALL_VARIANTS=OFF -DGGML_AVX2=ON -DGGML_FMA=ON -DGGML_F16C=ON -DLLAMA_BUILD_COMMON=OFF -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_TOOLS=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_SERVER=OFF -DLLAMA_BUILD_APP=OFF -DLLAMA_OPENSSL=OFF -DLLAMA_BUILD_NUMBER=12069 -DLLAMA_BUILD_COMMIT=e6192de0a62b73f566f825ecb531f7e4fe699eae",
+    "target": "llama (77/77 steps, no errors; ninja -n reports no work to do)",
+    "parallelism": "-j 2",
+    "priority": "BELOW_NORMAL (cl.exe observed at base priority 6)",
+    "started": "2026-11-03T21:08:21+05:30",
+    "finished": "2026-11-03T21:10:33+05:30",
+    "guard": "own build tree stopped if available RAM < 3.0 GiB or commit available < 2.0 GiB, sampled about every 3 s; never triggered",
+    "memory_min_during_build": {
+      "avail_ram_gib": 11.266,
+      "commit_avail_gib": 10.871,
+      "commit_limit_gib": 115.356,
+      "samples": 23
+    },
+    "earlier_attempts": "two aborted launches of the same script before anything compiled: a log-file lock from a tail -f monitor, then an unquoted CMAKE_MAKE_PROGRAM path (configure failed; its tree was removed)"
+  },
+  "stock_release": {
+    "asset": "llama-b12069-bin-win-cuda-12.4-x64.zip",
+    "bytes": 286851724,
+    "sha256": "870d91ec1e87deea2ca347d2ccd3d99a2ee3dd3c76c9f3de7c33bf31f5f00d63",
+    "sha256_source": "GitHub release asset digest, matched locally",
+    "local_copy": "C:/llm-staging/downloads/b12069/",
+    "stock_compiler": "Clang 20.1.8 (llama-server --version)",
+    "cudart_asset": "cudart-llama-bin-win-cuda-12.4-x64.zip",
+    "cudart_bytes": 391443627,
+    "cudart_sha256": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6",
+    "cudart_note": "b12069 release lists the same digest as b11562/b11838; extracted from the hash-verified E:/llm/downloads copy",
+    "cuda_toolkit": "CUDA 12.4 runtime (cudart64_12, cublas64_12, cublasLt64_12) as shipped; NVIDIA driver 621.01 at build time"
+  },
+  "install": {
+    "dir": "E:/llm/runtimes/b12069-noprefetch-v1",
+    "method": "staged on C:, copied to a .partial folder on E:, every file sha256-checked against staging, then renamed",
+    "files": 58,
+    "bytes": 1248304416,
+    "llama_dll_sha256": "de7b17fcfe0528e7d830b53c7c02a77f3fc1f30cd6fe7330834c9b5c655cfc05",
+    "llama_stock_dll_sha256": "8b7daf56fa8edf6b69a7dba0c2b3b844d800396c8a909ef77a2d1ea1eeb3f209",
+    "llama_server_exe_sha256": "d66f797eb0aa98c38151c246a47866ee751bb76973885f6d5b1b4ca1cd59e252",
+    "llama_server_impl_dll_sha256": "20d7bb571dfea195b0ad79630c6df8e75fd723b115e0e6f7e3b2ca90c9092627",
+    "llama_common_dll_sha256": "da34fb03a894b10788bfdcb736179631fdbdbaa620fa17ac79185f422e2a3009",
+    "ggml_dlls_sha256": {
+      "ggml-base.dll": "fd991e387246c3791d97b48770e175ae51ebc528ed11a190efb387dfddf3074b",
+      "ggml-cpu-alderlake.dll": "63207f96ba0f377eb201e12bda74540297978263bc30f6d0961d0e9d8ea0dd85",
+      "ggml-cpu-cannonlake.dll": "9ca714d273702cbac18bd7b879e1bb8b2ab3464b105476202046fc8b0ef6ae3e",
+      "ggml-cpu-cascadelake.dll": "08a1db90e74d2e9eda760e6522ad2ed8d5004a056adc60a79e7f46496eff04aa",
+      "ggml-cpu-cooperlake.dll": "8fa561e7c5822357a237cdccdd883ad331da438a558d936c4b793150f043b762",
+      "ggml-cpu-haswell.dll": "762927401189fecfe8287006cb05688660a7e6cbf4b72c437a4bd2a734987f92",
+      "ggml-cpu-icelake.dll": "07be9a71d6df9439a5f557b810b4c0298211fd79cba7c11d1e71acbb86885586",
+      "ggml-cpu-ivybridge.dll": "742fbd01e1644e61c13c49f89dbbd212f0a05096cc67d60381298cb7d13e2ca7",
+      "ggml-cpu-piledriver.dll": "9123a15524d79be16bc78d8fe95839baa070f581e96f305143ddb53c395b4deb",
+      "ggml-cpu-sandybridge.dll": "0b30659741a589d2dc733d9ef505999ab827ec317911a3b498c6fd578761c15a",
+      "ggml-cpu-sapphirerapids.dll": "d741f3c19b7f63c2caaadacc09f9ae92ec67df72fcb5665338de4c0faad77bb2",
+      "ggml-cpu-skylakex.dll": "08245f3180b1be8ea83dc13f370060a0ba23e842b3e8c33f93c2174abb190d36",
+      "ggml-cpu-sse42.dll": "55707b4f8f7ea1c4e30e1ca274d374a5e9166fab3b61866d727a7e052e1c4f06",
+      "ggml-cpu-x64.dll": "2fdf9e5a2d34d5831ac719049181c767ff75e2d688ed7f7726287585c13794b0",
+      "ggml-cpu-zen4.dll": "6da8e71a231c86e952ad22441f38bca908e6e12338efd30eff26c492ab81c571",
+      "ggml-cuda.dll": "ac3ae9500f24c548feb6a48fe70aa915ede81693d1fd32f6c7a60c4f53c208e6",
+      "ggml-rpc.dll": "525eae3842b00b10d6984da55813f2d7493b07e39708f8e221cea48437443686",
+      "ggml.dll": "78c53419acd5ec206cc01c2142104651cdbaf29d25e4363a26dbdc8b182c6374"
+    },
+    "cuda_dlls_sha256": {
+      "cudart64_12.dll": "d28e42265da7462162a54da6b7a99ea4fa2caf8139d862bb500db875d0b32dfc",
+      "cublas64_12.dll": "e40202fe4223c1cd2d2dce7beec59e1ed61c7801bd827309183be9b50e358f4c",
+      "cublasLt64_12.dll": "2a896460bef60ed57ef32b0875812f355a6984e671d638bb632f5e8c1d7a831f"
+    },
+    "manifest": "E:/llm/runtimes/b12069-noprefetch-v1/lab-runtime-variant.json (54 unchanged stock binary hashes)",
+    "manifest_sha256": "a7012709738e2c1cffd6a0eb629b2c7f7942a9b19902ae2e11659278c052a089",
+    "locally_built_but_not_installed": {
+      "ggml-base.dll": "6a36d3e47b54c392b5427fe8e23780d56a539ea216f323579d3d15cd31ea2c8e",
+      "ggml-cpu.dll": "df9fedaa5b712c294dbce04631ebf2d5cf3a119d594eafcd4481654a6b88d241",
+      "ggml.dll": "15bbf37aa816aaf1fbab6fb4b3bb27c4d1ae65861906fd6a974232494614df0d",
+      "note": "host-only by-products; the stock ggml DLLs are kept, as for b11838"
+    }
+  },
+  "verification": {
+    "version": "version: 0.8.0-dev (build 12069, commit e6192de0a); built with Clang 20.1.8 for Windows x86_64 (version string comes from the stock tools)",
+    "help_flags_present": {
+      "--spec-type": "none,draft-simple,draft-eagle3,draft-mtp,draft-dflash,draft-dspark,ngram-simple,ngram-map-k,ngram-map-k4v,ngram-mod,ngram-cache",
+      "--moe-cache-mib": true,
+      "--n-cpu-moe": true,
+      "--load-mode": "auto|none|mmap|mlock|mmap+mlock|dio",
+      "--reasoning-budget": true,
+      "--ctx-checkpoints": "default 32",
+      "--cpu-mask": true,
+      "--cpu-strict": true,
+      "--cache-ram": true,
+      "--chat-template-kwargs": true,
+      "--sleep-idle-seconds": true
+    },
+    "help_identical_stock_vs_patched": true,
+    "abi_static_check": "dumpbin: patched llama.dll imports 8 symbols from ggml.dll and 303 from ggml-base.dll, all exported by the stock b12069 DLLs; stock and patched llama.dll export the same 293 symbols; same CRT dependencies",
+    "lab_runtime_environment_check": "lab.runtime_environment accepts the installed dir with runtime_variant b12069-noprefetch-v1 (sets LLAMA_LAB_NO_MMAP_PREFETCH=1) and refuses it without a variant; --version commit matches a reviewed_alternates entry",
+    "lab_unit_tests": "51 tests OK",
+    "skill_tests": "test_scorecard PASS; test_campaign_queue 42 OK (2 skipped)",
+    "hardware_events_since_20_50": "0 WHEA, 0 bugcheck/41/6008; boot 2026-10-23 00:14:37"
+  },
+  "not_run": [
+    "No server started and no model loaded (task rule)",
+    "No stories260K stock/default/opt-in output-equivalence run (b11838 had six); run it before trusting results",
+    "No speed or quality measurement; full-model equivalence unproven",
+    "Mixed compiler (MSVC llama.dll with Clang-built stock DLLs) validated statically only"
+  ],
+  "production_runtime_unchanged": true
+}

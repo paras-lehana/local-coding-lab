@@ -1,0 +1,13 @@
+Owner requirement that this standalone model record satisfies (23 October 2026, verbatim from docs/tasks/2026-10-23-flint/owner-request.txt):
+
+awesome, there were some new changes and analysis done by Claude. Read them out, update your learnings, summarize also to me in the last.
+
+then get started with this: https://recursive.com/updates/introducing-recursive-flint
+
+It was just released, we test it on the same (latest) metrics after installing and make report (add it to current report and also make a seperate report about it, infact update claude project file, we do this for all as we might later need to publish blogs about each model tried and its comparison).
+
+Owner request of 3 November 2026, 18:40 IST (excerpt, verbatim):
+
+dont forget to keep documening everything, in various docs and very detailed in model specific doc
+
+Context: Groot-19B-A3B-261023 Q4_K_M was selected by the 3 November deep research (docs/tasks/2026-11-03-deep-research/, experiment 2) and tested by Claude on 3 November 2026 between 20:33 and 20:39 IST inside the owner-started campaign continuation. This record was written the same evening from the saved run evidence.

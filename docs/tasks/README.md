@@ -6,6 +6,18 @@ Detailed reusable experiment evidence remains in the repository's `reports/`.
 
 | Date | Task | Status | Report |
 |---|---|---|---|
+|2026-11-09|Qwen3.5-9B Q4/Q5 preparation|No inference; E: relocation and qualification pending|[Model record](2026-11-09-qwen35-9b/2026-11-09-qwen35-9b-v0.11.0.md)|
+|2026-11-09|Dory1.0-4B preparation|No inference; supported runtime and artifact verification pending|[Model record](2026-11-09-dory4b/2026-11-09-dory4b-v0.11.0.md)|
+|2026-11-09|Merged Claude work, all models and article-driven experiments|Partial: native Flint31/36,15 performance controls; Flash GPU restart recorded unscored|[Merged report](2026-11-09-merged-research/2026-11-09-merged-models-articles-and-experiments-v0.11.0.md)|
+|2026-11-03|All historical models and configuration combinations|Historical inventory; read9Novaddendum for current state|[Complete matrix](2026-11-03-master-summary/2026-11-03-all-models-and-combinations-v1.0.md)|
+|2026-11-09|gemma4-31b historical standalone record|Documentation reconciliation; no new inference|[Model record](2026-11-09-gemma4-31b/2026-11-09-gemma4-31b-v0.11.0.md)|
+|2026-11-09|glm47-flash historical standalone record|Documentation reconciliation; no new inference|[Model record](2026-11-09-glm47-flash/2026-11-09-glm47-flash-v0.11.0.md)|
+|2026-11-09|kimi-linear-48b historical standalone record|Documentation reconciliation; no new inference|[Model record](2026-11-09-kimi-linear-48b/2026-11-09-kimi-linear-48b-v0.11.0.md)|
+|2026-11-09|nemotron35-bolt historical standalone record|Documentation reconciliation; no new inference|[Model record](2026-11-09-nemotron35-bolt/2026-11-09-nemotron35-bolt-v0.11.0.md)|
+|2026-11-09|qwen3-coder30 historical standalone record|Documentation reconciliation; no new inference|[Model record](2026-11-09-qwen3-coder30/2026-11-09-qwen3-coder30-v0.11.0.md)|
+|2026-11-09|qwen3-coder-next80 historical standalone record|Documentation reconciliation; no new inference|[Model record](2026-11-09-qwen3-coder-next80/2026-11-09-qwen3-coder-next80-v0.11.0.md)|
+|2026-11-09|qwen3-next80-instruct historical standalone record|Documentation reconciliation; no new inference|[Model record](2026-11-09-qwen3-next80-instruct/2026-11-09-qwen3-next80-instruct-v0.11.0.md)|
+|2026-11-03|Groot-19B-A3B-261023 Q4_K_M apps-open trial|Capacity-limited apps-open; no quality score. Uncapped and 3.31 GiB-capped runs both RAM-guard stopped in the first router workflow (capped: 6.07/2.33 tok/s prefill/decode); reduced-residency profile prepared, no new inference|[Groot model record](2026-11-03-groot/2026-11-03-groot-19b-a3b-apps-open-v1.0.md)|
 |2026-10-26|Flash-Next article-driven quant/engine review|Active; newQ2 pins, separate engine staging, no new quality score|[Flash-Next model record](2026-10-26-flash-next/2026-10-26-flash-next-v0.10.0.md)|
 |2026-10-26|Dense Qwen3.8 article-driven learning|Research complete for supplied articles; new engine/model trials pending|[Dense27B model record](2026-10-26-qwen38-dense/2026-10-26-qwen38-dense-v0.10.0.md)|
 |2026-10-24|Higher Flint precision, tuning research and missing coverage|Active; frozen old failures retained, capacity checks and new trials underway|[Precision and coverage](2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md)|

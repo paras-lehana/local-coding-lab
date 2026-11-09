@@ -1,0 +1,284 @@
+{
+ "schema": "flash-next-q2-pack-receipt-v1",
+ "date": "2026-11-03",
+ "host": "paras-rig (Windows 11, RTX 3080 10 GB, 64 GB RAM)",
+ "scope": "Recovery brief C1 packing step only. No inference engine or server was started; port 8080/8081 were not listening; production untouched; no model file moved or deleted; nothing committed.",
+ "model": {
+  "repo": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+  "revision": "ed59f92082b1e93c0e96d60a8b11aab089b52f09",
+  "artifact_key": "flash_next_q2_candidate",
+  "shards": [
+   {
+    "path": "E:/llm/Strata-data/models/flash-next/Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00001-of-00002.gguf",
+    "bytes_on_disk": 37623740192,
+    "expected_bytes": 37623740192,
+    "sha256": "69820c02ec7d0b45ef2ebb19d6620299db749fe2aded7f39f93c6b88b199b720",
+    "verified_ist": "2026-11-03T20:14:39+05:30",
+    "log_line": 562,
+    "ranges_done_chunks": 561,
+    "chunks_expected": 561
+   },
+   {
+    "path": "E:/llm/Strata-data/models/flash-next/Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00002-of-00002.gguf",
+    "bytes_on_disk": 28800138432,
+    "expected_bytes": 28800138432,
+    "sha256": "316b46f3a2dbd68c900f43136ab9449f9dcc3725dfd8c794847c204bc161e113",
+    "verified_ist": "2026-11-03T21:07:07+05:30",
+    "log_line": 993,
+    "ranges_done_chunks": 430,
+    "chunks_expected": 430
+   }
+  ],
+  "verification_sources": {
+   "download_log": "E:/llm/Strata-data/models/flash-next/q2-download-20261103.log (\"SHA256 verified\" for each shard)",
+   "ranges_json": "each .ranges.json: sha256 and bytes equal the pin, allocating false, verified epoch set, chunk_bytes 67108864, done count = ceil(bytes/chunk)",
+   "receipt": "E:/llm/Strata-data/models/flash-next/verified-download.json (artifact_key flash_next_q2_candidate, started 18:57:07, verified 21:07:07 IST, method bounded HTTP ranges and full SHA256)",
+   "pin": "E:/llm/local-coding-lab/experiments/strata/artifacts.json flash_next_q2_candidate: revision, file names, bytes and sha256 all equal the receipt and ranges files",
+   "method_note": "range_download.py calls lab.verify(working, spec) on the whole file before renaming it to the final name; this step did not rehash the 66 GB itself."
+  }
+ },
+ "tool": {
+  "frontend_repo": "E:/llm/Strata-20261026",
+  "tag": "v0.2.6",
+  "commit": "4b9e05a2a806a3fe24f7b2560d98626c37dade35",
+  "working_tree": "clean before and after (only the git-ignored tools/__pycache__/ was created by the run)",
+  "iq_pack_py_sha256": "4043de605a501f4b203a8d7cefb7ba3cb1078d971623ede860d6a9210f8842ed",
+  "strata_tokenizer_py_sha256": "9b4d7a5a05c4522ec1aaccc1829a37b09c13f19cdd82c5bd81a5e69389b911e7",
+  "gguf_reader_py_sha256": "7b4453f14d8c0d444a6ca73b4b3eb5ad4d23d5e019867d38864fe22d3e21f2cb",
+  "python": "E:/llm/Strata-20261026/.venv (CPython 3.12.10, numpy 2.5.3, regex 2026.9.10; pip check clean)",
+  "gguf_py": "not present and not needed: no tensor required conversion, so the dequantizer was never imported"
+ },
+ "command": {
+  "argv": [
+   "E:/llm/Strata-20261026/.venv/Scripts/python.exe",
+   "-I",
+   "E:/llm/Strata-20261026/tools/iq_pack.py",
+   "--gguf",
+   "E:/llm/Strata-data/models/flash-next/Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00001-of-00002.gguf",
+   "--out",
+   "E:/llm/Strata-data/packs/flash-next-q2-20261027"
+  ],
+  "cwd": "E:/llm/Strata-20261026",
+  "env_removed": [
+   "PYTHONPATH",
+   "PYTHONHOME",
+   "PYTHONSTARTUP"
+  ],
+  "flags_not_used": [
+   "--experts-bin",
+   "--compat-bf16",
+   "--base",
+   "--skip-experts"
+  ],
+  "priority": "BelowNormal",
+  "wrapper": "scratchpad guarded_pack.ps1: 1 s target sampling (about 3 s actual), suspend if available RAM < 4 GiB or commit available < 2 GiB, resume at 4.5/2.5 GiB",
+  "tokenizer_export": "iq_pack.py ran tools/strata_tokenizer.py as a subprocess (sys.executable, no -I) because the new pack had no tokenizer/",
+  "difference_from_queue_plan": "queue plan flash-next-q2-pack.json uses -X utf8, STRATA_GGUF_PY, guard.py and the core-0 affinity helper; this run used -I without them (CPU-only, no engine); packer, inputs and flags are the same"
+ },
+ "pre_estimate": {
+  "method": "read-only script importing iq_pack.Model/expert_layout (no writes)",
+  "dense_bin_bytes": 1485606400,
+  "matched_actual": true,
+  "index_rows": 1079,
+  "served_natively": 303,
+  "needs_compat_bf16": 0,
+  "default_conversions": 0,
+  "native_expert_bytes_not_copied": 33973862400,
+  "n_expert": 512,
+  "disk_decision": "about 1.50 GB total versus 7.9 GiB free on E:, leaving more than 3 GB, so built at the planned E: path (not C:/llm-staging/packs)"
+ },
+ "run": {
+  "started": "2026-11-03T21:10:29.4802056+05:30",
+  "ended": "2026-11-03T21:10:38.8073339+05:30",
+  "wall_seconds": 9.327,
+  "exit_code": 0,
+  "pauses": 0,
+  "peak_ram": {
+   "interpreter_working_set_gib_sampled": 1.501,
+   "note": "the venv python.exe is a redirector (4.5 MB peak working set); the real interpreter is its child. 1.501 GiB is the highest of three samples about 3 s apart, mostly file-backed memmap pages; the tokenizer exporter (a grandchild) was not sampled separately; the true peak may be higher. 18 Oct IQ3 pack for comparison: 1.70 GiB owned RSS.",
+   "system_available_gib": {
+    "start": 13.363,
+    "min": 10.718
+   },
+   "system_commit_free_gib": {
+    "start": 11.708,
+    "min": 10.81
+   },
+   "commit_limit_gib": 115.356,
+   "attribution": "system-wide figures include the owner desktop and the concurrent C: build; not attributed to the packer alone"
+  },
+  "telemetry": [
+   {
+    "t": 2,
+    "avail_gib": 13.332,
+    "commit_free_gib": 11.694,
+    "commit_limit_gib": 115.356,
+    "ws_gib": 0.004,
+    "private_gib": 0.001,
+    "child_ws_gib": 0.454,
+    "suspended": false
+   },
+   {
+    "t": 5.3,
+    "avail_gib": 11.576,
+    "commit_free_gib": 10.87,
+    "commit_limit_gib": 115.356,
+    "ws_gib": 0.004,
+    "private_gib": 0.001,
+    "child_ws_gib": 1.501,
+    "suspended": false
+   },
+   {
+    "t": 8.3,
+    "avail_gib": 10.718,
+    "commit_free_gib": 10.81,
+    "commit_limit_gib": 115.356,
+    "ws_gib": 0.004,
+    "private_gib": 0.001,
+    "child_ws_gib": 0,
+    "suspended": false
+   }
+  ],
+  "stdout": [
+   "index.txt: 1079 tensors, 303 served natively, 0 in extra.bin, arena 1.38 GiB",
+   "model shards: Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00001-of-00002.gguf, Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00002-of-00002.gguf",
+   "tokenizer/: vocab 248320, merges 247587, pre qwen35, specials {eos 248046, padding 248044, bos 248044}"
+  ],
+  "stderr": ""
+ },
+ "outputs": {
+  "dir": "E:/llm/Strata-data/packs/flash-next-q2-20261027",
+  "files": [
+   {
+    "path": "conversions.json",
+    "bytes": 320,
+    "sha256": "f3845c0566e9b926c4caeea2e1f20f11f5293f143ad08f1b48c91adf3d7ed6fd"
+   },
+   {
+    "path": "dense.bin",
+    "bytes": 1485606400,
+    "sha256": "a43d7d0b69525335f4b000d5197a1d3aefcd3c0014fc3e12b3455e0a5d827ba2"
+   },
+   {
+    "path": "index.txt",
+    "bytes": 93561,
+    "sha256": "c758314d495a1261d06a806b1c415596dfabe62e0cbf44ce592dc84c53229ccd"
+   },
+   {
+    "path": "native_experts.txt",
+    "bytes": 3286,
+    "sha256": "015e53d3ae36324f172be4942bcf129539b343e2eb4fcd4f25ca5eff180bfa41"
+   },
+   {
+    "path": "tokenizer/chat_template.jinja",
+    "bytes": 9993,
+    "sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce"
+   },
+   {
+    "path": "tokenizer/merges.txt",
+    "bytes": 3600844,
+    "sha256": "080cf95432173729d160346b7882bd2a644b07f7a3813a3eb73f4e66787bfde9"
+   },
+   {
+    "path": "tokenizer/tokenizer.json",
+    "bytes": 554,
+    "sha256": "87be2ac47d8bc7393b7435df6ccd276740019a393941a2585d5edce59f450c54"
+   },
+   {
+    "path": "tokenizer/token_type.json",
+    "bytes": 744960,
+    "sha256": "5088c8c298fc06af8382ddb3b76c888703ac2634e82263b97eedcc2ad202738b"
+   },
+   {
+    "path": "tokenizer/vocab.json",
+    "bytes": 5737005,
+    "sha256": "4ba64f0332abcfb0b600b7df1537d1e836e68009d5fb7cdb77339738dc6365c4"
+   }
+  ],
+  "total_bytes": 1495796923,
+  "experts_bin_present": false,
+  "completion_marker": "native_experts.txt (v3, written last at 21:10:35.95; n_expert 512, total 33973862400 B of native experts referenced in the GGUF)",
+  "conversions": "conversions.json lists 0 tensors; compat_bf16 false; 0 inexact",
+  "shared_settings_sidecar_in_pack_dir": false
+ },
+ "packed_chat_template": {
+  "path": "E:/llm/Strata-data/packs/flash-next-q2-20261027/tokenizer/chat_template.jinja",
+  "bytes": 9993,
+  "sha256": "12827f24b742ea4e80cdc12dbcf9622227056b9f797252a3149263d4f9aaadce",
+  "identical_to": "E:/llm/Strata-data/packs/flash-next-iq3/tokenizer/chat_template.jinja (18 Oct)",
+  "mentions": {
+   "enable_thinking": 4,
+   "preserve_thinking": 2,
+   "reasoning_effort": 8,
+   "<think>": 3
+  },
+  "rendering_check": "NOT RUN: effort/history marker rendering still has to be verified before collection"
+ },
+ "comparison_with_flash_next_iq3_pack": {
+  "iq3_dense_bin_bytes": 1538035200,
+  "q2_dense_bin_bytes": 1485606400,
+  "difference_bytes": 52428800,
+  "explanation": "same 1079 index rows; the only kind change is blk.1.ple_key.weight: BF16 in the pack (50 MiB) for IQ3_XXS, served natively as Q2_0 here (NATIVE_PLE_KEY)",
+  "tokenizer_files": "all five identical by sha256",
+  "native_experts": "IQ3 total 42912972800 B versus Q2 33973862400 B referenced in shard 1"
+ },
+ "disk": {
+  "E_free_bytes_after": 6888914944,
+  "C_free_bytes_after": 58169311232
+ },
+ "plan_files_updated": {
+  "dir": "E:/llm/local-coding-lab/local-data/2026-10-26-articles",
+  "backup_dir": "E:/llm/local-coding-lab/local-data/2026-10-26-articles/backup-20261103-pre-pack",
+  "change": "status updated and addendum_2026_11_03 added (facts met, remaining blockers); server block and experiment_environment byte-equal to before (checked); paths unchanged because the pack was built where the plans expect it; launchable stays false in all four",
+  "files": {
+   "strata-q2-mmap32.planned.json": {
+    "sha_before": "ba01e5b91a6184378237b26335bbd7e8339d80d8b3cb6e6d25f5a48fa92e73d4",
+    "sha_after": "85b7eca5295faedf2f11a8b5128fd3aa85ad9c6445585cd4550f96a32abb11ca"
+   },
+   "strata-q2-mmap32-plemapped.planned.json": {
+    "sha_before": "5b45d1c27c02762c9b77d87de62dc6350da9a82b22594d5945c58f60d5aa5a76",
+    "sha_after": "ad6d72bf7c561e2398b48e28b5e2934669bd4408e1263cdd668ef7dab80f07f6"
+   },
+   "strata-q2-resident2-32k.planned.json": {
+    "sha_before": "4a48eb4039da2414043b3eca71c9320008282d2325eef87617a25868e225e346",
+    "sha_after": "410883a566bc5348614937494e8c8fef80c607c7f9fa4e12f190f7f091ae809d"
+   },
+   "strata-q2-mmap-grow128.planned.json": {
+    "sha_before": "501d217534a19c04a64419333cea0fbfd9eff9f63d27b6c52b832940e3df6284",
+    "sha_after": "ebe8d85fb4eb96e55f3c62a1280cd84dde1550b35cc6f1b90de1f75d8846cad4"
+   }
+  }
+ },
+ "prerequisites": {
+  "met": [
+   "complete shards with full SHA256 matching the pin",
+   "fresh native pack, native expert views, no --compat-bf16, 0 conversions",
+   "packed chat template hashed",
+   "native identity guard unit tests and harmless-process checks (3 Nov 19:18; guard.py sha b373e889 unchanged)",
+   "engine strata.exe sha 5745022e, v0.2.6 frontend environment intact, expert-profile.bin present"
+  ],
+  "unmet": [
+   "packed-template effort/history marker rendering check (offline-capable; not implemented in queue_driver.py)",
+   "admission from measured 0.1.50 allocation evidence (none exists; gates provisional)",
+   "reviewed fix for WDDM auto expert-cache sizing: 0.1.50 uses plain cudaMemGetInfo, so --vram-reserve-mib 3072 can oversubscribe the desktop GPU; changing it alters the frozen arguments",
+   "launch-time checks (no engine/Ollama/WHEA, mask and worker placement, no inherited STRATA_*, fresh config without sidecar, effective args)",
+   "for plemapped, resident2-32k and grow128: reviewed mmap32 qualification first"
+  ],
+  "queue_marker_note": "queue.json item flash-next-q2-pack is still pending, and flash-next-q2-mmap32 requires markers/flash-next-q2-pack.ok.json, which this manual build did not write. queue_driver.py cmd_pack finds native_experts.txt, runs verify_pack and finishes as already-present (ok = complete) without rebuilding, so the runner produces that marker the next time it reaches the item."
+ },
+ "admission_assessment": {
+  "apps_open_budget_3_nov": {
+   "available_ram_gib": "6-11 (13.0 at 21:10; 10.7 minimum during this step)",
+   "commit_free_gib": "8.5-11.7",
+   "vram_free_mib": "5800-6900"
+  },
+  "gates_in_codex_plans": "none numeric: each requires fresh physical/commit/VRAM admission from actual baseline allocation evidence; 4 GiB strata.exe working-set ceiling proposed; lab floors 2.5 GiB RAM / 1.0 GiB commit / 400 MiB VRAM",
+  "provisional_queue_gates": {
+   "ram_free_gib": 12,
+   "commit_avail_gib": 14,
+   "vram_free_mib": 7000
+  },
+  "wddm_reasoning": "GPU-resident parts (1.38 GiB dense arena, natively served attention/embedding tensors, 32K int8 KV, and an auto expert cache sized to free VRAM minus 3072 MiB) charge commit about 1:1, so several GiB of GPU use is also several GiB of commit; the 18 Oct 0.1.45 nodraft load charged 9.1 GiB commit in its first 7 s. The 31.6 GiB of mapped experts are file-backed (no commit) but need physical RAM when touched; the 4 GiB cap only turns overrun into soft faults.",
+  "verdict": "strata-q2-mmap32 then the 600 s greeting cannot pass admission with apps open: VRAM 5.8-6.9 GiB is below 7000 MiB, commit 8.5-11.7 GiB is below 14 GiB, and available RAM 6-11 GiB is below 12 GiB. Even on physical need alone, about 9-10 GiB of commit plus the 1 GiB floor leaves no margin at the low end of the range. It needs the apps-closed window (at least Edge/Gradle/emulator closed, with GPU-heavy apps closed for VRAM), and it is blocked anyway until the template check and the WDDM reserve decision are done."
+ }
+}

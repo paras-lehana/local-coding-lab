@@ -1,5 +1,37 @@
 # Current model comparison
 
+**9 November restart update:** Flash-Next Q2 / Strata 0.1.50's 64K
+GPU-KV growth trial ended in a confirmed 0x116 NVIDIA timeout-recovery crash
+at 10:10:57 IST. Its 8K/17K fact answers and allocation growth are observations;
+the interrupted 33K case and unrun shrink/private audit have no score. The exact
+configuration is quarantined, no engine is running, and production remains off.
+See the [incident and configuration](../reports/2026-11-09-flash-q2-gpu-restart.md).
+This records workload association, not a proven parameter-level cause.
+
+**9 November08:25IST:** tuned native Flint Q3XL72K finishes **31/36** in
+6,386.703s, with6/6isolated merge groups, versus the earlier capped25/36 in
+10,380.106s. Both are extended, different multi-setting profiles; no causal
+reasoning-only claim. Required-reading/adapter/installer omissions remain.
+All15sources read, normal stop/no new hardware event.
+[Evidence](../reports/2026-11-09-flint-native-private72k.json).
+This private result alone does not promote Flint or fill missing public/coding
+components. Historical Qwen's31/36 remains in its own1200second cohort.
+
+**9 November status correction:** [all model records](models.md) and the
+[merged review](tasks/2026-11-09-merged-research/2026-11-09-merged-models-articles-and-experiments-v0.11.0.md)
+are the current navigation. Flash Q2 shards were fully verified and packed on
+3 November; the older “not yet downloaded” row below is historical. The new
+engine completed static greetings; the later dynamic64K trial ended in0x116, unscored. b12069 now passes six tiny-model controls, not a
+full-model comparison. Flint72K/cap1024 now completes the extended private
+audit in10,380.106s with25/36 (18semantic/3citation/4behavior), all15sources
+read and all8continuations fully reused. Null handling and mutable aliasing
+fail isolated checks. [Receipt](../reports/2026-11-09-flint-q3xl-private72k.json).
+No earlier router score transfers. Production remains capacity-gated and off.
+Groot's two stops establish those two profiles' failure under their measured
+headroom, not that every future apps-open profile requires closing apps.
+The native Flint RAM stop does not by itself attribute growth to desktop apps.
+
+
 Updated 3 November 2026. Components and completion gates matter more than a
 single leaderboard number. Claude's newer campaign was private; this table
 brings its reviewed summary into the public lab. Results are agent-assessed,
@@ -113,6 +145,7 @@ scores only, not frozen-cohort or full-public results; Flint stays unpromoted.
 | Recursive Flint UD-Q3_K_XL, CPU49/cache512/resident4/32K |Not run |Not run |Not run |Load21s; plain greetings48.375/31.141s, both complete. Peak private3.440GiB; no hardware/resource stop.64K follow-up prepared;32K greetings are not file-quality or long-context validation |
 | Recursive Flint UD-Q3_K_XL, measured32K file-workflow B |Not run |Router/TS output limits; history8/8 extended-only |Not run |History3380.750s,120records; router4095.422s and TS/SQL5039.500s exhaust16384 output tokens with zero visible answer. Required sources delivered;8extra unavailable TS/SQL reads. No full public score; greetings50.328/38.000s. Clean stop/no hardware event. Settings differ from IQ3XXS |
 | Recursive Flint UD-Q3_K_XL, resident1/40K/output32K run C (extended cohort) | Not run | Router 38/40 with 1024 cap, 37/40 with 8192 cap (extended-only); native 32K unscored; no TS/SQL/history in C | Not run | 1024 cap 2268.531 s, 8192 cap 5438.078 s; both pass 6/6 frozen behavior groups, one wrong self-test each (6/7). Native RAM-guard stop at 6136.2 s, 11,221 reasoning tokens, no visible text, no hardware event. Not the 1200 s cohort; no full public total |
+| Groot-19B-A3B-261023 Q4_K_M (bartowski), apps open, 3 November | Not run | Router interrupted twice (RAM guard); TS/SQL and history not run | Not run | Capacity-limited apps-open; no quality score. Uncapped CPU36 run: smoke READY., RAM guard (0.5 GiB floor) 5.1 s into router prefill at 0.42 GiB available. 3.31 GiB working-set cap plus 512 MiB expert cache (diagnostic): prefill 6.07 tok/s, decode 2.33 tok/s, two correct first reads, then the 2.0 GiB RAM guard at 227.6 s. About 8 GiB of CPU experts do not fit the about 6 GiB apps-open budget; needs an apps-closed window. [Model record](tasks/2026-11-03-groot/2026-11-03-groot-19b-a3b-apps-open-v1.0.md) |
 
 ## What changed in Claude's work
 
@@ -286,6 +319,7 @@ runtime and evidence remain. Qwen Q4 stays selected for the owner's workflow.
 - [Higher precision and offload research](../research/reviews/2026-10-24-precision-and-offload.md)
 - [Flint standalone record](tasks/2026-10-23-flint/2026-10-23-recursive-flint-v0.8.0.md)
   and its [run C grades](../reports/2026-11-03-flint-runC-grades.json) (3 November)
+- [Groot-19B-A3B Q4_K_M apps-open record](tasks/2026-11-03-groot/2026-11-03-groot-19b-a3b-apps-open-v1.0.md) (3 November; capacity-limited, no quality score)
 - [LFM2.5 24B-A2B QAD Q4_0 record](tasks/2026-10-20-lfm25/2026-10-20-lfm25-24b-a2b-qad-q4-v0.10.0.md) (Claude campaign, audited 3 November)
 - [Ternary Bonsai 2 27B record](tasks/2026-10-20-bonsai2/2026-10-20-ternary-bonsai2-27b-pq2-ptq1-v0.10.0.md) (Claude campaign, audited 3 November)
 - [All-model inventory through 17 October](tasks/2026-10-17-complete-model-inventory/2026-10-17-all-models-gemini-and-availability-v0.4.1.md)

@@ -1,10 +1,131 @@
 # RAM, VRAM, quantization and context
 
+**9 November restart update:** Flash-Next Q2 / Strata 0.1.50's 64K
+GPU-KV growth trial ended in a confirmed 0x116 NVIDIA timeout-recovery crash
+at 10:10:57 IST. Its 8K/17K fact answers and allocation growth are observations;
+the interrupted 33K case and unrun shrink/private audit have no score. The exact
+configuration is quarantined, no engine is running, and production remains off.
+See the [incident and configuration](../reports/2026-11-09-flash-q2-gpu-restart.md).
+This records workload association, not a proven parameter-level cause.
+
+9November FlashQ2 capacity check: no orphan inference engine was present
+before the static launch; applications stayed open. The native engine peaks
+at its4GiB resident cap and about5.24GiB dedicated GPU allocation. These are
+not exclusive additions to total RAM: Windows shared GPU memory, mapped
+file pages, commit and process working sets overlap in different ways.
+Device-free VRAM fell to1294MiB while the engine printed3947MiB; the external
+device measurement governs the guard. After normal cleanup the snapshot
+shows15.74GiB available RAM, but changing desktop activity prevents assigning
+the full before/after delta exclusively to the model.
+
+The interrupted follow-up native KV-growth test used 64K maximum, 16K
+initial allocation and 8K steps. Its native log records 16,384 cells / about
+0.23 GiB initially, then 24,576 / 0.33 GiB for the 17K input and 40,960 /
+0.52 GiB for the 33K input. Those increases give up 74 and then 146 expert
+cache slots, leaving 292 of the original 512 slots. The completed 8K and
+17K visible answers contain all five requested facts; the 33K answer and shrink
+event are unavailable after the system crash. No normal-cleanup assessment exists.
+
+This is **GPU** virtual-memory growth, not the earlier host-KV streaming
+profile and not proof that llama.cpp dynamically grows its reserved CPU KV.
+All four inputs independently include their source facts; they do not test
+remembering an omitted earlier chat. The native source also permits fresh
+VRAM allocations after the expert cache reaches its floor. Therefore a
+configured context maximum is not a guarantee of constant total GPU use.
+
+## 9 November: cache capacity, live context and correctness
+
+The completed Flint Q3XL72K private audit reached42,290input tokens and
+4,368generated tokens in its last turn. All8continuations reused the full
+available previous prefix. Yet the final answer scored25/36 and failed two
+code behavior groups. Actual retained computation is not proof of correct
+instruction application. [Reviewed receipt](../reports/2026-11-09-flint-q3xl-private72k.json).
+
+Its primary GPU KV allocation was1071MiB global attention plus27.890625MiB
+sliding-window KV, allocated for the configured capacity. The1GiB process
+resident cap and18.495GB weight file measure different things. The separate
+expert-cache budget256MiB produced243.08MiB actual cache; the new1536MiB
+performance control allocates1531.97MiB. Neither is chat KV.
+
+`--cache-ram 0` disables the additional server prompt-cache store; it does
+not disable an active slot's KV prefix reuse. The fixed-prefix control reuses
+1894tokens with that flag, while a middle edit forces a full re-prefill when
+sliding-window checkpoints cannot rewind to the changed region. Keep active
+context, checkpoint rollback and the additional prompt cache separate.
+[Performance evidence](../reports/2026-11-09-flint-prefill-controls.json).
+
+Increasing RAM residency or GPU cache is being measured separately from
+context capacity and answer quality. No universal bytes-per-token formula,
+"use all VRAM" rule, or unlimited-memory promise follows from these figures.
+
+The new short2K/windowed control confirms29.75MiB global plus27.89MiB
+sliding-window KV. Its otherwise matched b64/u64/cache1536/resident3 cold
+request takes191.922s, versus191.937s in the72K-capacity control. In this
+small single-pair observation, reserving a larger context costs more KV
+storage without a measurable cold-request timing difference. It does not
+mean actually processing72Kinput is cheap, or establish long-context recall.
+The matched2K full-storage control completes with29.75+74.38MiB KV.
+After a middle edit it reuses962tokens and processes933new ones, versus
+zero reused/1895new in the windowed control; wall time falls145.562→95.562s.
+Both runs stop normally. All three short output texts differ, and cold/repeat
+generation slows, so this is a measured reuse/memory tradeoff rather than
+an output-equivalent optimization or recall score. Full storage retains
+computed KV for rollback; it does not extend Flint's trained attention window.
+
+Scaling that same measured geometry to72K gives a useful **capacity estimate**:
+full storage for the35sliding-window layers would be2677.5MiB, versus27.890625MiB
+in the current windowed allocation. Together with1071MiB global KV, this is
+3748.5MiB total, an increase of2649.609375MiB (about2.59GiB). The active native
+audit has roughly2125MiB device memory free, with a400MiB stop reserve, so this
+cannot be added to its unchanged GPU profile. This is arithmetic from the logged
+head geometry, not a72K full-storage load test. Moving KV to RAM or reducing the
+expert cache would change placement/performance and needs a separate qualified
+trial. Append-only tool continuations already reuse their full prefix in the
+current audit through turn05; the demonstrated short-fixture benefit concerns
+rollback after an earlier edit. The later observation below adds a real
+partial-reuse case without qualifying a 72K full-storage configuration.
+
+At 07:55 IST the native audit reaches its first partial-reuse continuation.
+Turn05 completes 6,908 generated tokens in 1,674.579 seconds, then requests two
+source rereads. For the next 46,388-token input, the server restores a checkpoint
+and reuses 38,371 tokens, leaving 8,017 to process. The preceding available
+sequence was 45,283 tokens. This is partial replay, not a lost whole history.
+The logged checkpoint-test value 42,991 is a sliding-window threshold, **not**
+the common-prefix length. The precise prompt/token divergence is not yet
+established, and the whole 6,912-token difference cannot be labelled avoidable
+overhead. No quality score or completed turn06 latency exists at this
+checkpoint. [Interim receipt](../reports/2026-11-09-flint-native-rollback-observation.json).
+Inspection of saved JSON confirms that all 17 prior messages, the captured
+assistant fields and other request parameters were unchanged. Only the new
+assistant turn and two tool results were appended. This rules out a collector
+rewrite of those earlier messages, but parsed API fields are not a record of
+every raw generated token. Exact template/token round-trip identity remains
+unproven; do not label this an observed loss of earlier files or reasoning.
+
+A separate passive observation at07:23:20–35IST during native-audit prefill
+measures E: reads of142.2–159.9MiB/s, average read latency0.114–0.134ms and
+instantaneous disk queue length0–1. The process reports288,288faults/s but
+zero ordinary IOReadBytes/s in its separate sample. These are not conflicting
+measurements: the counters cover different activity and scopes. A mapped page
+can fault without a new disk read; a hard fault can read the mapped backing
+file. [Microsoft's working-set description](https://learn.microsoft.com/en-us/windows/win32/memory/working-set)
+explains the distinction. Neither process faults times4096 nor the zero ordinary
+I/O counter is a valid measurement of model disk bandwidth. Whole-drive reads
+also include other processes. This short sample does not establish SSD
+saturation. [Observation receipt](../reports/2026-11-09-flint-paging-observation.json).
+The subsequent 3 / 6 / 3 GiB residency control completed with that same short
+workload. Cached replies took 5.297 / 3.500 / 5.391 seconds; cold requests took
+123.016 / 117.203 / 113.735 seconds. The repeat benefit is measurable in this
+sequence, but the cold benefit is smaller than baseline drift. The quality
+follow-up retains 3 GiB; more residency has no demonstrated accuracy benefit.
+
 ## 3 November: GPU placement also spends commit
 
-Saved telemetry shows that on this WDDM host each CUDA buffer is charged to
-Windows commit at about its own size, on top of using VRAM. mmap'd weights are
-not charged. The two commit-floor stops examined were triggered by desktop
+Saved telemetry shows several CUDA-buffer allocation phases on this WDDM host
+raising Windows commit by roughly their device-buffer size. This is measured
+behavior, not a universal identity for every allocation. Ordinary file-backed
+mapped weights differ from private commit; runtime and staging still cost
+commit. The two commit-floor stops examined were triggered by desktop
 growth after loading. The auto-managed page file, now 46.4 GiB, grows late and
 in small steps. Admission gates must count GPU buffers as commit; see
 [VRAM allocations also consume Windows commit](#vram-allocations-also-consume-windows-commit).
@@ -406,12 +527,12 @@ for this section. Receipts and scripts are in the ignored
 `local-data/2026-11-03-wddm-commit/` folder.
 
 On this Windows 11 host the RTX 3080 runs under the WDDM driver model (NVIDIA
-drivers 617.42 and 621.01). A CUDA device allocation raises the allocating
-process's commit charge, and therefore system commit, by about its own size,
-while the process working set rises far less. Dedicated VRAM is not a budget
-separate from commit: a byte placed on the GPU costs a byte of VRAM and about a
-byte of commit. The server's own commit charge therefore includes its VRAM
-buffers and is not a measure of host RAM. Microsoft documents the general
+drivers 617.42 and 621.01). The examined CUDA allocation phases raise process
+and system commit by roughly their device-buffer size, while working set rises
+far less. Budget both VRAM and commit, then measure the actual allocation
+phases. Do not assume every future byte placed on the GPU has a fixed charge.
+The server's private commit is consequently not a measure of resident host
+RAM. Microsoft documents the general
 mechanism, but no Microsoft or NVIDIA page found says when, to which process or
 at what ratio a CUDA allocation is charged. The 1:1 charge is an **empirical
 observation** on this host, consistent with independent third-party reports.
@@ -420,7 +541,12 @@ Counters used below:
 
 - System commit used is `commit_limit_gib − commit_available_gib`, from the
   launcher's `GlobalMemoryStatusEx` call.
-- Device VRAM used is nvidia-smi total minus free, across all processes.
+- The historical device counter is nvidia-smi total minus free, across all
+  processes. More precisely this is unavailable device memory: it includes
+  driver-reserved memory and is not exactly nvidia-smi's `memory.used` field.
+  A9Nov live query gives total10240/reserved187/used6663/free3391MiB (rounded).
+  Retain the original calculations; name the counter correctly. Free-memory
+  admission and stop floors continue to use the actual `memory.free` value.
 - Server commit is `process_private_gib`, the `PrivateUsage` that Microsoft
   defines as the process commit charge.
 

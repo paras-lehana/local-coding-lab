@@ -14,6 +14,7 @@ from pathlib import Path
 import subprocess
 import sys
 import time
+import traceback
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
@@ -55,8 +56,6 @@ def track_native_identity(
 
 def run(config_path: Path, output: Path) -> int:
     """Own only the new process tree and terminate it on a guard or stop file."""
-    import psutil
-
     config = json.loads(config_path.read_text(encoding="utf-8"))
     output.mkdir(parents=True, exist_ok=False)
     save(output / "config.json", config)
@@ -67,6 +66,11 @@ def run(config_path: Path, output: Path) -> int:
     native_executable = config.get("stable_native_executable")
     native_identity = None
     try:
+        # This launcher does not call lab.run_server, so enforce the same
+        # minimum floors here before process discovery or any child launch.
+        lab.check_stop_floors(policy)
+        import psutil
+
         if native_executable and not Path(native_executable).is_absolute():
             raise ValueError("Use an absolute stable_native_executable")
         lab.check_single_server()
@@ -177,6 +181,19 @@ def run(config_path: Path, output: Path) -> int:
     except Exception as error:
         reason = f"guard/error: {type(error).__name__}: {error}"
         code = 1
+        # Keep the failing API/stage: identical Windows error codes can mean
+        # a vanished native child, a denied handle, or a working-set failure.
+        # Diagnostic writes must not prevent the owned job's cleanup.
+        try:
+            save(output / "error.json", {
+                "exception_type": type(error).__name__,
+                "message": str(error),
+                "traceback": traceback.format_exc(),
+                "native_identity": native_identity,
+                "root_returncode": child.poll() if child is not None else None,
+            })
+        except OSError:
+            pass
     finally:
         # Closing our only job handle ends exactly this tree, including a
         # server's engine and any Windows venv launcher child.

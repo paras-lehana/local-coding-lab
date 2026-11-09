@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-09",
+  "scope": "Six exact reproducible installer archives only; installed runtimes, models and evidence retained",
+  "entries": [
+    {
+      "filename": "llama-b11562-bin-win-cuda-12.4-x64.zip",
+      "source": "https://github.com/ggml-org/llama.cpp/releases/download/b11562/llama-b11562-bin-win-cuda-12.4-x64.zip",
+      "bytes": 265206846,
+      "sha256": "e06a4659435981acc93d4ef37ae6046b72754af968aa2cd6f476a9fa5c4f765c",
+      "verified": true,
+      "removed": true
+    },
+    {
+      "filename": "cudart-llama-bin-win-cuda-12.4-x64.zip",
+      "source": "https://github.com/ggml-org/llama.cpp/releases/download/b11562/cudart-llama-bin-win-cuda-12.4-x64.zip",
+      "bytes": 391443627,
+      "sha256": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6",
+      "verified": true,
+      "removed": true
+    },
+    {
+      "filename": "cudart-llama-bin-win-cuda-12.4-x64.zip",
+      "source": "https://github.com/ggml-org/llama.cpp/releases/download/b11562/cudart-llama-bin-win-cuda-12.4-x64.zip",
+      "bytes": 391443627,
+      "sha256": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6",
+      "verified": true,
+      "removed": true
+    },
+    {
+      "filename": "llama-b11838-bin-win-cuda-12.4-x64.zip",
+      "source": "https://github.com/ggml-org/llama.cpp/releases/download/b11838/llama-b11838-bin-win-cuda-12.4-x64.zip",
+      "bytes": 272332183,
+      "sha256": "84589aea6b7b55e08cb9e2a6aab43b41cbb3a067e8274019bef93788d76027d6",
+      "verified": true,
+      "removed": true
+    },
+    {
+      "filename": "llama-b11669-bin-win-cuda-12.4-x64.zip",
+      "source": "https://github.com/ggml-org/llama.cpp/releases/download/b11669/llama-b11669-bin-win-cuda-12.4-x64.zip",
+      "bytes": 266582698,
+      "sha256": "c2da1f73ed176ae093ac5aceb978a7b167a16113f6d74c6789eeaee2135cb8dc",
+      "verified": true,
+      "removed": true
+    },
+    {
+      "filename": "strata-engine-0.1.50-windows-x86_64-cuda-cuda13.tar.gz",
+      "source": "experiments/strata/artifacts.json: engine_0_1_50",
+      "bytes": 581368579,
+      "sha256": "a9643e2f5dd5c62e734d2980484c320d41da0160fc4932bf638b7f34e38e74f5",
+      "verified": true,
+      "removed": true
+    }
+  ],
+  "recovered_bytes": 2168377560,
+  "e_free_after_bytes": 2665644032,
+  "reporting_error": "Final console total failed after durable receipts and deletions; independent followup verified all paths absent and all removed=true. Print expression fixed, no deletion repeated."
+}

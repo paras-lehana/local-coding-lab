@@ -1,0 +1,538 @@
+{
+  "inference_date": "2026-11-09",
+  "reviewed_at": "2026-11-08T22:53:24.300818+00:00",
+  "reviewer": "Codex; not independent human review",
+  "model": {
+    "repo": "unsloth/flint-GGUF",
+    "revision": "20468edfc38ab43d6914cc88b08cbecb05d0fc62",
+    "filename": "flint-UD-Q3_K_XL.gguf",
+    "bytes": 18494977472,
+    "sha256": "91b8d85ab6ff7fb095d9a972f9afa6f3fa2b9acb642867a079f3e013ea3c350c",
+    "url": "https://huggingface.co/unsloth/flint-GGUF/resolve/20468edfc38ab43d6914cc88b08cbecb05d0fc62/flint-UD-Q3_K_XL.gguf",
+    "name": "Recursive Flint 40B-A2.5B UD-Q3_K_XL",
+    "upstream": "https://huggingface.co/RecursiveSI/flint",
+    "status": "9-Nov: Q3XL retained; runC router caps1024/8192 reviewed38/40 and37/40; separate history8/8. New72K private/cap1024 audit active after qualifying greetings. TS/coding coverage incomplete; no promotion.",
+    "thinking": "Native reasoning; no validated low/high effort switch. Preserve reasoning history."
+  },
+  "profile_name": "flint-q3xl-private72k-budget1024",
+  "launch_profile": {
+    "model": "flint-q3xl",
+    "alias": "flint-lab",
+    "locally_tested": false,
+    "validation_status": "unrun-private72k-budget1024-extended",
+    "evidence": "9 November diagnostic: same 72K no-context-shift admission and allocations as the prepared cache256/resident1 private profile. Only server reasoning budget changes from -1 to 1024 per turn. Run C supported testing this cap: 38/40 versus 37/40 at 8192, single seed and different context. Neither score transfers to this private audit. Plain hi qualifies first; full private question/source bytes unchanged; six-hour whole-case allowance. No trained effort-level claim.",
+    "load_min_ram_free_gib": 7.5,
+    "load_min_vram_free_mib": 5500,
+    "load_min_commit_available_gib": 8.5,
+    "stop_min_ram_free_gib": 2.5,
+    "stop_min_vram_free_mib": 400,
+    "stop_min_commit_available_gib": 1,
+    "stop_gpu_c": 84,
+    "working_set_limit_gib": 1,
+    "working_set_reserve_gib": 6.5,
+    "template_kwargs": {
+      "preserve_reasoning": true
+    },
+    "runtime_variant": {
+      "id": "b11838-noprefetch-v1",
+      "llama_sha256": "10331e86ab5bd3f8c08c486f42d900f1dd09dbab218ce54a8684b7ec7b65c35f"
+    },
+    "args": [
+      "--gpu-layers",
+      "all",
+      "--n-cpu-moe",
+      "49",
+      "--ctx-size",
+      "73728",
+      "--threads",
+      "4",
+      "--threads-batch",
+      "8",
+      "--cpu-mask",
+      "0x5554",
+      "--cpu-strict",
+      "1",
+      "--cpu-mask-batch",
+      "0xFFFC",
+      "--batch-size",
+      "64",
+      "--ubatch-size",
+      "16",
+      "--flash-attn",
+      "on",
+      "--cache-type-k",
+      "q8_0",
+      "--cache-type-v",
+      "q8_0",
+      "--jinja",
+      "--reasoning",
+      "on",
+      "--reasoning-format",
+      "deepseek",
+      "--reasoning-budget",
+      "1024",
+      "--reasoning-preserve",
+      "--predict",
+      "24576",
+      "--temp",
+      "1.0",
+      "--top-p",
+      "0.95",
+      "--top-k",
+      "20",
+      "--min-p",
+      "0",
+      "--repeat-penalty",
+      "1",
+      "--moe-cache-mib",
+      "256",
+      "--cache-ram",
+      "0",
+      "--fit",
+      "off",
+      "--perf",
+      "--load-mode",
+      "mmap",
+      "--no-repack",
+      "--ctx-checkpoints",
+      "4",
+      "--timeout",
+      "21600",
+      "--metrics",
+      "--verbosity",
+      "4",
+      "--no-context-shift"
+    ]
+  },
+  "cohort": "extended-diagnostic",
+  "whole_prompt_deadline_seconds": 21600,
+  "score": {
+    "semantic": 18,
+    "citation": 3,
+    "code": 4,
+    "maximum": 36,
+    "completed": true,
+    "wall_seconds": 10380.106223800005,
+    "total": 25
+  },
+  "behavior_cases": {
+    "given_merge": {
+      "passed": true
+    },
+    "deep_nesting": {
+      "passed": true
+    },
+    "false_null_empty": {
+      "passed": false
+    },
+    "type_conflicts": {
+      "passed": true
+    },
+    "input_immutability": {
+      "passed": true
+    },
+    "no_mutable_aliases": {
+      "passed": false
+    }
+  },
+  "model_written_tests_provided": false,
+  "preflight": {
+    "time": 1794167504.5931864,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 8.843143463134766,
+    "commit_limit_gib": 96.16535186767578,
+    "commit_available_gib": 21.235519409179688,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6474.0,
+    "gpu_c": 39.56,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "postflight": {
+    "time": 1794178102.2901495,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 14.4622802734375,
+    "commit_limit_gib": 96.16535186767578,
+    "commit_available_gib": 27.968425750732422,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6709.0,
+    "gpu_c": 48.56,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "load_seconds": 20.485959400000866,
+  "greetings": {
+    "hi-cold": {
+      "wall_seconds": 95.65171030000056,
+      "finish_reason": "stop",
+      "first_event_seconds": 1.4542029000003822,
+      "first_content_seconds": 78.60268020000149,
+      "error": null
+    },
+    "hi-warm": {
+      "wall_seconds": 85.13843549999729,
+      "finish_reason": "stop",
+      "first_event_seconds": 1.562997399996675,
+      "first_content_seconds": 68.03379669999777,
+      "error": null
+    }
+  },
+  "memory": {
+    "minimum_ram_free_gib": 6.7112579345703125,
+    "minimum_commit_available_gib": 10.838787078857422,
+    "minimum_vram_free_mib": 2896.0,
+    "maximum_gpu_c": 49.38,
+    "maximum_process_working_set_gib": 1.0000419616699219,
+    "maximum_process_private_gib": 3.9909629821777344,
+    "global_gpu_kv_mib": 1071,
+    "sliding_window_gpu_kv_mib": 27.890625
+  },
+  "turns": [
+    {
+      "index": 0,
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 1946,
+        "prompt_ms": 316856.443,
+        "prompt_per_token_ms": 162.82448252826313,
+        "prompt_per_second": 6.141582546263703,
+        "predicted_n": 1137,
+        "predicted_ms": 577952.81,
+        "predicted_per_token_ms": 508.7612764084507,
+        "predicted_per_second": 1.9655583991364276
+      },
+      "usage": {
+        "completion_tokens": 1137,
+        "prompt_tokens": 1946,
+        "total_tokens": 3083,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "wall_seconds": 894.8890207999975,
+      "finish_reason": "tool_calls",
+      "visible_characters": 0,
+      "reasoning_characters": 2987
+    },
+    {
+      "index": 1,
+      "timings": {
+        "cache_n": 3082,
+        "prompt_n": 10653,
+        "prompt_ms": 1730624.321,
+        "prompt_per_token_ms": 162.45417450483433,
+        "prompt_per_second": 6.155582046740461,
+        "predicted_n": 380,
+        "predicted_ms": 185260.193,
+        "predicted_per_token_ms": 488.8131741424802,
+        "predicted_per_second": 2.0457713762610625
+      },
+      "usage": {
+        "completion_tokens": 380,
+        "prompt_tokens": 13735,
+        "total_tokens": 14115,
+        "prompt_tokens_details": {
+          "cached_tokens": 3082
+        }
+      },
+      "wall_seconds": 1916.1196675999963,
+      "finish_reason": "tool_calls",
+      "visible_characters": 0,
+      "reasoning_characters": 783
+    },
+    {
+      "index": 2,
+      "timings": {
+        "cache_n": 14114,
+        "prompt_n": 7472,
+        "prompt_ms": 1216482.727,
+        "prompt_per_token_ms": 162.80550414882225,
+        "prompt_per_second": 6.142298475891142,
+        "predicted_n": 248,
+        "predicted_ms": 134253.692,
+        "predicted_per_token_ms": 543.5372145748988,
+        "predicted_per_second": 1.8398004279837605
+      },
+      "usage": {
+        "completion_tokens": 248,
+        "prompt_tokens": 21586,
+        "total_tokens": 21834,
+        "prompt_tokens_details": {
+          "cached_tokens": 14114
+        }
+      },
+      "wall_seconds": 1351.181060300005,
+      "finish_reason": "tool_calls",
+      "visible_characters": 0,
+      "reasoning_characters": 450
+    },
+    {
+      "index": 3,
+      "timings": {
+        "cache_n": 21833,
+        "prompt_n": 2859,
+        "prompt_ms": 469245.256,
+        "prompt_per_token_ms": 164.12915564882826,
+        "prompt_per_second": 6.092762715112031,
+        "predicted_n": 212,
+        "predicted_ms": 116896.19,
+        "predicted_per_token_ms": 554.0103791469195,
+        "predicted_per_second": 1.8050203347089413
+      },
+      "usage": {
+        "completion_tokens": 212,
+        "prompt_tokens": 24692,
+        "total_tokens": 24904,
+        "prompt_tokens_details": {
+          "cached_tokens": 21833
+        }
+      },
+      "wall_seconds": 586.4177487000052,
+      "finish_reason": "tool_calls",
+      "visible_characters": 0,
+      "reasoning_characters": 377
+    },
+    {
+      "index": 4,
+      "timings": {
+        "cache_n": 24903,
+        "prompt_n": 6581,
+        "prompt_ms": 1123528.11,
+        "prompt_per_token_ms": 170.72300714177177,
+        "prompt_per_second": 5.857441341632297,
+        "predicted_n": 208,
+        "predicted_ms": 114811.3,
+        "predicted_per_token_ms": 554.643961352657,
+        "predicted_per_second": 1.8029584195980708
+      },
+      "usage": {
+        "completion_tokens": 208,
+        "prompt_tokens": 31484,
+        "total_tokens": 31692,
+        "prompt_tokens_details": {
+          "cached_tokens": 24903
+        }
+      },
+      "wall_seconds": 1238.7322654000018,
+      "finish_reason": "tool_calls",
+      "visible_characters": 0,
+      "reasoning_characters": 268
+    },
+    {
+      "index": 5,
+      "timings": {
+        "cache_n": 31691,
+        "prompt_n": 5629,
+        "prompt_ms": 964098.449,
+        "prompt_per_token_ms": 171.27348534375557,
+        "prompt_per_second": 5.838615346636659,
+        "predicted_n": 929,
+        "predicted_ms": 513709.462,
+        "predicted_per_token_ms": 553.5662306034483,
+        "predicted_per_second": 1.8064685754221128
+      },
+      "usage": {
+        "completion_tokens": 929,
+        "prompt_tokens": 37320,
+        "total_tokens": 38249,
+        "prompt_tokens_details": {
+          "cached_tokens": 31691
+        }
+      },
+      "wall_seconds": 1478.1871911999988,
+      "finish_reason": "tool_calls",
+      "visible_characters": 0,
+      "reasoning_characters": 3362
+    },
+    {
+      "index": 6,
+      "timings": {
+        "cache_n": 38248,
+        "prompt_n": 1376,
+        "prompt_ms": 239840.075,
+        "prompt_per_token_ms": 174.30238008720931,
+        "prompt_per_second": 5.737156311346217,
+        "predicted_n": 1076,
+        "predicted_ms": 588977.36,
+        "predicted_per_token_ms": 547.8859162790698,
+        "predicted_per_second": 1.8251974914621507
+      },
+      "usage": {
+        "completion_tokens": 1076,
+        "prompt_tokens": 39624,
+        "total_tokens": 40700,
+        "prompt_tokens_details": {
+          "cached_tokens": 38248
+        }
+      },
+      "wall_seconds": 829.2045876000047,
+      "finish_reason": "tool_calls",
+      "visible_characters": 0,
+      "reasoning_characters": 4096
+    },
+    {
+      "index": 7,
+      "timings": {
+        "cache_n": 40699,
+        "prompt_n": 66,
+        "prompt_ms": 12178.526,
+        "prompt_per_token_ms": 184.5231212121212,
+        "prompt_per_second": 5.419375054091111,
+        "predicted_n": 1094,
+        "predicted_ms": 572432.471,
+        "predicted_per_token_ms": 523.7259569990852,
+        "predicted_per_second": 1.9093955276342107
+      },
+      "usage": {
+        "completion_tokens": 1094,
+        "prompt_tokens": 40765,
+        "total_tokens": 41859,
+        "prompt_tokens_details": {
+          "cached_tokens": 40699
+        }
+      },
+      "wall_seconds": 585.0001566000064,
+      "finish_reason": "tool_calls",
+      "visible_characters": 163,
+      "reasoning_characters": 4336
+    },
+    {
+      "index": 8,
+      "timings": {
+        "cache_n": 41858,
+        "prompt_n": 432,
+        "prompt_ms": 67516.207,
+        "prompt_per_token_ms": 156.2875162037037,
+        "prompt_per_second": 6.398463705166376,
+        "predicted_n": 4368,
+        "predicted_ms": 1431832.623,
+        "predicted_per_token_ms": 327.8755720174032,
+        "predicted_per_second": 3.0499374925891742
+      },
+      "usage": {
+        "completion_tokens": 4368,
+        "prompt_tokens": 42290,
+        "total_tokens": 46658,
+        "prompt_tokens_details": {
+          "cached_tokens": 41858
+        }
+      },
+      "wall_seconds": 1499.7454141000053,
+      "finish_reason": "stop",
+      "visible_characters": 12142,
+      "reasoning_characters": 4107
+    }
+  ],
+  "continuation_prefix_reuse": [
+    {
+      "turn": 1,
+      "expected_reused_prefix": 3082,
+      "reported_cache_n": 3082,
+      "full": true
+    },
+    {
+      "turn": 2,
+      "expected_reused_prefix": 14114,
+      "reported_cache_n": 14114,
+      "full": true
+    },
+    {
+      "turn": 3,
+      "expected_reused_prefix": 21833,
+      "reported_cache_n": 21833,
+      "full": true
+    },
+    {
+      "turn": 4,
+      "expected_reused_prefix": 24903,
+      "reported_cache_n": 24903,
+      "full": true
+    },
+    {
+      "turn": 5,
+      "expected_reused_prefix": 31691,
+      "reported_cache_n": 31691,
+      "full": true
+    },
+    {
+      "turn": 6,
+      "expected_reused_prefix": 38248,
+      "reported_cache_n": 38248,
+      "full": true
+    },
+    {
+      "turn": 7,
+      "expected_reused_prefix": 40699,
+      "reported_cache_n": 40699,
+      "full": true
+    },
+    {
+      "turn": 8,
+      "expected_reused_prefix": 41858,
+      "reported_cache_n": 41858,
+      "full": true
+    }
+  ],
+  "prefill_seconds": 6140.370114,
+  "generation_seconds": 4236.126101,
+  "actual_files_read": 15,
+  "read_errors": 3,
+  "unrecovered_read_errors": 0,
+  "final_answer_characters": 12142,
+  "exact_first_visible_time_available": false,
+  "effective_request_controls": {
+    "model": "flint-lab",
+    "stream": true,
+    "stream_options": {
+      "include_usage": true
+    },
+    "max_tokens": 24576,
+    "seed": 73,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0,
+    "repeat_penalty": 1.0,
+    "cache_prompt": true,
+    "chat_template_kwargs": {
+      "preserve_thinking": true
+    },
+    "tool_choice": "auto"
+  },
+  "new_hardware_event": false,
+  "cleanup": {
+    "status": "requested_stop"
+  },
+  "findings": [
+    "All15 frozen instruction sources delivered, including recovery of three failed reads.",
+    "Wrong exact merge in prose; latest delivered function passes4/6groups, overwrites existing null and aliases mutable input values.",
+    "Missing nested/shared reading chain and Windows adapter review; conflicting canonical machine-fact location and an invalid citation.",
+    "Three code drafts; promised deepcopy correction never delivered. All visible turns reviewed; no reasoning drafts graded.",
+    "Unknown service port correctly left unknown; no false execution claim.",
+    "Reasoning budget1024 forced close on turns06-08; source shows per-block rearming, not a guaranteed aggregate workflow cap."
+  ],
+  "limitations": [
+    "Single-seed extended case; not a frozen1200score or full-composite comparison.",
+    "Different quant/placement/runtime/sampler from historical private profiles; no causal proof that quant or reasoning cap caused defects.",
+    "Legacy private streaming collector lacks first-visible-delivery timestamps; coarse observations are not exactTTFV.",
+    "Repeated plain greeting reported cache_n0; do not describe it as a measured cache hit.",
+    "No fresh Copilot/Continue validation and no production promotion."
+  ],
+  "hashes": {
+    "review": "72a79c77bcfdac27b57408ee888f3b5208a00bca3176e3dfc6b2ccbf63946694",
+    "answer": "16335f2695a2096532a6fabd587c611ab930bdaafbb4151fd59b142bc517ce0b",
+    "grading": "a08ed66f4afeb3d0cd55bd1711edaa5face7943561f8556b16b18b793606b4e8",
+    "selection": "96f2079b045262686feccdfd77682a9aa7eecc95d206da5912184aea0d9f1d13",
+    "candidate": "772d895e205670149ff32d3099b50a3b22951300a490354da9cfb7eec2b563ac",
+    "checks": "af0dbdc6e84e647b62d9d67a29718838d69fe5e5ede370c0cc0a8ee530cebae8",
+    "isolated_runner": "f40bb8e86e7fe4006afaeb51615bb07cb64ae8f9e3c2e2438ed5ce4db6913cd9",
+    "question": "39f849d5de4406cd005a7af791140076fc7196128fabca72890d8c4988314638",
+    "rubric": "1559c4af232920f406356b8a1a1da2b449e64f066ea9ee6ee60d5c84193796bb",
+    "manifest": "785e0a6b3bfac470ec4750ce21675acbaf6d9e59b68d6994a07683e6454fec0d",
+    "request": "9149812c3a72163108cfd0787405aace3ef9802170d912d09ac6331cbe096dc4",
+    "read_trace": "a18005addbdc110e0cc355a7a50794ea9caf3fc53885a8b17ccfc3aba5557aee"
+  },
+  "raw_evidence": "local-data/2026-11-09-merge/; private audit outside Git"
+}

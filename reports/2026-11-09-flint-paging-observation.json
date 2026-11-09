@@ -1,0 +1,55 @@
+{
+    "status":  "passive-observation-not-a-speed-benchmark",
+    "model":  "flint-q3xl",
+    "profile":  "flint-q3xl-private72k-native-u128",
+    "phase":  "turn04 newly supplied file prefill",
+    "source_sha256":  "f0dc4d5814b7e7eccf1539cd21b027f700c3a6d4c2ab765356e2c996c339eccd",
+    "counters":  "Windows Get-Counter, four samples at5second intervals; source receipt retains raw names",
+    "samples":  [
+                    {
+                        "time":  "2026-11-09T07:23:20.9119206+05:30",
+                        "page reads/sec":  4166.5079358924613,
+                        "disk read bytes/sec":  160934864.76517791,
+                        "avg. disk sec/read":  0.00013375652682470366,
+                        "current disk queue length":  1
+                    },
+                    {
+                        "time":  "2026-11-09T07:23:25.9270369+05:30",
+                        "page reads/sec":  3445.7405830731464,
+                        "disk read bytes/sec":  149098573.32580826,
+                        "avg. disk sec/read":  0.00011411883667808778,
+                        "current disk queue length":  1
+                    },
+                    {
+                        "time":  "2026-11-09T07:23:30.9407405+05:30",
+                        "page reads/sec":  3890.8018576045897,
+                        "disk read bytes/sec":  167648491.54142508,
+                        "avg. disk sec/read":  0.00011514350610664283,
+                        "current disk queue length":  0
+                    },
+                    {
+                        "time":  "2026-11-09T07:23:35.9563073+05:30",
+                        "page reads/sec":  3806.6647378129755,
+                        "disk read bytes/sec":  161596929.7530188,
+                        "avg. disk sec/read":  0.00011624296133100357,
+                        "current disk queue length":  1
+                    }
+                ],
+    "process_sample":  {
+                           "IDProcess":  69016,
+                           "Name":  "llama-server",
+                           "IOReadBytesPersec":  0,
+                           "IOReadOperationsPersec":  0,
+                           "PageFaultsPersec":  288288,
+                           "WorkingSet":  3221217280,
+                           "PrivateBytes":  5827145728
+                       },
+    "interpretation":  [
+                           "E: read traffic is measured for the whole logical drive, not exclusively this model.",
+                           "Page faults include soft faults. Do not multiply the process fault counter by page size to infer disk bandwidth.",
+                           "The separate process IORead counter was zero despite measured drive reads; it is not evidence of zero mapped-file paging.",
+                           "This short observation does not establish storage saturation or identify the source of all I/O.",
+                           "Resident6 versus resident3 remains a prepared controlled follow-up; no active cap change."
+                       ],
+    "documentation":  "https://learn.microsoft.com/en-us/windows/win32/memory/working-set"
+}

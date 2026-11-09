@@ -1,5 +1,12 @@
 # Ternary Bonsai 2 27B (PQ2_0 and PTQ1_0) on an RTX 3080 10 GB
 
+9 November catalog correction: both saved server templates have SHA256
+`c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041`.
+Their explicit accepted set is `xhigh`, `medium`, `low`; `high` raises a
+template error. The report's original wording below was correct; the catalog's
+medium/high/xhigh list was not and is now corrected. This is a saved-template
+inspection, not a fresh inference or a result for the untested lower efforts.
+
 Trials run by Claude on 20 October 2026. This record was written on 3 November
 2026 from the saved evidence, as an audit. No engine was started, no model file
 was touched and no model output was executed for this record.

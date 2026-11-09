@@ -80,3 +80,28 @@ runs match across stock, modified-default and modified-opt-in. Only opt-in
 logs disabled prefetch. These controls do not prove full-model equivalence.
 Higher-precision Flint profiles and their actual outcomes belong in the
 [precision campaign](../../docs/tasks/2026-10-24-precision-and-gaps/2026-10-24-precision-and-coverage-v0.9.0.md).
+
+## b12069 port (speed-only side runtime)
+
+9 November addendum: all56recorded runtime binary hashes were verified and
+six stock/default/opt-in CPU/GPU `stories260K` controls passed. Only opt-in
+logs disabled prefetch; greedy outputs match within each placement group.
+The stock control used a separate read-only hardlink view with the preserved
+stock DLL; no installed runtime file was overwritten.
+[Control receipt](../../reports/2026-11-09-b12069-prefetch-controls.json).
+The earlier build-only status below is historical. Full-model equivalence,
+coding and performance remain untested; production is unchanged.
+
+
+`loader-b11838.patch` also applies unchanged to tag b12069, commit
+`e6192de0a62b73f566f825ecb531f7e4fe699eae` (second hunk at a five-line offset;
+`init_mappings()` and `llama-mmap.cpp` match b11838). The build used the same
+host-only recipe with `LLAMA_BUILD_NUMBER=12069` and that commit, at `-j 2` and
+below-normal priority on C:, and kept the stock b12069 CUDA 12.4 release
+binaries. The variant is `b12069-noprefetch-v1` in `E:/llm/runtimes/`, with
+`llama.dll` SHA256 `de7b17fcfe0528e7d830b53c7c02a77f3fc1f30cd6fe7330834c9b5c655cfc05`.
+It exists for same-weights speed A/B runs and for models b11562 cannot load. It
+is not production. Only the build, a static import/export check and the
+`--version`/`--help` output were checked. No model has been loaded and the
+small-model output-equivalence controls have not been run yet. Record:
+[reports/2026-11-03-b12069-noprefetch-build.json](../../reports/2026-11-03-b12069-noprefetch-build.json).

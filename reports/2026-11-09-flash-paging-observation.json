@@ -1,0 +1,58 @@
+{
+  "status": "passive-observation-not-a-speed-benchmark",
+  "model": "Flash-Next GSQ-RCO Q2_0",
+  "engine": "Strata0.1.50 with isolated frontend ACL fix",
+  "phase": "17356-token input prefill in the64K GPU KV-growth diagnostic",
+  "counters": "Four Windows Get-Counter samples at5second intervals",
+  "source_sha256": "b38a6f6cf1881d4d4c83d9f9eff066977696eb6992f72070d2431204c4013c96",
+  "samples": [
+    {
+      "time": "2026-11-09T09:27:43.1055536+05:30",
+      "page reads/sec": 9046.447923348522,
+      "disk read bytes/sec": 505002592.3899299,
+      "avg. disk sec/read": 0.00013945121225010632,
+      "current disk queue length": 1
+    },
+    {
+      "time": "2026-11-09T09:27:48.1105584+05:30",
+      "page reads/sec": 7707.863309281942,
+      "disk read bytes/sec": 413615889.98658484,
+      "avg. disk sec/read": 0.00014183782651250993,
+      "current disk queue length": 4
+    },
+    {
+      "time": "2026-11-09T09:27:53.1226665+05:30",
+      "page reads/sec": 8808.77639188872,
+      "disk read bytes/sec": 483678314.54701626,
+      "avg. disk sec/read": 0.00014228565637015145,
+      "current disk queue length": 2
+    },
+    {
+      "time": "2026-11-09T09:27:58.1399365+05:30",
+      "page reads/sec": 11941.488500262858,
+      "disk read bytes/sec": 598755461.297548,
+      "avg. disk sec/read": 0.00015673440842069736,
+      "current disk queue length": 4
+    }
+  ],
+  "process_sample": {
+    "Name": "strata",
+    "IOReadBytesPersec": 32514,
+    "IOReadOperationsPersec": 7,
+    "PageFaultsPersec": 562887,
+    "WorkingSet": 4294815744,
+    "PrivateBytes": 9112543232
+  },
+  "whole_drive_read_mib_s": {
+    "min": 394.454851137719,
+    "max": 571.017705247448
+  },
+  "interpretation": [
+    "E: reads cover the whole drive, not exclusively the model.",
+    "System Page Reads/sec and process PageFaultsPersec are different counters; process faults include soft faults.",
+    "Ordinary process IOReadBytesPersec does not account for all mapped-file paging.",
+    "Native logical expert-byte counters do not establish physical SSD bytes.",
+    "This short sample does not prove storage saturation or attribute every read to inference.",
+    "Different workloads, phases and desktop conditions prevent treating the Flint observation as a matched engine comparison."
+  ]
+}

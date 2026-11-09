@@ -1,10 +1,102 @@
 # Qwen3.8-Flash-Next: refreshed quant and engine investigation
 
+**9 November restart update:** Flash-Next Q2 / Strata 0.1.50's 64K
+GPU-KV growth trial ended in a confirmed 0x116 NVIDIA timeout-recovery crash
+at 10:10:57 IST. Its 8K/17K fact answers and allocation growth are observations;
+the interrupted 33K case and unrun shrink/private audit have no score. The exact
+configuration is quarantined, no engine is running, and production remains off.
+See the [incident and configuration](../../../reports/2026-11-09-flash-q2-gpu-restart.md).
+This records workload association, not a proven parameter-level cause.
+
+## 9 November: Q2 serving now qualifies
+
+The new Q2 completes two plain greetings after an isolated Windows frontend
+permission correction: cold31.813s (first visible26.250s), warm9.437s
+(first visible6.906s). Both return a complete greeting and stop normally.
+This closes the static-serving gap, not coding quality or editor integration.
+See the [reviewed measurement](../../../reports/2026-11-09-flash-q2-static-qualification.json).
+
+| Control | Measured result / interpretation |
+|---|---|
+| Weight identity | Both Q2 shards and9pack artifacts pass fresh full hashes9Nov |
+| Placement | 512expert-cache blobs, at most675MiB before rounding; mapped CPU experts, direct SSD PLE; int8 GPU KV32K, prefill64, six CPU workers, host logical14 |
+| Thinking | Frontend high aliases xhigh; native budget0 means no ceiling. Projection, MTP, suffix drafts and route-tail skipping off; spec2 verifier required |
+| Ready time | 82.953s including frontend preparation, versus a separate9.390s direct-native load-and-EOF probe; different loading paths |
+| Cold greeting | 53fresh tokens,18.885s prefill,29generated/12.888s,2.3tok/s |
+| Warm greeting | 48cached/5fresh tokens,1.042s prefill,34generated/8.320s,4.1tok/s |
+| Memory | Native RSS peaks4.000GiB; process dedicated GPU5.243GiB/shared0.582GiB. Whole-machine minima5.989GiB freeRAM,13.305GiB freecommit,1294MiB freeVRAM; max58.03C |
+| Failed attempts | Two pre-request WinError5 stops at OpenProcess, no score; direct native loading worked. The frontend put file-all permissions in a token default used for child processes |
+| Correction | Separate checkout at4b9e05a2 plus the [token-default patch](../../../experiments/strata/windows-token-defaults.md); harmless controls reproduce failure/recovery.12Windows privacy tests pass, one POSIX case skips; guards unchanged |
+| Cleanup | Explicit owned stop, no new hardware event; original frontend/runtime and failed evidence preserved |
+
+Do not sum the WDDM shared counter with RSS or call the engine's printed
+3947MiB freeVRAM the whole-device measurement. These greeting rates are
+single observations, not a throughput distribution or instruction benchmark.
+The0.1.50 sm86 switches/CPU sharing and new quant differ from the historical
+IQ3 runs, so a future score is not a quantization-only comparison.
+
+The separate64K GPU-VMM growth diagnostic starts9Nov09:10IST with8K,17K,
+33K and shrinking8K inputs. Exact rendered counts8178/17356/33788/8178match
+the real pinned encoder offline. Native startup reports16384of65536cells,
+0.23of0.80GiB,512cache slots eligible below slot512. Two-hour request limits
+and the same resource floors apply. At the original pre-crash checkpoint it was collecting:
+no completed recall, growth/trim result or chat-history claim yet. The older
+preparation paragraphs below are superseded only where stated here.
+
+09:23IST observation during the same guarded engine: the8178-token prompt
+finishes in723.859s, with651.817s prefill and71.957s generation of271tokens.
+First visible content appears714.609s into the request. Its delivered JSON
+contains the five requested source values; formal aggregation waits for
+owned cleanup and review of all available answers. Before the17356-token
+request, the native log reports growth to24576cells/0.33GiB, taking74expert
+cache slots and leaving438of512resident. This is actual GPU allocation growth,
+not merely a larger configured context. Longer inputs and shrinking remain
+in progress. No chat-history or coding score is implied.
+
+A separate15second passive observation during17K prefill records394.45–571.02
+MiB/s whole-E: reads,0.139–0.157ms average read latency and queue1–4.
+System page reads are7708–11941/s. The process sample has4GiB working set,
+about8.487GiB private bytes and562887page faults/s, including soft faults.
+Do not multiply that fault count by page size or equate the engine's logical
+expert bytes with SSD traffic. These are not proof of storage saturation or
+a matched speed comparison with Flint. [Observation](../../../reports/2026-11-09-flash-paging-observation.json).
+
+Historical pre-serving checkpoint (superseded above): all fifteen Flint performance controls now finish normally.
+The resident3/6/3GiB comparison gives cold wall123.016/117.203/113.735s,
+cached-repeat5.297/3.500/5.391s and changed-input90.719/84.312/83.907s.
+Extra residency helps cached repeat, but cold/changed improvement is smaller
+than baseline drift; retain3GiB for matched quality follow-ups. No quality
+score follows from these short32-token controls. Native private31/36 remains.
+Flash Q2's11artifacts pass fresh full hashes. Direct guarded native loading
+reaches READY32768 and exits normally on stdin EOF in9.390s; no questions.
+Two serving attempts stop fail-closed before requests with WinError5 at
+OpenProcess in the working-set guard. All descendants are cleaned up, no
+new hardware event. A source lead is frontend adopt_user_defaults using file
+access bits in the process token default ACL; harmless reproduction pending.
+Guard now preserves traceback/error.json without changing floors or cleanup.
+52offline tests and6harmless lifecycle checks pass. Four Flash growth inputs
+8178/17356/33788/8178tokens match the real pinned frontend encoder offline;
+no growth inference. Production remains off; no model retired or promotion.
+
+
 26October2026. Active research/installation; no new quality score yet.
 This is the model-specific continuation of the
 [18October Strata measurements](../2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md).
 The [seven-article review](../../../research/reviews/2026-10-26-qwen-articles.md)
 holds article summaries, source revisions and distinctions relevant to other PCs.
+
+**9November pre-load checkpoint (superseded above):** the two Q2 shards and native-view pack were
+fully verified/built on3November and are installed on E:. Fresh full verification
+is queued after the active Flint engine stops; this new Q2 has not served a
+request. The reviewed static32K plan explicitly limits the expert cache to
+512blobs (at most675MiB before per-layer rounding), uses64-token prefill,
+disables KV growth/drafts/projection/route-tail skipping, and preserves
+8.5GiB RAM/14GiB commit/6000MiB VRAM admission plus minimum stop floors.
+Nine actual packed-template/frontend marker checks and the revised native
+identity/floor/owned-cleanup checks pass. These are preparation results,
+not model fit, response quality or a dynamic-KV measurement. Earlier dated
+installation statements below remain historical; the latest trial state is in
+the [merged report](../2026-11-09-merged-research/2026-11-09-merged-models-articles-and-experiments-v0.11.0.md).
 
 27October03:26IST: the separate pinned frontend environment is installed
 under the experiment's E: directory. All15packages are frozen; pip check and
@@ -24,6 +116,37 @@ their original cohort. A newer separately installed engine and a smaller
 GSQ-RCO Q2_0 quant are explicit new variables. They need their own evidence.
 
 ### Native KV-growth qualification
+
+9November next diagnostic design, conditional on the static greeting pass:
+retain the same512-blob/mmap-expert placement and use64K maximum context,
+`--kv-grow`, initial16384cells and8192-cell steps. Freeze deterministic
+beginning/middle/end source-fact prompts near8K,17K and33K actual rendered
+tokens, then return to an8K request and an omitted-history UNKNOWN probe.
+Use the packed tokenizer and exact frontend rendering; this frontend does
+not expose llama.cpp's `/tokenize` endpoint. Preserve xhigh, complete outputs,
+actual usage and native grow/trim/slot-transfer logs. A separate follow-up
+must test changed-file history, since independent larger prompts alone do
+not demonstrate conversational retention. A dated request generator is now
+prepared in ignored local evidence. It mirrors the pinned xhigh frontend and
+packed tokenizer, with no engine creation or network inference. It has not
+been executed: no generated requests, token-count validation, armed growth
+plan or growth inference exists yet. The planned unknown/history probes are
+separate from the generator's four independent allocation probes.
+
+Source caveat for interpreting trim: `kvg_trim` also returns without shrinking
+when no expert-cache slots have been given up (`lo >= top`). Fresh allocation
+at the cache floor, trim hysteresis and parked-state policy can therefore
+produce different memory curves. Record the native events rather than
+assuming every smaller prompt immediately releases GPU memory. A direct
+RAM-KV experiment is a separate placement trial, not this GPU-VMM test.
+
+9November source follow-up: the second-stage elastic controller also needs
+more than128eligible cache slots after the prefill loan. At the cache floor it
+can request fresh VRAM, so growth is not guaranteed to keep total device usage
+flat. Trimming waits for a two-step reduction and respects parked conversations.
+The new static32K qualification has growth explicitly disabled; a later growth
+trial must show native start/grow/trim events, input/output counts, RAM/commit/
+VRAM and recovered facts. A VMM capability query alone does not pass this gate.
 
 27October correction: native build`1aff6d14117b` excludes
 `resident_cpu_experts` from KV growth, but does not explicitly exclude plain
@@ -64,8 +187,10 @@ Repository`ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF`, revision
 |Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00001-of-00002.gguf|37623740192|69820c02ec7d0b45ef2ebb19d6620299db749fe2aded7f39f93c6b88b199b720|
 |Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00002-of-00002.gguf|28800138432|316b46f3a2dbd68c900f43136ab9449f9dcc3725dfd8c794847c204bc161e113|
 
-Both are under`Q2_0/`. The second is byte-identical to the old dictionary shard;
-it is no longer on disk. Full files/hashes are required before a live load.
+Both are under`Q2_0/`. The second is byte-identical to the old dictionary shard.
+That older copy was retired in October; both new Q2 shard copies are installed
+and were fully verified on 3 November. Fresh full verification before the new
+live loading was then pending; see the completed static and interrupted growth results above.
 Q2 saves9.416GB of transformer storage versus oldIQ3XXS. Publisher coding
 benchmarks favor IQ3XXS, so Q2 is a capacity/control candidate, not a declared
 quality upgrade. IQ3_S is the later higher-precision option if resources allow.
@@ -267,3 +392,24 @@ more useful than assuming all installed RAM is available. Keep every routed
 expert contribution enabled and use a disjoint development corpus; tuning on
 the scored questions would contaminate that comparison. This remains an
 optional follow-up after baseline fit and complete answers, not a claimed gain.
+# 9 November continuation addendum
+
+Both Q2 shards and the native-view pack completed3Nov; the previous download
+queue is stale. No Q2 inference has happened yet. New proposal
+`local-data/2026-11-09-merge/flash-q2-explicit512-static32.planned.json` replaces
+automatic expert-cache sizing with512blobs (675MiB from48native rows of
+1,382,400bytes), prefill64/static32K/int8, mmap experts and direct PLE.
+It retains the4GiB engine working-set cap and proposes8.5GiB RAM /14GiB commit /
+6000MiB VRAM admission, with2.5GiB/1GiB/400MiB runtime floors. This is a new
+capacity hypothesis, not an observed allocation or faster profile.
+It remains `launchable:false` pending shard/pack verification, packed-template
+marker rendering and the changed guard's unit/harmless-process validation.
+
+The source's KV-growth predicate excludes `kv_resident > 0`; it grows GPU
+backing while trading expert slots, separately from pinned-host-KV streaming.
+The3NovVMMcapability receipt reports support but no allocations/model run.
+Actual native grow/trim logs plus retained facts remain required.
+
+The new [article ledger](../../../articles.md) and
+[merged report](../2026-11-09-merged-research/2026-11-09-merged-models-articles-and-experiments-v0.11.0.md)
+track these distinctions. No prior timeout or empty final becomes a pass.

@@ -30,7 +30,9 @@ def main() -> int:
         "lib_dirs": [],
         "guard": {"load_min_ram_free_gib": impossible,
                   "load_min_vram_free_mib": 0,
+                  "load_min_commit_available_gib": 2,
                   "stop_min_ram_free_gib": impossible,
+                  "stop_min_commit_available_gib": 1,
                   "stop_min_vram_free_mib": 0, "stop_gpu_c": 100},
         "max_seconds": 20,
     }
@@ -52,7 +54,7 @@ def main() -> int:
         assert (root / "owned-stop/process.json").exists()
         assert peer.poll() is None, "Unrelated child was stopped"
         assert "did not exit" not in result["reason"], result
-        config["guard"]["stop_min_ram_free_gib"] = 0
+        config["guard"]["stop_min_ram_free_gib"] = 2.5
         config["max_seconds"] = 0.05
         guard.save(path, config)
         code = guard.run(path, root / "deadline")

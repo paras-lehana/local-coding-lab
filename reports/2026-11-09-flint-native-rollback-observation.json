@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-09",
+  "status": "completed-audit-observation",
+  "run": "flint-private72k-native-u128-a",
+  "profile": "flint-q3xl-private72k-native-u128",
+  "runtime": "b11838-noprefetch-v1",
+  "quality_score": null,
+  "previous_turn": {
+    "turn": 5,
+    "finish_reason": "tool_calls",
+    "cached_input_tokens": 35545,
+    "fresh_input_tokens": 2831,
+    "generated_tokens": 6908,
+    "available_sequence_tokens": 45283,
+    "sequence_formula": "cache_n + prompt_n + predicted_n - 1",
+    "prefill_seconds": 267.757685,
+    "generation_seconds": 1406.49733,
+    "wall_seconds": 1674.579,
+    "first_tool_seconds": 1658.719,
+    "visible_content_characters": 0,
+    "new_reads": "Two successful rereads of already-supplied entry/router sources"
+  },
+  "next_turn": {
+    "turn": 6,
+    "started_ist": "2026-11-09T07:55:10.018625+05:30",
+    "native_task_id": 9662,
+    "rendered_input_tokens": 46388,
+    "checkpoint_test_threshold": 42991,
+    "restored_checkpoint": {
+      "pos_min": 37604,
+      "pos_max": 38371,
+      "n_tokens": 38372,
+      "size_mib": 18.637
+    },
+    "reused_tokens_after_restore": 38371,
+    "tokens_to_process_after_restore": 8017,
+    "difference_from_previous_sequence_length": 6912,
+    "timings": {
+      "prefill_seconds": 496.858905,
+      "generation_seconds": 1325.0846,
+      "wall_seconds": 1822.344,
+      "first_event_seconds": 497.235,
+      "first_visible_seconds": 1431.203
+    }
+  },
+  "source_interpretation": {
+    "model_sliding_window": 513,
+    "source": "tools/server/server-context.cpp:4077-4180 in the pinned build source",
+    "threshold_meaning": "42991 is pos_min_thold, not the common-prefix length. Source computes max(0, pos_eval - n_swa + 2) for this SWA path.",
+    "limitation": "The source of the changed prompt/token prefix is not yet established. The 6912 difference is not all proven avoidable work; serialization differences and checkpoint restoration must be distinguished. No claim that hidden reasoning was lost or that full-SWA would restore every token."
+  },
+  "saved_request_continuity": {
+    "prior_message_count": 17,
+    "prior_messages_unchanged": true,
+    "captured_assistant_message_unchanged": true,
+    "nonmessage_request_fields_unchanged": true,
+    "appended_roles": [
+      "assistant",
+      "tool",
+      "tool"
+    ],
+    "visible_content_characters": 0,
+    "scope": "Compared completed saved JSON and SSE channel metadata as data only. No model code executed and no new inference request sent.",
+    "limitation": "The collector did not rewrite the old message array or captured assistant fields. Parsed SSE fields do not retain every raw generated special-token ID, so this cannot establish token-identical template reserialization or the exact divergence cause."
+  },
+  "scope": "First partial-reuse continuation in the completed native audit. Five earlier continuations reuse the whole previous available sequence. No request/runtime/model/setting changed for this observation. Full31/36 quality result is in the separate completed receipt.",
+  "completed_audit_report": "2026-11-09-flint-native-private72k.json"
+}

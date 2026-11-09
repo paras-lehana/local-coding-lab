@@ -1,0 +1,13 @@
+Continue the local-LLM work and merge Claude's stopped-loop handoff.
+Keep model-wise reports and a complete table of all models/configurations.
+Summarize every supplied article in articles.md: claims, our assessment,
+errors, tests, improvements and suggestions. Preserve separate model records
+and general lessons for the RTX 3080 10GB / 64GB system and other computers.
+Apps stay open. A simple greeting must not take ten minutes; accurate work
+with instructions and source files may take longer, separately labelled.
+
+Latest owner message, 9 November 2026:
+continue, you did something and compouter restarted, anyways continue yoiur  work , just telling you so that you know the consequences and note them for a specifc model or param etc
+
+Full supplied article text, private project instructions and raw answers
+are retained outside this public repository.

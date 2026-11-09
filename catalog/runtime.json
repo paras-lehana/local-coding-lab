@@ -20,6 +20,29 @@
   ],
   "reviewed_alternates": [
     {
+      "tag": "b12069",
+      "commit": "e6192de0a62b73f566f825ecb531f7e4fe699eae",
+      "platform": "windows-x64-cuda12.4",
+      "source": "https://github.com/ggml-org/llama.cpp/releases/tag/b12069",
+      "verified_metadata_date": "2026-11-03",
+      "install_dir": "E:/llm/runtimes/b12069-noprefetch-v1",
+      "reason": "Speed-only side runtime for same-weights A/B against b11562/b11838 and for models b11562 cannot load; not production. Installed only as the b12069-noprefetch-v1 variant (stock CUDA 12.4 release plus a locally rebuilt llama.dll with the opt-in initial-prefetch guard). Build record: reports/2026-11-03-b12069-noprefetch-build.json.",
+      "notes": "3-Nov preparation: no model then loaded. 9-Nov addendum: six tiny-model CPU/GPU compatibility controls pass; a single Flint fixed-prefix control measures263.984s cold versus261.641s for the repeated b11838 control, no material gain. No full-model numerical equivalence or quality improvement established. Asset digests verified locally.",
+      "assets": [
+        {
+          "filename": "llama-b12069-bin-win-cuda-12.4-x64.zip",
+          "bytes": 286851724,
+          "sha256": "870d91ec1e87deea2ca347d2ccd3d99a2ee3dd3c76c9f3de7c33bf31f5f00d63"
+        },
+        {
+          "filename": "cudart-llama-bin-win-cuda-12.4-x64.zip",
+          "bytes": 391443627,
+          "sha256": "8c79a9b226de4b3cacfd1f83d24f962d0773be79f1e7b75c6af4ded7e32ae1d6",
+          "note": "identical to the b11562/b11838 cudart package; extracted from the hash-verified E:/llm/downloads copy"
+        }
+      ]
+    },
+    {
       "tag": "b11838",
       "commit": "4231b23dc2c46661d01157aac5245bdcf03ce4b1",
       "platform": "windows-x64-cuda12.4",
@@ -85,6 +108,13 @@
       "llama_sha256": "10331e86ab5bd3f8c08c486f42d900f1dd09dbab218ce54a8684b7ec7b65c35f",
       "validation": "CPU/GPU greedy stories260K output matches stock/default/opt-in; not full equivalence",
       "source_patch": "experiments/llama-mmap-prefetch/loader-b11838.patch"
+    },
+    "b12069-noprefetch-v1": {
+      "base_commit": "e6192de0a62b73f566f825ecb531f7e4fe699eae",
+      "llama_sha256": "de7b17fcfe0528e7d830b53c7c02a77f3fc1f30cd6fe7330834c9b5c655cfc05",
+      "validation": "9-Nov:56 recorded binary hashes verified; six stories260K CPU/GPU greedy controls match stock/default/opt-in. Flint fixed-prefix control completes263.984s cold, with no material gain over b11838. No full-model numerical equivalence or quality result. See reports/2026-11-09-b12069-prefetch-controls.json and reports/2026-11-09-flint-prefill-controls.json.",
+      "source_patch": "experiments/llama-mmap-prefetch/loader-b11838.patch",
+      "applied_diff_sha256": "d09bf5389379b4b97fe259cdfa94d401dfe5bbbc96c2aff0d970c17f36e69d5e"
     }
   }
 }

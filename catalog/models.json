@@ -3,6 +3,18 @@
   "verified_metadata_date": "2026-10-15",
   "note": "Bytes are GGUF size, not required RAM. Hashes are publisher LFS metadata. Consult individual status and campaign reports, not catalog presence, for actual loading and quality evidence. Model licenses apply separately.",
   "models": {
+    "qwen-next80-iq3m-historical": {
+      "name": "Qwen3-Next-80B-A3B-Instruct IQ3_M (original historical installation)",
+      "repo": "bartowski/Qwen_Qwen3-Next-80B-A3B-Instruct-GGUF",
+      "revision": "c07b9268d97d8ba09d0529980627f3bd70f5f90a",
+      "filename": "Qwen_Qwen3-Next-80B-A3B-Instruct-IQ3_M.gguf",
+      "bytes": 36643914208,
+      "sha256": "77eee87b804626f0e66992d6cc009097ad5b3beb0c6c904dc23111e375eaf2cd",
+      "upstream": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct",
+      "license": "apache-2.0",
+      "status": "Retired12Oct. Identity recovered9Nov from original install-log lines2/9/41; historical full-hash verification, not a newly downloaded artifact. Original smoke ran at28 layers with excessive shared-memory spill;10-layer follow-up was faster. Later coding bugs and hardware interruptions remain separate evidence.",
+      "thinking": "Publisher Instruct checkpoint is non-thinking-only; a generic reasoning effort field does not activate a trained thinking mode. Native262144 context is distinct from the configured32768 trial."
+    },
     "flint-iq3xxs": {
       "name": "Recursive Flint 40B-A2.5B UD-IQ3_XXS",
       "repo": "unsloth/flint-GGUF",
@@ -22,7 +34,7 @@
       "bytes": 22134528992,
       "sha256": "ac0e2c1189e055faa36eff361580e79c5bd6f8e76bffb4ce547f167d53e31a61",
       "upstream": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
-      "status": "selected-working-profile-editor-probes-complete-with-documented-defects",
+      "status": "9-Nov: retained reference weights; mapped64 private31/36 and public52/60, exact-profile coding incomplete. Production128K is a distinct profile and currently off pending admission. Historical editor probes retain documented defects; no fresh editor pass.",
       "thinking": "enable_thinking and preserve_thinking; no native xhigh"
     },
     "gemma4-26b-qat": {
@@ -125,7 +137,7 @@
       "filename": "Qwen3-Coder-Next-Q4_K_M.gguf",
       "bytes": 48528320544,
       "sha256": "9e6032d2f3b50a60f17ce8bf5a1d85c71af9b53b89c7978020ae7c660f29b090",
-      "status": "public-tests-reviewed-private-tool-round-failure-not-selected",
+      "status": "tested-and-retired: public mapped64 reviewed; private tool-round failure. No complete matched score; see standalone Coder-Next report.",
       "thinking": "Publisher non-thinking-only checkpoint; no native high/xhigh reasoning mode."
     },
     "k2-mova-36b-q4": {
@@ -136,7 +148,7 @@
       "bytes": 22368011616,
       "sha256": "513dd78590ac29135a7cea5a99865d57d65291b1f857a8904fb9b1878d4f4cbd",
       "upstream": "https://huggingface.co/IFM/K2-Horizon-MoVA-36B-A4B",
-      "status": "file-present-20261024-awaiting-new-integrity-and-load-check",
+      "status": "9-Nov: never loaded; prior Claude work parked the file on C: on3Nov. Restore to E: with full integrity and capacity checks before any load; no new C: install.",
       "thinking": "reasoning effort high recommended; K2 tool/reasoning parser (llama.cpp PR #29535)",
       "url": "https://huggingface.co/IFM/K2-Horizon-MoVA-36B-A4B-GGUF/resolve/00cce3151bdce384661cb33603853ccfe6209de9/K2-Horizon-MoVA-36B-A4B-Q4_K_M.gguf"
     },
@@ -173,7 +185,7 @@
       "sha256": "3907dc1658db1f78a9826bf8d5bcb8dc65db0d466388937af57f2294fae62ec1",
       "upstream": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf",
       "status": "tested-CPU-placement-slow-manually-stopped-retired20261021-unscored",
-      "thinking": "effort medium/high/xhigh; Q2_0 support merged 11 Oct (PR #29600)",
+      "thinking": "Archived PQ2 server template accepts low/medium/xhigh (default xhigh), not high; SHA256 c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041 rechecked 9 Nov. Only xhigh ran; Q2_0 is a separate artifact.",
       "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf/resolve/b072e1d3b35a0a630cece372c2127528e0994386/Ternary-Bonsai-2-27B-PQ2_0.gguf"
     },
     "lfm25-24b-qad-q4": {
@@ -196,7 +208,7 @@
       "sha256": "53107f530aa52eb00912263ab1ee29bd199261c87cd7b4ad4ca1318c1fe33ee3",
       "upstream": "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf",
       "status": "tested-full-GPU-router1200s-deadline-retired20261021-unscored",
-      "thinking": "effort medium/high/xhigh (default xhigh); needs Prism fork; fits fully in 10 GB VRAM"
+      "thinking": "Archived PTQ1 server template accepts low/medium/xhigh (default xhigh), not high; same template SHA256 c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041. Only xhigh ran. Prism achieved full GPU weight offload with CPU KV; router deadline remained."
     },
     "qwen36-iq4xs": {
       "name": "Qwen3.6-35B-A3B UD-IQ4_XS",
@@ -241,7 +253,7 @@
       "url": "https://huggingface.co/unsloth/flint-GGUF/resolve/20468edfc38ab43d6914cc88b08cbecb05d0fc62/flint-UD-Q3_K_XL.gguf",
       "name": "Recursive Flint 40B-A2.5B UD-Q3_K_XL",
       "upstream": "https://huggingface.co/RecursiveSI/flint",
-      "status": "greetings-qualified-router-and-ts-output-limits-20261027-history-and-controls-pending",
+      "status": "9-Nov: Q3XL retained; runC router caps1024/8192 reviewed38/40 and37/40; separate history8/8. New72K private/cap1024 audit active after qualifying greetings. TS/coding coverage incomplete; no promotion.",
       "thinking": "Native reasoning; no validated low/high effort switch. Preserve reasoning history."
     },
     "flint-nvfp4": {
@@ -286,7 +298,7 @@
       "bytes": 21983677344,
       "sha256": "c9c206812fbe4ac7b76a729e25928b63f2ae89d37f69da7a71c20aec763cd436",
       "upstream": "https://huggingface.co/Qwen/Qwen3.8-27B",
-      "status": "metadata-pinned-20261027-not-downloaded-conditional-precision-followup",
+      "status": "9-Nov correction: exact c9c20681 artifact was downloaded, full-hash verified and tested12-13Oct, then retired. The27Oct proposal is a new placement/runtime qualification, not a previously untested quant. Short effort probes passed; full file audit had no final answer.",
       "thinking": "Publisher xhigh/medium/low; verify exact GGUF template. Do not transfer retired Q6 results without matching artifact and full configuration."
     },
     "qwen38-27b-iq4xs": {
@@ -308,7 +320,7 @@
       "bytes": 12484339584,
       "sha256": "c941e12a231b40b8fb9f6ad7f6601878d72db39c2c62aefb185fbe5c7d0c2e29",
       "upstream": "https://huggingface.co/GrootTeam/Groot-19B-A3B-261023 (rev d089dadfe280289b2f3cd2ae9ef9796c2495529a, Apache-2.0)",
-      "status": "candidate-3-nov: expert-pruned Qwen3.6-35B-A3B (19B total, 3B active, 128 experts); fits with apps open; vendor claims only",
+      "status": "9-Nov: installed; two 3-Nov router attempts RAM-stopped, unscored. Apps-open fit is not established; fresh bounded admission required.",
       "thinking": "inherits the qwen35moe template (enable_thinking/preserve_thinking); verify the GGUF template before scoring"
     },
     "qwen35-0p8b-q8-draft": {
@@ -321,6 +333,48 @@
       "upstream": "https://huggingface.co/Qwen/Qwen3.5-0.8B",
       "status": "candidate-3-nov: draft model for quality-neutral speculative decoding; tokenizer reported byte-identical to Qwen3.6-35B-A3B (verify vocab at load)",
       "thinking": "draft only; not scored as a standalone model"
+    },
+    "qwen35-9b-q5": {
+      "name": "Qwen3.5-9B Q5_K_M (unsloth) - apps-open small-model arm",
+      "filename": "Qwen3.5-9B-Q5_K_M.gguf",
+      "remote_filename": "Qwen3.5-9B-Q5_K_M.gguf",
+      "bytes": 6577841376,
+      "sha256": "dc2a39aef291f91a9116ad214058da0d86eb648743a124bd8c333787c4b9c91c",
+      "status": "9-Nov: prior Claude copy staged on C:; not installed at the E: catalog target, no inference. Full identity verification and E: capacity required before relocation or download. Never download through the legacy c-staging junction.",
+      "repo": "unsloth/Qwen3.5-9B-GGUF",
+      "revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+      "upstream": "https://huggingface.co/Qwen/Qwen3.5-9B",
+      "license": "apache-2.0 (https://huggingface.co/Qwen/Qwen3.5-9B/blob/main/LICENSE)",
+      "architecture": "qwen35 (dense hybrid: 32 blocks, Gated DeltaNet linear attention with full attention every 4th block; hidden 4096, FFN 12288, 16 heads / 4 KV heads, head dim 256; native context 262144); supported by b11562 (LLM_ARCH_QWEN35, same arch as the Qwen3.5-0.8B draft)",
+      "thinking": "native boolean enable_thinking only: the embedded template (sha256 75bb500d...) opens <think> only when enable_thinking is true and emits an empty think block otherwise; preserve_thinking is not referenced (accepted and ignored); reasoning before the last user query is always dropped by the template"
+    },
+    "qwen35-9b-q4": {
+      "name": "Qwen3.5-9B Q4_K_M (unsloth) - apps-open fallback if Q5 cannot fit",
+      "filename": "Qwen3.5-9B-Q4_K_M.gguf",
+      "remote_filename": "Qwen3.5-9B-Q4_K_M.gguf",
+      "bytes": 5680522464,
+      "sha256": "03b74727a860a56338e042c4420bb3f04b2fec5734175f4cb9fa853daf52b7e8",
+      "status": "9-Nov: prior Claude copy staged on C:; not installed at the E: catalog target, no inference. Full identity verification and E: capacity required before relocation or download. Never download through the legacy c-staging junction.",
+      "repo": "unsloth/Qwen3.5-9B-GGUF",
+      "revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+      "upstream": "https://huggingface.co/Qwen/Qwen3.5-9B",
+      "license": "apache-2.0 (https://huggingface.co/Qwen/Qwen3.5-9B/blob/main/LICENSE)",
+      "architecture": "qwen35 (dense hybrid: 32 blocks, Gated DeltaNet linear attention with full attention every 4th block; hidden 4096, FFN 12288, 16 heads / 4 KV heads, head dim 256; native context 262144); supported by b11562 (LLM_ARCH_QWEN35, same arch as the Qwen3.5-0.8B draft)",
+      "thinking": "native boolean enable_thinking only: the embedded template (sha256 75bb500d...) opens <think> only when enable_thinking is true and emits an empty think block otherwise; preserve_thinking is not referenced (accepted and ignored); reasoning before the last user query is always dropped by the template"
+    },
+    "dory-4b-q5": {
+      "name": "NVIDIA Nemotron-Labs Dory1.0 4B Q5_K_M (nvidia) - apps-open small-model arm",
+      "repo": "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-GGUF",
+      "revision": "df53755cb8741843af8e019e088819fbef17e29b",
+      "filename": "NVIDIA-Nemotron-Labs-Dory1.0-4B-Q5_K_M.gguf",
+      "remote_filename": "NVIDIA-Nemotron-Labs-Dory1.0-4B-Q5_K_M.gguf",
+      "bytes": 3673288864,
+      "sha256": "96080be49ffd67b916018b7bdef8c484762576fb52780e10ab98ac4978a660e0",
+      "upstream": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-GGUF",
+      "license": "other: OpenMDW-1.1 (https://openmdw.ai/license/1-1/)",
+      "architecture": "dory (looped normalized-GPT: 72 GGUF blocks = 36 attention + 36 FFN; Input 8 / Recurrent 20 / Output 8 attention layers; SWA 1024 with full attention every 4th; GGUF default num_loops 4, per_loop KV; native context 262144). NOT in b11562/b11669/b11838 or stock b12069; needs the publisher-pinned fork brianchmielNV/llama.cpp 98a74c97ea09ac72f6ceda1559808fc0a2f447ce (upstream PR ggml-org/llama.cpp#30306, open on 3 Nov)",
+      "status": "9-Nov: prior Claude copy staged on C:; not installed at the E: catalog target, no inference. Full identity verification and E: capacity required before relocation or download. Never download through the legacy c-staging junction.",
+      "thinking": "template (sha256 454696b7...) kwargs enable_thinking (default true), medium_effort (prompt suffix '{reasoning effort: efficient}', default false), truncate_history_thinking (default true); runtime GGUF overrides dory.num_loops 1-4 and dory.recurrent_kv_cache_mode per_loop|last_loop (Dory-enabled runtime only); README's force_nonempty_content and preserve_thinking are not referenced by the embedded template"
     }
   }
 }

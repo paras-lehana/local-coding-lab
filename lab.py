@@ -22,6 +22,10 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parent
 GIB = 1024 ** 3
+# Lab default stop floors (skill evaluation.md). A profile may raise them, never lower them:
+# 0.5 GiB floors let available RAM reach 0.42 GiB under the owner's apps on 3 Nov.
+LAB_MIN_STOP_RAM_FREE_GIB = 2.5
+LAB_MIN_STOP_COMMIT_GIB = 1.0
 
 
 def read_json(path: Path) -> Any:
@@ -160,10 +164,16 @@ def install_runtime(data: Path, apply: bool) -> None:
 
 
 def model_spec(key: str) -> dict:
-    """Resolve a model to an immutable publisher revision and file hash."""
+    """Resolve a model to an immutable publisher revision and file hash.
+
+    `filename` is the local path under the models directory; `remote_filename`
+    (optional) is the publisher's relative file path when the local layout
+    differs. Publisher subdirectories are valid and remain part of the URL.
+    """
     model = dict(read_json(ROOT / "catalog/models.json")["models"][key])
+    remote = model.get("remote_filename", model["filename"])
     model["url"] = (f"https://huggingface.co/{model['repo']}/resolve/"
-                    f"{model['revision']}/{model['filename']}")
+                    f"{model['revision']}/{remote}")
     return model
 
 
@@ -195,6 +205,15 @@ def memory_snapshot() -> dict:
     except (OSError, subprocess.SubprocessError, ValueError, IndexError):
         result["gpu_error"] = "Cannot read GPU 0 through nvidia-smi"
     return result
+
+
+def check_stop_floors(profile: dict) -> None:
+    """Refuse a profile whose stop floors are below the lab defaults."""
+    if profile.get("stop_min_ram_free_gib", 0) < LAB_MIN_STOP_RAM_FREE_GIB:
+        raise ValueError(f"stop_min_ram_free_gib must be at least {LAB_MIN_STOP_RAM_FREE_GIB}")
+    # Profiles from before the WDDM commit finding have no commit floor; a set one cannot be lower.
+    if profile.get("stop_min_commit_available_gib", LAB_MIN_STOP_COMMIT_GIB) < LAB_MIN_STOP_COMMIT_GIB:
+        raise ValueError(f"stop_min_commit_available_gib must be at least {LAB_MIN_STOP_COMMIT_GIB}")
 
 
 def check_memory(snapshot: dict, profile: dict, loading: bool) -> None:
@@ -310,25 +329,77 @@ def build_command(exe: Path, model: Path, profile: dict, port: int) -> list[str]
             "--alias", profile["alias"], "--parallel", "1", *profile["args"]]
 
 
+def is_hardware_stop_event(event: dict) -> bool:
+    """Match event providers as well as IDs; a TPM18 is not a WHEA18."""
+    provider, event_id, level = (
+        event.get("provider"), event.get("id"), event.get("level"))
+    if (not isinstance(provider, str) or type(event_id) is not int
+            or type(level) is not int):
+        raise ValueError("Malformed Windows hardware-event record")
+    if provider == "Microsoft-Windows-WHEA-Logger":
+        return True
+    return (provider, event_id) in {
+        ("Microsoft-Windows-Kernel-Power", 41),
+        ("EventLog", 6008),
+        ("Microsoft-Windows-WER-SystemErrorReporting", 1001),
+        ("Microsoft-Windows-WER-SystemErrorReporting", 1019),
+        ("Display", 4101),
+    } or (provider.casefold() == "nvlddmkm" and level in (1, 2, 3))
+
+
 def check_hardware_events(since: str) -> None:
-    """Stop on newly logged WHEA events, without diagnosing their cause."""
+    """Refuse new WHEA, GPU recovery, bugcheck or unexpected-restart evidence.
+
+    This cannot prevent a kernel crash. It prevents an empty WHEA query from
+    being mistaken for a clean postflight when Windows recorded a GPU TDR.
+    """
+    when = datetime.fromisoformat(since.replace("Z", "+00:00"))
+    utc = when.astimezone(timezone.utc).isoformat(timespec="milliseconds")
+    utc = utc.replace("+00:00", "Z")
+    providers = (
+        "Microsoft-Windows-WHEA-Logger", "Microsoft-Windows-Kernel-Power",
+        "EventLog", "Microsoft-Windows-WER-SystemErrorReporting",
+        "Display", "nvlddmkm",
+    )
+    selectors = " or ".join(f"Provider[@Name='{name}']"
+                            for name in providers)
+    query = f"*[System[TimeCreated[@SystemTime >= '{utc}'] and ({selectors})]]"
+    # Both interpolated values are generated from validated dates/constants.
+    # XPath avoids treating an unregistered optional provider as query failure.
     script = (
         "$ErrorActionPreference='Stop'; "
-        f"$since=[DateTime]::Parse('{since}').ToLocalTime(); "
-        "try { $events=@(Get-WinEvent -FilterHashtable @{LogName='System'; "
-        "ProviderName='Microsoft-Windows-WHEA-Logger'; StartTime=$since} "
+        f'$query="{query}"; '
+        "try { $events=@(Get-WinEvent -LogName System -FilterXPath $query "
         "-ErrorAction Stop) } catch { "
         "if ($_.FullyQualifiedErrorId -like 'NoMatchingEventsFound*') { exit 0 }; exit 3 }; "
-        "if ($events.Count -gt 0) { exit 2 }; exit 0"
+        "@($events | ForEach-Object { [pscustomobject]@{ "
+        "time=$_.TimeCreated.ToUniversalTime().ToString('o'); "
+        "provider=$_.ProviderName; id=[int]$_.Id; level=[int]$_.Level; "
+        "record_id=$_.RecordId } }) | ConvertTo-Json -Compress; exit 0"
     )
     encoded = base64.b64encode(script.encode("utf-16-le")).decode("ascii")
     result = subprocess.run(["powershell.exe", "-NoProfile", "-NonInteractive",
                              "-EncodedCommand", encoded], capture_output=True,
                             timeout=10, creationflags=subprocess.CREATE_NO_WINDOW)
-    if result.returncode == 2:
-        raise ValueError("New Windows WHEA hardware event; preserve logs before another load")
     if result.returncode:
         raise ValueError("Could not check Windows hardware events")
+    try:
+        content = result.stdout.decode("utf-8-sig").strip()
+        records = json.loads(content) if content else []
+        records = [records] if isinstance(records, dict) else records
+        if not isinstance(records, list):
+            raise ValueError("Event response is not a list")
+        if any(not isinstance(row, dict) for row in records):
+            raise ValueError("Event response contains a non-object")
+        stopping = [row for row in records if is_hardware_stop_event(row)]
+    except (ValueError, UnicodeError) as error:
+        raise ValueError("Could not validate Windows hardware events") from error
+    if stopping:
+        details = "; ".join(
+            f"{row['provider']}:{row['id']} at {row.get('time', 'unknown')}"
+            for row in stopping[:8])
+        raise ValueError("New Windows hardware/display/restart event; "
+                         f"preserve logs before another load: {details}")
 
 
 def check_single_server() -> None:
@@ -407,6 +478,7 @@ def runtime_environment(runtime: Path, profile: dict) -> tuple[dict, dict | None
 def run_server(args: argparse.Namespace, data: Path) -> None:
     """Own one foreground session, monitoring resources until it stops."""
     profile = read_json(ROOT / "profiles" / (args.profile + ".json"))
+    check_stop_floors(profile)
     idle_seconds = getattr(args, "idle_seconds", None)
     if idle_seconds is not None:
         if not 1 <= idle_seconds <= 86400:

@@ -2,6 +2,130 @@
 
 Initial repository contents and purpose, followed by subsequent change inventories.
 
+## 9 November research continuation
+
+| Entry point | What it contains |
+|---|---|
+| [articles.md](../articles.md) | Every supplied article/report, its claims, corrections, local tests and next decision |
+| [docs/models.md](models.md) | Every candidate's tested quants, strengths, bugs, missing results and standalone report |
+| [Merged campaign](tasks/2026-11-09-merged-research/2026-11-09-merged-models-articles-and-experiments-v0.11.0.md) | Claude reconciliation, new configurations, measured outcomes, validation and pending work |
+| [Historical configuration matrix](tasks/2026-11-03-master-summary/2026-11-03-all-models-and-combinations-v1.0.md) | Row-level runtime, quant, context, placement, sampler and outcome through3November; newer results are in the merged campaign |
+| [Memory guide](memory-and-context.md) | Capacity versus occupied context and physical residency; CPU/GPU KV and measured allocation controls |
+| [Fusion/speed review](../research/reviews/2026-11-09-fusion-and-speed.md) | Recovered fusion algorithm critique, microbatch/cache measurements and source-based limitations |
+| [Fixed-prefix fixture](../benchmarks/fixtures/prefill-native-v1/README.md) | Exact public native-completion requests for cold/repeated/middle-edit controls |
+| [Prefill receipt](../reports/2026-11-09-flint-prefill-controls.json) | Fifteen completed performance controls, hashes, allocation, cache reuse and memory telemetry; no correctness score |
+| [Private-audit receipt](../reports/2026-11-09-flint-q3xl-private72k.json) | Reviewed capped Flint25/36 result and isolated behavior breakdown; private text excluded |
+| [Profiles](../profiles) | Exact measured or explicitly unrun controls; check each profile's validation status and fresh capacity gates |
+
+<!-- 2026-11-09-change-inventory:start -->
+
+### Public file changes in this campaign
+
+This includes reviewed inherited Claude work and the continuation. It is a working-tree inventory, not a claim that an unrun profile passed inference. Private collectors and raw outputs remain ignored.
+
+| File | Change / purpose |
+|---|---|
+| `AGENTS.md` | Route resumed work to current evidence and article/model records; preserve installation and ownership boundaries. |
+| `CHANGELOG.md` | Record the merged campaign, new controls, observed limits and validation. |
+| `README.md` | Link the article ledger, complete model index and current campaign findings. |
+| `VERSION` | Advance the documented campaign version to 0.11.0. |
+| `articles.md` | Table of fourteen supplied sources: claims, corrections, local evidence and next decisions. |
+| `benchmarks/fixtures/prefill-native-v1/README.md` | Frozen public native-completion fixture, provenance and exact cold/repeat/middle-edit requests; performance-only, no quality score. |
+| `benchmarks/fixtures/prefill-native-v1/requests.json` | Frozen public native-completion fixture, provenance and exact cold/repeat/middle-edit requests; performance-only, no quality score. |
+| `catalog/models.json` | Preserve exact new artifact pins and separate publisher filenames from local staging filenames; correct inspected reasoning metadata. |
+| `catalog/runtime.json` | Catalog the isolated b12069 runtime with exact files and hashes. |
+| `docs/file-inventory.md` | Navigation and this complete per-file campaign inventory. |
+| `docs/memory-and-context.md` | Separate KV allocation, occupied context, residency, commit and device telemetry; add measured rollback and disk observations. |
+| `docs/methodology.md` | Clarify first-event/content/tool timing, measurement limitations and distinct diagnostic cohorts. |
+| `docs/model-comparison.md` | Reconcile newer coverage and link current measured findings without combining incompatible suites. |
+| `docs/models.md` | Model-wise result, configuration, strengths, bugs, unrun reasons and reasoning-control tables. |
+| `docs/prompts.md` | Owner request, chronological decisions, validation and canonical closeout. |
+| `docs/tasks.md` | Timestamped recovery state, live identities, completed experiments and remaining work. |
+| `docs/tasks/2026-10-18-strata/2026-10-18-strata-on-10gb-v0.6.0.md` | Standalone report/addendum: Strata on an RTX 3080 10 GB. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-10-20-bonsai2/2026-10-20-ternary-bonsai2-27b-pq2-ptq1-v0.10.0.md` | Standalone report/addendum: Ternary Bonsai 2 27B (PQ2_0 and PTQ1_0) on an RTX 3080 10 GB. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-10-23-flint/2026-10-23-recursive-flint-v0.8.0.md` | Standalone report/addendum: Recursive Flint on RTX 3080 10 GB. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-10-24-qwen-coverage/2026-10-24-qwen36-v0.9.0.md` | Standalone report/addendum: Qwen3.6 precision, memory and coding coverage. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-10-26-flash-next/2026-10-26-flash-next-v0.10.0.md` | Standalone report/addendum: Qwen3.8-Flash-Next: refreshed quant and engine investigation. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-10-26-qwen38-dense/2026-10-26-qwen38-dense-v0.10.0.md` | Standalone report/addendum: Qwen3.8-27B dense: precision and engine learning record. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-11-03-deep-research/2026-11-03-deep-research-v1.0.md` | Standalone report/addendum: Deep research: new models, Strata, Flash-Next, llama.cpp and token-level fusion (3 Nov 2026). Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-11-03-groot/2026-11-03-groot-19b-a3b-apps-open-v1.0.md` | Standalone report/addendum: Groot-19B-A3B-261023 Q4_K_M with apps open on an RTX 3080 10 GB. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-11-03-groot/owner-request.txt` | Relevant owner request and continuing constraints, with credentials and private source text excluded. |
+| `docs/tasks/2026-11-03-master-summary/2026-11-03-all-models-and-combinations-v1.0.md` | Standalone report/addendum: All models, combinations and tuning on an RTX 3080 10 GB (12 October to 3 November 2026). Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-11-09-dory4b/2026-11-09-dory4b-v0.11.0.md` | Standalone report/addendum: Dory1.0-4B: prepared looped-model comparison. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-11-09-gemma4-31b/2026-11-09-gemma4-31b-v0.11.0.md` | Standalone report/addendum: Gemma 4 31B dense: historical model record. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-11-09-glm47-flash/2026-11-09-glm47-flash-v0.11.0.md` | Standalone report/addendum: GLM-4.7-Flash: historical model record. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-11-09-kimi-linear-48b/2026-11-09-kimi-linear-48b-v0.11.0.md` | Standalone report/addendum: Kimi-Linear-48B-A3B: historical model record. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-11-09-merged-research/2026-11-09-merged-models-articles-and-experiments-v0.11.0.md` | Standalone report/addendum: Merged model research, article ledger and resumed experiments. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-11-09-merged-research/owner-request.txt` | Relevant owner request and continuing constraints, with credentials and private source text excluded. |
+| `docs/tasks/2026-11-09-nemotron35-bolt/2026-11-09-nemotron35-bolt-v0.11.0.md` | Standalone report/addendum: Nemotron 3.5 Bolt: historical model record. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-11-09-qwen3-coder-next80/2026-11-09-qwen3-coder-next80-v0.11.0.md` | Standalone report/addendum: Qwen3-Coder-Next 80B: historical model record. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-11-09-qwen3-coder30/2026-11-09-qwen3-coder30-v0.11.0.md` | Standalone report/addendum: Qwen3-Coder-30B-A3B: historical model record. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-11-09-qwen3-next80-instruct/2026-11-09-qwen3-next80-instruct-v0.11.0.md` | Standalone report/addendum: Qwen3-Next-80B-A3B-Instruct: historical model record. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/2026-11-09-qwen35-9b/2026-11-09-qwen35-9b-v0.11.0.md` | Standalone report/addendum: Qwen3.5-9B: prepared small-model comparison. Historical results remain distinct from new or unrun controls. |
+| `docs/tasks/README.md` | Index individual candidate and merged campaign reports. |
+| `experiments/llama-mmap-prefetch/README.md` | Document the isolated b12069 build and completed tiny-model CPU/GPU controls. |
+| `experiments/strata/check_guard.py` | Exercise identity-latch lifecycle with harmless processes. |
+| `experiments/strata/guard.py` | Require the latched native process identity when requested; fail if it disappears or changes. |
+| `experiments/strata/windows-token-defaults.md` | Explain the reproduced Windows token-default ACL failure, isolated correction, privacy controls and measurement limits. |
+| `experiments/strata/windows-token-defaults.patch` | Narrow generic-access correction against the exact pinned upstream frontend; native engine unchanged. |
+| `lab.py` | Enforce minimum stop floors, preserve upstream/local filenames and detect provider-qualified GPU, WHEA and unexpected-restart events before further loading. |
+| `profiles/bonsai2-pq2-gpu52.json` | bonsai2-27b-pq2 configuration; status: proposed-not-measured. Exact flags, gates and evidence retained in this file. |
+| `profiles/bonsai2-ptq1-gpu99.json` | bonsai2-27b-ptq1 configuration; status: proposed-not-measured. Exact flags, gates and evidence retained in this file. |
+| `profiles/dory-4b-q5-gpu-mmap64.json` | dory-4b-q5 configuration; status: blocked-runtime: needs a Dory-enabled llama.cpp build (fork rev 98a74c97 / PR 30306); stock b12069 lacks the architecture. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-prefill-b12069-u16-resident1.json` | flint-q3xl configuration; status: measured-native-prefill-diagnostic-unscored. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-prefill-short2k-fullswa.json` | flint-q3xl configuration; status: measured-native-prefill-diagnostic-unscored. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-prefill-short2k-windowed.json` | flint-q3xl configuration; status: measured-native-prefill-diagnostic-unscored. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-prefill-u128-cache1536-resident3.json` | flint-q3xl configuration; status: measured-native-prefill-diagnostic-unscored. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-prefill-u128-cache1536-resident6.json` | flint-q3xl configuration; status: measured-native-prefill-diagnostic-unscored. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-prefill-u16-cache1536.json` | flint-q3xl configuration; status: measured-native-prefill-diagnostic-unscored. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-prefill-u16-resident1.json` | flint-q3xl configuration; status: measured-native-prefill-diagnostic-unscored. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-prefill-u16-resident3.json` | flint-q3xl configuration; status: measured-native-prefill-diagnostic-unscored. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-prefill-u32-resident1.json` | flint-q3xl configuration; status: measured-native-prefill-diagnostic-unscored. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-prefill-u4-resident1.json` | flint-q3xl configuration; status: measured-native-prefill-diagnostic-unscored. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-prefill-u64-cache1536-resident3.json` | flint-q3xl configuration; status: measured-native-prefill-diagnostic-unscored. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-prefill-u64-resident1.json` | flint-q3xl configuration; status: measured-native-prefill-diagnostic-unscored. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-private72k-budget1024.json` | flint-q3xl configuration; status: extended-private-completed-25-of-36-not-promoted. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-private72k-native-u128.json` | flint-q3xl configuration; status: measured-extended-private31-of36-not-promoted. Exact flags, gates and evidence retained in this file. |
+| `profiles/flint-q3xl-quality72k-u128-budget1024.json` | flint-q3xl configuration; status: prepared-capped-quality-followup-not-run. Exact flags, gates and evidence retained in this file. |
+| `profiles/groot-19b-q4-moe36-cache512-resident4-mmap64.json` | groot-19b-a3b-q4 configuration; status: proposed-not-measured. Exact flags, gates and evidence retained in this file. |
+| `profiles/groot-19b-q4-moe36-mmap64.json` | groot-19b-a3b-q4 configuration; status: proposed-not-measured. Exact flags, gates and evidence retained in this file. |
+| `profiles/groot-q4-resident4-guarded64.json` | groot-19b-a3b-q4 configuration; status: prepared-9nov-not-run. Exact flags, gates and evidence retained in this file. |
+| `profiles/k2-mova-q4-fit48k.json` | k2-mova-36b-q4 configuration; status: proposed-not-measured. Exact flags, gates and evidence retained in this file. |
+| `profiles/lfm25-qad-q4-cpu28.json` | lfm25-24b-qad-q4 configuration; status: proposed-not-measured. Exact flags, gates and evidence retained in this file. |
+| `profiles/nemotron-bolt-fit64k.json` | nemotron-bolt-74b-24gb configuration; status: proposed-not-measured. Exact flags, gates and evidence retained in this file. |
+| `profiles/qwen35-9b-q4-gpu-cpukv64.json` | qwen35-9b-q4 configuration; status: proposed-full-gpu-weights-cpu-kv-not-run. Exact flags, gates and evidence retained in this file. |
+| `profiles/qwen35-9b-q4-gpu-mmap64.json` | qwen35-9b-q4 configuration; status: proposed-not-measured. Exact flags, gates and evidence retained in this file. |
+| `profiles/qwen35-9b-q5-gpu-mmap64.json` | qwen35-9b-q5 configuration; status: proposed-not-measured. Exact flags, gates and evidence retained in this file. |
+| `profiles/qwen36-iq3s-moe34-mmap64.json` | qwen36-iq3s configuration; status: proposed-not-measured. Exact flags, gates and evidence retained in this file. |
+| `profiles/qwen36-iq4xs-core0-mmap64.json` | qwen36-iq4xs configuration; status: proposed-not-measured. Exact flags, gates and evidence retained in this file. |
+| `profiles/qwen36-iq4xs-moe34-mmap64.json` | qwen36-iq4xs configuration; status: proposed-not-measured. Exact flags, gates and evidence retained in this file. |
+| `profiles/qwen36-q4-core0-mmap64.json` | qwen36-q4 configuration; status: proposed-baseline-not-measured. Exact flags, gates and evidence retained in this file. |
+| `reports/2026-11-03-b12069-noprefetch-build.json` | Sanitized evidence receipt for 2026 11 03 b12069 noprefetch build; exact measurements and scope retained. |
+| `reports/2026-11-03-flash-next-q2-pack.json` | Sanitized evidence receipt for 2026 11 03 flash next q2 pack; exact measurements and scope retained. |
+| `reports/2026-11-03-reprefill-audit.json` | Sanitized evidence receipt for 2026 11 03 reprefill audit; exact measurements and scope retained. |
+| `reports/2026-11-09-b12069-prefetch-controls.json` | Sanitized evidence receipt for 2026 11 09 b12069 prefetch controls; exact measurements and scope retained. |
+| `reports/2026-11-09-flash-paging-observation.json` | Sanitized evidence receipt for 2026 11 09 flash paging observation; exact measurements and scope retained. |
+| `reports/2026-11-09-flash-q2-gpu-restart.md` | Standalone incident record: exact active model/parameters, dump and telemetry chronology, checker correction, unscored observations and unresolved cause. |
+| `reports/2026-11-09-flash-q2-static-qualification.json` | Sanitized evidence receipt for 2026 11 09 flash q2 static qualification; exact measurements and scope retained. |
+| `reports/2026-11-09-flash-q2-system-interruption.json` | Sanitized evidence receipt for 2026 11 09 flash q2 system interruption; exact measurements and scope retained. |
+| `reports/2026-11-09-flint-native-private72k.json` | Sanitized evidence receipt for 2026 11 09 flint native private72k; exact measurements and scope retained. |
+| `reports/2026-11-09-flint-native-rollback-observation.json` | Sanitized evidence receipt for 2026 11 09 flint native rollback observation; exact measurements and scope retained. |
+| `reports/2026-11-09-flint-paging-observation.json` | Sanitized evidence receipt for 2026 11 09 flint paging observation; exact measurements and scope retained. |
+| `reports/2026-11-09-flint-prefill-controls.json` | Sanitized evidence receipt for 2026 11 09 flint prefill controls; exact measurements and scope retained. |
+| `reports/2026-11-09-flint-q3xl-private72k.json` | Sanitized evidence receipt for 2026 11 09 flint q3xl private72k; exact measurements and scope retained. |
+| `reports/2026-11-09-installer-archive-retirement.json` | Sanitized evidence receipt for 2026 11 09 installer archive retirement; exact measurements and scope retained. |
+| `research/reviews/2026-11-09-fusion-and-speed.md` | Critique token-fusion math, review article claims and connect performance measurements to pinned source mechanisms. |
+| `tests/test_hardware_events.py` | Regression tests for real bugcheck event shapes without WHEA, normal-event exclusions, malformed inventories and query failure. |
+| `tests/test_idle.py` | Use a compliant RAM floor in the existing idle lifecycle test. |
+| `tests/test_lab.py` | Verify stop-floor refusal and upstream/local filename URL construction, including publisher subdirectories. |
+| `tests/test_strata_guard.py` | Cover missing, exited and replacement native identities. |
+
+<!-- 2026-11-09-change-inventory:end -->
+
+The earlier tables below are historical inventories, not current candidate
+status. Raw private instructions, answers, article pastes, binaries, models
+and local controllers remain outside the public file list.
+
 | File | Purpose |
 |---|---|
 | `.gitattributes` | Consistent text line endings |

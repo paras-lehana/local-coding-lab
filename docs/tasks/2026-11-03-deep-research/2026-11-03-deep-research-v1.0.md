@@ -1,5 +1,23 @@
 # Deep research: new models, Strata, Flash-Next, llama.cpp and token-level fusion (3 Nov 2026)
 
+9 November addendum: the full historical browser capture of the fusion article
+has now been recovered and read. Its actual recipe is Qwen2.5 Coder/Math/Instruct
+7B, not the related tiny-model Substack experiment. The claim that log-softmax
+fixes mismatched scales is false for its implemented weighted product; see
+[the derivation and revised experiment plan](../../../research/reviews/2026-11-09-fusion-and-speed.md).
+This resolves the source-access uncertainty in the older fusion discussion
+below. It does not invalidate byte-identity checks on other Qwen tokenizers or
+establish any local ensemble improvement. The six b12069 tiny-model controls
+have also passed; current live status is in the
+[merged record](../2026-11-09-merged-research/2026-11-09-merged-models-articles-and-experiments-v0.11.0.md).
+
+The older0.2.10 release scan is historical. A9November refresh found
+Strata0.2.12/engine0.1.58; it is not staged or benchmarked. Relevant changes
+and comparison caveats are summarized in the
+[current speed review](../../../research/reviews/2026-11-09-fusion-and-speed.md#current-upstream-follow-up-9-november).
+Do not treat vendor results, automatically changed draft settings or a
+Linux-specific memory fix as a local Windows performance measurement.
+
 Owner request (3 Nov): "deep-research using multiple agents ... strata, qwen flash next, flint and various combinations ... review, evaluate with our metrics". Five research agents (one per topic) with an adversarial fact-checker each, then a synthesis (workflow wf_377db22a-23f). Vendor claims are labelled; nothing here is a local measurement.
 
 ## Synthesis

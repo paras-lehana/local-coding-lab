@@ -1,0 +1,18 @@
+diff --git a/strata_control/private_files.py b/strata_control/private_files.py
+index 318fee9a..0a7d6388 100644
+--- a/strata_control/private_files.py
++++ b/strata_control/private_files.py
+@@ -372,8 +372,12 @@ def adopt_user_defaults() -> bool:
+             ok_owner = bool(_advapi.SetTokenInformation(token, _TOKEN_OWNER, ctypes.byref(_Owner(psid)),
+                                                         ctypes.sizeof(_Owner)))
+             descriptor = ctypes.c_void_p()
++            # A token default applies to processes and other kernel objects too.
++            # File-all (FA) omits PROCESS_QUERY_INFORMATION, breaking an owned
++            # child's monitoring. Generic-all maps to each new object's rights;
++            # the user/SYSTEM/administrators trustee set stays unchanged.
+             if not _advapi.ConvertStringSecurityDescriptorToSecurityDescriptorW(
+-                    f"D:(A;;FA;;;{sid})(A;;FA;;;SY)(A;;FA;;;BA)", _SDDL_REVISION_1, ctypes.byref(descriptor), None):
++                    f"D:(A;;GA;;;{sid})(A;;GA;;;SY)(A;;GA;;;BA)", _SDDL_REVISION_1, ctypes.byref(descriptor), None):
+                 return False
+             present, defaulted, dacl = wintypes.BOOL(), wintypes.BOOL(), ctypes.c_void_p()
+             if not _advapi.GetSecurityDescriptorDacl(descriptor, ctypes.byref(present), ctypes.byref(dacl),

@@ -1,0 +1,149 @@
+{
+  "date": "2026-11-09",
+  "cohort": "runtime-compatibility",
+  "runtime": "b12069-noprefetch-v1",
+  "started_utc_host": "2026-11-08T19:50:34.192661+00:00",
+  "model_sha256": "270cba1bd5109f42d03350f60406024560464db173c0e387d91f0426d3bd256d",
+  "runs": [
+    {
+      "name": "stock-ngl-0",
+      "returncode": 0,
+      "seconds": 0.5957583000017621,
+      "prefetch_disabled_logged": false,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406",
+      "preflight": {
+        "time": 1794167435.2843525,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 9.298152923583984,
+        "commit_limit_gib": 96.16535186767578,
+        "commit_available_gib": 21.454448699951172,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6505.0,
+        "gpu_c": 39.19,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      }
+    },
+    {
+      "name": "modified-default-ngl-0",
+      "returncode": 0,
+      "seconds": 0.4086725999986811,
+      "prefetch_disabled_logged": false,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406",
+      "preflight": {
+        "time": 1794167436.9690464,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 9.224815368652344,
+        "commit_limit_gib": 96.16535186767578,
+        "commit_available_gib": 21.403789520263672,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6505.0,
+        "gpu_c": 41.09,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      }
+    },
+    {
+      "name": "modified-opt-in-ngl-0",
+      "returncode": 0,
+      "seconds": 0.37227989999882993,
+      "prefetch_disabled_logged": true,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406",
+      "preflight": {
+        "time": 1794167438.306726,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 9.254169464111328,
+        "commit_limit_gib": 96.16535186767578,
+        "commit_available_gib": 21.44176483154297,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6533.0,
+        "gpu_c": 41.41,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      }
+    },
+    {
+      "name": "stock-ngl-all",
+      "returncode": 0,
+      "seconds": 0.8312057999974058,
+      "prefetch_disabled_logged": false,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406",
+      "preflight": {
+        "time": 1794167439.8599484,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 9.10638427734375,
+        "commit_limit_gib": 96.16535186767578,
+        "commit_available_gib": 21.246849060058594,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6478.0,
+        "gpu_c": 41.62,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      }
+    },
+    {
+      "name": "modified-default-ngl-all",
+      "returncode": 0,
+      "seconds": 0.7381083999971452,
+      "prefetch_disabled_logged": false,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406",
+      "preflight": {
+        "time": 1794167441.927215,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 8.958702087402344,
+        "commit_limit_gib": 96.16535186767578,
+        "commit_available_gib": 20.954429626464844,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6342.0,
+        "gpu_c": 41.91,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      }
+    },
+    {
+      "name": "modified-opt-in-ngl-all",
+      "returncode": 0,
+      "seconds": 0.7309381000013673,
+      "prefetch_disabled_logged": true,
+      "stdout_sha256": "18d7c4ff0b72730fcfc7386b725f69eaff75d219ed5a615329db358133b4f406",
+      "preflight": {
+        "time": 1794167443.855169,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 8.786338806152344,
+        "commit_limit_gib": 96.16535186767578,
+        "commit_available_gib": 20.76690673828125,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6308.0,
+        "gpu_c": 42.16,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      }
+    }
+  ],
+  "passed": true,
+  "limitations": "Tiny greedy output control; not full numerical equivalence, coding quality or speed comparison.",
+  "identical_outputs_ngl_0": true,
+  "identical_outputs_ngl_all": true,
+  "new_hardware_event": false,
+  "postflight": {
+    "time": 1794167445.355798,
+    "platform": "win32",
+    "ram_total_gib": 63.909725189208984,
+    "ram_free_gib": 8.750743865966797,
+    "commit_limit_gib": 96.16535186767578,
+    "commit_available_gib": 20.676132202148438,
+    "vram_total_mib": 10240.0,
+    "vram_free_mib": 6290.0,
+    "gpu_c": 42.28,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "621.01"
+  },
+  "binary_hashes_verified_count": 56,
+  "llama_sha256": "de7b17fcfe0528e7d830b53c7c02a77f3fc1f30cd6fe7330834c9b5c655cfc05"
+}

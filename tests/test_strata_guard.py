@@ -2,7 +2,9 @@
 import importlib.util
 from pathlib import Path
 import sys
+import tempfile
 import unittest
+from unittest.mock import patch
 
 
 SOURCE = Path(__file__).resolve().parents[1] / "experiments/strata/guard.py"
@@ -18,6 +20,26 @@ class NativeIdentityTests(unittest.TestCase):
         """Use portable absolute paths for Windows and Linux CI."""
         self.exe = str(Path(sys.executable).resolve())
         self.engine = {"pid": 41, "created": 100.0, "exe": self.exe}
+
+    def test_low_floors_refuse_before_process_discovery_or_launch(self) -> None:
+        """Legacy unsafe Strata queue policies cannot bypass lab admission."""
+        for policy in (
+            {"stop_min_ram_free_gib": 0.5, "stop_min_commit_available_gib": 1},
+            {"stop_min_ram_free_gib": 2.5, "stop_min_commit_available_gib": 0.5},
+        ):
+            with self.subTest(policy=policy), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                config = root / "config.json"
+                guard.save(config, {"command": [self.exe], "guard": policy})
+                with patch.object(guard.lab, "check_single_server") as discovery, \
+                        patch.object(guard.subprocess, "Popen") as launch:
+                    self.assertEqual(guard.run(config, root / "run"), 1)
+                    discovery.assert_not_called()
+                    launch.assert_not_called()
+                result = guard.lab.read_json(root / "run/result.json")
+                self.assertFalse(result["started"])
+                self.assertIn("must be at least", result["reason"])
+                self.assertFalse((root / "run/process.json").exists())
 
     def test_delayed_start_then_stable(self) -> None:
         """Frontend startup can precede the first unchanged engine."""

@@ -171,6 +171,35 @@ class LabTests(unittest.TestCase):
             self.assertIn(profile["model"], models)
             self.assertGreater(profile["load_min_ram_free_gib"], profile["stop_min_ram_free_gib"])
             self.assertGreater(profile["load_min_vram_free_mib"], profile["stop_min_vram_free_mib"])
+            lab.check_stop_floors(profile)
+
+    def test_stop_floors_cannot_be_lowered(self) -> None:
+        """A profile below the lab default RAM or commit stop floor is refused."""
+        with self.assertRaises(ValueError):
+            lab.check_stop_floors({"stop_min_ram_free_gib": 0.5, "stop_min_commit_available_gib": 1.0})
+        with self.assertRaises(ValueError):
+            lab.check_stop_floors({"stop_min_ram_free_gib": 2.5, "stop_min_commit_available_gib": 0.5})
+        lab.check_stop_floors({"stop_min_ram_free_gib": 2.5, "stop_min_commit_available_gib": 1.0})
+        lab.check_stop_floors({"stop_min_ram_free_gib": 2.5})
+
+    def test_remote_filename_separates_url_from_local_path(self) -> None:
+        """A junction-relative local filename must not leak into the publisher URL."""
+        catalog = {"models": {
+            "staged": {"repo": "org/repo", "revision": "a" * 40,
+                       "filename": "c-staging/model.gguf",
+                       "remote_filename": "Q4_K_M/model.gguf"},
+            "plain": {"repo": "org/repo", "revision": "b" * 40,
+                      "filename": "model.gguf"}}}
+        with mock.patch.object(lab, "read_json", return_value=catalog):
+            staged, plain = lab.model_spec("staged"), lab.model_spec("plain")
+        self.assertEqual(staged["url"], "https://huggingface.co/org/repo/resolve/"
+                         + "a" * 40 + "/Q4_K_M/model.gguf")
+        self.assertEqual(staged["filename"], "c-staging/model.gguf")
+        self.assertTrue(plain["url"].endswith("/" + "b" * 40 + "/model.gguf"))
+        models = lab.read_json(lab.ROOT / "catalog/models.json")["models"]
+        for value in models.values():
+            if "/" in value["filename"]:
+                self.assertIn("remote_filename", value)
 
     @unittest.skipUnless(sys.platform == "win32", "Windows lifecycle API")
     def test_owned_server_stop_file(self) -> None:

@@ -1,0 +1,190 @@
+{
+  "updated": "2026-11-09T07:42:19.920120+00:00",
+  "status": "system-interrupted-unscored",
+  "scored": false,
+  "model": "Qwen3.8-Flash-Next GSQ-RCO Q2_0",
+  "engine_version": "0.1.50",
+  "engine_sha256": "5745022e7c8f743cfee83544da7d3672cd86103c854f23600e2c69ddd6593bef",
+  "frontend_revision": "4b9e05a2a806a3fe24f7b2560d98626c37dade35",
+  "frontend_patch": "token-default ACL FA to GA for unchanged trustees",
+  "settings": {
+    "context_maximum": 65536,
+    "kv": "int8 GPU VMM",
+    "initial_cells": 16384,
+    "step_cells": 8192,
+    "expert_slots": 512,
+    "expert_floor": 128,
+    "hold": false,
+    "prefill": 64,
+    "resident_cap_gib": 4,
+    "placement": "mmap experts and direct SSD PLE",
+    "pool_workers": 6,
+    "worker_cores": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      12
+    ],
+    "host_core": 14,
+    "process_affinity": "0xFFFC",
+    "reasoning": "xhigh",
+    "output_limit": 4096,
+    "temperature": 1.0,
+    "seed": 73,
+    "mtp": false,
+    "suffix_draft": false,
+    "projection": false,
+    "route_tail_skip": 0,
+    "native_sm86_defaults": "enabled, same as static qualification"
+  },
+  "crash": {
+    "dump_time_ist": "2026-11-09T10:10:57.212+05:30",
+    "next_boot_ist": "2026-11-09T10:11:56+05:30",
+    "bugcheck": "0x116 VIDEO_TDR_FAILURE",
+    "last_operation_status": "0xC000009A",
+    "module": "nvlddmkm.sys",
+    "failure_bucket": "0x116_IMAGE_nvlddmkm.sys",
+    "module_offset": "0x198be40",
+    "process_name": "System",
+    "new_whea_events_in_crashed_session": 0,
+    "heartbeat_first_gpu_lost_ist": "2026-11-09T10:10:48+05:30",
+    "event6008_shutdown_text_ist": "2026-11-09T09:40:09+05:30",
+    "timestamp_caveat": "6008 text conflicts with later live telemetry; use dump, heartbeat and boot evidence without assigning exact kernel-fault onset from6008"
+  },
+  "last_guard_sample": {
+    "time_utc": "2026-11-09T04:40:43.543702+00:00",
+    "ram_free_gib": 10.17197036743164,
+    "commit_available_gib": 17.070068359375,
+    "vram_free_mib": 1580.0,
+    "gpu_c": 54.22,
+    "driver": "621.01",
+    "native_rss_gib": 4.000038146972656
+  },
+  "last_progress": "[strata] reading the prompt: 16,832 of 33,788 tokens, 1400 s so far",
+  "allocation_events": [
+    "strata generate: elastic K/V: 16384 of 65536 cells in VRAM (0.23 of 0.80 GiB); the expert cache (512 slots) gives the K/V room below slot 512 as the context grows",
+    "strata: K/V grown to 24576 cells (0.33 GiB); the expert cache gave 74 slots for it, 0 hotter experts moved to colder ones' slots (438 of 512 slots hold experts)",
+    "strata: K/V grown to 40960 cells (0.52 GiB); the expert cache gave 146 slots for it, 0 hotter experts moved to colder ones' slots (292 of 512 slots hold experts)"
+  ],
+  "cases": [
+    {
+      "name": "input8k",
+      "status": "completed-before-system-crash",
+      "scored": false,
+      "benchmark": {
+        "wall_seconds": 723.859000000004,
+        "finish_reason": "stop",
+        "first_event_seconds": 0.07800000000133878,
+        "first_content_seconds": 714.609000000004,
+        "error": null
+      },
+      "usage": {
+        "prompt_tokens": 8178,
+        "completion_tokens": 271,
+        "total_tokens": 8449,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 8178,
+        "prompt_ms": 651816.8,
+        "prompt_per_token_ms": 79.704,
+        "prompt_per_second": 12.5,
+        "predicted_n": 271,
+        "predicted_ms": 71956.7,
+        "predicted_per_token_ms": 265.523,
+        "predicted_per_second": 3.8,
+        "draft_n": 0,
+        "draft_n_accepted": 0
+      },
+      "response_sha256": "7381809b5d0d19091903f4ccbe0ab216ce0b93d79660023ec087cfe2961cc879",
+      "observation": "Reviewed visible JSON contains the five supplied facts; no qualified-run recall score"
+    },
+    {
+      "name": "input17k",
+      "status": "completed-before-system-crash",
+      "scored": false,
+      "benchmark": {
+        "wall_seconds": 1480.4530000000013,
+        "finish_reason": "stop",
+        "first_event_seconds": 0.046999999998661224,
+        "first_content_seconds": 1470.5,
+        "error": null
+      },
+      "usage": {
+        "prompt_tokens": 17356,
+        "completion_tokens": 180,
+        "total_tokens": 17536,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 17356,
+        "prompt_ms": 1431524.5,
+        "prompt_per_token_ms": 82.48,
+        "prompt_per_second": 12.1,
+        "predicted_n": 180,
+        "predicted_ms": 48863.4,
+        "predicted_per_token_ms": 271.463,
+        "predicted_per_second": 3.7,
+        "draft_n": 0,
+        "draft_n_accepted": 0
+      },
+      "response_sha256": "a65705015c33de5c0a54680e8602b5b6eb460c7afe949b581d67f713056f9637",
+      "observation": "Reviewed visible JSON contains the five supplied facts; no qualified-run recall score"
+    },
+    {
+      "name": "input33k",
+      "status": "system-crash-during-prefill",
+      "scored": false,
+      "answer_available": false,
+      "last_reported_prompt_tokens_processed": 16832,
+      "input_tokens": 33788
+    },
+    {
+      "name": "shrink8k",
+      "status": "not-run-after-system-crash",
+      "scored": false
+    }
+  ],
+  "normal_stop_receipt_present": false,
+  "same_signature_previous_day": {
+    "date": "2026-11-08",
+    "bugcheck": "0x116",
+    "module_offset": "nvlddmkm+0x198be40",
+    "caveat": "Predates this Flash trial; matching recovery signature does not prove the same underlying cause or absence of other workloads"
+  },
+  "checker_regression": {
+    "before": "WHEA-only check accepted the real post-crash interval",
+    "after": {
+      "result": "rejected",
+      "reason": "New Windows hardware/display/restart event; preserve logs before another load: Microsoft-Windows-WER-SystemErrorReporting:1019 at 2026-11-09T04:43:26.9554727Z; Microsoft-Windows-WER-SystemErrorReporting:1001 at 2026-11-09T04:43:26.9554686Z; Microsoft-Windows-Kernel-Power:41 at 2026-11-09T04:42:01.0304751Z; EventLog:6008 at 2026-11-09T04:42:26.1664495Z"
+    },
+    "scope": "Checks logged WHEA, display recovery, bugcheck and unexpected reboot events; cannot prevent a kernel crash"
+  },
+  "decision": "Do not repeat this GPU configuration or arm the prepared private audit; preserve raw data and continue offline investigation",
+  "interpretation_limits": [
+    "Association with this active model/configuration is recorded; a single parameter is not established as the cause.",
+    "Last samples show headroom and moderate temperatures, not evidence of ordinary RAM/VRAM exhaustion or thermal shutdown.",
+    "0xC000009A describes the last failed operation, not a measurement of total available memory.",
+    "NVML GPU-is-lost does not by itself prove a physical PCIe disconnect.",
+    "CrashMonitor nominal CPU MHz is not independent proof of an overclock.",
+    "Completed pre-crash observations do not qualify the interrupted growth experiment."
+  ],
+  "evidence_hashes": {
+    "armed_plan": "2e83c7f71f2a7463642625d949885d3541b891b663cf7cb444e01555b0e3bb27",
+    "partial_result": "2b4a3aaf18c5767ee9ccc572436faeba8c8ba8a8425de4e0ab4bd80598a94434",
+    "telemetry": "2385924da1c8e9e5f62397ffb5c9868ce7157ad16fad4988e00ea2b9dfccab58",
+    "native_log": "e9fad1ffa042a50e0aa7a41be96c1f51d3fd0b3676f96d3ca8c63de7d037ea3f",
+    "minidump": "8878f5e67c3fe25ca1e8cc4a8afc3a527776dbd94e8bb1433fc5e05db5c92934",
+    "dump_analysis": "8fa529c5f7d59e1cc0771099ea98954f1c110f11136a7c6b0d3d6086e2f1b62d",
+    "event_capture": "47368567b7aabb431e3c4660618ed1791044941bf0d7dbb6ef5b94f01d44bfe7"
+  },
+  "primary_reference": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0x116---video-tdr-failure"
+}

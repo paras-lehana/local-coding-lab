@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.11.0 - 2026-11-09 (in progress)
+
+- Reconcile Claude's stop-floor enforcement and remote/local filename handling;
+  preserve staged-model provenance while keeping new downloads on E:.
+- Add articles.md, the model index, seven historical standalone model records,
+  two smaller-candidate preparation records and a merged campaign report.
+  Preserve all incompatible score cohorts and the previous model shortlist.
+- Recover original Next80 artifact identity and correct the already-tested
+  dense Qwen Q6 identity and Bonsai low/medium/xhigh effort controls.
+- Enforce minimum RAM/commit floors in the native Strata guard as well as the
+  llama launcher; identify stale expert-pack reuse risk in the separate fork.
+- Validate b12069's prefetch variant with six tiny-model CPU/GPU controls.
+- Complete the higher-quant Flint72K/cap1024 private audit:25/36 in2h53m,
+  all15sources read, with null/aliasing and rule/citation errors. No promotion.
+- Add a public fixed-prefix performance fixture and measured baseline:
+  unchanged-prefix reuse succeeds; a middle edit forces full re-prefill.
+  Microbatch/cache/residency/runtime controls remain separate from quality.
+- Direct combined128/cache1536/resident3 measurement reduces cold request
+  time from about262–267s to128s on that fixture. The matched short-context
+  full/windowed-KV pair restores partial middle-edit reuse at extra KV cost
+  and changes outputs; no performance-to-quality promotion.
+- Prepare a private-audit timing client that preserves outgoing requests and
+  raw events, timestamps first visible content separately from reasoning,
+  rejects unknown loaded-model inventory and requires normal owned cleanup.
+  Five offline timing/ownership checks pass; instrumented native72K Flint
+  audit completes31/36 in6386.703s with six isolated merge checks passing.
+- Complete15Flint performance controls. The resident3/6/3GiB follow-up helps
+  cached repeats at6GiB without establishing a cold gain beyond baseline drift.
+- Reproduce a Windows Strata frontend token-default ACL bug with harmless
+  children; preserve the original checkout and publish the narrow isolated
+  correction.12Windows privacy tests pass, one POSIX-only case skips.
+  Q2/static32K greetings then complete31.813/9.437s with normal cleanup.
+- Run the separate64K GPU KV-growth experiment:8K/17K fact answers
+  complete and allocation grows16K/24K/40K;33K prefill ends in a confirmed
+  0x116 GPU crash. Preserve observations unscored and quarantine the profile.
+- Fix the WHEA-only hardware checker to detect GPU recovery, bugcheck and
+  unexpected restart records; real crash interval now rejects before loading.
+  This improves detection, not crash prevention or hardware stability.
+- Record passive Flash prefill disk activity separately from model-specific
+  throughput and logical expert-byte counters.
+
+
 26October checkpoint: verified FlintQ3XL and the separate Strata0.1.50 archive;
 Gemma's4GiB-resident calibration has two completed passes; the6GiB full trial
 completes12answers with10frozen task passes. CSV and strict TypeScript fail;
