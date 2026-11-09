@@ -55,7 +55,9 @@ class ModelShardTests(unittest.TestCase):
             for call in download.call_args_list:
                 artifact, target = call.args
                 self.assertIn("/pinned-revision/Q2/", artifact["url"])
-                self.assertEqual(target.parent, Path(temporary))
+                # Windows may expand an 8.3 TEMP alias while resolving siblings.
+                # Compare the actual directory, not two spellings of its path.
+                self.assertTrue(target.parent.samefile(temporary))
 
     def test_whole_set_capacity_refuses_before_first_download(self):
         with tempfile.TemporaryDirectory() as temporary, patch("lab.download") as download:

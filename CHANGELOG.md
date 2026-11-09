@@ -18,6 +18,8 @@
   subdirectories and checking capacity for the complete set before downloading.
   Five new regression checks cover missing/corrupt siblings, path escapes,
   duplicate names, pinned URLs, aggregate disk admission and partial resumes.
+- Windows CI caught a test-only path assumption: TEMP can use an8.3 alias.
+  Verify destination directory identity instead of comparing path spellings.
 
 ## 0.11.0 - 2026-11-09 (in progress)
 
