@@ -18,7 +18,7 @@ This records workload association, not a proven parameter-level cause.
 | Every model and configuration, with pros/cons | [Model index](../../models.md), seven new historical standalone records, existing candidate reports and [complete configuration matrix](../2026-11-03-master-summary/2026-11-03-all-models-and-combinations-v1.0.md) |
 | Summarize all supplied articles in a table | [articles.md](../../../articles.md): fourteen rows including earlier AI advice; corrections, local measurements and next decisions. Full fusion article recovered and reviewed |
 | Try useful article suggestions | Six b12069 compatibility controls pass. Flint72K/cap1024 private25/36; fifteen performance controls complete safely. Tuned native72K/u128 private31/36 in1h46m,6/6merge checks. Several controls changed; no causal reasoning-only claim. Resident3/6/3 complete: cached repeat improves, cold gain inconclusive |
-| Merged final summary and validation | Model/article summaries updated; remaining controlled trials, publication checks and final closeout pending |
+| Merged final summary and validation | Model/article summaries updated; remaining controlled trials deferred after GPU incident; publication/offline validation complete |
 
 ## Business summary
 
@@ -389,8 +389,12 @@ pass is claimed. Capacity constraints do not justify closing the owner's apps.
   four PowerShell files parse, public audit406files/zero findings, and
   diffcheck passes after one trailing blank line was removed. Five derived
   private timing/ownership checks pass before the instrumented audit starts.
-- Final changed-document/link checks, commit/push/CI remain pending. No UI
-  changes in this task; no offline tests or grading beside live inference.
+- Final recovery checks:58offline tests,5private-adapter checks, targeted6-test
+  portability rerun, PowerShell parsing,419-file public audit with zero findings,
+  and481relative file targets resolved. GitHub Windows/Ubuntu CI passes for
+  implementation0f11d38; shared incident/troubleshooting commitabfb809 pushed.
+  No UI changes or editor pass; no inference after the reboot. No tests/grading
+  ran beside inference. Final A-G summary is persisted in docs/prompts.md.
 
 Private new evidence: `local-data/2026-11-09-merge/`. Earlier raw article text,
 instruction snapshots, answers and secrets remain outside Git. Historical

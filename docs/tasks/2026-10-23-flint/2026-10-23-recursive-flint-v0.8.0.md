@@ -6,17 +6,11 @@ cached-repeat5.297/3.500/5.391s and changed-input90.719/84.312/83.907s.
 Extra residency helps cached repeat, but cold/changed improvement is smaller
 than baseline drift; retain3GiB for matched quality follow-ups. No quality
 score follows from these short32-token controls. Native private31/36 remains.
-Flash Q2's11artifacts pass fresh full hashes. Direct guarded native loading
-reaches READY32768 and exits normally on stdin EOF in9.390s; no questions.
-Two serving attempts stop fail-closed before requests with WinError5 at
-OpenProcess in the working-set guard. All descendants are cleaned up, no
-new hardware event. A source lead is frontend adopt_user_defaults using file
-access bits in the process token default ACL; harmless reproduction pending.
-Guard now preserves traceback/error.json without changing floors or cleanup.
-52offline tests and6harmless lifecycle checks pass. Four Flash growth inputs
-8178/17356/33788/8178tokens match the real pinned frontend encoder offline;
-no growth inference. Production remains off; no model retired or promotion.
-
+A later Flash/Strata trial ended in a GPU0x116 restart. No Flint trial
+was active at that crash. Remaining native TS/SQL and twelve coding questions
+are unrun; see the [shared incident](../../../reports/2026-11-09-flash-q2-gpu-restart.md).
+The earlier clean postflights used a WHEA-only query, now expanded to cover
+display/bugcheck/restart evidence. No new Flint quality result is inferred.
 
 **9 November08:25IST native result:** the tuned Q3XL72K profile completes
 the same private audit in **6,386.703s (1h46m),31/36 (19/6/6)**. Its exact

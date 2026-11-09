@@ -1,5 +1,24 @@
 # Task log — Local Coding Lab
 
+13:36IST final passive availability: no llama/Strata engines; Ollama loaded inventory empty;10.670GiB availableRAM,30.951GiB availablecommit,6391MiB freeVRAM. Production18GiB RAM admission fails; no server restarted.
+
+## 2026-11-09 13:36 IST: verified recovery and publication
+
+| Requested work | Status | Evidence / limitation |
+|---|---|---|
+| Record reboot against model/settings | Done | Flash Q2/Strata0.1.50 dynamic64K;0x116 at10:10:57; unscored |
+| Merge Claude and model-wise/configuration reports | Done | Public model index, configuration matrix, per-model records |
+| All supplied article summaries | Done | Fourteen-source articles.md claims/evidence/decision table |
+| Continue incomplete experiments | Partial | Fifteen Flint controls/native31; remaining GPU work deferred after incident |
+| Offline checks and publication | Done |58tests,5adapter checks,419-file audit, Windows/Ubuntu CI;0f11d38 andabfb809 pushed |
+
+No engine running, no production or editor pass. Apps open; last RAM11.4GiB
+fails production18GiB gate. Last E:free1.79GiB. No driver/clock/BIOS changes.
+Historical clean hardware labels used WHEA-only checks unless separately
+reviewed; expanded checker now rejects the actual GPU-crash interval.
+Canonical A-G summary is in prompts.md#2026-11-09-local-llm-recovery-closeout.
+
+
 ## 2026-11-09 13:18:54 IST: GPU-restart recovery
 
 Flash Q2/Strata0.1.50 dynamic GPU KV64K (initial16K/step8K,
@@ -2032,6 +2051,16 @@ No new model hash/build/grading/offline tests overlap these timed requests.
 
 ## Agent Deferred
 
+### 9 November GPU-restart continuation
+
+| Item | Deferred on | Status | Reason |
+|---|---|---|---|
+| Flash shrink/private and remaining Flint/Qwen coding | 2026-11-09 | Deferred | GPU0x116 unresolved; exact Flash profile quarantined |
+| Dense Qwen Q4/smaller staged candidates/new expert packs | 2026-11-09 | Not run | Disk/runtime prerequisites;1.79GiB freeE: |
+| Production/editor restoration | 2026-11-09 | Not done |11.4GiB availableRAM versus18GiB production admission |
+
+
+
 Current register,9November. Older registers above remain historical evidence;
 their dated availability, queue and completion statements are not live state.
 
@@ -2056,6 +2085,16 @@ their dated availability, queue and completion statements are not live state.
 | Chrome DevTools browser_url substitution | 2026-10-17 | Separate editor tooling issue | Deferred outside current campaign |
 
 ## Agent Suggestions
+
+### 9 November evidence-based next steps
+
+| Suggestion | Raised on | Priority | Status |
+|---|---|---|---|
+| Retain QwenQ4 as reference; avoid unchanged Flash retry | 2026-11-09 | High | Applied; no replacement promoted |
+| Complete matched Qwen coding and native Flint TS/SQL/coding after reviewed short qualification | 2026-11-09 | High | Pending GPU incident review |
+| Resolve E: capacity before further candidates; do not infer higher-quant correctness | 2026-11-09 | Medium | Prerequisite documented; apps preserved |
+
+
 
 | Suggestion | Raised on | Priority | Status |
 |---|---|---|---|

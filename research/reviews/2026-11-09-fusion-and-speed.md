@@ -270,7 +270,7 @@ It retains earlier state; it does not widen the model's trained attention
 window. Cold and repeat do not improve, and all three short output texts
 differ. Thus this is measured rollback/capacity behavior, not a general
 speed or correctness win. The native72K/u128 private audit started06:37IST
-without full-SWA, passed two greetings in57.907/37.672s, and is collecting.
+without full-SWA, passed two greetings in57.907/37.672s, and later completed31/36 in6386.703s.
 
 The full-SWA result cannot be scaled to72K by copying one flag. Using the
 measured four KV heads,128dimensions,q8_0 blocks and35SWA layers, the72K
@@ -289,8 +289,9 @@ ordinary IOReadBytes/s cannot substitute for this drive measurement. The
 four samples are not model-exclusive or a saturation test. See the
 [receipt](../../reports/2026-11-09-flint-paging-observation.json) and
 [memory-counter interpretation](../../docs/memory-and-context.md).
-A same-flags combined128 residency3→6GiB control is prepared, not run;
-fresh RAM admission rises to12.5GiB while the6.5GiB startup reserve stays.
+The same-flags residency3/6/3GiB control completed. Cached-repeat times
+5.297/3.500/5.391s favor6GiB; cold123.016/117.203/113.735s do not establish
+a gain beyond baseline drift. Retain3GiB for matched quality follow-up.
 
 ### Current upstream follow-up, 9 November
 

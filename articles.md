@@ -91,11 +91,11 @@ continuations reuse the full available prefix. Prefill takes102.34minutes and
 generation70.60minutes: whole-history re-prefill does not explain this run's
 delay. This is a single-seed extended result, not a quantization or cap ablation.
 See the [measurement](reports/2026-11-09-flint-q3xl-private72k.json).
-Twelve fixed-prefix controls have now completed, including a baseline repeat,
+Fifteen fixed-prefix controls have now completed, including a baseline repeat,
 two combined profiles and a matched2K full/windowed-SWA pair. The best combined
 profile halves short cold-input time; full-SWA retains useful earlier state for
 a middle edit at an allocation cost. Outputs also differ, and no quality gain
-follows from timing alone. A native72K audit is now collecting with unchanged
+follows from timing alone. The native72K audit subsequently completed31/36 with unchanged
 frozen questions/sources, no engine reasoning ceiling and separately measured
 reasoning/content/tool-event timing. It is not a reasoning-only ablation: cache,
 microbatch and resident settings also differ from the completed capped audit.
@@ -106,7 +106,7 @@ whole-drive telemetry, not model-exclusive I/O or proof of SSD saturation.
 Process page faults also include soft faults. See the
 [raw-counter summary](reports/2026-11-09-flint-paging-observation.json) and
 [memory interpretation](docs/memory-and-context.md). A resident6GiB A-B-A
-follow-up is prepared to test the residency hypothesis; it has not run.
+follow-up completed:6GiB improves cached repeats, but cold gains are smaller than baseline drift.
 
 9November additional reading of the preserved Qwen technical report (§2.3,
 §4–5 and long-context/MTP evaluation): its headline model comparison is for
@@ -154,8 +154,8 @@ confused our configured 32K with the model's native capacity. See the
 
 Our current Flint72K profile allocates 1,071 MiB global-attention GPU KV plus
 27.89 MiB sliding-window KV at load. That is a model-specific observation, not an estimate for Qwen,
-GLM or Dory. The forthcoming growth test must record both allocation events and
-correctly recovered facts across increasing prompts.
+GLM or Dory. The subsequent Flash growth test recorded allocation events and two completed
+fact answers, then crashed during33K prefill; its qualification is incomplete.
 
 For this exact Flint allocation, the logged4KV heads and128-dimensional K/V
 heads let us reconcile the buffers directly. q8_0 uses34bytes per32values,
@@ -258,22 +258,13 @@ no growth inference. Production remains off; no model retired or promotion.
 
 ### Flash qualification and active KV diagnostic
 
-2026-11-09T09:19:26.632174+05:30: FlashQ2 static32K qualified.
-Original token-default FA ACL reproduces OpenProcess error5 on harmless child;
-isolated4b9e05a2 checkout changes FA to GA for the same trustees. Ordinary/
-original/fixed tests pass/fail/pass,12Windows privacy cases pass/onePOSIXskip.
-Two actual greetings complete31.813/9.437s, first visible26.250/6.906s.
-Native RSS4GiB,dedicatedGPU5.243GiB; minima freeRAM5.989GiB,commit13.305GiB,
-freeVRAM1294MiB. Normal stop/no new hardware event. Both failed original
-attempts and direct9.390s load/EOF probe preserved; no coding score.
-64K native KV growth now active, controller exec session65863/nativePID67004,
-run local-data/2026-11-09-merge/flash-q2-tokenacl512-grow64. Native startup
-confirms16384of65536cells,0.23of0.80GiB,512eligible slots. First8178-token
-independent recall prompt still prefilling; later17356/33788/8178requests
-each have7200s. Same floors/one engine, no concurrent tests/download/hash/
-grading. Check actual driver-result/guard result before another load.
-Public patch/receipt, model record and comparison updated. Local-LLM runtime/
-candidate skill references updated; shared Claude/Codex adapters unchanged.
-Shared copilot-configs incident memo/index/master index added, not committed.
-Production remains off. All15Flint performance controls completed; native
-private31/36 retained; native TS/SQL and12coding are next after Flash cleanup.
+### Final 9 November disposition
+
+Static Q2 greetings completed after the isolated frontend ACL correction;
+dynamic64K GPU KV then grew0.23/0.33/0.52GiB before a0x116 system crash
+during33K prefill. Its first two five-fact answers are observations, not a
+qualified recall/coding score. The shrink request and128K private audit did
+not run. See the [incident](reports/2026-11-09-flash-q2-gpu-restart.md).
+All15Flint performance controls completed earlier; native private31/36 is
+retained. Current pending work and publication checks are in the merged report.
+Detailed chronological checkpoints remain in docs/tasks.md and Git history.

@@ -1,9 +1,10 @@
 # Prompt log — Local Coding Lab
 
-> Last updated: 9 November 2026. Active research; completed results and pending work remain separate.
+> Last updated: 2026-11-09. See the latest recovery entry.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
+|22|2026-11-09|13:36|GPU restart, merged model/article reports|Research / Fix|Partial campaign; recovery checks complete|[Entry](#2026-11-09-local-llm-recovery-closeout)|
 |21|2026-11-09|Ongoing|Merge Claude, all-model reports and article-driven experiments|Research / Experiment|Partial; Flint native31/36,15 controls; Flash GPU crash preserved unscored|[Entry](#9-november-2026-merged-handoff-and-article-driven-continuation)|
 |19|2026-10-26|08:04|Resume comparison and grade saved Gemma audit|Research / Experiment|Partial; reports published, inference capacity constrained|[Entry](#resume-26-october)|
 |20|2026-10-26|17:32|Seven Qwen articles, RAM investigation and extended diagnostics|Research / Experiment|Active|[Entry](#seven-articles-and-extended-diagnostics)|
@@ -2399,3 +2400,88 @@ WHEA-only checker defect reproduced and fixed; real crash interval now rejects.
 BIOS/clock/driver change, TDR bypass or user-app closure after the restart.
 Incident: local-coding-lab/reports/2026-11-09-flash-q2-gpu-restart.md.
 Continue offline reconciliation/publication. Full suite gaps remain explicit.
+
+## 2026-11-09-local-llm-recovery-closeout
+
+2026-11-09 13:36 IST. Research / recovery. Campaign partial; offline recovery complete.
+
+Original prompt:
+> continue, you did something and compouter restarted, anyways continue yoiur  work , just telling you so that you know the consequences and note them for a specifc model or param etc
+
+**A. Business summary**
+
+**Done:** I recorded the restart against **Qwen3.8-Flash-Next Q2 / Strata 0.1.50**, preserved its partial results, merged Claude's findings, and published the model reports and article table.
+
+Windows recorded **0x116 VIDEO_TDR_FAILURE** during the 33K-token prompt. The NVIDIA driver failed to recover from a GPU timeout ([Microsoft definition](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0x116---video-tdr-failure)). The exact cause remains unresolved; this does **not** prove Q2 quantization or KV growth caused it. [Crash report](https://github.com/paras-lehana/local-coding-lab/blob/experiment/flint-precision-20261024/reports/2026-11-09-flash-q2-gpu-restart.md).
+
+**Partial:** the comparison continues to have missing tests. No replacement is promoted, and no model is currently running.
+
+| Model / experiment | Result | My take |
+|---|---|---|
+| Qwen3.6 Q4 reference | Private instructions **31/36**; public workflows **52/60**; exact-profile coding suite missing | Retain as the reference; higher quants have not established an advantage |
+| Flint Q3XL, tuned native reasoning | **31/36** in **106 minutes**; all six isolated merge checks pass | Useful improvement over its capped run, but instruction omissions remain; not a demonstrated upgrade over Qwen |
+| Flint tuning | 15 performance controls; short cold request improved from roughly **262–267s to 128s** | Batching/cache changes helped this fixture; speed results do not establish better coding |
+| Flash Q2 | Greetings **31.8s / 9.4s**; 8K/17K fact answers completed; GPU crash during 33K prefill | Exact failed configuration withheld from reuse; interrupted experiment unscored |
+
+All other tested and untested candidates, configurations, bugs, pros/cons and reasons are in the [model index](https://github.com/paras-lehana/local-coding-lab/blob/experiment/flint-precision-20261024/docs/models.md). The [14-source article table](https://github.com/paras-lehana/local-coding-lab/blob/experiment/flint-precision-20261024/articles.md) separates claims from our measurements and corrections.
+
+**B. Technical summary**
+
+**Done:** the failed profile used GPU int8 KV, 64K maximum, 16K initial allocation, 8K growth steps, 512 expert-cache slots, prefill64, a 4 GiB resident cap and xhigh reasoning. KV allocation grew **0.23 → 0.33 → 0.52 GiB**. This was GPU KV growth, not dynamic RAM KV or permanent chat memory.
+
+The last usable sample showed **10.17 GiB RAM free, 1,580 MiB VRAM free and GPU 54.22°C**. It does not establish ordinary memory exhaustion or overheating. The previous day's dump had the same recovery signature, so parameter-level attribution remains uncertain.
+
+I fixed a real checker gap: it checked WHEA but missed this GPU crash. It now also detects provider-qualified display, bugcheck and unexpected-restart events. The actual crash interval now rejects before loading.
+
+Validation: **58 offline tests passed**, five private-adapter checks passed, PowerShell parsing passed, and the public-content audit reported **419 files / zero findings**. [Windows and Ubuntu CI passed](https://github.com/paras-lehana/local-coding-lab/actions/runs/42582485071). No editor test or inference was performed after reboot.
+
+Read the project/parent `AGENTS.md`, shared Codex/router/logging guidance, relevant Python/testing/troubleshooting rules, local-llm/context-maintenance skills, current reports and crash evidence. Commands included `python -m unittest discover -s tests -v`, `scripts/audit_public.py`, PowerShell parsing, `git diff --check`, and Git synchronization.
+
+Published implementation: lab **0f11d38** on `experiment/flint-precision-20261024`; shared instructions **abfb809** on `main`. The [file inventory](https://github.com/paras-lehana/local-coding-lab/blob/experiment/flint-precision-20261024/docs/file-inventory.md) lists all 94 campaign files and their changes. Seven shared documents contain the incidents, troubleshooting rule and logs; Claude/Codex routing remains unchanged. No dependencies, drivers or clock changes were introduced during reboot recovery.
+
+**C. User pointer status**
+
+| # | Pointer Task | Original Pointer Text | Status | What Was Done |
+|---|---|---|---|---|
+| 1 | Record restart consequences | “note them for a specifc model or param” | DONE | Exact model, settings, interrupted request and crash evidence recorded |
+| 2 | Merge Claude's findings | “see what can be merged” | DONE | Preserved results; distinguished preparation, incomplete runs and measured outcomes |
+| 3 | Model-wise reports | “model wise files, tableed summary, all models tried, their config” | DONE | Individual reports, configuration matrix and remaining-test reasons published |
+| 4 | Article summaries | “summarize them in table in articles.md” | DONE | Fourteen sources with claims, corrections, tests and recommendations |
+| 5 | Continue experiments | “continue yoiur work” / “complete what we started” | PARTIALLY DONE | New measurements retained; crash recovery and offline checks finished; remaining inference incomplete |
+
+**D. Additional findings**
+
+“No WHEA event” did not mean “no GPU failure.” The corrected checker improves detection; it cannot prevent a kernel crash. More context, higher precision and more reasoning also remain separate from demonstrated correctness.
+
+**E. Pending items**
+
+| Item | Status | Reason |
+|---|---|---|
+| Flash shrink/private audit; remaining Flint and matched Qwen coding | Deferred | GPU incident unresolved; failed Flash configuration is not being repeated |
+| Dense Qwen Q4, smaller staged candidates and new expert packs | Not run | Storage/runtime prerequisites; only **1.79 GiB** free on E: at the last check |
+| Production/editor restoration | Not done | About **10.7 GiB** available RAM versus production's **18 GiB** admission requirement |
+
+The [local-llm skill](<E:/llm/.claude/skills/local-llm/SKILL.md>) requires: “stop immediately on any new WHEA error, bugcheck or unclean restart.” This run triggered that rule; reporting and offline validation continued.
+
+**F. My recommendation**
+
+Keep Qwen Q4 as the comparison reference. Next useful quality tests are Flint's remaining native TS/SQL/coding and the exact Qwen baseline coding suite, following a reviewed short GPU qualification. Avoid another unchanged Flash load or a higher-quant download merely on the assumption that it fixes the observed problems.
+
+**G. Manager copy block**
+
+```text
+Local Coding Lab — research consolidated and restart investigation recorded, 9 November 2026
+
+What's done
+- Combined the model comparisons, individual reports and fourteen article summaries, keeping published claims separate from measured results.
+- Recorded the latest restart against the exact Flash model and configuration. Windows identified a GPU timeout-recovery failure; the underlying cause remains unresolved.
+- Preserved the completed short answers and marked the interrupted long-input experiment unscored.
+- Corrected a monitoring gap that missed GPU crashes without a hardware-error entry. Automated checks pass on Windows and Linux.
+- Flint's tuned instruction test reached 31 out of 36, but required about 106 minutes and still missed instructions. It has not demonstrated an overall advantage over the retained Qwen reference.
+
+Suggested next steps
+- Keep the failed Flash configuration out of automatic testing while reviewing GPU stability.
+- Complete the remaining Flint and matched Qwen coding tests after a short, reviewed qualification.
+- Resolve storage and memory constraints before installing additional candidates.
+- Select a replacement only from complete, comparable evidence. No new model is promoted or currently running.
+```
