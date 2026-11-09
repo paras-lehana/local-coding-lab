@@ -328,7 +328,14 @@ logged buffers and memory peaks.
 - Run B changed batches and added an expert cache, so it is a diagnostic.
 - No quality claim in either direction.
 
-**Recommendation.**
+**10 November storage addendum.** The owner explicitly authorizes rotation for
+new candidates. The unselected Q4 file was fully rehashed against the catalog
+then exactly retired, recovering12,484,339,584bytes; receipt
+`local-data/2026-11-10-tuning/groot-retirement.json`. Both interrupted results
+remain unscored. A reduced-residency follow-up was never run. The older
+installed/keep recommendation below describes3November, not current storage.
+
+**Recommendation (3 November).**
 - Keep the weights installed. Run the frozen suites only in an apps-closed
   window that passes the gates above.
 - Do not retry apps-open with a smaller cap or a lower floor. A smaller cap

@@ -1,0 +1,9 @@
+do more hypertuning and other quantisation test for the current models and also new models
+
+Also there is new qwen 4 and 3.8 model, (on raw as well as strata), flint max, and gemma models. try each, compare hard
+
+And for the choosen flash next, do all types of tuning, test and try
+
+keep deleting and downloading if you are low on space
+
+please dont wait for me now, test all, all approval given

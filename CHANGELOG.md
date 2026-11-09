@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.12.0 - 2026-11-10
+
+- Reopen the authorized tuning campaign on a separately verified Strata0.1.59
+  native engine; preserve the failed9Nov dynamic64K profile and crash evidence.
+- Record short qualification and separately labelled cold/repeated/edited-prefix
+  controls, with fresh hardware-event and ownership checks before each launch.
+- Verify/load official Gemma4 12B QAT and measure2/3/2GiB residency, native
+  thinking on/off and CPU-KV placement. Four merge implementations pass isolated
+  behavior checks; preserve assertion-count and model-written-test defects.
+- Record new nvlddmkm13 FECS error during Flash resident3 greeting; expanded
+  guard stops owned work and the remaining queue, without a new PC reboot.
+  Higher quants/new identities are pinned but unrun where clearly labelled.
+- Freeze a small merge/effort diagnostic before collection, with five isolated
+  behavioral groups and separate syntax/assertion review. No new winner promoted.
+- Verify and fetch every required split-GGUF shard, preserving remote
+  subdirectories and checking capacity for the complete set before downloading.
+  Five new regression checks cover missing/corrupt siblings, path escapes,
+  duplicate names, pinned URLs, aggregate disk admission and partial resumes.
+
 ## 0.11.0 - 2026-11-09 (in progress)
 
 - Reconcile Claude's stop-floor enforcement and remote/local filename handling;

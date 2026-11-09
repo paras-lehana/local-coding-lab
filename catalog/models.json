@@ -253,7 +253,7 @@
       "url": "https://huggingface.co/unsloth/flint-GGUF/resolve/20468edfc38ab43d6914cc88b08cbecb05d0fc62/flint-UD-Q3_K_XL.gguf",
       "name": "Recursive Flint 40B-A2.5B UD-Q3_K_XL",
       "upstream": "https://huggingface.co/RecursiveSI/flint",
-      "status": "9-Nov: Q3XL retained; runC router caps1024/8192 reviewed38/40 and37/40; separate history8/8. New72K private/cap1024 audit active after qualifying greetings. TS/coding coverage incomplete; no promotion.",
+      "status": "Retained.9Nov native72K/u128 private31/36 in6386.703s, six isolated merge groups pass. Earlier capped25/36 and router38/37 remain separate. Native TS/SQL and full coding coverage incomplete; not promoted.",
       "thinking": "Native reasoning; no validated low/high effort switch. Preserve reasoning history."
     },
     "flint-nvfp4": {
@@ -320,7 +320,7 @@
       "bytes": 12484339584,
       "sha256": "c941e12a231b40b8fb9f6ad7f6601878d72db39c2c62aefb185fbe5c7d0c2e29",
       "upstream": "https://huggingface.co/GrootTeam/Groot-19B-A3B-261023 (rev d089dadfe280289b2f3cd2ae9ef9796c2495529a, Apache-2.0)",
-      "status": "9-Nov: installed; two 3-Nov router attempts RAM-stopped, unscored. Apps-open fit is not established; fresh bounded admission required.",
+      "status": "10-Nov exact-file retired after full SHA256 verification to make room for requested candidates. Two3Nov RAM-stopped router attempts remain unscored; reduced-residency follow-up unrun.",
       "thinking": "inherits the qwen35moe template (enable_thinking/preserve_thinking); verify the GGUF template before scoring"
     },
     "qwen35-0p8b-q8-draft": {
@@ -375,6 +375,80 @@
       "architecture": "dory (looped normalized-GPT: 72 GGUF blocks = 36 attention + 36 FFN; Input 8 / Recurrent 20 / Output 8 attention layers; SWA 1024 with full attention every 4th; GGUF default num_loops 4, per_loop KV; native context 262144). NOT in b11562/b11669/b11838 or stock b12069; needs the publisher-pinned fork brianchmielNV/llama.cpp 98a74c97ea09ac72f6ceda1559808fc0a2f447ce (upstream PR ggml-org/llama.cpp#30306, open on 3 Nov)",
       "status": "9-Nov: prior Claude copy staged on C:; not installed at the E: catalog target, no inference. Full identity verification and E: capacity required before relocation or download. Never download through the legacy c-staging junction.",
       "thinking": "template (sha256 454696b7...) kwargs enable_thinking (default true), medium_effort (prompt suffix '{reasoning effort: efficient}', default false), truncate_history_thinking (default true); runtime GGUF overrides dory.num_loops 1-4 and dory.recurrent_kv_cache_mode per_loop|last_loop (Dory-enabled runtime only); README's force_nonempty_content and preserve_thinking are not referenced by the embedded template"
+    },
+    "gemma4-12b-qat": {
+      "name": "Gemma4 12B IT official QAT Q4_0",
+      "repo": "google/gemma-4-12B-it-qat-q4_0-gguf",
+      "revision": "29d097773436b69ff9feafd636ab4cf873786537",
+      "filename": "gemma-4-12b-it-qat-q4_0.gguf",
+      "bytes": 6975879296,
+      "sha256": "93567e57a8fe10b23569b9d9ec38cd005deedf71e29477c421a4b83f418a538b",
+      "upstream": "https://huggingface.co/google/gemma-4-12B-it",
+      "license": "apache-2.0",
+      "status": "10Nov fully verified; resident2/3/2 greetings measured. Thinking on/off each pass5/5 isolated merge groups, with assertion-count misses. No full quality suite or promotion.",
+      "thinking": "enable_thinking native switch; verify embedded template; not xhigh"
+    },
+    "flash-next-q2-gguf": {
+      "name": "Qwen3.8-Flash-Next GSQ-RCO Q2_0 split GGUF",
+      "repo": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+      "revision": "ed59f92082b1e93c0e96d60a8b11aab089b52f09",
+      "filename": "Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00001-of-00002.gguf",
+      "bytes": 37623740192,
+      "sha256": "69820c02ec7d0b45ef2ebb19d6620299db749fe2aded7f39f93c6b88b199b720",
+      "status": "Both shards verified9Nov.10Nov Strata0.1.59 static controls active; standard llama route prepared, not loaded. Lab verifies both shards before launching and downloads the whole pinned set.",
+      "upstream": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+      "thinking": "Native none/low/medium/xhigh in reviewed template; engine placement/quantization are separate controls.",
+      "remote_filename": "Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00001-of-00002.gguf",
+      "additional_files": [
+        {
+          "filename": "Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00002-of-00002.gguf",
+          "bytes": 28800138432,
+          "sha256": "316b46f3a2dbd68c900f43136ab9449f9dcc3725dfd8c794847c204bc161e113",
+          "remote_filename": "Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00002-of-00002.gguf"
+        }
+      ]
+    },
+    "gemma4-12b-q6": {
+      "name": "Gemma4 12B IT Q6_K",
+      "repo": "unsloth/gemma-4-12b-it-GGUF",
+      "revision": "fc034cfff751157913579611efad8462ac1be606",
+      "filename": "gemma-4-12b-it-Q6_K.gguf",
+      "bytes": 9786022720,
+      "sha256": "6f394336500bb5409bd68c31aa9d75097b5e6104f6cf30c82a09a7b64df41faf",
+      "upstream": "https://huggingface.co/google/gemma-4-12B-it",
+      "status": "10Nov metadata pinned, not downloaded. Ordinary PTQ Q6 versus earlier official QAT Q4 changes pipeline as well as bit width; no fit or quality claim.",
+      "thinking": "Native enable_thinking, not xhigh; inspect actual embedded template."
+    },
+    "gemma4-31b-q6": {
+      "name": "Gemma4 31B IT Q6_K",
+      "repo": "unsloth/gemma-4-31B-it-GGUF",
+      "revision": "c1ac76e99d5513b141e8adde7288b85c3f9c32ec",
+      "filename": "gemma-4-31B-it-Q6_K.gguf",
+      "bytes": 25201486784,
+      "sha256": "4660692bca96f1d9d19c550641088789c8c0c25bb07965a1e2798e3cb16885fb",
+      "upstream": "https://huggingface.co/google/gemma-4-31B-it",
+      "status": "10Nov metadata pinned, not downloaded. Ordinary PTQ Q6 versus earlier official QAT Q4 changes pipeline as well as bit width; no fit or quality claim.",
+      "thinking": "Native enable_thinking, not xhigh; inspect actual embedded template."
+    },
+    "flash-next-iq3xxs-gguf": {
+      "name": "Qwen3.8-Flash-Next GSQ-RCO IQ3_XXS split GGUF",
+      "repo": "ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+      "revision": "ed59f92082b1e93c0e96d60a8b11aab089b52f09",
+      "filename": "Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00001-of-00002.gguf",
+      "bytes": 47039860096,
+      "sha256": "219ea929900dfa9ef091f3aa473fdba6874b65fcb36526d7d851ac9e95856d15",
+      "status": "10Nov pinned for renewed higher-precision comparison; exact same quant identity as historical IQ3, proposed new runtime/settings. Not newly downloaded or tested. Second shard content matches Q2 PLE hash.",
+      "upstream": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+      "thinking": "Native none/low/medium/xhigh in reviewed template; engine placement/quantization are separate controls.",
+      "remote_filename": "IQ3_XXS/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00001-of-00002.gguf",
+      "additional_files": [
+        {
+          "filename": "Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00002-of-00002.gguf",
+          "bytes": 28800138432,
+          "sha256": "316b46f3a2dbd68c900f43136ab9449f9dcc3725dfd8c794847c204bc161e113",
+          "remote_filename": "IQ3_XXS/Qwen3.8-Flash-Next-GSQ-RCO-IQ3_XXS-00002-of-00002.gguf"
+        }
+      ]
     }
   }
 }

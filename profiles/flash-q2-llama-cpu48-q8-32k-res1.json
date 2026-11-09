@@ -1,0 +1,35 @@
+{
+  "model": "flash-next-q2-gguf",
+  "alias": "flash-next-llama-lab",
+  "locally_tested": false,
+  "validation_status": "prepared-not-loaded",
+  "evidence": "10Nov separate standard llama route for the same two verified Flash Q2 shards. Header qwen4exp/48blocks/512experts,10selected. b12069 source supports Q2_0 type42 and lazy PLE reads. Actual allocation, template and outputs must still be tested; no transfer of Strata results. Single slot, no draft, mapped CPU experts, GPU attention, GPU q8 KV32K. Native xhigh via embedded template. Resident1GiB plus6.5GiB admission margin; all stop floors retained.",
+  "load_min_ram_free_gib": 7.5,
+  "load_min_commit_available_gib": 14,
+  "load_min_vram_free_mib": 6000,
+  "stop_min_ram_free_gib": 2.5,
+  "stop_min_commit_available_gib": 1,
+  "stop_min_vram_free_mib": 400,
+  "stop_gpu_c": 84,
+  "working_set_limit_gib": 1,
+  "working_set_reserve_gib": 6.5,
+  "runtime_variant": {
+    "id": "b12069-noprefetch-v1",
+    "llama_sha256": "de7b17fcfe0528e7d830b53c7c02a77f3fc1f30cd6fe7330834c9b5c655cfc05"
+  },
+  "template_kwargs": {"enable_thinking": true, "reasoning_effort": "xhigh"},
+  "args": [
+    "--gpu-layers", "all", "--n-cpu-moe", "48", "--ctx-size", "32768",
+    "--threads", "4", "--threads-batch", "8", "--cpu-mask", "0x5554",
+    "--cpu-strict", "1", "--cpu-mask-batch", "0xFFFC",
+    "--batch-size", "128", "--ubatch-size", "64", "--flash-attn", "on",
+    "--cache-type-k", "q8_0", "--cache-type-v", "q8_0",
+    "--jinja", "--reasoning", "on", "--reasoning-format", "deepseek",
+    "--reasoning-budget", "-1", "--predict", "16384",
+    "--temp", "1.0", "--top-p", "0.95", "--top-k", "20", "--min-p", "0",
+    "--repeat-penalty", "1", "--moe-cache-mib", "512", "--cache-ram", "0",
+    "--fit", "off", "--perf", "--load-mode", "mmap", "--no-repack",
+    "--ctx-checkpoints", "4", "--no-context-shift", "--timeout", "21600",
+    "--metrics", "--verbosity", "4"
+  ]
+}

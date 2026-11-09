@@ -1,5 +1,13 @@
 # Models: results, configurations and individual records
 
+10 November update: Gemma12's five residency/KV runs are recorded; four
+merge implementations pass 5/5 independent groups, but assertion-count misses
+and one wrong model-written test remain. Flash Q2's resident3 control logs a
+new NVIDIA FECS error during hi at 02:27 IST; the owned tree and queue stop.
+No new reboot and no later GPU trial. The campaign is partial, not complete.
+See [measured tuning and remaining coverage](tasks/2026-11-10-tuning/2026-11-10-tuning-v0.12.0.md)
+and [incident](../reports/2026-11-10-flash-fecs-stop.md).
+
 **9 November restart update:** Flash-Next Q2 / Strata 0.1.50's 64K
 GPU-KV growth trial ended in a confirmed 0x116 NVIDIA timeout-recovery crash
 at 10:10:57 IST. Its 8K/17K fact answers and allocation growth are observations;
@@ -8,7 +16,7 @@ configuration is quarantined, no engine is running, and production remains off.
 See the [incident and configuration](../reports/2026-11-09-flash-q2-gpu-restart.md).
 This records workload association, not a proven parameter-level cause.
 
-Updated 9 November 2026. This table is a navigation and decision summary, not
+Updated 10 November 2026. This table is a navigation and decision summary, not
 a universal ranking. Exact pins are in [the catalog](../catalog/models.json),
 commands in [profiles](../profiles), and every historical combination has a row
 in [the configuration inventory](tasks/2026-11-03-master-summary/2026-11-03-all-models-and-combinations-v1.0.md).
@@ -40,13 +48,14 @@ changes outputs; it has not been enabled for the72K quality audit.
 | [Qwen3.8 dense27B](tasks/2026-10-26-qwen38-dense/2026-10-26-qwen38-dense-v0.10.0.md) | Historical Q6 and Q8 partial offload; TQ3_4S via separate fork, draft controls | Legacy short boundary fix 16/16 and source question 5/5 at all three Q6 efforts; Q8 also passes. Six TQ probes measured 1.49–2.09 tok/s | Long coding incomplete/restart; short checks are a different scale. Q4/IQ4 unrun; proposed Q6 is the same historically tested artifact with new placement still pending. Higher effort did not improve already-perfect short scores |
 | [Qwen3.8 Flash-Next](tasks/2026-10-26-flash-next/2026-10-26-flash-next-v0.10.0.md) | GSQ-RCO IQ3_XXS / Strata0.1.45, no-draft/MTP,32K and128K/int8 host KV; new Q2 on0.1.50/512cache/static32K with isolated frontend ACL fix | New Q2 greetings31.813/9.437s; RSS4GiB, dedicatedGPU5.243GiB. Earlier128K/32K-resident allocated1.55GiB hostKV; separate replays recovered6facts | Historical coding deadlines/empty history final remain. New Q2 has no quality score;64K native growth ended in0x116 during33K prefill; no score or shrink result. Lower precision and changed engine are distinct variables |
 | [GLM-4.7-Flash](tasks/2026-11-09-glm47-flash/2026-11-09-glm47-flash-v0.11.0.md) | Q4 XL/Q5/Q6 XL; q8 versus f16 MLA KV; native/capped reasoning; 32K public/64K private | Q4/f16 private27/36 in942s, all15sources read | Higher quant not consistently better. Unread citations, TS and SQL data-loss defects; retired |
+| [Gemma4 dense12B](tasks/2026-11-10-gemma12/2026-11-10-gemma12-v0.12.0.md) | Official QAT Q4_0, b12069, 32/34 GPU layers, mixed versus CPU q8 KV, 32K; resident 2/3/2 GiB; native thinking on/off | Five runs; four complete merge answers each pass 5/5 independent groups. Resident3 greetings about19–23s; off-mode merge82.3–113.9s | Thinking-on636.4s without better tested behavior; count-instruction misses and one wrong own test. No full file/coding/long-recall score. Q6 pinned, unrun |
 | [Gemma4 26B-A4B](tasks/2026-10-24-gemma26-coverage/2026-10-24-gemma26-v0.9.0.md) | QAT Q4_0; CPU28/26, resident4/6/8, GPUq8; separate128K history | Later public57/60; private23/36 on different sampler. Extended resident6 coding10/12, all12complete | Instruction ownership/citations weaker than reference; CSV/TS/TTL/worker defects.128K commit stop. Retired; scores not one composite |
 | [Gemma4 dense31B](tasks/2026-11-09-gemma4-31b/2026-11-09-gemma4-31b-v0.11.0.md) | QAT Q4_0, mapped64K CPUq8, FFN/layer/GPU-KV placement controls | Private26/36; correct frozen Python behavior; history completion on smaller input | Private7234s; TS and SQL errors; some GPU placements stopped. Longer wait did not establish superiority; retired |
 | [Kimi-Linear48B](tasks/2026-11-09-kimi-linear-48b/2026-11-09-kimi-linear-48b-v0.11.0.md) | Q4_K_M, b11562/CPU23/32K f16; q8 combinations unsupported; private64K rejected | Real public inference; one seed Python6/6 | Malformed tool/history/SQL problems; private memory gate. Do not describe the whole model as never run; retired |
 | [Recursive Flint](tasks/2026-10-23-flint/2026-10-23-recursive-flint-v0.8.0.md) | IQ3_XXS/Q4_K_XL/Q3_K_XL; b11838, CPU/GPU KV, expert cache and resident caps;32/40/72K | IQ3 private29, router39; eleven completed coding passes. Q3XL history8/8; cap1024 router38/40 | CSV incomplete and TTL edge bug; higher quants have output/deadline/resource limits. Cap8192 took2.4x longer without demonstrated gain. Tuned native Q3XL private31/36 in6386.703s,6/6merge groups; new TS/SQL/coding still unrun |
 | [LFM2.5 24B-A2B](tasks/2026-10-20-lfm25/2026-10-20-lfm25-24b-a2b-qad-q4-v0.10.0.md) | QAD Q4_0, b11669/CPU28/64Kq8, b512/u128; sampler differs by suite | Public48/60; six completed coding passes | Private reasoning loop and incomplete code cases; retired. QAD did not guarantee instruction reliability |
 | [Bonsai2 dense27B](tasks/2026-10-20-bonsai2/2026-10-20-ternary-bonsai2-27b-pq2-ptq1-v0.10.0.md) | PQ2_0 partialGPU and PTQ1_0 fullGPU, Prism runtime | Very small ternary weights permit capacity exploration | PQ2 about2.3tok/s; PTQ1 router deadline despite fullGPU. No quality score; retired |
-| [Groot19B-A3B](tasks/2026-11-03-groot/2026-11-03-groot-19b-a3b-apps-open-v1.0.md) | Q4_K_M, CPU36/64Kq8; uncapped then cache512/resident3.31/b128/u32 | Plain smoke4.813s; reduced total weights make it worth qualifying | Both router attempts RAM-stopped; no model-quality result. Installed; reduced-residency4GiB profile prepared but unrun; no assumption that every apps-open state fails |
+| [Groot19B-A3B](tasks/2026-11-03-groot/2026-11-03-groot-19b-a3b-apps-open-v1.0.md) | Q4_K_M, CPU36/64Kq8; uncapped then cache512/resident3.31/b128/u32 | Plain smoke4.813s; reduced total weights make it worth qualifying | Both router attempts RAM-stopped; no model-quality result. Exact file retired10Nov after verification; reduced-residency4GiB profile prepared but unrun; no assumption that every apps-open state fails |
 | [K2 Horizon MoVA36B-A4B](tasks/2026-10-24-k2-mova/2026-10-24-k2-mova-v0.9.0.md) | Q4_K_M downloaded; CPU FFN and value-expert overrides prepared, not run | Potential sparse-attention candidate; identity pinned | Never loaded. Parked on C: by prior work; needs restored E: storage/full hash and admission. Not Moonshot Kimi K2 |
 | [Nemotron3.5 Bolt74B-A9B](tasks/2026-11-09-nemotron35-bolt/2026-11-09-nemotron35-bolt-v0.11.0.md) | QAD low-bit22.018GB downloaded/verified; b11669/CPU88/64K plan | Candidate rationale only | Never loaded; file rotated for disk. No quality conclusion |
 

@@ -1,0 +1,701 @@
+{
+  "schema": 1,
+  "cohort": "diagnostic",
+  "runtime": "Strata0.1.59 native with isolated ACL-corrected0.1.50 frontend",
+  "model": "Qwen3.8-Flash-Next GSQ-RCO Q2_0",
+  "baseline_incident": "9Nov dynamic64K remains quarantined; renewed10Nov authorization and changed conditions",
+  "records": [
+    {
+      "run": "flash-q2-0159-baseline-a",
+      "label": "Flash Q2 new-engine one-factor control: baseline",
+      "engine_sha256": "12a21cddb83e3af14c36478590676e5749b0075dedd3568e8630848f20ad819f",
+      "request_results": [
+        {
+          "name": "hi-cold",
+          "status": "completed",
+          "ok": true,
+          "exit_code": 0,
+          "wall_seconds": 35.93800000000192,
+          "benchmark": {
+            "wall_seconds": 35.67199999999866,
+            "finish_reason": "stop",
+            "first_event_seconds": 0.030999999995401595,
+            "first_content_seconds": 32.57800000000134,
+            "error": null
+          },
+          "usage": {
+            "prompt_tokens": 53,
+            "completion_tokens": 29,
+            "total_tokens": 82,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 53,
+            "prompt_ms": 23595.4,
+            "prompt_per_token_ms": 445.196,
+            "prompt_per_second": 2.2,
+            "predicted_n": 29,
+            "predicted_ms": 12038.6,
+            "predicted_per_token_ms": 415.124,
+            "predicted_per_second": 2.4,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "content_chars": 29,
+          "reasoning_chars": 67,
+          "scope": null,
+          "scored": null,
+          "message_sha256": "600c175ea5920a244482fc839a0d61b82d961df9c14682426151e7f9161bd07f"
+        },
+        {
+          "name": "perf-cold",
+          "status": "intentional-output-cap",
+          "ok": true,
+          "exit_code": 0,
+          "wall_seconds": 305.8130000000019,
+          "benchmark": {
+            "wall_seconds": 305.5149999999994,
+            "finish_reason": "length",
+            "first_event_seconds": 0.046999999998661224,
+            "first_content_seconds": null,
+            "error": null
+          },
+          "usage": {
+            "prompt_tokens": 2462,
+            "completion_tokens": 32,
+            "total_tokens": 2494,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 2462,
+            "prompt_ms": 291227.8,
+            "prompt_per_token_ms": 118.289,
+            "prompt_per_second": 8.5,
+            "predicted_n": 32,
+            "predicted_ms": 14246.4,
+            "predicted_per_token_ms": 445.2,
+            "predicted_per_second": 2.2,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "content_chars": 0,
+          "reasoning_chars": 134,
+          "scope": "Performance diagnostic only; no completed answer",
+          "scored": false,
+          "message_sha256": "7a0b21d2e74085ce3e209e5302d93652dceee7c13771fabae85ac9ce248e2556"
+        },
+        {
+          "name": "perf-repeat",
+          "status": "intentional-output-cap",
+          "ok": true,
+          "exit_code": 0,
+          "wall_seconds": 15.75,
+          "benchmark": {
+            "wall_seconds": 15.453000000001339,
+            "finish_reason": "length",
+            "first_event_seconds": 0.046999999998661224,
+            "first_content_seconds": null,
+            "error": null
+          },
+          "usage": {
+            "prompt_tokens": 2462,
+            "completion_tokens": 32,
+            "total_tokens": 2494,
+            "prompt_tokens_details": {
+              "cached_tokens": 2457
+            }
+          },
+          "timings": {
+            "cache_n": 2457,
+            "prompt_n": 5,
+            "prompt_ms": 1675.6,
+            "prompt_per_token_ms": 335.12,
+            "prompt_per_second": 3.0,
+            "predicted_n": 32,
+            "predicted_ms": 13714.9,
+            "predicted_per_token_ms": 428.591,
+            "predicted_per_second": 2.3,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "content_chars": 0,
+          "reasoning_chars": 134,
+          "scope": "Performance diagnostic only; no completed answer",
+          "scored": false,
+          "message_sha256": "7a0b21d2e74085ce3e209e5302d93652dceee7c13771fabae85ac9ce248e2556"
+        },
+        {
+          "name": "perf-changed-middle",
+          "status": "intentional-output-cap",
+          "ok": true,
+          "exit_code": 0,
+          "wall_seconds": 302.42199999999866,
+          "benchmark": {
+            "wall_seconds": 302.10899999999674,
+            "finish_reason": "length",
+            "first_event_seconds": 0.046999999998661224,
+            "first_content_seconds": null,
+            "error": null
+          },
+          "usage": {
+            "prompt_tokens": 2462,
+            "completion_tokens": 32,
+            "total_tokens": 2494,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 2462,
+            "prompt_ms": 287696.5,
+            "prompt_per_token_ms": 116.855,
+            "prompt_per_second": 8.6,
+            "predicted_n": 32,
+            "predicted_ms": 14368.9,
+            "predicted_per_token_ms": 449.028,
+            "predicted_per_second": 2.2,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "content_chars": 0,
+          "reasoning_chars": 138,
+          "scope": "Performance diagnostic only; no completed answer",
+          "scored": false,
+          "message_sha256": "7c344e58382deebdce399a269d2c7a75133c55b4f1d1c8f60f1a20775486b530"
+        }
+      ],
+      "load": {
+        "ready": true,
+        "seconds": 28.235000000000582,
+        "pack_events": {}
+      },
+      "telemetry": {
+        "samples": 594,
+        "seconds": 692.3844864368439,
+        "start": {
+          "ram_free_gib": 7.893917083740234,
+          "commit_available_gib": 30.982139587402344,
+          "vram_free_mib": 6250.0
+        },
+        "min_ram_free_gib": 5.280265808105469,
+        "min_commit_available_gib": 21.712265014648438,
+        "min_vram_free_mib": 693.0,
+        "max_gpu_c": 51.91,
+        "max_rss_gib_by_name": {
+          "python.exe": 0.19800567626953125,
+          "conhost.exe": 0.007579803466796875,
+          "strata.exe": 1.0000534057617188
+        }
+      },
+      "guard_reason": "explicit stop",
+      "guard_code": 0,
+      "hardware_check": "expanded provider-qualified query; no new event",
+      "postflight": {
+        "time": 1794254533.0810187,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 9.387271881103516,
+        "commit_limit_gib": 111.40217208862305,
+        "commit_available_gib": 31.007980346679688,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6206.0,
+        "gpu_c": 49.06,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "native_context": 32768,
+      "engine_args": [
+        "--pack",
+        "<install>/Strata-data/packs/flash-next-q2-20261027",
+        "--native",
+        "<install>/Strata-data/models/flash-next/Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00001-of-00002.gguf",
+        "--ple-gguf",
+        "<install>/Strata-data/models/flash-next/Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00002-of-00002.gguf",
+        "--expert-profile",
+        "<install>/Strata-20261026/data/expert-profile.bin",
+        "--expert-cache",
+        "512",
+        "--mmap-experts",
+        "--prefill",
+        "64",
+        "--max-context",
+        "32768",
+        "--kv",
+        "int8",
+        "--no-kv-grow",
+        "--ple-io",
+        "direct",
+        "--vram-reserve-mib",
+        "3072",
+        "--pool-workers",
+        "6",
+        "--pool-cores",
+        "2,4,6,8,10,12",
+        "--host-core",
+        "last",
+        "--spec",
+        "2",
+        "--suffix-draft",
+        "0",
+        "--conversation-cache-mib",
+        "0",
+        "--adapt-async",
+        "0"
+      ],
+      "env": {
+        "STRATA_FILE_RELEASE": "1",
+        "STRATA_ROUTE_TAIL_SKIP": "0",
+        "STRATA_NO_PRESET": "1",
+        "STRATA_START_RETRIES": "0",
+        "STRATA_PLE_AUTO_MMAP": "0",
+        "STRATA_ROUTE_PRIOR": "0",
+        "STRATA_ROUTE_RESIDENT": "0",
+        "STRATA_ROUTE_RESIDENT_MTP": "0"
+      },
+      "resident_limit_gib": 1,
+      "interpretation": "Greetings and capped timings are not model-quality scores; completed coding needs separate review and isolated grading. Cold means prompt-cache cold, not OS-cache cold. Desktop memory varies; single observations are exploratory."
+    },
+    {
+      "run": "flash-q2-0159-cpu-share-off-a",
+      "label": "Flash Q2 new-engine one-factor control: cpu-share-off",
+      "engine_sha256": "12a21cddb83e3af14c36478590676e5749b0075dedd3568e8630848f20ad819f",
+      "request_results": [
+        {
+          "name": "hi-cold",
+          "status": "completed",
+          "ok": true,
+          "exit_code": 0,
+          "wall_seconds": 37.09399999999732,
+          "benchmark": {
+            "wall_seconds": 36.765999999995984,
+            "finish_reason": "stop",
+            "first_event_seconds": 0.046999999998661224,
+            "first_content_seconds": 33.71899999999732,
+            "error": null
+          },
+          "usage": {
+            "prompt_tokens": 53,
+            "completion_tokens": 29,
+            "total_tokens": 82,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 53,
+            "prompt_ms": 23487.2,
+            "prompt_per_token_ms": 443.155,
+            "prompt_per_second": 2.3,
+            "predicted_n": 29,
+            "predicted_ms": 13228.8,
+            "predicted_per_token_ms": 456.166,
+            "predicted_per_second": 2.2,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "content_chars": 29,
+          "reasoning_chars": 67,
+          "scope": null,
+          "scored": null,
+          "message_sha256": "600c175ea5920a244482fc839a0d61b82d961df9c14682426151e7f9161bd07f"
+        },
+        {
+          "name": "perf-cold",
+          "status": "intentional-output-cap",
+          "ok": true,
+          "exit_code": 0,
+          "wall_seconds": 303.4059999999954,
+          "benchmark": {
+            "wall_seconds": 303.1399999999994,
+            "finish_reason": "length",
+            "first_event_seconds": 0.030999999995401595,
+            "first_content_seconds": null,
+            "error": null
+          },
+          "usage": {
+            "prompt_tokens": 2462,
+            "completion_tokens": 32,
+            "total_tokens": 2494,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 2462,
+            "prompt_ms": 288740.1,
+            "prompt_per_token_ms": 117.279,
+            "prompt_per_second": 8.5,
+            "predicted_n": 32,
+            "predicted_ms": 14349.5,
+            "predicted_per_token_ms": 448.422,
+            "predicted_per_second": 2.2,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "content_chars": 0,
+          "reasoning_chars": 134,
+          "scope": "Performance diagnostic only; no completed answer",
+          "scored": false,
+          "message_sha256": "7a0b21d2e74085ce3e209e5302d93652dceee7c13771fabae85ac9ce248e2556"
+        },
+        {
+          "name": "perf-repeat",
+          "status": "intentional-output-cap",
+          "ok": true,
+          "exit_code": 0,
+          "wall_seconds": 14.860000000000582,
+          "benchmark": {
+            "wall_seconds": 14.562000000005355,
+            "finish_reason": "length",
+            "first_event_seconds": 0.04700000000593718,
+            "first_content_seconds": null,
+            "error": null
+          },
+          "usage": {
+            "prompt_tokens": 2462,
+            "completion_tokens": 32,
+            "total_tokens": 2494,
+            "prompt_tokens_details": {
+              "cached_tokens": 2457
+            }
+          },
+          "timings": {
+            "cache_n": 2457,
+            "prompt_n": 5,
+            "prompt_ms": 1528.9,
+            "prompt_per_token_ms": 305.78,
+            "prompt_per_second": 3.3,
+            "predicted_n": 32,
+            "predicted_ms": 12988.7,
+            "predicted_per_token_ms": 405.897,
+            "predicted_per_second": 2.5,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "content_chars": 0,
+          "reasoning_chars": 134,
+          "scope": "Performance diagnostic only; no completed answer",
+          "scored": false,
+          "message_sha256": "7a0b21d2e74085ce3e209e5302d93652dceee7c13771fabae85ac9ce248e2556"
+        },
+        {
+          "name": "perf-changed-middle",
+          "status": "intentional-output-cap",
+          "ok": true,
+          "exit_code": 0,
+          "wall_seconds": 230.51599999999598,
+          "benchmark": {
+            "wall_seconds": 230.23500000000058,
+            "finish_reason": "length",
+            "first_event_seconds": 0.0319999999992433,
+            "first_content_seconds": null,
+            "error": null
+          },
+          "usage": {
+            "prompt_tokens": 2462,
+            "completion_tokens": 32,
+            "total_tokens": 2494,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 2462,
+            "prompt_ms": 217253.5,
+            "prompt_per_token_ms": 88.243,
+            "prompt_per_second": 11.3,
+            "predicted_n": 32,
+            "predicted_ms": 12946.4,
+            "predicted_per_token_ms": 404.575,
+            "predicted_per_second": 2.5,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "content_chars": 0,
+          "reasoning_chars": 138,
+          "scope": "Performance diagnostic only; no completed answer",
+          "scored": false,
+          "message_sha256": "7c344e58382deebdce399a269d2c7a75133c55b4f1d1c8f60f1a20775486b530"
+        }
+      ],
+      "load": {
+        "ready": true,
+        "seconds": 26.67199999999866,
+        "pack_events": {}
+      },
+      "telemetry": {
+        "samples": 526,
+        "seconds": 614.8328499794006,
+        "start": {
+          "ram_free_gib": 9.405746459960938,
+          "commit_available_gib": 30.847312927246094,
+          "vram_free_mib": 6204.0
+        },
+        "min_ram_free_gib": 6.393470764160156,
+        "min_commit_available_gib": 20.953445434570312,
+        "min_vram_free_mib": 529.0,
+        "max_gpu_c": 52.78,
+        "max_rss_gib_by_name": {
+          "python.exe": 0.19765472412109375,
+          "conhost.exe": 0.007564544677734375,
+          "strata.exe": 1.0000762939453125
+        }
+      },
+      "guard_reason": "explicit stop",
+      "guard_code": 0,
+      "hardware_check": "expanded provider-qualified query; no new event",
+      "postflight": {
+        "time": 1794255172.7038124,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 12.576393127441406,
+        "commit_limit_gib": 111.40217208862305,
+        "commit_available_gib": 31.875640869140625,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6455.0,
+        "gpu_c": 49.69,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "native_context": 32768,
+      "engine_args": [
+        "--pack",
+        "<install>/Strata-data/packs/flash-next-q2-20261027",
+        "--native",
+        "<install>/Strata-data/models/flash-next/Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00001-of-00002.gguf",
+        "--ple-gguf",
+        "<install>/Strata-data/models/flash-next/Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00002-of-00002.gguf",
+        "--expert-profile",
+        "<install>/Strata-20261026/data/expert-profile.bin",
+        "--expert-cache",
+        "512",
+        "--mmap-experts",
+        "--prefill",
+        "64",
+        "--max-context",
+        "32768",
+        "--kv",
+        "int8",
+        "--no-kv-grow",
+        "--ple-io",
+        "direct",
+        "--vram-reserve-mib",
+        "3072",
+        "--pool-workers",
+        "6",
+        "--pool-cores",
+        "2,4,6,8,10,12",
+        "--host-core",
+        "last",
+        "--spec",
+        "2",
+        "--suffix-draft",
+        "0",
+        "--conversation-cache-mib",
+        "0",
+        "--adapt-async",
+        "0"
+      ],
+      "env": {
+        "STRATA_FILE_RELEASE": "1",
+        "STRATA_ROUTE_TAIL_SKIP": "0",
+        "STRATA_NO_PRESET": "1",
+        "STRATA_START_RETRIES": "0",
+        "STRATA_PLE_AUTO_MMAP": "0",
+        "STRATA_ROUTE_PRIOR": "0",
+        "STRATA_ROUTE_RESIDENT": "0",
+        "STRATA_ROUTE_RESIDENT_MTP": "0",
+        "STRATA_PREFILL_CPU_SHARE": "0"
+      },
+      "resident_limit_gib": 1,
+      "interpretation": "Greetings and capped timings are not model-quality scores; completed coding needs separate review and isolated grading. Cold means prompt-cache cold, not OS-cache cold. Desktop memory varies; single observations are exploratory."
+    },
+    {
+      "run": "flash-q2-0159-static32-res1",
+      "label": "New Strata0.1.59 Q2 static32K/resident1 qualification",
+      "engine_sha256": "12a21cddb83e3af14c36478590676e5749b0075dedd3568e8630848f20ad819f",
+      "request_results": [
+        {
+          "name": "hi-cold",
+          "status": "completed",
+          "ok": true,
+          "exit_code": 0,
+          "wall_seconds": 33.875,
+          "benchmark": {
+            "wall_seconds": 33.59399999999732,
+            "finish_reason": "stop",
+            "first_event_seconds": 0.046999999998661224,
+            "first_content_seconds": 30.45300000000134,
+            "error": null
+          },
+          "usage": {
+            "prompt_tokens": 53,
+            "completion_tokens": 29,
+            "total_tokens": 82,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 53,
+            "prompt_ms": 21700.9,
+            "prompt_per_token_ms": 409.451,
+            "prompt_per_second": 2.4,
+            "predicted_n": 29,
+            "predicted_ms": 11843.8,
+            "predicted_per_token_ms": 408.407,
+            "predicted_per_second": 2.4,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "content_chars": 29,
+          "reasoning_chars": 67,
+          "scope": null,
+          "scored": null,
+          "message_sha256": "600c175ea5920a244482fc839a0d61b82d961df9c14682426151e7f9161bd07f"
+        },
+        {
+          "name": "hi-warm",
+          "status": "completed",
+          "ok": true,
+          "exit_code": 0,
+          "wall_seconds": 13.56199999999808,
+          "benchmark": {
+            "wall_seconds": 13.265999999995984,
+            "finish_reason": "stop",
+            "first_event_seconds": 0.046999999998661224,
+            "first_content_seconds": 10.203000000001339,
+            "error": null
+          },
+          "usage": {
+            "prompt_tokens": 53,
+            "completion_tokens": 34,
+            "total_tokens": 87,
+            "prompt_tokens_details": {
+              "cached_tokens": 48
+            }
+          },
+          "timings": {
+            "cache_n": 48,
+            "prompt_n": 5,
+            "prompt_ms": 1226.8,
+            "prompt_per_token_ms": 245.36,
+            "prompt_per_second": 4.1,
+            "predicted_n": 34,
+            "predicted_ms": 11989.2,
+            "predicted_per_token_ms": 352.624,
+            "predicted_per_second": 2.8,
+            "draft_n": 0,
+            "draft_n_accepted": 0
+          },
+          "content_chars": 29,
+          "reasoning_chars": 98,
+          "scope": null,
+          "scored": null,
+          "message_sha256": "b5116578efcf27b339b03ead4f19aa8bed16dc9c142950f9307dbd4063752382"
+        }
+      ],
+      "load": {
+        "ready": true,
+        "seconds": 31.485000000000582,
+        "pack_events": {}
+      },
+      "telemetry": {
+        "samples": 70,
+        "seconds": 79.17862343788147,
+        "start": {
+          "ram_free_gib": 6.253093719482422,
+          "commit_available_gib": 29.5050048828125,
+          "vram_free_mib": 6186.0
+        },
+        "min_ram_free_gib": 5.041313171386719,
+        "min_commit_available_gib": 21.93248748779297,
+        "min_vram_free_mib": 795.0,
+        "max_gpu_c": 51.53,
+        "max_rss_gib_by_name": {
+          "python.exe": 0.19781494140625,
+          "conhost.exe": 0.00746917724609375,
+          "strata.exe": 1.0000381469726562
+        }
+      },
+      "guard_reason": "explicit stop",
+      "guard_code": 0,
+      "hardware_check": "expanded provider-qualified query; no new event",
+      "postflight": {
+        "time": 1794253701.0179439,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 8.048839569091797,
+        "commit_limit_gib": 111.40217208862305,
+        "commit_available_gib": 31.13162612915039,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6259.0,
+        "gpu_c": 49.66,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "native_context": 32768,
+      "engine_args": [
+        "--pack",
+        "<install>/Strata-data/packs/flash-next-q2-20261027",
+        "--native",
+        "<install>/Strata-data/models/flash-next/Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00001-of-00002.gguf",
+        "--ple-gguf",
+        "<install>/Strata-data/models/flash-next/Q2_0/Qwen3.8-Flash-Next-GSQ-RCO-Q2_0-00002-of-00002.gguf",
+        "--expert-profile",
+        "<install>/Strata-20261026/data/expert-profile.bin",
+        "--expert-cache",
+        "512",
+        "--mmap-experts",
+        "--prefill",
+        "64",
+        "--max-context",
+        "32768",
+        "--kv",
+        "int8",
+        "--no-kv-grow",
+        "--ple-io",
+        "direct",
+        "--vram-reserve-mib",
+        "3072",
+        "--pool-workers",
+        "6",
+        "--pool-cores",
+        "2,4,6,8,10,12",
+        "--host-core",
+        "last",
+        "--spec",
+        "2",
+        "--suffix-draft",
+        "0",
+        "--conversation-cache-mib",
+        "0",
+        "--adapt-async",
+        "0"
+      ],
+      "env": {
+        "STRATA_FILE_RELEASE": "1",
+        "STRATA_ROUTE_TAIL_SKIP": "0",
+        "STRATA_NO_PRESET": "1",
+        "STRATA_START_RETRIES": "0",
+        "STRATA_PLE_AUTO_MMAP": "0",
+        "STRATA_ROUTE_PRIOR": "0",
+        "STRATA_ROUTE_RESIDENT": "0",
+        "STRATA_ROUTE_RESIDENT_MTP": "0"
+      },
+      "resident_limit_gib": 1,
+      "interpretation": "Greetings and capped timings are not model-quality scores; completed coding needs separate review and isolated grading. Cold means prompt-cache cold, not OS-cache cold. Desktop memory varies; single observations are exploratory."
+    }
+  ]
+}

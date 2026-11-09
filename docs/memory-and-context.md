@@ -1,5 +1,25 @@
 # RAM, VRAM, quantization and context
 
+10 November adds static32K controls on Strata0.1.59. A1GiB native resident
+working-set cap permits short Flash Q2 requests while applications stay open;
+it does not mean the full model occupies1GiB or fits entirely in RAM. The
+2,462token baseline reuses2,457tokens on an identical repeat, but none after
+a middle edit. Context capacity, cache reuse and successful task recall remain
+different measurements. Host-KV and quantized-KV controls are still pending.
+See [current timing evidence](../reports/2026-11-10-flash-tuning.json).
+
+New Gemma12 measurements show why KV estimates must be architecture-specific:
+32Kq8 allocates484.50MiB (272global+212.5sliding-window), initially147.69MiB
+onCPU/336.81MiB onGPU. Explicit no-KV-offload moves all484.50MiB toCPU and
+raises measured minimum freeVRAM725to1078MiB in the32GPU controls. Moving two
+additional layers toGPU then leaves837MiB. All are normal-stop diagnostics;
+none proves long-history recall. The fixed3GiB native resident cap is a
+physical working-set bound, not total memory usage or an automatically growing
+context. Available RAM still ranges around9.5-10.3GiB at the measured minima,
+and private process commit is around6GiB; these counters overlap and must not
+be added to CUDA buffer totals as if each were independent allocation.
+See [Gemma configuration and results](tasks/2026-11-10-gemma12/2026-11-10-gemma12-v0.12.0.md).
+
 **9 November restart update:** Flash-Next Q2 / Strata 0.1.50's 64K
 GPU-KV growth trial ended in a confirmed 0x116 NVIDIA timeout-recovery crash
 at 10:10:57 IST. Its 8K/17K fact answers and allocation growth are observations;

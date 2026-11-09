@@ -1,8 +1,55 @@
 # Task log — Local Coding Lab
 
-13:36IST final passive availability: no llama/Strata engines; Ollama loaded inventory empty;10.670GiB availableRAM,30.951GiB availablecommit,6391MiB freeVRAM. Production18GiB RAM admission fails; no server restarted.
+## 2026-11-10 02:40 IST: measured checkpoint and hardware stop
+
+Gemma12: five completed residency/KV runs; four reviewed merge implementations
+each pass five isolated groups. All five engine runs have owned stop receipts;
+the first merge was intentionally interrupted during the residency transition.
+CPU34 own assertions fail despite independently correct tested implementation.
+Flash: three successful diagnostic runs, then resident3 records nvlddmkm13
+FECS during hi. Queue exits1; all later controls unstarted. No new reboot.
+[Campaign/status table](tasks/2026-11-10-tuning/2026-11-10-tuning-v0.12.0.md).
+Earlier active checkpoints below are history, superseded by this stop.
+No post-event inference, model promotion or production/editor availability claim.
+
+## 2026-11-10: autonomous tuning and new candidates
+
+Owner explicitly renews inference/download/exact-file deletion authorization.
+Current campaign: [tuning v0.12.0](tasks/2026-11-10-tuning/2026-11-10-tuning-v0.12.0.md).
+01:07IST snapshot8.102GiB RAM available/6552MiB VRAM free/E:0.82GiB free;
+no model engine. Known9Nov GPU0x116 incident reviewed, exact failed profile
+still quarantined. Preparing pinned Strata0.1.59 beside the old runtime;
+Groot exact-file retirement verified and recorded. Official Qwen4/Flint Max
+weight availability not established.
+
+| Work | Status | Current evidence |
+|---|---|---|
+| Verify releases and safely rotate storage | Active | Strata0.1.59 and Gemma12 fully verified; Groot exact-file retired |
+| Flash short qualification | Done | Static32K/resident1GiB, two complete greetings33.594/13.266s, normal stop |
+| Flash one-factor tuning | Active | Baseline and CPU-share-off complete, normal stops; remaining controls pending |
+| Flash effort, KV, higher precision and llama route | Pending | Plans/source review; no new quality result yet |
+| Gemma, dense Qwen, Flint coverage/precision | Active | Gemma12 resident2/3 greetings measured, thinking-on/off merge collecting; other coverage pending |
+| Model reports, comparison, article ledger | Active | Current campaign and release review updated; final tables follow measured runs |
+
+01:32IST baseline timing control finishes normally: cold305.813s,
+repeat15.750s, changed-middle302s approximately. Deliberate32token ceilings,
+unscored. Min freeRAM5.280GiB/commit21.712GiB/VRAM693MiB, maxGPU51.91C,
+native resident maximum1.000GiB. No new expanded hardware-query event.
+CPU-share-off changes only that environment switch. Production remains off.
+
+02:08IST recovery checkpoint: Gemma12 resident3 run remains live, no restart.
+Resident2 greetings112.875/120.844s versus resident3 18.828/20.281s with identical
+token counts; full quality review pending. Initial resident2 merge request was
+intentionally interrupted during the transition, not a model failure.
+
+02:14IST Gemma12 thinking-on/off finishes636.437/82.797s. Normal stop/no new
+hardware event; both reviewed before separate isolated execution, each5/5
+behavior groups and all own assertions pass. Both miss exact assertion count.
+Resident2 return control started; no other engine or grading remains active.
 
 ## 2026-11-09 13:36 IST: verified recovery and publication
+
+13:36IST final passive availability: no llama/Strata engines; Ollama loaded inventory empty;10.670GiB availableRAM,30.951GiB availablecommit,6391MiB freeVRAM. Production18GiB RAM admission fails; no server restarted.
 
 | Requested work | Status | Evidence / limitation |
 |---|---|---|

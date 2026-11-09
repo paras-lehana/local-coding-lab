@@ -1,5 +1,13 @@
 # Current model comparison
 
+10 November update: Gemma12's five residency/KV runs are recorded; four
+merge implementations pass 5/5 independent groups, but assertion-count misses
+and one wrong model-written test remain. Flash Q2's resident3 control logs a
+new NVIDIA FECS error during hi at 02:27 IST; the owned tree and queue stop.
+No new reboot and no later GPU trial. The campaign is partial, not complete.
+See [measured tuning and remaining coverage](tasks/2026-11-10-tuning/2026-11-10-tuning-v0.12.0.md)
+and [incident](../reports/2026-11-10-flash-fecs-stop.md).
+
 **9 November restart update:** Flash-Next Q2 / Strata 0.1.50's 64K
 GPU-KV growth trial ended in a confirmed 0x116 NVIDIA timeout-recovery crash
 at 10:10:57 IST. Its 8K/17K fact answers and allocation growth are observations;

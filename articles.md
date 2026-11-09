@@ -1,11 +1,18 @@
 # Article ledger: claims, evidence and experiments
 
+10November continuation: [release and tuning review](research/reviews/2026-11-10-release-and-tuning.md)
+checks current official Qwen/Recursive/Google catalogs, Strata0.2.13 controls,
+and an observed VSCode search-process burst. These are primary-source follow-ups,
+not additional owner-supplied articles. The fourteen supplied-source rows below
+remain intact. Gemma residency/KV/effort diagnostics are complete; a new Flash
+FECS event stops later controls. [Incident](reports/2026-11-10-flash-fecs-stop.md).
+
 **Post-restart finding, 9 November:** article-driven Flash Q2 growth reached
 0.23 / 0.33 / 0.52 GiB allocated GPU KV, but the 33K request was interrupted by
 a confirmed GPU timeout-recovery crash. There is no qualified growth/trim or
 coding result. [Configuration, evidence and limits](reports/2026-11-09-flash-q2-gpu-restart.md).
 
-Updated 9 November 2026. This is the maintained index of the owner's supplied
+Updated 10 November 2026. This is the maintained index of the owner's supplied
 research, not a collection of benchmark endorsements. Full third-party pastes
 stay private. Links below lead to attributed reviews, primary sources and our
 measurements. A published throughput number is never a local quality score.
@@ -235,6 +242,18 @@ All recommendations remain hypotheses until their individual rows gain an
 actual receipt. New articles append rows; corrections are dated, and old
 measurements remain available. No model is promoted by adding a research link.
 
+### 10 November measured follow-ups
+
+| Article/theme | What we actually tested | Result and correction | Next useful check |
+|---|---|---|---|
+| RAM residency and slow local inference | Gemma12 QAT, same32GPU/32Kq8 profile, resident2to3GiB | Identical complete greeting messages;112.875/120.844s becomes18.828/20.281s. Paired observation suggests cap-induced churn; page faults are not direct SSD-byte measurements | Return-to-resident2 greeting control; actual CPU-KV placement |
+| Always use maximum thinking | Same frozen merge diagnostic, native Gemma thinking on/off | Both5/5independent behavior groups;636.437vs82.797s. Both miss exact three-assertion format. More reasoning is not automatically more accurate | Harder source-grounded tasks and additional seeds; retain native modes rather than invented ultra knob |
+| Cache reuse fixes slow prompts | Flash Q2/new Strata0.1.59, cold/repeated/edited2462token input |305.813/15.750/302.422s at an intentional32token output ceiling. Repetition helps substantially; edited prefix costs return. Unscored timing only | Residency/prefill/host-KV controls, then complete code/file answers |
+
+Evidence: [Gemma controls](reports/2026-11-10-gemma12-tuning.json),
+[Flash controls](reports/2026-11-10-flash-tuning.json). Neither is a new full-suite
+leaderboard or a proof that the earlier hardware fault is fixed.
+
 
 ### Historical 9 November pre-serving checkpoint
 
@@ -268,3 +287,14 @@ not run. See the [incident](reports/2026-11-09-flash-q2-gpu-restart.md).
 All15Flint performance controls completed earlier; native private31/36 is
 retained. Current pending work and publication checks are in the merged report.
 Detailed chronological checkpoints remain in docs/tasks.md and Git history.
+
+
+## 10 November: measured implications for the article claims
+
+| Claim area | What we measured | Correction / next useful trial |
+|---|---|---|
+| A13 residency and latency | Gemma12 resident2/3/2 reproduces roughly110–121s /19–20s /110–117s greetings | More permitted physical residency can matter enormously; do not confuse working-set cap, private commit and total weights. Apps/caches still confound universal speed claims |
+| A14 maximum reasoning | Same merge task: on636.437s/off82.797s, both5/5 independent behavior groups | Extra reasoning did not improve this task; exact assertion-count instruction missed in both. File-heavy work still needs native-mode comparison |
+| A14 RAM KV and GPU utilization | All-CPU q8 KV frees about337MiB of GPU allocation at32K; CPU32 merge82.297s, CPU34 113.890s | More occupied GPU memory did not demonstrate a speed gain. Token outputs differ; no full-output equivalence claim. Longer-context recall remains untested |
+| A14 generated tests and correctness | CPU34 implementation passes5groups but its own later-mutation assertion fails | Compile success and model-written tests are insufficient. Independent alias/null/scalar/list checks matter |
+| A06/A09 Flash capacity and stability | New static32K/resident3 run logs FECS during hi, despite free RAM/commit/VRAM above floors | Neither nominal74GB capacity nor small context guarantees a stable run. Exact cause unresolved; remaining flags, higher quant and standard llama route remain unrun |

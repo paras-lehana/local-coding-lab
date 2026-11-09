@@ -1,9 +1,10 @@
 # Prompt log — Local Coding Lab
 
-> Last updated: 2026-11-09. See the latest recovery entry.
+> Last updated: 2026-11-10. See the measured tuning and hardware-stop entry.
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
+|23|2026-11-10|02:27 stop|Autonomous quantization and Flash tuning|Research / Experiment|Partial; measured Gemma controls, Flash hardware stop|[Entry](#2026-11-10-autonomous-tuning)|
 |22|2026-11-09|13:36|GPU restart, merged model/article reports|Research / Fix|Partial campaign; recovery checks complete|[Entry](#2026-11-09-local-llm-recovery-closeout)|
 |21|2026-11-09|Ongoing|Merge Claude, all-model reports and article-driven experiments|Research / Experiment|Partial; Flint native31/36,15 controls; Flash GPU crash preserved unscored|[Entry](#9-november-2026-merged-handoff-and-article-driven-continuation)|
 |19|2026-10-26|08:04|Resume comparison and grade saved Gemma audit|Research / Experiment|Partial; reports published, inference capacity constrained|[Entry](#resume-26-october)|
@@ -2485,3 +2486,26 @@ Suggested next steps
 - Resolve storage and memory constraints before installing additional candidates.
 - Select a replacement only from complete, comparable evidence. No new model is promoted or currently running.
 ```
+
+
+## 2026-11-10 autonomous tuning
+
+do more hypertuning and other quantisation test for the current models and also new models
+
+Also there is new qwen 4 and 3.8 model, (on raw as well as strata), flint max, and gemma models. try each, compare hard
+
+And for the choosen flash next, do all types of tuning, test and try
+
+keep deleting and downloading if you are low on space
+
+please dont wait for me now, test all, all approval given
+
+Partial campaign: Gemma12 residency/KV/native-thinking diagnostics complete;
+four independently checked merge implementations pass, with separate own-test
+and instruction defects. Flash resident1 short controls finish; resident3
+records NVIDIA FECS during hi and stops the queue. No new reboot or post-event
+inference. Higher quants/full suites remain unrun; exact reasons are in the
+campaign. Groot exact-file retired; new runtime and Gemma hash-verified on E:.
+63 offline tests pass;11 qualification controls,3 collector ownership controls,
+3 merge-fixture controls and2 PowerShell parses pass. Final publication checks
+and canonical closeout follow; no production/editor availability claim.

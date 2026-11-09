@@ -177,6 +177,75 @@ def model_spec(key: str) -> dict:
     return model
 
 
+def model_artifacts(spec: dict) -> list[dict]:
+    """Resolve every required shard without trusting local path components."""
+    additions = spec.get("additional_files", [])
+    if not isinstance(additions, list):
+        raise ValueError("additional_files must be a list of pinned artifacts")
+    artifacts, seen = [], set()
+    for entry in [spec, *additions]:
+        if not isinstance(entry, dict):
+            raise ValueError("Model artifact must be an object")
+        name = entry["filename"]
+        if (not isinstance(name, str) or not name or name in (".", "..")
+                or any(character in name for character in ("/", "\\", ":"))
+                or name.rstrip(" .") != name or name.casefold() in seen):
+            raise ValueError("Model filenames must be unique plain local names")
+        seen.add(name.casefold())
+        checksum = entry["sha256"]
+        if (not isinstance(checksum, str) or len(checksum) != 64
+                or any(character not in "0123456789abcdef" for character in checksum)
+                or not isinstance(entry["bytes"], int) or entry["bytes"] <= 0):
+            raise ValueError("Every model artifact needs a positive size and SHA256")
+        remote = entry.get("remote_filename", name)
+        artifacts.append({**entry, "url":
+            f"https://huggingface.co/{spec['repo']}/resolve/{spec['revision']}/{remote}"})
+    return artifacts
+
+
+def model_artifact_paths(first: Path, spec: dict) -> list[tuple[Path, dict]]:
+    """Bind sibling shards to the selected first file's directory."""
+    artifacts = model_artifacts(spec)
+    if len(artifacts) > 1 and first.name != artifacts[0]["filename"]:
+        raise ValueError("Split GGUF first-shard filename must match its catalog pin")
+    directory = first.parent.resolve()
+    targets = []
+    for index, artifact in enumerate(artifacts):
+        path = first if index == 0 else directory / artifact["filename"]
+        if not path.resolve().is_relative_to(directory):
+            raise ValueError("Model artifact escapes the selected directory")
+        targets.append((path, artifact))
+    return targets
+
+
+def verify_model_files(first: Path, spec: dict) -> None:
+    """Never start an engine with an unverified automatic sibling shard."""
+    for path, artifact in model_artifact_paths(first, spec):
+        verify(path, artifact)
+
+
+def download_model_files(spec: dict, directory: Path) -> None:
+    """Check whole-set capacity, then resume and verify every required file."""
+    targets = model_artifact_paths(directory / spec["filename"], spec)
+    directory.mkdir(parents=True, exist_ok=True)
+    remaining = 0
+    for path, artifact in targets:
+        if path.exists():
+            verify(path, artifact)
+            continue
+        partial = path.with_name(path.name + ".part")
+        if not partial.resolve().is_relative_to(directory.resolve()):
+            raise ValueError("Model partial escapes the selected directory")
+        offset = partial.stat().st_size if partial.exists() else 0
+        if offset > artifact["bytes"]:
+            raise ValueError("Oversized partial; inspect it before retrying")
+        remaining += artifact["bytes"] - offset
+    if remaining and shutil.disk_usage(directory).free < remaining + 512 * 1024 ** 2:
+        raise ValueError("Insufficient disk space for the whole model set plus headroom")
+    for path, artifact in targets:
+        download(artifact, path)
+
+
 def memory_snapshot() -> dict:
     """Read Windows physical RAM and GPU 0; never count shared RAM as VRAM."""
     result: dict = {"time": time.time(), "platform": sys.platform}
@@ -507,7 +576,7 @@ def run_server(args: argparse.Namespace, data: Path) -> None:
     stop_file = Path(args.stop_file).resolve() if args.stop_file else None
     if stop_file and stop_file.exists():
         raise ValueError("Stop file already exists; choose a fresh experiment path")
-    verify(model, spec)
+    verify_model_files(model, spec)
     since = datetime.now(timezone.utc).isoformat()
     check_hardware_events(since)
     preflight_memory = memory_snapshot()
@@ -616,7 +685,7 @@ def main() -> int:
             spec = model_spec(args.model)
             print(json.dumps(spec, indent=2))
             if args.apply:
-                download(spec, data / "models" / spec["filename"])
+                download_model_files(spec, data / "models")
             else:
                 print("Plan only. Add --apply to download.")
         elif args.command == "run":

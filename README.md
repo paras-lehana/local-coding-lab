@@ -1,5 +1,20 @@
 # Local Coding Lab
 
+**10 November measured update; further GPU trials stopped:** renewed model/quantization/tuning work is
+tracked in the [current experiment report](docs/tasks/2026-11-10-tuning/2026-11-10-tuning-v0.12.0.md).
+A separately verified Strata0.1.59 native engine passes short Flash Q2 tests;
+completed timing controls are [exported separately](reports/2026-11-10-flash-tuning.json)
+from quality scores. Gemma4 12B QAT now has measured residency/greeting controls;
+four merge answers pass isolated implementation checks, with formatting and
+self-test defects kept separate. The standard llama Flash route is prepared,
+not loaded. No replacement is promoted. The old failed configuration
+and its incident below remain preserved. Downloads/launches now verify all
+catalogued shards of a split GGUF, including their complete-set disk requirement.
+
+A new [NVIDIA FECS error](reports/2026-11-10-flash-fecs-stop.md) during Flash's
+resident3 greeting stopped the owned engine and the remaining queue. No new
+reboot occurred; root cause is unresolved. The unrun controls are not results.
+
 **9 November restart update:** Flash-Next Q2 / Strata 0.1.50's 64K
 GPU-KV growth trial ended in a confirmed 0x116 NVIDIA timeout-recovery crash
 at 10:10:57 IST. Its 8K/17K fact answers and allocation growth are observations;

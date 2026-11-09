@@ -1,0 +1,1470 @@
+{
+  "created": "2026-11-09T20:56:13.197639+00:00",
+  "model": "google/gemma-4-12B-it-qat-q4_0-gguf",
+  "revision": "29d097773436b69ff9feafd636ab4cf873786537",
+  "artifact_sha256": "93567e57a8fe10b23569b9d9ec38cd005deedf71e29477c421a4b83f418a538b",
+  "limitations": "Diagnostic controls, not a complete coding/private/public ranking. Intentional interrupted case unscored. All generated code reviewed before isolated grading. Apps open; no OS cache flush.",
+  "records": [
+    {
+      "status": "collected",
+      "reason": null,
+      "started": "2026-11-09T20:48:59.760438+00:00",
+      "finished": "2026-11-09T20:51:24.948791+00:00",
+      "profile_name": "gemma4-12b-qat-layer32-cpukv-res3-32k",
+      "profile": {
+        "model": "gemma4-12b-qat",
+        "alias": "gemma4-12b-lab",
+        "locally_tested": false,
+        "validation_status": "prepared-not-loaded",
+        "evidence": "Prepared one-factor CPU q8 KV placement control relative to 32GPU/resident3/32K. No load or quality claim.",
+        "load_min_ram_free_gib": 8,
+        "load_min_commit_available_gib": 12,
+        "load_min_vram_free_mib": 6000,
+        "stop_min_ram_free_gib": 2.5,
+        "stop_min_commit_available_gib": 1,
+        "stop_min_vram_free_mib": 400,
+        "stop_gpu_c": 84,
+        "working_set_limit_gib": 3,
+        "working_set_reserve_gib": 5,
+        "runtime_variant": {
+          "id": "b12069-noprefetch-v1",
+          "llama_sha256": "de7b17fcfe0528e7d830b53c7c02a77f3fc1f30cd6fe7330834c9b5c655cfc05"
+        },
+        "template_kwargs": {
+          "enable_thinking": true,
+          "preserve_thinking": false
+        },
+        "args": [
+          "--gpu-layers",
+          "32",
+          "--ctx-size",
+          "32768",
+          "--threads",
+          "4",
+          "--threads-batch",
+          "8",
+          "--cpu-mask",
+          "0x5554",
+          "--cpu-strict",
+          "1",
+          "--cpu-mask-batch",
+          "0xFFFC",
+          "--batch-size",
+          "128",
+          "--ubatch-size",
+          "32",
+          "--flash-attn",
+          "on",
+          "--cache-type-k",
+          "q8_0",
+          "--cache-type-v",
+          "q8_0",
+          "--jinja",
+          "--reasoning",
+          "on",
+          "--reasoning-format",
+          "deepseek",
+          "--reasoning-budget",
+          "-1",
+          "--predict",
+          "16384",
+          "--temp",
+          "1.0",
+          "--top-p",
+          "0.95",
+          "--top-k",
+          "64",
+          "--min-p",
+          "0",
+          "--repeat-penalty",
+          "1",
+          "--cache-ram",
+          "0",
+          "--fit",
+          "off",
+          "--perf",
+          "--load-mode",
+          "mmap",
+          "--no-repack",
+          "--ctx-checkpoints",
+          "4",
+          "--no-context-shift",
+          "--timeout",
+          "21600",
+          "--metrics",
+          "--verbosity",
+          "4",
+          "--no-kv-offload"
+        ]
+      },
+      "cohort": "extended-diagnostic",
+      "preflight": {
+        "time": 1794257339.7604382,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 13.527992248535156,
+        "commit_limit_gib": 111.40217208862305,
+        "commit_available_gib": 30.664955139160156,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6058.0,
+        "gpu_c": 43.22,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "postflight": {
+        "time": 1794257484.9487917,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 13.2164306640625,
+        "commit_limit_gib": 111.40217208862305,
+        "commit_available_gib": 30.442596435546875,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6069.0,
+        "gpu_c": 45.19,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "load_seconds": 12.328999999997905,
+      "controller_sha256": "db6ca5cfa1600f94908a14ad5439bc5cfaa7a74234533ad9f5ba2758facef5ea",
+      "task_file_sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "chat_task_file_sha256": "f944dd43187985bb9df843be217481c2facea5c09721a92cd19bcabbb0de6720",
+      "server_outcome": {
+        "status": "requested_stop"
+      },
+      "new_hardware_event": false,
+      "name": "gemma12-cpukv32-a",
+      "state_sha256": "c1d9415b67974b499060e3d12fb58e679867cd92cdf07073202d3c55d80381b2",
+      "resource_minimum": {
+        "ram_free_gib": 9.567569732666016,
+        "commit_available_gib": 24.046344757080078,
+        "vram_free_mib": 1078.0
+      },
+      "resource_maximum": {
+        "gpu_c": 46.28,
+        "process_working_set_gib": 3.0000457763671875,
+        "process_private_gib": 6.000408172607422
+      },
+      "requests": [
+        {
+          "name": "hi-cold",
+          "benchmark": {
+            "wall_seconds": 22.218000000000757,
+            "finish_reason": "stop",
+            "first_event_seconds": 0.7810000000026776,
+            "first_content_seconds": 20.906000000002678,
+            "error": null
+          },
+          "usage": {
+            "completion_tokens": 141,
+            "prompt_tokens": 17,
+            "total_tokens": 158,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 17,
+            "prompt_ms": 747.342,
+            "prompt_per_token_ms": 43.96129411764706,
+            "prompt_per_second": 22.74728303775246,
+            "predicted_n": 141,
+            "predicted_ms": 21429.658,
+            "predicted_per_token_ms": 153.0689857142857,
+            "predicted_per_second": 6.533002066575211
+          },
+          "deadline": 600,
+          "finish_reason": "stop",
+          "response_sha256": "f1effa2d9291fad69400ba217cf4aa506574f38b68b9d5c054c024c24db3fac1",
+          "message_sha256": "bd79b2093eaf0739e5e1560304bab837849492a8c011d0eae15d8a6d34f5d444",
+          "sampling": {
+            "max_tokens": 4096,
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 64,
+            "min_p": 0,
+            "seed": 73,
+            "cache_prompt": false
+          }
+        },
+        {
+          "name": "hi-warm",
+          "benchmark": {
+            "wall_seconds": 22.860000000000582,
+            "finish_reason": "stop",
+            "first_event_seconds": 0.5310000000026776,
+            "first_content_seconds": 21.54699999999866,
+            "error": null
+          },
+          "usage": {
+            "completion_tokens": 106,
+            "prompt_tokens": 17,
+            "total_tokens": 123,
+            "prompt_tokens_details": {
+              "cached_tokens": 12
+            }
+          },
+          "timings": {
+            "cache_n": 12,
+            "prompt_n": 5,
+            "prompt_ms": 490.649,
+            "prompt_per_token_ms": 98.1298,
+            "prompt_per_second": 10.190584307723036,
+            "predicted_n": 106,
+            "predicted_ms": 22319.399,
+            "predicted_per_token_ms": 212.56570476190478,
+            "predicted_per_second": 4.704427749152206
+          },
+          "deadline": 600,
+          "finish_reason": "stop",
+          "response_sha256": "9477787ec9ee36bab6a940e7e533a9707ff9f61add89887badeec2928e25b3d1",
+          "message_sha256": "f23153035bad0234bfa700c41b5d126dbf4d4db8cef23f8fa24dd8cd4991b44d",
+          "sampling": {
+            "max_tokens": 4096,
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 64,
+            "min_p": 0,
+            "seed": 73,
+            "cache_prompt": true
+          }
+        },
+        {
+          "name": "merge-off",
+          "benchmark": {
+            "wall_seconds": 82.29699999999866,
+            "finish_reason": "stop",
+            "first_event_seconds": 2.311999999998079,
+            "first_content_seconds": 2.311999999998079,
+            "error": null
+          },
+          "usage": {
+            "completion_tokens": 494,
+            "prompt_tokens": 115,
+            "total_tokens": 609,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 115,
+            "prompt_ms": 2262.332,
+            "prompt_per_token_ms": 19.672452173913044,
+            "prompt_per_second": 50.83250380580746,
+            "predicted_n": 494,
+            "predicted_ms": 79981.259,
+            "predicted_per_token_ms": 162.23379107505073,
+            "predicted_per_second": 6.163943980926832
+          },
+          "deadline": 1800,
+          "finish_reason": "stop",
+          "response_sha256": "077e4b66348cddea7bc998bde826a8553ba974b535922b5c7de85beaa6ef8369",
+          "message_sha256": "56e8b9e6a4d593f36039e49db897287f6d9a7a692cc95de3d3aa7df8a6588b38",
+          "sampling": {
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 20,
+            "min_p": 0,
+            "seed": 73,
+            "max_tokens": 8192,
+            "cache_prompt": false,
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "review": {
+            "reviewer": "Codex",
+            "scope": "entire final content; sole direct response",
+            "selected_fence": 0,
+            "response_sha256": "077e4b66348cddea7bc998bde826a8553ba974b535922b5c7de85beaa6ef8369",
+            "code_block_sha256": "93bfef6320a7446b4cf07596d756a9bd3a19bedcfcb9a749bee165cd871cf9a1",
+            "candidate_sha256": "e72b7cdfdab33bb5baa7fa13e3b09cd273c46a74b86aec48902a4b0ae467bc0a",
+            "checks_sha256": "070b11211f56e41f2a1bdce380962de6463757cc219f4d5d3b00f869df2fe251",
+            "review": "Reviewed copy.deepcopy, dict checks and recursive merge; only local value operations. Exactly three assert statements, but model alias assertion only checks unchanged overwritten base input, not the patch list that a shallow replacement might alias. No execution claim. Independent deep-isolation tests required. No host generated-code execution."
+          },
+          "grading": {
+            "probe": {
+              "status": "exited",
+              "returncode": 0,
+              "stdout": "{\"environment_keys\": [\"HOME\", \"LC_CTYPE\", \"PATH\", \"PWD\"]}\n{\"isolated_network\": true, \"no_host_homes\": true, \"python\": \"3.14.4\"}\n",
+              "stderr": ""
+            },
+            "limits": {
+              "wall_seconds_per_process": 20,
+              "cpu_seconds": 10,
+              "address_space_mib": 512
+            },
+            "runs": {
+              "behavior_checks.py": {
+                "status": "exited",
+                "returncode": 0,
+                "stdout": "",
+                "stderr": "test_deep_mutable_isolation (__main__.ContractTests.test_deep_mutable_isolation) ... ok\ntest_dictionary_scalar_conflicts (__main__.ContractTests.test_dictionary_scalar_conflicts) ... ok\ntest_false_and_empty_values (__main__.ContractTests.test_false_and_empty_values) ... ok\ntest_nested_defaults_and_unknown_keys (__main__.ContractTests.test_nested_defaults_and_unknown_keys) ... ok\ntest_repeated_calls (__main__.ContractTests.test_repeated_calls) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nOK\n"
+              },
+              "model_tests.py": {
+                "status": "exited",
+                "returncode": 0,
+                "stdout": "",
+                "stderr": ""
+              }
+            }
+          },
+          "grading_sha256": "70a32a29a6a33e74cdb5f9f46e931de62ab0d2f65609784c75000507815be6d0"
+        }
+      ]
+    },
+    {
+      "status": "collected",
+      "reason": null,
+      "started": "2026-11-09T20:52:02.179870+00:00",
+      "finished": "2026-11-09T20:54:58.967431+00:00",
+      "profile_name": "gemma4-12b-qat-layer34-cpukv-res3-32k",
+      "profile": {
+        "model": "gemma4-12b-qat",
+        "alias": "gemma4-12b-lab",
+        "locally_tested": false,
+        "validation_status": "prepared-not-loaded",
+        "evidence": "Prepared 34GPU/CPUq8KV/resident3/32K capacity control after CPU-KV qualification; two extra GPU layers versus CPU32.",
+        "load_min_ram_free_gib": 8,
+        "load_min_commit_available_gib": 12,
+        "load_min_vram_free_mib": 6000,
+        "stop_min_ram_free_gib": 2.5,
+        "stop_min_commit_available_gib": 1,
+        "stop_min_vram_free_mib": 400,
+        "stop_gpu_c": 84,
+        "working_set_limit_gib": 3,
+        "working_set_reserve_gib": 5,
+        "runtime_variant": {
+          "id": "b12069-noprefetch-v1",
+          "llama_sha256": "de7b17fcfe0528e7d830b53c7c02a77f3fc1f30cd6fe7330834c9b5c655cfc05"
+        },
+        "template_kwargs": {
+          "enable_thinking": true,
+          "preserve_thinking": false
+        },
+        "args": [
+          "--gpu-layers",
+          "34",
+          "--ctx-size",
+          "32768",
+          "--threads",
+          "4",
+          "--threads-batch",
+          "8",
+          "--cpu-mask",
+          "0x5554",
+          "--cpu-strict",
+          "1",
+          "--cpu-mask-batch",
+          "0xFFFC",
+          "--batch-size",
+          "128",
+          "--ubatch-size",
+          "32",
+          "--flash-attn",
+          "on",
+          "--cache-type-k",
+          "q8_0",
+          "--cache-type-v",
+          "q8_0",
+          "--jinja",
+          "--reasoning",
+          "on",
+          "--reasoning-format",
+          "deepseek",
+          "--reasoning-budget",
+          "-1",
+          "--predict",
+          "16384",
+          "--temp",
+          "1.0",
+          "--top-p",
+          "0.95",
+          "--top-k",
+          "64",
+          "--min-p",
+          "0",
+          "--repeat-penalty",
+          "1",
+          "--cache-ram",
+          "0",
+          "--fit",
+          "off",
+          "--perf",
+          "--load-mode",
+          "mmap",
+          "--no-repack",
+          "--ctx-checkpoints",
+          "4",
+          "--no-context-shift",
+          "--timeout",
+          "21600",
+          "--metrics",
+          "--verbosity",
+          "4",
+          "--no-kv-offload"
+        ]
+      },
+      "cohort": "extended-diagnostic",
+      "preflight": {
+        "time": 1794257522.1798701,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 13.07851791381836,
+        "commit_limit_gib": 111.40217208862305,
+        "commit_available_gib": 30.337764739990234,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6063.0,
+        "gpu_c": 43.34,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "postflight": {
+        "time": 1794257698.9674313,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 12.700424194335938,
+        "commit_limit_gib": 111.40217208862305,
+        "commit_available_gib": 30.642772674560547,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6290.0,
+        "gpu_c": 42.41,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "load_seconds": 12.31300000000192,
+      "controller_sha256": "db6ca5cfa1600f94908a14ad5439bc5cfaa7a74234533ad9f5ba2758facef5ea",
+      "task_file_sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "chat_task_file_sha256": "f944dd43187985bb9df843be217481c2facea5c09721a92cd19bcabbb0de6720",
+      "server_outcome": {
+        "status": "requested_stop"
+      },
+      "new_hardware_event": false,
+      "name": "gemma12-cpukv34-a",
+      "state_sha256": "528fedb32b8d08ad4747e9f5e77d81e36986e2a6fc677c70526c41fb2c954632",
+      "resource_minimum": {
+        "ram_free_gib": 9.537918090820312,
+        "commit_available_gib": 23.85836410522461,
+        "vram_free_mib": 837.0
+      },
+      "resource_maximum": {
+        "gpu_c": 45.88,
+        "process_working_set_gib": 3.0000038146972656,
+        "process_private_gib": 6.235858917236328
+      },
+      "requests": [
+        {
+          "name": "hi-cold",
+          "benchmark": {
+            "wall_seconds": 22.43800000000192,
+            "finish_reason": "stop",
+            "first_event_seconds": 0.7340000000040163,
+            "first_content_seconds": 21.156000000002678,
+            "error": null
+          },
+          "usage": {
+            "completion_tokens": 141,
+            "prompt_tokens": 17,
+            "total_tokens": 158,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 17,
+            "prompt_ms": 692.187,
+            "prompt_per_token_ms": 40.71688235294118,
+            "prompt_per_second": 24.559837153832706,
+            "predicted_n": 141,
+            "predicted_ms": 21701.571,
+            "predicted_per_token_ms": 155.01122142857142,
+            "predicted_per_second": 6.451145864048276
+          },
+          "deadline": 600,
+          "finish_reason": "stop",
+          "response_sha256": "ef5db97136226c97adf938bd324b61b9a6a8ebcdfec4f429a1c9b38cc13757bc",
+          "message_sha256": "c379e2da23a0bb98ce208cc5720581bd3e07ad3cff84f2e670c615930a7aabed",
+          "sampling": {
+            "max_tokens": 4096,
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 64,
+            "min_p": 0,
+            "seed": 73,
+            "cache_prompt": false
+          }
+        },
+        {
+          "name": "hi-warm",
+          "benchmark": {
+            "wall_seconds": 23.765999999995984,
+            "finish_reason": "stop",
+            "first_event_seconds": 0.4069999999992433,
+            "first_content_seconds": 22.485000000000582,
+            "error": null
+          },
+          "usage": {
+            "completion_tokens": 159,
+            "prompt_tokens": 17,
+            "total_tokens": 176,
+            "prompt_tokens_details": {
+              "cached_tokens": 12
+            }
+          },
+          "timings": {
+            "cache_n": 12,
+            "prompt_n": 5,
+            "prompt_ms": 368.518,
+            "prompt_per_token_ms": 73.7036,
+            "prompt_per_second": 13.567858286433772,
+            "predicted_n": 159,
+            "predicted_ms": 23362.505,
+            "predicted_per_token_ms": 147.86395569620254,
+            "predicted_per_second": 6.762973405463156
+          },
+          "deadline": 600,
+          "finish_reason": "stop",
+          "response_sha256": "1749d76fea153c292cedeade12ab81f53346f77c2df38bba01b3c46642749a01",
+          "message_sha256": "4470999feec255519f3374cbcd3125ab18feb92527b1ac9b92ddf91eae25cfff",
+          "sampling": {
+            "max_tokens": 4096,
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 64,
+            "min_p": 0,
+            "seed": 73,
+            "cache_prompt": true
+          }
+        },
+        {
+          "name": "merge-off",
+          "benchmark": {
+            "wall_seconds": 113.88999999999942,
+            "finish_reason": "stop",
+            "first_event_seconds": 1.889999999999418,
+            "first_content_seconds": 1.889999999999418,
+            "error": null
+          },
+          "usage": {
+            "completion_tokens": 672,
+            "prompt_tokens": 115,
+            "total_tokens": 787,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 115,
+            "prompt_ms": 1851.427,
+            "prompt_per_token_ms": 16.099365217391302,
+            "prompt_per_second": 62.11425025129265,
+            "predicted_n": 672,
+            "predicted_ms": 112004.858,
+            "predicted_per_token_ms": 166.92229210134127,
+            "predicted_per_second": 5.990811577119271
+          },
+          "deadline": 1800,
+          "finish_reason": "stop",
+          "response_sha256": "ee1efd11e9eb081f979327b1ef8f89e1e6c73505b9fc07cdb44cbcc4a9130cf4",
+          "message_sha256": "d704b317099a5eb3d3505ab69201ea5f0bbc18c5671aeae0341252ea1bd9dd02",
+          "sampling": {
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 20,
+            "min_p": 0,
+            "seed": 73,
+            "max_tokens": 8192,
+            "cache_prompt": false,
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "review": {
+            "reviewer": "Codex",
+            "scope": "entire final content; sole direct response",
+            "selected_fence": 0,
+            "response_sha256": "ee1efd11e9eb081f979327b1ef8f89e1e6c73505b9fc07cdb44cbcc4a9130cf4",
+            "code_block_sha256": "d17697b0fd9e61a8f6d7f4c7bbf0162fdc1ebc39ba7ee0caba496d0401db4dcb",
+            "candidate_sha256": "4e1bff364a0add521348dc8ce030ef8eda1b306b4c298afcf717e6c7e6cc9ef1",
+            "checks_sha256": "070b11211f56e41f2a1bdce380962de6463757cc219f4d5d3b00f869df2fe251",
+            "review": "Reviewed copy.deepcopy, dict checks and recursive merge; only local value operations. Implementation appears correct. Six assert statements violate exact count. Own test adds other to base after merging, then wrongly expects the result to acquire it; this contradicts required isolation and should fail. No execution claim. Preserve unchanged model test; distinguish its defect from independent implementation behavior."
+          },
+          "grading": {
+            "probe": {
+              "status": "exited",
+              "returncode": 0,
+              "stdout": "{\"environment_keys\": [\"HOME\", \"LC_CTYPE\", \"PATH\", \"PWD\"]}\n{\"isolated_network\": true, \"no_host_homes\": true, \"python\": \"3.14.4\"}\n",
+              "stderr": ""
+            },
+            "limits": {
+              "wall_seconds_per_process": 20,
+              "cpu_seconds": 10,
+              "address_space_mib": 512
+            },
+            "runs": {
+              "behavior_checks.py": {
+                "status": "exited",
+                "returncode": 0,
+                "stdout": "",
+                "stderr": "test_deep_mutable_isolation (__main__.ContractTests.test_deep_mutable_isolation) ... ok\ntest_dictionary_scalar_conflicts (__main__.ContractTests.test_dictionary_scalar_conflicts) ... ok\ntest_false_and_empty_values (__main__.ContractTests.test_false_and_empty_values) ... ok\ntest_nested_defaults_and_unknown_keys (__main__.ContractTests.test_nested_defaults_and_unknown_keys) ... ok\ntest_repeated_calls (__main__.ContractTests.test_repeated_calls) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.001s\n\nOK\n"
+              },
+              "model_tests.py": {
+                "status": "exited",
+                "returncode": 1,
+                "stdout": "",
+                "stderr": "Traceback (most recent call last):\n  File \"/work/model_tests.py\", line 29, in <module>\n    assert \"other\" in res_mut[\"nested\"] and res_mut[\"nested\"][\"other\"] == \"changed\", \"Result should preserve untouched base keys\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Result should preserve untouched base keys\n"
+              }
+            }
+          },
+          "grading_sha256": "ce3dab06e506860ac4b3a5cf31830327ef1f8201658f43438acbd02f8ce29340"
+        }
+      ]
+    },
+    {
+      "status": "failed",
+      "reason": "RuntimeError: Chat diagnostic did not complete: merge-on",
+      "started": "2026-11-09T20:25:24.274007+00:00",
+      "finished": "2026-11-09T20:29:38.820968+00:00",
+      "profile_name": "gemma4-12b-qat-layer32-guarded32",
+      "profile": {
+        "model": "gemma4-12b-qat",
+        "alias": "gemma4-12b-lab",
+        "locally_tested": false,
+        "validation_status": "proposed-not-loaded",
+        "evidence": "10Nov official 12B QAT artifact,48layers. Start32GPU layers with32K q8 KV; actual allocation must be measured. Dense smaller capacity candidate, not a proven accuracy replacement. Working set2GiB plus5GiB admission margin. No app closure, all stop floors retained. Both input embedding and CPU layers remain mapped; no context shift. Initial greeting/short coding qualifies before full audit.",
+        "load_min_ram_free_gib": 7,
+        "load_min_commit_available_gib": 12,
+        "load_min_vram_free_mib": 6000,
+        "stop_min_ram_free_gib": 2.5,
+        "stop_min_commit_available_gib": 1,
+        "stop_min_vram_free_mib": 400,
+        "stop_gpu_c": 84,
+        "working_set_limit_gib": 2,
+        "working_set_reserve_gib": 5,
+        "runtime_variant": {
+          "id": "b12069-noprefetch-v1",
+          "llama_sha256": "de7b17fcfe0528e7d830b53c7c02a77f3fc1f30cd6fe7330834c9b5c655cfc05"
+        },
+        "template_kwargs": {
+          "enable_thinking": true,
+          "preserve_thinking": false
+        },
+        "args": [
+          "--gpu-layers",
+          "32",
+          "--ctx-size",
+          "32768",
+          "--threads",
+          "4",
+          "--threads-batch",
+          "8",
+          "--cpu-mask",
+          "0x5554",
+          "--cpu-strict",
+          "1",
+          "--cpu-mask-batch",
+          "0xFFFC",
+          "--batch-size",
+          "128",
+          "--ubatch-size",
+          "32",
+          "--flash-attn",
+          "on",
+          "--cache-type-k",
+          "q8_0",
+          "--cache-type-v",
+          "q8_0",
+          "--jinja",
+          "--reasoning",
+          "on",
+          "--reasoning-format",
+          "deepseek",
+          "--reasoning-budget",
+          "-1",
+          "--predict",
+          "16384",
+          "--temp",
+          "1.0",
+          "--top-p",
+          "0.95",
+          "--top-k",
+          "64",
+          "--min-p",
+          "0",
+          "--repeat-penalty",
+          "1",
+          "--cache-ram",
+          "0",
+          "--fit",
+          "off",
+          "--perf",
+          "--load-mode",
+          "mmap",
+          "--no-repack",
+          "--ctx-checkpoints",
+          "4",
+          "--no-context-shift",
+          "--timeout",
+          "21600",
+          "--metrics",
+          "--verbosity",
+          "4"
+        ]
+      },
+      "cohort": "extended-diagnostic",
+      "preflight": {
+        "time": 1794255924.274007,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 14.55141830444336,
+        "commit_limit_gib": 111.40217208862305,
+        "commit_available_gib": 31.13787841796875,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6059.0,
+        "gpu_c": 34.56,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "postflight": {
+        "time": 1794256178.8209682,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 14.234569549560547,
+        "commit_limit_gib": 111.40217208862305,
+        "commit_available_gib": 30.788475036621094,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6067.0,
+        "gpu_c": 43.62,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "load_seconds": 14.875,
+      "controller_sha256": "db6ca5cfa1600f94908a14ad5439bc5cfaa7a74234533ad9f5ba2758facef5ea",
+      "task_file_sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "chat_task_file_sha256": "22f875f8df34e2dfea6d3f1ae482120a732c4e44bd4f3b29164d0d7dba2cbf0d",
+      "server_outcome": {
+        "status": "requested_stop"
+      },
+      "new_hardware_event": false,
+      "name": "gemma12-qualification-a",
+      "state_sha256": "d5343409ef52b5fec6e2454751dd93818ebc011ffa0d1f02617bc23eed9b4a62",
+      "interpretation": "Intentional owned stop after both greetings; raced merge incomplete and unscored.",
+      "transition_sha256": "888f28d0a536799f61416e2f5d473442e4dfbe0a5dc9e9be9cd0f16f7408dcab",
+      "resource_minimum": {
+        "ram_free_gib": 11.6162109375,
+        "commit_available_gib": 24.636192321777344,
+        "vram_free_mib": 752.0
+      },
+      "resource_maximum": {
+        "gpu_c": 43.31,
+        "process_working_set_gib": 2.000019073486328,
+        "process_private_gib": 5.931827545166016
+      },
+      "requests": [
+        {
+          "name": "hi-cold",
+          "benchmark": {
+            "wall_seconds": 112.875,
+            "finish_reason": "stop",
+            "first_event_seconds": 2.937000000005355,
+            "first_content_seconds": 105.43700000000536,
+            "error": null
+          },
+          "usage": {
+            "completion_tokens": 135,
+            "prompt_tokens": 17,
+            "total_tokens": 152,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 17,
+            "prompt_ms": 2885.617,
+            "prompt_per_token_ms": 169.74217647058825,
+            "prompt_per_second": 5.891287721135549,
+            "predicted_n": 135,
+            "predicted_ms": 109945.129,
+            "predicted_per_token_ms": 820.4860373134328,
+            "predicted_per_second": 1.2187897837656818
+          },
+          "deadline": 600,
+          "finish_reason": "stop",
+          "response_sha256": "c060e300de85cb81ad4180d2c357e702199e3f5a473ac46f6c770a9e822bb9a2",
+          "message_sha256": "5f27181a1d96258ccdef1d386adb74aff042740a02788787df8467aac89f3bcc",
+          "sampling": {
+            "max_tokens": 4096,
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 64,
+            "min_p": 0,
+            "seed": 73,
+            "cache_prompt": false
+          }
+        },
+        {
+          "name": "hi-warm",
+          "benchmark": {
+            "wall_seconds": 120.8440000000046,
+            "finish_reason": "stop",
+            "first_event_seconds": 1.3280000000013388,
+            "first_content_seconds": 112.93800000000192,
+            "error": null
+          },
+          "usage": {
+            "completion_tokens": 145,
+            "prompt_tokens": 17,
+            "total_tokens": 162,
+            "prompt_tokens_details": {
+              "cached_tokens": 12
+            }
+          },
+          "timings": {
+            "cache_n": 12,
+            "prompt_n": 5,
+            "prompt_ms": 1284.075,
+            "prompt_per_token_ms": 256.815,
+            "prompt_per_second": 3.893853552167903,
+            "predicted_n": 145,
+            "predicted_ms": 119515.107,
+            "predicted_per_token_ms": 829.9660208333333,
+            "predicted_per_second": 1.2048686029290003
+          },
+          "deadline": 600,
+          "finish_reason": "stop",
+          "response_sha256": "e5aef9d81261938d696bdd34c93f0d85ff9b65fc3f4c643b1b8275b01fe471cf",
+          "message_sha256": "906f413fde7ad2394e433bd6844bb68e55edc1ce74a8b046edafcb4a299ddd9d",
+          "sampling": {
+            "max_tokens": 4096,
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 64,
+            "min_p": 0,
+            "seed": 73,
+            "cache_prompt": true
+          }
+        }
+      ]
+    },
+    {
+      "status": "collected",
+      "reason": null,
+      "started": "2026-11-09T20:44:38.003583+00:00",
+      "finished": "2026-11-09T20:48:46.554310+00:00",
+      "profile_name": "gemma4-12b-qat-layer32-guarded32",
+      "profile": {
+        "model": "gemma4-12b-qat",
+        "alias": "gemma4-12b-lab",
+        "locally_tested": false,
+        "validation_status": "proposed-not-loaded",
+        "evidence": "10Nov official 12B QAT artifact,48layers. Start32GPU layers with32K q8 KV; actual allocation must be measured. Dense smaller capacity candidate, not a proven accuracy replacement. Working set2GiB plus5GiB admission margin. No app closure, all stop floors retained. Both input embedding and CPU layers remain mapped; no context shift. Initial greeting/short coding qualifies before full audit.",
+        "load_min_ram_free_gib": 7,
+        "load_min_commit_available_gib": 12,
+        "load_min_vram_free_mib": 6000,
+        "stop_min_ram_free_gib": 2.5,
+        "stop_min_commit_available_gib": 1,
+        "stop_min_vram_free_mib": 400,
+        "stop_gpu_c": 84,
+        "working_set_limit_gib": 2,
+        "working_set_reserve_gib": 5,
+        "runtime_variant": {
+          "id": "b12069-noprefetch-v1",
+          "llama_sha256": "de7b17fcfe0528e7d830b53c7c02a77f3fc1f30cd6fe7330834c9b5c655cfc05"
+        },
+        "template_kwargs": {
+          "enable_thinking": true,
+          "preserve_thinking": false
+        },
+        "args": [
+          "--gpu-layers",
+          "32",
+          "--ctx-size",
+          "32768",
+          "--threads",
+          "4",
+          "--threads-batch",
+          "8",
+          "--cpu-mask",
+          "0x5554",
+          "--cpu-strict",
+          "1",
+          "--cpu-mask-batch",
+          "0xFFFC",
+          "--batch-size",
+          "128",
+          "--ubatch-size",
+          "32",
+          "--flash-attn",
+          "on",
+          "--cache-type-k",
+          "q8_0",
+          "--cache-type-v",
+          "q8_0",
+          "--jinja",
+          "--reasoning",
+          "on",
+          "--reasoning-format",
+          "deepseek",
+          "--reasoning-budget",
+          "-1",
+          "--predict",
+          "16384",
+          "--temp",
+          "1.0",
+          "--top-p",
+          "0.95",
+          "--top-k",
+          "64",
+          "--min-p",
+          "0",
+          "--repeat-penalty",
+          "1",
+          "--cache-ram",
+          "0",
+          "--fit",
+          "off",
+          "--perf",
+          "--load-mode",
+          "mmap",
+          "--no-repack",
+          "--ctx-checkpoints",
+          "4",
+          "--no-context-shift",
+          "--timeout",
+          "21600",
+          "--metrics",
+          "--verbosity",
+          "4"
+        ]
+      },
+      "cohort": "extended-diagnostic",
+      "preflight": {
+        "time": 1794257078.0035837,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 11.496696472167969,
+        "commit_limit_gib": 111.40217208862305,
+        "commit_available_gib": 28.531681060791016,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6067.0,
+        "gpu_c": 39.78,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "postflight": {
+        "time": 1794257326.5543108,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 13.646095275878906,
+        "commit_limit_gib": 111.40217208862305,
+        "commit_available_gib": 30.80196762084961,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6078.0,
+        "gpu_c": 44.03,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "load_seconds": 14.360000000000582,
+      "controller_sha256": "db6ca5cfa1600f94908a14ad5439bc5cfaa7a74234533ad9f5ba2758facef5ea",
+      "task_file_sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "chat_task_file_sha256": null,
+      "server_outcome": {
+        "status": "requested_stop"
+      },
+      "new_hardware_event": false,
+      "name": "gemma12-res2-b",
+      "state_sha256": "c73a1b249ec5c982fa787b8c6050abf2be7d46ab8cc7cecae3f8e1d8588349dc",
+      "resource_minimum": {
+        "ram_free_gib": 9.920173645019531,
+        "commit_available_gib": 23.302471160888672,
+        "vram_free_mib": 777.0
+      },
+      "resource_maximum": {
+        "gpu_c": 46.12,
+        "process_working_set_gib": 2.000041961669922,
+        "process_private_gib": 5.930515289306641
+      },
+      "requests": [
+        {
+          "name": "hi-cold",
+          "benchmark": {
+            "wall_seconds": 110.35900000000402,
+            "finish_reason": "stop",
+            "first_event_seconds": 2.8910000000032596,
+            "first_content_seconds": 103.0940000000046,
+            "error": null
+          },
+          "usage": {
+            "completion_tokens": 135,
+            "prompt_tokens": 17,
+            "total_tokens": 152,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 17,
+            "prompt_ms": 2827.291,
+            "prompt_per_token_ms": 166.31123529411767,
+            "prompt_per_second": 6.012822875324824,
+            "predicted_n": 135,
+            "predicted_ms": 107477.465,
+            "predicted_per_token_ms": 802.0706343283582,
+            "predicted_per_second": 1.246772986318574
+          },
+          "deadline": 600,
+          "finish_reason": "stop",
+          "response_sha256": "b21194112551469fd018425d3da2b9c6a6a1ddc1e36fdd979f6364b1d3ac50ec",
+          "message_sha256": "5f27181a1d96258ccdef1d386adb74aff042740a02788787df8467aac89f3bcc",
+          "sampling": {
+            "max_tokens": 4096,
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 64,
+            "min_p": 0,
+            "seed": 73,
+            "cache_prompt": false
+          }
+        },
+        {
+          "name": "hi-warm",
+          "benchmark": {
+            "wall_seconds": 117.40600000000268,
+            "finish_reason": "stop",
+            "first_event_seconds": 1.3130000000019209,
+            "first_content_seconds": 110.75,
+            "error": null
+          },
+          "usage": {
+            "completion_tokens": 145,
+            "prompt_tokens": 17,
+            "total_tokens": 162,
+            "prompt_tokens_details": {
+              "cached_tokens": 12
+            }
+          },
+          "timings": {
+            "cache_n": 12,
+            "prompt_n": 5,
+            "prompt_ms": 1264.765,
+            "prompt_per_token_ms": 252.95300000000003,
+            "prompt_per_second": 3.9533035781350683,
+            "predicted_n": 145,
+            "predicted_ms": 116086.735,
+            "predicted_per_token_ms": 806.1578819444444,
+            "predicted_per_second": 1.2404518052816285
+          },
+          "deadline": 600,
+          "finish_reason": "stop",
+          "response_sha256": "3c6fc59de2c245d74e8260b65bd164672a26da67c55914ccaa67cc5e6a55a082",
+          "message_sha256": "906f413fde7ad2394e433bd6844bb68e55edc1ce74a8b046edafcb4a299ddd9d",
+          "sampling": {
+            "max_tokens": 4096,
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 64,
+            "min_p": 0,
+            "seed": 73,
+            "cache_prompt": true
+          }
+        }
+      ]
+    },
+    {
+      "status": "collected",
+      "reason": null,
+      "started": "2026-11-09T20:30:09.681080+00:00",
+      "finished": "2026-11-09T20:43:09.191461+00:00",
+      "profile_name": "gemma4-12b-qat-layer32-res3-32k",
+      "profile": {
+        "model": "gemma4-12b-qat",
+        "alias": "gemma4-12b-lab",
+        "locally_tested": false,
+        "validation_status": "prepared-not-loaded",
+        "evidence": "10Nov prepared one-factor resident2to3GiB control at unchanged32GPU/32Kq8. No quality or fit claim before qualification. Same5GiB admission reserve and unchanged stop floors.",
+        "load_min_ram_free_gib": 8,
+        "load_min_commit_available_gib": 12,
+        "load_min_vram_free_mib": 6000,
+        "stop_min_ram_free_gib": 2.5,
+        "stop_min_commit_available_gib": 1,
+        "stop_min_vram_free_mib": 400,
+        "stop_gpu_c": 84,
+        "working_set_limit_gib": 3,
+        "working_set_reserve_gib": 5,
+        "runtime_variant": {
+          "id": "b12069-noprefetch-v1",
+          "llama_sha256": "de7b17fcfe0528e7d830b53c7c02a77f3fc1f30cd6fe7330834c9b5c655cfc05"
+        },
+        "template_kwargs": {
+          "enable_thinking": true,
+          "preserve_thinking": false
+        },
+        "args": [
+          "--gpu-layers",
+          "32",
+          "--ctx-size",
+          "32768",
+          "--threads",
+          "4",
+          "--threads-batch",
+          "8",
+          "--cpu-mask",
+          "0x5554",
+          "--cpu-strict",
+          "1",
+          "--cpu-mask-batch",
+          "0xFFFC",
+          "--batch-size",
+          "128",
+          "--ubatch-size",
+          "32",
+          "--flash-attn",
+          "on",
+          "--cache-type-k",
+          "q8_0",
+          "--cache-type-v",
+          "q8_0",
+          "--jinja",
+          "--reasoning",
+          "on",
+          "--reasoning-format",
+          "deepseek",
+          "--reasoning-budget",
+          "-1",
+          "--predict",
+          "16384",
+          "--temp",
+          "1.0",
+          "--top-p",
+          "0.95",
+          "--top-k",
+          "64",
+          "--min-p",
+          "0",
+          "--repeat-penalty",
+          "1",
+          "--cache-ram",
+          "0",
+          "--fit",
+          "off",
+          "--perf",
+          "--load-mode",
+          "mmap",
+          "--no-repack",
+          "--ctx-checkpoints",
+          "4",
+          "--no-context-shift",
+          "--timeout",
+          "21600",
+          "--metrics",
+          "--verbosity",
+          "4"
+        ]
+      },
+      "cohort": "extended-diagnostic",
+      "preflight": {
+        "time": 1794256209.6810808,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 14.330951690673828,
+        "commit_limit_gib": 111.40217208862305,
+        "commit_available_gib": 30.926097869873047,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6066.0,
+        "gpu_c": 40.69,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "postflight": {
+        "time": 1794256989.191461,
+        "platform": "win32",
+        "ram_total_gib": 63.909725189208984,
+        "ram_free_gib": 13.78750991821289,
+        "commit_limit_gib": 111.40217208862305,
+        "commit_available_gib": 30.869861602783203,
+        "vram_total_mib": 10240.0,
+        "vram_free_mib": 6073.0,
+        "gpu_c": 40.81,
+        "gpu": "NVIDIA GeForce RTX 3080",
+        "driver": "621.01"
+      },
+      "load_seconds": 12.31199999999808,
+      "controller_sha256": "db6ca5cfa1600f94908a14ad5439bc5cfaa7a74234533ad9f5ba2758facef5ea",
+      "task_file_sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "chat_task_file_sha256": "22f875f8df34e2dfea6d3f1ae482120a732c4e44bd4f3b29164d0d7dba2cbf0d",
+      "server_outcome": {
+        "status": "requested_stop"
+      },
+      "new_hardware_event": false,
+      "name": "gemma12-res3-a",
+      "state_sha256": "0976ecf025552eba15c370a3810d4c50744c8f44f9a3ea74b7afb24f2e6f7113",
+      "resource_minimum": {
+        "ram_free_gib": 10.304569244384766,
+        "commit_available_gib": 24.540325164794922,
+        "vram_free_mib": 725.0
+      },
+      "resource_maximum": {
+        "gpu_c": 43.28,
+        "process_working_set_gib": 3.0000038146972656,
+        "process_private_gib": 5.987567901611328
+      },
+      "requests": [
+        {
+          "name": "hi-cold",
+          "benchmark": {
+            "wall_seconds": 18.82800000000134,
+            "finish_reason": "stop",
+            "first_event_seconds": 0.7030000000013388,
+            "first_content_seconds": 17.64100000000326,
+            "error": null
+          },
+          "usage": {
+            "completion_tokens": 135,
+            "prompt_tokens": 17,
+            "total_tokens": 152,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 17,
+            "prompt_ms": 681.376,
+            "prompt_per_token_ms": 40.08094117647059,
+            "prompt_per_second": 24.949513924764005,
+            "predicted_n": 135,
+            "predicted_ms": 18112.932,
+            "predicted_per_token_ms": 135.17113432835822,
+            "predicted_per_second": 7.398029209186011
+          },
+          "deadline": 600,
+          "finish_reason": "stop",
+          "response_sha256": "190dfbb1212554836d4dba335e95fb60bf76dccc3dd78496ba80dfbd0461b9b0",
+          "message_sha256": "5f27181a1d96258ccdef1d386adb74aff042740a02788787df8467aac89f3bcc",
+          "sampling": {
+            "max_tokens": 4096,
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 64,
+            "min_p": 0,
+            "seed": 73,
+            "cache_prompt": false
+          }
+        },
+        {
+          "name": "hi-warm",
+          "benchmark": {
+            "wall_seconds": 20.281000000002678,
+            "finish_reason": "stop",
+            "first_event_seconds": 0.4210000000020955,
+            "first_content_seconds": 19.125,
+            "error": null
+          },
+          "usage": {
+            "completion_tokens": 145,
+            "prompt_tokens": 17,
+            "total_tokens": 162,
+            "prompt_tokens_details": {
+              "cached_tokens": 12
+            }
+          },
+          "timings": {
+            "cache_n": 12,
+            "prompt_n": 5,
+            "prompt_ms": 369.689,
+            "prompt_per_token_ms": 73.93780000000001,
+            "prompt_per_second": 13.524881724909314,
+            "predicted_n": 145,
+            "predicted_ms": 19858.692,
+            "predicted_per_token_ms": 137.90758333333332,
+            "predicted_per_second": 7.251232860653662
+          },
+          "deadline": 600,
+          "finish_reason": "stop",
+          "response_sha256": "787460a4f8bd6e9d697fbe192822a023abc8b51ee3a710fb96996654396ef77d",
+          "message_sha256": "906f413fde7ad2394e433bd6844bb68e55edc1ce74a8b046edafcb4a299ddd9d",
+          "sampling": {
+            "max_tokens": 4096,
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 64,
+            "min_p": 0,
+            "seed": 73,
+            "cache_prompt": true
+          }
+        },
+        {
+          "name": "merge-off",
+          "benchmark": {
+            "wall_seconds": 82.79699999999866,
+            "finish_reason": "stop",
+            "first_event_seconds": 1.9059999999954016,
+            "first_content_seconds": 1.9059999999954016,
+            "error": null
+          },
+          "usage": {
+            "completion_tokens": 574,
+            "prompt_tokens": 115,
+            "total_tokens": 689,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 115,
+            "prompt_ms": 1867.057,
+            "prompt_per_token_ms": 16.235278260869567,
+            "prompt_per_second": 61.59426305677867,
+            "predicted_n": 574,
+            "predicted_ms": 80878.014,
+            "predicted_per_token_ms": 141.14836649214658,
+            "predicted_per_second": 7.084743698083388
+          },
+          "deadline": 1800,
+          "finish_reason": "stop",
+          "response_sha256": "4e2b2e2b4de33b36de8a86e60ef64f7144af570c980be507c86002c4c4a9edb9",
+          "message_sha256": "3f783a5ec2829197229a3d3a299b152a1c06ede8226b6a7ca69fdf1c463f611a",
+          "sampling": {
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 20,
+            "min_p": 0,
+            "seed": 73,
+            "max_tokens": 8192,
+            "cache_prompt": false,
+            "chat_template_kwargs": {
+              "enable_thinking": false
+            }
+          },
+          "review": {
+            "reviewer": "Codex",
+            "scope": "all delivered final content, single direct assistant response",
+            "selected_fence": 0,
+            "response_sha256": "4e2b2e2b4de33b36de8a86e60ef64f7144af570c980be507c86002c4c4a9edb9",
+            "code_block_sha256": "e86b6ebad83a07afa48c360ba748233600d3aee01946e89c5b059b555993cbac",
+            "candidate_sha256": "603a98c7447acbb6616175609900962174b51ab75857bac63b887484eb601895",
+            "review": "Only copy.deepcopy, recursion, dict/list/scalar operations, comparisons and assertions; no filesystem/network/process/host execution. Implementation appears to honor deep isolation and replacement. Five assert statements across three requested categories fail strict three-assert formatting. No execution claim. The saved rendered prompt proves the empty thought channel; response has no reasoning text.",
+            "checks_sha256": "070b11211f56e41f2a1bdce380962de6463757cc219f4d5d3b00f869df2fe251"
+          },
+          "grading": {
+            "probe": {
+              "status": "exited",
+              "returncode": 0,
+              "stdout": "{\"environment_keys\": [\"HOME\", \"LC_CTYPE\", \"PATH\", \"PWD\"]}\n{\"isolated_network\": true, \"no_host_homes\": true, \"python\": \"3.14.4\"}\n",
+              "stderr": ""
+            },
+            "limits": {
+              "wall_seconds_per_process": 20,
+              "cpu_seconds": 10,
+              "address_space_mib": 512
+            },
+            "runs": {
+              "behavior_checks.py": {
+                "status": "exited",
+                "returncode": 0,
+                "stdout": "",
+                "stderr": "test_deep_mutable_isolation (__main__.ContractTests.test_deep_mutable_isolation) ... ok\ntest_dictionary_scalar_conflicts (__main__.ContractTests.test_dictionary_scalar_conflicts) ... ok\ntest_false_and_empty_values (__main__.ContractTests.test_false_and_empty_values) ... ok\ntest_nested_defaults_and_unknown_keys (__main__.ContractTests.test_nested_defaults_and_unknown_keys) ... ok\ntest_repeated_calls (__main__.ContractTests.test_repeated_calls) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.001s\n\nOK\n"
+              },
+              "model_tests.py": {
+                "status": "exited",
+                "returncode": 0,
+                "stdout": "",
+                "stderr": ""
+              }
+            }
+          },
+          "grading_sha256": "84021e76dbccae5578d404a5580daed64e981b1ed3071f7f4562a35f16cea4fc"
+        },
+        {
+          "name": "merge-on",
+          "benchmark": {
+            "wall_seconds": 636.4369999999981,
+            "finish_reason": "stop",
+            "first_event_seconds": 2.125,
+            "first_content_seconds": 560.2809999999954,
+            "error": null
+          },
+          "usage": {
+            "completion_tokens": 4319,
+            "prompt_tokens": 118,
+            "total_tokens": 4437,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 118,
+            "prompt_ms": 2077.812,
+            "prompt_per_token_ms": 17.60857627118644,
+            "prompt_per_second": 56.790508477186584,
+            "predicted_n": 4319,
+            "predicted_ms": 634308.129,
+            "predicted_per_token_ms": 146.89859402501156,
+            "predicted_per_second": 6.807417093656702
+          },
+          "deadline": 1800,
+          "finish_reason": "stop",
+          "response_sha256": "963cd9fed3650084b1abf687928d42e0cbaef83972b79e4fcc20e8a04458e121",
+          "message_sha256": "3c64753eb90ec19fb799e8000c0631a155f3de12d20e22541e77a0d9966a0015",
+          "sampling": {
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 20,
+            "min_p": 0,
+            "seed": 73,
+            "max_tokens": 8192,
+            "cache_prompt": false,
+            "chat_template_kwargs": {
+              "enable_thinking": true
+            }
+          },
+          "review": {
+            "reviewer": "Codex",
+            "scope": "all delivered final content, single direct assistant response",
+            "selected_fence": 0,
+            "response_sha256": "963cd9fed3650084b1abf687928d42e0cbaef83972b79e4fcc20e8a04458e121",
+            "code_block_sha256": "44f4ca25a68780a3f414136ffad838de944243f01848adc187e0d435252055f5",
+            "candidate_sha256": "3689484bfe2adc8f061b122ce519694b9f9de6ad778b3b4235eada2a430b4e71",
+            "review": "Only copy.deepcopy, recursion, dict/list/scalar operations, comparisons and assertions; no filesystem/network/process/host execution. Implementation appears to honor deep isolation and replacement; run independent isolated checks after owned engine stops. Model gives four assert statements across three requested categories; strict three-assert formatting is not met. No claim of actual execution.",
+            "checks_sha256": "070b11211f56e41f2a1bdce380962de6463757cc219f4d5d3b00f869df2fe251"
+          },
+          "grading": {
+            "probe": {
+              "status": "exited",
+              "returncode": 0,
+              "stdout": "{\"environment_keys\": [\"HOME\", \"LC_CTYPE\", \"PATH\", \"PWD\"]}\n{\"isolated_network\": true, \"no_host_homes\": true, \"python\": \"3.14.4\"}\n",
+              "stderr": ""
+            },
+            "limits": {
+              "wall_seconds_per_process": 20,
+              "cpu_seconds": 10,
+              "address_space_mib": 512
+            },
+            "runs": {
+              "behavior_checks.py": {
+                "status": "exited",
+                "returncode": 0,
+                "stdout": "",
+                "stderr": "test_deep_mutable_isolation (__main__.ContractTests.test_deep_mutable_isolation) ... ok\ntest_dictionary_scalar_conflicts (__main__.ContractTests.test_dictionary_scalar_conflicts) ... ok\ntest_false_and_empty_values (__main__.ContractTests.test_false_and_empty_values) ... ok\ntest_nested_defaults_and_unknown_keys (__main__.ContractTests.test_nested_defaults_and_unknown_keys) ... ok\ntest_repeated_calls (__main__.ContractTests.test_repeated_calls) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nOK\n"
+              },
+              "model_tests.py": {
+                "status": "exited",
+                "returncode": 0,
+                "stdout": "",
+                "stderr": ""
+              }
+            }
+          },
+          "grading_sha256": "70a32a29a6a33e74cdb5f9f46e931de62ab0d2f65609784c75000507815be6d0"
+        }
+      ]
+    }
+  ]
+}

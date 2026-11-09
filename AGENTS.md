@@ -1,5 +1,22 @@
 # Local Coding Lab
 
+10November02:27IST: the new Strata0.1.59 static32K/resident3 Flash Q2 control
+logs nvlddmkm13, "Graphics FECS Exception: Logging error0x2", during hi.
+The expanded guard stops its owned tree; queue exits without later controls.
+No new reboot. Read reports/2026-11-10-flash-fecs-stop.md and current task logs.
+Do not rearm the queue or reset its event baseline to bypass this error.
+Gemma12's five residency/KV runs are preserved; four reviewed merge answers
+pass5/5independent groups, but one own test is wrong and count instructions fail.
+No model promotion, full new suite or production/editor availability claim.
+
+10 November: the owner explicitly reopens autonomous tuning, higher quants,
+new Qwen/Gemma/Flint candidates and exact-file storage rotation. Continue the
+new campaign in docs/tasks/2026-11-10-tuning/2026-11-10-tuning-v0.12.0.md.
+This supersedes the old offline-only disposition below. Preserve the9Nov
+incident and quarantine its exact failed profile; use a reviewed postincident
+baseline, changed conditions, short qualification and existing memory floors.
+No blind retry or old queue rearming. A new hardware event stops the live run.
+
 9 November restart recovery: Flash-Next Q2 on Strata0.1.50 ended in
 0x116 VIDEO_TDR_FAILURE at10:10:57IST during33K prefill in its64K
 dynamic-GPU-KV trial. Preserve partial8K/17K outputs unscored; no shrink or

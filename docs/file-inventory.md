@@ -2,6 +2,52 @@
 
 Initial repository contents and purpose, followed by subsequent change inventories.
 
+## 10 November tuning continuation
+
+36 public files in this change set. Private receipts, model answers, weights and
+local collector/controller scripts remain outside Git. Prepared profiles are not
+passed trials; measured profile snapshots are retained in the evidence JSON.
+
+| File | Change |
+|---|---|
+| [AGENTS.md](../AGENTS.md) | New campaign authorization, exact incident and current stop/recovery boundary. |
+| [CHANGELOG.md](../CHANGELOG.md) | Version0.12.0 measured tuning, split-shard support and interrupted follow-ups. |
+| [README.md](../README.md) | Current measured status and report/incident navigation. |
+| [VERSION](../VERSION) | Set0.12.0. |
+| [articles.md](../articles.md) | Preserve fourteen supplied sources; add new release/residency/KV/effort evidence and limits. |
+| [benchmarks/checks/merge_effort_v1.py](../benchmarks/checks/merge_effort_v1.py) | Five independent merge behavior groups including deep mutable isolation. |
+| [benchmarks/fixtures/merge-effort-v1/README.md](../benchmarks/fixtures/merge-effort-v1/README.md) | Frozen task, sampling, controls and grading boundary. |
+| [benchmarks/fixtures/merge-effort-v1/request.json](../benchmarks/fixtures/merge-effort-v1/request.json) | Predeclared merge prompt shared by effort/placement diagnostics. |
+| [catalog/models.json](../catalog/models.json) | Pin Gemma12 QAT/Q6, Gemma31Q6 and Flash split shards/remote paths. |
+| [docs/file-inventory.md](../docs/file-inventory.md) | This per-file change inventory. |
+| [docs/memory-and-context.md](../docs/memory-and-context.md) | Measured Gemma CPU/GPU KV allocations, capacity versus occupancy. |
+| [docs/model-comparison.md](../docs/model-comparison.md) | Current partial comparison and new hardware stop. |
+| [docs/models.md](../docs/models.md) | Add measured Gemma12 record; current states and retained comparisons. |
+| [docs/prompts.md](../docs/prompts.md) | Exact owner request, current evidence and canonical closeout. |
+| [docs/tasks.md](../docs/tasks.md) | Dated campaign checkpoints and stop disposition. |
+| [docs/tasks/2026-10-26-flash-next/2026-10-26-flash-next-v0.10.0.md](../docs/tasks/2026-10-26-flash-next/2026-10-26-flash-next-v0.10.0.md) | New native runtime controls and resident3 FECS stop addendum. |
+| [docs/tasks/2026-11-03-groot/2026-11-03-groot-19b-a3b-apps-open-v1.0.md](../docs/tasks/2026-11-03-groot/2026-11-03-groot-19b-a3b-apps-open-v1.0.md) | Exact-file retirement receipt; preserve earlier unscored memory stops. |
+| [docs/tasks/2026-11-10-gemma12/2026-11-10-gemma12-v0.12.0.md](../docs/tasks/2026-11-10-gemma12/2026-11-10-gemma12-v0.12.0.md) | Gemma12 identity,2/3/2 residency, native effort, CPU-KV, bugs and pending full suites. |
+| [docs/tasks/2026-11-10-gemma12/owner-request.txt](../docs/tasks/2026-11-10-gemma12/owner-request.txt) | Exact campaign request retained with this task/model record. |
+| [docs/tasks/2026-11-10-tuning/2026-11-10-tuning-v0.12.0.md](../docs/tasks/2026-11-10-tuning/2026-11-10-tuning-v0.12.0.md) | Campaign decisions, measured matrix, incident and every remaining trial/reason. |
+| [docs/tasks/2026-11-10-tuning/owner-request.txt](../docs/tasks/2026-11-10-tuning/owner-request.txt) | Exact campaign request retained with this task/model record. |
+| [docs/tasks/README.md](../docs/tasks/README.md) | Index the new campaign and Gemma12 report with actual status. |
+| [experiments/strata/engine-0159-pins.json](../experiments/strata/engine-0159-pins.json) | Exact side-runtime asset and binary pins. |
+| [lab.py](../lab.py) | Verify all automatic split shards; remote subdirectory pins and complete-set disk admission. |
+| [profiles/flash-q2-llama-cpu48-q8-32k-res1.json](../profiles/flash-q2-llama-cpu48-q8-32k-res1.json) | Exact model/runtime/settings and admission floors; prepared-not-loaded. |
+| [profiles/gemma4-12b-qat-layer32-cpukv-res3-32k.json](../profiles/gemma4-12b-qat-layer32-cpukv-res3-32k.json) | Exact model/runtime/settings and admission floors; diagnostic-only-not-promoted. |
+| [profiles/gemma4-12b-qat-layer32-guarded32.json](../profiles/gemma4-12b-qat-layer32-guarded32.json) | Exact model/runtime/settings and admission floors; diagnostic-only-not-promoted. |
+| [profiles/gemma4-12b-qat-layer32-res3-32k.json](../profiles/gemma4-12b-qat-layer32-res3-32k.json) | Exact model/runtime/settings and admission floors; diagnostic-only-not-promoted. |
+| [profiles/gemma4-12b-qat-layer34-cpukv-res3-32k.json](../profiles/gemma4-12b-qat-layer34-cpukv-res3-32k.json) | Exact model/runtime/settings and admission floors; diagnostic-only-not-promoted. |
+| [profiles/gemma4-12b-qat-layer36-cpukv-res3-32k.json](../profiles/gemma4-12b-qat-layer36-cpukv-res3-32k.json) | Exact model/runtime/settings and admission floors; prepared-not-loaded. |
+| [reports/2026-11-10-flash-fecs-stop.json](../reports/2026-11-10-flash-fecs-stop.json) | Sanitized exact event/configuration/telemetry and evidence hashes. |
+| [reports/2026-11-10-flash-fecs-stop.md](../reports/2026-11-10-flash-fecs-stop.md) | Incident timeline, attribution limits and unstarted queue controls. |
+| [reports/2026-11-10-flash-tuning.json](../reports/2026-11-10-flash-tuning.json) | Three normal short controls; caps/counters/identities, no quality score. |
+| [reports/2026-11-10-gemma12-tuning.json](../reports/2026-11-10-gemma12-tuning.json) | Five run receipts, profiles, timings, resource minima and four isolated grades. |
+| [research/reviews/2026-11-10-release-and-tuning.md](../research/reviews/2026-11-10-release-and-tuning.md) | Primary-source availability and Windows/runtime applicability review. |
+| [tests/test_model_shards.py](../tests/test_model_shards.py) | Five regressions for sibling integrity, paths, pins, disk and resume behavior. |
+
+
 ## 9 November research continuation
 
 | Entry point | What it contains |

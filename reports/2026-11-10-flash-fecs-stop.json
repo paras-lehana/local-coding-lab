@@ -1,0 +1,129 @@
+{
+  "status": "hardware-event-stopped-unscored",
+  "event": {
+    "provider": "nvlddmkm",
+    "id": 13,
+    "level": "Error",
+    "record_id": 70392,
+    "time_utc": "2026-11-09T20:57:29.6118995Z",
+    "time_ist": "2026-11-10T02:27:29.6118995+05:30",
+    "data": "Graphics FECS Exception: Logging error 0x2",
+    "execution_pid": 4,
+    "originating_application": "not identified by this event"
+  },
+  "boot_unchanged": "2026-11-09T10:11:56+05:30",
+  "model": "Qwen3.8-Flash-Next GSQ-RCO Q2_0",
+  "engine": "Strata0.1.59 CUDA13 sm86",
+  "engine_sha256": "12a21cddb83e3af14c36478590676e5749b0075dedd3568e8630848f20ad819f",
+  "frontend_commit": "4b9e05a2a806a3fe24f7b2560d98626c37dade35",
+  "profile": {
+    "kv": "static GPU int8",
+    "context": 32768,
+    "native_working_set_gib": 3,
+    "expert_cache_slots": 512,
+    "prefill": 64,
+    "cpu_workers": 6,
+    "worker_cores": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      12
+    ],
+    "host_core": 14,
+    "affinity": "FFFC",
+    "vram_reserve_mib": 3072,
+    "drafting": "off",
+    "routing_bias_and_tail_skip": "off",
+    "reasoning": "high alias xhigh",
+    "temperature": 1,
+    "seed": 73
+  },
+  "last_sample_before_event": {
+    "time": 1794257847.9911988,
+    "ram_free_gib": 8.627655029296875,
+    "commit_available_gib": 22.544944763183594,
+    "vram_free_mib": 1300.0,
+    "gpu_c": 47.31
+  },
+  "last_active_sample": {
+    "time": 1794257865.139589,
+    "ram_free_gib": 8.364334106445312,
+    "commit_available_gib": 22.18509292602539,
+    "vram_free_mib": 993.0,
+    "gpu_c": 46.94
+  },
+  "minimums": {
+    "ram_free_gib": 6.922359466552734,
+    "commit_available_gib": 21.011795043945312,
+    "vram_free_mib": 594.0
+  },
+  "maximum_gpu_c": 48.41,
+  "guard": {
+    "reason": "guard/error: ValueError: New Windows hardware/display/restart event; preserve logs before another load: nvlddmkm:13 at 2026-11-09T20:57:29.6118995Z",
+    "code": 1,
+    "seconds": 65.89100000000326,
+    "final": {
+      "time": 1794257866.1805289,
+      "platform": "win32",
+      "ram_total_gib": 63.909725189208984,
+      "ram_free_gib": 8.38592529296875,
+      "commit_limit_gib": 111.40217208862305,
+      "commit_available_gib": 22.210357666015625,
+      "vram_total_mib": 10240.0,
+      "vram_free_mib": 6428.0,
+      "gpu_c": 46.19,
+      "gpu": "NVIDIA GeForce RTX 3080",
+      "driver": "621.01"
+    }
+  },
+  "requests": [
+    {
+      "name": "hi-cold",
+      "status": "completed",
+      "benchmark": {
+        "wall_seconds": 27.343999999997322,
+        "finish_reason": "stop",
+        "first_event_seconds": 0.046999999998661224,
+        "first_content_seconds": 25.56300000000192,
+        "error": null
+      },
+      "usage": {
+        "prompt_tokens": 53,
+        "completion_tokens": 29,
+        "total_tokens": 82,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "scored": false
+    },
+    {
+      "name": "perf-cold",
+      "status": "incomplete",
+      "benchmark": null,
+      "usage": null,
+      "scored": false
+    }
+  ],
+  "additional_observations": [
+    "Event occurs during hi, before the cold performance request begins; greeting completion does not qualify the run.",
+    "Guard stops owned tree at02:27:46; next performance request is reset before a reply. Queue exits without starting resident6 or later controls.",
+    "An Armoury Crate app-hang report at02:26:58 precedes this event; no causal relation established.",
+    "Same FECS text exists12Oct11:46:19 before the current Flash runtime/configuration.",
+    "No new reboot/bugcheck/WHEA/display-reset record in the reviewed interval; this is not a new0x116 report.",
+    "LiveKernelReports directory was inaccessible to this non-elevated session; no new dump inspection claimed.",
+    "No clocks, BIOS, driver changes or broad process kills. No automatic retry or timestamp reset."
+  ],
+  "evidence_sha256": {
+    "driver-result.partial.json": "a3ca69af249bf989cf96126937edb787edd3a634c7d36cdf60789312b81f9b42",
+    "error.json": "11898e9916e593e3939ccd60948fe759b88dabc2d5a5c6c35a3056e15c57e101",
+    "result.json": "c72ea00fa455b027b1597189da113518a13c8b7b393028aa678620b980279015",
+    "telemetry.jsonl": "225b36f376c0cc875d363309585d4ad9ae4a5ef32d9860f317f0b0d190225979",
+    "engine.log": "7761fbff40c6bf97c40a984c117c08f2483d39bac62d03a216f7e3db12769c8c",
+    "70392.xml": "fe492e63f7b520ff3431db604a3ff87deb11eb6db37baa8ff745eac924c69a51",
+    "flash-controls-01.json": "ec2caf0ca70a868e39802412a513955fcbf17b4d4139067c5ac2a84a015eb6c5",
+    "flash-q2-0159-resident3-a.armed.json": "519c4d0b9c8eef4e01ee6cd58cee2b5e4d43f4d51c2f668a0ab29e39742dffc5"
+  }
+}

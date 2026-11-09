@@ -1,5 +1,37 @@
 # Qwen3.8-Flash-Next: refreshed quant and engine investigation
 
+10 November 02:27 IST: the resident3 control on native0.1.59 logs NVIDIA
+event13 during its greeting; expanded postflight stops the tree and queue.
+No new reboot. This control is interrupted/unscored, later controls unstarted.
+It is separate from the earlier normal resident1 runs and the9Nov dynamic-KV
+bugcheck. [Exact settings, telemetry and limits](../../../reports/2026-11-10-flash-fecs-stop.md).
+No higher-precision, effort or long-context quality result is added.
+
+## 10 November: changed-engine qualification and tuning
+
+The owner explicitly renews autonomous testing. The failed9Nov dynamic64K
+profile stays quarantined. A side-installed native0.1.59 engine, paired with
+the previously isolated ACL-corrected frontend, completes static32K greetings
+at a1GiB resident working-set limit: cold33.594s, warm13.266s,2.4/2.8decode
+tokens/s. This changes both runtime and resident limit; it is not a clean
+engine-only comparison against9Nov. Normal owned stop and no new event under
+the expanded hardware checker. That does not establish long-run stability.
+
+The first performance baseline uses2,462tokens and deliberately caps output32:
+cold305.813s, repeated15.750s, changed-middle approximately302s. The repeated
+request reuses2,457tokens; the middle edit reuses none. These reasoning-only
+outputs are unscored. Native resident maximum1.000GiB, minimum whole-device
+freeVRAM693MiB, minimum freeRAM5.280GiB, maxGPU51.91C. Logical expert bytes
+reported by the engine are not measured SSD traffic.
+
+CPU sharing, graph capture, prefill, resident memory, expert-cache slots,
+host-KV placement and KV precision are distinct proposed controls. A separate
+predeclared merge diagnostic compares none/low/medium/xhigh effort; the
+frontend maps high to xhigh, so they are not two different levels. Current
+state, exact identities and subsequent outcomes are in the
+[10Nov campaign](../2026-11-10-tuning/2026-11-10-tuning-v0.12.0.md).
+No higher-quant or standard llama result is assigned before it actually runs.
+
 **9 November restart update:** Flash-Next Q2 / Strata 0.1.50's 64K
 GPU-KV growth trial ended in a confirmed 0x116 NVIDIA timeout-recovery crash
 at 10:10:57 IST. Its 8K/17K fact answers and allocation growth are observations;
