@@ -6,6 +6,7 @@ Detailed reusable experiment evidence remains in the repository's `reports/`.
 
 | Date | Task | Status | Report |
 |---|---|---|---|
+|2026-11-10|Nov 10 2026 plan — multi-agent evaluation and tuning|Plan complete; experiments not started|[Plan](2026-11-10-plan/2026-11-10-plan-v0.12.1.md)|
 |2026-11-10|Autonomous quantization/tuning campaign|Partial; Gemma controls complete, new Flash FECS event stops later trials|[Campaign](2026-11-10-tuning/2026-11-10-tuning-v0.12.0.md)|
 |2026-11-10|Gemma4 dense12B official QAT|Five runs; four isolated merge passes, own-test and instruction defects; full suites pending|[Model record](2026-11-10-gemma12/2026-11-10-gemma12-v0.12.0.md)|
 |2026-11-09|Qwen3.5-9B Q4/Q5 preparation|No inference; E: relocation and qualification pending|[Model record](2026-11-09-qwen35-9b/2026-11-09-qwen35-9b-v0.11.0.md)|

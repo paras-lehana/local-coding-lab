@@ -1,5 +1,16 @@
 # File inventory
 
+## 10 November planning-only handoff
+
+- `docs/tasks/2026-11-10-plan/2026-11-10-plan-v0.12.1.md`: Nov 10 2026 plan;36candidate/configuration groups,
+  P0–P7, evaluation contracts, settings/context matrices, storage pins/rotation,
+  single-runner multi-agent procedure, reproducible command cards and reporting.
+- `docs/tasks/README.md`: index of the completed plan, execution not started.
+- `docs/tasks.md`, `docs/prompts.md`: latest planning scope, original request,
+  actual validation, independent-review corrections and deferred execution.
+- No application/runtime/profile code or model artifacts changed by this task.
+
+
 Initial repository contents and purpose, followed by subsequent change inventories.
 
 ## 10 November tuning continuation

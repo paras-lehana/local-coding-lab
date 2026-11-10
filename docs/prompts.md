@@ -4,6 +4,7 @@
 
 | # | Date | Time (IST) | Topic | Type | Status | Link |
 |---|---|---|---|---|---|---|
+|25|2026-11-10|21:05|Nov 10 2026 plan|Research/Planning|Done; execution not started|[Entry](#2026-11-10-nov-10-2026-plan)|
 |23|2026-11-10|02:27 stop|Autonomous quantization and Flash tuning|Research / Experiment|Partial; measured Gemma controls, Flash hardware stop|[Entry](#2026-11-10-autonomous-tuning)|
 |22|2026-11-09|13:36|GPU restart, merged model/article reports|Research / Fix|Partial campaign; recovery checks complete|[Entry](#2026-11-09-local-llm-recovery-closeout)|
 |21|2026-11-09|Ongoing|Merge Claude, all-model reports and article-driven experiments|Research / Experiment|Partial; Flint native31/36,15 controls; Flash GPU crash preserved unscored|[Entry](#9-november-2026-merged-handoff-and-article-driven-continuation)|
@@ -2585,4 +2586,103 @@ Suggested next steps
 - Complete the file-reference, instruction-following and long-context tests before selecting a replacement.
 - Compare higher precision using matched tasks and settings, rather than assuming it fixes bugs.
 - Retain the existing Qwen reference. The remaining experiments are documented but unfinished, and no model is currently running.
+```
+
+
+## 2026-11-10 Nov 10 2026 plan
+
+Continuation at21:07IST: owner said "continue". Resumed finalizing this planning deliverable; no new experiments launched.
+
+**Metadata:** Type:Research/Planning; Agent Mode:Default with three review agents;
+Project:Local Coding Lab; Branch:experiment/flint-precision-20261024;
+Files changed:5 documentation files. Plan complete; execution not started.
+
+### Original Prompt
+
+> continue, i have given you max access, rethink about what should be tested, done and evaluated.
+>
+> i want you to first make a plan for the next phase, after thinking. Name it Nov 10 2026 plan. it should be well though of what to trry, all combinations, what you think, full reasoning regarding them also. your objective now is not to do but first make a plan after full thought. I need a full multiu hour and multi agent plan, the plan so briefed that even lowest model can run them
+
+### Pre-flight context
+
+- Follow project and shared guidance (project:E:/llm/local-coding-lab; current branch above).
+- Planning first supersedes automatic continuation (latest owner request).
+- Keep one owned engine and existing guards (projectAGENTS; GPU diagnosis assigned elsewhere).
+- Preserve private sources/raw answers outside Git (model-reporting policy).
+
+### Post-Execution Summaries
+
+#### A. Business Summary
+
+DONE: Created [Nov 10 2026 plan](tasks/2026-11-10-plan/2026-11-10-plan-v0.12.1.md), with36 candidate/configuration groups,
+eight work packages, four agent roles, dependencies, storage rotation and explicit
+decisions. The plan prioritizes correct instruction/file use and working code.
+New experiments remain intentionally unstarted.
+
+#### B. Technical Summary
+
+Planning/documentation only. Three independent agents reviewed evaluation,
+candidate identity/storage and execution. Existing Flint collection is verified
+collected-not-graded, normal stop20:34IST; no inference engine found.
+Changed five documentation files: the new plan; docs/tasks/README.md index;
+docs/file-inventory.md entry; docs/tasks.md session/deferred/suggestion records;
+docs/prompts.md original request and summaries. No runtime/profile/weight changes,
+dependency changes, editor typing or UI work. Earlier dirty experiment work is preserved.
+Validation:67 existing offline repository tests passed in27.242s;455 public files
+audited with0findings;2PowerShell scripts parsed;36 ordered candidate rows,
+balanced fences, existing relative links and10catalog pins checked. These are
+repository/document checks, not new model inference or generated-answer grading.
+Git target:paras-lehana/local-coding-lab, experiment/flint-precision-20261024;
+only this task's documentation is selected for the planning commit.
+
+#### C. User Pointer Status Table
+
+| # | Pointer Task | Original Pointer Text | Status | What Was Done |
+|---|---|---|---|---|
+|1|Rethink evaluation|rethink about what should be tested, done and evaluated|DONE|Evidence gaps and falsifiable priorities|
+|2|Named plan|Name it Nov 10 2026 plan|DONE|Exact document title|
+|3|Combinations and reasons|all combinations, what you think, full reasoning regarding them also|DONE|36coverage rows, factor/interaction matrices, exclusions and rationale|
+|4|Detailed team handoff|full multiu hour and multi agent plan...even lowest model can run them|DONE|P0–P7, four roles, job cards, commands, gates and recovery|
+|5|Planning first|your objective now is not to do but first make a plan|DONE|No new model execution, download, retirement or configuration change|
+
+#### D. Additional Findings & Unrequested Work
+
+The review found confounded Qwen residency profiles, missing coding/private seed
+forwarding, Strata cache slots misread as MiB, DFlash rebuilding old settings, and
+a64K/private-output budget conflict. The plan corrects these instructions before
+execution. Official Qwen4/FlintMax artifacts remain unverified; larger Flash
+Q4/Q6 variants need more storage than identified eligible retirements provide.
+
+#### E. Pending & Deferred Items
+
+| Item | Status | Reason |
+|---|---|---|
+| Execute P0–P7, implement planned harness/fixtures, evaluate models | Planned; not started here | Owner explicitly requested planning first |
+| Actual editor UI verification | Pending future execution | Existing no-editor-typing constraint; API checks are separate |
+
+#### F. Agent Suggestions
+
+Close already-collected Flint evidence first, create a coherent Qwen reference,
+then test focused Flint/Flash controls before storage rotations. Advance full
+repeated suites only for useful configurations; retain every unrun disposition.
+This documentation-only milestone is not proposed for a promotional post.
+
+#### G. Manager Copy Block
+
+```text
+Local Coding Lab — next research phase planned, 10 November 2026
+
+What's done
+- Created a detailed plan covering 36 model and configuration groups, including higher precision, memory placement, reasoning settings and longer conversations.
+- Assigned four working roles, with one person or agent controlling local inference and the others checking sources, answers and reports.
+- Defined tests for reading the right instructions, revisiting changed files, admitting missing information and delivering working code.
+- Included ordered storage rotation, recovery checkpoints and explicit reasons for combinations that cannot currently run.
+- Reviewed the plan independently and corrected several misleading settings and memory assumptions.
+
+Suggested next steps
+- First finish grading answers already collected, then establish a complete current reference comparison.
+- Test focused settings changes before downloading larger alternatives or repeating full evaluations.
+- Choose the eventual recommendation from correct completed work and honest source use, rather than model size, advertised context or raw speed.
+
+The planning task is complete. New model experiments, downloads and configuration changes were deliberately not started. Broad execution will take multiple days if many candidates qualify.
 ```
